@@ -1,0 +1,555 @@
+/* ─────────────────────────────────────────────────────────────────────
+   DISNEY+ PITCH — THE PHONE EDITION
+
+   This page is not a normal case study. Three of its beats are bespoke
+   interactive modules built at desk scale, and the shared case layer
+   cannot reach inside them:
+
+     .map-board   a generative city map: SVG canvas, ruler, six generation
+                  buttons in one 6-across strip, two parameter switches
+     .plan-wrap   a spatial plan with a six-item colour legend
+     .lounge      a 3D perspective cinema room — a 1,243px raked floor,
+                  a wall pushed back on the Z axis, two angled dashboards
+
+   At 390px the strips give every control roughly 50px of width with 10px
+   labels, and the lounge is a 682px box holding a 272px screen floating
+   near the top of an empty raked floor.
+
+   So each module gets a strict card layout instead: one column, a defined
+   frame, controls on a grid with real tap targets, and labels at the 11px
+   floor. Nothing is removed that carries content.
+
+   Loads after case-mobile.css. Gated on html[data-touch].
+   ───────────────────────────────────────────────────────────────────── */
+
+@media (max-width: 880px) {
+
+/* ═══════════════════════════════════════════════════════════════════════
+   SHARED CARD SHELL
+   The three modules become the same object: a bordered card, 20px inside,
+   with its parts stacked on the 20/40 spacing scale.
+   ═════════════════════════════════════════════════════════════════════ */
+html[data-touch] .map-board,
+html[data-touch] .plan-wrap {
+  margin-top: 40px !important;
+  padding: 20px !important;
+  border-radius: 2px;
+}
+
+/* the card's own header row: two labels, stacked when they would collide */
+html[data-touch] .map-top,
+html[data-touch] .map-bot {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 4px !important;
+  font-size: 11px !important;
+  letter-spacing: .16em !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   01 · THE MAP BOARD
+   ═════════════════════════════════════════════════════════════════════ */
+
+/* the canvas keeps its own ratio but stops reserving desktop height */
+html[data-touch] .map-canvas {
+  aspect-ratio: 4 / 3 !important;
+  min-height: 0 !important;
+  margin: 16px 0 !important;
+}
+
+/* ruler, then the note as real body copy — 12px was caption size */
+html[data-touch] .map-foot {
+  grid-template-columns: 1fr !important;
+  gap: 14px !important;
+  padding-top: 14px !important;
+}
+html[data-touch] .map-note {
+  font-size: 15px !important;
+  line-height: 1.6 !important;
+  color: rgba(238, 241, 251, .86) !important;
+}
+html[data-touch] .map-ruler { font-size: 10px !important; letter-spacing: .14em !important; }
+
+/* Six generation buttons in one flex strip gave each 51px of width and a
+   10px label. Three across, two rows, 44px tall — a real control. */
+html[data-touch] .map-gens {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 0 !important;
+  margin-top: 24px !important;
+  border: 1px solid rgba(238, 241, 251, .14) !important;
+}
+html[data-touch] .gen-btn {
+  min-height: 46px;
+  font-size: 11px !important;
+  letter-spacing: .14em !important;
+  border-right: 1px solid rgba(238, 241, 251, .12) !important;
+  border-bottom: 1px solid rgba(238, 241, 251, .12) !important;
+}
+/* the grid draws its own edges, so the strip's per-item borders have to
+   stop at the right column and the last row */
+html[data-touch] .map-gens .gen-btn:nth-child(3n) { border-right: 0 !important; }
+html[data-touch] .map-gens .gen-btn:nth-last-child(-n+3) { border-bottom: 0 !important; }
+
+/* Each parameter was [label | Sparse | Even | Dense] on one 348px line —
+   four cells, none of them tappable. The label sits above its own row. */
+html[data-touch] .map-params {
+  grid-template-columns: 1fr !important;
+  gap: 16px !important;
+  margin-top: 20px !important;
+}
+html[data-touch] .map-param {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  border: 1px solid rgba(238, 241, 251, .14) !important;
+}
+html[data-touch] .map-param .mp-k {
+  grid-column: 1 / -1 !important;
+  flex: none !important;
+  border-right: 0 !important;
+  border-bottom: 1px solid rgba(238, 241, 251, .12) !important;
+  padding: 12px 14px !important;
+  font-size: 11px !important;
+  letter-spacing: .16em !important;
+}
+html[data-touch] .map-param button {
+  min-height: 46px;
+  font-size: 11px !important;
+  letter-spacing: .12em !important;
+}
+html[data-touch] .map-param button:last-child { border-right: 0 !important; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   02 · THE SPATIAL PLAN
+   ═════════════════════════════════════════════════════════════════════ */
+html[data-touch] .plan-canvas {
+  aspect-ratio: 4 / 3 !important;
+  min-height: 0 !important;
+}
+/* six 10.5px legend entries wrapping into an uneven block become a two-up
+   grid of real targets, each one still a filter you can tap */
+html[data-touch] .plan-legend {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 0 !important;
+  margin-top: 20px !important;
+  padding-top: 8px !important;
+}
+html[data-touch] .plan-legend button {
+  min-height: 46px;
+  gap: 10px !important;
+  font-size: 11px !important;
+  letter-spacing: .1em !important;
+  text-align: left;
+  padding: 8px 2px !important;
+  border-bottom: 1px solid rgba(238, 241, 251, .08) !important;
+}
+html[data-touch] .plan-legend i { width: 10px !important; height: 10px !important; flex: none; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   03 · THE CINEMA LOUNGE
+
+   The desktop builds a room: a raked floor 60% wider than the viewport, a
+   wall pushed 300px back on the Z axis, two dashboards angled 16° in
+   from the sides. On a phone that resolves to a 682px box with a 272px
+   screen floating near the top and a lot of empty raked grid — which is
+   also what dragged the page 180px sideways.
+
+   The room becomes a card: the screen at full column width, its marquee
+   under it, then the room's own readouts as a list. The raked floor stays
+   as a backdrop because it is the section's identity, just contained.
+   ═════════════════════════════════════════════════════════════════════ */
+html[data-touch] .lounge {
+  height: auto !important;
+  min-height: 0 !important;
+  margin-top: 40px !important;
+  padding: 40px 20px 32px !important;
+  overflow: hidden !important;
+}
+html[data-touch] .lg-scene {
+  position: static !important;
+  inset: auto !important;
+  transform: none !important;
+  transform-style: flat !important;
+}
+/* contained, dimmed, and no longer 60% wider than the screen */
+html[data-touch] .lg-floor {
+  left: 0 !important;
+  right: 0 !important;
+  top: auto !important;
+  bottom: 0 !important;
+  height: 50% !important;
+  opacity: .5 !important;
+  /* no scale: 1.4× pushed the floor to 461px starting at -46px, which was
+     the last of the page's horizontal overflow */
+  transform: rotateX(74deg) !important;
+}
+html[data-touch] .lg-wall {
+  position: static !important;
+  left: auto !important;
+  top: auto !important;
+  width: 100% !important;
+  transform: none !important;
+}
+html[data-touch] .lg-screen {
+  /* it is a cinema screen, so it keeps the cinema ratio */
+  aspect-ratio: 2.39 / 1 !important;
+  box-shadow: 0 0 60px rgba(31, 160, 229, .22), 0 20px 60px rgba(0, 0, 0, .6) !important;
+}
+html[data-touch] .lg-marquee {
+  margin-top: 14px !important;
+  font-size: 11px !important;
+  letter-spacing: .2em !important;
+}
+
+/* The two dashboards are hidden at 880px in the page's own CSS — they are
+   angled Z-axis furniture. Brought back as flat cards they carry the beat's
+   only concrete detail: what the room actually shows you. */
+html[data-touch] .lg-dash {
+  display: block !important;
+  position: static !important;
+  left: auto !important;
+  right: auto !important;
+  top: auto !important;
+  width: auto !important;
+  transform: none !important;
+  margin-top: 20px !important;
+  padding: 16px 18px !important;
+}
+html[data-touch] .lg-dash-r {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px !important;
+}
+html[data-touch] .lg-dash-r .dash-k { flex: 1 0 100%; margin-bottom: 4px !important; }
+html[data-touch] .dash-k { font-size: 11px !important; letter-spacing: .18em !important; margin-bottom: 10px !important; }
+/* every row is live, not just the current one — there is no hover here to
+   reveal the rest */
+html[data-touch] .dash-row { opacity: 1 !important; padding: 10px 0 !important; }
+html[data-touch] .dash-t { font-size: 13px !important; }
+html[data-touch] .dash-chip { font-size: 11px !important; min-height: 32px; display: inline-flex; align-items: center; }
+
+/* the hint labels a drag gesture the phone does not have */
+html[data-touch] .lounge-hint { display: none !important; }
+
+/* the pods: two across reads, three at 348px does not.
+   They are absolutely pinned to the bottom of the lounge on desktop — with
+   the room flattened into a card and the dashboards brought back as flat
+   blocks, that pin drops them straight on top of the screen, the marquee
+   and the dashboards. They join the stack instead. */
+html[data-touch] .pods {
+  position: static !important;
+  inset: auto !important;
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 16px !important;
+  margin-top: 32px !important;
+  padding: 0 !important;
+}
+html[data-touch] .pod { flex: none !important; width: auto !important; min-width: 0 !important; }
+html[data-touch] .pod-k { font-size: 11px !important; margin-top: 14px !important; }
+html[data-touch] .pod-t { font-size: 14px !important; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   04 · THE TYPE SPECIMEN
+
+   .typo-grid keeps two columns at 390px, so the second specimen starts at
+   217px and runs to 407px — 19px past the screen edge, which was the last
+   of the page's horizontal scroll. One specimen per row, and its spec rows
+   read at the 11px floor instead of 9.5px.
+   ═════════════════════════════════════════════════════════════════════ */
+html[data-touch] .typo-grid {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 32px !important;
+}
+html[data-touch] .typo { min-width: 0 !important; width: auto !important; }
+html[data-touch] .t-spec {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+html[data-touch] .t-row {
+  display: flex !important;
+  justify-content: space-between;
+  gap: 12px !important;
+  font-size: 11px !important;
+  padding: 7px 0 !important;
+}
+html[data-touch] .t-row b { font-size: 11px !important; }
+
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   TABLET TIER · 641–1024px
+   The modules have room for their real arrangement, just not desk scale.
+   ═════════════════════════════════════════════════════════════════════ */
+@media (min-width: 641px) and (max-width: 1024px) {
+
+  html[data-touch] .map-board,
+  html[data-touch] .plan-wrap { padding: 32px !important; margin-top: 56px !important; }
+
+  html[data-touch] .map-top,
+  html[data-touch] .map-bot {
+    grid-template-columns: 1fr auto !important;
+    align-items: baseline;
+  }
+  html[data-touch] .map-canvas { aspect-ratio: 1000 / 600 !important; }
+  html[data-touch] .plan-canvas { aspect-ratio: 1560 / 1000 !important; }
+
+  /* six generations fit one strip again at this width */
+  html[data-touch] .map-gens { grid-template-columns: repeat(6, 1fr) !important; }
+  html[data-touch] .map-gens .gen-btn { border-bottom: 0 !important; }
+  html[data-touch] .map-gens .gen-btn:nth-child(3n) { border-right: 1px solid rgba(238, 241, 251, .12) !important; }
+  html[data-touch] .map-gens .gen-btn:last-child { border-right: 0 !important; }
+
+  html[data-touch] .map-params { grid-template-columns: 1fr 1fr !important; }
+  html[data-touch] .map-param {
+    grid-template-columns: auto repeat(3, 1fr) !important;
+    align-items: stretch;
+  }
+  html[data-touch] .map-param .mp-k {
+    grid-column: 1 !important;
+    border-right: 1px solid rgba(238, 241, 251, .12) !important;
+    border-bottom: 0 !important;
+    display: flex;
+    align-items: center;
+  }
+
+  html[data-touch] .plan-legend { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+
+  html[data-touch] .lounge { padding: 64px 40px 48px !important; }
+  html[data-touch] .lg-wall { width: 82% !important; margin-inline: auto !important; }
+  /* side by side, as the room intends, but flat */
+  html[data-touch] .lg-dash {
+    display: inline-block !important;
+    width: calc(50% - 10px) !important;
+    vertical-align: top;
+  }
+  html[data-touch] .lg-dash-l { margin-right: 16px !important; }
+  html[data-touch] .pods { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+  html[data-touch] .typo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   THE PHONE READ — structure, not just fit
+
+   The three bespoke modules above were made to FIT a phone. This block is
+   about how the page READS end to end: eleven numbered pitch beats, each
+   one label → title → body → evidence. On a phone they were running
+   together as one long dark column, with the evidence blocks (interaction
+   tiles, pipeline steps, results) still arranged as desk-scale grids.
+
+   The system, applied to every beat:
+
+       01 LABEL      11px, .2em, accent — the beat's index
+       Title         27px, tight
+       Body          16px/1.62
+       ── 24px ──
+       Evidence      full-width cards, one column, hairline separated
+       ── 96px ──    to the next beat
+
+   One card object throughout: 1px hairline, a barely-there fill, 18px in.
+   ═════════════════════════════════════════════════════════════════════ */
+@media (max-width: 640px) {
+
+  /* ── beat rhythm ─────────────────────────────────────────────────── */
+  html[data-touch] .pitch.pmod { padding: 88px 0 !important; }
+  html[data-touch] .pitch.pmod-tight { padding-top: 0 !important; }
+  html[data-touch] .phead {
+    display: block !important;
+    gap: 0 !important;
+  }
+  html[data-touch] .pnum {
+    font-size: 11px !important;
+    letter-spacing: .2em !important;
+    margin-bottom: 12px !important;
+  }
+  html[data-touch] .pnum b { color: var(--porange, #1FA0E5) !important; }
+  html[data-touch] .ptitle {
+    font-size: 27px !important;
+    line-height: 1.12 !important;
+    margin: 0 0 16px !important;
+  }
+  html[data-touch] .pbody {
+    font-size: 16px !important;
+    line-height: 1.62 !important;
+    max-width: none !important;
+  }
+  /* every evidence block sits one clear step below the words */
+  html[data-touch] .dg { margin-top: 28px !important; }
+
+  /* ── interactions: twelve tiles → one readable list ──────────────── */
+  html[data-touch] .ix-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0 !important;
+    border: 1px solid rgba(238, 241, 251, .14) !important;
+  }
+  html[data-touch] .ix {
+    aspect-ratio: auto !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 14px !important;
+    padding: 14px 44px 14px 16px !important;
+    border: 0 !important;
+    border-bottom: 1px solid rgba(238, 241, 251, .1) !important;
+    background: transparent !important;
+    min-height: 56px;
+  }
+  html[data-touch] .ix:last-child { border-bottom: 0 !important; }
+  html[data-touch] .ix svg { width: 24px !important; flex: none; }
+  html[data-touch] .ix .ix-t {
+    margin-top: 0 !important;
+    font-size: 12px !important;
+    letter-spacing: .1em !important;
+    color: rgba(238, 241, 251, .88) !important;
+  }
+  html[data-touch] .ix .ix-n {
+    top: 50% !important;
+    transform: translateY(-50%);
+    right: 16px !important;
+    font-size: 11px !important;
+  }
+
+  /* ── pipeline: four steps, one column of cards ───────────────────── */
+  html[data-touch] .pipe { grid-template-columns: 1fr !important; }
+  html[data-touch] .pipe-step { padding: 20px 18px !important; gap: 10px !important; }
+  html[data-touch] .pipe-step h5 { font-size: 16px !important; }
+  html[data-touch] .pipe-step p {
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+    color: rgba(238, 241, 251, .78) !important;
+  }
+  html[data-touch] .pipe-step svg { width: 100% !important; height: auto !important; }
+
+  /* ── proposed spaces: the tab strip is a control, so give it height ─ */
+  html[data-touch] .sp-tabs button {
+    min-height: 46px;
+    font-size: 11px !important;
+    letter-spacing: .14em !important;
+  }
+  html[data-touch] .sp-stage { padding: 20px !important; }
+  html[data-touch] .sp-stage img { width: 100% !important; }
+  html[data-touch] .sp-cap {
+    padding: 14px 18px !important;
+    font-size: 11px !important;
+    letter-spacing: .14em !important;
+    gap: 6px !important;
+  }
+
+  /* ── results: four stats as rows, number beside its claim ────────── */
+  html[data-touch] .stats {
+    grid-template-columns: 1fr !important;
+    gap: 0 !important;
+    padding: 0 !important;
+  }
+  html[data-touch] .stat {
+    display: grid !important;
+    /* 96px, not auto: auto sizes per row, so the labels stepped in and out
+       (82 / 86 / 127) instead of sharing one edge. 96 clears the widest
+       value ("Web" at 26px = 89px) with room to spare. */
+    grid-template-columns: 96px minmax(0, 1fr) !important;
+    align-items: baseline;
+    gap: 18px !important;
+    padding: 18px 0 !important;
+    border-bottom: 1px solid rgba(238, 241, 251, .1);
+  }
+  html[data-touch] .stat:last-child { border-bottom: 0; }
+  html[data-touch] .stat .stat-n { font-size: 26px !important; line-height: 1 !important; }
+  html[data-touch] .stat .stat-k {
+    max-width: none !important;
+    font-size: 13px !important;
+    line-height: 1.5 !important;
+    letter-spacing: .06em !important;
+  }
+
+  /* ── the chapter beats: full-height statements, so let them breathe ─ */
+  /* .chapter already carries the gutter; the inner must not add a second */
+  html[data-touch] .chapter:not(.chapter-hero) > .chapter-inner { padding-inline: 0 !important; }
+  html[data-touch] .ch-h {
+    font-size: 26px !important;
+    line-height: 1.2 !important;
+    max-width: none !important;
+  }
+
+  /* ── quote and key visual: the two full-bleed punctuation marks ──── */
+  html[data-touch] .quote { font-size: 22px !important; line-height: 1.35 !important; }
+  html[data-touch] .quote-by { font-size: 11px !important; letter-spacing: .18em !important; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   OVERLAP FIXES THAT ARE NOT ABOUT WIDTH · phone AND tablet
+
+   Two of this page's blocks break for structural reasons, not because the
+   screen is narrow, so they have to hold on an iPad mini too:
+
+     .typo      is a <button>, so the 44px tap-target rule turns it into an
+                inline-flex ROW and its name, render slot and spec rows line
+                up side by side, overlapping.
+     .scale-rows pins two labels at 25% and 75% INSIDE the diagram box; the
+                drawing fills that box at every touch width, so the labels
+                sit on the cells.
+   ═════════════════════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+
+  html[data-touch] .typo {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    text-align: left !important;
+    padding: 16px !important;
+  }
+  html[data-touch] .typo .t-name {
+    order: -1;
+    font-size: 15px !important;
+    margin-bottom: 12px !important;
+  }
+  html[data-touch] .typo .typo-slot { margin-bottom: 14px !important; }
+  html[data-touch] .typo .t-row {
+    font-size: 11px !important;
+    letter-spacing: .12em !important;
+    padding-top: 8px !important;
+  }
+
+  html[data-touch] .scale-img {
+    position: static !important;
+    aspect-ratio: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    padding-top: 0 !important;
+  }
+  html[data-touch] .scale-img img {
+    position: static !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+  html[data-touch] .scale-rows {
+    position: static !important;
+    inset: auto !important;
+    order: -1;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap;
+    gap: 8px 24px !important;
+    margin-bottom: 14px !important;
+  }
+  html[data-touch] .scale-rows span {
+    position: static !important;
+    transform: none !important;
+    top: auto !important;
+    font-size: 11px !important;
+    letter-spacing: .16em !important;
+  }
+}
+
+
+/* the chapter statements share the page's 40px gutter at tablet too — the
+   chapter's own clamp resolved to 31px, so they sat between the hero and
+   the pitch modules instead of lining up with either */
+@media (min-width: 641px) and (max-width: 1024px) {
+  html[data-touch] .chapter:not(.chapter-hero) { padding-inline: 40px !important; }
+  html[data-touch] .chapter:not(.chapter-hero) > .chapter-inner { padding-inline: 0 !important; }
+}

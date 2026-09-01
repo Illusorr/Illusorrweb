@@ -1,0 +1,187 @@
+/* U-Hub Metaverse — page system on top of the shared ILLUSORR case-study CSS.
+   Palette follows Unilever: deep indigo base, Unilever blue accent, one hue
+   per business-group space. */
+
+:root{
+  --dark-bg:#0533CC; --dark-bg-2:#042BAE;
+  --dark-ink:#FFFFFF; --dark-ink-soft:rgba(255,255,255,.72); --dark-ink-faint:rgba(255,255,255,.24);
+  --dark-tile:#0533CC;
+  --accent:#FFFFFF; --uni:#0533CC;
+}
+body{ background:var(--dark-bg); color:var(--dark-ink) }
+a{ color:#FFFFFF; text-decoration:none } a:hover{ color:rgba(255,255,255,.7) }
+
+/* the inherited diamond wallpaper, gone */
+section[data-tone="dark"]::before{ content:none !important }
+.hero .hero-paint{ display:none !important }
+section.hero[data-tone="dark"]{ --hg1:#0533CC; --hg2:#0533CC; --hg3:#0533CC;
+  background:radial-gradient(80% 70% at 74% 6%, rgba(255,255,255,.10), transparent 60%), var(--dark-bg) !important }
+
+/* ── pitch chapter head ────────────────────────────────────────────── */
+.pmod{ padding:clamp(80px,10vw,150px) 0 }
+.pmod-tight{ padding:clamp(52px,6vw,96px) 0 }
+.phead{ display:grid; grid-template-columns:1.05fr .95fr; gap:clamp(28px,4vw,72px); align-items:start }
+.pnum{ font-family:'Outfit',system-ui,sans-serif; font-size:11px; letter-spacing:.3em; text-transform:uppercase; color:var(--ink-soft); display:flex; align-items:baseline; gap:11px; margin-bottom:clamp(20px,2.4vw,34px) }
+.pnum b{ font-weight:500; color:var(--accent) }
+.ptitle{ font-family:'PP Monument Extended',system-ui,sans-serif; font-weight:900; font-size:clamp(24px,2.5vw,38px); line-height:1.14; letter-spacing:-.005em; margin:0; text-wrap:pretty }
+.ptitle em{ font-family:'Outfit',system-ui,sans-serif; font-weight:300; font-style:italic; letter-spacing:.01em }
+.pbody{ font-size:clamp(14.5px,1.05vw,16.5px); line-height:1.72; color:var(--ink-soft); margin:0; max-width:56ch; text-wrap:pretty }
+@media (max-width:900px){ .phead{ grid-template-columns:1fr } }
+
+/* ── plan: the one top view ───────────────────────────────────────── */
+.planview{ position:relative; margin-top:clamp(40px,5vw,72px); overflow:hidden; background:var(--tile); aspect-ratio:16/9 }
+.planview img{ width:100%; height:100%; object-fit:cover; display:block }
+
+.plan-note{ position:absolute; left:clamp(16px,2vw,30px); bottom:clamp(14px,1.8vw,26px); z-index:2;
+  font-family:'Outfit',system-ui,sans-serif; font-size:9.5px; letter-spacing:.24em; text-transform:uppercase; color:#FFFFFF;
+  padding:7px 11px; border:1px solid rgba(255,255,255,.2); background:rgba(4,32,140,.55); backdrop-filter:blur(5px) }
+
+/* ── wings: four petals + the plaza ──────────────────────────────── */
+.wings{ display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(8px,1vw,16px); margin-top:clamp(32px,4vw,56px) }
+.wings figure{ margin:0; position:relative; aspect-ratio:4/3; overflow:hidden; background:var(--tile) }
+.wings img{ width:100%; height:100%; object-fit:cover; display:block }
+.wings figcaption{ position:absolute; left:12px; bottom:12px; z-index:2; font-family:'Outfit',system-ui,sans-serif;
+  font-size:9.5px; letter-spacing:.24em; text-transform:uppercase; color:#FFFFFF; padding:6px 10px;
+  border:1px solid rgba(255,255,255,.2); background:rgba(4,32,140,.55); backdrop-filter:blur(5px) }
+@media (max-width:880px){ .wings{ grid-template-columns:repeat(2,1fr) } }
+
+/* ── spaces: pods -> fullscreen portal ───────────────────────────── */
+.spaces-hint{ font-family:'Outfit',system-ui,sans-serif; font-size:10.5px; letter-spacing:.26em; text-transform:uppercase; color:var(--ink-soft); margin:clamp(34px,4vw,60px) 0 18px }
+.pods{ display:grid; grid-template-columns:repeat(5,1fr); gap:clamp(10px,1.2vw,18px) }
+.pod{ position:relative; cursor:pointer; outline:none }
+.pod-inner{ position:relative; aspect-ratio:4/5; overflow:hidden; background:var(--tile); border:1px solid var(--ink-faint); transition:border-color .4s ease, transform .6s cubic-bezier(.2,.7,.2,1) }
+.pod:hover .pod-inner,.pod:focus-visible .pod-inner{ border-color:color-mix(in srgb,var(--pc,var(--accent)) 70%,transparent); transform:translateY(-4px) }
+.pod-obj{ position:absolute; inset:0 }
+.pod-obj img{ width:100%; height:100%; object-fit:cover; display:block; opacity:.74; transition:opacity .5s ease, transform 1.6s cubic-bezier(.2,.7,.2,1) }
+.pod:hover .pod-obj img{ opacity:1; transform:scale(1.04) }
+.pod-glow{ position:absolute; inset:0; pointer-events:none; background:radial-gradient(120% 80% at 50% 118%, color-mix(in srgb,var(--pc,var(--accent)) 48%,transparent) 0%, transparent 62%); opacity:.5; transition:opacity .5s ease }
+.pod:hover .pod-glow{ opacity:.95 }
+.pod-meta{ position:absolute; left:0; right:0; bottom:0; padding:16px; z-index:2; background:linear-gradient(0deg,rgba(4,32,140,.92),transparent) }
+.pod-k{ font-family:'Outfit',system-ui,sans-serif; font-size:9.5px; letter-spacing:.26em; text-transform:uppercase; color:var(--pc,var(--accent)); margin-bottom:7px }
+.pod-t{ font-family:'Outfit',system-ui,sans-serif; font-size:clamp(13.5px,1.1vw,16px); color:#FFFFFF; line-height:1.2 }
+.pod-t small{ display:block; font-size:11px; color:rgba(255,255,255,.55); margin-top:5px }
+@media (max-width:1100px){ .pods{ grid-template-columns:repeat(2,1fr) } }
+
+.space-scrim{ position:fixed; inset:0; z-index:2090; background:rgba(4,32,140,.78); opacity:0; visibility:hidden; transition:opacity .5s ease, visibility 0s linear .5s }
+.space-scrim.is-on{ opacity:1; visibility:visible; transition:opacity .5s ease }
+.space:not(.is-live){ display:none }
+.space{ position:fixed; inset:0; z-index:2100; display:grid; grid-template-columns:1fr; background:#042BAE; color:#FFFFFF;
+  clip-path:circle(0px at var(--ox,50%) var(--oy,50%)); transition:clip-path 1s cubic-bezier(.66,0,.24,1) }
+.space.is-open{ clip-path:circle(150% at var(--ox,50%) var(--oy,50%)) }
+.space-media{ grid-area:1/1; position:relative; overflow:hidden }
+.space-media img{ width:100%; height:100%; object-fit:cover; display:block }
+.space-media::after{ content:''; position:absolute; inset:0; background:linear-gradient(90deg,rgba(4,32,140,.9) 0%,rgba(4,32,140,.55) 55%,rgba(4,32,140,.08) 100%) }
+.space-copy{ grid-area:1/1; z-index:2; align-self:end; justify-self:start; max-width:min(600px,54vw); padding:clamp(28px,4vw,76px); display:flex; flex-direction:column; gap:16px }
+.space-k{ font-family:'Outfit',system-ui,sans-serif; font-size:10.5px; letter-spacing:.28em; text-transform:uppercase; color:var(--pc,var(--accent)) }
+.space-t{ font-family:'PP Monument Extended',system-ui,sans-serif; font-weight:900; font-size:clamp(24px,2.8vw,44px); line-height:1.1; margin:0 }
+.space-copy p{ font-size:14.5px; line-height:1.72; color:rgba(255,255,255,.74); margin:0; max-width:44ch }
+.space-facts{ display:flex; flex-wrap:wrap; gap:8px; margin-top:4px }
+.space-facts span{ font-family:'Outfit',system-ui,sans-serif; font-size:9.5px; letter-spacing:.2em; text-transform:uppercase; padding:7px 11px; border:1px solid rgba(255,255,255,.22); color:rgba(255,255,255,.72) }
+.space-exit{ align-self:flex-start; margin-top:14px; background:transparent; border:1px solid rgba(255,255,255,.28); color:#FFFFFF; font-family:'Outfit',system-ui,sans-serif; font-size:10.5px; letter-spacing:.24em; text-transform:uppercase; padding:13px 22px; cursor:pointer; transition:background .3s ease, border-color .3s ease }
+.space-exit:hover{ background:var(--pc,var(--accent)); border-color:var(--pc,var(--accent)); color:#042BAE }
+@media (max-width:880px){ .space-copy{ max-width:none; background:linear-gradient(0deg,rgba(4,32,140,.94),rgba(4,32,140,.4) 70%,transparent) } .space-media::after{ background:linear-gradient(0deg,rgba(4,32,140,.6),transparent 60%) } }
+
+/* ── youtube facade ──────────────────────────────────────────────── */
+.vband-full .vb-frame{ height:100vh }
+@media (max-width:760px){ .vband-full .vb-frame{ height:70vh } }
+.yt{ position:absolute; inset:0; cursor:pointer; overflow:hidden; background:#042BAE; --yt-scale:1.02 }
+.yt-poster{ width:100%; height:100%; object-fit:cover; display:block; transition:transform 1.1s cubic-bezier(.2,.7,.2,1), opacity .5s ease }
+.yt:hover .yt-poster{ transform:scale(1.03); opacity:.84 }
+.yt-play{ position:absolute; left:50%; top:50%; width:clamp(58px,5.4vw,88px); aspect-ratio:1; transform:translate(-50%,-50%); border:1px solid rgba(255,255,255,.5); border-radius:50%; background:rgba(4,32,140,.34); backdrop-filter:blur(6px); transition:background .35s ease, border-color .35s ease, transform .35s ease }
+.yt-play::after{ content:''; position:absolute; left:54%; top:50%; transform:translate(-50%,-50%); border-left:clamp(13px,1.2vw,19px) solid #FFFFFF; border-top:clamp(9px,.85vw,13px) solid transparent; border-bottom:clamp(9px,.85vw,13px) solid transparent }
+/* --accent is white on this page, so a white fill erased the white arrow. */
+.yt:hover .yt-play{ background:var(--uni); border-color:#FFFFFF; transform:translate(-50%,-50%) scale(1.06) }
+.yt-label{ position:absolute; left:clamp(18px,2vw,34px); bottom:clamp(16px,1.8vw,30px); font-family:'Outfit',system-ui,sans-serif; font-size:10.5px; letter-spacing:.24em; text-transform:uppercase; color:rgba(255,255,255,.72) }
+.yt iframe{ position:absolute; left:50%; top:50%; transform:translate(-50%,-50%) scale(var(--yt-scale)); width:max(100%,177.78vh); height:max(100%,56.25vw); border:0 }
+.ph .yt-label{ display:none }
+
+/* ── brand shelf ─────────────────────────────────────────────────── */
+.shelf{ display:grid; grid-template-columns:repeat(3,1fr); gap:2px; margin-top:clamp(40px,5vw,72px) }
+.shelf figure{ margin:0; position:relative; aspect-ratio:16/10; overflow:hidden; background:var(--tile) }
+.shelf img{ width:100%; height:100%; object-fit:cover; display:block; transition:transform 1.4s cubic-bezier(.2,.7,.2,1) }
+.shelf figure:hover img{ transform:scale(1.03) }
+.shelf figcaption{ position:absolute; left:12px; bottom:12px; z-index:2; font-family:'Outfit',system-ui,sans-serif;
+  font-size:9.5px; letter-spacing:.24em; text-transform:uppercase; color:#FFFFFF; padding:6px 10px;
+  border:1px solid rgba(255,255,255,.2); background:rgba(4,32,140,.55); backdrop-filter:blur(5px) }
+@media (max-width:880px){ .shelf{ grid-template-columns:1fr } }
+
+/* ── image fills for the shared blocks ──────────────────────────── */
+.ph.has-media::before,.ph.has-media::after{ content:none }
+.ph.has-media{ background:transparent; border:0; isolation:auto; overflow:hidden }
+.ph.has-media > img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block }
+.vb-frame > img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block }
+.hm-frame > img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block }
+
+/* The key visual sits directly on the page blue: no darker plate, no
+   blend, so the render reads at its own colour. */
+section[data-screen-label="10 Key Visual"] .ph.has-media{ background:transparent }
+section[data-screen-label="10 Key Visual"] .ph.has-media > img{ mix-blend-mode:normal; filter:none }
+
+/* The shared base sets `section[data-tone="dark"] > * { position:relative }`,
+   which outranks the single-class rule and drags the emblem layer into flow,
+   adding ~600px of empty blue under the hero footer. */
+section.hero[data-tone] > .hero-emblems{ position:absolute }
+
+/* ── hero: content-height, so the cover band comes into view sooner ── */
+section.hero[data-tone]{ min-height:0 !important; padding-block:clamp(40px,5vh,80px) clamp(28px,4vh,56px) !important }
+section.hero[data-tone] .proj-tags{ padding-top:clamp(28px,4.5vh,72px) !important }
+section.hero[data-tone] .hero-foot{ margin-top:clamp(36px,6vh,84px) !important }
+
+/* ── light chapters: the brief and the plan ───────────────────────── */
+section.on-light{ background:#FFFFFF; color:#0A0A0A }
+section.on-light .pnum{ color:rgba(10,10,10,.55) }
+section.on-light .pnum b{ color:var(--uni) }
+section.on-light .ptitle{ color:#0A0A0A }
+section.on-light .pbody{ color:rgba(10,10,10,.68) }
+section.on-light .plan-note,section.on-light .wings figcaption{ color:#FFFFFF; border-color:rgba(255,255,255,.24); background:rgba(5,51,204,.72) }
+section.on-light .planview,section.on-light .wings figure{ background:#eef1f8 }
+section.on-light a{ color:var(--uni) } section.on-light a:hover{ color:#0A0A0A }
+
+/* The cover band was a full-viewport frame, so a 16:9 film was cropped to fit.
+   Let the band take the film's own ratio instead. */
+.hero-media .hm-frame{ height:auto !important; aspect-ratio:16/9 }
+.hero-media .hm-frame .yt{ position:relative; inset:auto; width:100%; height:100% }
+.hero-media .hm-frame .yt-poster{ object-fit:contain }
+.hero-media .hm-frame .yt iframe{ width:100%; height:100%; transform:translate(-50%,-50%) }
+
+/* ── light theme, everything below the cover film ─────────────────── */
+body{ background:#FFFFFF }
+section.on-light{ background:#FFFFFF; color:#0A0A0A;
+  --ink:#0A0A0A; --ink-soft:rgba(10,10,10,.62); --ink-faint:rgba(10,10,10,.14); --tile:#eef1f8; --accent:var(--uni) }
+section.on-light .meta-k,section.on-light .credit-k,section.on-light .spaces-hint,
+section.on-light .vb-cap,section.on-light .quote-attrib{ color:rgba(10,10,10,.55) }
+section.on-light .meta-v,section.on-light .credit-v,section.on-light .credits-head,
+section.on-light .module-title,section.on-light .quote{ color:#0A0A0A }
+section.on-light .lede{ color:rgba(10,10,10,.66) }
+section.on-light .quote .mark{ color:var(--uni) }
+section.on-light .meta-bar,section.on-light .meta-cell,section.on-light .credits{ border-color:rgba(10,10,10,.14) }
+section.on-light .vb-frame,section.on-light .shelf figure,section.on-light .ph{ background:#eef1f8 }
+section.on-light .pod-inner{ border-color:rgba(10,10,10,.14); background:#eef1f8 }
+section.on-light .pod-meta{ background:linear-gradient(0deg,rgba(4,32,140,.92),transparent) }
+section.on-light .caption,section.on-light .shelf figcaption{ color:#FFFFFF; border-color:rgba(255,255,255,.24); background:rgba(5,51,204,.72) }
+section.on-light .yt-play{ border-color:rgba(10,10,10,.45); background:rgba(255,255,255,.4) }
+section.on-light .yt-play::after{ border-left-color:#0A0A0A }
+section.on-light .yt:hover .yt-play{ background:var(--uni); border-color:var(--uni) }
+section.on-light .yt:hover .yt-play::after{ border-left-color:#FFFFFF }
+
+.koton-cursor.on-light{ color:var(--uni) }
+.koton-cursor.on-light.is-link{ color:var(--uni) }
+.koton-cursor.on-light .label-link{ color:var(--uni) }
+
+/* The caption strip under the film belongs to the white half of the page. */
+.hero-media{ background:#FFFFFF }
+.hero-media .hm-cap{ color:rgba(10,10,10,.55) }
+.hero-media .hm-cap span{ color:rgba(10,10,10,.55) }
+
+/* collaborator credit */
+.credit-collab .who{ display:flex; align-items:center; gap:14px }
+.collab-logo{ width:46px; height:46px; object-fit:contain; display:block; flex:0 0 auto }
+.collab-txt{ display:flex; flex-direction:column; gap:2px }
+.credit-collab .who small{ font-size:12px; color:rgba(10,10,10,.5) }
+
+/* The 0.74 resting opacity and the bottom-up bloom were both authored to
+   read against a near-black card. On the pale card they only fog the render. */
+section.on-light .pod-obj img{ opacity:1 }
+section.on-light .pod-glow{ opacity:0; background:none }
+section.on-light .pod:hover .pod-glow{ opacity:0 }
+section.on-light .pod:hover .pod-obj img{ transform:scale(1.04) }

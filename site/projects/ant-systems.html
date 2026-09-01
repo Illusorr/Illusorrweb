@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<link rel="preload" as="font" type="font/otf" crossorigin href="../assets/projects/shared/fonts/PPMonumentExtended-Black.otf">
+<link rel="preload" as="font" type="font/ttf" crossorigin href="../assets/projects/shared/fonts/Squaresharps-v2.ttf">
+
+<link rel="preload" as="font" type="font/woff" crossorigin href="../assets/fonts/outfit-variable.woff">
+<link rel="stylesheet" href="../assets/css/nav.css">
+<link rel="stylesheet" href="../assets/css/case/fonts.css">
+
+<link rel="stylesheet" href="../assets/css/case/cm-type.css">
+<title>ANT Systems · Website · ILLUSORR</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../assets/css/case/case-base.css">
+
+<link rel="stylesheet" href="../assets/css/case/proj-tags.css">
+
+
+<link rel="stylesheet" href="../assets/css/case/hero-refine.css">
+
+<link rel="stylesheet" href="../assets/css/case/rhythm-refine.css">
+
+<meta name="description" content="ANT Systems by ILLUSORR: information architecture, design system and front-end build for an agricultural nano-technology company.">
+<link rel="canonical" href="https://illusorr.com/projects/ant-systems.html">
+<meta name="theme-color" content="#05060a">
+<meta property="og:site_name" content="ILLUSORR">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ANT Systems · Website · ILLUSORR">
+<meta property="og:description" content="Information architecture, design system and front-end build for ANT Systems.">
+<meta property="og:url" content="https://illusorr.com/projects/ant-systems.html">
+<meta property="og:image" content="https://illusorr.com/assets/img/og/og-default.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CreativeWork","name":"ANT Systems Website","url":"https://illusorr.com/projects/ant-systems.html","creator":{"@type":"Organization","name":"ILLUSORR","url":"https://illusorr.com/"},"about":"Business & Institutions","keywords":"Web design, Web build, Information architecture, Design system, Data visualisation"}</script>
+<!-- phone + tablet: shared touch layer, then the shared case layout -->
+<link rel="stylesheet" href="../assets/css/mobile.css">
+<link rel="stylesheet" href="../assets/css/case/case-mobile.css">
+<script src="../assets/js/mobile.js"></script>
+</head>
+
+
+
+<body>
+<header class="il-topbar" id="ilTopbar">
+  <a class="il-brand" href="../index.html" aria-label="ILLUSORR home"><span class="il-logo" role="img" aria-label="ILLUSORR"></span></a>
+  <div class="il-right">
+    <a class="il-talk" href="../contact.html">Let's talk</a>
+    <button class="il-burger" id="ilMenuOpen" aria-label="Open menu"><i></i><i></i></button>
+  </div>
+</header>
+<div class="il-overlay" id="ilOverlay">
+  <div class="il-ohead"><span class="il-logo" role="img" aria-label="ILLUSORR"></span><button class="il-oclose" id="ilMenuClose">Close ✕</button></div>
+  <nav>
+    <a href="../index.html">Home <span>01</span></a>
+    <a href="../about.html">About <span>02</span></a>
+    <a href="../sectors.html">Sectors <span>03</span></a>
+    <a href="../work.html">Work <span>04</span></a>
+    <a href="../lab.html">Lab <span>05</span></a>
+    <a href="../collective.html">Collective <span>06</span></a>
+    <a href="../contact.html">Contact <span>07</span></a>
+  </nav>
+  <div class="il-ofoot"><span>Abu Dhabi · Yas Creative Hub</span><span>hello@illusorr.com</span></div>
+</div>
+
+
+  <!-- ─── Fixed chrome ─────────────────────────────────────────────── -->
+  <!-- topnav removed, menu bar to be added separately -->
+
+
+<style>
+  /* ─── website-work modules: live frames, sitemap, system sheet ─── */
+  .stage { border: 1px solid var(--line); background: #0a0a0a; position: relative; overflow: hidden; }
+  .hm-inner .stage { margin-top: clamp(24px, 3vw, 44px); }
+  .stage-bar { display: flex; align-items: center; gap: 10px; height: 34px; padding: 0 12px;
+    border-bottom: 1px solid var(--line); background: rgba(255,255,255,.03); }
+  .stage-dots { display: flex; gap: 6px; }
+  .stage-dots i { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.18); }
+  .stage-url { flex: 1; height: 18px; border-radius: 9px; background: rgba(255,255,255,.06);
+    display: flex; align-items: center; padding: 0 10px; font-size: 12px; letter-spacing: .12em;
+    text-transform: uppercase; color: rgba(255,255,255,.45); }
+  .stage-live { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--gold-ant); }
+  .stage-view { position: relative; overflow: hidden; background: #fff; }
+  .stage-view iframe { position: absolute; top: 0; left: 0; border: 0; transform-origin: top left; }
+  .stage, .dev-tab { contain: paint; }
+  .stage-view { contain: strict; }
+  .stage-view.is-locked iframe { pointer-events: none; }
+  .stage-hint { position: absolute; inset: auto 0 0 0; padding: 10px 12px; z-index: 3;
+    display: flex; justify-content: space-between; align-items: center; gap: 12px; cursor: pointer;
+    font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: #fff;
+    background: linear-gradient(to top, rgba(0,0,0,.78), rgba(0,0,0,0)); }
+  .stage-view:not(.is-locked) .stage-hint { background: none; color: var(--gold-ant); }
+  .devrow { display: grid; grid-template-columns: 1fr; gap: clamp(18px, 2.4vw, 34px); align-items: end;
+    margin-top: clamp(30px, 3.4vw, 54px); }
+  @media (min-width: 900px) { .devrow { grid-template-columns: 1.9fr .62fr; } }
+  .dev-tab { border-radius: 14px; padding: 8px; border: 1px solid var(--line); background: #0a0a0a; }
+  .dev-tab .stage-view { border-radius: 8px; }
+  .dev-cap { display: flex; justify-content: space-between; gap: 10px; margin-top: 10px;
+    font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint); }
+  .sitemap { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--line);
+    border: 1px solid var(--line); margin-top: clamp(28px, 3vw, 46px); }
+  @media (min-width: 760px) { .sitemap { grid-template-columns: repeat(4, 1fr); } }
+  .sm-col { background: var(--bg); padding: clamp(18px, 2vw, 26px); }
+  .sm-k { display: flex; align-items: baseline; gap: 8px; font-size: 12px; letter-spacing: .16em;
+    text-transform: uppercase; color: var(--gold-ant); }
+  .sm-k b { font-weight: 400; color: var(--ink-faint); }
+  .sm-col ul { list-style: none; margin: 14px 0 0; padding: 0; display: flex; flex-direction: column; gap: 7px; }
+  .sm-col li { font-size: 13px; line-height: 1.45; color: var(--ink-soft); }
+  .sm-col li.is-deep { padding-left: 12px; border-left: 1px solid var(--line); color: var(--ink-faint); }
+  .syssheet { display: grid; grid-template-columns: 1fr; gap: 1px; background: var(--line);
+    border: 1px solid var(--line); margin-top: clamp(28px, 3vw, 46px); }
+  @media (min-width: 860px) { .syssheet { grid-template-columns: 1.1fr 1fr 1fr; } }
+  .sys-cell { background: var(--bg); padding: clamp(20px, 2.2vw, 30px); display: flex; flex-direction: column; gap: 16px; }
+  .sys-k { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--gold-ant); }
+  .swatches { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .sw { aspect-ratio: 1; border: 1px solid var(--line); display: flex; align-items: flex-end; padding: 7px;
+    font-size: 12px; letter-spacing: .08em; }
+  .typerow { display: flex; flex-direction: column; gap: 10px; }
+  .typerow span { color: var(--ink); line-height: 1.05; }
+  .typerow small { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint); }
+  .uikit { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .ui-btn { padding: 11px 22px; border-radius: 6px; font-size: 13px; font-weight: 600; letter-spacing: .04em;
+    background: var(--gold-ant); color: #0a0a0a; }
+  .ui-btn.is-ghost { background: transparent; color: rgba(255,255,255,.72); border: 1px solid rgba(255,255,255,.22); font-weight: 500; }
+  .ui-eyebrow { font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--gold-ant); font-weight: 600; }
+  .ui-chip { padding: 7px 13px; border: 1px solid var(--line); font-size: 12px; color: var(--ink-soft); }
+  .featrow { display: grid; grid-template-columns: 1fr; gap: clamp(18px, 2.2vw, 30px);
+    margin-top: clamp(30px, 3.4vw, 54px); }
+  @media (min-width: 900px) { .featrow { grid-template-columns: 1fr 1fr; } }
+  .feat-cap { display: flex; justify-content: space-between; gap: 10px; margin-top: 10px;
+    font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint); }
+  :root { --gold-ant: #D4A017; --line: rgba(255,255,255,.10); }
+</style>
+
+  <div class="koton-cursor" id="kCursor" aria-hidden="true">
+    <svg class="km" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="42" fill="none" stroke="currentColor" stroke-width="7"></circle><circle cx="50" cy="50" r="9" fill="currentColor"></circle></svg>
+    <span class="label-link" data-verb="Open"></span>
+  </div>
+
+  <aside class="rail" aria-hidden="true">
+    <span class="rail-dot is-active" data-i="0"></span><span class="rail-dot" data-i="1"></span>
+    <span class="rail-dot" data-i="2"></span><span class="rail-dot" data-i="3"></span>
+    <span class="rail-dot" data-i="4"></span><span class="rail-dot" data-i="5"></span>
+    <span class="rail-dot" data-i="6"></span>
+  </aside>
+
+  <style>
+    /* forked shell ships a light hero gradient; ANT is gold on black */
+    section.hero[data-tone="dark"],
+    body section.hero[data-tone="dark"] { background: #07080b !important; color: #f3ecdf; }
+    body section.hero[data-tone="dark"]::before { background: radial-gradient(70% 70% at 74% 22%, rgba(212,160,23,.13), transparent 70%) !important; }
+    body section.hero[data-tone="dark"]::after { background: none !important; }
+    body { background: #000; }
+    /* ANT is gold on black: retone the dark half from the shell's navy */
+    :root { --dark-bg: #000000; --dark-bg-2: #0a0a0a; --dark-tile: #14140f; }
+    body section[data-tone="dark"], body footer[data-tone="dark"] { background: #000; }
+    body section.hero[data-tone="dark"], body section.hero[data-tone="dark"] { background: #000 !important; }
+  </style>
+  <!-- 1. HERO -->
+  <section class="hero" data-tone="dark" data-rail="0" data-screen-label="01 Hero">
+    <div class="hero-inner">
+      <div class="proj-tags hero-meta">
+        <div class="ptg ptg-client">
+          <div class="ptg-k">Client</div>
+          <div class="ptg-c"><img class="cm-logo-img" src="../assets/img/projects/ant-systems/illusorr-ant-systems-logo-lockup.svg" alt="ANT Systems — Agricultural Nano Technology" width="212" height="44" decoding="async" style="max-height:44px;filter:invert(1)"></div>
+        </div>
+        <div class="ptg" style="margin-left:auto">
+          <div class="ptg-k">Category</div>
+          <div class="ptg-c"><span class="ptag">Web Design</span><span class="ptag">Web Build</span><span class="ptag">Data Viz</span></div>
+        </div>
+        <div class="ptg">
+          <div class="ptg-k">Sector</div>
+          <div class="ptg-c"><span class="ptag sector">Business &amp; Institutions</span></div>
+        </div>
+      </div>
+
+      <h1 class="hero-title">
+        <span class="ln">ANT Systems<span class="ln-ital">the science, made navigable.</span></span>
+      </h1>
+
+      <p class="hero-lede">
+        <strong>A website for an agricultural nano-technology company</strong> whose catalogue is
+        laboratory work: three product brands, five Nanotern formulations, field trials across
+        continents. Architecture, design system and front-end build by ILLUSORR.
+      </p>
+
+      <div class="hero-foot">
+        <div class="hero-credit">
+          <div>ANT Systems · Website · 2026</div>
+          <div>Designed and built by ILLUSORR</div>
+        </div>
+        <div class="scroll-cue"><span>Scroll</span><span class="line"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. LIVE COVER, the real site running in a browser -->
+  <section class="hero-media" data-tone="dark" data-rail="1" data-screen-label="02 Live Site">
+    <div class="hm-inner">
+      <div class="stage">
+        <div class="stage-bar">
+          <div class="stage-dots"><i></i><i></i><i></i></div>
+          <div class="stage-url">antsystems.netlify.app</div>
+          <a class="stage-live" href="https://antsystems.netlify.app/" target="_blank" rel="noopener" style="text-decoration:none">Visit live site →</a>
+        </div>
+        <div class="stage-view is-locked" data-frame data-w="1440" data-h="900" style="aspect-ratio:1440/900">
+          <iframe data-src="ant-live/index.html" title="ANT Systems website, live build" loading="lazy" scrolling="no"></iframe>
+          <div class="stage-hint"><span>Click to use the real site</span><span>Landing</span></div>
+        </div>
+      </div>
+      <div class="hm-cap"><span>ANT Systems</span><span>Home · Live</span></div>
+    </div>
+  </section>
+
+  <!-- 3. PROJECT META BAR -->
+  <section data-tone="dark" data-rail="1" data-screen-label="03 Meta">
+    <div class="wrap">
+      <div class="meta-bar">
+        <div class="meta-cell"><span class="meta-k">Client</span><span class="meta-v">ANT Systems Holding B.V.<br>The Hague · Istanbul</span></div>
+        <div class="meta-cell"><span class="meta-k">Year</span><span class="meta-v">2026</span></div>
+        <div class="meta-cell"><span class="meta-k">Services</span><span class="meta-v">Information Architecture, Web Design, Front-End Build, Data Visualisation, 3D</span></div>
+        <div class="meta-cell"><span class="meta-k">Build</span><span class="meta-v">Hand-written HTML, CSS &amp; JS · D3 · WebGL</span></div>
+        <div class="meta-cell"><span class="meta-k">Audiences</span><span class="meta-v">Growers · Distributors · Investors · Research partners</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. THE BRIEF -->
+  <section class="module" data-tone="dark" data-rail="2" data-screen-label="04 Brief">
+    <div class="wrap">
+      <div class="module-head">
+        <div class="section-num"><span class="num">01</span>The Brief</div>
+        <div>
+          <h2 class="module-title">One site, <em>three very different readers.</em></h2>
+          <p class="lede">
+            A distributor wants dosage and a data sheet. An investor wants production
+            readiness and structure. An agronomist wants the trial data. Behind all three
+            sit 44 patents, 272 peer-reviewed papers and 8,039 citations, and none of it
+            was reachable in fewer than four clicks.
+          </p>
+        </div>
+      </div>
+      <div class="body-grid">
+        <div>
+          <p>ANT Systems makes nano-scale inputs for agriculture: Nanotern for pre-harvest,
+          Insease during harvest, Antimic Agro after it. Holding company in The Hague,
+          production at Tuzla in Istanbul, fields active across nine countries. Every claim
+          is a trial with a location and a yield number.</p>
+        </div>
+        <div>
+          <p>So the site had to hold two registers at once. A corporate face that reads
+          credibly to a ministry or an investor, and underneath it a working reference
+          layer, calculators, field reports, downloadable manuals, that a buyer can
+          actually use in the field.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. ARCHITECTURE -->
+  <section class="module" data-tone="dark" data-rail="3" data-screen-label="05 Architecture">
+    <div class="wrap">
+      <div class="module-head">
+        <div class="section-num"><span class="num">02</span>Architecture</div>
+        <div>
+          <h2 class="module-title">Nine doors, <em>one depth each.</em></h2>
+          <p class="lede">
+            The whole catalogue resolves into nine top-level sections. Products carry the
+            depth, everything else stays one click from the top, and the mega menu shows
+            the map rather than hiding it.
+          </p>
+        </div>
+      </div>
+      <div class="sitemap">
+        <div class="sm-col">
+          <div class="sm-k">Company <b>01</b></div>
+          <ul><li>Company Story</li><li>Mission &amp; Vision</li><li>Leadership</li><li>Scientific Foundations</li><li>Production Readiness</li><li>Global Ambition</li><li>Corporate Structure</li></ul>
+        </div>
+        <div class="sm-col">
+          <div class="sm-k">Products <b>02</b></div>
+          <ul><li>Overview</li><li>Nanotern™</li><li class="is-deep">Agriculture</li><li class="is-deep">Landscaping</li><li class="is-deep">Agriculture Bio+</li><li class="is-deep">Agriculture Aqua</li><li class="is-deep">Landscaping Aqua</li><li>Insease</li><li>Antimic Agro</li></ul>
+        </div>
+        <div class="sm-col">
+          <div class="sm-k">Evidence <b>03</b></div>
+          <ul><li>FIELD reports</li><li class="is-deep">Senegal trial</li><li>Interactive dashboard</li><li>Research</li><li>News &amp; archive</li><li>Downloads: manuals, tech sheets</li></ul>
+        </div>
+        <div class="sm-col">
+          <div class="sm-k">Commercial <b>04</b></div>
+          <ul><li>Dosage calculator</li><li>Savings calculator</li><li>Investor page</li><li>Become a partner</li><li>Our clients</li><li>Contact</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. THE SYSTEM -->
+  <section class="module" data-tone="dark" data-rail="3" data-screen-label="06 System" style="padding-top:0">
+    <div class="wrap">
+      <div class="module-head">
+        <div class="section-num"><span class="num">03</span>The System</div>
+        <div>
+          <h2 class="module-title">Gold, black, <em>and nothing else to argue about.</em></h2>
+          <p class="lede">
+            One accent carries every state, hover, active, emphasis, so a page of dense
+            technical copy still has one place for the eye to go.
+          </p>
+        </div>
+      </div>
+      <div class="syssheet">
+        <div class="sys-cell">
+          <div class="sys-k">Palette</div>
+          <div class="swatches">
+            <div class="sw" style="background:#D4A017;color:#0a0a0a">D4A017</div>
+            <div class="sw" style="background:#E8B92A;color:#0a0a0a">E8B92A</div>
+            <div class="sw" style="background:#0A0A0A;color:rgba(255,255,255,.6)">0A0A0A</div>
+            <div class="sw" style="background:#191818;color:rgba(255,255,255,.6)">1A1A1A</div>
+            <div class="sw" style="background:#888888;color:#0a0a0a">888888</div>
+            <div class="sw" style="background:#ffffff;color:#0a0a0a">F5F5F5</div>
+          </div>
+        </div>
+        <div class="sys-cell">
+          <div class="sys-k">Type · Outfit</div>
+          <div class="typerow">
+            <small>Display · 800</small>
+            <span style="font-weight:800;font-size:clamp(26px,3vw,40px)">Nano, measured</span>
+            <small>Title · 700</small>
+            <span style="font-weight:700;font-size:20px">Production readiness</span>
+            <small>Body · 300</small>
+            <span style="font-weight:300;font-size:14px;color:var(--ink-soft)">Applied at 250 ml per hectare, split across two passes.</span>
+          </div>
+        </div>
+        <div class="sys-cell">
+          <div class="sys-k">Components</div>
+          <div class="uikit">
+            <span class="ui-btn">Request a quote</span>
+            <span class="ui-btn is-ghost">Download tech sheet</span>
+          </div>
+          <div class="ui-eyebrow">Field results</div>
+          <div class="uikit">
+            <span class="ui-chip">Pre harvest</span><span class="ui-chip">During harvest</span><span class="ui-chip">Post harvest</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. THE BUILD, live at three widths -->
+  <section class="module" data-tone="dark" data-rail="4" data-screen-label="07 Build">
+    <div class="wrap">
+      <div class="module-head">
+        <div class="section-num"><span class="num">04</span>The Build</div>
+        <div>
+          <h2 class="module-title">Hand-written, <em>and running right here.</em></h2>
+          <p class="lede">
+            No page builder and no framework. Every frame below is the real site, loaded
+            live, at the width it was designed for. Click into one and use it.
+          </p>
+        </div>
+      </div>
+      <div class="devrow">
+        <div>
+          <div class="stage">
+            <div class="stage-bar">
+              <div class="stage-dots"><i></i><i></i><i></i></div>
+              <div class="stage-url">antsystems.netlify.app / nanotern</div>
+              <div class="stage-live">1440 px</div>
+            </div>
+            <div class="stage-view is-locked" data-frame data-w="1440" data-h="880" data-goto="nanotern" style="aspect-ratio:1440/880">
+              <iframe data-src="ant-live/index.html" title="Nanotern product page" loading="lazy" scrolling="no"></iframe>
+              <div class="stage-hint"><span>Click to use</span><span>Product page</span></div>
+            </div>
+          </div>
+          <div class="dev-cap"><span>Desktop · Product template</span><span>Nanotern™</span></div>
+        </div>
+        <div>
+          <div class="dev-tab">
+            <div class="stage-view is-locked" data-frame data-w="420" data-h="880" data-goto="products" style="aspect-ratio:420/880">
+              <iframe data-src="ant-live/index.html" title="ANT Systems on mobile" loading="lazy" scrolling="no"></iframe>
+              <div class="stage-hint"><span>Click to use</span><span>390</span></div>
+            </div>
+          </div>
+          <div class="dev-cap"><span>Mobile</span><span>420 px</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. INTERACTIVE PIECES -->
+  <section class="module" data-tone="dark" data-rail="5" data-screen-label="08 Interactive" style="padding-top:0">
+    <div class="wrap">
+      <div class="module-head">
+        <div class="section-num"><span class="num">05</span>Interactive</div>
+        <div>
+          <h2 class="module-title">The evidence layer. <em>Not a PDF in sight.</em></h2>
+          <p class="lede">
+            Trial data became a globe you can spin and a map you can read. Dosage became
+            a calculator instead of a table. Both are built in D3 against the real
+            field data set.
+          </p>
+        </div>
+      </div>
+      <div class="featrow">
+        <div>
+          <div class="stage">
+            <div class="stage-bar">
+              <div class="stage-dots"><i></i><i></i><i></i></div>
+              <div class="stage-url">field / dashboard</div>
+              <div class="stage-live">D3</div>
+            </div>
+            <div class="stage-view is-locked" data-frame data-w="1280" data-h="860" data-goto="dashboard" style="aspect-ratio:1280/860">
+              <iframe data-src="ant-live/index.html" title="ANT Systems interactive dashboard" loading="lazy" scrolling="no"></iframe>
+              <div class="stage-hint"><span>Click to spin the globe</span><span>Dashboard</span></div>
+            </div>
+          </div>
+          <div class="feat-cap"><span>Interactive globe · trial sites</span><span>01</span></div>
+        </div>
+        <div>
+          <div class="stage">
+            <div class="stage-bar">
+              <div class="stage-dots"><i></i><i></i><i></i></div>
+              <div class="stage-url">field / senegal</div>
+              <div class="stage-live">Live data</div>
+            </div>
+            <div class="stage-view is-locked" data-frame data-w="1280" data-h="860" data-goto="field" style="aspect-ratio:1280/860">
+              <iframe data-src="ant-live/index.html" title="ANT Systems Senegal field report" loading="lazy" scrolling="no"></iframe>
+              <div class="stage-hint"><span>Click to read the report</span><span>FIELD</span></div>
+            </div>
+          </div>
+          <div class="feat-cap"><span>Senegal trial · report and map</span><span>02</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. FULL BLEED -->
+  <section class="bleed" data-tone="dark" data-rail="5" data-screen-label="09 Production">
+    <div class="wrap">
+      <div class="ph" style="aspect-ratio:21/9;overflow:hidden"><img src="../assets/img/projects/ant-systems/illusorr-ant-systems-production-facility.webp" alt="ANT Systems production facility" loading="lazy" decoding="async" width="1800" height="771" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+    </div>
+  </section>
+
+  <!-- 10. APPROACH -->
+  <section class="module" data-tone="dark" data-rail="6" data-screen-label="10 Approach">
+    <div class="wrap">
+      <div class="module-head">
+        <div class="section-num"><span class="num">06</span>The Approach</div>
+        <div>
+          <h2 class="module-title">Map it. <em>System it. Build it.</em></h2>
+          <p class="lede">Three passes, in that order, with nothing designed before the map was agreed.</p>
+        </div>
+      </div>
+      <div class="process">
+        <div class="step">
+          <span class="step-k">Phase 01 · Map</span>
+          <h4>Sort the Catalogue</h4>
+          <p>Every document, product and trial was listed, then grouped by who asks for it. That list became nine sections and the mega-menu structure, before a single screen was drawn.</p>
+        </div>
+        <div class="step">
+          <span class="step-k">Phase 02 · System</span>
+          <h4>One Accent, One Scale</h4>
+          <p>Gold on black, one type family at four weights, six components. Dense technical pages stay readable because nothing competes with the accent.</p>
+        </div>
+        <div class="step">
+          <span class="step-k">Phase 03 · Build</span>
+          <h4>Written, Not Assembled</h4>
+          <p>Hand-written front end, D3 for the data layer, WebGL for the product visual. Static, fast, and handed over as source the client owns.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. QUOTE -->
+  <section class="quote-wrap" data-tone="dark" data-rail="6" data-screen-label="11 Quote">
+    <div class="wrap">
+      <blockquote class="quote">
+        <span class="quote-mark">“</span>
+        A technical catalogue does not need simplifying. It needs sorting, so the reader
+        who wants the dosage number reaches it in one move.
+        <div class="quote-attrib"><span class="rule"></span><span>ILLUSORR</span></div>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- 12. OUTCOME + CREDITS -->
+  <section class="module" data-tone="dark" data-rail="7" data-screen-label="12 Results">
+    <div class="wrap">
+      <div class="module-head">
+        <div class="section-num"><span class="num">07</span>The Outcome</div>
+        <div><h2 class="module-title">A decade of science, <em>navigable in one sitting.</em></h2></div>
+      </div>
+      <div class="stats">
+        <div class="stat"><span class="stat-n">44</span><span class="stat-k">Patents, each one placed in the product pages that claim it</span></div>
+        <div class="stat"><span class="stat-n">272</span><span class="stat-k">Peer-reviewed papers behind the science section</span></div>
+        <div class="stat"><span class="stat-n">09</span><span class="stat-k">Active countries mapped on the interactive globe</span></div>
+        <div class="stat"><span class="stat-n">02</span><span class="stat-k">Live calculators replacing dosage tables</span></div>
+      </div>
+      <div class="credits">
+        <div>
+          <span class="section-num" style="display:block;margin-bottom:0">
+            <span class="num" style="font-size:clamp(28px,3vw,48px)">08</span>Credits
+          </span>
+        </div>
+        <div class="credit-list">
+          <div class="credit-row"><span class="role">Information Architecture</span><span class="who">ILLUSORR Studio</span></div>
+          <div class="credit-row"><span class="role">Art Direction · Design System</span><span class="who">ILLUSORR Studio</span></div>
+          <div class="credit-row"><span class="role">Front-End Build</span><span class="who">ILLUSORR Labs</span></div>
+          <div class="credit-row"><span class="role">Data Visualisation</span><span class="who">D3 · ILLUSORR Labs</span></div>
+          <div class="credit-row"><span class="role">3D · Product Visual</span><span class="who">ILLUSORR Labs</span></div>
+          <div class="credit-row"><span class="role">Client</span><span class="who">ANT Systems</span></div>
+          <div class="credit-row"><span class="role">Sector</span><span class="who">Business &amp; Institutions</span></div>
+          <div class="credit-row"><span class="role">Year</span><span class="who">2026</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 13. NEXT -->
+  <section class="next" data-tone="dark" data-rail="7" data-screen-label="13 Next">
+    <div class="next-bg">
+      <div class="ph is-filled" style="overflow:hidden"><img src="../assets/img/projects/al-berwaz/illusorr-al-berwaz-insurance-web-platform-cover.webp" srcset="../assets/img/projects/al-berwaz/illusorr-al-berwaz-insurance-web-platform-cover.m.webp 820w, ../assets/img/projects/al-berwaz/illusorr-al-berwaz-insurance-web-platform-cover.webp 2000w" sizes="(max-width: 640px) 55vw, (max-width: 1024px) 60vw, 50vw" alt="Al Berwaz, next project" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+    </div>
+    <div class="next-inner">
+      <span class="next-k">Featured Project · 014</span>
+      <h3>
+        <span style="display:block">Al Berwaz</span>
+        <span style="display:block;font-weight:400;font-style:italic;color:var(--ink-soft);letter-spacing:0">monthly content, brewed.</span>
+      </h3>
+      <div class="next-meta">
+        <span>2025</span>
+        <span>·</span>
+        <span>Web</span>
+        <span>·</span>
+        <span>Branding</span>
+      </div>
+      <a class="next-cta" href="al-berwaz.html">
+        <span>View Case Study</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19 L19 5"></path><polyline points="9 5 19 5 19 15"></polyline></svg>
+      </a>
+    </div>
+  </section>
+
+  <footer class="foot" data-tone="dark">
+    <div>© ILLUSORR Labs · MMXXVI</div>
+    <div>ANT Systems · Website</div>
+  </footer>
+
+<script>
+  /* Live frames: scale each embedded site to its container, deep-link it via
+     the site's own goTo(), and keep it click-to-activate so page scroll is
+     never captured until the visitor asks for it. */
+  (function () {
+    const frames = Array.from(document.querySelectorAll('[data-frame]'));
+    function fit() {
+      frames.forEach(function (v) {
+        const f = v.querySelector('iframe');
+        if (!f.getAttribute('src')) return;
+        const w = +v.dataset.w, h = +v.dataset.h;
+        const s = v.clientWidth / w;
+        f.style.width = w + 'px';
+        f.style.height = h + 'px';
+        f.style.transform = 'scale(' + s + ')';
+      });
+    }
+    fit();
+    window.addEventListener('resize', fit);
+    if (window.ResizeObserver) {
+      const ro = new ResizeObserver(fit);
+      frames.forEach(function (v) { ro.observe(v); });
+    }
+    /* Five full ANT builds at once starve the page's own images, so every
+       frame below the cover mounts only when it scrolls into view. */
+    if (window.IntersectionObserver) {
+      const mio = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          const f = e.target.querySelector('iframe');
+          if (!f || !f.dataset.src) return;
+          if (e.isIntersecting) {
+            if (!f.getAttribute('src')) { f.src = f.dataset.src; fit(); }
+          } else if (f.getAttribute('src')) {
+            f.removeAttribute('src');
+            e.target.classList.add('is-locked');
+          }
+        });
+      }, { rootMargin: '600px 0px' });
+      frames.forEach(function (v) { if (v.querySelector('iframe[data-src]')) mio.observe(v); });
+    } else {
+      frames.forEach(function (v) {
+        const f = v.querySelector('iframe');
+        if (f && f.dataset.src) f.src = f.dataset.src;
+      });
+    }
+
+    frames.forEach(function (v) {
+      const f = v.querySelector('iframe');
+      const target = v.dataset.goto;
+      f.addEventListener('load', function () {
+        fit();
+        if (!target) return;
+        try { f.contentWindow.goTo(target); } catch (e) {}
+      });
+      const hint = v.querySelector('.stage-hint');
+      if (hint) {
+        hint.addEventListener('click', function () {
+          const locked = v.classList.toggle('is-locked');
+          hint.firstElementChild.textContent = locked ? 'Click to use the real site' : 'Live — click here to release';
+        });
+      }
+    });
+  })();
+
+  /* Cursor: small ring that lerps toward the pointer. */
+  (function () {
+    if (window.matchMedia('(hover: none)').matches) return;
+    const cursor = document.getElementById('kCursor');
+    if (!cursor) return;
+    const pt = { x: innerWidth / 2, y: innerHeight / 2 }, lp = { x: pt.x, y: pt.y };
+    let shown = false;
+    (function tick() {
+      lp.x += (pt.x - lp.x) * 0.22; lp.y += (pt.y - lp.y) * 0.22;
+      cursor.style.transform = 'translate3d(' + lp.x + 'px,' + lp.y + 'px,0)';
+      requestAnimationFrame(tick);
+    })();
+    addEventListener('pointermove', function (e) {
+      pt.x = e.clientX; pt.y = e.clientY;
+      if (!shown) { cursor.classList.add('is-visible'); shown = true; }
+      const link = e.target.closest && e.target.closest('a,button,.stage-hint');
+      cursor.classList.toggle('is-link', !!link);
+    }, { passive: true });
+    addEventListener('pointerdown', function () { cursor.classList.add('is-down'); });
+    addEventListener('pointerup', function () { cursor.classList.remove('is-down'); });
+  })();
+
+  /* Side-rail progress: the section nearest the viewport centre wins. */
+  (function () {
+    const sections = Array.from(document.querySelectorAll('[data-rail]'));
+    const dots = Array.from(document.querySelectorAll('.rail-dot'));
+    if (!sections.length || !dots.length) return;
+    let raf = null;
+    function update() {
+      raf = null;
+      const mid = innerHeight / 2;
+      let best = 0, bestD = Infinity;
+      sections.forEach(function (s) {
+        const r = s.getBoundingClientRect();
+        const d = Math.abs(r.top + r.height / 2 - mid);
+        if (d < bestD) { bestD = d; best = +s.dataset.rail; }
+      });
+      dots.forEach(function (d, i) { d.classList.toggle('is-active', i === best); });
+    }
+    addEventListener('scroll', function () { if (!raf) raf = requestAnimationFrame(update); }, { passive: true });
+    addEventListener('resize', update);
+    update();
+  })();
+</script>
+
+<style>
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity .85s cubic-bezier(.2,.7,.2,1), transform .85s cubic-bezier(.2,.7,.2,1); }
+    .reveal.is-in { opacity: 1; transform: none; }
+  }
+</style>
+<script>
+  (function () {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const sel = '.module-head, .body-grid > div, .process .step, .stats .stat, .credits, .bleed .ph, .quote, .next-inner, .meta-cell, .sm-col, .sys-cell, .stage, .dev-tab';
+    const io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -7% 0px' });
+    document.querySelectorAll(sel).forEach(function (el) { el.classList.add('reveal'); io.observe(el); });
+    setTimeout(function () {
+      document.querySelectorAll('.reveal:not(.is-in)').forEach(function (e) {
+        if (e.getBoundingClientRect().top < innerHeight * 1.2) e.classList.add('is-in');
+      });
+    }, 2600);
+  })();
+</script>
+<script src="../assets/js/nav.js" defer></script>
+<script src="../assets/js/site-footer.js" defer></script>
+<script src="../assets/js/to-top.js" defer></script>
+</body></html>

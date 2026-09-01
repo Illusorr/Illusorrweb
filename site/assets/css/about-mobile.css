@@ -1,0 +1,680 @@
+/* ─────────────────────────────────────────────────────────────────────
+   ABOUT — THE PHONE EDITION
+
+   The about page is the most stage-dependent page on the site: five
+   full-viewport panels on a horizontally translated track (580vh of
+   scroll), an 800vh cinematic team sequence, a canvas network, and a
+   3D coverflow card deck. main.css already unpins the track and the team
+   at 860px, so this file does the other half of the job: it lays the
+   released content out on the same structure as every other phone page.
+
+       eyebrow      11px label
+       headline     28px
+       body         16px, full column
+       media        full width, aspect reserved, after the words
+       ─── 128px ───
+
+   20px gutter. 8/12/20/40/128 spacing scale. Gated on html[data-touch].
+   ───────────────────────────────────────────────────────────────────── */
+
+@media (max-width: 860px) {
+
+/* ═══════════════════════════════════════════════════════════════════════
+   FRAME · one gutter, one rhythm
+
+   main.css releases the track at this width but leaves 22px gutters and
+   min-height:100vh on each panel — five screens that are mostly empty.
+   Panels size to their content instead.
+   ═════════════════════════════════════════════════════════════════════ */
+/* ── THE 1,269px VOID ──────────────────────────────────────────────
+   about.html carries an inline <style> rule, "#aboutRoot .hwrap{height:580vh}",
+   added so five panels get enough scroll to cross on a desktop. An inline
+   <style> block loads AFTER main.css, so it beat main.css's own
+   "@media(max-width:860px){.hwrap{height:auto}}" and the wrap stayed
+   4,396px tall on a phone while its flowed content only filled 3,129px.
+   The remaining 1,267px was the empty stretch you scrolled through
+   between the clients panel and the team.
+
+   There is no horizontal crossing on a phone, so there is nothing to
+   reserve scroll for: the wrap sizes to its content. */
+html[data-touch] #aboutRoot .hwrap {
+  height: auto !important;
+  min-height: 0 !important;
+}
+html[data-touch] #aboutRoot .hsticky {
+  position: static !important;
+  height: auto !important;
+  min-height: 0 !important;
+  overflow: visible !important;
+}
+/* .htrack keeps height:100vh in main.css with no 860px override, so once
+   the panels stack vertically they overflow their own track: the wrap
+   measured 758px while holding 2,537px of panels, and the team section
+   started underneath them. The track has to size to its panels. */
+html[data-touch] #aboutRoot .htrack {
+  height: auto !important;
+  min-height: 0 !important;
+  flex-direction: column !important;
+  transform: none !important;
+}
+
+html[data-touch] #aboutRoot .panel {
+  min-height: 0 !important;
+  height: auto !important;
+  padding: 64px 20px !important;
+  display: block !important;
+}
+html[data-touch] #aboutRoot .vsec { padding: 64px 20px !important; }
+html[data-touch] #aboutRoot .htrack { gap: 0 !important; }
+
+/* the group gap by default, tighter relationships layered on top */
+html[data-touch] #aboutRoot .panel > * + *,
+html[data-touch] #aboutRoot .vsec > * + * { margin-top: 40px !important; }
+html[data-touch] #aboutRoot .eyebrow,
+html[data-touch] #aboutRoot .realtag { margin-bottom: 0 !important; }
+html[data-touch] #aboutRoot .eyebrow + *,
+html[data-touch] #aboutRoot .realtag + * { margin-top: 12px !important; }
+html[data-touch] #aboutRoot h2 + p,
+html[data-touch] #aboutRoot .ehead + * { margin-top: 20px !important; }
+
+/* the panel's own section tag is absolutely positioned at 16vh/7vw */
+html[data-touch] #aboutRoot .realtag {
+  position: static !important;
+  display: flex !important;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   TYPE
+   ═════════════════════════════════════════════════════════════════════ */
+html[data-touch] #aboutRoot .eyebrow,
+html[data-touch] #aboutRoot .realtag,
+html[data-touch] #aboutRoot .sub,
+html[data-touch] #aboutRoot .rn,
+html[data-touch] #aboutRoot .tc-count,
+html[data-touch] #aboutRoot .tc-role,
+html[data-touch] #aboutRoot .gc-rar,
+html[data-touch] #aboutRoot .gc-inds-label,
+html[data-touch] #aboutRoot .gc-foot,
+html[data-touch] #aboutRoot .gc-cta {
+  font-size: 11px !important;
+  letter-spacing: .18em !important;
+}
+html[data-touch] #aboutRoot .panel h2,
+html[data-touch] #aboutRoot .vsec h2,
+html[data-touch] #aboutRoot .collhead h2,
+html[data-touch] #aboutRoot .ehead,
+html[data-touch] #aboutRoot .close h2 {
+  font-size: 28px !important;
+  line-height: 1.12 !important;
+  letter-spacing: -.01em !important;
+}
+/* NOTE: authored <br> breaks stay. Hiding them glued the words either
+   side together ("We render worldsbefore they exist") because a <br> is a
+   line break, not a space. At 28px on a 348px column the authored break
+   lands in a reasonable place anyway. */
+
+html[data-touch] #aboutRoot .panel p,
+html[data-touch] #aboutRoot .vsec p,
+html[data-touch] #aboutRoot .collhead p,
+html[data-touch] #aboutRoot .tc-desc,
+html[data-touch] #aboutRoot .gc-desc,
+html[data-touch] #aboutRoot .rd {
+  font-size: 16px !important;
+  line-height: 1.62 !important;
+  letter-spacing: 0 !important;
+  max-width: none !important;
+  text-align: left !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   01 · INTRO — the wordmark panel
+
+   .top repeats the fixed topbar's logo and its "back to home" link one
+   line below it. One of the two is enough.
+   ═════════════════════════════════════════════════════════════════════ */
+html[data-touch] #aboutRoot .top { display: none !important; }
+html[data-touch] #aboutRoot .p-intro {
+  min-height: 100svh !important;
+  display: flex !important;
+  align-items: flex-end !important;
+  padding: 104px 20px 56px !important;
+}
+html[data-touch] #aboutRoot .bigwm {
+  display: flex !important;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+html[data-touch] #aboutRoot .bigwm h1 {
+  font-size: 34px !important;
+  line-height: 1 !important;
+  letter-spacing: .01em !important;
+}
+html[data-touch] #aboutRoot .bigorb { width: 26px !important; height: 26px !important; flex: none; }
+html[data-touch] #aboutRoot .p-intro .sub {
+  margin-top: 14px !important;
+  line-height: 1.5 !important;
+}
+/* there is no horizontal crossing on a phone, so nothing to cross */
+html[data-touch] #aboutRoot .p-intro .cue { display: none !important; }
+html[data-touch] #aboutRoot .hrail { display: none !important; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   02–04 · THE THREE REALMS — physical, digital, virtual
+
+   This is the spine of the page and it was the thing most damaged by the
+   flatten. On a desktop the three realms are NAMED by the fixed rail at
+   the bottom of the screen — Physical, Digital, Virtual — which lights up
+   as you cross each panel. The rail is meaningless on a phone (there is
+   no horizontal crossing) so main.css hides it, and with it went the only
+   thing telling you what the three beats were. Three untitled paragraphs
+   in a row is exactly what "where are the 3 realms" means.
+
+   The markup has no label to work with, so the phone edition supplies
+   one: a numbered eyebrow generated per panel, a rule above it, and a
+   full-screen beat each so they read as three deliberate crossings
+   rather than three stacked paragraphs.
+   ═════════════════════════════════════════════════════════════════════ */
+html[data-touch] #aboutRoot .p-statement,
+html[data-touch] #aboutRoot .p-team,
+html[data-touch] #aboutRoot .p-virtual {
+  /* generous padding rather than a viewport-height floor: an 84svh beat
+     holding three lines of type is two-thirds empty screen */
+  min-height: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  padding: 72px 20px !important;
+  border-top: 1px solid rgba(255, 255, 255, .12);
+}
+
+/* the generated label: realm name over its number */
+html[data-touch] #aboutRoot .p-statement::after,
+html[data-touch] #aboutRoot .p-team::after,
+html[data-touch] #aboutRoot .p-virtual::after {
+  order: -1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 24px;
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: #8ea2ff;
+}
+html[data-touch] #aboutRoot .p-statement::after { content: "01 — Physical"; }
+html[data-touch] #aboutRoot .p-team::after      { content: "02 — Digital"; }
+html[data-touch] #aboutRoot .p-virtual::after   { content: "03 — Virtual"; }
+
+/* the dimming pool behind the copy was sized for a centred column on a
+   wide stage; at 390px it darkens the whole beat unevenly */
+html[data-touch] #aboutRoot .p-statement::before,
+html[data-touch] #aboutRoot .p-team::before,
+html[data-touch] #aboutRoot .p-virtual::before {
+  background: linear-gradient(180deg, rgba(4, 5, 10, .55), rgba(4, 5, 10, .82)) !important;
+}
+
+/* the statement's two voices: the claim, then the qualifier */
+html[data-touch] #aboutRoot .p-statement .st {
+  display: block !important;
+  max-width: none !important;
+}
+html[data-touch] #aboutRoot .p-statement .st .a {
+  font-size: 26px !important;
+  line-height: 1.18 !important;
+  letter-spacing: -.01em !important;
+}
+html[data-touch] #aboutRoot .p-statement .st .a em {
+  font-style: normal;
+  color: #8ea2ff;
+}
+html[data-touch] #aboutRoot .p-statement .st .b {
+  font-size: 16px !important;
+  line-height: 1.62 !important;
+  margin-top: 24px !important;
+  max-width: none !important;
+  color: rgba(255, 255, 255, .68) !important;
+}
+
+/* the two realm panels share one shape: headline, then body */
+/* desktop .thead is a two-up row (headline left, body right, space-between).
+   At phone width the two children collide: the h2 keeps its intrinsic width
+   and the right-aligned p overlaps it. Stack them. */
+html[data-touch] #aboutRoot .thead {
+  display: block !important;
+  max-width: none !important;
+}
+html[data-touch] #aboutRoot .thead h2 {
+  font-size: 34px !important;
+  line-height: 1.06 !important;
+  margin: 0 0 20px !important;
+}
+html[data-touch] #aboutRoot .thead p {
+  max-width: none !important;
+  text-align: left !important;
+  font-size: 15px !important;
+  line-height: 1.55 !important;
+  color: rgba(255, 255, 255, .68) !important;
+}
+
+html[data-touch] #aboutRoot .team-row {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 0 !important;
+  margin-top: 40px !important;
+}
+html[data-touch] #aboutRoot .team-row > * {
+  padding: 20px 0 !important;
+  border-top: 1px solid rgba(255, 255, 255, .1);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   05 · CLIENTS — two marquee rows, and they must not widen the page
+
+   A translating track inside a container with no overflow guard drags the
+   whole document sideways at 390px.
+   ═════════════════════════════════════════════════════════════════════ */
+html[data-touch] #aboutRoot .chead { max-width: none !important; }
+html[data-touch] #aboutRoot .cflow {
+  margin-top: 40px !important;
+  max-width: 100% !important;
+  overflow: hidden !important;
+}
+html[data-touch] #aboutRoot .cflow-row {
+  overflow: hidden !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+}
+html[data-touch] #aboutRoot .cflow-track { min-width: 0 !important; }
+html[data-touch] #aboutRoot .cflow-track img {
+  height: 22px !important;
+  width: auto !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   06 · TEAM — eight portraits, each with its name attached
+
+   Desktop runs an 800vh sequence: the portraits crossfade in a pinned
+   frame while one absolutely positioned caption block is rewritten per
+   member. Released, that caption can only ever describe ONE of the eight
+   portraits now stacked above it — so the caption block goes and the
+   portraits carry their own labels instead.
+   ═════════════════════════════════════════════════════════════════════ */
+html[data-touch] #aboutRoot .teamSticky {
+  overflow: visible !important;
+  padding: 64px 20px !important;
+}
+/* .timgs was still position:absolute — the desktop crossfade frame. That
+   is why the whole team section collapsed to 141px with eight portraits
+   overflowing out of sight behind the next beat. It has to join the flow. */
+html[data-touch] #aboutRoot .timgs {
+  position: relative !important;
+  inset: auto !important;
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 20px 12px !important;
+  margin-top: 32px !important;
+  width: auto !important;
+  height: auto !important;
+  transform: none !important;
+}
+html[data-touch] #aboutRoot .pimg {
+  position: relative !important;
+  inset: auto !important;
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+  width: auto !important;
+  height: auto !important;
+  aspect-ratio: 4 / 5;
+  background-size: cover !important;
+  background-position: center top !important;
+  /* the placeholder members print their own first name as text content;
+     with a caption underneath, that would say the name twice */
+  font-size: 0 !important;
+  display: block !important;
+  padding: 0 !important;
+}
+/* every portrait carries its own name and role, from data- attributes
+   about.js now writes (the desktop rewrites ONE caption block as it
+   crossfades — useless when all eight are on screen together) */
+html[data-touch] #aboutRoot .pimg::after {
+  content: attr(data-idx) "  " attr(data-name);
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  padding-top: 10px;
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .01em;
+  line-height: 1.3;
+  text-transform: none;
+  color: #eef1f8;
+}
+/* the role sits under the name, quieter */
+html[data-touch] #aboutRoot .pimg::before {
+  content: attr(data-role);
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% + 28px);
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-size: 11px;
+  letter-spacing: .04em;
+  line-height: 1.35;
+  color: rgba(238, 241, 248, .5);
+}
+/* the caption needs room under each tile */
+html[data-touch] #aboutRoot .timgs { padding-bottom: 0 !important; }
+html[data-touch] #aboutRoot .pimg { margin-bottom: 62px !important; }
+html[data-touch] #aboutRoot .thead2 {
+  position: static !important;
+  margin: 0 !important;
+}
+/* the giant TEAM watermark, the per-member caption stack, the dot rail and
+   the two bridge gradients are all pinned-frame furniture */
+html[data-touch] #aboutRoot .tword,
+html[data-touch] #aboutRoot .tcompose,
+html[data-touch] #aboutRoot .tdots,
+html[data-touch] #aboutRoot .tscrim,
+html[data-touch] #aboutRoot .tbridge-top,
+html[data-touch] #aboutRoot .tbridge-bot { display: none !important; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   07 · COLLECTIVE NETWORK — the claim, not the simulation
+
+   #collnet animates a node graph on a canvas every frame. It is the most
+   expensive thing on the page and at 390px the nodes read as static.
+   ═════════════════════════════════════════════════════════════════════ */
+html[data-touch] #aboutRoot .collSec {
+  height: auto !important;
+  min-height: 0 !important;
+}
+html[data-touch] #aboutRoot .collSticky {
+  position: static !important;
+  height: auto !important;
+  padding: 64px 20px !important;
+  overflow: visible !important;
+}
+html[data-touch] #aboutRoot #collnet { display: none !important; }
+html[data-touch] #aboutRoot .collhead {
+  position: static !important;
+  left: auto !important;
+  right: auto !important;
+  max-width: none !important;
+}
+html[data-touch] #aboutRoot .collhead .cta {
+  display: inline-flex !important;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 24px !important;
+}
+/* the counter keeps the claim; the legend describes a graph that is gone */
+html[data-touch] #aboutRoot .collcount {
+  position: static !important;
+  left: auto !important;
+  margin-top: 32px !important;
+  padding-top: 20px !important;
+  border-top: 1px solid rgba(255, 255, 255, .1);
+}
+html[data-touch] #aboutRoot .colllegend { display: none !important; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   08 · RECOGNITION — a stacked list
+   ═════════════════════════════════════════════════════════════════════ */
+html[data-touch] #aboutRoot .rec-list { margin-top: 32px !important; }
+html[data-touch] #aboutRoot .rec-row {
+  display: block !important;
+  opacity: 1 !important;
+  transform: none !important;
+  padding: 20px 0 !important;
+  border-top: 1px solid rgba(255, 255, 255, .1) !important;
+  gap: 0 !important;
+}
+html[data-touch] #aboutRoot .rec-row .rn { display: block; margin-bottom: 8px; }
+html[data-touch] #aboutRoot .rec-row .rt {
+  display: block;
+  font-size: 17px !important;
+  line-height: 1.2 !important;
+  margin-bottom: 6px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   09 · EXPERTISE — the coverflow deck becomes a swipe rail
+
+   Four cards absolutely positioned at top/left 50% inside a 1800px
+   perspective, fanned by inline transforms from about.js, each flipping
+   on click to a back face. On a phone the whole mechanism is unreachable:
+   there is no hover to suggest it and a tap-to-fan-then-tap-to-flip deck
+   hides half its content behind two gestures.
+
+   So the deck lays flat: one card per screen, swiped, front face only.
+   about.js still writes inline transforms, hence the !important.
+   ═════════════════════════════════════════════════════════════════════ */
+html[data-touch] #aboutRoot .expStage { margin-top: 32px !important; }
+html[data-touch] #aboutRoot .expStage,
+html[data-touch] #aboutRoot .expertise {
+  /* without min-width:0 the flex/greedy children size these to max-content
+     and the rail ends up 1618px wide, hanging 624px off the left edge */
+  min-width: 0 !important;
+  max-width: 100% !important;
+  overflow: hidden !important;
+}
+html[data-touch] #aboutRoot .flow {
+  position: relative !important;
+  display: flex !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  height: auto !important;
+  perspective: none !important;
+  transform-style: flat !important;
+  cursor: default !important;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  column-gap: 14px !important;
+  margin-inline: -20px !important;
+  padding: 0 20px 8px !important;
+  align-items: stretch !important;
+}
+html[data-touch] #aboutRoot .flow::-webkit-scrollbar { display: none; }
+html[data-touch] #aboutRoot .fcard {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  flex: 0 0 82% !important;
+  width: auto !important;
+  min-width: 0 !important;
+  /* A fixed 3/4 box clipped the card mid-row — the stat list ran past the
+     bottom edge and "Unreal & Blender" was cut in half. The card sizes to
+     its content instead, and every card in the rail matches the tallest. */
+  height: auto !important;
+  aspect-ratio: auto !important;
+  transform: none !important;
+  opacity: 1 !important;
+  filter: none !important;
+  transition: none !important;
+  scroll-snap-align: center;
+}
+html[data-touch] #aboutRoot .fc-inner {
+  position: relative !important;
+  inset: auto !important;
+  height: 100% !important;
+  transform: none !important;
+  transform-style: flat !important;
+  transition: none !important;
+}
+html[data-touch] #aboutRoot .fc-front {
+  position: relative !important;
+  inset: auto !important;
+  height: auto !important;
+  min-height: 0 !important;
+  overflow: visible !important;
+  backface-visibility: visible !important;
+  -webkit-backface-visibility: visible !important;
+}
+/* the frame inset and the stat list both need to breathe at this width */
+html[data-touch] #aboutRoot .gc-frame {
+  position: relative !important;
+  inset: auto !important;
+  height: auto !important;
+  padding: 18px 16px !important;
+}
+html[data-touch] #aboutRoot .gc-stats { margin-top: 14px !important; }
+html[data-touch] #aboutRoot .gc-stats .s-row {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) 56px 26px !important;
+  align-items: center;
+  gap: 10px !important;
+  padding: 7px 0 !important;
+  font-size: 12px !important;
+}
+html[data-touch] #aboutRoot .gc-hero,
+html[data-touch] #aboutRoot .gc-art {
+  height: auto !important;
+  aspect-ratio: 16 / 10;
+}
+/* the back face is a stat readout for a flip gesture that no longer exists */
+html[data-touch] #aboutRoot .fc-back { display: none !important; }
+html[data-touch] #aboutRoot .gc-title { font-size: 17px !important; letter-spacing: 0 !important; }
+html[data-touch] #aboutRoot .gc-cta {
+  display: inline-flex !important;
+  align-items: center;
+  min-height: 44px;
+}
+/* the fan hint and the coverflow arrows both drive the dead mechanism */
+html[data-touch] #aboutRoot .expHint,
+html[data-touch] #aboutRoot .flow-ui { display: none !important; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   10 · CLOSE — the one centred beat, as on the home page
+   ═════════════════════════════════════════════════════════════════════ */
+html[data-touch] #aboutRoot .close {
+  min-height: 100svh !important;
+  display: flex !important;
+  flex-direction: column;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  padding: 104px 20px 64px !important;
+}
+html[data-touch] #aboutRoot .close h2 {
+  font-size: 32px !important;
+  line-height: 1.06 !important;
+  letter-spacing: -.02em !important;
+}
+html[data-touch] #aboutRoot .close .cta {
+  align-self: stretch;
+  min-height: 48px;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px !important;
+}
+
+/* the env layer is legacy faux atmosphere behind the released panels */
+html[data-touch] #aboutRoot .env { display: none !important; }
+
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   TABLET TIER · 641–1024px
+   ═════════════════════════════════════════════════════════════════════ */
+@media (min-width: 641px) and (max-width: 1024px) {
+
+  /* ── THE 1,269px VOID ──────────────────────────────────────────────
+   about.html carries an inline <style> rule, "#aboutRoot .hwrap{height:580vh}",
+   added so five panels get enough scroll to cross on a desktop. An inline
+   <style> block loads AFTER main.css, so it beat main.css's own
+   "@media(max-width:860px){.hwrap{height:auto}}" and the wrap stayed
+   4,396px tall on a phone while its flowed content only filled 3,129px.
+   The remaining 1,267px was the empty stretch you scrolled through
+   between the clients panel and the team.
+
+   There is no horizontal crossing on a phone, so there is nothing to
+   reserve scroll for: the wrap sizes to its content. */
+html[data-touch] #aboutRoot .hwrap {
+  height: auto !important;
+  min-height: 0 !important;
+}
+html[data-touch] #aboutRoot .hsticky {
+  position: static !important;
+  height: auto !important;
+  min-height: 0 !important;
+  overflow: visible !important;
+}
+/* .htrack keeps height:100vh in main.css with no 860px override, so once
+   the panels stack vertically they overflow their own track: the wrap
+   measured 758px while holding 2,537px of panels, and the team section
+   started underneath them. The track has to size to its panels. */
+html[data-touch] #aboutRoot .htrack {
+  height: auto !important;
+  min-height: 0 !important;
+  flex-direction: column !important;
+  transform: none !important;
+}
+
+html[data-touch] #aboutRoot .panel { padding: 96px 40px !important; }
+  html[data-touch] #aboutRoot .vsec { padding: 96px 40px !important; }
+  html[data-touch] #aboutRoot .p-intro { padding: 120px 40px 72px !important; }
+  html[data-touch] #aboutRoot .teamSticky,
+  html[data-touch] #aboutRoot .collSticky { padding: 96px 40px !important; }
+  html[data-touch] #aboutRoot .close { padding: 120px 40px 88px !important; }
+
+  html[data-touch] #aboutRoot .bigwm h1 { font-size: 64px !important; }
+  html[data-touch] #aboutRoot .panel h2,
+  html[data-touch] #aboutRoot .vsec h2,
+  html[data-touch] #aboutRoot .collhead h2,
+  html[data-touch] #aboutRoot .ehead { font-size: 44px !important; }
+  html[data-touch] #aboutRoot .close h2 { font-size: 52px !important; }
+  html[data-touch] #aboutRoot .p-statement .st .a { font-size: 40px !important; }
+  html[data-touch] #aboutRoot .panel p,
+  html[data-touch] #aboutRoot .vsec p,
+  html[data-touch] #aboutRoot .collhead p,
+  html[data-touch] #aboutRoot .gc-desc,
+  html[data-touch] #aboutRoot .rd,
+  html[data-touch] #aboutRoot .p-statement .st .b {
+    font-size: 18px !important;
+    line-height: 1.66 !important;
+    max-width: 68ch !important;
+  }
+  html[data-touch] #aboutRoot .rec-row .rt { font-size: 22px !important; }
+
+  html[data-touch] #aboutRoot .panel > * + *,
+  html[data-touch] #aboutRoot .vsec > * + * { margin-top: 56px !important; }
+
+  /* four portraits across, and two cards visible in the rail */
+  html[data-touch] #aboutRoot .timgs {
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 16px !important;
+  }
+  html[data-touch] #aboutRoot .flow {
+    column-gap: 28px !important;
+    margin-inline: -40px !important;
+    padding: 0 40px 10px !important;
+  }
+  html[data-touch] #aboutRoot .fcard { flex: 0 0 44% !important; aspect-ratio: auto !important; }
+  html[data-touch] #aboutRoot .cflow-track img { height: 28px !important; }
+
+  /* the recognition list can afford its label beside the entry */
+  html[data-touch] #aboutRoot .rec-row {
+    display: grid !important;
+    grid-template-columns: 120px minmax(0, 1fr) !important;
+    column-gap: 24px !important;
+    row-gap: 8px !important;
+    padding: 26px 0 !important;
+  }
+  html[data-touch] #aboutRoot .rec-row .rn { grid-column: 1 !important; grid-row: 1 !important; margin-bottom: 0; }
+  html[data-touch] #aboutRoot .rec-row .rt { grid-column: 2 !important; grid-row: 1 !important; }
+  html[data-touch] #aboutRoot .rec-row .rd { grid-column: 2 !important; }
+
+  html[data-touch] #aboutRoot .close .cta { align-self: center; padding-inline: 32px; }
+}

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta charset="utf-8">
+<title>ILLUSORR — mobile preview</title>
+<style>
+  @font-face{font-family:'Outfit';font-style:normal;font-weight:100 900;font-display:swap;
+    src:url("../site/assets/fonts/outfit-variable.woff") format("woff")}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#05060a;color:#eef1f8;font-family:'Outfit',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:#8ea2ff;text-decoration:none}
+  a:hover{color:#eef1f8}
+</style>
+</helmet>
+
+<div style="min-height:100vh;display:flex;flex-direction:column">
+
+  <div style="display:flex;flex-wrap:wrap;gap:18px;align-items:flex-end;padding:24px 28px 20px;border-bottom:1px solid #1b2231">
+    <div style="display:flex;flex-direction:column;gap:6px;margin-right:auto">
+      <div style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#4a5268">Mobile preview</div>
+      <div style="font-size:22px;font-weight:600;letter-spacing:-.02em">{{ pageLabel }} · {{ sizeLabel }}</div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:7px">
+      <div style="font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#4a5268">Page</div>
+      <div style="display:flex;flex-wrap:wrap;gap:7px">
+        <sc-for list="{{ pages }}" as="p" hint-placeholder-count="4">
+          <button onClick="{{ p.pick }}" style="{{ p.style }}">{{ p.label }}</button>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:7px">
+      <div style="font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#4a5268">Device</div>
+      <div style="display:flex;flex-wrap:wrap;gap:7px">
+        <sc-for list="{{ devices }}" as="d" hint-placeholder-count="4">
+          <button onClick="{{ d.pick }}" style="{{ d.style }}">{{ d.label }}</button>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:7px">
+      <button onClick="{{ toggleFlag }}" style="{{ flagStyle }}">{{ flagLabel }}</button>
+      <button onClick="{{ reload }}" style="font-family:inherit;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;color:#eef1f8;background:none;border:1px solid rgba(255,255,255,.22);border-radius:100px;padding:9px 15px;cursor:pointer" style-hover="border-color:#4c63ff">Reload</button>
+    </div>
+  </div>
+
+  <div style="flex:1;display:grid;place-items:center;padding:34px 20px 48px;background:radial-gradient(60% 50% at 50% 0%,rgba(76,99,255,.07),transparent 70%)">
+    <div style="display:flex;flex-direction:column;gap:14px;align-items:center">
+
+      <div style="{{ shellStyle }}">
+        <iframe src="{{ src }}" onLoad="{{ onFrameLoad }}" title="Mobile preview" style="width:100%;height:100%;border:0;display:block;background:#05060a"></iframe>
+      </div>
+
+      <div style="display:flex;gap:16px;align-items:center;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:#4a5268">
+        <span>{{ dims }}</span>
+        <span style="width:1px;height:11px;background:#1b2231"></span>
+        <span>{{ flagState }}</span>
+      </div>
+
+      <p style="max-width:56ch;text-align:center;font-size:13px;line-height:1.6;color:#8b96ad;text-wrap:pretty">This is the real page in a phone-sized frame, not a mockup. Scroll and tap inside it. Pages without a mobile edition yet show what they look like narrow, unassisted.</p>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const PAGES = [
+  { label: 'Home', path: '../site/index.html' },
+  { label: 'About', path: '../site/about.html' },
+  { label: 'Work', path: '../site/work.html' },
+  { label: 'Contact', path: '../site/contact.html' },
+  { label: 'Brief', path: '../site/brief.html' },
+  { label: 'Sectors', path: '../site/sectors.html' },
+  { label: 'Beauty', path: '../site/sectors/beauty.html' },
+  { label: 'Collective', path: '../site/collective.html' },
+  { label: 'Lab', path: '../site/lab.html' },
+  { label: 'Metagenus', path: '../site/projects/metagenus.html' },
+  { label: 'Coffee Merchant', path: '../site/projects/coffee-merchant.html' },
+  { label: 'Disney+', path: '../site/projects/disney-plus.html' }
+];
+
+const DEVICES = [
+  { label: 'iPhone SE', w: 375, h: 667 },
+  { label: 'iPhone 15', w: 390, h: 844 },
+  { label: 'Pixel 8', w: 412, h: 915 },
+  { label: 'iPad mini', w: 768, h: 1024 }
+];
+
+class Component extends DCLogic {
+  state = { page: 0, device: 1, flag: true, nonce: 0, bust: false };
+
+  renderVals() {
+    const page = PAGES[this.state.page];
+    const dev = DEVICES[this.state.device];
+
+    const pill = (on) => 'font-family:inherit;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;border-radius:100px;padding:9px 14px;cursor:pointer;transition:.2s;white-space:nowrap;'
+      + (on ? 'background:#4c63ff;border:1px solid #4c63ff;color:#fff' : 'background:none;border:1px solid rgba(255,255,255,.2);color:#8b96ad');
+
+    /* cache-buster keeps Reload honest, and the flag forces the mobile layer
+       on even though this frame is driven by a mouse */
+    const src = page.path + '?mobile=' + (this.state.flag ? '1' : '0') + '&v=' + this.state.nonce;
+
+    /* the frame is capped so a tall device still fits the pane; the iframe
+       itself stays at true device width so media queries fire correctly */
+    const maxH = 760;
+
+    /* The page URL carries a cache-buster but its stylesheets do not, so a
+       CSS edit could stay invisible here for the rest of the session while
+       the markup reloaded fresh. Re-stamp every sheet on load. */
+    /* Re-stamping every sheet on every load made the page download its CSS
+       AND its fonts twice, so the type visibly re-flowed a second time a
+       beat after the page settled. It now runs only right after Reload,
+       which is when a stale sheet is actually a risk. */
+    const bust = this.state.bust;
+    const onFrameLoad = (e) => {
+      if (!bust) return;
+      try {
+        const doc = e.target.contentDocument;
+        if (!doc) return;
+        doc.querySelectorAll('link[rel="stylesheet"]').forEach(l => {
+          l.href = l.href.split('?')[0] + '?v=' + this.state.nonce;
+        });
+      } catch (err) { /* cross-origin: nothing to do */ }
+    };
+
+    return {
+      src,
+      onFrameLoad,
+      pageLabel: page.label,
+      sizeLabel: dev.label,
+      dims: dev.w + ' × ' + dev.h,
+      flagState: this.state.flag ? 'Mobile layer forced on' : 'Mobile layer off — desktop behaviour',
+      flagLabel: this.state.flag ? 'Mobile layer: on' : 'Mobile layer: off',
+      flagStyle: 'font-family:inherit;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;border-radius:100px;padding:9px 15px;cursor:pointer;transition:.2s;'
+        + (this.state.flag ? 'background:#8affc4;border:1px solid #8affc4;color:#05060a' : 'background:none;border:1px solid rgba(255,255,255,.22);color:#eef1f8'),
+      shellStyle: 'width:' + dev.w + 'px;height:' + Math.min(dev.h, maxH) + 'px;'
+        + 'border:1px solid #1b2231;border-radius:14px;overflow:hidden;'
+        + 'box-shadow:0 40px 90px rgba(0,0,0,.6);background:#05060a;flex:none',
+      pages: PAGES.map((p, i) => ({
+        label: p.label,
+        style: pill(this.state.page === i),
+        pick: () => this.setState({ page: i, nonce: this.state.nonce + 1, bust: false })
+      })),
+      devices: DEVICES.map((d, i) => ({
+        label: d.label,
+        style: pill(this.state.device === i),
+        pick: () => this.setState({ device: i })
+      })),
+      toggleFlag: () => this.setState({ flag: !this.state.flag, nonce: this.state.nonce + 1 }),
+      reload: () => this.setState({ nonce: this.state.nonce + 1, bust: true })
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,938 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="preload" as="font" type="font/woff" crossorigin href="../assets/fonts/outfit-variable.woff">
+<link rel="preload" as="font" type="font/otf" crossorigin href="../assets/projects/shared/fonts/PPMonumentExtended-Black.otf">
+<link rel="stylesheet" href="../assets/css/nav.css">
+<link rel="stylesheet" href="../assets/css/case/fonts.css">
+<!-- phone + tablet: shared touch layer, then the shared case layout -->
+<link rel="stylesheet" href="../assets/css/mobile.css">
+<link rel="stylesheet" href="../assets/css/case/case-mobile.css">
+<script src="../assets/js/mobile.js"></script>
+<title>ILLUSORR Spaces · Immersive Environment</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="ILLUSORR Spaces: step inside a multi-user immersive environment with five destinations, an avatar system, inventory, screen share and voice.">
+<link rel="canonical" href="https://illusorr.com/projects/illusorr-spaces.html">
+<meta name="theme-color" content="#020B11">
+<meta property="og:site_name" content="ILLUSORR">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ILLUSORR Spaces · Immersive Environment">
+<meta property="og:description" content="A working model of the multi-user platform ILLUSORR shipped in 2021.">
+<meta property="og:url" content="https://illusorr.com/projects/illusorr-spaces.html">
+<meta property="og:image" content="https://illusorr.com/assets/img/og/og-default.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  @font-face { font-family:'Outfit'; font-weight:100 900; font-display:swap;
+    src:url('../assets/fonts/outfit-variable.woff') format('woff'); }
+  @font-face { font-family:'PP Monument Extended'; font-weight:400; font-display:swap;
+    src:url('../assets/fonts/monument-extended-400.woff') format('woff'); }
+
+  :root {
+    --cyan:#00B2FF; --ink:#eaf2f1;
+    --ink-soft:rgba(220,234,241,.66); --ink-faint:rgba(220,234,241,.34);
+    --hair:rgba(255,255,255,.10); --stroke:rgba(255,255,255,.16);
+    --panel:rgba(2,11,17,.72);
+  }
+  *,*::before,*::after { box-sizing:border-box; }
+  html,body { margin:0; padding:0; height:100%; overflow:hidden; }
+  body { background:#020B11; color:var(--ink); font-family:'Outfit',system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased; cursor:grab; }
+  body.dragging { cursor:grabbing; }
+  a { color:var(--cyan); } a:hover { color:var(--ink); }
+
+  #stage { position:fixed; inset:0; z-index:0; }
+  #scene { position:fixed; inset:0; display:block; }
+
+  .grain { position:fixed; inset:0; z-index:2; pointer-events:none; opacity:.05; mix-blend-mode:screen;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.62 0 0 0 0 0.78 0 0 0 0 0.86 0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    background-size:220px 220px; }
+  .vig { position:fixed; inset:0; z-index:2; pointer-events:none;
+    background:radial-gradient(122% 108% at 50% 42%, transparent 44%, rgba(1,6,11,.6) 90%, rgba(1,6,11,.94) 100%); }
+  #flash { position:fixed; inset:0; z-index:3; pointer-events:none; opacity:0;
+    background:radial-gradient(70% 55% at 50% 50%, rgba(0,178,255,.75), rgba(0,178,255,0) 72%);
+    transition:opacity .42s ease; }
+  #flash.on { opacity:1; transition-duration:.11s; }
+
+  .hud { position:fixed; inset:0; z-index:5; pointer-events:none; }
+  .ui { pointer-events:auto; }
+  .corner { position:fixed; }
+  .tl{top:26px;left:30px} .tr{top:26px;right:30px}
+  .tr { display:flex; flex-direction:column; align-items:flex-end; gap:14px; }
+  .hints { position:fixed; left:50%; bottom:26px; transform:translateX(-50%);
+    display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:8px 18px;
+    max-width:min(560px, calc(100vw - 220px)); }
+
+  .brand { font-family:'PP Monument Extended',system-ui,sans-serif; font-weight:400;
+    font-size: 12px; letter-spacing:.36em; text-transform:uppercase; color:var(--ink); }
+  .brand em { font-style:normal; color:var(--cyan); }
+  .label { font-size: 10px; letter-spacing:.26em; text-transform:uppercase; color:var(--ink-soft); }
+  .label.dim { color:var(--ink-faint); }
+
+  .readout { display:grid; grid-template-columns:auto 1fr; gap:6px 12px; align-items:baseline;
+    margin-top:15px; }
+  .readout .line { display:contents; font-size: 10px; letter-spacing:.16em; }
+  .readout .k, .readout .v { font-size: 10px; letter-spacing:.16em; }
+  .readout .k { color:var(--ink-faint); text-transform:uppercase; min-width:62px; }
+  .readout .v { font-variant-numeric:tabular-nums; color:var(--ink-soft); }
+  .readout .v.hi { color:var(--cyan); }
+  .readout .v.warn { color:#f0a500; }
+  .readout .v.bad { color:#ec1b6c; }
+
+  .key { display:inline-flex; align-items:center; justify-content:center; min-width:22px; height:22px;
+    padding:0 7px; border:1px solid var(--stroke); border-radius:4px;
+    font-size: 10px; letter-spacing:.1em; color:var(--ink-soft); background:rgba(2,11,17,.5); }
+  .ctrl-stack { display:flex; flex-direction:column; gap:9px; }
+  .ctrl-row { display:flex; align-items:center; gap:7px; }
+  .ctrl-row .label { font-size: 10px; letter-spacing:.2em; }
+
+  .crosshair { position:fixed; left:50%; top:50%; transform:translate(-50%,-50%); width:30px; height:30px; opacity:.42; }
+  .crosshair::before,.crosshair::after { content:''; position:absolute; background:var(--ink-faint); }
+  .crosshair::before { left:50%; top:0; bottom:0; width:1px; }
+  .crosshair::after { top:50%; left:0; right:0; height:1px; }
+
+  /* Tags belong to the world, so they sit below the HUD (z-index 5) rather
+     than above it, and recede behind the glass when a panel is open. */
+  #tags { position:fixed; inset:0; z-index:3; pointer-events:none;
+    transition:filter .32s ease, opacity .32s ease; }
+  body.panel-open #tags { filter:blur(4px); opacity:.4; }
+  .tag { position:absolute; top:0; left:0; display:flex; align-items:center; gap:7px;
+    padding:4px 11px 4px 4px; border-radius:999px; white-space:nowrap;
+    background:rgba(2,11,17,.6); border:1px solid var(--hair); backdrop-filter:blur(5px);
+    font-size: 11px; color:var(--ink-soft); transition:opacity .3s; }
+  .tag i { width:19px; height:19px; border-radius:50%; display:grid; place-items:center;
+    background:linear-gradient(140deg,#00b2ff,#8f00ff); color:#fff; }
+  .tag i svg { width:11px; height:11px; }
+  .tag b { font-weight:400; letter-spacing:.05em; }
+  .tag::after { content:attr(data-role); margin-left:2px; padding-left:8px;
+    border-left:1px solid var(--hair); font-size: 10px; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--ink-faint); }
+  .tag.is-talking { border-color:var(--cyan); color:var(--ink);
+    box-shadow:0 0 0 3px rgba(0,178,255,.12); }
+  .bubble { position:absolute; top:0; left:0; max-width:230px; padding:8px 12px;
+    background:rgba(0,178,255,.14); border:1px solid rgba(0,178,255,.4); backdrop-filter:blur(6px);
+    font-size: 12px; line-height:1.4; color:var(--ink); opacity:0; transition:opacity .35s; }
+
+  /* Layout transcribed from frame 26 (2560×1440): left rail of seven at x=74,
+     right menu panel x=1960 w=488, cyan account button at 2505,56, and a
+     bottom-right pair. Circles are r=30.224 on #4a4a4e at 0.8. */
+  .tl { display:flex; flex-direction:column; align-items:flex-start; gap:20px;
+    max-height:calc(100vh - 52px); overflow-y:auto; overscroll-behavior:contain;
+    scrollbar-width:none; }
+  .tl::-webkit-scrollbar { display:none; }
+  .tl .readout { margin-top:0; }
+  .rail { display:flex; flex-direction:column; gap:8px; }
+  .fab { position:relative; width:54px; height:54px; border-radius:50%; cursor:pointer;
+    display:grid; place-items:center; color:#fff;
+    background:rgba(74,74,74,.8); border:1px solid rgba(255,255,255,.10);
+    backdrop-filter:blur(6px);
+    transition:background .25s,border-color .25s,color .25s,transform .25s; }
+  .fab svg { width:21px; height:21px; display:block; }
+  .fab > span { position:absolute; left:calc(100% + 12px); top:50%; transform:translateY(-50%);
+    padding:6px 12px; background:rgba(2,11,17,.92); border:1px solid var(--hair);
+    font-size: 10px; letter-spacing:.16em; text-transform:uppercase; color:var(--ink);
+    white-space:nowrap; opacity:0; pointer-events:none; transition:opacity .22s; }
+  .fab:hover { background:rgba(0,178,255,.22); border-color:var(--cyan); transform:translateX(3px); }
+  .fab:hover > span { opacity:1; }
+  .fab.on { background:var(--cyan); border-color:var(--cyan); color:#01060a; }
+  .fab.muted { color:#ec1b6c; border-color:rgba(236,27,108,.55); }
+  .fab.is-live::after { content:''; position:absolute; top:5px; right:5px; width:7px; height:7px;
+    border-radius:50%; background:#ec1b6c; box-shadow:0 0 0 2px rgba(2,11,17,.92);
+    animation:livePulse 1.6s ease-in-out infinite; }
+  @keyframes livePulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+  /* the account button, the one cyan control in the file */
+  /* conversation dock: opens when you click a guest */
+  .talk { position:fixed; left:104px; right:20px; bottom:26px; transform:translateY(16px);
+    width:auto; max-width:560px; z-index:8; border-radius:12px; overflow:hidden;
+    background:var(--panel); border:1px solid var(--stroke);
+    backdrop-filter:blur(18px) saturate(1.1);
+    box-shadow:0 26px 70px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.05);
+    opacity:0; visibility:hidden;
+    transition:opacity .3s, transform .3s cubic-bezier(.2,.7,.2,1), visibility .3s; }
+  .talk.open { opacity:1; visibility:visible; transform:translateY(0); }
+  .talk-head { display:flex; align-items:center; gap:11px; padding:12px 14px;
+    border-bottom:1px solid var(--hair); }
+  .talk-av { width:30px; height:30px; flex:0 0 30px; border-radius:50%;
+    background:linear-gradient(140deg,#00b2ff,#8f00ff); }
+  .talk-who { display:flex; flex-direction:column; gap:2px; min-width:0; }
+  .talk-who b { font-family:'Outfit',system-ui,sans-serif; font-weight:500; font-size: 12px; color:var(--ink); }
+  .talk-who span { font-size: 10px; letter-spacing:.18em; text-transform:uppercase; color:var(--cyan); }
+  .talk-tools { margin-left:auto; display:flex; align-items:center; gap:8px; }
+  .talk-mute { padding:6px 10px; cursor:pointer; background:none; border:1px solid var(--stroke);
+    border-radius:6px; font-family:'Outfit',system-ui,sans-serif; font-size: 10px; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--ink-faint); }
+  .talk-mute.is-on { border-color:var(--cyan); color:var(--cyan); }
+  .talk-log { max-height:min(34vh, 240px); overflow-y:auto; padding:14px;
+    display:flex; flex-direction:column; gap:9px; }
+  .tm { max-width:86%; padding:9px 12px; border-radius:9px; font-size: 12px; line-height:1.5;
+    background:rgba(255,255,255,.05); border:1px solid var(--hair); color:var(--ink); }
+  .tm.me { margin-left:auto; background:rgba(0,178,255,.12); border-color:rgba(0,178,255,.3); }
+  .tm.wait { color:var(--ink-faint); font-style:italic; }
+  .talk-form { display:flex; gap:9px; padding:0 14px 14px; }
+  .talk-in { flex:1; min-width:0; padding:11px 13px; border-radius:8px;
+    background:rgba(255,255,255,.04); border:1px solid var(--stroke); color:var(--ink);
+    font-family:'Outfit',system-ui,sans-serif; font-size: 12px; }
+  .talk-in::placeholder { color:var(--ink-faint); }
+  .talk-in:focus { outline:none; border-color:var(--cyan); }
+  .talk-send { padding:0 18px; cursor:pointer; border-radius:8px; border:1px solid var(--cyan);
+    background:rgba(0,178,255,.12); color:var(--ink);
+    font-family:'Outfit',system-ui,sans-serif; font-size: 10px; letter-spacing:.18em;
+    text-transform:uppercase; }
+  .talk-send:hover { background:var(--cyan); color:#01060a; }
+  .talk-send:disabled { opacity:.4; cursor:default; }
+  /* .hints lives inside .hud, a preceding sibling of .talk, so a sibling
+     combinator can never reach it — drive it from a class on <body>
+<header class="il-topbar" id="ilTopbar">
+  <a class="il-brand" href="../index.html" aria-label="ILLUSORR home"><span class="il-logo" role="img" aria-label="ILLUSORR"></span></a>
+  <div class="il-right">
+    <a class="il-talk" href="../contact.html">Let's talk</a>
+    <button class="il-burger" id="ilMenuOpen" aria-label="Open menu"><i></i><i></i></button>
+  </div>
+</header>
+
+<div class="il-overlay" id="ilOverlay">
+  <div class="il-ohead"><span class="il-logo" role="img" aria-label="ILLUSORR"></span><button class="il-oclose" id="ilMenuClose">Close ✕</button></div>
+  <nav>
+    <a href="../index.html">Home <span>01</span></a>
+    <a href="../about.html">About <span>02</span></a>
+    <a href="../sectors.html">Sectors <span>03</span></a>
+    <a href="../work.html">Work <span>04</span></a>
+    <a href="../lab.html">Lab <span>05</span></a>
+    <a href="../collective.html">Collective <span>06</span></a>
+    <a href="../contact.html">Contact <span>07</span></a>
+  </nav>
+  <div class="il-ofoot"><span>Abu Dhabi · Yas Creative Hub</span><span>hello@illusorr.com</span></div>
+</div>
+ */
+  body.is-talking .hints,
+  body.is-talking .pair { opacity:0; pointer-events:none; transition:opacity .3s; }
+  .pair { transition:opacity .3s; }
+
+  /* ambience toggle: quiet by default, never autoplays */
+  .sound { display:flex; align-items:center; gap:9px; padding:8px 13px; cursor:pointer;
+    background:rgba(74,74,74,.55); border:1px solid var(--stroke); backdrop-filter:blur(6px);
+    font-family:'Outfit',system-ui,sans-serif; font-size: 10px; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--ink-soft);
+    transition:border-color .25s, color .25s; }
+  .sound:hover { border-color:var(--cyan); color:var(--ink); }
+  .sound.is-on { border-color:var(--cyan); color:var(--cyan); }
+  .eq { display:flex; align-items:flex-end; gap:2px; width:16px; height:12px; }
+  .eq i { flex:1; background:currentColor; height:22%; transition:height .18s ease; }
+  .sound.is-on .eq i { animation:eqbar 1.1s ease-in-out infinite; }
+  .sound.is-on .eq i:nth-child(2) { animation-delay:.18s; }
+  .sound.is-on .eq i:nth-child(3) { animation-delay:.36s; }
+  @keyframes eqbar { 0%,100% { height:22% } 50% { height:100% } }
+  .account { width:54px; height:54px; border-radius:50%; flex:0 0 54px;
+    display:grid; place-items:center; cursor:pointer; color:#fff;
+    background:var(--cyan); border:0; transition:transform .25s, filter .25s; }
+  .account svg { width:23px; height:23px; }
+  .account:hover { transform:scale(1.06); filter:brightness(1.1); }
+
+  .touch-cue { display:none; position:fixed; left:50%; bottom:196px; transform:translateX(-50%);
+    z-index:9; pointer-events:none; align-items:center; gap:10px; white-space:nowrap;
+    padding:9px 15px; border-radius:999px; background:rgba(2,11,17,.82);
+    border:1px solid var(--stroke); backdrop-filter:blur(8px);
+    font-size: 10px; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-soft);
+    animation:cueOut 5.5s ease forwards; }
+  .touch-cue i { width:3px; height:3px; border-radius:50%; background:var(--cyan); }
+  @keyframes cueOut { 0%{opacity:0} 12%{opacity:1} 78%{opacity:1} 100%{opacity:0; visibility:hidden} }
+  @media (hover:none) and (pointer:coarse), (max-width:1024px) {
+    body.entered .touch-cue { display:flex; }
+  }
+
+  /* Touch locomotion. Pointer drag already turns the head, but without this
+     a tablet or phone visitor can look and never walk. Coarse pointers only. */
+  .stick { display:none; position:fixed; left:26px; bottom:26px; width:118px; height:118px;
+    z-index:7; touch-action:none; }
+  .stick-ring { position:absolute; inset:0; border-radius:50%;
+    border:1px solid var(--stroke); background:rgba(74,74,74,.35);
+    backdrop-filter:blur(6px); }
+  .stick-nub { position:absolute; left:50%; top:50%; width:46px; height:46px; margin:-23px 0 0 -23px;
+    border-radius:50%; background:rgba(0,178,255,.5); border:1px solid var(--cyan);
+    transition:transform .12s ease-out; }
+  .stick.is-live .stick-nub { transition:none; }
+  /* a sheet or the conversation dock owns the screen while it is open, so the
+     movement control steps aside rather than floating over it */
+  .stick { transition:opacity .3s ease; }
+  body.panel-open .stick,
+  body.is-talking .stick { opacity:0; pointer-events:none; }
+  @media (hover:none) and (pointer:coarse), (max-width:1024px) { .stick { display:block; } }
+
+  /* bottom-right pair */
+  .pair { position:fixed; right:30px; bottom:30px; display:flex; flex-direction:column; gap:8px; }
+  .pair .fab > span { left:auto; right:calc(100% + 12px); }
+  .pair .fab:hover { transform:translateX(-3px); }
+
+  /* right menu panel */
+  .menu { position:fixed; top:20px; right:20px; width:min(420px, calc(100vw - 40px));
+    max-height:calc(100vh - 40px); overflow:auto; border-radius:18px;
+    background:rgba(74,74,74,.55); border:1px solid var(--stroke);
+    backdrop-filter:blur(22px) saturate(1.1);
+    box-shadow:0 30px 80px rgba(0,0,0,.6);
+    transform:translateX(480px); opacity:0; visibility:hidden;
+    transition:transform .45s cubic-bezier(.2,.7,.2,1), opacity .3s ease, visibility .45s; }
+  .menu.open { transform:translateX(0px); opacity:1; visibility:visible; }
+  .menu-top { position:relative; padding:26px 24px 20px; text-align:center; }
+  .menu-x { position:absolute; top:20px; right:20px; width:28px; height:28px; border-radius:6px;
+    display:grid; place-items:center; cursor:pointer; background:rgba(74,74,74,.8);
+    border:1px solid var(--hair); color:var(--ink); font-size: 12px; }
+  .menu-x:hover { border-color:var(--cyan); color:var(--cyan); }
+  .menu-av { width:132px; height:132px; border-radius:50%; margin:0 auto 14px; display:block;
+    background:url(spaces-ui/assets/avatar.webp) center / cover, #12202b;
+    border:1px solid rgba(255,255,255,.14); }
+  .menu-name { font-family:'PP Monument Extended',system-ui,sans-serif; font-weight:400;
+    font-size: 12px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink); }
+  .menu-sub { margin-top:6px; font-size: 10px; letter-spacing:.22em; text-transform:uppercase; color:var(--cyan); }
+  .menu-group { padding:6px 16px 2px; font-size: 10px; letter-spacing:.26em;
+    text-transform:uppercase; color:var(--ink-faint); }
+  .menu-list { display:flex; flex-direction:column; gap:7px; padding:6px 16px 16px; }
+  .row { display:flex; align-items:center; gap:14px; width:100%; height:56px; padding:0 14px;
+    border-radius:8px; cursor:pointer; text-align:left;
+    background:rgba(217,217,217,.1); border:1px solid transparent;
+    font-family:'Outfit',system-ui,sans-serif; font-size: 12px; color:var(--ink);
+    transition:background .22s, border-color .22s; }
+  .row:hover { background:rgba(0,178,255,.14); border-color:rgba(0,178,255,.4); }
+  .row .ri { flex:0 0 39px; width:39px; height:39px; border-radius:50%; display:grid; place-items:center;
+    background:rgba(74,74,74,.8); color:#fff; }
+  .row .ri svg { width:16px; height:16px; }
+  .row em { margin-left:auto; font-style:normal; font-size: 10px; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--ink-faint); }
+
+  .panel { position:fixed; left:50%; bottom:100px; transform:translateX(-50%) translateY(14px);
+    width:min(520px,calc(100vw - 40px)); max-height:min(60vh,520px); overflow:auto;
+    background:var(--panel); border:1px solid var(--stroke); border-radius:10px;
+    backdrop-filter:blur(16px) saturate(1.1);
+    box-shadow:0 24px 60px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.04);
+    opacity:0; visibility:hidden; transition:opacity .3s,transform .3s cubic-bezier(.2,.7,.2,1),visibility .3s; }
+  .panel.open { opacity:1; visibility:visible; transform:translateX(-50%) translateY(0); }
+  .panel.wide { width:min(720px,calc(100vw - 40px)); }
+  .p-head { position:sticky; top:0; display:flex; align-items:center; justify-content:space-between;
+    padding:13px 16px; border-bottom:1px solid var(--hair); background:rgba(2,11,17,.9); }
+  .p-head .label { color:var(--cyan); font-size: 10px; letter-spacing:.28em; }
+  .p-x { width:24px; height:24px; display:grid; place-items:center; border:1px solid var(--stroke);
+    border-radius:6px; background:none; color:var(--ink-soft); cursor:pointer; font-size: 12px; }
+  .p-x:hover { color:var(--ink); border-color:var(--ink-faint); }
+  .p-body { padding:14px 16px 16px; }
+  .p-note { margin:12px 0 0; font-size: 12px; line-height:1.55; color:var(--ink-faint); }
+
+  .opts { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; }
+  .opt { background:rgba(255,255,255,.02); border:1px solid var(--hair); border-radius:8px;
+    padding:13px 12px; cursor:pointer; text-align:left; transition:border-color .25s,background .25s,transform .2s; }
+  .opt:hover { border-color:var(--ink-faint); transform:translateY(-2px); }
+  .opt.on { border-color:var(--cyan); background:rgba(0,178,255,.10); }
+  .opt .nm { font-size: 10px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink); margin-bottom:5px; }
+  .opt .ds { font-size: 11px; line-height:1.45; color:var(--ink-soft); }
+  .opt .dot { display:inline-block; width:6px; height:6px; border-radius:50%; background:var(--cyan);
+    margin-right:7px; opacity:0; transition:opacity .25s; vertical-align:middle; }
+  .opt.on .dot { opacity:1; }
+
+  .wgrid { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
+  .w { position:relative; aspect-ratio:16/10; overflow:hidden; cursor:pointer; border-radius:8px;
+    border:1px solid var(--hair); background-size:cover; background-position:center;
+    transition:border-color .25s,transform .2s; }
+  .w:hover { border-color:var(--ink-faint); transform:translateY(-2px); }
+  .w.on { border-color:var(--cyan); }
+  .w::after { content:''; position:absolute; inset:0; background:linear-gradient(to top,rgba(1,6,10,.92),transparent 58%); }
+  .w b,.w em { position:absolute; left:10px; z-index:1; font-style:normal; }
+  .w b { bottom:19px; font-size: 10px; letter-spacing:.11em; color:#fff; font-weight:500; }
+  .w em { bottom:7px; font-size: 10px; letter-spacing:.16em; text-transform:uppercase; color:var(--cyan); }
+
+  .vr-status { display:flex; align-items:flex-start; gap:12px; padding:13px 14px; margin-bottom:12px;
+    border:1px solid var(--hair); border-radius:8px; background:rgba(255,255,255,.02); }
+  .vr-dot { width:9px; height:9px; border-radius:50%; margin-top:4px; flex:none;
+    background:var(--ink-faint); transition:background .3s, box-shadow .3s; }
+  .vr-dot.is-ready { background:#3ddc84; box-shadow:0 0 0 4px rgba(61,220,132,.16); }
+  .vr-dot.is-none { background:#ec1b6c; box-shadow:0 0 0 4px rgba(236,27,108,.14); }
+  .vr-head { font-size: 12px; color:var(--ink); letter-spacing:.02em; }
+  .vr-sub { margin-top:4px; font-size: 11px; line-height:1.5; color:var(--ink-soft); }
+  .vr-rows { display:grid; }
+  .vr-row { display:flex; justify-content:space-between; gap:14px; padding:9px 0;
+    border-bottom:1px solid var(--hair); font-size: 11px; }
+  .vr-row:last-child { border-bottom:0; }
+  .vr-row span { color:var(--ink-faint); letter-spacing:.1em; text-transform:uppercase; font-size: 10px; }
+  .vr-row b { font-weight:400; color:var(--ink); text-align:right; }
+  .vr-go { width:100%; margin-top:14px; padding:14px 20px; cursor:pointer; border-radius:8px;
+    border:1px solid var(--cyan); background:rgba(0,178,255,.12); color:var(--ink);
+    font-family:'Outfit',system-ui,sans-serif; font-size: 10px; letter-spacing:.24em; text-transform:uppercase;
+    transition:background .3s, color .3s, opacity .3s; }
+  .vr-go:hover:not(:disabled) { background:var(--cyan); color:#01060a; }
+  .vr-go:disabled { opacity:.4; cursor:not-allowed; border-color:var(--stroke); background:none; }
+
+  .row.is-stat { cursor:default; }
+  .row.is-stat:hover { background:none; border-color:var(--hair); }
+
+  .meter { display:flex; align-items:flex-end; gap:3px; height:28px; margin-top:12px; }
+  .meter i { flex:1; background:var(--cyan); opacity:.75; height:20%; transition:height .12s linear; }
+
+  .chat { display:grid; gap:10px; }
+  .msg { max-width:84%; padding:9px 12px; border-radius:8px; background:rgba(255,255,255,.05);
+    border:1px solid var(--hair); cursor:pointer; }
+  .msg:hover { border-color:var(--cyan); }
+  .msg.me { margin-left:auto; background:rgba(0,178,255,.12); border-color:rgba(0,178,255,.3); cursor:default; }
+  .msg b { display:block; font-size: 10px; letter-spacing:.14em; text-transform:uppercase; color:var(--cyan); font-weight:500; }
+  .msg p { margin:5px 0 3px; font-size: 12px; line-height:1.45; color:var(--ink); }
+  .msg time { font-size: 10px; letter-spacing:.1em; color:var(--ink-faint); }
+
+  .facts { display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--hair);
+    border:1px solid var(--hair); border-radius:8px; overflow:hidden; margin:4px 0 2px; }
+  .fact { background:rgba(2,11,17,.7); padding:14px 16px; }
+  .fact b { display:block; font-family:'PP Monument Extended',system-ui,sans-serif; font-weight:400;
+    font-size: 16px; color:var(--cyan); }
+  .fact span { display:block; margin-top:5px; font-size: 11px; line-height:1.45; color:var(--ink-soft); }
+  /* provenance: what this page is, against what shipped in 2021 */
+  .prov { margin:4px 0 2px; }
+  .prov-line { position:relative; display:grid; grid-template-columns:1fr 1fr; gap:0;
+    margin:18px 0 20px; }
+  .prov-line::before { content:''; position:absolute; left:8%; right:8%; top:13px; height:1px;
+    background:linear-gradient(to right, var(--cyan), rgba(0,178,255,.25)); }
+  .prov-node { position:relative; text-align:center; padding-top:30px; }
+  .prov-node::before { content:''; position:absolute; top:8px; left:50%; width:11px; height:11px;
+    margin-left:-5.5px; border-radius:50%; background:var(--cyan); }
+  .prov-node.is-now::before { background:#020B11; border:2px solid var(--cyan); }
+  .prov-node b { display:block; font-family:'PP Monument Extended',system-ui,sans-serif; font-weight:400;
+    font-size: 16px; color:var(--ink); }
+  .prov-node span { display:block; margin-top:5px; font-size: 10px; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--ink-faint); }
+  .prov-cols { display:grid; grid-template-columns:1fr; gap:1px; background:var(--hair);
+    border:1px solid var(--hair); border-radius:8px; overflow:hidden; }
+  @media (min-width:560px){ .prov-cols { grid-template-columns:1fr 1fr; } }
+  .prov-col { background:rgba(2,11,17,.7); padding:15px 16px 17px; }
+  .prov-col h6 { margin:0 0 11px; font-size: 10px; letter-spacing:.2em; text-transform:uppercase;
+    font-weight:400; color:var(--cyan); }
+  .prov-col.is-model h6 { color:var(--ink-faint); }
+  .prov-col ul { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px; }
+  .prov-col li { position:relative; padding-left:15px; font-size: 12px; line-height:1.45; color:var(--ink-soft); }
+  .prov-col li::before { content:''; position:absolute; left:0; top:6px; width:5px; height:5px;
+    background:var(--cyan); opacity:.6; }
+  .prov-col.is-model li::before { background:none; border:1px solid var(--ink-faint); opacity:1; }
+  .prov-note { margin:14px 0 0; padding:12px 14px; border-left:2px solid var(--cyan);
+    background:rgba(0,178,255,.06); font-size: 12px; line-height:1.55; color:var(--ink-soft); }
+  /* a standing badge so the claim is never more than a glance away */
+  .modelbadge { display:inline-flex; align-items:center; gap:8px; margin-top:12px; padding:6px 12px;
+    border:1px solid rgba(0,178,255,.4); background:rgba(0,178,255,.08);
+    font-size: 10px; letter-spacing:.2em; text-transform:uppercase; color:var(--cyan); }
+  .modelbadge i { width:5px; height:5px; border-radius:50%; background:var(--cyan); }
+  .about p { margin:0 0 12px; font-size: 12px; line-height:1.62; color:var(--ink-soft); }
+  .credits { display:grid; margin-top:14px; }
+  .cr { display:flex; justify-content:space-between; gap:14px; padding:9px 0;
+    border-bottom:1px solid var(--hair); font-size: 11px; }
+  .cr:last-child { border-bottom:0; }
+  .cr span:first-child { color:var(--ink-faint); letter-spacing:.1em; text-transform:uppercase; font-size: 10px; }
+  .cr span:last-child { color:var(--ink); text-align:right; }
+
+  #boot { position:fixed; inset:0; z-index:30; background:#020B11; display:grid; place-items:center;
+    transition:opacity .8s ease; text-align:center; }
+  #boot.gone { opacity:0; pointer-events:none; }
+  #boot .bar-l { width:170px; height:1px; background:var(--hair); margin:18px auto 0; overflow:hidden; }
+  #boot .bar-l i { display:block; height:100%; width:40%; background:var(--cyan); animation:sl 1.1s ease-in-out infinite; }
+  @keyframes sl { 0%{transform:translateX(-110%)} 100%{transform:translateX(360%)} }
+
+  #gate { position:fixed; inset:0; z-index:20; display:grid; place-items:center; text-align:center;
+    background:rgba(2,11,17,.72); backdrop-filter:blur(12px);
+    transition:opacity .7s ease,visibility .7s; }
+  #gate.gone { opacity:0; visibility:hidden; }
+  #gate .g-in { max-width:520px; padding:0 26px; }
+  #gate .eyebrow { font-size: 10px; letter-spacing:.32em; text-transform:uppercase; color:var(--cyan); }
+  #gate h1 { margin:16px 0 12px; font-family:'PP Monument Extended',system-ui,sans-serif; font-weight:400;
+    font-size:clamp(28px,4.4vw,52px); line-height:1.04; letter-spacing:-.01em; color:var(--ink); }
+  #gate p { margin:0 auto 28px; max-width:400px; font-size: 12px; line-height:1.62; color:var(--ink-soft); }
+  .enter { display:inline-flex; align-items:center; gap:12px; padding:15px 32px; cursor:pointer;
+    border:1px solid var(--cyan); background:rgba(0,178,255,.1); color:var(--ink);
+    font-family:'Outfit',system-ui,sans-serif; font-size: 10px; letter-spacing:.24em; text-transform:uppercase;
+    transition:background .3s,color .3s; }
+  .enter svg { width:17px; height:17px; }
+  .enter:hover { background:var(--cyan); color:#01060a; }
+  .g-meta { margin-top:26px; display:flex; flex-wrap:wrap; justify-content:center; gap:8px 22px;
+    font-size: 10px; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-faint); }
+
+  @media (max-height:680px){
+    .tl { gap:14px; }
+    .fab { width:44px; height:44px; }
+    .fab svg { width:18px; height:18px; }
+    .rail { gap:6px; }
+  }
+  /* ═══ TABLET · 721–1024 ═══════════════════════════════════
+     Touch, but with room. The rail survives as the primary control surface
+     and moves to the bottom-left thumb arc; the readout sheds the rows a
+     visitor can already see in the world and keeps the two live gauges.
+     Panels become bottom sheets, since a centred dialog on a held device
+     puts content under the hands. */
+  @media (min-width:721px) and (max-width:1024px) {
+    .tl { top:22px; left:22px; gap:16px; }
+    .tr { top:22px; right:22px; }
+    .brand { font-size: 10px; letter-spacing:.28em; }
+
+    .readout { grid-template-columns:auto auto; gap:5px 14px; }
+    .readout .line:nth-child(2),
+    .readout .line:nth-child(3) { display:none; }   /* operator, coord */
+
+    /* rail leaves the corner and sits where the thumb rests */
+    .rail { position:fixed; left:22px; bottom:22px; flex-direction:row; gap:10px; }
+    .fab { width:52px; height:52px; }
+    .fab > span { left:50%; right:auto; top:auto; bottom:calc(100% + 10px);
+      transform:translateX(-50%); }
+    .fab:hover { transform:none; }
+    .pair { right:22px; bottom:22px; flex-direction:row; }
+    .pair .fab > span { left:50%; right:auto; transform:translateX(-50%); }
+    .pair .fab:hover { transform:none; }
+
+    /* the stick shares the bottom band, so the rail steps aside for it */
+    .stick { left:auto; right:22px; bottom:96px; width:112px; height:112px; }
+
+    .hints { display:none; }
+    .crosshair { opacity:.22; }
+
+    /* panels as bottom sheets */
+    .panel { left:0; right:0; bottom:0; transform:translateY(100%);
+      width:auto; max-width:none; max-height:72vh; border-radius:16px 16px 0 0;
+      border-left:0; border-right:0; border-bottom:0; }
+    .panel.open { transform:translateY(0); }
+    .panel.wide { width:auto; max-width:none; }
+    .p-head { padding:16px 22px; }
+    .p-body { padding:16px 22px 26px; }
+    .opts { grid-template-columns:repeat(3,1fr); }
+    .wgrid { grid-template-columns:repeat(3,1fr); }
+    .opt { padding:15px 14px; }
+
+    .menu { top:16px; right:16px; width:min(400px, calc(100vw - 32px)); }
+    .talk { left:16px; right:16px; bottom:96px; max-width:none; }
+    .talk-log { max-height:34vh; }
+  }
+
+  /* ═══ MOBILE · ≤720 ═══════════════════════════════════════
+     One thumb, no keyboard, and a viewport the world has to keep. Chrome
+     collapses to two strips: a status line at the top and a scrolling dock
+     at the bottom. Every control clears 44px. */
+  @media (max-width:720px) {
+    /* The top strip carried four competing things — wordmark, a six-row
+       readout, the account button and a labelled ambience toggle — in 390px.
+       Split by role instead: identity and place on the left as a two-line
+       stack, controls on the right as two equal circles, and the diagnostics
+       move into the menu where they belong. */
+    .tl { top:0; left:0; right:0; flex-direction:column; align-items:flex-start; gap:3px;
+      padding:13px 108px 16px 16px; max-height:none; overflow:visible; pointer-events:none;
+      background:linear-gradient(to bottom, rgba(2,11,17,.8), transparent); }
+    .brand { font-size: 10px; letter-spacing:.22em; }
+
+    /* the readout keeps one line: where you are */
+    .readout { display:block; margin:0; }
+    .readout .line { display:none; }
+    .readout .line:nth-child(1) { display:block; }
+    .readout .line:nth-child(1) .k { display:none; }
+    .readout .line:nth-child(1) .v { font-size: 13px; letter-spacing:.06em; color:var(--cyan); }
+
+    .tr { top:12px; right:12px; flex-direction:row; align-items:center; gap:8px; }
+    .account { width:40px; height:40px; flex:0 0 40px; }
+    .account svg { width:17px; height:17px; }
+    #clock { display:none; }
+
+    /* ambience becomes a circle to match the account button */
+    .sound { width:40px; height:40px; padding:0; border-radius:50%; justify-content:center;
+      background:rgba(74,74,74,.8); }
+    #soundLabel { display:none; }
+    .eq { width:14px; height:11px; }
+
+    /* rail becomes a scrolling dock along the bottom */
+    .rail { position:fixed; left:0; right:0; bottom:0; flex-direction:row; gap:8px;
+      padding:10px 12px calc(10px + env(safe-area-inset-bottom));
+      overflow-x:auto; scrollbar-width:none;
+      background:linear-gradient(to top, rgba(2,11,17,.92), transparent);
+      -webkit-overflow-scrolling:touch; transition:opacity .3s; }
+    .rail::-webkit-scrollbar { display:none; }
+    .fab { width:46px; height:46px; flex:0 0 46px; }
+    .fab svg { width:19px; height:19px; }
+    .fab > span { display:none; }
+    .fab:hover { transform:none; background:rgba(74,74,74,.8); border-color:rgba(255,255,255,.10); }
+    .pair { display:none; }
+
+    .stick { left:14px; bottom:76px; width:104px; height:104px; }
+    .stick-nub { width:42px; height:42px; margin:-21px 0 0 -21px; }
+
+    .hints, .crosshair { display:none; }
+
+    .panel { left:0; right:0; bottom:0; transform:translateY(100%);
+      width:auto; max-width:none; max-height:78vh; border-radius:16px 16px 0 0;
+      border-left:0; border-right:0; border-bottom:0; }
+    .panel.open { transform:translateY(0); }
+    .panel.wide { width:auto; max-width:none; }
+    .p-head { padding:17px 16px 15px; }
+    .p-head::before { content:''; position:absolute; top:7px; left:50%; transform:translateX(-50%);
+      width:36px; height:3px; border-radius:2px; background:var(--stroke); }
+    .p-body { padding:14px 16px calc(20px + env(safe-area-inset-bottom)); }
+    .opts, .facts { grid-template-columns:1fr; }
+    .wgrid { grid-template-columns:1fr 1fr; }
+    .vr-go, .opt { min-height:46px; }
+
+    .menu { top:0; right:0; left:0; width:auto; max-height:100vh; height:100%;
+      border-radius:0; transform:translateX(100%); }
+
+    .talk { left:0; right:0; bottom:0; max-width:none; border-radius:14px 14px 0 0;
+      border-left:0; border-right:0; border-bottom:0; }
+    .talk-log { max-height:38vh; }
+    .talk-in { font-size: 13px; }        /* 16px keeps iOS from zooming the page */
+    .talk-send { padding:0 14px; }
+    body.is-talking .rail { opacity:0; pointer-events:none; }
+
+    #gate h1 { font-size:clamp(26px,8vw,38px); }
+    #gate .g-in { padding:0 20px; }
+    .enter { padding:16px 26px; width:100%; justify-content:center; }
+  }
+
+  /* Embed mode: when the environment is shown inside another page it is
+     scenery, not a product. Everything a visitor would touch is removed so
+     the world reads clean behind whatever sits on top of it. */
+  body.embed .hud, body.embed #gate, body.embed #boot,
+  body.embed #tags, body.embed .stick, body.embed .talk,
+  body.embed .vig { display:none !important; }
+  body.embed .grain { opacity:.03; }
+
+  /* landscape phones have almost no vertical room — shed the top strip */
+  @media (max-width:900px) and (max-height:460px) {
+    .tl .readout, .brand { display:none; }
+    .stick { width:88px; height:88px; bottom:66px; }
+    .panel, .talk { max-height:88vh; }
+  }
+</style>
+</head>
+<body>
+<header class="il-topbar" id="ilTopbar">
+  <a class="il-brand" href="../index.html" aria-label="ILLUSORR home"><span class="il-logo" role="img" aria-label="ILLUSORR"></span></a>
+  <div class="il-right">
+    <a class="il-talk" href="../contact.html">Let's talk</a>
+    <button class="il-burger" id="ilMenuOpen" aria-label="Open menu"><i></i><i></i></button>
+  </div>
+</header>
+
+<div class="il-overlay" id="ilOverlay">
+  <div class="il-ohead"><span class="il-logo" role="img" aria-label="ILLUSORR"></span><button class="il-oclose" id="ilMenuClose">Close ✕</button></div>
+  <nav>
+    <a href="../index.html">Home <span>01</span></a>
+    <a href="../about.html">About <span>02</span></a>
+    <a href="../sectors.html">Sectors <span>03</span></a>
+    <a href="../work.html">Work <span>04</span></a>
+    <a href="../lab.html">Lab <span>05</span></a>
+    <a href="../collective.html">Collective <span>06</span></a>
+    <a href="../contact.html">Contact <span>07</span></a>
+  </nav>
+  <div class="il-ofoot"><span>Abu Dhabi · Yas Creative Hub</span><span>hello@illusorr.com</span></div>
+</div>
+
+  <div id="stage"><canvas id="scene"></canvas></div>
+  <div class="vig"></div>
+  <div class="grain"></div>
+  <div id="flash"></div>
+  <div id="tags"></div>
+
+  <div class="hud">
+    <div class="corner tl">
+      <span class="brand">ILLUSORR <em>Spaces</em></span>
+      <div class="readout">
+        <div class="line"><span class="k">Destination</span><span class="v hi" id="r-dest">DOWNTOWN</span></div>
+        <div class="line"><span class="k">Operator</span><span class="v" id="r-owner">ILLUSORR</span></div>
+        <div class="line"><span class="k">Coord</span><span class="v" id="r-coord">0.0 · 0.0</span></div>
+        <div class="line"><span class="k">Present</span><span class="v" id="r-guests">4</span></div>
+        <div class="line"><span class="k">Frame</span><span class="v" id="r-fps">— fps</span></div>
+        <div class="line"><span class="k">Link</span><span class="v" id="r-net">measuring…</span></div>
+      </div>
+      <div class="rail ui">
+        <button class="fab" data-p="worlds" type="button" aria-label="Destinations"><svg viewBox="0 0 34.2 34.25" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g transform="translate(-57.1873 -914.182)"><path d="M74.2679 948.431C64.8497 948.431 57.1873 940.749 57.1873 931.306C57.1873 921.864 64.8497 914.182 74.2679 914.182C83.6861 914.182 91.3485 921.864 91.3485 931.306C91.3485 940.749 83.6861 948.431 74.2679 948.431ZM74.2679 915.681C65.6741 915.681 58.6827 922.691 58.6827 931.306C58.6827 939.922 65.6741 946.932 74.2679 946.932C82.8616 946.932 89.8531 939.922 89.8531 931.306C89.8531 922.691 82.8616 915.681 74.2679 915.681Z" fill="currentColor"/><path d="M74.2673 948.431C69.2687 948.431 65.3531 940.909 65.3531 931.306C65.3531 921.704 69.2687 914.182 74.2673 914.182C79.2659 914.182 83.1815 921.704 83.1815 931.306C83.1815 940.909 79.2659 948.431 74.2673 948.431ZM74.2673 915.681C70.2459 915.681 66.8486 922.836 66.8486 931.306C66.8486 939.777 70.2459 946.932 74.2673 946.932C78.2887 946.932 81.6861 939.777 81.6861 931.306C81.6861 922.836 78.2887 915.681 74.2673 915.681Z" fill="currentColor"/><path d="M74.2682 948.431C73.8553 948.431 73.5205 948.096 73.5205 947.682V914.931C73.5205 914.517 73.8553 914.182 74.2682 914.182C74.6811 914.182 75.0159 914.517 75.0159 914.931V947.682C75.0159 948.096 74.6811 948.431 74.2682 948.431Z" fill="currentColor"/><path d="M90.6008 932.058H57.935C57.522 932.058 57.1873 931.722 57.1873 931.308C57.1873 930.894 57.522 930.559 57.935 930.559H90.6008C91.0137 930.559 91.3485 930.894 91.3485 931.308C91.3485 931.722 91.0137 932.058 90.6008 932.058Z" fill="currentColor"/><path d="M88.4159 923.868H60.12C59.7071 923.868 59.3723 923.533 59.3723 923.119C59.3723 922.705 59.7071 922.369 60.12 922.369H88.4159C88.8288 922.369 89.1636 922.705 89.1636 923.119C89.1636 923.533 88.8288 923.868 88.4159 923.868Z" fill="currentColor"/><path d="M88.4159 940.243H60.12C59.7071 940.243 59.3723 939.908 59.3723 939.494C59.3723 939.08 59.7071 938.744 60.12 938.744H88.4159C88.8288 938.744 89.1636 939.08 89.1636 939.494C89.1636 939.908 88.8288 940.243 88.4159 940.243Z" fill="currentColor"/></g></svg><span>Destinations</span></button>
+        <button class="fab" data-p="inventory" type="button" aria-label="Inventory"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25.591 25.415" fill="none">
+  <path d="M 23.457 2.119 C 23.571 2.232 23.571 2.414 23.457 2.527 L 20.997 4.97 C 20.884 5.083 20.7 5.083 20.587 4.97 C 20.473 4.858 20.473 4.675 20.587 4.563 L 23.047 2.119 C 23.161 2.007 23.344 2.007 23.457 2.119 Z M 25.502 6.924 C 25.554 6.976 25.591 7.048 25.591 7.128 C 25.591 7.287 25.463 7.414 25.303 7.414 L 21.817 7.414 C 21.657 7.414 21.529 7.287 21.529 7.128 C 21.529 6.969 21.657 6.841 21.817 6.841 L 25.297 6.835 C 25.377 6.835 25.449 6.872 25.502 6.924 Z M 18.619 0.089 C 18.672 0.141 18.709 0.213 18.709 0.293 L 18.703 3.748 C 18.703 3.907 18.575 4.035 18.414 4.035 C 18.254 4.035 18.126 3.907 18.126 3.748 L 18.126 0.286 C 18.126 0.127 18.254 0 18.414 0 C 18.494 0 18.567 0.037 18.619 0.089 Z M 23.868 11.894 C 23.981 12.007 23.981 12.189 23.868 12.302 C 23.754 12.414 23.571 12.414 23.457 12.302 L 20.997 9.858 C 20.883 9.745 20.884 9.563 20.997 9.45 C 21.11 9.338 21.294 9.338 21.407 9.45 L 23.868 11.894 Z M 19.561 7.618 C 19.669 7.724 19.669 7.918 19.561 8.025 L 2.131 25.335 C 2.024 25.442 1.828 25.442 1.721 25.335 L 0.081 23.706 C -0.027 23.599 -0.027 23.405 0.081 23.298 L 17.511 5.988 C 17.618 5.882 17.813 5.882 17.921 5.988 L 19.561 7.618 Z M 16.075 4.156 C 16.189 4.268 16.189 4.45 16.075 4.563 C 15.962 4.675 15.778 4.675 15.665 4.563 L 13.204 2.119 C 13.091 2.007 13.091 1.824 13.204 1.712 C 13.318 1.599 13.501 1.599 13.615 1.712 L 16.075 4.156 Z M 18.946 7.821 L 17.716 6.599 L 14.64 9.654 L 15.87 10.876 L 18.946 7.821 Z M 19.151 10.761 C 19.204 10.814 19.235 10.879 19.234 10.959 L 19.235 14.421 C 19.234 14.58 19.106 14.707 18.946 14.707 C 18.786 14.707 18.658 14.58 18.658 14.421 L 18.658 10.959 C 18.658 10.8 18.786 10.672 18.946 10.672 C 19.026 10.672 19.099 10.709 19.151 10.761 Z M 14.755 6.396 C 14.808 6.448 14.845 6.52 14.845 6.599 C 14.845 6.758 14.717 6.886 14.557 6.886 L 11.071 6.886 C 10.91 6.886 10.782 6.758 10.782 6.599 C 10.782 6.44 10.91 6.313 11.071 6.313 L 14.557 6.313 C 14.637 6.313 14.703 6.344 14.755 6.396 Z" fill="currentColor" fill-rule="nonzero"></path>
+</svg><span>Inventory</span></button>
+        <button class="fab" data-p="chat" type="button" aria-label="Chat"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28.908 29.075" fill="none">
+  <path d="M 28.908 14.537 C 28.908 6.508 22.437 0 14.454 0 C 7.127 0 0.949 5.519 0.098 12.836 C -0.272 16.024 0.403 19.31 2.123 22.13 C 2.348 22.473 2.273 22.694 2.182 23.033 L 0.783 28.286 L 6.235 26.817 L 6.236 26.819 C 6.44 26.764 6.666 26.791 6.861 26.911 C 12.516 30.426 19.907 29.611 24.675 24.815 C 27.497 21.977 28.908 18.256 28.908 14.537 Z M 7.352 18.007 C 6.299 18.007 6.299 16.397 7.352 16.397 L 16.026 16.397 C 17.079 16.397 17.079 18.007 16.026 18.007 L 7.352 18.007 Z M 7.352 12.676 C 6.299 12.676 6.299 11.066 7.352 11.066 L 21.557 11.066 C 22.61 11.066 22.61 12.676 21.557 12.676 L 7.352 12.676 Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg><span>Chat</span></button>
+        <button class="fab" data-p="share" type="button" aria-label="Screen share"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33.355 26.058" fill="none">
+  <path d="M 8.339 22.505 L 3.574 22.505 C 1.6 22.505 0 20.914 0 18.951 C 0 15.077 0 7.429 0 3.553 C 0 1.591 1.6 0 3.574 0 C 9.343 0 24.012 0 29.781 0 C 31.755 0 33.355 1.591 33.355 3.553 L 33.355 18.951 C 33.355 20.914 31.755 22.505 29.781 22.505 L 25.016 22.505 L 25.016 23.428 C 25.016 24.881 23.832 26.058 22.371 26.058 L 10.985 26.058 C 9.523 26.058 8.339 24.881 8.339 23.428 L 8.339 22.505 Z M 10.721 22.505 L 10.721 23.428 C 10.721 23.572 10.839 23.689 10.985 23.689 L 22.371 23.689 C 22.516 23.689 22.634 23.572 22.634 23.428 L 22.634 22.505 L 10.721 22.505 Z M 30.973 3.553 L 30.973 18.951 C 30.973 19.606 30.439 20.136 29.781 20.136 C 24.012 20.136 9.343 20.136 3.574 20.136 C 2.916 20.136 2.383 19.606 2.383 18.951 C 2.383 15.077 2.383 7.429 2.383 3.553 C 2.383 2.9 2.916 2.369 3.574 2.369 C 9.343 2.369 24.012 2.369 29.781 2.369 C 30.439 2.369 30.973 2.9 30.973 3.553 Z M 15.486 9.967 L 14.151 11.295 C 13.686 11.757 12.931 11.757 12.467 11.295 C 12.001 10.833 12.001 10.082 12.467 9.62 L 15.835 6.269 C 16.301 5.807 17.055 5.807 17.52 6.269 L 20.89 9.62 C 21.355 10.082 21.355 10.833 20.89 11.295 C 20.424 11.757 19.67 11.757 19.204 11.295 L 17.869 9.967 L 17.869 15.398 C 17.869 16.052 17.335 16.582 16.678 16.582 C 16.02 16.582 15.486 16.052 15.486 15.398 L 15.486 9.967 Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg><span>Screen share</span></button>
+        <button class="fab" data-p="voice" type="button" aria-label="Voice"><svg viewBox="0 0 24 25.5" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <g transform="translate(5.589 0)"><path d="M 6.411 21.565 C 8.111 21.565 9.742 20.903 10.945 19.723 C 12.147 18.543 12.822 16.944 12.822 15.275 L 12.822 6.29 C 12.822 4.622 12.147 3.022 10.945 1.842 C 9.742 0.663 8.111 0 6.411 0 C 4.711 0 3.08 0.663 1.878 1.842 C 0.675 3.022 0 4.622 0 6.29 L 0 15.275 C 0 16.944 0.675 18.543 1.878 19.723 C 3.08 20.903 4.711 21.565 6.411 21.565 Z M 1.832 6.29 C 1.832 5.098 2.314 3.956 3.173 3.113 C 4.032 2.27 5.197 1.797 6.411 1.797 C 7.626 1.797 8.79 2.27 9.649 3.113 C 10.508 3.956 10.991 5.098 10.991 6.29 L 10.991 15.275 C 10.991 16.467 10.508 17.61 9.649 18.452 C 8.79 19.295 7.626 19.768 6.411 19.768 C 5.197 19.768 4.032 19.295 3.173 18.452 C 2.314 17.61 1.832 16.467 1.832 15.275 L 1.832 6.29 Z" fill="currentColor"></path></g>
+              <g transform="translate(1.926 7.5)"><path d="M 19.233 0 C 18.991 0 18.758 0.095 18.586 0.263 C 18.414 0.432 18.318 0.66 18.318 0.899 L 18.318 4.493 C 18.318 6.638 17.449 8.694 15.903 10.211 C 14.357 11.728 12.261 12.58 10.075 12.58 C 7.888 12.58 5.792 11.728 4.246 10.211 C 2.7 8.694 1.832 6.638 1.832 4.493 L 1.832 0.899 C 1.832 0.66 1.735 0.432 1.564 0.263 C 1.392 0.095 1.159 0 0.916 0 C 0.673 0 0.44 0.095 0.268 0.263 C 0.096 0.432 0 0.66 0 0.899 L 0 4.493 C 0.004 6.957 0.944 9.332 2.638 11.151 C 4.332 12.971 6.657 14.105 9.159 14.332 L 9.159 16.174 L 6.411 16.174 C 6.168 16.174 5.935 16.269 5.764 16.437 C 5.592 16.606 5.495 16.834 5.495 17.072 C 5.495 17.311 5.592 17.539 5.764 17.708 C 5.935 17.876 6.168 17.971 6.411 17.971 L 13.738 17.971 C 13.981 17.971 14.214 17.876 14.386 17.708 C 14.558 17.539 14.654 17.311 14.654 17.072 C 14.654 16.834 14.558 16.606 14.386 16.437 C 14.214 16.269 13.981 16.174 13.738 16.174 L 10.991 16.174 L 10.991 14.332 C 13.492 14.105 15.817 12.971 17.511 11.151 C 19.205 9.332 20.146 6.957 20.149 4.493 L 20.149 0.899 C 20.149 0.66 20.053 0.432 19.881 0.263 C 19.709 0.095 19.476 0 19.233 0 Z" fill="currentColor"></path></g>
+            </svg><span>Voice</span></button>
+        <button class="fab" data-p="surface" type="button" aria-label="Surface"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23.445 22.501" fill="none">
+  <path d="M 22.1 7.319 L 16.992 6.618 C 16.649 6.571 16.323 6.442 16.041 6.241 C 15.76 6.04 15.531 5.774 15.375 5.465 L 13.056 0.858 C 12.929 0.598 12.731 0.379 12.485 0.228 C 12.239 0.076 11.955 -0.003 11.666 0 L 11.652 0 C 11.361 -0.001 11.075 0.081 10.829 0.237 C 10.582 0.393 10.386 0.616 10.262 0.879 L 8.017 5.521 C 7.866 5.833 7.642 6.103 7.363 6.309 C 7.085 6.515 6.761 6.65 6.419 6.702 L 1.325 7.484 C 1.037 7.528 0.767 7.651 0.546 7.84 C 0.325 8.029 0.161 8.276 0.073 8.554 C -0.015 8.831 -0.024 9.128 0.048 9.41 C 0.12 9.692 0.269 9.948 0.479 10.15 L 4.2 13.719 C 4.45 13.958 4.638 14.255 4.748 14.584 C 4.858 14.912 4.886 15.262 4.83 15.604 L 3.999 20.693 C 3.952 20.979 3.986 21.274 4.098 21.542 C 4.21 21.81 4.394 22.042 4.631 22.211 C 4.867 22.38 5.147 22.479 5.437 22.498 C 5.727 22.517 6.016 22.454 6.272 22.317 L 10.817 19.881 C 11.122 19.717 11.463 19.63 11.809 19.628 C 12.155 19.625 12.497 19.707 12.804 19.866 L 15.144 21.072 C 14.671 20.203 14.488 19.207 14.622 18.227 C 14.756 17.248 15.2 16.337 15.889 15.628 C 16.677 14.815 17.739 14.325 18.869 14.255 C 18.977 14.01 19.13 13.787 19.32 13.598 L 22.984 9.97 C 23.19 9.765 23.335 9.507 23.403 9.224 C 23.47 8.941 23.457 8.645 23.365 8.369 C 23.273 8.093 23.106 7.849 22.882 7.663 C 22.658 7.477 22.387 7.358 22.098 7.319 L 22.1 7.319 Z" fill="currentColor" fill-rule="nonzero"></path>
+</svg><span>Surface</span></button>
+      <button class="fab" data-p="about" type="button" aria-label="About"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8.009 8.059" fill="none">
+  <path d="M 4.004 0 C 1.796 0 0 1.807 0 4.029 C 0 6.251 1.796 8.059 4.004 8.059 C 6.212 8.059 8.009 6.251 8.009 4.029 C 8.009 1.807 6.212 0 4.004 0 Z M 6.082 5.067 L 5.042 5.067 L 5.042 6.105 C 5.036 6.376 4.925 6.634 4.731 6.824 C 4.537 7.014 4.276 7.12 4.005 7.12 C 3.733 7.12 3.473 7.014 3.279 6.824 C 3.085 6.634 2.973 6.376 2.967 6.105 L 2.967 5.067 L 1.929 5.067 C 1.654 5.067 1.39 4.957 1.196 4.763 C 1.001 4.568 0.892 4.304 0.892 4.029 C 0.892 3.754 1.001 3.49 1.196 3.296 C 1.39 3.101 1.654 2.992 1.929 2.992 L 2.967 2.992 L 2.967 1.952 C 2.973 1.681 3.085 1.422 3.279 1.232 C 3.473 1.043 3.733 0.936 4.005 0.936 C 4.276 0.936 4.537 1.043 4.731 1.232 C 4.925 1.422 5.036 1.681 5.042 1.952 L 5.042 2.99 L 6.082 2.99 C 6.357 2.99 6.621 3.099 6.816 3.294 C 7.01 3.488 7.12 3.752 7.12 4.027 C 7.12 4.303 7.01 4.566 6.816 4.761 C 6.621 4.956 6.357 5.065 6.082 5.065 L 6.082 5.067 Z" fill="currentColor" fill-rule="nonzero"></path>
+</svg><span>About</span></button>
+      </div>
+
+    </div>
+
+    <div class="corner tr">
+      <button class="account ui" id="account" type="button" aria-label="My account"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 38" fill="none">
+  <path d="M 19.827 27.116 C 19.916 27.112 20.005 27.115 20.094 27.125 C 23.963 27.584 27.018 28.596 28.519 29.769 C 29.545 30.572 30 31.505 30 32.417 C 30 33.511 29.302 34.677 27.743 35.586 C 25.352 36.981 20.548 38 15 38 C 9.452 38 4.648 36.981 2.257 35.586 C 0.698 34.677 0 33.511 0 32.417 C 0 31.505 0.455 30.572 1.481 29.769 C 2.981 28.596 6.036 27.584 9.906 27.125 C 9.995 27.115 10.084 27.112 10.173 27.116 L 10.326 29.735 C 10.468 32.161 12.518 34.056 15 34.056 C 17.482 34.056 19.532 32.16 19.674 29.735 L 19.827 27.116 Z M 11.309 22.798 L 9.954 22.798 C 9.281 22.798 8.714 22.307 8.633 21.653 C 8.365 19.483 7.782 14.754 7.454 12.099 C 7.394 11.617 7.549 11.132 7.879 10.768 C 8.208 10.404 8.681 10.195 9.178 10.195 L 20.821 10.195 C 21.318 10.195 21.791 10.404 22.121 10.768 C 22.451 11.132 22.605 11.617 22.545 12.099 C 22.217 14.754 21.634 19.483 21.366 21.653 C 21.285 22.307 20.719 22.798 20.046 22.798 L 18.69 22.798 L 18.29 29.657 C 18.19 31.364 16.747 32.698 15 32.698 C 13.253 32.698 11.81 31.364 11.71 29.657 L 11.31 22.798 L 11.309 22.798 Z M 15 0 C 17.25 0 19.076 1.788 19.076 3.99 C 19.076 6.192 17.25 7.98 15 7.98 C 12.75 7.98 10.923 6.192 10.923 3.99 C 10.923 1.788 12.75 0 15 0 Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg></button>
+      <span class="label dim" id="clock">00:00:00</span>
+      <button class="sound ui" id="sound" type="button" aria-pressed="false" aria-label="Ambience">
+        <span class="eq"><i></i><i></i><i></i></span><span id="soundLabel">Ambience</span>
+      </button>
+    </div>
+    <div class="crosshair"></div>
+
+    <div class="touch-cue" id="touchCue" aria-hidden="true">
+      <span>Drag to look</span><i></i><span>Stick to walk</span>
+    </div>
+
+    <div class="stick ui" id="stick" aria-hidden="true">
+      <span class="stick-ring"></span>
+      <span class="stick-nub" id="stickNub"></span>
+    </div>
+
+    <div class="hints">
+      <div class="ctrl-row"><span class="key">W</span><span class="key">A</span><span class="key">S</span><span class="key">D</span><span class="label">Traverse</span></div>
+      <div class="ctrl-row"><span class="key">DRAG</span><span class="label">Look</span></div>
+      <div class="ctrl-row"><span class="key">SCROLL</span><span class="label">Zoom</span></div>
+      <div class="ctrl-row"><span class="key">CLICK</span><span class="label">Talk to a guest</span></div>
+    </div>
+
+    <div class="pair ui">
+      <button class="fab" data-p="vr" type="button" aria-label="VR setup"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32.800 14.462" fill="none">
+  <path d="M 31.43 0 L 1.37 0 C 0.614 0 0 0.611 0 1.363 L 0 13.099 C 0 13.85 0.614 14.462 1.37 14.462 L 12.862 14.462 C 13.494 13.077 14.883 12.19 16.4 12.19 C 17.917 12.19 19.306 13.077 19.939 14.449 L 31.43 14.462 C 32.186 14.462 32.8 13.85 32.8 13.099 L 32.8 1.363 C 32.8 0.611 32.186 0 31.43 0 Z M 7.375 11.054 C 5.252 11.054 3.535 9.341 3.535 7.233 C 3.535 6.777 3.617 6.342 3.765 5.941 C 4.294 4.462 5.71 3.408 7.375 3.408 C 9.04 3.408 10.456 4.462 10.985 5.941 C 11.133 6.342 11.214 6.777 11.214 7.233 C 11.214 9.341 9.498 11.054 7.375 11.054 Z M 25.425 11.054 C 23.302 11.054 21.586 9.341 21.586 7.233 C 21.586 6.777 21.667 6.342 21.815 5.941 C 22.344 4.462 23.76 3.408 25.425 3.408 C 27.09 3.408 28.506 4.462 29.035 5.941 C 29.183 6.342 29.265 6.777 29.265 7.233 C 29.265 9.341 27.548 11.054 25.425 11.054 Z" fill="currentColor" fill-rule="nonzero"></path>
+</svg><span>VR setup</span></button>
+      <button class="fab" data-p="chat" type="button" aria-label="Chat"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28.908 29.075" fill="none">
+  <path d="M 28.908 14.537 C 28.908 6.508 22.437 0 14.454 0 C 7.127 0 0.949 5.519 0.098 12.836 C -0.272 16.024 0.403 19.31 2.123 22.13 C 2.348 22.473 2.273 22.694 2.182 23.033 L 0.783 28.286 L 6.235 26.817 L 6.236 26.819 C 6.44 26.764 6.666 26.791 6.861 26.911 C 12.516 30.426 19.907 29.611 24.675 24.815 C 27.497 21.977 28.908 18.256 28.908 14.537 Z M 7.352 18.007 C 6.299 18.007 6.299 16.397 7.352 16.397 L 16.026 16.397 C 17.079 16.397 17.079 18.007 16.026 18.007 L 7.352 18.007 Z M 7.352 12.676 C 6.299 12.676 6.299 11.066 7.352 11.066 L 21.557 11.066 C 22.61 11.066 22.61 12.676 21.557 12.676 L 7.352 12.676 Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg><span>Chat</span></button>
+    </div>
+
+    <div class="menu ui" id="menu">
+      <div class="menu-top">
+        <button class="menu-x" id="menuX" type="button" aria-label="Close">✕</button>
+        <span class="menu-av"></span>
+        <div class="menu-name">Sara El Jamal</div>
+        <div class="menu-sub">Present in <span id="menuWorld">DOWNTOWN</span></div>
+      </div>
+      <div class="menu-group">Profile</div>
+      <div class="menu-list">
+        <button class="row" type="button"><span class="ri"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 38" fill="none">
+  <path d="M 19.827 27.116 C 19.916 27.112 20.005 27.115 20.094 27.125 C 23.963 27.584 27.018 28.596 28.519 29.769 C 29.545 30.572 30 31.505 30 32.417 C 30 33.511 29.302 34.677 27.743 35.586 C 25.352 36.981 20.548 38 15 38 C 9.452 38 4.648 36.981 2.257 35.586 C 0.698 34.677 0 33.511 0 32.417 C 0 31.505 0.455 30.572 1.481 29.769 C 2.981 28.596 6.036 27.584 9.906 27.125 C 9.995 27.115 10.084 27.112 10.173 27.116 L 10.326 29.735 C 10.468 32.161 12.518 34.056 15 34.056 C 17.482 34.056 19.532 32.16 19.674 29.735 L 19.827 27.116 Z M 11.309 22.798 L 9.954 22.798 C 9.281 22.798 8.714 22.307 8.633 21.653 C 8.365 19.483 7.782 14.754 7.454 12.099 C 7.394 11.617 7.549 11.132 7.879 10.768 C 8.208 10.404 8.681 10.195 9.178 10.195 L 20.821 10.195 C 21.318 10.195 21.791 10.404 22.121 10.768 C 22.451 11.132 22.605 11.617 22.545 12.099 C 22.217 14.754 21.634 19.483 21.366 21.653 C 21.285 22.307 20.719 22.798 20.046 22.798 L 18.69 22.798 L 18.29 29.657 C 18.19 31.364 16.747 32.698 15 32.698 C 13.253 32.698 11.81 31.364 11.71 29.657 L 11.31 22.798 L 11.309 22.798 Z M 15 0 C 17.25 0 19.076 1.788 19.076 3.99 C 19.076 6.192 17.25 7.98 15 7.98 C 12.75 7.98 10.923 6.192 10.923 3.99 C 10.923 1.788 12.75 0 15 0 Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg></span>My Account<em>Details</em></button>
+        <button class="row" type="button"><span class="ri"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 38" fill="none">
+  <path d="M 19.827 27.116 C 19.916 27.112 20.005 27.115 20.094 27.125 C 23.963 27.584 27.018 28.596 28.519 29.769 C 29.545 30.572 30 31.505 30 32.417 C 30 33.511 29.302 34.677 27.743 35.586 C 25.352 36.981 20.548 38 15 38 C 9.452 38 4.648 36.981 2.257 35.586 C 0.698 34.677 0 33.511 0 32.417 C 0 31.505 0.455 30.572 1.481 29.769 C 2.981 28.596 6.036 27.584 9.906 27.125 C 9.995 27.115 10.084 27.112 10.173 27.116 L 10.326 29.735 C 10.468 32.161 12.518 34.056 15 34.056 C 17.482 34.056 19.532 32.16 19.674 29.735 L 19.827 27.116 Z M 11.309 22.798 L 9.954 22.798 C 9.281 22.798 8.714 22.307 8.633 21.653 C 8.365 19.483 7.782 14.754 7.454 12.099 C 7.394 11.617 7.549 11.132 7.879 10.768 C 8.208 10.404 8.681 10.195 9.178 10.195 L 20.821 10.195 C 21.318 10.195 21.791 10.404 22.121 10.768 C 22.451 11.132 22.605 11.617 22.545 12.099 C 22.217 14.754 21.634 19.483 21.366 21.653 C 21.285 22.307 20.719 22.798 20.046 22.798 L 18.69 22.798 L 18.29 29.657 C 18.19 31.364 16.747 32.698 15 32.698 C 13.253 32.698 11.81 31.364 11.71 29.657 L 11.31 22.798 L 11.309 22.798 Z M 15 0 C 17.25 0 19.076 1.788 19.076 3.99 C 19.076 6.192 17.25 7.98 15 7.98 C 12.75 7.98 10.923 6.192 10.923 3.99 C 10.923 1.788 12.75 0 15 0 Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg></span>My Avatar<em>NFT</em></button>
+        <button class="row" type="button"><span class="ri"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25.591 25.415" fill="none">
+  <path d="M 23.457 2.119 C 23.571 2.232 23.571 2.414 23.457 2.527 L 20.997 4.97 C 20.884 5.083 20.7 5.083 20.587 4.97 C 20.473 4.858 20.473 4.675 20.587 4.563 L 23.047 2.119 C 23.161 2.007 23.344 2.007 23.457 2.119 Z M 25.502 6.924 C 25.554 6.976 25.591 7.048 25.591 7.128 C 25.591 7.287 25.463 7.414 25.303 7.414 L 21.817 7.414 C 21.657 7.414 21.529 7.287 21.529 7.128 C 21.529 6.969 21.657 6.841 21.817 6.841 L 25.297 6.835 C 25.377 6.835 25.449 6.872 25.502 6.924 Z M 18.619 0.089 C 18.672 0.141 18.709 0.213 18.709 0.293 L 18.703 3.748 C 18.703 3.907 18.575 4.035 18.414 4.035 C 18.254 4.035 18.126 3.907 18.126 3.748 L 18.126 0.286 C 18.126 0.127 18.254 0 18.414 0 C 18.494 0 18.567 0.037 18.619 0.089 Z M 23.868 11.894 C 23.981 12.007 23.981 12.189 23.868 12.302 C 23.754 12.414 23.571 12.414 23.457 12.302 L 20.997 9.858 C 20.883 9.745 20.884 9.563 20.997 9.45 C 21.11 9.338 21.294 9.338 21.407 9.45 L 23.868 11.894 Z M 19.561 7.618 C 19.669 7.724 19.669 7.918 19.561 8.025 L 2.131 25.335 C 2.024 25.442 1.828 25.442 1.721 25.335 L 0.081 23.706 C -0.027 23.599 -0.027 23.405 0.081 23.298 L 17.511 5.988 C 17.618 5.882 17.813 5.882 17.921 5.988 L 19.561 7.618 Z M 16.075 4.156 C 16.189 4.268 16.189 4.45 16.075 4.563 C 15.962 4.675 15.778 4.675 15.665 4.563 L 13.204 2.119 C 13.091 2.007 13.091 1.824 13.204 1.712 C 13.318 1.599 13.501 1.599 13.615 1.712 L 16.075 4.156 Z M 18.946 7.821 L 17.716 6.599 L 14.64 9.654 L 15.87 10.876 L 18.946 7.821 Z M 19.151 10.761 C 19.204 10.814 19.235 10.879 19.234 10.959 L 19.235 14.421 C 19.234 14.58 19.106 14.707 18.946 14.707 C 18.786 14.707 18.658 14.58 18.658 14.421 L 18.658 10.959 C 18.658 10.8 18.786 10.672 18.946 10.672 C 19.026 10.672 19.099 10.709 19.151 10.761 Z M 14.755 6.396 C 14.808 6.448 14.845 6.52 14.845 6.599 C 14.845 6.758 14.717 6.886 14.557 6.886 L 11.071 6.886 C 10.91 6.886 10.782 6.758 10.782 6.599 C 10.782 6.44 10.91 6.313 11.071 6.313 L 14.557 6.313 C 14.637 6.313 14.703 6.344 14.755 6.396 Z" fill="currentColor" fill-rule="nonzero"></path>
+</svg></span>My Wallet<em>Linked</em></button>
+        <button class="row" type="button"><span class="ri"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32.800 14.462" fill="none">
+  <path d="M 31.43 0 L 1.37 0 C 0.614 0 0 0.611 0 1.363 L 0 13.099 C 0 13.85 0.614 14.462 1.37 14.462 L 12.862 14.462 C 13.494 13.077 14.883 12.19 16.4 12.19 C 17.917 12.19 19.306 13.077 19.939 14.449 L 31.43 14.462 C 32.186 14.462 32.8 13.85 32.8 13.099 L 32.8 1.363 C 32.8 0.611 32.186 0 31.43 0 Z M 7.375 11.054 C 5.252 11.054 3.535 9.341 3.535 7.233 C 3.535 6.777 3.617 6.342 3.765 5.941 C 4.294 4.462 5.71 3.408 7.375 3.408 C 9.04 3.408 10.456 4.462 10.985 5.941 C 11.133 6.342 11.214 6.777 11.214 7.233 C 11.214 9.341 9.498 11.054 7.375 11.054 Z M 25.425 11.054 C 23.302 11.054 21.586 9.341 21.586 7.233 C 21.586 6.777 21.667 6.342 21.815 5.941 C 22.344 4.462 23.76 3.408 25.425 3.408 C 27.09 3.408 28.506 4.462 29.035 5.941 C 29.183 6.342 29.265 6.777 29.265 7.233 C 29.265 9.341 27.548 11.054 25.425 11.054 Z" fill="currentColor" fill-rule="nonzero"></path>
+</svg></span>Homespace<em>Private</em></button>
+      </div>
+      <div class="menu-group">World settings</div>
+      <div class="menu-list">
+        <button class="row" data-p="worlds" type="button"><span class="ri"><svg viewBox="0 0 34.2 34.25" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g transform="translate(-57.1873 -914.182)"><path d="M74.2679 948.431C64.8497 948.431 57.1873 940.749 57.1873 931.306C57.1873 921.864 64.8497 914.182 74.2679 914.182C83.6861 914.182 91.3485 921.864 91.3485 931.306C91.3485 940.749 83.6861 948.431 74.2679 948.431ZM74.2679 915.681C65.6741 915.681 58.6827 922.691 58.6827 931.306C58.6827 939.922 65.6741 946.932 74.2679 946.932C82.8616 946.932 89.8531 939.922 89.8531 931.306C89.8531 922.691 82.8616 915.681 74.2679 915.681Z" fill="currentColor"/><path d="M74.2673 948.431C69.2687 948.431 65.3531 940.909 65.3531 931.306C65.3531 921.704 69.2687 914.182 74.2673 914.182C79.2659 914.182 83.1815 921.704 83.1815 931.306C83.1815 940.909 79.2659 948.431 74.2673 948.431ZM74.2673 915.681C70.2459 915.681 66.8486 922.836 66.8486 931.306C66.8486 939.777 70.2459 946.932 74.2673 946.932C78.2887 946.932 81.6861 939.777 81.6861 931.306C81.6861 922.836 78.2887 915.681 74.2673 915.681Z" fill="currentColor"/><path d="M74.2682 948.431C73.8553 948.431 73.5205 948.096 73.5205 947.682V914.931C73.5205 914.517 73.8553 914.182 74.2682 914.182C74.6811 914.182 75.0159 914.517 75.0159 914.931V947.682C75.0159 948.096 74.6811 948.431 74.2682 948.431Z" fill="currentColor"/><path d="M90.6008 932.058H57.935C57.522 932.058 57.1873 931.722 57.1873 931.308C57.1873 930.894 57.522 930.559 57.935 930.559H90.6008C91.0137 930.559 91.3485 930.894 91.3485 931.308C91.3485 931.722 91.0137 932.058 90.6008 932.058Z" fill="currentColor"/><path d="M88.4159 923.868H60.12C59.7071 923.868 59.3723 923.533 59.3723 923.119C59.3723 922.705 59.7071 922.369 60.12 922.369H88.4159C88.8288 922.369 89.1636 922.705 89.1636 923.119C89.1636 923.533 88.8288 923.868 88.4159 923.868Z" fill="currentColor"/><path d="M88.4159 940.243H60.12C59.7071 940.243 59.3723 939.908 59.3723 939.494C59.3723 939.08 59.7071 938.744 60.12 938.744H88.4159C88.8288 938.744 89.1636 939.08 89.1636 939.494C89.1636 939.908 88.8288 940.243 88.4159 940.243Z" fill="currentColor"/></g></svg></span>World Code<em>Invite</em></button>
+        <button class="row" type="button"><span class="ri"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33.355 26.058" fill="none">
+  <path d="M 8.339 22.505 L 3.574 22.505 C 1.6 22.505 0 20.914 0 18.951 C 0 15.077 0 7.429 0 3.553 C 0 1.591 1.6 0 3.574 0 C 9.343 0 24.012 0 29.781 0 C 31.755 0 33.355 1.591 33.355 3.553 L 33.355 18.951 C 33.355 20.914 31.755 22.505 29.781 22.505 L 25.016 22.505 L 25.016 23.428 C 25.016 24.881 23.832 26.058 22.371 26.058 L 10.985 26.058 C 9.523 26.058 8.339 24.881 8.339 23.428 L 8.339 22.505 Z M 10.721 22.505 L 10.721 23.428 C 10.721 23.572 10.839 23.689 10.985 23.689 L 22.371 23.689 C 22.516 23.689 22.634 23.572 22.634 23.428 L 22.634 22.505 L 10.721 22.505 Z M 30.973 3.553 L 30.973 18.951 C 30.973 19.606 30.439 20.136 29.781 20.136 C 24.012 20.136 9.343 20.136 3.574 20.136 C 2.916 20.136 2.383 19.606 2.383 18.951 C 2.383 15.077 2.383 7.429 2.383 3.553 C 2.383 2.9 2.916 2.369 3.574 2.369 C 9.343 2.369 24.012 2.369 29.781 2.369 C 30.439 2.369 30.973 2.9 30.973 3.553 Z M 15.486 9.967 L 14.151 11.295 C 13.686 11.757 12.931 11.757 12.467 11.295 C 12.001 10.833 12.001 10.082 12.467 9.62 L 15.835 6.269 C 16.301 5.807 17.055 5.807 17.52 6.269 L 20.89 9.62 C 21.355 10.082 21.355 10.833 20.89 11.295 C 20.424 11.757 19.67 11.757 19.204 11.295 L 17.869 9.967 L 17.869 15.398 C 17.869 16.052 17.335 16.582 16.678 16.582 C 16.02 16.582 15.486 16.052 15.486 15.398 L 15.486 9.967 Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg></span>Guest Permission<em>Host</em></button>
+      </div>
+      <div class="menu-group">System settings</div>
+      <div class="menu-list">
+        <button class="row" data-p="voice" type="button"><span class="ri"><svg viewBox="0 0 24 25.5" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <g transform="translate(5.589 0)"><path d="M 6.411 21.565 C 8.111 21.565 9.742 20.903 10.945 19.723 C 12.147 18.543 12.822 16.944 12.822 15.275 L 12.822 6.29 C 12.822 4.622 12.147 3.022 10.945 1.842 C 9.742 0.663 8.111 0 6.411 0 C 4.711 0 3.08 0.663 1.878 1.842 C 0.675 3.022 0 4.622 0 6.29 L 0 15.275 C 0 16.944 0.675 18.543 1.878 19.723 C 3.08 20.903 4.711 21.565 6.411 21.565 Z M 1.832 6.29 C 1.832 5.098 2.314 3.956 3.173 3.113 C 4.032 2.27 5.197 1.797 6.411 1.797 C 7.626 1.797 8.79 2.27 9.649 3.113 C 10.508 3.956 10.991 5.098 10.991 6.29 L 10.991 15.275 C 10.991 16.467 10.508 17.61 9.649 18.452 C 8.79 19.295 7.626 19.768 6.411 19.768 C 5.197 19.768 4.032 19.295 3.173 18.452 C 2.314 17.61 1.832 16.467 1.832 15.275 L 1.832 6.29 Z" fill="currentColor"></path></g>
+            <g transform="translate(1.926 7.5)"><path d="M 19.233 0 C 18.991 0 18.758 0.095 18.586 0.263 C 18.414 0.432 18.318 0.66 18.318 0.899 L 18.318 4.493 C 18.318 6.638 17.449 8.694 15.903 10.211 C 14.357 11.728 12.261 12.58 10.075 12.58 C 7.888 12.58 5.792 11.728 4.246 10.211 C 2.7 8.694 1.832 6.638 1.832 4.493 L 1.832 0.899 C 1.832 0.66 1.735 0.432 1.564 0.263 C 1.392 0.095 1.159 0 0.916 0 C 0.673 0 0.44 0.095 0.268 0.263 C 0.096 0.432 0 0.66 0 0.899 L 0 4.493 C 0.004 6.957 0.944 9.332 2.638 11.151 C 4.332 12.971 6.657 14.105 9.159 14.332 L 9.159 16.174 L 6.411 16.174 C 6.168 16.174 5.935 16.269 5.764 16.437 C 5.592 16.606 5.495 16.834 5.495 17.072 C 5.495 17.311 5.592 17.539 5.764 17.708 C 5.935 17.876 6.168 17.971 6.411 17.971 L 13.738 17.971 C 13.981 17.971 14.214 17.876 14.386 17.708 C 14.558 17.539 14.654 17.311 14.654 17.072 C 14.654 16.834 14.558 16.606 14.386 16.437 C 14.214 16.269 13.981 16.174 13.738 16.174 L 10.991 16.174 L 10.991 14.332 C 13.492 14.105 15.817 12.971 17.511 11.151 C 19.205 9.332 20.146 6.957 20.149 4.493 L 20.149 0.899 C 20.149 0.66 20.053 0.432 19.881 0.263 C 19.709 0.095 19.476 0 19.233 0 Z" fill="currentColor"></path></g>
+          </svg></span>Mic Option<em id="menuMic">On</em></button>
+        <button class="row" data-p="surface" type="button"><span class="ri"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23.445 22.501" fill="none">
+  <path d="M 22.1 7.319 L 16.992 6.618 C 16.649 6.571 16.323 6.442 16.041 6.241 C 15.76 6.04 15.531 5.774 15.375 5.465 L 13.056 0.858 C 12.929 0.598 12.731 0.379 12.485 0.228 C 12.239 0.076 11.955 -0.003 11.666 0 L 11.652 0 C 11.361 -0.001 11.075 0.081 10.829 0.237 C 10.582 0.393 10.386 0.616 10.262 0.879 L 8.017 5.521 C 7.866 5.833 7.642 6.103 7.363 6.309 C 7.085 6.515 6.761 6.65 6.419 6.702 L 1.325 7.484 C 1.037 7.528 0.767 7.651 0.546 7.84 C 0.325 8.029 0.161 8.276 0.073 8.554 C -0.015 8.831 -0.024 9.128 0.048 9.41 C 0.12 9.692 0.269 9.948 0.479 10.15 L 4.2 13.719 C 4.45 13.958 4.638 14.255 4.748 14.584 C 4.858 14.912 4.886 15.262 4.83 15.604 L 3.999 20.693 C 3.952 20.979 3.986 21.274 4.098 21.542 C 4.21 21.81 4.394 22.042 4.631 22.211 C 4.867 22.38 5.147 22.479 5.437 22.498 C 5.727 22.517 6.016 22.454 6.272 22.317 L 10.817 19.881 C 11.122 19.717 11.463 19.63 11.809 19.628 C 12.155 19.625 12.497 19.707 12.804 19.866 L 15.144 21.072 C 14.671 20.203 14.488 19.207 14.622 18.227 C 14.756 17.248 15.2 16.337 15.889 15.628 C 16.677 14.815 17.739 14.325 18.869 14.255 C 18.977 14.01 19.13 13.787 19.32 13.598 L 22.984 9.97 C 23.19 9.765 23.335 9.507 23.403 9.224 C 23.47 8.941 23.457 8.645 23.365 8.369 C 23.273 8.093 23.106 7.849 22.882 7.663 C 22.658 7.477 22.387 7.358 22.098 7.319 L 22.1 7.319 Z" fill="currentColor" fill-rule="nonzero"></path>
+</svg></span>Surface<em id="menuSurf">Field</em></button>
+        <div class="row is-stat"><span class="ri"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M3 17 L8 9 L13 14 L21 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Performance<em id="menuPerf">—</em></div>
+        <button class="row" data-p="about" type="button"><span class="ri"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8.009 8.059" fill="none">
+  <path d="M 4.004 0 C 1.796 0 0 1.807 0 4.029 C 0 6.251 1.796 8.059 4.004 8.059 C 6.212 8.059 8.009 6.251 8.009 4.029 C 8.009 1.807 6.212 0 4.004 0 Z M 6.082 5.067 L 5.042 5.067 L 5.042 6.105 C 5.036 6.376 4.925 6.634 4.731 6.824 C 4.537 7.014 4.276 7.12 4.005 7.12 C 3.733 7.12 3.473 7.014 3.279 6.824 C 3.085 6.634 2.973 6.376 2.967 6.105 L 2.967 5.067 L 1.929 5.067 C 1.654 5.067 1.39 4.957 1.196 4.763 C 1.001 4.568 0.892 4.304 0.892 4.029 C 0.892 3.754 1.001 3.49 1.196 3.296 C 1.39 3.101 1.654 2.992 1.929 2.992 L 2.967 2.992 L 2.967 1.952 C 2.973 1.681 3.085 1.422 3.279 1.232 C 3.473 1.043 3.733 0.936 4.005 0.936 C 4.276 0.936 4.537 1.043 4.731 1.232 C 4.925 1.422 5.036 1.681 5.042 1.952 L 5.042 2.99 L 6.082 2.99 C 6.357 2.99 6.621 3.099 6.816 3.294 C 7.01 3.488 7.12 3.752 7.12 4.027 C 7.12 4.303 7.01 4.566 6.816 4.761 C 6.621 4.956 6.357 5.065 6.082 5.065 L 6.082 5.067 Z" fill="currentColor" fill-rule="nonzero"></path>
+</svg></span>About this project<em>Info</em></button>
+      </div>
+    </div>
+
+    <div class="panel ui" data-panel="worlds">
+      <div class="p-head"><span class="label">Select your destination</span><button class="p-x" data-close type="button">✕</button></div>
+      <div class="p-body"><div class="wgrid" id="wgrid"></div>
+        <p class="p-note">Two renders are shared across the five cards, exactly as the selector was authored.</p></div>
+    </div>
+
+    <div class="panel ui" data-panel="vr">
+      <div class="p-head"><span class="label">VR setup</span><button class="p-x" data-close type="button">✕</button></div>
+      <div class="p-body">
+        <div class="vr-status" id="vrStatus">
+          <span class="vr-dot" id="vrDot"></span>
+          <div>
+            <div class="vr-head" id="vrHead">Looking for a headset…</div>
+            <div class="vr-sub" id="vrSub">Checking this browser for WebXR support.</div>
+          </div>
+        </div>
+
+        <div class="vr-rows">
+          <div class="vr-row"><span>Headset</span><b id="vrDevice">—</b></div>
+          <div class="vr-row"><span>Mode</span><b id="vrMode">Immersive VR</b></div>
+          <div class="vr-row"><span>Tracking</span><b id="vrTrack">Room scale, 6DoF</b></div>
+          <div class="vr-row"><span>Hands</span><b id="vrHands">Controllers or hand tracking</b></div>
+        </div>
+
+        <div class="opts" style="grid-template-columns:1fr 1fr; margin-top:12px" id="vrComfort">
+          <button class="opt on" data-comfort="teleport" type="button"><div class="nm"><span class="dot"></span>Teleport</div><div class="ds">Point and blink to move. Easiest on the stomach.</div></button>
+          <button class="opt" data-comfort="smooth" type="button"><div class="nm"><span class="dot"></span>Smooth</div><div class="ds">Thumbstick glide with a vignette on turns.</div></button>
+        </div>
+
+        <button class="vr-go" id="vrGo" type="button" disabled>Enter in VR</button>
+        <p class="p-note" id="vrNote">Room scale, seated and standing all supported. Guardian stays yours — the space never redraws it.</p>
+      </div>
+    </div>
+
+    <div class="panel ui" data-panel="surface">
+      <div class="p-head"><span class="label">Surface</span><button class="p-x" data-close type="button">✕</button></div>
+      <div class="p-body"><div class="opts" id="surfOpts"></div>
+        <p class="p-note">Retunes the contour field you are standing on — line colour, contour density, glow and the halo that follows you.</p></div>
+    </div>
+
+    <div class="panel ui" data-panel="inventory">
+      <div class="p-head"><span class="label">Inventory</span><button class="p-x" data-close type="button">✕</button></div>
+      <div class="p-body">
+        <div class="opts" id="invOpts">
+          <button class="opt" data-piece="screen" type="button"><div class="nm"><span class="dot"></span>Screen</div><div class="ds">A 16:9 surface to cast onto.</div></button>
+          <button class="opt" data-piece="podium" type="button"><div class="nm"><span class="dot"></span>Podium</div><div class="ds">A place to speak from.</div></button>
+          <button class="opt" data-piece="seating" type="button"><div class="nm"><span class="dot"></span>Seating</div><div class="ds">A curved row facing the screen.</div></button>
+        </div>
+        <p class="p-note">Placed objects persist as you move between destinations.</p>
+      </div>
+    </div>
+
+    <div class="panel ui" data-panel="share">
+      <div class="p-head"><span class="label">Screen share</span><button class="p-x" data-close type="button">✕</button></div>
+      <div class="p-body">
+        <div class="opts" id="shareOpts">
+          <button class="opt on" data-share="off" type="button"><div class="nm"><span class="dot"></span>Off</div><div class="ds">Nothing is being cast.</div></button>
+          <button class="opt" data-share="screen" type="button"><div class="nm"><span class="dot"></span>Screen</div><div class="ds">Pick a window or tab to cast.</div></button>
+          <button class="opt" data-share="cam" type="button"><div class="nm"><span class="dot"></span>Webcam</div><div class="ds">Put your camera on the surface.</div></button>
+        </div>
+        <p class="p-note" id="shareNote">Casting places the surface in the world if it is not already there.</p>
+      </div>
+    </div>
+
+    <div class="panel ui" data-panel="voice">
+      <div class="p-head"><span class="label">Voice</span><button class="p-x" data-close type="button">✕</button></div>
+      <div class="p-body">
+        <div class="opts" style="grid-template-columns:1fr 1fr" id="voiceOpts">
+          <button class="opt on" data-mic="on" type="button"><div class="nm"><span class="dot"></span>Microphone on</div><div class="ds">Your ring pulses while open.</div></button>
+          <button class="opt" data-mic="off" type="button"><div class="nm"><span class="dot"></span>Muted</div><div class="ds">Presence stays, voice stops.</div></button>
+        </div>
+        <div class="meter" id="meter"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <p class="p-note">Spatial audio: volume falls away with distance from the speaker.</p>
+      </div>
+    </div>
+
+    <div class="panel ui" data-panel="chat">
+      <div class="p-head"><span class="label">Chat</span><button class="p-x" data-close type="button">✕</button></div>
+      <div class="p-body">
+        <div class="chat">
+          <div class="msg" data-from="Begum"><b>Begum</b><p>The podium is placed — can you see it from where you are?</p><time>01:52 PM</time></div>
+          <div class="msg me"><b>Sara El Jamal</b><p>Yes. Moving the screen up a little.</p><time>01:53 PM</time></div>
+          <div class="msg" data-from="Zeynep"><b>Zeynep</b><p>Sharing the deck now.</p><time>01:53 PM</time></div>
+          <div class="msg" data-from="Kerem"><b>Kerem</b><p>Coming over from the west side.</p><time>01:54 PM</time></div>
+        </div>
+        <p class="p-note">Click a message to speak it into the world above that guest.</p>
+      </div>
+    </div>
+
+    <div class="panel ui wide" data-panel="about">
+      <div class="p-head"><span class="label">ILLUSORR Spaces</span><button class="p-x" data-close type="button">✕</button></div>
+      <div class="p-body about">
+        <div class="prov">
+          <div class="prov-line">
+            <div class="prov-node">
+              <b>2021</b>
+              <span>The platform</span>
+            </div>
+            <div class="prov-node is-now">
+              <b>This page</b>
+              <span>A model of it</span>
+            </div>
+          </div>
+          <div class="prov-cols">
+            <div class="prov-col">
+              <h6>Built in 2021</h6>
+              <ul>
+                <li>Five destinations on one selector</li>
+                <li>Avatar system carried across every world</li>
+                <li>Inventory, screen share, spatial voice and chat</li>
+                <li>World codes and guest permissions for hosting</li>
+                <li>87 screens, 31 components, designed end to end</li>
+              </ul>
+            </div>
+            <div class="prov-col is-model">
+              <h6>Reconstructed here</h6>
+              <ul>
+                <li>One destination standing in for the real environments</li>
+                <li>Three guests on scripted lines, not live users</li>
+                <li>The interface itself, drawn from the production files</li>
+                <li>Runs in a browser tab rather than the real client</li>
+              </ul>
+            </div>
+          </div>
+          <p class="prov-note">This is a model, not the product. The platform shipped in 2021 as a
+          multi-user environment; what you are walking through is a single-player reconstruction
+          built to show how it worked — the HUD, icons and destination set are taken from the
+          original design files, the world around them is a stand-in.</p>
+        </div>
+
+        <p><strong style="color:var(--ink)">A multi-user immersive environment.</strong> Five destinations, an avatar carried between all of them, and a single bar holding everything a guest can do — inventory, screen share, voice and chat — so you never leave the space to use the space.</p>
+        <p>All five destinations are ILLUSORR&rsquo;s own, built on one set of rails so a new world never forks the product.</p>
+        <div class="facts">
+          <div class="fact"><b>05</b><span>Destinations on one selector</span></div>
+          <div class="fact"><b>87</b><span>Screens designed across the product</span></div>
+          <div class="fact"><b>31</b><span>Components carrying every panel</span></div>
+          <div class="fact"><b>01</b><span>Set of rails behind every world</span></div>
+        </div>
+        <div class="credits">
+          <div class="cr"><span>Product Design</span><span>ILLUSORR Studio</span></div>
+          <div class="cr"><span>UI System</span><span>ILLUSORR Studio</span></div>
+          <div class="cr"><span>Avatar System</span><span>ILLUSORR Labs</span></div>
+          <div class="cr"><span>3D Environments</span><span>ILLUSORR Labs</span></div>
+          <div class="cr"><span>Sector</span><span>Culture &amp; Immersive</span></div>
+          <div class="cr"><span>Platform</span><span>Shipped 2021</span></div>
+          <div class="cr"><span>This model</span><span>Browser reconstruction</span></div>
+        </div>
+        <p class="p-note">A browser fragment of the environment — the interface is the product's own. <a href="../work.html">All work →</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="talk ui" id="talk">
+    <div class="talk-head">
+      <span class="talk-av"></span>
+      <span class="talk-who"><b id="talkName">Begum</b><span id="talkRole">Host</span></span>
+      <span class="talk-tools">
+        <button class="talk-mute is-on" id="talkVoice" type="button" aria-pressed="true">Voice</button>
+        <button class="p-x" id="talkX" type="button" aria-label="Close">✕</button>
+      </span>
+    </div>
+    <div class="talk-log" id="talkLog"></div>
+    <form class="talk-form" id="talkForm">
+      <input class="talk-in" id="talkIn" type="text" autocomplete="off" placeholder="Say something…">
+      <button class="talk-send" id="talkSend" type="submit">Send</button>
+    </form>
+  </div>
+
+  <div id="gate">
+    <div class="g-in">
+      <span class="eyebrow">ILLUSORR Spaces</span>
+      <h1>Step inside.</h1>
+      <p>A live fragment of the environment. Look around, move through it, and use the bar to do what a guest can do.</p>
+      <button class="enter ui" id="enter" type="button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32.800 14.462" fill="none">
+  <path d="M 31.43 0 L 1.37 0 C 0.614 0 0 0.611 0 1.363 L 0 13.099 C 0 13.85 0.614 14.462 1.37 14.462 L 12.862 14.462 C 13.494 13.077 14.883 12.19 16.4 12.19 C 17.917 12.19 19.306 13.077 19.939 14.449 L 31.43 14.462 C 32.186 14.462 32.8 13.85 32.8 13.099 L 32.8 1.363 C 32.8 0.611 32.186 0 31.43 0 Z M 7.375 11.054 C 5.252 11.054 3.535 9.341 3.535 7.233 C 3.535 6.777 3.617 6.342 3.765 5.941 C 4.294 4.462 5.71 3.408 7.375 3.408 C 9.04 3.408 10.456 4.462 10.985 5.941 C 11.133 6.342 11.214 6.777 11.214 7.233 C 11.214 9.341 9.498 11.054 7.375 11.054 Z M 25.425 11.054 C 23.302 11.054 21.586 9.341 21.586 7.233 C 21.586 6.777 21.667 6.342 21.815 5.941 C 22.344 4.462 23.76 3.408 25.425 3.408 C 27.09 3.408 28.506 4.462 29.035 5.941 C 29.183 6.342 29.265 6.777 29.265 7.233 C 29.265 9.341 27.548 11.054 25.425 11.054 Z" fill="currentColor" fill-rule="nonzero"></path>
+</svg><span>Enter the space</span></button>
+      <div class="g-meta"><span>5 destinations</span><span>Avatar system</span><span>Platform shipped 2021</span></div>
+      <div class="modelbadge"><i></i>A working model of the 2021 platform</div>
+    </div>
+  </div>
+
+  <div id="boot"><div><span class="brand">ILLUSORR <em>Spaces</em></span><div class="bar-l"><i></i></div></div></div>
+
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/DRACOLoader.js" crossorigin="anonymous"></script>
+  <script defer src="../assets/js/spaces-field.js"></script>
+  <script defer src="../assets/js/spaces-hud.js"></script>
+<script src="../assets/js/nav.js" defer></script>
+<script src="../assets/js/site-footer.js" defer></script>
+<script src="../assets/js/to-top.js" defer></script>
+</body>
+</html>

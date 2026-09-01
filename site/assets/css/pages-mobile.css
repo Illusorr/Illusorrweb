@@ -1,0 +1,517 @@
+/* ─────────────────────────────────────────────────────────────────────
+   SITE PAGES — THE PHONE EDITION
+   work · contact · brief · sectors · collective · lab
+
+   These pages already reflow narrow: main.css collapses the .sd-stack
+   panels at 980px, drops the contact grid to one column, and takes the
+   work grid to a single column at 640px. So the layout is not the
+   problem — the SYSTEM is. Each page arrives at a phone with its own
+   gutter (22px, 4vw, 2vw), its own label sizes (10px, 11px, 12px), and
+   viewport-height media boxes sized for a desktop.
+
+   This file applies the same structure the case pages and the home page
+   use, so every page on the site feels like one product on a phone:
+
+       eyebrow      11px label, the floor — nothing smaller
+       headline     28px
+       body         16px, full column measure
+       media        full width, aspect reserved
+       ─── 128px ───   64px section padding, top and bottom
+
+   One gutter (20px). One spacing scale (8/12/20/40/128). Gated on
+   html[data-touch] — remove the <link> and desktop is untouched.
+   ───────────────────────────────────────────────────────────────────── */
+
+@media (max-width: 860px) {
+
+/* ═══════════════════════════════════════════════════════════════════════
+   SHARED · one gutter for every page root
+   ═════════════════════════════════════════════════════════════════════ */
+html[data-touch] #workGrid .wrap { padding: 96px 20px 64px !important; }
+html[data-touch] .sd-stack > section { padding: 64px 20px !important; }
+/* the first panel starts under the fixed bar (~88px), so 64px puts the
+   headline almost against it */
+html[data-touch] .sd-stack > section:first-child { padding-top: 128px !important; }
+html[data-touch] .ct-sec { padding: 96px 20px 64px !important; }
+/* the section owns the gutter; its inner wrapper must not add a second one
+   (the question was landing at 38px while everything else sat at 20px) */
+html[data-touch] .brief-wrap,
+html[data-touch] .brief-inner {
+  padding-inline: 0 !important;
+  max-width: none !important;
+  width: 100% !important;
+}
+
+/* the label floor — 10px labels over a live field are unreadable */
+html[data-touch] .dk-lbl,
+html[data-touch] .pnl-tag,
+html[data-touch] .sd-cue,
+html[data-touch] .ct-k,
+html[data-touch] .ct-hint,
+html[data-touch] .acc-lbl,
+html[data-touch] .bf-opt .n,
+html[data-touch] .bf-step,
+html[data-touch] .tf-n,
+html[data-touch] #workGrid .tf-n,
+html[data-touch] #workGrid .count,
+html[data-touch] #workGrid .t-meta span,
+html[data-touch] #workGrid .t-idx,
+html[data-touch] #workGrid .eyebrow {
+  font-size: 11px !important;
+  letter-spacing: .16em !important;
+}
+
+/* headlines: Monument Extended is wide, so 28px is the ceiling at 375px */
+html[data-touch] .sd-stack h2,
+html[data-touch] .ct-h1,
+html[data-touch] .lab-h1,
+html[data-touch] .sd-end h2,
+html[data-touch] #workGrid h2 {
+  font-size: 28px !important;
+  line-height: 1.12 !important;
+  letter-spacing: -.01em !important;
+}
+html[data-touch] .sd-hero h1,
+html[data-touch] .sd-stack h1 {
+  font-size: 30px !important;
+  line-height: 1.08 !important;
+  letter-spacing: -.01em !important;
+}
+/* NOTE: authored <br> breaks stay. Hiding them glued the words either
+   side together ("We render worldsbefore they exist") because a <br> is a
+   line break, not a space. At 28px on a 348px column the authored break
+   lands in a reasonable place anyway. */
+
+/* body copy runs the full column — a ch-cap here breaks lines early */
+html[data-touch] .pnl p,
+html[data-touch] .lab-lede,
+html[data-touch] .sd-end p,
+html[data-touch] .ct-v,
+html[data-touch] .sd-panel p,
+html[data-touch] .rc-meta p {
+  font-size: 16px !important;
+  line-height: 1.62 !important;
+  letter-spacing: 0 !important;
+  max-width: none !important;
+}
+
+/* the spacing scale: group gap by default, tighter relationships on top */
+html[data-touch] .pnl > * + * { margin-top: 20px !important; }
+html[data-touch] .dk-lbl { margin-bottom: 0 !important; }
+html[data-touch] .dk-lbl + * { margin-top: 12px !important; }
+html[data-touch] .pnl > .vband,
+html[data-touch] .pnl > .mockrow,
+html[data-touch] .pnl > .rail,
+html[data-touch] .pnl > .dscan,
+html[data-touch] .pnl > .vslot { margin-top: 40px !important; }
+
+/* every control clears the 44px floor */
+html[data-touch] .sd-cue,
+html[data-touch] .end-back,
+html[data-touch] .ct-link,
+html[data-touch] .ct-mail,
+html[data-touch] .bf-opt,
+html[data-touch] #workGrid .sf,
+html[data-touch] #workGrid .tag {
+  min-height: 44px;
+  display: inline-flex !important;
+  align-items: center;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   SD-STACK PAGES · sectors, collective, lab
+
+   main.css releases the sticky panels at 980px. Two things it leaves
+   behind: the panel media is still sized in vh (a 52vh frame inside a
+   flowed panel is arbitrary), and the hero keeps a 62vh floor that makes
+   the opening beat a stub rather than a title card.
+   ═════════════════════════════════════════════════════════════════════ */
+html[data-touch] .sd-hero {
+  min-height: 100svh !important;
+  padding: 104px 20px 56px !important;
+  justify-content: flex-end !important;
+}
+html[data-touch] .pnl { max-width: none !important; }
+
+/* media takes a reserved shape instead of a slice of the viewport */
+html[data-touch] .sd-panel .vslot,
+html[data-touch] .sd-panel .vslot-tall,
+html[data-touch] .sd-panel .dscan,
+html[data-touch] .sd-panel .mock-view,
+html[data-touch] .sd-rail-panel .rc-shot {
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  width: 100% !important;
+  aspect-ratio: 4 / 3;
+}
+html[data-touch] .sd-panel .mock-phone .mock-view { aspect-ratio: 9 / 16; }
+html[data-touch] .sd-panel .mock-square .mock-view { aspect-ratio: 1 / 1; }
+html[data-touch] .sd-panel .vshot {
+  height: auto !important;
+  max-height: none !important;
+  width: 100% !important;
+}
+html[data-touch] .vband {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 20px !important;
+}
+
+/* the offer accordion: a real tap target per row */
+html[data-touch] .offers {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 0 !important;
+}
+html[data-touch] .off-item summary {
+  min-height: 48px;
+  display: flex !important;
+  align-items: center;
+  font-size: 15px !important;
+  padding: 14px 0 !important;
+}
+
+/* the horizontal card rail becomes a snapped swipe rail */
+html[data-touch] .sd-rail-panel { padding: 64px 0 !important; }
+html[data-touch] .sd-rail-panel .pnl { padding: 0 !important; }
+html[data-touch] .rail {
+  display: flex !important;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  column-gap: 14px !important;
+  margin-inline: 0 !important;
+  padding: 0 20px 8px !important;
+}
+html[data-touch] .rail::-webkit-scrollbar { display: none; }
+html[data-touch] .rail > * {
+  flex: 0 0 82% !important;
+  width: auto !important;
+  min-width: 0 !important;
+  scroll-snap-align: center;
+}
+html[data-touch] .sd-rail-panel .reel-head,
+html[data-touch] .sd-rail-panel .sd-lead { padding: 0 20px !important; }
+
+/* the closing panel is a title card, so it keeps its symmetry */
+html[data-touch] .sd-end {
+  min-height: 100svh !important;
+  display: flex !important;
+  align-items: center !important;
+}
+html[data-touch] .sd-end .pnl { text-align: center !important; }
+html[data-touch] .sd-end p { margin-inline: auto !important; }
+html[data-touch] .sd-end .fakebtn,
+html[data-touch] .sd-end .cta {
+  min-height: 48px;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   WORK · the grid
+
+   main.css takes the masonry to one column at 640px, but each tile keeps
+   its authored --h (330px to 460px) — heights chosen to stagger a
+   three-column masonry. In one column that variation reads as noise, so
+   every tile gets the same shape and the rhythm comes from the order.
+   ═════════════════════════════════════════════════════════════════════ */
+html[data-touch] #workGrid .grid {
+  columns: 1 !important;
+  column-gap: 0 !important;
+}
+html[data-touch] #workGrid .tile { margin-bottom: 40px !important; }
+html[data-touch] #workGrid .t-media {
+  height: auto !important;
+  width: 100% !important;
+  aspect-ratio: 4 / 5;
+}
+/* the blur bloom behind each tile is a hover affordance */
+html[data-touch] #workGrid .tile::before { display: none !important; }
+html[data-touch] #workGrid .t-meta { margin-top: 14px !important; }
+html[data-touch] #workGrid .t-meta h3 {
+  font-size: 19px !important;
+  line-height: 1.2 !important;
+}
+
+/* the quote: Fraunces at clamp(30px) with an animated gradient fill */
+html[data-touch] #workGrid .hero-quote {
+  padding: 48px 0 40px !important;
+  max-width: none !important;
+}
+html[data-touch] #workGrid .hero-quote .q {
+  font-size: 26px !important;
+  line-height: 1.14 !important;
+}
+html[data-touch] #workGrid .hero-quote .qby {
+  margin-top: 18px !important;
+  font-size: 13px !important;
+}
+
+/* the filter bar: a wrapping row, and the tag rail bleeds to the gutter */
+html[data-touch] #workGrid .filterline {
+  flex-wrap: wrap !important;
+  gap: 12px !important;
+  padding: 16px 0 !important;
+}
+html[data-touch] #workGrid .tagslider { width: 100% !important; min-width: 0 !important; }
+html[data-touch] #workGrid .tag-nav { display: none !important; }
+html[data-touch] #workGrid .tagtrack {
+  min-width: 0 !important;
+  max-width: 100% !important;
+}
+html[data-touch] #workGrid .secdrop { margin-left: 0 !important; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CONTACT
+
+   Already one column at 980px. What it needs is form controls a thumb can
+   use and a 16px input size — anything smaller makes iOS zoom the page on
+   focus, which throws the layout sideways mid-typing.
+   ═════════════════════════════════════════════════════════════════════ */
+html[data-touch] .ct-sec {
+  min-height: 0 !important;
+  display: block !important;
+}
+html[data-touch] .ct-wrap {
+  grid-template-columns: 1fr !important;
+  gap: 40px !important;
+  max-width: none !important;
+}
+html[data-touch] .ct-row2 {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 16px !important;
+}
+html[data-touch] .ct-direct label {
+  display: flex !important;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 11px !important;
+  letter-spacing: .14em;
+}
+html[data-touch] .ct-direct input,
+html[data-touch] .ct-direct textarea {
+  /* 16px exactly: the threshold below which iOS zooms on focus */
+  font-size: 16px !important;
+  min-height: 48px;
+  padding: 12px 14px !important;
+  width: 100% !important;
+}
+html[data-touch] .ct-direct textarea { min-height: 120px; }
+html[data-touch] .ct-actions {
+  display: flex !important;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 14px !important;
+}
+html[data-touch] .ct-send {
+  min-height: 48px;
+  justify-content: center;
+}
+html[data-touch] .ct-mail {
+  font-size: 18px !important;
+  word-break: break-word;
+}
+html[data-touch] .ct-switch {
+  display: block !important;
+  padding: 20px 0 !important;
+  border-top: 1px solid rgba(255, 255, 255, .1);
+  margin-top: 32px !important;
+}
+html[data-touch] .ct-switch .sw-k { display: block; margin-bottom: 6px; }
+html[data-touch] .ct-switch .sw-v { font-size: 17px !important; }
+html[data-touch] .ct-block {
+  padding: 20px 0 !important;
+  border-top: 1px solid rgba(255, 255, 255, .1);
+}
+html[data-touch] .ct-block .ct-k { display: block; margin-bottom: 8px; }
+html[data-touch] .ct-socials {
+  display: flex !important;
+  flex-wrap: wrap;
+  gap: 8px 20px !important;
+  margin-top: 32px !important;
+}
+html[data-touch] .ct-socials a { min-height: 44px; display: inline-flex; align-items: center; }
+html[data-touch] .ct-accred {
+  display: flex !important;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px !important;
+  margin-top: 32px !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   BRIEF · the guided intake
+
+   One question at a time is already the right mobile pattern, so this is
+   only about scale and reach: the question, the options as full-width
+   rows, and inputs at 16px.
+   ═════════════════════════════════════════════════════════════════════ */
+html[data-touch] .brief-sec {
+  min-height: 100svh !important;
+  display: block !important;
+  padding: 96px 20px 64px !important;
+}
+/* the particle field is the page's own identity, so it stays — but it
+   must not paint over the question it sits behind */
+html[data-touch] .brief-field { opacity: .45 !important; }
+html[data-touch] .brief-stage {
+  min-height: 0 !important;
+  padding-top: 28px !important;
+  max-width: none !important;
+}
+html[data-touch] .bf-q {
+  font-size: 26px !important;
+  line-height: 1.12 !important;
+}
+html[data-touch] .bf-opts,
+html[data-touch] .bf-fields { max-width: none !important; margin-top: 32px !important; }
+html[data-touch] .bf-opt {
+  display: grid !important;
+  grid-template-columns: 28px minmax(0, 1fr) 18px !important;
+  min-height: 56px;
+  padding: 14px 4px !important;
+  font-size: 16px !important;
+  gap: 12px !important;
+}
+/* the arrow only appears on hover, so on touch it never appears at all */
+html[data-touch] .bf-opt .go { opacity: .55 !important; }
+html[data-touch] .bf-fields label { font-size: 11px !important; }
+html[data-touch] .bf-fields input,
+html[data-touch] .bf-fields textarea {
+  font-size: 16px !important;
+  min-height: 48px;
+  padding: 12px 14px !important;
+  width: 100% !important;
+}
+
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   TABLET TIER · 641–1024px, touch
+   Same structure, larger frame — an iPad is not a big phone.
+   ═════════════════════════════════════════════════════════════════════ */
+@media (min-width: 641px) and (max-width: 1024px) {
+
+  html[data-touch] #workGrid .wrap { padding: 120px 40px 88px !important; }
+  html[data-touch] .sd-stack > section { padding: 96px 40px !important; }
+  html[data-touch] .sd-stack > section:first-child { padding-top: 152px !important; }
+  html[data-touch] .sd-hero { padding: 120px 40px 72px !important; }
+  html[data-touch] .ct-sec { padding: 120px 40px 88px !important; }
+  html[data-touch] .brief-sec { padding: 120px 40px 88px !important; }
+
+  html[data-touch] .sd-stack h1,
+  html[data-touch] .sd-hero h1 { font-size: 56px !important; }
+  html[data-touch] .sd-stack h2,
+  html[data-touch] .ct-h1,
+  html[data-touch] .lab-h1,
+  html[data-touch] .sd-end h2,
+  html[data-touch] #workGrid h2 { font-size: 44px !important; }
+  html[data-touch] #workGrid .hero-quote .q { font-size: 42px !important; }
+  html[data-touch] .bf-q { font-size: 38px !important; }
+  html[data-touch] .pnl p,
+  html[data-touch] .lab-lede,
+  html[data-touch] .sd-end p,
+  html[data-touch] .ct-v,
+  html[data-touch] .sd-panel p {
+    font-size: 18px !important;
+    line-height: 1.66 !important;
+    max-width: 68ch !important;
+  }
+
+  html[data-touch] .pnl > * + * { margin-top: 28px !important; }
+  html[data-touch] .pnl > .vband,
+  html[data-touch] .pnl > .mockrow,
+  html[data-touch] .pnl > .rail,
+  html[data-touch] .pnl > .dscan,
+  html[data-touch] .pnl > .vslot { margin-top: 56px !important; }
+
+  /* two across where the content supports it */
+  html[data-touch] #workGrid .grid { columns: 2 !important; column-gap: 28px !important; }
+  html[data-touch] #workGrid .t-media { aspect-ratio: 4 / 5; }
+  html[data-touch] .vband { grid-template-columns: repeat(2, 1fr) !important; gap: 28px !important; }
+  html[data-touch] .sd-panel .mockrow { grid-template-columns: repeat(2, 1fr) !important; gap: 28px !important; }
+  html[data-touch] .ct-row2 { grid-template-columns: repeat(2, 1fr) !important; gap: 24px !important; }
+
+  html[data-touch] .rail {
+    column-gap: 28px !important;
+    padding: 0 40px 10px !important;
+  }
+  html[data-touch] .rail > * { flex: 0 0 46% !important; }
+  html[data-touch] .sd-rail-panel .reel-head,
+  html[data-touch] .sd-rail-panel .sd-lead { padding: 0 40px !important; }
+
+  html[data-touch] .ct-actions { flex-direction: row !important; align-items: center; }
+  html[data-touch] .ct-send { padding-inline: 32px; }
+}
+
+
+/* ═════════════════════════════════════════════════════════════════
+   404 · the phone edition
+   Same grammar as the other pages: one gutter (20px), stacked column,
+   Monument capped at 28px, every link a 44px tap row.
+   ═════════════════════════════════════════════════════════════════ */
+@media (max-width: 860px) {
+  html[data-touch] #p-404 .nf-sec { padding: 104px 20px 56px !important; min-height: 100svh !important; }
+  html[data-touch] #p-404 .nf-wrap { grid-template-columns: 1fr !important; gap: 48px !important; }
+
+  html[data-touch] #p-404 .nf-code {
+    font-size: 34px !important;
+    line-height: 1.06 !important;
+    letter-spacing: -.01em !important;
+    margin-top: 14px !important;
+  }
+  html[data-touch] #p-404 .nf-lede {
+    font-size: 16px !important;
+    line-height: 1.62 !important;
+    max-width: none !important;
+    margin-top: 20px !important;
+  }
+
+  /* actions: full-bleed stack, both at the 44px floor */
+  html[data-touch] #p-404 .nf-acts {
+    margin-top: 28px !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+  html[data-touch] #p-404 .nf-acts .fakebtn,
+  html[data-touch] #p-404 .nf-ghost {
+    width: 100% !important;
+    min-height: 48px;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px !important;
+    letter-spacing: .1em !important;
+  }
+
+  /* the destination list is the primary navigation on a phone */
+  html[data-touch] #p-404 .nf-link {
+    min-height: 56px;
+    padding: 16px 0 !important;
+    align-items: center !important;
+    gap: 14px !important;
+  }
+  html[data-touch] #p-404 .nf-link:hover { padding-left: 0 !important; }
+  html[data-touch] #p-404 .nf-link:active .t { color: var(--cold); }
+  html[data-touch] #p-404 .nf-link .n { font-size: 11px !important; letter-spacing: .16em !important; }
+  html[data-touch] #p-404 .nf-link .t { font-size: 19px !important; }
+  html[data-touch] #p-404 .nf-link .d { display: none !important; }
+  html[data-touch] #p-404 .nf-link::after {
+    content: "→"; margin-left: auto; color: var(--faint); font-size: 15px;
+  }
+}
+
+/* tablet tier — two columns return, type steps back up */
+@media (min-width: 861px) and (max-width: 1024px) {
+  html[data-touch] #p-404 .nf-sec { padding: 120px 40px 72px !important; }
+  html[data-touch] #p-404 .nf-wrap { gap: 56px !important; }
+  html[data-touch] #p-404 .nf-code { font-size: 62px !important; }
+  html[data-touch] #p-404 .nf-lede { font-size: 18px !important; }
+  html[data-touch] #p-404 .nf-link { min-height: 56px; }
+}

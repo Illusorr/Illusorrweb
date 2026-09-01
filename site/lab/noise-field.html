@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Noise Field — flow study</title>
+<meta name="description" content="A live flow-noise field rendered on a sphere, with its parameter sheet exposed. An ILLUSORR Lab study.">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{background:#000;color:#e7ebf3;font-family:'Outfit',system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;overflow:hidden;
+    display:grid;grid-template-columns:1fr clamp(240px,31%,380px);
+    align-items:stretch;gap:clamp(14px,2.4vw,40px);padding:clamp(14px,2.4vw,40px)}
+
+  .stage{position:relative;display:flex;align-items:center;justify-content:center;min-width:0}
+  .stage canvas{display:block;max-width:100%;max-height:100%}
+
+  .spec{display:flex;flex-direction:column;min-width:0;
+    border-left:1px solid rgba(231,235,243,.14);padding-left:clamp(14px,1.8vw,26px)}
+  .sp-kicker{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:#5f6a80}
+  .spec h1{font-size:clamp(19px,2vw,28px);font-weight:600;letter-spacing:-.01em;
+    line-height:1.05;margin-top:10px}
+  .spec h1 em{font-style:normal;color:#8ea2ff}
+  .sp-rows{margin-top:clamp(14px,2.6vh,26px);display:flex;flex-direction:column}
+
+  .row{position:relative;display:grid;grid-template-columns:1fr auto;align-items:baseline;
+    column-gap:14px;padding:8px 0 9px;border-top:1px solid rgba(231,235,243,.1);
+    font-size:12px;outline:none}
+  .row:last-of-type{border-bottom:1px solid rgba(231,235,243,.1)}
+  .row .k{color:#8b96ad;letter-spacing:.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .row .v{color:#e7ebf3;font-variant-numeric:tabular-nums;letter-spacing:.02em}
+  .row .track{grid-column:1/-1;height:1px;background:rgba(231,235,243,.14);margin-top:8px}
+  .row .track i{display:block;height:1px;background:#8ea2ff;transition:width .08s linear}
+  .row.live{cursor:ew-resize;touch-action:none}
+  .row.live:hover,.row.live:focus-visible{background:rgba(142,162,255,.07)}
+  .row.live:hover .k,.row.live:focus-visible .k{color:#e7ebf3}
+  .row.live:hover .track i,.row.live:focus-visible .track i{box-shadow:0 0 8px rgba(142,162,255,.8)}
+  .row.fixed .v{color:#8b96ad}
+  .row.flag{cursor:pointer}
+  .row.flag .v{color:#8ea2ff}
+  .row.flag[data-on="0"] .v{color:#5f6a80}
+  .sp-group{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#5f6a80;
+    margin-top:18px;padding-bottom:6px}
+
+  .sp-foot{margin-top:auto;padding-top:20px;display:flex;align-items:center;
+    justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .sp-hint{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#4d566a}
+  button{font:inherit;font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+    color:#8ea2ff;background:none;border:1px solid rgba(142,162,255,.45);border-radius:100px;
+    padding:8px 16px;cursor:pointer;transition:.25s;white-space:nowrap}
+  button:hover{background:#4c63ff;border-color:#4c63ff;color:#fff}
+
+  @media(max-width:820px){
+    body{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr) auto;overflow:auto}
+    .spec{border-left:0;border-top:1px solid rgba(231,235,243,.14);padding:18px 0 0}
+    .sp-foot{padding-top:16px}
+  }
+</style>
+</head>
+<body>
+
+<div class="stage"><canvas id="c" aria-label="Live flow-noise field rendered on a sphere"></canvas></div>
+
+<section class="spec">
+  <span class="sp-kicker">ILLUSORR Lab · Study 01</span>
+  <h1>Noise <em>field</em></h1>
+  <div class="sp-rows" id="rows">
+    <div class="row fixed"><span class="k">Noise type</span><span class="v">Flow</span></div>
+    <div class="row live" data-k="freq" data-min="0.6" data-max="2.6" data-dp="3" tabindex="0" role="slider" aria-label="Frequency"><span class="k">Frequency</span><span class="v"></span><span class="track"><i></i></span></div>
+    <div class="row fixed"><span class="k">Fractal type</span><span class="v">None</span></div>
+    <div class="row flag" data-k="warpOn" tabindex="0" role="switch" aria-label="Enable lattice warp"><span class="k">Enable lattice warp</span><span class="v"></span></div>
+    <div class="row live" data-k="warp" data-min="0" data-max="1.8" data-dp="2" tabindex="0" role="slider" aria-label="Lattice warp"><span class="k">Lattice warp</span><span class="v"></span><span class="track"><i></i></span></div>
+    <div class="row live" data-k="warpFreq" data-min="0.4" data-max="2.4" data-dp="2" tabindex="0" role="slider" aria-label="Warp frequency"><span class="k">Freq</span><span class="v"></span><span class="track"><i></i></span></div>
+    <div class="row live" data-k="rot" data-min="0" data-max="3.14" data-dp="3" tabindex="0" role="slider" aria-label="Flow rotation"><span class="k">Flow rotation</span><span class="v"></span><span class="track"><i></i></span></div>
+    <div class="sp-group">Output correction</div>
+    <div class="row live" data-k="bands" data-min="2" data-max="20" data-dp="0" tabindex="0" role="slider" aria-label="Terraces"><span class="k">Terraces</span><span class="v"></span><span class="track"><i></i></span></div>
+    <div class="row live" data-k="amp" data-min="0.3" data-max="1.6" data-dp="2" tabindex="0" role="slider" aria-label="Final amplitude"><span class="k">Final amplitude</span><span class="v"></span><span class="track"><i></i></span></div>
+  </div>
+  <div class="sp-foot">
+    <span class="sp-hint">Drag any value</span>
+    <button id="reseed" type="button">New seed</button>
+  </div>
+</section>
+
+<script>
+/* ── simplex noise 3D, seedable ───────────────────────────────────── */
+function makeNoise(seed){
+  const G=[[1,1,0],[-1,1,0],[1,-1,0],[-1,-1,0],[1,0,1],[-1,0,1],[1,0,-1],[-1,0,-1],[0,1,1],[0,-1,1],[0,1,-1],[0,-1,-1]];
+  const p=new Uint8Array(256);
+  for(let i=0;i<256;i++)p[i]=i;
+  let s=seed>>>0||1;
+  const rnd=()=>(s=(s*1664525+1013904223)>>>0)/4294967296;
+  for(let i=255;i>0;i--){const j=(rnd()*(i+1))|0;const t=p[i];p[i]=p[j];p[j]=t;}
+  const perm=new Uint8Array(512),pmod=new Uint8Array(512);
+  for(let i=0;i<512;i++){perm[i]=p[i&255];pmod[i]=perm[i]%12;}
+  const F3=1/3,G3=1/6;
+  return function(xin,yin,zin){
+    const t0=(xin+yin+zin)*F3;
+    let i=Math.floor(xin+t0),j=Math.floor(yin+t0),k=Math.floor(zin+t0);
+    const t1=(i+j+k)*G3;
+    const x0=xin-(i-t1),y0=yin-(j-t1),z0=zin-(k-t1);
+    let i1,j1,k1,i2,j2,k2;
+    if(x0>=y0){
+      if(y0>=z0){i1=1;j1=0;k1=0;i2=1;j2=1;k2=0;}
+      else if(x0>=z0){i1=1;j1=0;k1=0;i2=1;j2=0;k2=1;}
+      else{i1=0;j1=0;k1=1;i2=1;j2=0;k2=1;}
+    }else{
+      if(y0<z0){i1=0;j1=0;k1=1;i2=0;j2=1;k2=1;}
+      else if(x0<z0){i1=0;j1=1;k1=0;i2=0;j2=1;k2=1;}
+      else{i1=0;j1=1;k1=0;i2=1;j2=1;k2=0;}
+    }
+    const x1=x0-i1+G3,y1=y0-j1+G3,z1=z0-k1+G3;
+    const x2=x0-i2+2*G3,y2=y0-j2+2*G3,z2=z0-k2+2*G3;
+    const x3=x0-1+3*G3,y3=y0-1+3*G3,z3=z0-1+3*G3;
+    const ii=i&255,jj=j&255,kk=k&255;
+    let n=0,t,g;
+    t=0.6-x0*x0-y0*y0-z0*z0;
+    if(t>0){g=G[pmod[ii+perm[jj+perm[kk]]]];t*=t;n+=t*t*(g[0]*x0+g[1]*y0+g[2]*z0);}
+    t=0.6-x1*x1-y1*y1-z1*z1;
+    if(t>0){g=G[pmod[ii+i1+perm[jj+j1+perm[kk+k1]]]];t*=t;n+=t*t*(g[0]*x1+g[1]*y1+g[2]*z1);}
+    t=0.6-x2*x2-y2*y2-z2*z2;
+    if(t>0){g=G[pmod[ii+i2+perm[jj+j2+perm[kk+k2]]]];t*=t;n+=t*t*(g[0]*x2+g[1]*y2+g[2]*z2);}
+    t=0.6-x3*x3-y3*y3-z3*z3;
+    if(t>0){g=G[pmod[ii+1+perm[jj+1+perm[kk+1]]]];t*=t;n+=t*t*(g[0]*x3+g[1]*y3+g[2]*z3);}
+    return 32*n;
+  };
+}
+let N = makeNoise(20260824);
+
+/* ── parameters (the spec sheet is the UI) ────────────────────────── */
+const P = { freq:1.353, warpOn:1, warp:0.62, warpFreq:1.05, rot:0.802, bands:14, amp:1.0 };
+const FMT = { bands:v=>String(v|0), warpOn:v=>v?'On':'Off' };
+
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const cv = document.getElementById('c');
+
+/* ── GPU path: the whole field is a fragment shader, so resolution costs
+      nothing and the relief comes from screen-space derivatives ──────── */
+const VS = `#version 300 es
+in vec2 aPos;
+out vec2 vUv;
+void main(){ vUv = vec2(aPos.x, -aPos.y); gl_Position = vec4(aPos, 0.0, 1.0); }`;
+
+const FS = `#version 300 es
+precision highp float;
+in vec2 vUv;
+out vec4 fragColor;
+uniform float uRes, uSpin, uFreq, uWarp, uWarpFreq, uRot, uBands, uAmp;
+uniform vec3 uSeed;
+
+vec3 mod289(vec3 x){ return x - floor(x * (1.0/289.0)) * 289.0; }
+vec4 mod289(vec4 x){ return x - floor(x * (1.0/289.0)) * 289.0; }
+vec4 permute(vec4 x){ return mod289(((x*34.0)+1.0)*x); }
+vec4 taylorInvSqrt(vec4 r){ return 1.79284291400159 - 0.85373472095314 * r; }
+float snoise(vec3 v){
+  const vec2 C = vec2(1.0/6.0, 1.0/3.0);
+  const vec4 D = vec4(0.0, 0.5, 1.0, 2.0);
+  vec3 i  = floor(v + dot(v, C.yyy));
+  vec3 x0 = v - i + dot(i, C.xxx);
+  vec3 g = step(x0.yzx, x0.xyz);
+  vec3 l = 1.0 - g;
+  vec3 i1 = min(g.xyz, l.zxy);
+  vec3 i2 = max(g.xyz, l.zxy);
+  vec3 x1 = x0 - i1 + C.xxx;
+  vec3 x2 = x0 - i2 + C.yyy;
+  vec3 x3 = x0 - D.yyy;
+  i = mod289(i);
+  vec4 p = permute(permute(permute(
+             i.z + vec4(0.0, i1.z, i2.z, 1.0))
+           + i.y + vec4(0.0, i1.y, i2.y, 1.0))
+           + i.x + vec4(0.0, i1.x, i2.x, 1.0));
+  float n_ = 0.142857142857;
+  vec3 ns = n_ * D.wyz - D.xzx;
+  vec4 j = p - 49.0 * floor(p * ns.z * ns.z);
+  vec4 x_ = floor(j * ns.z);
+  vec4 y_ = floor(j - 7.0 * x_);
+  vec4 x = x_ * ns.x + ns.yyyy;
+  vec4 y = y_ * ns.x + ns.yyyy;
+  vec4 hh = 1.0 - abs(x) - abs(y);
+  vec4 b0 = vec4(x.xy, y.xy);
+  vec4 b1 = vec4(x.zw, y.zw);
+  vec4 s0 = floor(b0) * 2.0 + 1.0;
+  vec4 s1 = floor(b1) * 2.0 + 1.0;
+  vec4 sh = -step(hh, vec4(0.0));
+  vec4 a0 = b0.xzyw + s0.xzyw * sh.xxyy;
+  vec4 a1 = b1.xzyw + s1.xzyw * sh.zzww;
+  vec3 p0 = vec3(a0.xy, hh.x);
+  vec3 p1 = vec3(a0.zw, hh.y);
+  vec3 p2 = vec3(a1.xy, hh.z);
+  vec3 p3 = vec3(a1.zw, hh.w);
+  vec4 norm = taylorInvSqrt(vec4(dot(p0,p0), dot(p1,p1), dot(p2,p2), dot(p3,p3)));
+  p0 *= norm.x; p1 *= norm.y; p2 *= norm.z; p3 *= norm.w;
+  vec4 m = max(0.6 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), 0.0);
+  m = m * m;
+  return 42.0 * dot(m*m, vec4(dot(p0,x0), dot(p1,x1), dot(p2,x2), dot(p3,x3)));
+}
+
+/* flow noise, lattice-warped, then terraced into contour bands */
+float terrace(vec3 p){
+  vec3 a = p;
+  if (uWarp > 0.0) {
+    float wf = uWarpFreq;
+    vec3 q = vec3(snoise(p * wf + uSeed + vec3(7.3, 0.0, 0.0)),
+                  snoise(p * wf + uSeed + vec3(0.0, 31.4, 0.0)),
+                  snoise(p * wf + uSeed + vec3(0.0, 0.0, 19.1)));
+    float cr = cos(uRot), sr = sin(uRot);
+    a += uWarp * vec3(q.x * cr - q.z * sr, q.y, q.x * sr + q.z * cr);
+  }
+  float v = (snoise(a * uFreq + uSeed) * 0.5 + 0.5) * uAmp;
+  float b = v * uBands, fl = floor(b), fr = b - fl;
+  return (fl + fr * fr) / uBands;
+}
+
+void main(){
+  const float R = 0.92;
+  float rr = dot(vUv, vUv);
+  float cov = clamp((R - sqrt(rr)) / (3.0 / uRes), 0.0, 1.0);
+  if (cov <= 0.0) { fragColor = vec4(0.0, 0.0, 0.0, 1.0); return; }
+  float sz = sqrt(max(1e-4, R*R - rr));
+  float cs = cos(uSpin), ss = sin(uSpin);
+  vec3 p = vec3(vUv.x * cs + sz * ss, vUv.y, -vUv.x * ss + sz * cs);
+  float t = terrace(p);
+  float str = uRes * 0.20;
+  float dhx = clamp(dFdx(t) * str, -8.0, 8.0);
+  float dhy = clamp(dFdy(t) * str, -8.0, 8.0);
+  vec3 n = normalize(vec3(-dhx + vUv.x / R * 0.9, dhy + vUv.y / R * 0.9, sz / R));
+  vec3 L = normalize(vec3(-0.42, -0.64, 0.64));
+  float d = max(dot(n, L), 0.0);
+  float s = pow(max(dot(n, normalize(L + vec3(0.0, 0.0, 1.0))), 0.0), 26.0);
+  float rim = pow(1.0 - n.z, 3.2);
+  float dd = d * d;
+  vec3 c = vec3(13.0 + dd*104.0 + s*168.0 + rim*26.0 + t*9.0,
+                17.0 + dd*114.0 + s*176.0 + rim*34.0 + t*11.0,
+                24.0 + dd*128.0 + s*188.0 + rim*52.0 + t*15.0) / 255.0;
+  fragColor = vec4(c * cov, 1.0);
+}`;
+
+let gl = null, U = null, seed = [0, 0, 0];
+function initGL(){
+  const c = cv.getContext('webgl2', { antialias:false, alpha:false, depth:false,
+                                      powerPreference:'high-performance' });
+  if (!c) return false;
+  const mk = (type, src) => {
+    const sh = c.createShader(type);
+    c.shaderSource(sh, src); c.compileShader(sh);
+    if (!c.getShaderParameter(sh, c.COMPILE_STATUS)) { console.warn(c.getShaderInfoLog(sh)); return null; }
+    return sh;
+  };
+  const vs = mk(c.VERTEX_SHADER, VS), fs = mk(c.FRAGMENT_SHADER, FS);
+  if (!vs || !fs) return false;
+  const pr = c.createProgram();
+  c.attachShader(pr, vs); c.attachShader(pr, fs); c.linkProgram(pr);
+  if (!c.getProgramParameter(pr, c.LINK_STATUS)) { console.warn(c.getProgramInfoLog(pr)); return false; }
+  c.useProgram(pr);
+  const vb = c.createBuffer();
+  c.bindBuffer(c.ARRAY_BUFFER, vb);
+  c.bufferData(c.ARRAY_BUFFER, new Float32Array([-1,-1, 3,-1, -1,3]), c.STATIC_DRAW);
+  const loc = c.getAttribLocation(pr, 'aPos');
+  c.enableVertexAttribArray(loc);
+  c.vertexAttribPointer(loc, 2, c.FLOAT, false, 0, 0);
+  gl = c;
+  U = {};
+  ['uRes','uSpin','uFreq','uWarp','uWarpFreq','uRot','uBands','uAmp','uSeed']
+    .forEach(k => U[k] = c.getUniformLocation(pr, k));
+  return true;
+}
+function drawGL(){
+  gl.viewport(0, 0, cv.width, cv.height);
+  gl.uniform1f(U.uRes, cv.width);
+  gl.uniform1f(U.uSpin, spin);
+  gl.uniform1f(U.uFreq, P.freq);
+  gl.uniform1f(U.uWarp, P.warpOn ? P.warp : 0);
+  gl.uniform1f(U.uWarpFreq, P.warpFreq);
+  gl.uniform1f(U.uRot, P.rot);
+  gl.uniform1f(U.uBands, Math.max(2, P.bands | 0));
+  gl.uniform1f(U.uAmp, P.amp);
+  gl.uniform3f(U.uSeed, seed[0], seed[1], seed[2]);
+  gl.drawArrays(gl.TRIANGLES, 0, 3);
+}
+
+/* ── CPU fallback: same field, sampled and shaded by hand ─────────── */
+let ctx = null, buf = null, bctx = null;
+let G = 0, GW = 0, img = null, px = null, hf = null, mask = null;
+let wxA = null, wyA = null, wzA = null;
+const S = 2;                                   // warp lattice sampled every S px
+const LEVELS = [200, 260, 340, 440, 560];      // render resolutions, chosen adaptively
+let li = 1, maxLi = LEVELS.length - 1;
+let spin = 0;
+
+function initCPU(){
+  ctx = cv.getContext('2d');
+  buf = document.createElement('canvas');
+  bctx = buf.getContext('2d');
+}
+
+function setLevel(i){
+  i = Math.max(0, Math.min(maxLi, i));
+  if (i === li && hf) return;
+  li = i; G = LEVELS[i];
+  buf.width = buf.height = G;
+  img = bctx.createImageData(G, G); px = img.data;
+  hf = new Float32Array(G * G); mask = new Uint8Array(G * G);
+  GW = Math.ceil(G / S) + 2;
+  wxA = new Float32Array(GW * GW);
+  wyA = new Float32Array(GW * GW);
+  wzA = new Float32Array(GW * GW);
+}
+
+function layout(){
+  const box = cv.parentElement.getBoundingClientRect();
+  const side = Math.max(120, Math.min(box.width, box.height));
+  cv.style.width = cv.style.height = side + 'px';
+  if (gl) {
+    // supersample: the browser downsamples on display, which is free AA
+    const dpr = Math.min((devicePixelRatio || 1) * 1.5, 3);
+    cv.width = cv.height = Math.round(side * dpr);
+    return;
+  }
+  const dpr = Math.min(devicePixelRatio || 1, 2);
+  cv.width = cv.height = Math.round(side * dpr);
+  const cap = side * dpr;
+  maxLi = 0;
+  for (let i = 0; i < LEVELS.length; i++) if (LEVELS[i] <= cap) maxLi = i;
+  setLevel(maxLi);
+  ctx.imageSmoothingEnabled = true;
+  ctx.imageSmoothingQuality = 'high';
+}
+
+/* height field: flow noise sampled on the sphere surface, lattice-warped,
+   then terraced so each band reads as a sedimentary contour.
+   The warp is low-frequency, so it is sampled on a coarse lattice and
+   interpolated — one full-rate noise call per pixel instead of four. */
+function field(){
+  const R = 0.92, inv = 2 / G;
+  const f = P.freq, wf = P.warpFreq, w = P.warpOn ? P.warp : 0;
+  const cr = Math.cos(P.rot), sr = Math.sin(P.rot);
+  const cs = Math.cos(spin), ss = Math.sin(spin);
+  const bands = Math.max(2, P.bands | 0);
+  if (w > 0) {
+    for (let gy = 0; gy < GW; gy++) {
+      const v = (gy * S + 0.5) * inv - 1;
+      for (let gx = 0; gx < GW; gx++) {
+        const u = (gx * S + 0.5) * inv - 1;
+        const sz = Math.sqrt(Math.max(0, R * R - u * u - v * v));
+        const sx = u * cs + sz * ss, sd = -u * ss + sz * cs;
+        const i = gy * GW + gx;
+        wxA[i] = N(sx * wf + 7.3, v * wf, sd * wf);
+        wyA[i] = N(sx * wf, v * wf + 31.4, sd * wf);
+        wzA[i] = N(sx * wf, v * wf, sd * wf + 19.1);
+      }
+    }
+  }
+  const RR = R * R;
+  for (let y = 0; y < G; y++) {
+    const v = (y + 0.5) * inv - 1;
+    const gy = y / S, gy0 = gy | 0, ty = gy - gy0;
+    const row0 = gy0 * GW, row1 = row0 + GW;
+    for (let x = 0; x < G; x++) {
+      const i = y * G + x;
+      const u = (x + 0.5) * inv - 1;
+      const rr = u * u + v * v;
+      if (rr > RR) { mask[i] = 0; continue; }
+      mask[i] = 1;
+      const sz = Math.sqrt(RR - rr);
+      let ax = u * cs + sz * ss, ay = v, az = -u * ss + sz * cs;
+      if (w > 0) {
+        const gx = x / S, gx0 = gx | 0, tx = gx - gx0;
+        const q0 = row0 + gx0, q1 = q0 + 1, q2 = row1 + gx0, q3 = q2 + 1;
+        const w00 = (1 - tx) * (1 - ty), w10 = tx * (1 - ty),
+              w01 = (1 - tx) * ty,       w11 = tx * ty;
+        const qx = wxA[q0]*w00 + wxA[q1]*w10 + wxA[q2]*w01 + wxA[q3]*w11;
+        const qy = wyA[q0]*w00 + wyA[q1]*w10 + wyA[q2]*w01 + wyA[q3]*w11;
+        const qz = wzA[q0]*w00 + wzA[q1]*w10 + wzA[q2]*w01 + wzA[q3]*w11;
+        ax += w * (qx * cr - qz * sr);
+        ay += w * qy;
+        az += w * (qx * sr + qz * cr);
+      }
+      const hv = (N(ax * f, ay * f, az * f) * 0.5 + 0.5) * P.amp;
+      const bb = hv * bands, fl = Math.floor(bb), fr = bb - fl;
+      hf[i] = (fl + fr * fr) / bands;
+    }
+  }
+}
+
+function shade(){
+  const R = 0.92, inv = 2 / G, str = G * 0.20;
+  const lx = -0.42, ly = -0.64, lz = 0.64;
+  const hvz = lz + 1, hm = Math.hypot(lx, ly, hvz);
+  for (let y = 0; y < G; y++) {
+    for (let x = 0; x < G; x++) {
+      const i = y * G + x, o = i * 4;
+      if (!mask[i]) { px[o] = 0; px[o+1] = 0; px[o+2] = 0; px[o+3] = 255; continue; }
+      const u = (x + 0.5) * inv - 1, v = (y + 0.5) * inv - 1;
+      const rad = Math.sqrt(u * u + v * v);
+      const sz = Math.sqrt(Math.max(1e-4, R * R - u * u - v * v));
+      const cov = Math.min(1, (R - rad) / (inv * 1.5));
+      const l = mask[i-1] ? hf[i-1] : hf[i], r = mask[i+1] ? hf[i+1] : hf[i];
+      const up = (y > 0 && mask[i-G]) ? hf[i-G] : hf[i];
+      const dn = (y < G-1 && mask[i+G]) ? hf[i+G] : hf[i];
+      let nx = -(r - l) * str + u / R * 0.9;
+      let ny = -(dn - up) * str + v / R * 0.9;
+      let nz = sz / R;
+      const m = Math.hypot(nx, ny, nz) || 1;
+      nx /= m; ny /= m; nz /= m;
+      let d = nx * lx + ny * ly + nz * lz;
+      d = d > 0 ? d : 0;
+      let s = (nx * lx + ny * ly + nz * hvz) / hm;
+      s = s > 0 ? Math.pow(s, 26) : 0;
+      const rim = Math.pow(1 - nz, 3.2);
+      const band = hf[i], dd = d * d;
+      const cr2 = (13 + dd * 104 + s * 168 + rim * 26 + band * 9) * cov;
+      const cg2 = (17 + dd * 114 + s * 176 + rim * 34 + band * 11) * cov;
+      const cb2 = (24 + dd * 128 + s * 188 + rim * 52 + band * 15) * cov;
+      px[o]   = cr2 > 255 ? 255 : cr2;
+      px[o+1] = cg2 > 255 ? 255 : cg2;
+      px[o+2] = cb2 > 255 ? 255 : cb2;
+      px[o+3] = 255;
+    }
+  }
+  bctx.putImageData(img, 0, 0);
+  ctx.clearRect(0, 0, cv.width, cv.height);
+  ctx.drawImage(buf, 0, 0, cv.width, cv.height);
+}
+
+/* on the CPU path resolution follows the machine: climb until a pass costs
+   real time, fall back the moment it does */
+let dirty = true, fast = 0, lastT = 0;
+function render(){
+  if (gl) { drawGL(); dirty = false; return; }
+  const t0 = performance.now();
+  field(); shade();
+  const ms = performance.now() - t0;
+  if (ms > 34 && li > 0) { setLevel(li - 1); fast = 0; }
+  else if (ms < 16 && li < maxLi) { if (++fast > 2) { fast = 0; setLevel(li + 1); } }
+  else fast = 0;
+  dirty = false;
+}
+/* the orb turns on wall-clock time, so it reads the same speed on any machine */
+function frame(t){
+  if (!reduced) {
+    const dt = lastT ? Math.min(140, t - lastT) : 16;
+    lastT = t; spin += dt * 0.000055; dirty = true;
+  }
+  if (dirty) render();
+  requestAnimationFrame(frame);
+}
+
+/* ── the spec sheet drives the render ─────────────────────────────── */
+const rows = [...document.querySelectorAll('.row[data-k]')];
+function paint(row){
+  const k = row.dataset.k;
+  const val = P[k];
+  row.querySelector('.v').textContent = (FMT[k] || (v => v.toFixed(+row.dataset.dp || 0)))(val);
+  const fill = row.querySelector('.track i');
+  if (fill) {
+    const mn = +row.dataset.min, mx = +row.dataset.max;
+    fill.style.width = (((val - mn) / (mx - mn)) * 100).toFixed(2) + '%';
+    row.setAttribute('aria-valuenow', val.toFixed(3));
+  }
+  if (row.classList.contains('flag')) row.dataset.on = val ? '1' : '0';
+}
+function set(row, val){
+  const k = row.dataset.k, mn = +row.dataset.min, mx = +row.dataset.max;
+  P[k] = +row.dataset.dp === 0 ? Math.round(Math.min(mx, Math.max(mn, val)))
+                               : Math.min(mx, Math.max(mn, val));
+  paint(row); dirty = true; if (reduced) render();
+}
+rows.forEach(row => {
+  paint(row);
+  if (row.classList.contains('flag')) {
+    const flip = () => { P[row.dataset.k] = P[row.dataset.k] ? 0 : 1; paint(row); dirty = true; if (reduced) render(); };
+    row.addEventListener('click', flip);
+    row.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flip(); } });
+    return;
+  }
+  const mn = +row.dataset.min, mx = +row.dataset.max;
+  const fromX = x => {
+    const b = row.getBoundingClientRect();
+    return mn + ((x - b.left) / b.width) * (mx - mn);
+  };
+  row.addEventListener('pointerdown', e => {
+    row.setPointerCapture(e.pointerId);
+    set(row, fromX(e.clientX));
+  });
+  row.addEventListener('pointermove', e => {
+    if (row.hasPointerCapture(e.pointerId)) set(row, fromX(e.clientX));
+  });
+  row.addEventListener('keydown', e => {
+    const st = (mx - mn) / 40;
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') { e.preventDefault(); set(row, P[row.dataset.k] - st); }
+    if (e.key === 'ArrowRight' || e.key === 'ArrowUp') { e.preventDefault(); set(row, P[row.dataset.k] + st); }
+  });
+});
+document.getElementById('reseed').addEventListener('click', () => {
+  if (gl) seed = [Math.random() * 120, Math.random() * 120, Math.random() * 120];
+  else N = makeNoise((Math.random() * 4294967295) >>> 0);
+  dirty = true; if (reduced) render();
+});
+
+let rt;
+addEventListener('resize', () => {
+  clearTimeout(rt);
+  rt = setTimeout(() => { layout(); render(); }, 140);
+});
+
+if (!initGL()) initCPU();
+layout();
+render();
+if (!reduced) requestAnimationFrame(frame);
+</script>
+</body>
+</html>

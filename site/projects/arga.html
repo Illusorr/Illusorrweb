@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<link rel="preload" as="font" type="font/otf" crossorigin href="../assets/projects/shared/fonts/PPMonumentExtended-Black.otf">
+<link rel="preload" as="font" type="font/ttf" crossorigin href="../assets/projects/shared/fonts/Squaresharps-v2.ttf">
+
+<link rel="preload" as="font" type="font/woff" crossorigin href="../assets/fonts/outfit-variable.woff">
+<link rel="stylesheet" href="../assets/css/nav.css">
+<link rel="stylesheet" href="../assets/css/case/fonts.css">
+
+<link rel="stylesheet" href="../assets/css/case/cm-type.css">
+<title>ARGA · Website · ILLUSORR</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../assets/css/case/case-base.css">
+
+<link rel="stylesheet" href="../assets/css/case/proj-tags.css">
+
+
+<link rel="stylesheet" href="../assets/css/case/hero-refine.css">
+
+<link rel="stylesheet" href="../assets/css/case/rhythm-refine.css">
+
+<meta name="description" content="ARGA by ILLUSORR: information architecture, design system and build for an event transportation, traffic and parking operator working across the Gulf and the US.">
+<link rel="canonical" href="https://illusorr.com/projects/arga.html">
+<meta name="theme-color" content="#05060a">
+<meta property="og:site_name" content="ILLUSORR">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ARGA · Website · ILLUSORR">
+<meta property="og:description" content="Information architecture, design system and build for ARGA Event Solutions.">
+<meta property="og:url" content="https://illusorr.com/projects/arga.html">
+<meta property="og:image" content="https://illusorr.com/assets/img/og/og-default.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CreativeWork","name":"ARGA Website","url":"https://illusorr.com/projects/arga.html","creator":{"@type":"Organization","name":"ILLUSORR","url":"https://illusorr.com/"},"about":"Business & Institutions","keywords":"Web design, Information architecture, Project CMS, Event operations"}</script>
+<!-- phone + tablet: shared touch layer, then the shared case layout -->
+<link rel="stylesheet" href="../assets/css/mobile.css">
+<link rel="stylesheet" href="../assets/css/case/case-mobile.css">
+<script src="../assets/js/mobile.js"></script>
+</head>
+
+
+
+<body>
+<header class="il-topbar" id="ilTopbar">
+  <a class="il-brand" href="../index.html" aria-label="ILLUSORR home"><span class="il-logo" role="img" aria-label="ILLUSORR"></span></a>
+  <div class="il-right">
+    <a class="il-talk" href="../contact.html">Let's talk</a>
+    <button class="il-burger" id="ilMenuOpen" aria-label="Open menu"><i></i><i></i></button>
+  </div>
+</header>
+<div class="il-overlay" id="ilOverlay">
+  <div class="il-ohead"><span class="il-logo" role="img" aria-label="ILLUSORR"></span><button class="il-oclose" id="ilMenuClose">Close ✕</button></div>
+  <nav>
+    <a href="../index.html">Home <span>01</span></a>
+    <a href="../about.html">About <span>02</span></a>
+    <a href="../sectors.html">Sectors <span>03</span></a>
+    <a href="../work.html">Work <span>04</span></a>
+    <a href="../lab.html">Lab <span>05</span></a>
+    <a href="../collective.html">Collective <span>06</span></a>
+    <a href="../contact.html">Contact <span>07</span></a>
+  </nav>
+  <div class="il-ofoot"><span>Abu Dhabi · Yas Creative Hub</span><span>hello@illusorr.com</span></div>
+</div>
+
+
+  <!-- ─── Fixed chrome ─────────────────────────────────────────────── -->
+  <!-- topnav removed, menu bar to be added separately -->
+
+
+<style>
+  /* ─── website-work modules: live frames, sitemap, system sheet ─── */
+  .stage { border: 1px solid var(--line); background: #0a0a0a; position: relative; overflow: hidden; }
+  .stage-bar { display: flex; align-items: center; gap: 10px; height: 34px; padding: 0 12px;
+    border-bottom: 1px solid var(--line); background: rgba(255,255,255,.03); }
+  .stage-dots { display: flex; gap: 6px; }
+  .stage-dots i { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.18); }
+  .stage-url { flex: 1; height: 18px; border-radius: 9px; background: rgba(255,255,255,.06);
+    display: flex; align-items: center; padding: 0 10px; font-size: 12px; letter-spacing: .12em;
+    text-transform: uppercase; color: rgba(255,255,255,.45); }
+  .stage-live { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--gold-ant); }
+  .stage-view { position: relative; overflow: hidden; background: #fff; }
+  .stage-view iframe { position: absolute; top: 0; left: 0; border: 0; transform-origin: top left; }
+  .stage, .dev-tab { contain: paint; }
+  .stage-view { contain: strict; }
+  .stage-view.is-locked iframe { pointer-events: none; }
+  .stage-hint { position: absolute; inset: auto 0 0 0; padding: 10px 12px; z-index: 3;
+    display: flex; justify-content: space-between; align-items: center; gap: 12px; cursor: pointer;
+    font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: #fff;
+    background: linear-gradient(to top, rgba(0,0,0,.78), rgba(0,0,0,0)); }
+  .stage-view:not(.is-locked) .stage-hint { background: none; color: var(--gold-ant); }
+  .devrow { display: grid; grid-template-columns: 1fr; gap: clamp(18px, 2.4vw, 34px); align-items: end; }
+  @media (min-width: 900px) { .devrow { grid-template-columns: 1.9fr .62fr; } }
+  .dev-tab { border-radius: 14px; padding: 8px; border: 1px solid var(--line); background: #0a0a0a; }
+  .dev-tab .stage-view { border-radius: 8px; }
+  .dev-cap { display: flex; justify-content: space-between; gap: 10px; margin-top: 10px;
+    font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint); }
+  .sitemap { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--line);
+    border: 1px solid var(--line); margin-top: clamp(28px, 3vw, 46px); }
+  @media (min-width: 760px) { .sitemap { grid-template-columns: repeat(4, 1fr); } }
+  .sm-col { background: var(--bg); padding: clamp(18px, 2vw, 26px); }
+  .sm-k { display: flex; align-items: baseline; gap: 8px; font-size: 12px; letter-spacing: .16em;
+    text-transform: uppercase; color: var(--gold-ant); }
+  .sm-k b { font-weight: 400; color: var(--ink-faint); }
+  .sm-col ul { list-style: none; margin: 14px 0 0; padding: 0; display: flex; flex-direction: column; gap: 7px; }
+  .sm-col li { font-size: 13px; line-height: 1.45; color: var(--ink-soft); }
+  .sm-col li.is-deep { padding-left: 12px; border-left: 1px solid var(--line); color: var(--ink-faint); }
+  .syssheet { display: grid; grid-template-columns: 1fr; gap: 1px; background: var(--line);
+    border: 1px solid var(--line); margin-top: clamp(28px, 3vw, 46px); }
+  @media (min-width: 860px) { .syssheet { grid-template-columns: 1.1fr 1fr 1fr; } }
+  .sys-cell { background: var(--bg); padding: clamp(20px, 2.2vw, 30px); display: flex; flex-direction: column; gap: 16px; }
+  .sys-k { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--gold-ant); }
+  .swatches { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .sw { aspect-ratio: 1; border: 1px solid var(--line); display: flex; align-items: flex-end; padding: 7px;
+    font-size: 12px; letter-spacing: .08em; }
+  .typerow { display: flex; flex-direction: column; gap: 10px; }
+  .typerow span { color: var(--ink); line-height: 1.05; }
+  .typerow small { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint); }
+  .uikit { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .ui-btn { padding: 11px 22px; border-radius: 6px; font-size: 13px; font-weight: 600; letter-spacing: .04em;
+    background: var(--gold-ant); color: #0a0a0a; }
+  .ui-btn.is-ghost { background: transparent; color: rgba(255,255,255,.72); border: 1px solid rgba(255,255,255,.22); font-weight: 500; }
+  .ui-eyebrow { font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--gold-ant); font-weight: 600; }
+  .ui-chip { padding: 7px 13px; border: 1px solid var(--line); font-size: 12px; color: var(--ink-soft); }
+  .featrow { display: grid; grid-template-columns: 1fr; gap: clamp(18px, 2.2vw, 30px); }
+  @media (min-width: 900px) { .featrow { grid-template-columns: 1fr 1fr; } }
+  .feat-cap { display: flex; justify-content: space-between; gap: 10px; margin-top: 10px;
+    font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint); }
+  :root { --gold-ant: #D4A017; --line: rgba(255,255,255,.10); }
+</style>
+
+  <div class="koton-cursor" id="kCursor" aria-hidden="true">
+    <svg class="km" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="42" fill="none" stroke="currentColor" stroke-width="7"></circle><circle cx="50" cy="50" r="9" fill="currentColor"></circle></svg>
+    <span class="label-link" data-verb="Open"></span>
+  </div>
+
+  <aside class="rail" aria-hidden="true">
+    <span class="rail-dot is-active" data-i="0"></span><span class="rail-dot" data-i="1"></span>
+    <span class="rail-dot" data-i="2"></span><span class="rail-dot" data-i="3"></span>
+    <span class="rail-dot" data-i="4"></span><span class="rail-dot" data-i="5"></span>
+    <span class="rail-dot" data-i="6"></span>
+  </aside>
+
+  <style>
+    /* ARGA runs cool blue on near-black, not the shell's navy or ANT's gold */
+    :root { --gold-ant: #2E6BFF; --line: rgba(255,255,255,.10);
+            --dark-bg: #05070c; --dark-bg-2: #0a0d14; --dark-tile: #0c1828; }
+    body { background: #05070c; }
+    body section[data-tone="dark"], body footer[data-tone="dark"] { background: #05070c; }
+    body section.hero[data-tone="dark"] { background: #05070c !important; color: #eef1f8; }
+    body section.hero[data-tone="dark"]::before { background: radial-gradient(70% 70% at 74% 20%, rgba(46,107,255,.16), transparent 70%) !important; }
+    body section.hero[data-tone="dark"]::after { background: none !important; }
+    /* operations ledger: the numbers ARGA actually publishes per project */
+    .ledger { margin-top: clamp(28px, 3vw, 46px); border: 1px solid var(--line); overflow-x: auto; }
+    .ledger table { width: 100%; border-collapse: collapse; min-width: 720px; }
+    .ledger th, .ledger td { text-align: left; padding: 15px 18px; border-bottom: 1px solid var(--line);
+      font-size: 13px; color: var(--ink-soft); white-space: nowrap; }
+    .ledger th { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--gold-ant); font-weight: 600; }
+    .ledger td:first-child { color: var(--ink); white-space: normal; min-width: 220px; }
+    .ledger td b { font-weight: 500; color: var(--ink); }
+    .ledger tr:last-child td { border-bottom: 0; }
+    .ledger td.na { color: var(--ink-faint); }
+  </style>
+
+  <div class="koton-cursor" id="kCursor" aria-hidden="true">
+    <svg class="km" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="42" fill="none" stroke="currentColor" stroke-width="7"></circle><circle cx="50" cy="50" r="9" fill="currentColor"></circle></svg>
+    <span class="label-link" data-verb="Open"></span>
+  </div>
+
+  <aside class="rail" aria-hidden="true">
+    <span class="rail-dot is-active" data-i="0"></span><span class="rail-dot" data-i="1"></span>
+    <span class="rail-dot" data-i="2"></span><span class="rail-dot" data-i="3"></span>
+    <span class="rail-dot" data-i="4"></span><span class="rail-dot" data-i="5"></span>
+    <span class="rail-dot" data-i="6"></span>
+  </aside>
+
+  <!-- 1. HERO -->
+  <section class="hero" data-tone="dark" data-rail="0" data-screen-label="01 Hero">
+    <div class="hero-inner">
+      <div class="proj-tags hero-meta">
+        <div class="ptg ptg-client">
+          <div class="ptg-k">Client</div>
+          <div class="ptg-c"><span style="font-size:clamp(20px,2.2vw,30px);font-weight:800;letter-spacing:.16em">ARGA</span></div>
+        </div>
+        <div class="ptg" style="margin-left:auto">
+          <div class="ptg-k">Category</div>
+          <div class="ptg-c"><span class="ptag">Web Design</span><span class="ptag">Web Build</span><span class="ptag">Project CMS</span></div>
+        </div>
+        <div class="ptg">
+          <div class="ptg-k">Sector</div>
+          <div class="ptg-c"><span class="ptag sector">Business &amp; Institutions</span></div>
+        </div>
+      </div>
+
+      <h1 class="hero-title">
+        <span class="ln">ARGA<span class="ln-ital">the operation, on the record.</span></span>
+      </h1>
+
+      <p class="hero-lede">
+        <strong>A website for the operator that moves the Gulf's biggest events.</strong>
+        Transport, traffic, parking and mobility technology across Abu Dhabi, Riyadh,
+        Jeddah, AlUla and Washington D.C. Architecture, design system and build by ILLUSORR.
+      </p>
+
+      <div class="hero-foot">
+        <div class="hero-credit">
+          <div>ARGA · Website · 2026</div>
+          <div>Designed and built by ILLUSORR</div>
+        </div>
+        <div class="scroll-cue"><span>Scroll</span><span class="line"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. LIVE COVER -->
+  <section class="hero-media" data-tone="dark" data-rail="1" data-screen-label="02 Live Site">
+    <div class="hm-inner">
+      <div class="stage">
+        <div class="stage-bar">
+          <div class="stage-dots"><i></i><i></i><i></i></div>
+          <div class="stage-url">arga.com</div>
+          <div class="stage-live">Live site</div>
+        </div>
+        <div class="stage-view is-locked" data-frame data-w="1440" data-h="900" style="aspect-ratio:1440/900">
+          <iframe data-src="https://www.arga.com/" title="ARGA website, live" loading="lazy" referrerpolicy="no-referrer"></iframe>
+          <div class="stage-hint"><span>Click to use the live site</span><span>Home</span></div>
+        </div>
+      </div>
+      <div class="hm-cap"><span>ARGA</span><span>Home · Live</span></div>
+    </div>
+  </section>
+
+  <!-- 3. META -->
+  <section data-tone="dark" data-rail="1" data-screen-label="03 Meta">
+    <div class="wrap">
+      <div class="meta-bar">
+        <div class="meta-cell"><span class="meta-k">Client</span><span class="meta-v">ARGA<br>Event Solutions &amp; Traffic Management</span></div>
+        <div class="meta-cell"><span class="meta-k">Year</span><span class="meta-v">2026</span></div>
+        <div class="meta-cell"><span class="meta-k">Services</span><span class="meta-v">Information Architecture, Web Design, Front-End Build, Project CMS</span></div>
+        <div class="meta-cell"><span class="meta-k">Offices</span><span class="meta-v">Abu Dhabi · Riyadh · Jeddah · AlUla · Washington D.C.</span></div>
+        <div class="meta-cell"><span class="meta-k">Audiences</span><span class="meta-v">Event owners · Government · Venue operators</span></div>
+        <div class="meta-cell"><span class="meta-k">Record</span><span class="meta-v">1,000+ projects · 100+ clients · 10 years</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. BRIEF -->
+  <section class="module" data-tone="dark" data-rail="2" data-screen-label="04 Brief">
+    <div class="wrap">
+      <div class="module-head">
+        <div class="section-num"><span class="num">01</span>The Brief</div>
+        <div>
+          <h2 class="module-title">Four businesses, <em>one front door.</em></h2>
+          <p class="lede">
+            ARGA is a transport partner, a traffic partner, a parking partner and a
+            technology partner, depending on who is asking. The website had to answer
+            all four without splitting the company into four brands.
+          </p>
+        </div>
+      </div>
+      <div class="body-grid">
+        <div>
+          <p>The credibility was already there and largely undocumented: Abu Dhabi Grand
+          Prix since 2018, Soundstorm, the Papal Visit, the FIFA Club World Cup, the UAE
+          Tour. What existed lived in tender decks, not on a page anyone could read.</p>
+        </div>
+        <div>
+          <p>So the site is built around the operational record. Every flagship project
+          carries the same four measures, planning time, people, fleet and crowd, because
+          those are the numbers an event owner uses to decide whether ARGA can hold their
+          venue on the day.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4b. SCALE -->
+  <section class="module" data-tone="dark" data-rail="2" data-screen-label="04b Scale" style="padding-top:0">
+    <div class="wrap">
+      <div class="stats">
+        <div class="stat"><span class="stat-n">1,000<sup style="font-size:.45em;vertical-align:super">+</sup></span><span class="stat-k">Projects supported</span></div>
+        <div class="stat"><span class="stat-n">100<sup style="font-size:.45em;vertical-align:super">+</sup></span><span class="stat-k">Clients</span></div>
+        <div class="stat"><span class="stat-n">10</span><span class="stat-k">Years operating, Middle East lead</span></div>
+        <div class="stat"><span class="stat-n">05</span><span class="stat-k">Offices · Abu Dhabi, Riyadh, Jeddah, AlUla, Washington D.C.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. ARCHITECTURE -->
+  <section class="module" data-tone="dark" data-rail="3" data-screen-label="05 Architecture" style="padding-top:0">
+    <div class="wrap">
+      <div class="module-head">
+        <div class="section-num"><span class="num">02</span>Architecture</div>
+        <div>
+          <h2 class="module-title">Five doors. <em>The projects do the arguing.</em></h2>
+          <p class="lede">
+            A deliberately shallow map: five sections, one enquiry route, and a projects
+            index that carries the weight instead of a services page full of adjectives.
+          </p>
+        </div>
+      </div>
+      <div class="sitemap">
+        <div class="sm-col">
+          <div class="sm-k">Company <b>01</b></div>
+          <ul><li>Home</li><li>About Us</li><li class="is-deep">Leadership</li><li class="is-deep">Our Team</li><li class="is-deep">Certifications</li><li>Careers</li></ul>
+        </div>
+        <div class="sm-col">
+          <div class="sm-k">Services <b>02</b></div>
+          <ul><li>Transportation</li><li>Traffic Management</li><li>Parking Management</li><li>Venue Consulting</li><li>Technology</li></ul>
+        </div>
+        <div class="sm-col">
+          <div class="sm-k">Projects <b>03</b></div>
+          <ul><li>Projects index</li><li class="is-deep">Sport</li><li class="is-deep">Festivals &amp; culture</li><li class="is-deep">State occasions</li><li>Partner testimony</li></ul>
+        </div>
+        <div class="sm-col">
+          <div class="sm-k">Contact <b>04</b></div>
+          <ul><li>Let's Talk enquiry</li><li>Offices, five cities</li><li>Direct line and email</li><li>Careers applications</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. SYSTEM -->
+  <section class="module" data-tone="dark" data-rail="3" data-screen-label="06 System" style="padding-top:0">
+    <div class="wrap">
+      <div class="module-head">
+        <div class="section-num"><span class="num">03</span>The System</div>
+        <div>
+          <h2 class="module-title">Operational blue. <em>Photography does the rest.</em></h2>
+          <p class="lede">
+            One signal colour for every action and marker, everything else reserved for
+            the imagery: crowds, fleets, night circuits, empty stadiums at dawn.
+          </p>
+        </div>
+      </div>
+      <div class="syssheet">
+        <div class="sys-cell">
+          <div class="sys-k">Palette</div>
+          <div class="swatches">
+            <div class="sw" style="background:#2E6BFF;color:#fff">2E6BFF</div>
+            <div class="sw" style="background:#5B8CFF;color:#05070c">5B8CFF</div>
+            <div class="sw" style="background:#05070C;color:rgba(255,255,255,.6)">05070C</div>
+            <div class="sw" style="background:#0c1828;color:rgba(255,255,255,.6)">101623</div>
+            <div class="sw" style="background:#7B8494;color:#05070c">7B8494</div>
+            <div class="sw" style="background:#F4F6FA;color:#05070c">F4F6FA</div>
+          </div>
+        </div>
+        <div class="sys-cell">
+          <div class="sys-k">Type</div>
+          <div class="typerow">
+            <small>Display · 800</small>
+            <span style="font-weight:800;font-size:clamp(24px,2.8vw,38px)">Moving 180,000</span>
+            <small>Title · 700</small>
+            <span style="font-weight:700;font-size:20px">Traffic Management</span>
+            <small>Body · 300</small>
+            <span style="font-weight:300;font-size:14px;color:var(--ink-soft)">Fourteen bus hubs across all seven emirates, in a single day.</span>
+          </div>
+        </div>
+        <div class="sys-cell">
+          <div class="sys-k">Components</div>
+          <div class="uikit">
+            <span class="ui-btn">Let's Talk</span>
+            <span class="ui-btn is-ghost">Browse projects</span>
+          </div>
+          <div class="ui-eyebrow">Project record</div>
+          <div class="uikit">
+            <span class="ui-chip">Planning</span><span class="ui-chip">Workforce</span><span class="ui-chip">Fleet</span><span class="ui-chip">Crowd</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. THE LEDGER -->
+  <section class="module" data-tone="dark" data-rail="4" data-screen-label="07 Ledger">
+    <div class="wrap">
+      <div class="module-head">
+        <div class="section-num"><span class="num">04</span>The Record</div>
+        <div>
+          <h2 class="module-title">Every project, <em>the same four measures.</em></h2>
+          <p class="lede">
+            One CMS template, one comparable row per project. This is the site's real
+            content model, and it is why the projects index reads as evidence rather
+            than a gallery.
+          </p>
+        </div>
+      </div>
+      <div class="ledger">
+        <table>
+          <thead><tr><th>Project</th><th>Years</th><th>Planning</th><th>Crowd</th><th>Workforce</th><th>Fleet</th></tr></thead>
+          <tbody>
+            <tr><td><b>Abu Dhabi Grand Prix</b></td><td>2018 – present</td><td>3 months</td><td>60,000 daily</td><td>150</td><td>400</td></tr>
+            <tr><td><b>Soundstorm Music Festival</b></td><td>2019 – present</td><td>3 months</td><td>400,000 total</td><td>1,500</td><td>100</td></tr>
+            <tr><td><b>AlUla Moments</b></td><td>2022 – present</td><td>Year-long</td><td>600,000</td><td>150</td><td>20</td></tr>
+            <tr><td><b>Red Sea International Film Festival</b></td><td>2024 – present</td><td>3 months</td><td>40,000 total</td><td>100</td><td>500</td></tr>
+            <tr><td><b>Diriyah Season</b></td><td>2019 – present</td><td>6-month activation</td><td class="na">—</td><td>180</td><td>80</td></tr>
+            <tr><td><b>Al Hosn &amp; Maritime Festivals</b></td><td>2016 – present</td><td>2 months</td><td class="na">—</td><td>60</td><td>20</td></tr>
+            <tr><td><b>FIFA Club World Cup, Abu Dhabi</b></td><td>2018 &amp; 2019</td><td>6 months</td><td>30,000 capacity</td><td>180</td><td>160</td></tr>
+            <tr><td><b>AFC Asian Cup, Abu Dhabi</b></td><td>2019</td><td>6 months</td><td>30,000 capacity</td><td>390</td><td>120</td></tr>
+            <tr><td><b>Special Olympics, Abu Dhabi</b></td><td>2019</td><td class="na">—</td><td class="na">—</td><td>240</td><td>90</td></tr>
+            <tr><td><b>Pope Francis Visit to Abu Dhabi</b></td><td>2019</td><td class="na">—</td><td>180,000 in a day</td><td>600</td><td>2,400 buses</td></tr>
+            <tr><td><b>UAE Tour</b></td><td>2016 – 2019</td><td class="na">—</td><td class="na">—</td><td>500</td><td>13,000 equipment</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. THE BUILD -->
+  <section class="module" data-tone="dark" data-rail="5" data-screen-label="08 Build" style="padding-top:0">
+    <div class="wrap">
+      <div class="module-head">
+        <div class="section-num"><span class="num">05</span>The Build</div>
+        <div>
+          <h2 class="module-title">Client-editable, <em>and running right here.</em></h2>
+          <p class="lede">
+            Both frames are the live site, at the widths they were designed for. New
+            projects are added by ARGA's own team, one CMS record at a time. Click into
+            a frame to use it.
+          </p>
+        </div>
+      </div>
+      <div class="devrow">
+        <div>
+          <div class="stage">
+            <div class="stage-bar">
+              <div class="stage-dots"><i></i><i></i><i></i></div>
+              <div class="stage-url">arga.com / projects</div>
+              <div class="stage-live">1440 px</div>
+            </div>
+            <div class="stage-view is-locked" data-frame data-w="1440" data-h="880" style="aspect-ratio:1440/880">
+              <iframe data-src="https://www.arga.com/projects" title="ARGA projects index" loading="lazy" referrerpolicy="no-referrer"></iframe>
+              <div class="stage-hint"><span>Click to use</span><span>Projects index</span></div>
+            </div>
+          </div>
+          <div class="dev-cap"><span>Desktop · Projects template</span><span>CMS driven</span></div>
+        </div>
+        <div>
+          <div class="dev-tab">
+            <div class="stage-view is-locked" data-frame data-w="420" data-h="880" style="aspect-ratio:420/880">
+              <iframe data-src="https://www.arga.com/services" title="ARGA services on mobile" loading="lazy" referrerpolicy="no-referrer"></iframe>
+              <div class="stage-hint"><span>Click to use</span><span>390</span></div>
+            </div>
+          </div>
+          <div class="dev-cap"><span>Mobile · Services</span><span>420 px</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. APPROACH -->
+  <section class="module" data-tone="dark" data-rail="6" data-screen-label="09 Approach">
+    <div class="wrap">
+      <div class="module-head">
+        <div class="section-num"><span class="num">06</span>The Approach</div>
+        <div>
+          <h2 class="module-title">Audit the record. <em>Then build around it.</em></h2>
+          <p class="lede">Three passes, and the content model was agreed before any page was designed.</p>
+        </div>
+      </div>
+      <div class="process">
+        <div class="step">
+          <span class="step-k">Phase 01 · Audit</span>
+          <h4>Recover the Numbers</h4>
+          <p>Ten years of operations lived in tender documents. We pulled every flagship project into one sheet and settled on four measures every project could report.</p>
+        </div>
+        <div class="step">
+          <span class="step-k">Phase 02 · Model</span>
+          <h4>One Project Template</h4>
+          <p>A single CMS record: dates, narrative, gallery, four stats. Add a project and the index, the filters and the home carousel all update without a designer.</p>
+        </div>
+        <div class="step">
+          <span class="step-k">Phase 03 · Build</span>
+          <h4>Four Partner Promises</h4>
+          <p>The home hero rotates through transport, traffic, parking and technology, so each audience sees itself named in the first screen rather than buried in services.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- 11. OUTCOME -->
+  <section class="module" data-tone="dark" data-rail="7" data-screen-label="11 Results">
+    <div class="wrap">
+      <div class="module-head">
+        <div class="section-num"><span class="num">07</span>The Outcome</div>
+        <div><h2 class="module-title">A tender deck that finally lives on the web. <em>And updates itself.</em></h2></div>
+      </div>
+      <div class="stats">
+        <div class="stat"><span class="stat-n">11</span><span class="stat-k">Flagship projects documented to a single template</span></div>
+        <div class="stat"><span class="stat-n">05</span><span class="stat-k">Service lines, each with its own entry point</span></div>
+        <div class="stat"><span class="stat-n">04</span><span class="stat-k">Comparable measures on every project record</span></div>
+        <div class="stat"><span class="stat-n">05</span><span class="stat-k">Offices, from Abu Dhabi to Washington D.C.</span></div>
+      </div>
+      <div class="ui-eyebrow" style="margin-top:clamp(30px,3.4vw,52px)">Accreditation carried on the site</div>
+      <div class="uikit" style="margin-top:14px">
+        <span class="ui-chip">ISO 9001 · Quality</span>
+        <span class="ui-chip">ISO 14001 · Environmental</span>
+        <span class="ui-chip">ISO 45001 · Health &amp; Safety</span>
+        <span class="ui-chip">SCK Testing Labs</span>
+      </div>
+      <div class="credits">
+        <div>
+          <span class="section-num" style="display:block;margin-bottom:0">
+            <span class="num" style="font-size:clamp(28px,3vw,48px)">08</span>Credits
+          </span>
+        </div>
+        <div class="credit-list">
+          <div class="credit-row"><span class="role">Information Architecture</span><span class="who">ILLUSORR Studio</span></div>
+          <div class="credit-row"><span class="role">Art Direction · Design System</span><span class="who">ILLUSORR Studio</span></div>
+          <div class="credit-row"><span class="role">Build · Project CMS</span><span class="who">ILLUSORR Labs</span></div>
+          <div class="credit-row"><span class="role">Content Audit</span><span class="who">ILLUSORR Studio · ARGA Operations</span></div>
+          <div class="credit-row"><span class="role">Client</span><span class="who">ARGA Event Solutions</span></div>
+          <div class="credit-row"><span class="role">Sector</span><span class="who">Business &amp; Institutions</span></div>
+          <div class="credit-row"><span class="role">Year</span><span class="who">2026</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12. NEXT -->
+  <section class="next" data-tone="dark" data-rail="7" data-screen-label="12 Next">
+    <div class="next-bg">
+      <div class="ph is-filled" style="overflow:hidden"><img src="../assets/img/projects/coffee-merchant/illusorr-coffee-merchant-specialty-coffee-content-cover.webp" alt="Coffee Merchant, next project" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+    </div>
+    <div class="next-inner">
+      <span class="next-k">Featured Project · 015</span>
+      <h3>
+        <span style="display:block">Coffee Merchant</span>
+        <span style="display:block;font-weight:400;font-style:italic;color:var(--ink-soft);letter-spacing:0">the science, made navigable.</span>
+      </h3>
+      <div class="next-meta">
+        <span>2025</span>
+        <span>·</span>
+        <span>AI Content</span>
+        <span>·</span>
+        <span>Social Media</span>
+      </div>
+      <a class="next-cta" href="coffee-merchant.html">
+        <span>View Case Study</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19 L19 5"></path><polyline points="9 5 19 5 19 15"></polyline></svg>
+      </a>
+    </div>
+  </section>
+
+  <footer class="foot" data-tone="dark">
+    <div>© ILLUSORR Labs · MMXXVI</div>
+    <div>ARGA · Website</div>
+  </footer>
+
+<script>
+  /* Live frames: scale each embedded site to its container, deep-link it via
+     the site's own goTo(), and keep it click-to-activate so page scroll is
+     never captured until the visitor asks for it. */
+  (function () {
+    const frames = Array.from(document.querySelectorAll('[data-frame]'));
+    function fit() {
+      frames.forEach(function (v) {
+        const f = v.querySelector('iframe');
+        if (!f.getAttribute('src')) return;
+        const w = +v.dataset.w, h = +v.dataset.h;
+        const s = v.clientWidth / w;
+        f.style.width = w + 'px';
+        f.style.height = h + 'px';
+        f.style.transform = 'scale(' + s + ')';
+      });
+    }
+    fit();
+    window.addEventListener('resize', fit);
+    if (window.ResizeObserver) {
+      const ro = new ResizeObserver(fit);
+      frames.forEach(function (v) { ro.observe(v); });
+    }
+    /* Five full ANT builds at once starve the page's own images, so every
+       frame below the cover mounts only when it scrolls into view. */
+    if (window.IntersectionObserver) {
+      const mio = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          const f = e.target.querySelector('iframe');
+          if (!f || !f.dataset.src) return;
+          if (e.isIntersecting) {
+            if (!f.getAttribute('src')) { f.src = f.dataset.src; fit(); }
+          } else if (f.getAttribute('src')) {
+            f.removeAttribute('src');
+            e.target.classList.add('is-locked');
+          }
+        });
+      }, { rootMargin: '600px 0px' });
+      frames.forEach(function (v) { if (v.querySelector('iframe[data-src]')) mio.observe(v); });
+    } else {
+      frames.forEach(function (v) {
+        const f = v.querySelector('iframe');
+        if (f && f.dataset.src) f.src = f.dataset.src;
+      });
+    }
+
+    frames.forEach(function (v) {
+      const f = v.querySelector('iframe');
+      const target = v.dataset.goto;
+      f.addEventListener('load', function () {
+        fit();
+        if (!target) return;
+        try { f.contentWindow.goTo(target); } catch (e) {}
+      });
+      /* Webflow can refuse embedding; if a frame never paints, show the link. */
+      let painted = false;
+      f.addEventListener('load', function () { painted = true; });
+      setTimeout(function () {
+        if (painted || !f.getAttribute('src')) return;
+        const url = f.dataset.src;
+        const fb = document.createElement('a');
+        fb.href = url; fb.target = '_blank'; fb.rel = 'noopener';
+        fb.style.cssText = 'position:absolute;inset:0;display:flex;flex-direction:column;' +
+          'align-items:center;justify-content:center;gap:8px;background:#0a0d14;color:#5B8CFF;' +
+          'font-size:12px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;z-index:4';
+        fb.innerHTML = '<span>This page cannot be embedded</span><span style="color:rgba(255,255,255,.5)">Open ' +
+          url.replace('https://www.', '') + ' \u2197</span>';
+        v.appendChild(fb);
+      }, 6000);
+
+      const hint = v.querySelector('.stage-hint');
+      if (hint) {
+        hint.addEventListener('click', function () {
+          const locked = v.classList.toggle('is-locked');
+          hint.firstElementChild.textContent = locked ? 'Click to use the real site' : 'Live — click here to release';
+        });
+      }
+    });
+  })();
+
+  /* Cursor: small ring that lerps toward the pointer. */
+  (function () {
+    if (window.matchMedia('(hover: none)').matches) return;
+    const cursor = document.getElementById('kCursor');
+    if (!cursor) return;
+    const pt = { x: innerWidth / 2, y: innerHeight / 2 }, lp = { x: pt.x, y: pt.y };
+    let shown = false;
+    (function tick() {
+      lp.x += (pt.x - lp.x) * 0.22; lp.y += (pt.y - lp.y) * 0.22;
+      cursor.style.transform = 'translate3d(' + lp.x + 'px,' + lp.y + 'px,0)';
+      requestAnimationFrame(tick);
+    })();
+    addEventListener('pointermove', function (e) {
+      pt.x = e.clientX; pt.y = e.clientY;
+      if (!shown) { cursor.classList.add('is-visible'); shown = true; }
+      const link = e.target.closest && e.target.closest('a,button,.stage-hint');
+      cursor.classList.toggle('is-link', !!link);
+    }, { passive: true });
+    addEventListener('pointerdown', function () { cursor.classList.add('is-down'); });
+    addEventListener('pointerup', function () { cursor.classList.remove('is-down'); });
+  })();
+
+  /* Side-rail progress: the section nearest the viewport centre wins. */
+  (function () {
+    const sections = Array.from(document.querySelectorAll('[data-rail]'));
+    const dots = Array.from(document.querySelectorAll('.rail-dot'));
+    if (!sections.length || !dots.length) return;
+    let raf = null;
+    function update() {
+      raf = null;
+      const mid = innerHeight / 2;
+      let best = 0, bestD = Infinity;
+      sections.forEach(function (s) {
+        const r = s.getBoundingClientRect();
+        const d = Math.abs(r.top + r.height / 2 - mid);
+        if (d < bestD) { bestD = d; best = +s.dataset.rail; }
+      });
+      dots.forEach(function (d, i) { d.classList.toggle('is-active', i === best); });
+    }
+    addEventListener('scroll', function () { if (!raf) raf = requestAnimationFrame(update); }, { passive: true });
+    addEventListener('resize', update);
+    update();
+  })();
+</script>
+
+<style>
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity .85s cubic-bezier(.2,.7,.2,1), transform .85s cubic-bezier(.2,.7,.2,1); }
+    .reveal.is-in { opacity: 1; transform: none; }
+  }
+</style>
+<script>
+  (function () {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const sel = '.module-head, .body-grid > div, .process .step, .stats .stat, .credits, .bleed .ph, .quote, .next-inner, .meta-cell, .sm-col, .sys-cell, .stage, .dev-tab';
+    const io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -7% 0px' });
+    document.querySelectorAll(sel).forEach(function (el) { el.classList.add('reveal'); io.observe(el); });
+    setTimeout(function () {
+      document.querySelectorAll('.reveal:not(.is-in)').forEach(function (e) {
+        if (e.getBoundingClientRect().top < innerHeight * 1.2) e.classList.add('is-in');
+      });
+    }, 2600);
+  })();
+</script>
+<script src="../assets/js/nav.js" defer></script>
+<script src="../assets/js/site-footer.js" defer></script>
+<script src="../assets/js/to-top.js" defer></script>
+</body></html>

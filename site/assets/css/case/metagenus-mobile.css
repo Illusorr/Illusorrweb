@@ -1,0 +1,806 @@
+/* ─────────────────────────────────────────────────────────────────────
+   METAGENUS — THE PHONE EDITION
+
+   This is not the desktop layout with adjustments. The desktop page is a
+   1440px stage: pinned scroll scenes, absolutely positioned backdrops,
+   three-column HUDs. Overriding that piece by piece is what made the
+   phone feel forced, so this file does the opposite:
+
+     STEP 1  flatten every layout container to ordinary block flow
+     STEP 2  lay the content out again with ONE structure
+
+   The structure, applied to every beat without exception:
+
+       eyebrow      11px mono label, the 01…11 spine
+       headline     28px, tight
+       body         16px, 38ch measure
+       media        full width, aspect-ratio reserved, always AFTER the words
+       ─── 56px ───
+
+   One gutter (20px). One rhythm (56px between beats, 20px inside one).
+   One media treatment. Three interaction patterns: a swipe rail, a
+   picker strip, a stacked list. Nothing else.
+
+   Gated on html[data-touch] — remove the <link> and the desktop page is
+   untouched.
+   ───────────────────────────────────────────────────────────────────── */
+
+@media (max-width: 860px) {
+
+/* ═══════════════════════════════════════════════════════════════════════
+   STEP 1 · FLATTEN
+   Every container the desktop uses for staging becomes plain block flow.
+   This one block replaces ~40 individual override rules.
+   ═════════════════════════════════════════════════════════════════════ */
+html[data-touch] .scene,
+html[data-touch] .pin,
+html[data-touch] .pinner,
+html[data-touch] .col,
+html[data-touch] .hero-scroll,
+html[data-touch] .av-stage,
+html[data-touch] .av-left,
+html[data-touch] .av-right,
+html[data-touch] .av-figure,
+html[data-touch] .av-idblock,
+html[data-touch] .adv-stage,
+html[data-touch] .adv,
+html[data-touch] .adv-menu,
+html[data-touch] .adv-info,
+html[data-touch] .adv-id,
+html[data-touch] .adv-wrap,
+html[data-touch] .roll {
+  display: block !important;
+  position: static !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  width: auto !important;
+  max-width: none !important;
+  inset: auto !important;
+  transform: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  grid-template-columns: none !important;
+  column-gap: 0 !important;
+  row-gap: 0 !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   STEP 2 · THE PAGE FRAME — one gutter, one rhythm
+   ═════════════════════════════════════════════════════════════════════ */
+html[data-touch] .scene,
+html[data-touch] .pin {
+  padding: 64px 20px !important;
+}
+/* With .viewer's bleed margin neutralised below, the HUD now sits inside the
+   section's own 20px gutter — so it must not add a second one. */
+html[data-touch] .av-stage { padding: 0 !important; }
+
+/* .viewer.media-bleed pulls itself 29.6px left to break the desktop grid;
+   on a phone that just knocks the HUD out of the gutter. Pin it to the
+   gutter explicitly and make every descendant share that box, so the
+   record's label, copy and media all start on the same line. */
+html[data-touch] .viewer,
+html[data-touch] .media-bleed {
+  margin: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  /* the section already provides the gutter — a second one here put the
+     record's label, copy and media at 80px while every other beat sat at 40 */
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}
+html[data-touch] .av-stage,
+html[data-touch] .av-left,
+html[data-touch] .av-right {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 0 !important;
+}
+
+/* Nothing in the phone column is centre-set. The page centres headlines and
+   the record's name label from ~760px up, which is what made the paragraph
+   read as ragged: a centred title over left-set body over a centred label. */
+html[data-touch] .st,
+html[data-touch] .close-t,
+html[data-touch] .av-idblock,
+html[data-touch] .av-idblock .nm,
+html[data-touch] .av-key,
+html[data-touch] .adv-spec { text-align: left !important; }
+
+/* the hero's story beat is centre-set on desktop; every other beat on the
+   phone is left-aligned, and one centred block is what makes a column feel
+   unstructured */
+html[data-touch] .hs-inner {
+  display: block !important;
+  align-items: flex-start !important;
+  text-align: left !important;
+  padding: 0 20px !important;
+}
+html[data-touch] .hs-inner .mk {
+  justify-content: flex-start !important;
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+/* ── SPACING SCALE ─────────────────────────────────────────────────
+   A single flat gap between every element is what made this feel
+   cluttered: it tells the eye nothing about what belongs to what.
+
+   Proximity, applied on a 4px scale:
+
+       8px    inside one thing        headline ↔ its own second line
+       12px   label to what it labels eyebrow ↔ headline
+       20px   inside a group          headline ↔ body, paragraph ↔ paragraph
+       40px   between content types   text group ↔ media, media ↔ next group
+       128px  between beats           64px section padding, top and bottom
+
+   The rule is that no two adjacent gaps are the same size unless the
+   relationship is the same. */
+/* DEFAULT: the group gap, applied at BOTH levels of the tree.
+
+   Scoping it to .col children alone was not enough: several beats put the
+   media, the add-on module and the filter grid as SIBLINGS of .col, direct
+   children of the section, and those sat flush against the copy — the image
+   in "Collectible" had exactly 0px between its bottom edge and the paragraph
+   beneath it. Blocks at section level are separate content types, so they
+   get the 40px content-type gap; blocks inside a .col get the 20px group gap.
+
+   Two exclusions: .hero, whose children are intentionally stacked overlays
+   with negative offsets, and .film-scene, which is a full-bleed frame with
+   absolutely positioned children. */
+html[data-touch] section:not(.hero):not(.film-scene) > * + *,
+html[data-touch] .pin:not(.film-scene) > .pinner > * + * {
+  margin-top: 40px !important;
+}
+
+/* the HUD containers hold their own siblings — the figure and the rarity
+   column inside .av-stage, the picker and the caption inside .adv — and those
+   were the last two pairs still sitting flush */
+html[data-touch] .av-stage > * + *,
+html[data-touch] .adv > * + * { margin-top: 40px !important; }
+
+/* ── TEXT NEVER TOUCHES MEDIA ──────────────────────────────────────
+   Enumerating the media classes left new or unlisted frames flush against
+   the copy. This states the relationship structurally instead: any media
+   or framed element gets the 40px content-type gap from whatever precedes
+   it, and gives the same gap to whatever follows. Applies at every level,
+   so a figure nested in a HUD is covered too. */
+html[data-touch] * + figure,
+html[data-touch] * + img,
+html[data-touch] * + video,
+html[data-touch] * + canvas,
+html[data-touch] * + iframe,
+html[data-touch] * + .sm,
+html[data-touch] * + .av-figure,
+html[data-touch] * + .adv-stage,
+html[data-touch] * + .viewer,
+html[data-touch] * + .m-defer {
+  margin-top: 40px !important;
+}
+html[data-touch] figure + *,
+html[data-touch] img + *,
+html[data-touch] video + *,
+html[data-touch] canvas + *,
+html[data-touch] iframe + *,
+html[data-touch] .sm + *,
+html[data-touch] .av-figure + *,
+html[data-touch] .adv-stage + *,
+html[data-touch] .viewer + * {
+  margin-top: 40px !important;
+}
+/* exceptions: absolutely positioned layers inside a frame, the hero's
+   stacked overlays, and the film frames own their internals */
+html[data-touch] .hero *,
+html[data-touch] .film-scene *,
+html[data-touch] .sm > *,
+html[data-touch] .av-figure > *,
+html[data-touch] .adv-stage > *,
+html[data-touch] .m-defer > * {
+  margin-top: revert !important;
+}
+
+html[data-touch] .col > * { margin: 0 !important; }
+html[data-touch] .col > * + * { margin-top: 20px !important; }
+
+/* THEN tighten the relationships that are closer than a group:
+   a label belongs to the headline under it */
+html[data-touch] .mk { margin-bottom: 0 !important; }
+html[data-touch] .mk + * { margin-top: 12px !important; }
+
+/* a headline's second line belongs to the headline */
+html[data-touch] .st { margin-bottom: 0 !important; }
+html[data-touch] .st em { margin-top: 8px !important; }
+
+/* text → media is a change of content type, so it gets the group gap */
+html[data-touch] .col > .sm,
+html[data-touch] .col > .av-figure,
+html[data-touch] .col > .adv-stage,
+html[data-touch] .sm,
+html[data-touch] .av-figure,
+html[data-touch] .adv-stage { margin: 40px 0 0 !important; }
+
+/* media → the copy that explains it */
+html[data-touch] .av-idblock { margin-top: 32px !important; }
+html[data-touch] .av-traits { margin-top: 40px !important; }
+
+/* a picker strip belongs to the media above it: closer than a group gap,
+   further than a line gap */
+html[data-touch] .av-grid,
+html[data-touch] .adv-grid { margin-top: 24px !important; margin-bottom: 24px !important; }
+
+/* controls sit above what they control */
+html[data-touch] .adv-tabs { margin-bottom: 24px !important; }
+
+/* lists and rails are their own block: group gap above */
+html[data-touch] .col > .roll.swap,
+html[data-touch] .roll.swap { margin-top: 32px !important; }
+html[data-touch] .col > .lic,
+html[data-touch] .lic { margin-top: 32px !important; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   TYPE — four sizes, nothing between
+   ═════════════════════════════════════════════════════════════════════ */
+
+/* eyebrow: the 01…11 narrative spine */
+html[data-touch] .mk {
+  display: flex !important;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px !important;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, .78) !important;
+  margin-bottom: 14px !important;
+}
+html[data-touch] .mk span { color: inherit !important; }
+html[data-touch] .mk .ln {
+  flex: none;
+  width: 22px;
+  height: 1px;
+  background: currentColor;
+  opacity: .5;
+}
+
+/* headline — PP Monument Extended is a wide face, so 28px is the ceiling
+   at 375px. Verified: "Metagenus" fits with no clipping. */
+html[data-touch] .st,
+html[data-touch] .close-t {
+  font-size: 28px !important;
+  line-height: 1.12 !important;
+  letter-spacing: -.01em !important;
+  margin-bottom: 16px !important;
+}
+html[data-touch] .st em {
+  display: block;
+  font-style: normal;
+  color: rgba(255, 255, 255, .76);
+}
+
+/* body */
+html[data-touch] .sl,
+html[data-touch] .scene p,
+html[data-touch] .lic p,
+html[data-touch] .roll p {
+  font-size: 16px !important;
+  line-height: 1.62 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  white-space: normal !important;
+  text-align: left !important;
+  /* A 38ch cap inside a 348px column broke lines early and left a ragged
+     right edge. On a phone the gutter IS the measure — let the paragraph run
+     the full column width, the way body copy normally does on mobile. */
+  max-width: none !important;
+  color: rgba(255, 255, 255, .88) !important;
+}
+html[data-touch] .sl strong { color: #fff !important; font-weight: 500; }
+
+/* every small label, one size, one alpha — the floor is 11px, no exceptions */
+html[data-touch] .av-key,
+html[data-touch] .av-idblock .nm,
+html[data-touch] .adv-tag,
+html[data-touch] .adv-k,
+html[data-touch] .adv-tab,
+html[data-touch] .stage-note,
+html[data-touch] .hero-credit,
+html[data-touch] .close-meta,
+html[data-touch] .hf-cap,
+html[data-touch] .film-mark .sub,
+html[data-touch] .roll .r .i,
+html[data-touch] .roll .r .rt,
+html[data-touch] .adv-cell .cl,
+html[data-touch] .lb,
+html[data-touch] .k,
+html[data-touch] .i,
+html[data-touch] h4 {
+  font-size: 11px !important;
+  letter-spacing: .14em;
+  color: rgba(255, 255, 255, .78) !important;
+  opacity: 1 !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MEDIA — one treatment: full width, shape reserved, after the words
+   ═════════════════════════════════════════════════════════════════════ */
+html[data-touch] .sm,
+html[data-touch] .av-figure,
+html[data-touch] .adv-stage {
+  display: block !important;
+  position: relative !important;
+  width: 100% !important;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  background: rgba(255, 255, 255, .02);
+}
+html[data-touch] .sm img,
+html[data-touch] .sm video,
+html[data-touch] .av-figure img,
+html[data-touch] .av-figure video,
+html[data-touch] .adv-stage img,
+html[data-touch] .adv-stage video {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-height: none !important;
+  object-fit: contain !important;
+  transform: none !important;
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
+}
+/* photographic backdrops crop; character renders with alpha do not */
+html[data-touch] .sm img { object-fit: cover !important; }
+html[data-touch] .av-figure { background: transparent !important; }
+html[data-touch] .av-figure::after,
+html[data-touch] .sm::after { display: none !important; }
+
+/* the deferred-media placeholder inherits the same box */
+html[data-touch] .m-defer {
+  position: absolute !important;
+  inset: 0 !important;
+  min-height: 0 !important;
+  background-color: transparent !important;
+  border: 0 !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   PATTERN A · SWIPE RAIL — the nine archetypes
+   One card per screen. 1900px of stacked list becomes 240px.
+   ═════════════════════════════════════════════════════════════════════ */
+html[data-touch] .roll.swap {
+  display: flex !important;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  column-gap: 16px !important;
+  margin-inline: -20px !important;
+  padding: 0 20px 8px !important;
+}
+html[data-touch] .roll.swap::-webkit-scrollbar { display: none; }
+html[data-touch] .roll.swap .r {
+  display: block !important;
+  position: relative !important;
+  flex: 0 0 82%;
+  scroll-snap-align: center;
+  opacity: 1 !important;
+  transform: none !important;
+  padding: 16px 0 0 !important;
+  border-top: 1px solid rgba(255, 255, 255, .14) !important;
+  border-bottom: 0 !important;
+}
+html[data-touch] .roll.swap h3 {
+  font-size: 22px !important;
+  line-height: 1.06 !important;
+  margin: 10px 0 8px !important;
+}
+/* A flex item does not shrink below its content unless told to, and the
+   desktop paragraph carries a max-width wider than the card — so headlines
+   and copy were spilling out of one card and printing over the next
+   ("THE FUNKSTERTHE CYBERPUNK"). Constrain the card and everything in it. */
+html[data-touch] .roll.swap .r { min-width: 0 !important; overflow: hidden !important; }
+html[data-touch] .roll.swap .r > * { max-width: 100% !important; min-width: 0 !important; }
+html[data-touch] .roll.swap p {
+  max-width: 100% !important;
+  overflow-wrap: break-word;
+}
+html[data-touch] .roll.swap h3 {
+  max-width: 100% !important;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+html[data-touch] .roll.swap .rt { margin-top: 10px !important; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   PATTERN B · PICKER STRIP — the avatar record and the add-ons
+   Same shape for both: media, then a horizontal strip of thumbnails you
+   swipe, then the copy for whatever is selected. The desktop puts the
+   picker in a side column; on a phone a strip under the image is the only
+   arrangement that does not squeeze all three.
+   ═════════════════════════════════════════════════════════════════════ */
+html[data-touch] .av-grid,
+html[data-touch] .adv-grid {
+  display: flex !important;
+  grid-template-columns: none !important;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+  gap: 8px !important;
+  margin-inline: -20px !important;
+  padding: 0 20px 20px !important;
+}
+html[data-touch] .av-grid::-webkit-scrollbar,
+html[data-touch] .adv-grid::-webkit-scrollbar { display: none; }
+/* a scrolling strip must never widen its parent: without min-width:0 a grid
+   or flex ancestor sizes its track to the strip's max-content (2100px of
+   thumbnails) and drags the whole document sideways */
+html[data-touch] .av-grid,
+html[data-touch] .adv-grid { min-width: 0 !important; max-width: 100vw !important; }
+html[data-touch] .av-grid > *,
+html[data-touch] .adv-cell {
+  flex: 0 0 76px !important;
+  width: 76px !important;
+  height: 76px !important;
+  scroll-snap-align: start;
+  margin: 0 !important;
+}
+html[data-touch] .av-grid > * img,
+html[data-touch] .adv-cell img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+}
+/* the cell caption bled 6px past both edges and collided with its
+   neighbours; and it was inset-locked at 10px tall, clipping the line */
+html[data-touch] .adv-cell .cl {
+  left: 0 !important;
+  right: 0 !important;
+  top: auto !important;
+  bottom: -16px !important;
+  height: auto !important;
+  max-height: none !important;
+  line-height: 1.2 !important;
+  letter-spacing: .04em !important;
+  white-space: normal !important;
+  overflow: visible !important;
+  text-align: center;
+}
+
+
+/* the record copy: sentence case restored (the uppercase is CSS, not the
+   text), Outfit not Space Mono, no authored line breaks */
+html[data-touch] .av-idblock { margin-top: 18px !important; }
+html[data-touch] .av-idblock .desc {
+  font-family: 'Outfit', system-ui, sans-serif !important;
+  text-transform: none !important;
+  white-space: normal !important;
+  text-align: left !important;
+  font-size: 16px !important;
+  line-height: 1.62 !important;
+  letter-spacing: 0 !important;
+  color: rgba(255, 255, 255, .88) !important;
+}
+
+/* rarity plate: block flow + auto margins, because grid placement kept
+   pushing it to the column edge */
+html[data-touch] .av-traits {
+  display: block !important;
+  text-align: center !important;
+}
+html[data-touch] .av-traits img {
+  display: block !important;
+  width: 84% !important;
+  max-width: 300px;
+  height: auto !important;
+  margin-inline: auto !important;
+  position: static !important;
+}
+
+/* category tabs: a wrapping row of pills, not a squeezed toolbar */
+html[data-touch] .adv-tabs {
+  display: flex !important;
+  flex-wrap: wrap;
+  gap: 8px !important;
+}
+html[data-touch] .adv-tab {
+  min-height: 40px;
+  padding: 0 14px !important;
+  border-radius: 100px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   PATTERN C · STACKED LIST — the four licence routes
+   ═════════════════════════════════════════════════════════════════════ */
+
+html[data-touch] .lic .l {
+  display: block !important;
+  opacity: 1 !important;
+  transform: none !important;
+  padding: 20px 0 !important;
+  border-top: 1px solid rgba(255, 255, 255, .1) !important;
+}
+html[data-touch] .lic .i { display: block; margin-bottom: 8px; }
+html[data-touch] .lic h4 {
+  font-size: 17px !important;
+  letter-spacing: 0 !important;
+  color: #fff !important;
+  margin-bottom: 6px !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   HERO — one claim, one line of support, nothing else
+   ═════════════════════════════════════════════════════════════════════ */
+html[data-touch] .hero {
+  min-height: 100svh !important;
+  display: flex !important;
+  align-items: flex-end;
+}
+/* The title was sitting UNDER the fixed 88px topbar — its logo painted
+   directly over the word "Metagenus" — for two compounding reasons:
+
+   1. .hero-inner was being stretched to 709px inside the 758px hero, so
+      align-items:flex-end had nothing to push: the block already filled the
+      box and its first line landed at y=27.
+   2. Even unstretched, a title card needs to clear the fixed bar.
+
+   So: let the block size to its content (height:auto + align-self), which
+   restores the bottom alignment, and reserve the bar's height on top. */
+html[data-touch] .hero-inner {
+  position: relative !important;
+  margin: 0 !important;
+  padding: 104px 0 48px !important;
+  /* the inline gutter belongs to .hero; a second one here doubled it */
+  width: 100%;
+  height: auto !important;
+  min-height: 0 !important;
+  flex: 0 0 auto !important;
+  align-self: flex-end !important;
+  transform: none !important;
+  filter: none !important;
+  opacity: 1 !important;
+}
+html[data-touch] .hero-title { margin-bottom: 14px !important; }
+html[data-touch] .hero-title .ln {
+  display: block;
+  font-size: 30px !important;
+  line-height: 1.04 !important;
+}
+html[data-touch] .hero-sub {
+  display: block;
+  font-size: 17px !important;
+  line-height: 1.24 !important;
+  color: rgba(255, 255, 255, .78) !important;
+}
+html[data-touch] .hero-lede {
+  font-size: 16px !important;
+  line-height: 1.62 !important;
+  max-width: none !important;
+  margin-top: 14px !important;
+}
+html[data-touch] .hero-foot {
+  display: block !important;
+  margin-top: 22px !important;
+}
+html[data-touch] .hero-figure {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   FILMS — full-bleed 16:9, caption inside the frame
+   Every child is absolutely positioned, so the flattened pinner needs a
+   box of its own or the section collapses to nothing.
+   ═════════════════════════════════════════════════════════════════════ */
+html[data-touch] .film-scene { padding: 0 !important; }
+html[data-touch] .film-scene .pinner {
+  position: relative !important;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+html[data-touch] .film-scene .fplay {
+  position: absolute !important;
+  inset: 0 !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+  display: block !important;
+}
+html[data-touch] .film-scene .fplay img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+html[data-touch] .film-mark {
+  position: absolute !important;
+  inset: auto 0 0 0 !important;
+  display: flex !important;
+  flex-direction: column;
+  gap: 3px;
+  padding: 44px 20px 16px !important;
+  background: linear-gradient(to top, rgba(5, 6, 10, .85), rgba(5, 6, 10, 0));
+}
+html[data-touch] .film-mark .ttl { font-size: 17px !important; line-height: 1.15; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   REMOVED ON A PHONE, and why
+   ═════════════════════════════════════════════════════════════════════ */
+
+/* decoration built for a wide stage: HUD bracket frames, edge ticks, an
+   empty light slab, nebulae, fog, film grain, the decorative cast group */
+html[data-touch] .av-fr,
+html[data-touch] .av-banner,
+html[data-touch] .hero-cast,
+html[data-touch] .grain,
+html[data-touch] .aurora { display: none !important; }
+html[data-touch] .cosmos .neb,
+html[data-touch] .cosmos .fog,
+html[data-touch] .cosmos .fog-2 {
+  filter: none !important;
+  animation: none !important;
+  opacity: .35 !important;
+}
+
+/* the fog transition plate: a murky full-height wash that reads as a smear
+   on a phone and buries the beat it belongs to */
+html[data-touch] .sm.plain.evo-fog,
+html[data-touch] .evo-fog { display: none !important; }
+
+/* nobody needs telling to scroll on a phone */
+html[data-touch] .scroll-cue { display: none !important; }
+
+/* The eight hero spec chips used to be hidden here (section 10 states the
+   same spec as prose). They are back: the hero credit block is now one
+   shared object across all 31 case studies, and metagenus opting out was
+   the only page that broke it. Sizing comes from case-mobile.css. */
+
+/* a dense stat readout, illegible at this size, duplicating the rarity art */
+html[data-touch] .av-scorewrap { display: none !important; }
+
+/* the playable field needs WASD, Shift, Space and a dragged mouse, and the
+   whole 3D library to draw at all. The claim stays; the dead rectangle goes */
+html[data-touch] .play-stage,
+html[data-touch] .play-hud { display: none !important; }
+
+/* a Play button floating over a paragraph is worse than no video */
+html[data-touch] .sm.plain.dim { display: none !important; }
+
+/* nothing may describe a scene that has not loaded — restored by
+   data-3d-live, which mobile.js sets the moment the visitor taps */
+html[data-touch]:not([data-3d-live]) #anamorphLoad,
+html[data-touch]:not([data-3d-live]) .anamorph-load,
+html[data-touch]:not([data-3d-live]) .ah-hint,
+html[data-touch]:not([data-3d-live]) .ah-tag { display: none !important; }
+
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   TABLET TIER · 641–1024px, touch
+
+   A 768px iPad is not a large phone. Phone values there leave a 38-character
+   column inside a 700px container with an ocean of empty space beside it —
+   which is what "the paragraph doesn't look neat" actually was: correct
+   spacing, wrong scale for the width.
+
+   Same structure, larger frame: wider gutter, bigger headline, longer
+   measure, bigger thumbnails.
+   ═════════════════════════════════════════════════════════════════════ */
+@media (min-width: 641px) and (max-width: 1024px) {
+
+  html[data-touch] .scene,
+  html[data-touch] .pin { padding: 88px 40px !important; }
+  html[data-touch] .viewer,
+  html[data-touch] .media-bleed { padding: 0 !important; }
+  html[data-touch] .hero-inner { padding: 120px 0 72px !important; }
+  html[data-touch] .hs-inner { padding: 0 40px !important; }
+
+  /* type scales with the measure, not with the device */
+  html[data-touch] .hero-title .ln { font-size: 54px !important; }
+  html[data-touch] .hero-sub { font-size: 24px !important; }
+  html[data-touch] .st,
+  html[data-touch] .close-t { font-size: 44px !important; margin-bottom: 22px !important; }
+  html[data-touch] .hero-lede { font-size: 18px !important; max-width: 46ch !important; }
+  html[data-touch] .sl,
+  html[data-touch] .scene p,
+  html[data-touch] .lic p,
+  html[data-touch] .roll p,
+  html[data-touch] .av-idblock .desc {
+    font-size: 18px !important;
+    line-height: 1.66 !important;
+    max-width: 68ch !important;
+  }
+  html[data-touch] .lic h4 { font-size: 20px !important; }
+  html[data-touch] .roll.swap h3 { font-size: 30px !important; }
+
+  /* media gets a landscape frame — 4:5 is portrait-phone shaped */
+  html[data-touch] .sm,
+  html[data-touch] .av-figure,
+  html[data-touch] .adv-stage { aspect-ratio: 16 / 11; }
+
+  /* strips: bigger targets, bleeding to the wider gutter */
+  html[data-touch] .av-grid,
+  html[data-touch] .adv-grid {
+    gap: 12px !important;
+    margin-inline: -40px !important;
+    padding: 0 40px 24px !important;
+  }
+  html[data-touch] .av-grid > *,
+  html[data-touch] .adv-cell {
+    flex: 0 0 104px !important;
+    width: 104px !important;
+    height: 104px !important;
+  }
+
+  /* two cards visible in the rail instead of one and a sliver */
+  html[data-touch] .roll.swap {
+    /* the desktop .roll sets its own gap, so this needs !important or the
+       cards sit edge to edge and their top rules read as one long line */
+    column-gap: 28px !important;
+    margin-inline: -40px !important;
+    padding: 0 40px 10px !important;
+  }
+  html[data-touch] .roll.swap .r { flex: 0 0 44% !important; }
+
+  /* at this width the licence number can sit beside its text again */
+  /* A two-column grid with THREE children put the number in column 1, the
+     heading in column 2, and then wrapped the paragraph back into column 1 —
+     56px wide, one word per line. Place each child explicitly. */
+  html[data-touch] .lic .l {
+    display: grid !important;
+    grid-template-columns: 56px minmax(0, 1fr) !important;
+    column-gap: 20px !important;
+    row-gap: 8px !important;
+    padding: 26px 0 !important;
+  }
+  html[data-touch] .lic .l > .i { grid-column: 1 !important; grid-row: 1 !important; margin-bottom: 0 !important; }
+  html[data-touch] .lic .l > h4 { grid-column: 2 !important; grid-row: 1 !important; }
+  html[data-touch] .lic .l > p,
+  html[data-touch] .lic .l > *:not(.i):not(h4) { grid-column: 2 !important; }
+
+  /* the same relationships, scaled: 12→16, 20→28, 40→56 */
+  html[data-touch] section:not(.hero):not(.film-scene) > * + *,
+  html[data-touch] .pin:not(.film-scene) > .pinner > * + * { margin-top: 56px !important; }
+  html[data-touch] .av-stage > * + *,
+  html[data-touch] .adv > * + * { margin-top: 56px !important; }
+  html[data-touch] * + figure,
+  html[data-touch] * + img,
+  html[data-touch] * + video,
+  html[data-touch] * + canvas,
+  html[data-touch] * + iframe,
+  html[data-touch] * + .sm,
+  html[data-touch] * + .av-figure,
+  html[data-touch] * + .adv-stage,
+  html[data-touch] * + .viewer,
+  html[data-touch] * + .m-defer,
+  html[data-touch] figure + *,
+  html[data-touch] img + *,
+  html[data-touch] video + *,
+  html[data-touch] .sm + *,
+  html[data-touch] .av-figure + *,
+  html[data-touch] .adv-stage + *,
+  html[data-touch] .viewer + * { margin-top: 56px !important; }
+  html[data-touch] .hero *,
+  html[data-touch] .film-scene *,
+  html[data-touch] .sm > *,
+  html[data-touch] .av-figure > *,
+  html[data-touch] .adv-stage > *,
+  html[data-touch] .m-defer > * { margin-top: revert !important; }
+  html[data-touch] .col > * + * { margin-top: 28px !important; }
+  /* a caption belongs to the media above it, not 56px away from it */
+  html[data-touch] .stage-note { margin-top: 16px !important; }
+  html[data-touch] .mk { margin-bottom: 0 !important; }
+  html[data-touch] .mk + * { margin-top: 16px !important; }
+  html[data-touch] .st { margin-bottom: 0 !important; }
+  html[data-touch] .st em { margin-top: 10px !important; }
+  html[data-touch] .sm,
+  html[data-touch] .av-figure,
+  html[data-touch] .adv-stage { margin-top: 56px !important; }
+  html[data-touch] .av-idblock { margin-top: 44px !important; }
+  html[data-touch] .av-traits { margin-top: 56px !important; }
+  html[data-touch] .av-grid,
+  html[data-touch] .adv-grid { margin-top: 32px !important; margin-bottom: 32px !important; }
+  html[data-touch] .adv-tabs { margin-bottom: 32px !important; }
+  html[data-touch] .roll.swap { margin-top: 44px !important; }
+  html[data-touch] .lic { margin-top: 44px !important; }
+}

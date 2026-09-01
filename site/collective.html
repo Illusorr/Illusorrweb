@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Collective · Build With Us · ILLUSORR</title>
+<meta name="description" content="The ILLUSORR Collective is an open talent pipeline: train in our tools, join the network, and ship real client work credited alongside the studio.">
+<link rel="canonical" href="https://illusorr.com/collective.html">
+<meta name="theme-color" content="#05060a">
+<meta property="og:site_name" content="ILLUSORR">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Collective · Build With Us · ILLUSORR">
+<meta property="og:description" content="The ILLUSORR Collective is an open talent pipeline: train in our tools, join the network, and ship real client work credited alongside the studio.">
+<meta property="og:url" content="https://illusorr.com/collective.html">
+<meta property="og:image" content="https://illusorr.com/assets/img/og/og-default.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="assets/fonts/outfit-variable.woff" as="font" type="font/woff" crossorigin>
+<link rel="preload" as="font" type="font/woff" crossorigin href="assets/fonts/monument-extended-400.woff">
+<link rel="preload" as="font" type="font/woff" crossorigin href="assets/fonts/squaresharps-400.woff">
+<link rel="stylesheet" href="assets/css/main.css">
+<link rel="stylesheet" href="assets/css/nav.css">
+<!-- phone + tablet: shared touch layer, then the shared page layout -->
+<link rel="stylesheet" href="assets/css/mobile.css">
+<link rel="stylesheet" href="assets/css/pages-mobile.css">
+<script src="assets/js/mobile.js"></script>
+<script src="https://unpkg.com/d3@7.9.0/dist/d3.min.js" integrity="sha384-CjloA8y00+1SDAUkjs099PVfnY2KmDC2BZnws9kh8D/lX1s46w6EPhpXdqMfjK6i" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/topojson-client@3.1.0/dist/topojson-client.min.js" integrity="sha384-Ukv1p/xTma6P4/2bY5KzWBw+ydSpXmhCMtyciIQVDJ1RmOxtCYNMF1uXT9T63H67" crossorigin="anonymous"></script>
+<style>
+  /* the two canvas slots are gone, so these grids run as single columns */
+  #p-collective .sd-panel .sd-need,
+  #p-collective .labcols{grid-template-columns:1fr}
+  #p-collective .labcol{max-width:820px}
+  /* panel 02 now carries the constellation under the statement, so the
+     statement gives back some of its leading */
+  #p-collective [data-p="2"] .sd-big{max-width:900px;font-size:clamp(19px,2vw,28px)}
+  #p-collective [data-p="6"] .pnl{max-width:1440px}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><path id="adgPath" d="M19.7548 0.0800781C8.86153 0.0800781 0 8.85781 0 19.6481C0 30.4384 8.86153 39.2161 19.7548 39.2161C30.6481 39.2161 39.5112 30.4384 39.5112 19.6481C39.5112 8.85781 30.6481 0.0800781 19.7548 0.0800781ZM19.7548 35.9563C10.6759 35.9563 3.29095 28.6396 3.29095 19.6481C3.29095 10.6566 10.6759 3.33839 19.7548 3.33839C28.8337 3.33839 36.2187 10.6551 36.2187 19.6481C36.2187 28.6411 28.8345 35.9563 19.7548 35.9563ZM31.1424 16.9934C30.928 20.5116 28.341 23.5493 24.1601 24.3841L23.1785 21.5783L24.2432 21.3872C26.2269 21.0321 27.6142 19.6723 27.7317 17.6915C27.84 15.9486 26.911 15.0405 25.3689 15.0632C25.1332 15.0662 24.8838 15.0911 24.6215 15.1387L23.2708 15.379L21.1673 15.8383L20.1575 12.9502L24.7527 12.129C25.3056 12.0285 25.8227 11.9779 26.3093 11.9711C29.5873 11.925 31.3284 13.9028 31.1424 16.9934ZM17.3082 13.4435L21.644 24.8759L18.1219 25.5256L17.3593 23.4209L16.5684 20.9626L15.4549 17.7353L13.9051 21.4416L12.7771 24.2421L11.7986 26.6905L8.33986 27.3274L14.1362 14.0131L17.3074 13.4435H17.3082ZM78.8218 19.1382L70.4087 38.7221H74.8117L76.019 35.7878H85.4945L86.7018 38.7221H91.2168L82.8037 19.1382H78.8218ZM77.5397 32.0936L80.7567 24.2776L83.9737 32.0936H77.5397ZM109.221 19.2772H113.876V38.7221H109.585V26.0272L104.06 34.3328H103.948L98.4798 26.1103V38.7213H94.2454V19.2772H98.9008L104.061 27.4996L109.221 19.2772H109.221ZM118.783 19.2772H123.102V38.7221H118.783V19.2772ZM145.452 19.2772V38.7221H141.778L132.272 26.3612V38.7221H128.009V19.2772H131.991L141.189 31.2498V19.2772H145.452ZM62.3152 27.5276H67.9415V35.9722C65.9219 37.6667 63.1458 39.0552 59.5566 39.0552C53.443 39.0552 49.2368 34.805 49.2368 29.0551V29C49.2368 23.4723 53.5833 18.944 59.5292 18.944C63.0626 18.944 65.1936 19.8883 67.2413 21.6108L64.5209 24.8608C63.0062 23.6105 61.6601 22.8883 59.3888 22.8883C56.2481 22.8883 53.7519 25.6382 53.7519 28.9441V29C53.7519 32.556 56.2199 35.1668 59.6969 35.1668C61.2673 35.1668 62.6691 34.7778 63.7635 34.0004V31.2226H59.2241L62.3167 27.5283L62.3152 27.5276ZM167.999 27.5276V35.9722C165.98 37.6667 163.204 39.0552 159.614 39.0552C153.501 39.0552 149.295 34.805 149.295 29.0551V29C149.295 23.4723 153.641 18.944 159.586 18.944C163.12 18.944 165.251 19.8883 167.298 21.6108L164.578 24.8608C163.063 23.6105 161.717 22.8883 159.446 22.8883C156.305 22.8883 153.809 25.6382 153.809 28.9441V29C153.809 32.556 156.277 35.1668 159.754 35.1668C161.324 35.1668 162.726 34.7778 163.821 34.0004V31.2226H159.281L162.374 27.5283H168L167.999 27.5276ZM53.5467 12.0716H60.2247L61.1872 14.4105H64.4538L58.3668 0.240236H55.4855L49.3985 14.4097H52.5842L53.5467 12.0708V12.0716ZM56.8857 3.95863L59.1661 9.49845H54.6061L56.8865 3.95863H56.8857ZM138.874 0.240236L132.786 14.4097H135.972L136.935 12.0708H143.613L144.575 14.4097H147.842L141.756 0.240236H138.874ZM142.554 9.49845H137.994L140.274 3.95863L142.554 9.49845ZM78.7173 10.5115C78.7173 8.62211 77.703 7.67778 76.0594 7.05452C77.0738 6.4917 77.9264 5.60781 77.9264 4.01982V3.97978C77.9264 3.01506 77.6015 2.23088 76.9525 1.58798C76.141 0.78417 74.8628 0.342224 73.239 0.342224H66.6442V14.4112H73.4007C76.607 14.4112 78.7173 13.1247 78.7173 10.5523V10.5115ZM69.688 3.05434H72.7723C74.0909 3.05434 74.8216 3.57712 74.8216 4.50181V4.54185C74.8216 5.58665 73.9491 6.02936 72.5694 6.02936H69.688V3.05434ZM73.2993 8.60171C74.9024 8.60171 75.6125 9.18493 75.6125 10.1293V10.1693C75.6125 11.2141 74.7804 11.6968 73.4007 11.6968H69.6872V8.60171H73.2993ZM93.4469 0.340713V8.27988C93.4469 12.5407 91.0322 14.6311 87.2173 14.6311C83.4024 14.6311 81.0694 12.5211 81.0694 8.38036V0.340713H84.1941V8.29953C84.1941 10.5908 85.3511 11.7769 87.2578 11.7769C89.1645 11.7769 90.3214 10.6309 90.3214 8.4V0.340713H93.4469ZM108.258 0.340713H102.719V14.4097H108.258C112.722 14.4097 115.806 11.3342 115.806 7.37484V7.3348C115.806 3.37541 112.722 0.340713 108.258 0.340713ZM112.539 7.41563C112.539 9.90791 110.815 11.616 108.257 11.616H105.843V3.13442H108.257C110.814 3.13442 112.539 4.88332 112.539 7.37559V7.41563ZM127.472 14.4105V8.76262H121.709V14.4105H118.585V0.340713H121.709V5.90848H127.472V0.340713H130.597V14.4097H127.472V14.4105ZM162.105 10.5516V10.5115C162.105 8.62211 161.091 7.67778 159.447 7.05452C160.462 6.4917 161.314 5.60781 161.314 4.01982V3.97978C161.314 3.01506 160.99 2.23088 160.34 1.58798C159.529 0.78417 158.251 0.342224 156.627 0.342224H150.032V14.4112H156.789C159.995 14.4112 162.105 13.1247 162.105 10.5523L162.105 10.5516ZM153.076 3.05434H156.16C157.479 3.05434 158.21 3.57712 158.21 4.50181V4.54185C158.21 5.58665 157.337 6.02936 155.957 6.02936H153.076V3.05434ZM153.076 8.60171H156.688C158.291 8.60171 159.001 9.18493 159.001 10.1293V10.1693C159.001 11.2141 158.169 11.6968 156.789 11.6968H153.076V8.60171ZM167.948 14.4105H164.823V0.340713H167.948V14.4105Z" fill="currentColor"/></defs></svg>
+
+
+<header class="il-topbar" id="ilTopbar">
+  <div class="il-brand"><span class="il-logo" role="img" aria-label="ILLUSORR"></span></div>
+  <div class="il-right">
+    <a class="il-talk" href="contact.html">Let's talk</a>
+    <button class="il-burger" id="ilMenuOpen" aria-label="Open menu"><i></i><i></i></button>
+  </div>
+</header>
+
+<div class="il-overlay" id="ilOverlay">
+  <div class="il-ohead">
+    <div class="il-brand"><span class="il-logo" role="img" aria-label="ILLUSORR"></span></div>
+    <button class="il-oclose" id="ilMenuClose">Close ✕</button>
+  </div>
+  <nav>
+    <a href="index.html">Home <span>01</span></a>
+    <a href="about.html">About <span>02</span></a>
+    <a href="sectors.html">Sectors <span>03</span></a>
+    <a href="work.html">Work <span>04</span></a>
+    <a href="lab.html">Lab <span>05</span></a>
+    <a href="collective.html">Collective <span>06</span></a>
+    <a href="contact.html">Contact <span>07</span></a>
+  </nav>
+  <div class="il-ofoot"><span>Abu Dhabi · Yas Creative Hub</span><span>hello@illusorr.com</span></div>
+</div>
+
+
+<!-- ============ COLLECTIVE, program ============ -->
+<div class="page show" id="p-collective"><div class="sd-stack">
+  <section class="dark sd-panel" data-p="1">
+    <div class="pnl">
+      <div class="dk-lbl reveal">The Creators Collective</div>
+      <h1 class="mnt reveal lab-h1">Train with us.<br>Build with us.</h1>
+      <p class="lab-lede reveal">An open platform for artists, developers and designers who want to get better and get working. You train on the studio pipelines, join the network, and get commissioned on real projects.</p>
+      <div class="collstat reveal"><b>60+</b><span>creators trained through the pipeline</span></div>
+      <span class="sd-cue">Scroll ↓</span>
+    </div>
+    <span class="pnl-tag">01 / 09 &nbsp;·&nbsp; Collective</span>
+  </section>
+<section class="light sd-panel " data-p="2"><div class="pnl"><div class="sd-need"><div class="reveal"><div class="dk-lbl">What the Collective is</div><p class="sd-big disp">Most training ends in a certificate. This ends in a commission. You learn the studio pipelines, sit in a network of people doing the same, and get paid when the work comes in.</p><div class="cst-hold reveal">
+            <div class="cst" id="cst"></div>
+            <div class="cst-read"><span class="cst-r-n">Nine disciplines</span><p>Every member is logged by discipline, toolset and availability. Take any one of them to see what it does here.</p></div>
+          </div></div></div></div><span class="pnl-tag">02 / 09 &nbsp;·&nbsp; Collective</span></section>
+<section class="dark sd-panel " data-p="3"><div class="pnl"><div class="dk-lbl reveal">What you get</div><div class="labcols"><div class="labcol reveal"><details class="off-item labitem"><summary><span class="li-n">Training on live pipelines</span></summary><p>Hands on, on real client projects, at studio standard. Not exercises and not a syllabus that ends in a certificate.</p></details><details class="off-item labitem"><summary><span class="li-n">Access to the studio toolset</span></summary><p>The engines, procedural systems and asset library the studio builds for its own production, rather than whatever you can afford alone.</p></details><details class="off-item labitem"><summary><span class="li-n">Paid commissions</span></summary><p>When work comes in that matches your discipline, members get called first. The training is the route in, not the product.</p></details><details class="off-item labitem"><summary><span class="li-n">A network that teaches itself</span></summary><p>The Collective runs as a peer group. Members review each other's work, share methods and pass on what they learn, the studio is one voice in it, not the only one.</p></details></div></div></div><span class="pnl-tag">03 / 09 &nbsp;·&nbsp; Collective</span></section>
+<section class="light sd-panel " data-p="4"><div class="pnl"><div class="dk-lbl reveal">How it works</div><div class="sd-steps steps-4"><div class="sd-step reveal"><span class="stn">01</span><b>Apply</b><p>Send work. We look at craft and attitude, not credentials or a degree.</p></div><div class="sd-step reveal"><span class="stn">02</span><b>Train</b><p>Learn the studio pipelines hands on, working alongside the team on live projects.</p></div><div class="sd-step reveal"><span class="stn">03</span><b>Join</b><p>Enter the talent database with your disciplines, tools and availability logged.</p></div><div class="sd-step reveal"><span class="stn">04</span><b>Get commissioned</b><p>Work is matched to your disciplines and you are brought onto the project as part of the team.</p></div></div></div><span class="pnl-tag">04 / 09 &nbsp;·&nbsp; Collective</span></section>
+<section class="dark sd-panel " data-p="5"><div class="pnl"><div class="dk-lbl reveal">How members earn</div><div class="labcol reveal" style="max-width:820px"><details class="off-item labitem"><summary><span class="li-n">Commissioned project work</span></summary><p>Paid at studio rates on client projects, scoped per brief and per discipline.</p></details><details class="off-item labitem"><summary><span class="li-n">Ongoing production runs</span></summary><p>Sector clients on a monthly cadence need consistent capacity. That is recurring, predictable work rather than one-off jobs.</p></details><details class="off-item labitem"><summary><span class="li-n">Contribution to studio IP</span></summary><p>Owned properties like Metagenus are built by many hands. Members who contribute share in what the IP earns when it licenses.</p></details></div></div><span class="pnl-tag">05 / 09 &nbsp;·&nbsp; Collective</span></section>
+<section class="light sd-panel" data-p="6"><div class="pnl">
+  <div class="dk-lbl reveal">Where the Collective is</div>
+  <div class="swm-bar reveal" style="margin-top:14px">
+    <p class="swm-count"><b>28</b> members across <span>8 territories</span></p>
+    <p style="font-size:13px;line-height:1.6;font-weight:300;color:var(--cream-dim);max-width:420px">Members work from wherever they are and commission through Abu Dhabi. Each whorl is a territory, weighted by how many people sit there.</p>
+  </div>
+  <div class="swm-filters reveal"></div>
+  <div class="swm-wrap reveal">
+    <div class="swm" id="swm"></div>
+    <div class="swm-tip"></div>
+  </div>
+</div><span class="pnl-tag">06 / 09 &nbsp;·&nbsp; Collective</span></section>
+<section class="dark sd-panel" data-p="7"><div class="pnl">
+  <div class="dk-lbl reveal">Open commissions</div>
+  <p class="reveal" style="margin-top:12px;max-width:640px;font-size:14px;line-height:1.7;font-weight:300;color:var(--dim)">What the studio is matching from the database right now. Members are called against these before anything goes to an open hiring round.</p>
+  <div class="opb reveal" id="opb"></div>
+</div><span class="pnl-tag">07 / 09 &nbsp;·&nbsp; Collective</span></section>
+<section class="light sd-panel " data-p="8"><div class="pnl"><div class="dk-lbl reveal">The hub</div><div class="hubgrid"><div class="hubcard reveal"><h3>The talent database</h3><p>Every member is logged by discipline, toolset and availability. When a brief lands, the studio searches the database rather than starting a hiring round, which is why membership converts into work.</p></div><div class="hubcard reveal"><h3>Learning sideways</h3><p>Members run reviews and share methods with each other. A game developer explains engine constraints to a 3D artist; the artist shows what the pipeline can actually produce. That exchange is the point.</p></div><div class="hubcard reveal"><h3>Based at Yas Creative Hub</h3><p>The studio sits inside the Abu Dhabi media and gaming cluster, so the Collective trains into a real local industry rather than into a vacuum.</p></div></div><div class="accred"><span class="acc-lbl">In partnership with</span><span class="acc-mark acc-real"><svg class="adg" preserveAspectRatio="xMidYMid meet" viewBox="0 0 168 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M19.7548 0.0800781C8.86153 0.0800781 0 8.85781 0 19.6481C0 30.4384 8.86153 39.2161 19.7548 39.2161C30.6481 39.2161 39.5112 30.4384 39.5112 19.6481C39.5112 8.85781 30.6481 0.0800781 19.7548 0.0800781ZM19.7548 35.9563C10.6759 35.9563 3.29095 28.6396 3.29095 19.6481C3.29095 10.6566 10.6759 3.33839 19.7548 3.33839C28.8337 3.33839 36.2187 10.6551 36.2187 19.6481C36.2187 28.6411 28.8345 35.9563 19.7548 35.9563ZM31.1424 16.9934C30.928 20.5116 28.341 23.5493 24.1601 24.3841L23.1785 21.5783L24.2432 21.3872C26.2269 21.0321 27.6142 19.6723 27.7317 17.6915C27.84 15.9486 26.911 15.0405 25.3689 15.0632C25.1332 15.0662 24.8838 15.0911 24.6215 15.1387L23.2708 15.379L21.1673 15.8383L20.1575 12.9502L24.7527 12.129C25.3056 12.0285 25.8227 11.9779 26.3093 11.9711C29.5873 11.925 31.3284 13.9028 31.1424 16.9934ZM17.3082 13.4435L21.644 24.8759L18.1219 25.5256L17.3593 23.4209L16.5684 20.9626L15.4549 17.7353L13.9051 21.4416L12.7771 24.2421L11.7986 26.6905L8.33986 27.3274L14.1362 14.0131L17.3074 13.4435H17.3082ZM78.8218 19.1382L70.4087 38.7221H74.8117L76.019 35.7878H85.4945L86.7018 38.7221H91.2168L82.8037 19.1382H78.8218ZM77.5397 32.0936L80.7567 24.2776L83.9737 32.0936H77.5397ZM109.221 19.2772H113.876V38.7221H109.585V26.0272L104.06 34.3328H103.948L98.4798 26.1103V38.7213H94.2454V19.2772H98.9008L104.061 27.4996L109.221 19.2772H109.221ZM118.783 19.2772H123.102V38.7221H118.783V19.2772ZM145.452 19.2772V38.7221H141.778L132.272 26.3612V38.7221H128.009V19.2772H131.991L141.189 31.2498V19.2772H145.452ZM62.3152 27.5276H67.9415V35.9722C65.9219 37.6667 63.1458 39.0552 59.5566 39.0552C53.443 39.0552 49.2368 34.805 49.2368 29.0551V29C49.2368 23.4723 53.5833 18.944 59.5292 18.944C63.0626 18.944 65.1936 19.8883 67.2413 21.6108L64.5209 24.8608C63.0062 23.6105 61.6601 22.8883 59.3888 22.8883C56.2481 22.8883 53.7519 25.6382 53.7519 28.9441V29C53.7519 32.556 56.2199 35.1668 59.6969 35.1668C61.2673 35.1668 62.6691 34.7778 63.7635 34.0004V31.2226H59.2241L62.3167 27.5283L62.3152 27.5276ZM167.999 27.5276V35.9722C165.98 37.6667 163.204 39.0552 159.614 39.0552C153.501 39.0552 149.295 34.805 149.295 29.0551V29C149.295 23.4723 153.641 18.944 159.586 18.944C163.12 18.944 165.251 19.8883 167.298 21.6108L164.578 24.8608C163.063 23.6105 161.717 22.8883 159.446 22.8883C156.305 22.8883 153.809 25.6382 153.809 28.9441V29C153.809 32.556 156.277 35.1668 159.754 35.1668C161.324 35.1668 162.726 34.7778 163.821 34.0004V31.2226H159.281L162.374 27.5283H168L167.999 27.5276ZM53.5467 12.0716H60.2247L61.1872 14.4105H64.4538L58.3668 0.240236H55.4855L49.3985 14.4097H52.5842L53.5467 12.0708V12.0716ZM56.8857 3.95863L59.1661 9.49845H54.6061L56.8865 3.95863H56.8857ZM138.874 0.240236L132.786 14.4097H135.972L136.935 12.0708H143.613L144.575 14.4097H147.842L141.756 0.240236H138.874ZM142.554 9.49845H137.994L140.274 3.95863L142.554 9.49845ZM78.7173 10.5115C78.7173 8.62211 77.703 7.67778 76.0594 7.05452C77.0738 6.4917 77.9264 5.60781 77.9264 4.01982V3.97978C77.9264 3.01506 77.6015 2.23088 76.9525 1.58798C76.141 0.78417 74.8628 0.342224 73.239 0.342224H66.6442V14.4112H73.4007C76.607 14.4112 78.7173 13.1247 78.7173 10.5523V10.5115ZM69.688 3.05434H72.7723C74.0909 3.05434 74.8216 3.57712 74.8216 4.50181V4.54185C74.8216 5.58665 73.9491 6.02936 72.5694 6.02936H69.688V3.05434ZM73.2993 8.60171C74.9024 8.60171 75.6125 9.18493 75.6125 10.1293V10.1693C75.6125 11.2141 74.7804 11.6968 73.4007 11.6968H69.6872V8.60171H73.2993ZM93.4469 0.340713V8.27988C93.4469 12.5407 91.0322 14.6311 87.2173 14.6311C83.4024 14.6311 81.0694 12.5211 81.0694 8.38036V0.340713H84.1941V8.29953C84.1941 10.5908 85.3511 11.7769 87.2578 11.7769C89.1645 11.7769 90.3214 10.6309 90.3214 8.4V0.340713H93.4469ZM108.258 0.340713H102.719V14.4097H108.258C112.722 14.4097 115.806 11.3342 115.806 7.37484V7.3348C115.806 3.37541 112.722 0.340713 108.258 0.340713ZM112.539 7.41563C112.539 9.90791 110.815 11.616 108.257 11.616H105.843V3.13442H108.257C110.814 3.13442 112.539 4.88332 112.539 7.37559V7.41563ZM127.472 14.4105V8.76262H121.709V14.4105H118.585V0.340713H121.709V5.90848H127.472V0.340713H130.597V14.4097H127.472V14.4105ZM162.105 10.5516V10.5115C162.105 8.62211 161.091 7.67778 159.447 7.05452C160.462 6.4917 161.314 5.60781 161.314 4.01982V3.97978C161.314 3.01506 160.99 2.23088 160.34 1.58798C159.529 0.78417 158.251 0.342224 156.627 0.342224H150.032V14.4112H156.789C159.995 14.4112 162.105 13.1247 162.105 10.5523L162.105 10.5516ZM153.076 3.05434H156.16C157.479 3.05434 158.21 3.57712 158.21 4.50181V4.54185C158.21 5.58665 157.337 6.02936 155.957 6.02936H153.076V3.05434ZM153.076 8.60171H156.688C158.291 8.60171 159.001 9.18493 159.001 10.1293V10.1693C159.001 11.2141 158.169 11.6968 156.789 11.6968H153.076V8.60171ZM167.948 14.4105H164.823V0.340713H167.948V14.4105Z" fill="currentColor"></path>
+</svg></span><div class="acc-txt"><b>Abu Dhabi Gaming</b><span>Department of Culture and Tourism, Abu Dhabi</span></div><p class="acc-note">Abu Dhabi Gaming leads the emirate's talent development for games and esports. The Collective trains into that same ecosystem, from Yas Creative Hub.</p></div></div><span class="pnl-tag">08 / 09 &nbsp;·&nbsp; Collective</span></section>
+  <section class="dark sd-panel sd-end" data-p="9">
+    <div class="pnl">
+      <div class="dk-lbl reveal">Join</div>
+      <h2 class="mnt reveal">Apply to the Collective.</h2>
+      <p class="reveal">Applications are open and rolling. Send work, tell us what you want to get good at, and we will tell you where you would fit.</p>
+      <div class="end-cta reveal"><a class="fakebtn" href="brief.html?intent=collective">Apply to the Collective ↗</a>
+      <a class="end-back" href="work.html">← See the work</a></div>
+    </div>
+    <span class="pnl-tag">09 / 09 &nbsp;·&nbsp; Collective</span>
+  </section>
+</div></div>
+
+
+<script src="assets/js/collective.js?v=5" defer></script>
+<script src="assets/js/nav.js" defer></script>
+<script src="assets/js/components.js" defer></script>
+<script src="assets/js/site-footer.js" defer></script>
+<script src="assets/js/to-top.js" defer></script>
+</body>
+</html>

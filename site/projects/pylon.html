@@ -1,0 +1,1913 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="preload" as="font" type="font/woff" crossorigin href="../assets/fonts/outfit-variable.woff">
+<link rel="stylesheet" href="../assets/css/nav.css">
+<link rel="stylesheet" href="../assets/css/case/fonts.css">
+<title>ILLUSORR · Pylon · The First World</title>
+<link rel="preload" as="font" type="font/otf" crossorigin href="../assets/projects/shared/fonts/PPMonumentExtended-Black.otf">
+<link rel="preload" as="font" type="font/ttf" crossorigin href="../assets/projects/shared/fonts/Squaresharps-v2.ttf">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+  /* ─────────────────────────────────────────────────────────────────
+     Fonts, shared ILLUSORR stack
+     ───────────────────────────────────────────────────────────────── */
+  @font-face { font-family:'Outfit'; font-weight:300; font-display:swap; src:url('../assets/projects/shared/fonts/Outfit-Light.ttf') format('truetype'); }
+  @font-face { font-family:'Outfit'; font-weight:400; font-display:swap; src:url('../assets/projects/shared/fonts/Outfit-Regular.ttf') format('truetype'); }
+  @font-face { font-family:'Outfit'; font-weight:500; font-display:swap; src:url('../assets/projects/shared/fonts/Outfit-Medium.ttf') format('truetype'); }
+  @font-face { font-family:'Outfit'; font-weight:600; font-display:swap; src:url('../assets/projects/shared/fonts/Outfit-SemiBold.ttf') format('truetype'); }
+  @font-face { font-family:'Outfit'; font-weight:700; font-display:swap; src:url('../assets/projects/shared/fonts/Outfit-Bold.ttf') format('truetype'); }
+  @font-face { font-family:'Outfit'; font-weight:100 900; font-display:swap;
+    src:url('../assets/fonts/outfit-variable.woff') format('woff'); }
+  @font-face { font-family:'PP Monument Extended'; font-weight:400; font-display:swap; src:url('../assets/projects/shared/fonts/PPMonumentExtended-Regular.otf') format('opentype'); }
+  @font-face { font-family:'PP Monument Extended'; font-weight:900; font-display:swap; src:url('../assets/projects/shared/fonts/PPMonumentExtended-Black.otf') format('opentype'); }
+  @font-face { font-family:'Squaresharps'; font-weight:400; font-display:swap; src:url('../assets/projects/shared/fonts/Squaresharps-v2.ttf') format('truetype'); }
+
+  /* ─────────────────────────────────────────────────────────────────
+     LIQUID CHROME THEME. Near-black, liquid-silver ink, a warm molten
+     glow accent used sparingly (the heat in frozen metal).
+     ───────────────────────────────────────────────────────────────── */
+  :root {
+    --bg:        #08070B;
+    --bg-2:      #0D0C11;
+    --deep:      #050407;
+    --ink:       #f4f6fa;
+    --ink-bright:#FFFFFF;
+    --ink-soft:  rgba(198, 195, 206, 0.60);
+    --ink-faint: rgba(198, 195, 206, 0.15);
+    --ink-hair:  rgba(198, 195, 206, 0.08);
+    --tile:      #100E14;
+    --accent:    #2E6BFF;          /* electric blue */
+    --accent-2:  #9FB0C2;          /* cool steel */
+    --glow:      rgba(46, 107, 255, 0.5);
+
+    --maxw: 1440px;
+    --gutter: clamp(20px, 4vw, 64px);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 400;
+    background: var(--bg);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  /* Fine film grain so the flats read like developed metal, not plastic */
+  body::after {
+    content: '';
+    position: fixed; inset: 0; pointer-events: none; z-index: 1;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.78 0 0 0 0 0.76 0 0 0 0 0.80 0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    background-size: 220px 220px; opacity: 0.045; mix-blend-mode: screen;
+  }
+
+  section { position: relative; }
+  section > * { position: relative; z-index: 2; }
+  section[data-deep="1"] { background: var(--deep); }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter); }
+
+  /* ─── Top nav ─────────────────────────────────────────────────── */
+  .topnav {
+    position: fixed; left: 0; right: 0; top: 0;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 22px var(--gutter); z-index: 50; pointer-events: none;
+  }
+  .topnav > * { pointer-events: auto; }
+  .topnav a, .topnav button {
+    text-decoration: none; background: transparent; border: 0;
+    font-family: 'Squaresharps', system-ui, sans-serif;
+    font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase;
+    cursor: pointer; color: var(--ink); transition: color .35s ease;
+  }
+  .topnav nav a { color: var(--ink-soft); }
+  .topnav nav a:hover { color: var(--ink-bright); }
+  .topnav .logo-lockup {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-family: 'Squaresharps', system-ui, sans-serif;
+    font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink); text-decoration: none;
+  }
+  .topnav .logo-mark { width: 24px; height: 24px; background: url('../assets/projects/shared/illusorr-logo.webp') left center / auto 100% no-repeat; filter: invert(1) brightness(1.1); }
+  .topnav nav { display: flex; gap: 32px; align-items: center; }
+
+  /* ─── Hero ────────────────────────────────────────────────────── */
+  section.hero {
+    width: 100%; max-width: 100vw; min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: clamp(96px, 14vh, 160px) var(--gutter) clamp(48px, 8vh, 96px);
+    position: relative; overflow: hidden;
+    background: radial-gradient(120% 120% at 50% 30%, #15161d 0%, #08070B 60%, #050407 100%);
+  }
+  .hero canvas.swirl { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0.92; filter: blur(1.5px) saturate(1.06); transform: translateZ(0); }
+  /* Metallic sheen + vignette over the swirl so text floats clear */
+  .hero::before {
+    content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background:
+      radial-gradient(86% 78% at 50% 42%, transparent 42%, rgba(8,7,11,0.45) 80%, rgba(8,7,11,0.86) 100%),
+      linear-gradient(180deg, rgba(8,7,11,0.42) 0%, transparent 28%, transparent 46%, rgba(8,7,11,0.8) 100%);
+  }
+  .hero .hero-inner { max-width: var(--maxw); width: 100%; margin: 0 auto; position: relative; z-index: 3; display: flex; flex-direction: column; flex: 1 1 auto; }
+
+  .eyebrow-row {
+    display: flex; gap: 18px; align-items: center; flex-wrap: wrap;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
+    margin-bottom: 30px;
+  }
+  .eyebrow-row .dotsep { width: 4px; height: 4px; border-radius: 50%; background: var(--ink-faint); }
+  .eyebrow-row .live { display: inline-flex; align-items: center; gap: 9px; color: var(--ink-bright); }
+  .eyebrow-row .live::before {
+    content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--accent);
+    box-shadow: 0 0 0 0 var(--glow); animation: pulse 2.6s ease-out infinite;
+  }
+  @keyframes pulse { 0% { box-shadow: 0 0 0 0 var(--glow); } 70% { box-shadow: 0 0 0 13px rgba(46,107,255,0); } 100% { box-shadow: 0 0 0 0 rgba(46,107,255,0); } }
+
+  .hero-title {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900; font-size: clamp(40px, 5.5vw, 55px);
+    line-height: 0.86; letter-spacing: -0.02em; text-transform: uppercase; margin: 0;
+    color: #FFFFFF;
+    background: none;
+    -webkit-background-clip: border-box; background-clip: border-box; -webkit-text-fill-color: #FFFFFF;
+    text-shadow: 0 0 80px rgba(46,107,255,0.14);
+  }
+  .hero-title .ln { display: block; }
+  .hero-sub {
+    display: block;
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 400; font-style: italic; font-size: clamp(15px, 2vw, 24px);
+    letter-spacing: 0; color: var(--ink-soft); text-transform: none; margin-top: 0.5em;
+    -webkit-text-fill-color: var(--ink-soft);
+  }
+
+  .hero-foot { margin-top: auto; display: flex; flex-direction: column; align-items: flex-end; gap: 18px; }
+  .hero-lede { font-family: 'Outfit', system-ui, sans-serif; font-weight: 400; font-size: clamp(15px, 1.1vw, 18px); line-height: 1.6; color: var(--ink); max-width: 460px; margin: 0; }
+  .hero-lede strong { font-weight: 600; color: var(--ink-bright); }
+  .scroll-cue { justify-self: center; display: inline-flex; flex-direction: column; align-items: center; gap: 10px; font-family: 'Outfit', system-ui, sans-serif; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-soft); }
+  .scroll-cue .line { width: 1px; height: 44px; background: linear-gradient(180deg, transparent, var(--ink) 50%, transparent); background-size: 100% 200%; animation: scrollPulse 1.8s ease-in-out infinite; }
+  @keyframes scrollPulse { 0% { background-position: 0 -100%; } 100% { background-position: 0 200%; } }
+  .hero-credit { justify-self: end; text-align: right; font-family: 'Outfit', system-ui, sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); line-height: 1.7; }
+
+  /* ─── Meta bar ────────────────────────────────────────────────── */
+  .meta-bar { border-top: 1px solid var(--ink-faint); border-bottom: 1px solid var(--ink-faint); padding: 28px 0; display: grid; grid-template-columns: 1.3fr 0.7fr 1fr 1.4fr 1fr; gap: clamp(20px, 3vw, 48px); }
+  .meta-cell .meta-k { display: block; font-family: 'Outfit', system-ui, sans-serif; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 10px; }
+  .meta-cell .meta-v { display: block; font-family: 'Outfit', system-ui, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.55; color: var(--ink-bright); }
+
+  /* Real media fills: an image inside a frame suppresses the placeholder
+     hatch and diamond, and covers the frame. */
+  .ph.has-media::before, .ph.has-media::after { content: none; }
+  .ph.has-media { border: 0; background: transparent; }
+  .ph.has-media > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
+  .ph.has-media .caption, .ph.has-media .ph-label, .ph.has-media .ph-dim { z-index: 3; }
+  .vb-frame > img, .hm-frame > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+  .artist .a-visual > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; opacity: .88; transition: opacity .4s ease, transform 1.4s cubic-bezier(.2,.7,.2,1); }
+  .artist:hover .a-visual > img { opacity: 1; transform: scale(1.05); }
+  .artist .a-visual::before { z-index: 2; }
+  .venue-map { position: relative; margin-top: clamp(36px,4vw,64px); border: 1px solid var(--ink-faint); background: var(--tile); overflow: hidden; aspect-ratio: 16/9; }
+  .venue-map img { width: 100%; height: 100%; object-fit: contain; display: block; }
+  .venue-map figcaption { position: absolute; left: clamp(14px,1.8vw,26px); bottom: clamp(12px,1.6vw,22px); font-family: 'Outfit', system-ui, sans-serif; font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-soft); }
+
+  /* ─── Placeholder media ───────────────────────────────────────── */
+  .ph { position: relative; width: 100%; background: var(--tile); color: var(--ink-soft); overflow: hidden; isolation: isolate; border: 1px solid var(--ink-faint); }
+  .ph::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(45deg, var(--ink-faint) 1px, transparent 1px), linear-gradient(-45deg, var(--ink-faint) 1px, transparent 1px); background-size: 16px 16px; opacity: 0.4; pointer-events: none; }
+  .ph::after { content: none; }
+  .ph.is-filled::before, .ph.is-filled::after { display: none; }
+  .ph > img, .ph > video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; z-index: 1; }
+  .ph .ph-label { position: absolute; left: 16px; top: 14px; font-family: 'Outfit', system-ui, sans-serif; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-bright); background: rgba(8,7,11,0.7); padding: 6px 10px; border: 1px solid var(--ink-faint); z-index: 2; }
+  .ph .ph-dim { position: absolute; right: 16px; top: 14px; font-family: 'Outfit', system-ui, sans-serif; font-size: 12px; letter-spacing: 0.06em; color: var(--ink-soft); z-index: 2; }
+  .ph .caption { position: absolute; left: 16px; bottom: 14px; right: 16px; display: flex; justify-content: space-between; align-items: center; font-family: 'Outfit', system-ui, sans-serif; font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink-soft); z-index: 2; }
+
+  /* ─── Cover carousel ──────────────────────────────────────────── */
+  .cover { padding: clamp(40px, 6vw, 96px) 0 clamp(90px, 11vw, 170px); }
+  /* Pinned 360: a tall track holds a sticky viewport-height stage, so the
+     cylinder stays put and rotates while you scroll the track through. */
+  .cover-pin { position: relative; }
+  .cover-track { position: relative; height: 360vh; }
+  .cover-sticky { position: sticky; top: 0; height: 100vh; display: flex; align-items: center; }
+  .cover-sticky .cover { padding: 0; width: 100%; }
+  .cover-sticky .pano { max-height: 86vh; }
+  .carousel { position: relative; width: 100%; aspect-ratio: 16 / 9; background: #050407; border: 1px solid var(--ink-faint); box-shadow: inset 0 0 120px rgba(199,154,116,0.04); overflow: hidden; isolation: isolate; touch-action: pan-y; user-select: none; }
+  .carousel .cr-track { display: flex; height: 100%; will-change: transform; transition: transform .8s cubic-bezier(.72,0,.18,1); }
+  .carousel .cr-track.no-anim { transition: none; }
+  .carousel .cr-slide { position: relative; flex: 0 0 100%; height: 100%; overflow: hidden; }
+  .carousel .cr-slide .ph { position: absolute; inset: 0; border: 0; background: linear-gradient(135deg, #15161d 0%, #0A090E 100%); }
+  .carousel .cr-slide .ph > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
+  .carousel .cr-slide .ph .ph-dim { right: clamp(20px,4vw,56px); top: auto; bottom: 18px; z-index: 2; }
+  .carousel .cr-slide::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(5,4,7,0.5) 0%, transparent 24%, transparent 56%, rgba(5,4,7,0.74) 100%); }
+  .carousel .cr-top { position: absolute; left: 0; right: 0; top: 0; z-index: 6; pointer-events: none; display: flex; align-items: center; justify-content: space-between; padding: 16px clamp(20px,4vw,56px); border-bottom: 1px solid var(--ink-faint); background: linear-gradient(180deg, rgba(199,154,116,0.05), transparent); font-family: 'Outfit', system-ui, sans-serif; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-soft); }
+  .carousel .cr-top .cr-tag { color: var(--ink-bright); }
+  .carousel .cr-top .cr-count .now { color: var(--ink-bright); }
+  .carousel .cr-top .cr-count .tot { opacity: 0.55; margin-left: 4px; }
+  .carousel .cr-caption { position: absolute; left: clamp(20px,4vw,56px); bottom: clamp(38px,5vw,58px); z-index: 6; max-width: 560px; }
+  .carousel .cr-caption .cr-title { font-family: 'PP Monument Extended', system-ui, sans-serif; font-weight: 900; font-size: clamp(22px,2.6vw,44px); line-height: 1.02; letter-spacing: -0.01em; text-transform: uppercase; margin: 0; color: var(--ink-bright); text-shadow: 0 0 40px rgba(5,4,7,0.8); text-wrap: balance; }
+  .carousel .cr-caption .cr-sub { margin-top: 10px; font-family: 'Outfit', system-ui, sans-serif; font-weight: 400; font-size: 13px; letter-spacing: 0.02em; color: var(--ink-soft); }
+  .carousel .cr-nav { position: absolute; top: 50%; transform: translateY(-50%); z-index: 7; width: 52px; height: 52px; border-radius: 50%; border: 1px solid var(--ink-faint); background: rgba(12,11,17,0.4); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); display: grid; place-items: center; color: var(--ink); cursor: none; transition: background .3s ease, border-color .3s ease, color .3s ease; }
+  .carousel .cr-nav:hover { background: var(--accent); border-color: var(--accent); color: #08070B; }
+  .carousel .cr-nav svg { width: 18px; height: 18px; }
+  .carousel .cr-prev { left: clamp(14px,2vw,28px); } .carousel .cr-next { right: clamp(14px,2vw,28px); }
+  .carousel .cr-bars { position: absolute; right: clamp(20px,4vw,56px); bottom: clamp(40px,5vw,60px); z-index: 6; display: flex; gap: 8px; }
+  .carousel .cr-bar { width: 38px; height: 2px; background: var(--ink-faint); position: relative; overflow: hidden; cursor: none; border: 0; padding: 0; }
+  .carousel .cr-bar .fill { position: absolute; inset: 0; transform-origin: left center; transform: scaleX(0); background: var(--accent); }
+  .carousel .cr-bar.is-active .fill { animation: crFill var(--cr-dur, 5.2s) linear forwards; }
+  .carousel .cr-bar.is-done .fill { transform: scaleX(1); }
+  @keyframes crFill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  @media (max-width: 600px) { .carousel .cr-nav { width: 42px; height: 42px; } .carousel .cr-bar { width: 24px; } }
+
+  /* ─── Cover 360 pano viewer (full-bleed cylinder) ─────────────── */
+  .pano { position: relative; left: 50%; margin-left: -50vw; margin-right: -50vw; width: 100vw; height: clamp(440px, 70vh, 860px); background: #050407; border-top: 1px solid var(--ink-faint); border-bottom: 1px solid var(--ink-faint); box-shadow: inset 0 0 140px rgba(46,107,255,0.06); overflow: hidden; isolation: isolate; -webkit-mask-image: radial-gradient(140% 128% at 50% 50%, #000 84%, transparent 100%); mask-image: radial-gradient(140% 128% at 50% 50%, #000 84%, transparent 100%); }
+  .pano-stage { position: absolute; inset: 0; overflow: hidden; perspective: var(--cyl-persp, 1100px); perspective-origin: 50% 50%; }
+  .cyl { position: absolute; top: 0; left: 50%; width: 0; height: 100%; transform-style: preserve-3d; transform: translateZ(calc(-1 * var(--cyl-r, 800px))) rotateY(var(--cyl-rot, 0deg)); will-change: transform; }
+  .cyl-face { position: absolute; top: 0; left: calc(var(--cyl-fw, 300px) / -2); width: var(--cyl-fw, 300px); height: 100%; overflow: hidden; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+  .cyl-face .fimg { position: absolute; inset: 0; background-image: var(--cyl-bg); background-repeat: no-repeat; background-size: calc(var(--cyl-n, 24) * 100%) 100%; box-shadow: inset -1px 0 0 rgba(160,180,230,0.16), inset 1px 0 0 rgba(0,0,0,0.22); }
+  .cyl-face.is-video { background: #04060C; box-shadow: inset 0 0 0 1px rgba(160,180,230,0.18); }
+  .cyl-face.is-video iframe { position: absolute; inset: -2px; width: calc(100% + 4px); height: calc(100% + 4px); border: 0; pointer-events: none; }
+  /* faint vertical scan line on each face so the cylinder curvature reads */
+  .cyl-face .fimg::after { content: ''; position: absolute; top: 8%; bottom: 8%; left: 50%; width: 1px; background: linear-gradient(180deg, transparent, rgba(184,196,255,0.10), transparent); }
+  /* per-face shading so the curve reads as a lit cylinder */
+  .cyl-face .fsh { position: absolute; inset: 0; background: #050407; opacity: 0; pointer-events: none; }
+  .pano-strip .ph .ph-label { left: clamp(20px,4vw,40px); }
+  .pano-strip .ph .ph-dim { right: clamp(20px,4vw,40px); }
+  /* soft top/bottom + side falloff over the whole cylinder (curvature shading) */
+  .pano-stage::after { content: ''; position: absolute; inset: 0; z-index: 2; pointer-events: none; background: radial-gradient(150% 60% at 50% -18%, rgba(5,4,7,0.55), transparent 50%), radial-gradient(150% 60% at 50% 118%, rgba(5,4,7,0.55), transparent 50%), linear-gradient(90deg, rgba(5,4,7,0.6) 0%, transparent 16%, transparent 84%, rgba(5,4,7,0.6) 100%); }
+  .pano-top { position: absolute; left: 0; right: 0; top: 0; z-index: 6; pointer-events: none; display: flex; align-items: center; justify-content: space-between; padding: 16px clamp(20px,4vw,56px); border-bottom: 1px solid var(--ink-faint); background: linear-gradient(180deg, rgba(46,107,255,0.06), transparent); font-family: 'Outfit', system-ui, sans-serif; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-soft); }
+  .pano-top .pano-tag { color: var(--ink-bright); }
+  .pano-top .pano-readout { font-family: 'Outfit', system-ui, sans-serif; letter-spacing: 0.04em; text-transform: none; }
+  .pano-top .pano-readout b { color: var(--accent); font-weight: 600; font-variant-numeric: tabular-nums; }
+  .pano-caption { position: absolute; left: clamp(20px,4vw,56px); bottom: clamp(38px,5vw,58px); z-index: 6; max-width: 560px; pointer-events: none; }
+  .pano-caption .pano-title { font-family: 'PP Monument Extended', system-ui, sans-serif; font-weight: 900; font-size: clamp(22px,2.6vw,44px); line-height: 1.02; letter-spacing: -0.01em; text-transform: uppercase; margin: 0; color: var(--ink-bright); text-shadow: 0 0 40px rgba(5,4,7,0.8); }
+  .pano-caption .pano-sub { margin-top: 10px; font-family: 'Outfit', system-ui, sans-serif; font-size: 13px; color: var(--ink-soft); }
+  .pano-compass { position: absolute; right: clamp(20px,4vw,56px); bottom: clamp(40px,5vw,60px); z-index: 6; width: 120px; height: 2px; background: var(--ink-faint); overflow: hidden; }
+  .pano-compass .pc-fill { position: absolute; left: 0; top: 0; bottom: 0; width: 32%; background: var(--accent); box-shadow: 0 0 10px var(--glow); }
+  .pano .bracket { position: absolute; width: 34px; height: 34px; z-index: 5; pointer-events: none; border-color: var(--ink-soft); border-style: solid; border-width: 0; opacity: 0.7; }
+  .pano .bracket.tl { left: 16px; top: 64px; border-left-width: 2px; border-top-width: 2px; }
+  .pano .bracket.tr { right: 16px; top: 64px; border-right-width: 2px; border-top-width: 2px; }
+  .pano .bracket.bl { left: 16px; bottom: 16px; border-left-width: 2px; border-bottom-width: 2px; }
+  .pano .bracket.br { right: 16px; bottom: 16px; border-right-width: 2px; border-bottom-width: 2px; }
+
+  /* ─── Module ──────────────────────────────────────────────────── */
+  .module { padding: clamp(120px, 15vw, 240px) 0; }
+  .module-head { display: grid; grid-template-columns: 1fr 2fr; gap: clamp(24px, 5vw, 80px); align-items: start; }
+  .section-num { font-family: 'Outfit', system-ui, sans-serif; font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-soft); }
+  .section-num .num { display: block; font-family: 'PP Monument Extended', system-ui, sans-serif; font-weight: 900; font-size: clamp(36px, 4vw, 64px); line-height: 1; color: var(--ink-bright); margin-bottom: 14px; letter-spacing: -0.02em; }
+  .module-title { font-family: 'PP Monument Extended', system-ui, sans-serif; font-weight: 900; font-size: clamp(24px, 2.7vw, 44px); line-height: 1.05; letter-spacing: -0.01em; text-transform: uppercase; color: var(--ink-bright); margin: 0 0 32px; }
+  .module-title em { font-style: italic; font-weight: 400; color: var(--ink-soft); letter-spacing: 0; }
+  .lede { font-family: 'Outfit', system-ui, sans-serif; font-weight: 400; font-size: clamp(18px, 1.45vw, 26px); line-height: 1.45; color: var(--ink); max-width: 46ch; margin: 0; text-wrap: pretty; }
+  .body-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 4vw, 64px); margin-top: clamp(40px, 5vw, 64px); }
+  .body-grid p { font-family: 'Outfit', system-ui, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.75; color: var(--ink-soft); margin: 0; }
+  .body-grid p + p { margin-top: 18px; }
+
+  /* ─── Manifesto ───────────────────────────────────────────────── */
+  .manifesto { padding: clamp(90px, 13vw, 200px) 0; }
+  .manifesto .mf-big { max-width: 1100px; font-family: 'PP Monument Extended', system-ui, sans-serif; font-weight: 400; font-size: clamp(26px, 3.4vw, 54px); line-height: 1.1; letter-spacing: -0.005em; color: var(--ink-bright); margin: 0; text-wrap: balance; }
+  .manifesto .mf-big b { font-weight: 900; }
+  .manifesto .mf-big .em { font-style: italic; color: var(--accent); }
+  .manifesto .mf-cols { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 4vw, 64px); margin-top: clamp(48px, 6vw, 80px); max-width: 1000px; }
+  .manifesto .mf-cols p { font-family: 'Outfit', system-ui, sans-serif; font-size: 15px; line-height: 1.75; color: var(--ink-soft); margin: 0; }
+  .manifesto .mf-cols p + p { margin-top: 16px; }
+
+  /* ─── Event hero strip (the 3 days) ───────────────────────────── */
+  .days { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 2vw, 28px); margin-top: clamp(48px, 6vw, 80px); }
+  .day { border: 1px solid var(--ink-faint); padding: clamp(24px, 2.6vw, 38px); display: flex; flex-direction: column; gap: 14px; min-height: 220px; background: linear-gradient(180deg, rgba(199,154,116,0.04), transparent); transition: border-color .4s ease, transform .4s ease; }
+  .day:hover { border-color: var(--ink-soft); transform: translateY(-3px); }
+  .day .d-n { font-family: 'PP Monument Extended', system-ui, sans-serif; font-weight: 900; font-size: clamp(40px, 5vw, 84px); line-height: 0.9; color: var(--ink-bright); letter-spacing: -0.03em; }
+  .day .d-n .su { font-size: 0.3em; vertical-align: super; color: var(--accent); margin-left: 0.15em; }
+  .day .d-date { font-family: 'Outfit', system-ui, sans-serif; font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); }
+  .day p { font-family: 'Outfit', system-ui, sans-serif; font-size: 15px; line-height: 1.6; color: var(--ink-soft); margin: auto 0 0; }
+
+  /* ─── Program chips ───────────────────────────────────────────── */
+  .program { display: flex; flex-wrap: wrap; gap: 12px; margin-top: clamp(40px, 5vw, 64px); }
+  .program .chip { font-family: 'Outfit', system-ui, sans-serif; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); border: 1px solid var(--ink-faint); padding: 13px 22px; border-radius: 999px; transition: background .3s ease, color .3s ease, border-color .3s ease; }
+  .program .chip:hover { background: var(--accent); color: #08070B; border-color: var(--accent); }
+
+  /* ─── Lineup marquee + grid ───────────────────────────────────── */
+  .marquee { overflow: hidden; border-top: 1px solid var(--ink-faint); border-bottom: 1px solid var(--ink-faint); padding: clamp(22px,2.6vw,34px) 0; margin-top: clamp(48px,6vw,80px); width: 100vw; margin-left: calc(50% - 50vw); }
+  .marquee .mq-row { display: flex; gap: 0; white-space: nowrap; will-change: transform; animation: mq 38s linear infinite; }
+  .marquee:hover .mq-row { animation-play-state: paused; }
+  .marquee .mq-item { font-family: 'PP Monument Extended', system-ui, sans-serif; font-weight: 900; font-size: clamp(24px, 3vw, 48px); text-transform: uppercase; color: var(--ink-bright); letter-spacing: -0.01em; padding: 0 clamp(24px,3vw,52px); display: inline-flex; align-items: center; gap: clamp(24px,3vw,52px); }
+  .marquee .mq-item::after { content: ''; width: 9px; height: 9px; background: var(--accent); transform: rotate(45deg); flex: 0 0 auto; }
+  .marquee.steel .mq-item { color: var(--ink-soft); -webkit-text-stroke: 1px var(--ink-faint); }
+  @keyframes mq { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) { .marquee .mq-row { animation: none; } }
+
+  .lineup-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(12px, 1.4vw, 20px); margin-top: clamp(40px,5vw,64px); }
+  .artist { position: relative; border: 1px solid var(--ink-faint); background: var(--tile); aspect-ratio: 4 / 5; overflow: hidden; transition: border-color .4s ease, transform .4s ease; }
+  .artist:hover { border-color: var(--ink-soft); transform: translateY(-3px); }
+  .artist .a-visual { position: absolute; inset: 0; background: linear-gradient(150deg, #15161d 0%, #0A090E 100%); }
+  .artist .a-visual::before { content: ''; position: absolute; inset: -20%; background: radial-gradient(50% 50% at 30% 20%, rgba(46,107,255,0.22), transparent 60%), radial-gradient(60% 60% at 80% 90%, rgba(159,176,194,0.14), transparent 60%); }
+  .artist .a-meta { position: absolute; left: 0; right: 0; bottom: 0; padding: 18px; display: flex; flex-direction: column; gap: 6px; z-index: 2; background: linear-gradient(180deg, transparent, rgba(5,4,7,0.7)); }
+  .artist .a-role { font-family: 'Outfit', system-ui, sans-serif; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); }
+  .artist .a-name { font-family: 'PP Monument Extended', system-ui, sans-serif; font-weight: 900; font-size: clamp(16px, 1.3vw, 22px); line-height: 1.05; text-transform: uppercase; color: var(--ink-bright); letter-spacing: -0.01em; }
+  .artist .a-tag { position: absolute; left: 14px; top: 14px; font-family: 'Outfit', system-ui, sans-serif; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); z-index: 2; }
+  @media (max-width: 880px) { .lineup-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 520px) { .lineup-grid { grid-template-columns: 1fr; } }
+
+  /* ─── Full bleed ──────────────────────────────────────────────── */
+  .bleed { padding: 0 0 clamp(90px, 11vw, 170px); }
+  .bleed .ph { aspect-ratio: 21 / 9; }
+
+  /* ─── BMW band ────────────────────────────────────────────────── */
+  .band { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px,4vw,72px); align-items: center; padding: clamp(60px,9vw,140px) 0; }
+  .band .band-txt h3 { font-family: 'PP Monument Extended', system-ui, sans-serif; font-weight: 900; font-size: clamp(24px,2.6vw,40px); line-height: 1.05; text-transform: uppercase; color: var(--ink-bright); margin: 0 0 18px; letter-spacing: -0.01em; }
+  .band .band-txt h3 em { font-style: italic; font-weight: 400; color: var(--ink-soft); }
+  .band .band-txt p { font-family: 'Outfit', system-ui, sans-serif; font-size: 15px; line-height: 1.7; color: var(--ink-soft); margin: 0; max-width: 46ch; }
+  .band .band-txt .badge { display: inline-flex; align-items: center; gap: 10px; margin-top: 22px; font-family: 'Outfit', system-ui, sans-serif; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); }
+  .band .band-txt .badge::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 12px var(--glow); }
+  .band .band-media .ph { aspect-ratio: 4 / 3; }
+  @media (max-width: 880px) { .band { grid-template-columns: 1fr; } }
+
+  /* ─── Pull quote ──────────────────────────────────────────────── */
+  .quote-wrap { padding: clamp(120px, 15vw, 240px) 0; }
+  .quote { max-width: 1100px; margin: 0 auto; font-family: 'PP Monument Extended', system-ui, sans-serif; font-weight: 400; font-size: clamp(28px, 3.8vw, 60px); line-height: 1.08; letter-spacing: -0.005em; color: var(--ink-bright); text-align: left; text-wrap: balance; }
+  .quote .quote-mark { display: block; font-family: 'PP Monument Extended', system-ui, sans-serif; font-weight: 900; font-size: clamp(80px, 10vw, 160px); line-height: 0.6; color: var(--accent); margin-bottom: 24px; }
+  .quote-attrib { margin-top: 40px; display: flex; align-items: center; gap: 14px; font-family: 'Outfit', system-ui, sans-serif; font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); }
+  .quote-attrib .rule { width: 36px; height: 1px; background: var(--ink-faint); }
+
+  /* ─── Stats ───────────────────────────────────────────────────── */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(16px, 2vw, 40px); padding: clamp(90px, 11vw, 170px) 0; border-top: 1px solid var(--ink-faint); border-bottom: 1px solid var(--ink-faint); }
+  .stat .stat-n { font-family: 'PP Monument Extended', system-ui, sans-serif; font-weight: 900; font-size: clamp(48px, 6.5vw, 108px); line-height: 0.95; letter-spacing: -0.02em; color: var(--ink-bright); display: block; }
+  .stat .stat-n .sm { font-size: 0.45em; vertical-align: top; padding-left: 0.2em; color: var(--accent); }
+  .stat .stat-k { display: block; margin-top: 14px; font-family: 'Outfit', system-ui, sans-serif; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); max-width: 18ch; }
+
+  /* ─── Credits ─────────────────────────────────────────────────── */
+  .credits { padding: clamp(90px, 11vw, 170px) 0; display: grid; grid-template-columns: 1fr 2fr; gap: clamp(24px, 5vw, 80px); }
+  .credits .credit-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px 48px; }
+  .credits .credit-row .role { display: block; font-family: 'Outfit', system-ui, sans-serif; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 6px; }
+  .credits .credit-row .who { font-family: 'Outfit', system-ui, sans-serif; font-weight: 500; font-size: 15px; line-height: 1.5; color: var(--ink-bright); }
+
+  /* ─── Next ────────────────────────────────────────────────────── */
+  .next { position: relative; min-height: 90vh; display: grid; place-items: center; overflow: hidden; cursor: pointer; background: var(--deep); }
+  .next .next-bg { position: absolute; inset: 0; overflow: hidden; }
+  .next .next-bg .ph { position: absolute; inset: 0; transform: scale(1.04); transition: transform 1.2s cubic-bezier(.2,.7,.2,1); border: 0; }
+  .next:hover .next-bg .ph { transform: scale(1.0); }
+  .next .next-inner { position: relative; z-index: 2; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 22px; }
+  .next .next-k { font-family: 'Outfit', system-ui, sans-serif; font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-soft); }
+  .next h3 { font-family: 'PP Monument Extended', system-ui, sans-serif; font-weight: 900; font-size: clamp(44px, 7vw, 120px); line-height: 0.95; text-transform: uppercase; color: var(--ink-bright); margin: 0; letter-spacing: -0.01em; }
+  .next .next-meta { display: flex; gap: 24px; font-family: 'Outfit', system-ui, sans-serif; font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-soft); }
+  .next .next-cta { margin-top: 12px; display: inline-flex; align-items: center; gap: 14px; padding: 16px 28px; border: 1px solid var(--ink-faint); border-radius: 999px; font-family: 'Outfit', system-ui, sans-serif; font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink); text-decoration: none; transition: background .3s ease, color .3s ease, border-color .3s ease; }
+  .next:hover .next-cta { background: var(--accent); border-color: var(--accent); color: #08070B; }
+  .next-cta svg { width: 14px; height: 14px; }
+
+  /* ─── Footer ──────────────────────────────────────────────────── */
+  footer.foot { padding: 40px var(--gutter); border-top: 1px solid var(--ink-faint); display: flex; justify-content: space-between; align-items: center; font-family: 'Outfit', system-ui, sans-serif; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); }
+
+  /* ─── Side rail ───────────────────────────────────────────────── */
+  .rail { position: fixed; right: 18px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 8px; z-index: 40; }
+  .rail .rail-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--ink); opacity: 0.3; transition: opacity .3s ease, transform .3s ease; }
+  .rail .rail-dot.is-active { opacity: 1; transform: scale(1.6); box-shadow: 0 0 12px var(--glow); }
+
+  /* ─── Tweaks panel (host-gated) ───────────────────────────────── */
+  .fab-cpanel { position: fixed; right: 20px; bottom: 20px; z-index: 2147483000; font-family: 'Outfit', system-ui, sans-serif; display: none; }
+  .fab-cpanel.left { right: auto; left: 20px; }
+  .fab-cpanel.open { display: block; }
+  .fab-cpanel .fcp-body { width: 264px; max-height: 84vh; overflow-y: auto; background: #0B0A10; border: 1px solid rgba(198,195,206,0.14); border-radius: 14px; padding: 14px; box-shadow: 0 24px 60px rgba(0,0,0,0.6); }
+  .fab-cpanel .fcp-title { display: flex; align-items: center; justify-content: space-between; font-family: 'Outfit', system-ui, sans-serif; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: #eef1f8; margin: 0 2px 14px; }
+  .fab-cpanel .fcp-h { font-family: 'Outfit', system-ui, sans-serif; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(198,195,206,0.5); margin: 16px 2px 10px; }
+  .fab-cpanel .fcp-h:first-of-type { margin-top: 4px; }
+  .fab-cpanel .fcp-x { cursor: pointer; background: none; border: 0; color: rgba(198,195,206,0.6); font-size: 18px; line-height: 1; padding: 0; }
+  .fab-cpanel .fcp-x:hover { color: #fff; }
+  .fab-cpanel .fcp-grp { display: flex; flex-direction: column; gap: 9px; }
+  .fab-cpanel .fcp-row { display: flex; align-items: center; gap: 10px; }
+  .fab-cpanel .fcp-row input[type=color] { width: 26px; height: 26px; padding: 0; border: 1px solid rgba(198,195,206,0.2); border-radius: 6px; background: none; cursor: pointer; flex: 0 0 auto; }
+  .fab-cpanel .fcp-row input[type=color]::-webkit-color-swatch-wrapper { padding: 2px; }
+  .fab-cpanel .fcp-row input[type=color]::-webkit-color-swatch { border: none; border-radius: 4px; }
+  .fab-cpanel .fcp-nm { flex: 1; font-size: 13px; color: rgba(236,234,241,0.85); }
+  .fab-cpanel .fcp-val { font-size: 12px; letter-spacing: 0.06em; color: rgba(198,195,206,0.5); font-variant-numeric: tabular-nums; }
+  .fab-cpanel .fcp-srow { flex-direction: column; align-items: stretch; gap: 6px; }
+  .fab-cpanel .fcp-srow-top { display: flex; align-items: center; justify-content: space-between; }
+  .fab-cpanel .fcp-range { -webkit-appearance: none; appearance: none; width: 100%; height: 3px; border-radius: 3px; background: rgba(198,195,206,0.18); outline: none; }
+  .fab-cpanel .fcp-range::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 14px; height: 14px; border-radius: 50%; background: #6FB0FF; cursor: pointer; }
+  .fab-cpanel .fcp-range::-moz-range-thumb { width: 14px; height: 14px; border: none; border-radius: 50%; background: #6FB0FF; cursor: pointer; }
+  .fab-cpanel .fcp-reset { margin-top: 16px; width: 100%; cursor: pointer; border: 1px solid rgba(198,195,206,0.18); background: transparent; color: rgba(198,195,206,0.7); font-size: 12px; letter-spacing: 0.04em; padding: 8px; border-radius: 8px; }
+  .fab-cpanel .fcp-reset:hover { background: rgba(198,195,206,0.06); color: #fff; }
+  .fab-cpanel .fcp-select { background: #15161d; color: #eef1f8; border: 1px solid rgba(198,195,206,0.2); border-radius: 6px; font-family: 'Outfit', system-ui, sans-serif; font-size: 13px; padding: 5px 8px; cursor: pointer; outline: none; }
+  .fab-cpanel .fcp-select:focus { border-color: #6FB0FF; }
+
+  /* ─── Cursor ──────────────────────────────────────────────────── */
+  html, body { cursor: none; }
+  a, button, [role="button"], .next, input, label, .topnav .logo-lockup { cursor: none; }
+  .k-cursor { position: fixed; left: 0; top: 0; width: 30px; height: 30px; margin-left: -15px; margin-top: -15px; color: var(--ink-bright); display: flex; align-items: center; justify-content: center; pointer-events: none; z-index: 2147483647; isolation: isolate; transition: width .35s cubic-bezier(.2,.7,.2,1), height .35s cubic-bezier(.2,.7,.2,1), margin .35s cubic-bezier(.2,.7,.2,1), opacity .25s ease; will-change: transform; opacity: 0; }
+  .k-cursor.is-visible { opacity: 1; }
+  .k-cursor .km { width: 100%; height: 100%; display: block; }
+  .k-cursor .km path { fill: currentColor; }
+  .k-cursor.is-link .km { opacity: 0; }
+  .k-cursor .label-link { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%) scale(0.7); opacity: 0; padding: 8px 14px; border-radius: 999px; background: var(--ink-bright); font-family: 'Outfit', system-ui, sans-serif; font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; transition: opacity .25s ease, transform .35s cubic-bezier(.2,.7,.2,1); white-space: nowrap; }
+  .k-cursor .label-link::after { content: attr(data-verb); color: #08070B; }
+  .k-cursor.is-link { width: 0; height: 0; margin-left: 0; margin-top: 0; }
+  .k-cursor.is-link .label-link { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  .k-cursor.is-down .km { transform: scale(0.78); transition: transform .15s ease; }
+  @media (hover: none) { html, body, a, button { cursor: auto; } .k-cursor { display: none; } }
+
+  /* ─── Reveal ──────────────────────────────────────────────────── */
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity .85s cubic-bezier(.2,.7,.2,1), transform .85s cubic-bezier(.2,.7,.2,1); }
+    .reveal.is-in { opacity: 1; transform: none; }
+  }
+
+  /* ─── Responsive ──────────────────────────────────────────────── */
+  @media (max-width: 880px) {
+    .meta-bar { grid-template-columns: 1fr 1fr; }
+    .module-head { grid-template-columns: 1fr; }
+    .body-grid { grid-template-columns: 1fr; }
+    .manifesto .mf-cols { grid-template-columns: 1fr; }
+    .days { grid-template-columns: 1fr; }
+    .stats { grid-template-columns: 1fr 1fr; }
+    .credits { grid-template-columns: 1fr; }
+    .credits .credit-list { grid-template-columns: 1fr; }
+    .hero-foot { grid-template-columns: 1fr; gap: 32px; }
+    .hero-credit { justify-self: start; text-align: left; }
+    .rail { display: none; }
+  }
+  @media (max-width: 600px) { .topnav nav { display: none; } }
+</style>
+
+<link rel="stylesheet" href="../assets/css/case/proj-tags-c.css">
+
+
+<link rel="stylesheet" href="../assets/css/case/hero-refine-b.css">
+<style id="rhythm-refine">
+  /* Minimal section numbering: a single quiet line, number inline with the
+     label instead of an oversized display figure. */
+  .section-num{
+    display:flex; align-items:baseline; gap:10px;
+    font-family:'Outfit',system-ui,sans-serif;
+    font-size: 12px; letter-spacing:0.2em;
+    text-transform:uppercase; color:var(--ink-soft); font-weight:400;
+  }
+  .section-num .num{
+    display:inline;
+    font-family:'Outfit',system-ui,sans-serif;
+    font-size: 12px; font-weight:400;
+    letter-spacing:0.2em; line-height:1;
+    color:var(--ink-faint); opacity:1; margin:0;
+    -webkit-text-fill-color:currentColor;
+  }
+  /* Visual band between sections, edge to edge. */
+  .vband{ padding:0 0 clamp(90px,11vw,170px); }
+  .vband .vb-frame{ position:relative; width:100%; height:clamp(420px,74vh,900px); overflow:hidden; background:color-mix(in srgb, var(--ink) 6%, transparent); }
+  .vband .vb-cap{
+    display:flex; justify-content:space-between; gap:10px 30px;
+    max-width:var(--maxw); margin:14px auto 0; padding:0 var(--gutter);
+    font-family:'Outfit',system-ui,sans-serif;
+    font-size: 12px; letter-spacing:0.2em; text-transform:uppercase; color:var(--ink-soft);
+  }
+  @media (max-width:760px){ .vband .vb-frame{ height:clamp(340px,56vh,620px); } }
+  /* The hero was pinned by aspect-ratio:21/9, so its height derived from its
+     WIDTH and content could never grow it — that is what pushed the footer and
+     scroll cue down onto the cover band. Drop the ratio, let content set the
+     height, and use justify-content (the real axis on a column flexbox). */
+  section.hero[data-tone]{
+    aspect-ratio:auto;
+    height:auto;
+    min-height:100svh;
+    justify-content:flex-start;
+    padding-block:clamp(48px,6vh,96px) clamp(40px,5vh,80px);
+  }
+  section.hero[data-tone] .hero-inner{ flex:0 0 auto; }
+  /* Push the footer to the bottom only when there is genuine room to spare. */
+  section.hero[data-tone] .hero-foot{ margin-top:auto; }
+  /* On short viewports the 120px tag gutter is the first thing to give. */
+  @media (max-height:820px){
+    .proj-tags{ padding-top:clamp(40px,7vh,120px); }
+  }
+</style>
+<link rel="stylesheet" href="../assets/css/case/pylon-pavilions.css?v=2">
+
+<meta name="description" content="PYLON: the studio's own launch world, produced and live in Sansar, held as ILLUSORR IP.">
+<link rel="canonical" href="https://illusorr.com/projects/pylon.html">
+<meta name="theme-color" content="#05060a">
+<meta property="og:site_name" content="ILLUSORR">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ILLUSORR · Pylon · The First World">
+<meta property="og:description" content="PYLON: the studio's own launch world, produced and live in Sansar, held as ILLUSORR IP.">
+<meta property="og:url" content="https://illusorr.com/projects/pylon.html">
+<meta property="og:image" content="https://illusorr.com/assets/img/og/og-default.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CreativeWork","name":"ILLUSORR · Pylon · The First World","url":"https://illusorr.com/projects/pylon.html","creator":{"@type":"Organization","name":"ILLUSORR","url":"https://illusorr.com/"}}</script>
+<!-- phone + tablet: shared touch layer, then the shared case layout -->
+<link rel="stylesheet" href="../assets/css/mobile.css">
+<link rel="stylesheet" href="../assets/css/case/case-mobile.css">
+<script src="../assets/js/mobile.js"></script>
+</head>
+<template id="__bundler_thumbnail" data-bg-color="#08070B">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#08070B"/>
+    <g fill="none" stroke="#C79A74" stroke-opacity="0.45" stroke-width="2">
+      <path d="M250 520 C 360 360, 520 360, 600 460 S 840 560, 950 400"/>
+      <path d="M250 470 C 380 320, 540 330, 600 420 S 860 520, 950 360" stroke="#9FB0C2" stroke-opacity="0.4"/>
+      <path d="M250 570 C 350 420, 520 410, 600 500 S 830 600, 950 450" stroke-opacity="0.3"/>
+    </g>
+    <text x="600" y="240" fill="#eef1f8" font-family="Arial, sans-serif" font-weight="900" font-size="92" letter-spacing="8" text-anchor="middle">PYLON</text>
+    <text x="600" y="690" fill="rgba(198,195,206,0.6)" font-family="Arial, sans-serif" font-size="22" letter-spacing="8" text-anchor="middle">ILLUSORR · THE FIRST WORLD · 2020</text>
+  </svg>
+</template>
+
+<body>
+<header class="il-topbar" id="ilTopbar">
+  <a class="il-brand" href="../index.html" aria-label="ILLUSORR home"><span class="il-logo" role="img" aria-label="ILLUSORR"></span></a>
+  <div class="il-right">
+    <a class="il-talk" href="../contact.html">Let's talk</a>
+    <button class="il-burger" id="ilMenuOpen" aria-label="Open menu"><i></i><i></i></button>
+  </div>
+</header>
+<div class="il-overlay" id="ilOverlay">
+  <div class="il-ohead"><span class="il-logo" role="img" aria-label="ILLUSORR"></span><button class="il-oclose" id="ilMenuClose">Close ✕</button></div>
+  <nav>
+    <a href="../index.html">Home <span>01</span></a>
+    <a href="../about.html">About <span>02</span></a>
+    <a href="../sectors.html">Sectors <span>03</span></a>
+    <a href="../work.html">Work <span>04</span></a>
+    <a href="../lab.html">Lab <span>05</span></a>
+    <a href="../collective.html">Collective <span>06</span></a>
+    <a href="../contact.html">Contact <span>07</span></a>
+  </nav>
+  <div class="il-ofoot"><span>Abu Dhabi · Yas Creative Hub</span><span>hello@illusorr.com</span></div>
+</div>
+
+
+  <!-- topnav removed, menu bar to be added separately -->
+
+  <div class="k-cursor" id="kCursor" aria-hidden="true">
+    <svg class="km" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="currentColor" d="M12 1 L23 12 L12 23 L1 12 Z"/></svg>
+    <span class="label-link" data-verb="Enter"></span>
+  </div>
+
+  <aside class="rail" aria-hidden="true">
+    <span class="rail-dot is-active" data-i="0"></span>
+    <span class="rail-dot" data-i="1"></span>
+    <span class="rail-dot" data-i="2"></span>
+    <span class="rail-dot" data-i="3"></span>
+    <span class="rail-dot" data-i="4"></span>
+    <span class="rail-dot" data-i="5"></span>
+    <span class="rail-dot" data-i="6"></span>
+    <span class="rail-dot" data-i="7"></span>
+  </aside>
+
+  <!-- 1. HERO -->
+  <section class="hero" data-rail="0" data-screen-label="01 Hero">
+    <canvas class="swirl" id="swirl" aria-hidden="true"></canvas>
+    <div class="hero-inner">
+      <div class="proj-tags">
+        <div class="ptg">
+          <div class="ptg-k">Category</div>
+          <div class="ptg-c"><span class="ptag">3D</span><span class="ptag">Spatial Design</span><span class="ptag">Metaverse</span><span class="ptag">Computational Design</span></div>
+        </div>
+        <div class="ptg">
+          <div class="ptg-k">Sector</div>
+          <div class="ptg-c"><span class="ptag sector">Events</span><span class="ptag sector">Culture</span></div>
+        </div>
+      </div>
+
+      <h1 class="hero-title">
+        <span class="ln">Pylon</span>
+        <span class="hero-sub">molten metal, frozen mid-flow.</span>
+      </h1>
+
+      <p class="hero-lede">
+          <strong>One of the first worlds we designed and launched.</strong> A procedural
+          membrane of algorithmic noise, carved by fluid rather than built, and home to the
+          ILLUSORR launch event.
+        </p>
+
+      <div class="hero-foot">
+        <div class="hero-credit">
+          <div>Pylon · Artist World · 2020</div>
+          <div>By ILLUSORR</div>
+        </div>
+        <div class="scroll-cue">
+          <span>Enter</span>
+          <span class="line"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 1b. COVER MEDIA -->
+  <section class="hero-media" data-tone="dark" data-screen-label="01b Cover Media">
+    <div class="hm-inner">
+      <div class="hm-frame">
+        <img src="../assets/projects/pylon/illusorr-pylon-world-view-01.webp" alt="The Pylon concert hall, opening night" width="1400" height="788" fetchpriority="high" decoding="async">
+      </div>
+      <div class="hm-cap"><span>Pylon</span><span>Cover</span></div>
+    </div>
+  </section>
+
+  <!-- 2. COVER 360 (pinned scroll) -->
+  <section class="cover-pin" data-rail="1" data-screen-label="02 Cover">
+    <div class="cover-track" id="coverTrack">
+      <div class="cover-sticky">
+        <div class="wrap">
+          <div class="cover">
+            <div class="pano" id="pano" aria-label="Pylon world, 360 view">
+              <div class="pano-top">
+                <span class="pano-tag">Pylon · The World · 360°</span>
+                <span class="pano-readout"><b id="panoDeg">000</b>° · scroll to turn · drag to look</span>
+              </div>
+              <span class="bracket tl" aria-hidden="true"></span>
+              <span class="bracket tr" aria-hidden="true"></span>
+              <span class="bracket bl" aria-hidden="true"></span>
+              <span class="bracket br" aria-hidden="true"></span>
+
+              <div class="pano-stage">
+                <!-- 3D cylinder. JS builds the faces and maps the panorama
+                     (a wide equirectangular image set via --cyl-bg) around it;
+                     scroll / drag rotates the cylinder. -->
+                <div class="cyl" id="cyl"></div>
+              </div>
+
+              <div class="pano-caption">
+                <h2 class="pano-title">Inside the Membrane</h2>
+                <div class="pano-sub">A continuous organic surface, seen in the round.</div>
+              </div>
+              <div class="pano-compass" aria-hidden="true"><span class="pc-fill" id="panoFill"></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- visual band -->
+  <section class="vband" data-tone="light" data-screen-label="Visual 03">
+    <div class="vb-frame">
+      <img src="../assets/projects/pylon/illusorr-pylon-world-view-03.webp" alt="A crystalline form inside the membrane" loading="lazy" decoding="async">
+    </div>
+    <div class="vb-cap"><span>Pylon</span><span>03</span></div>
+  </section>
+
+  <!-- 3. META BAR -->
+  <section data-rail="1" data-screen-label="03 Meta">
+    <div class="wrap">
+      <div class="meta-bar">
+        <div class="meta-cell"><span class="meta-k">Featuring</span><span class="meta-v">BMW · OUCHHH · Pokras Lampas</span></div>
+        <div class="meta-cell"><span class="meta-k">Year</span><span class="meta-v">2020</span></div>
+        <div class="meta-cell"><span class="meta-k">Platform</span><span class="meta-v">Built in Sansar</span></div>
+        <div class="meta-cell"><span class="meta-k">Method</span><span class="meta-v">Procedural Modeling · Houdini FX · Noise Displacement</span></div>
+        <div class="meta-cell"><span class="meta-k">Artist</span><span class="meta-v">Oleg Soroko</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- visual band -->
+  <section class="vband" data-tone="light" data-screen-label="Visual 04">
+    <div class="vb-frame">
+      <img src="../assets/projects/pylon/illusorr-pylon-world-view-13.webp" alt="The membrane read from above" loading="lazy" decoding="async">
+    </div>
+    <div class="vb-cap"><span>The World</span><span>04</span></div>
+  </section>
+
+  <!-- 4. THE WORLD -->
+  <section class="module" data-rail="2" data-screen-label="04 World">
+    <div class="wrap">
+      <div class="module-head">
+        <div class="section-num"><span class="num">01</span>The World</div>
+        <div>
+          <h2 class="module-title">No hard architecture. <em>Only membrane.</em></h2>
+          <p class="lede">Pylon is an artistic 3D world built on procedural modeling and advanced design in Houdini FX, where every surface is a noise-displaced membrane.</p>
+          <div class="body-grid">
+            <div>
+              <p>The form is driven by algorithmic noise on the volume. Everything is a noise-displaced surface, the walls fold and ripple like molten metal frozen mid-flow.</p>
+              <p>That signature comes from layered Houdini noise, likely Perlin or Worley, pushed through a displacement and VDB workflow until the geometry reads as one continuous skin.</p>
+            </div>
+            <div>
+              <p>There is no hard architecture here, only a continuous organic membrane. It feels carved by fluid rather than built, a space that behaves more like a frozen current than a room.</p>
+              <p>Pylon was one of the first worlds we designed and launched, authored by artist Oleg Soroko as a statement of what design-led virtual space could be.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- visual band -->
+  <section class="vband" data-tone="light" data-screen-label="Visual 01">
+    <div class="vb-frame">
+      <img src="../assets/projects/pylon/illusorr-pylon-world-view-12.webp" alt="Terraced pools inside the world" loading="lazy" decoding="async">
+    </div>
+    <div class="vb-cap"><span>The World</span><span>01</span></div>
+  </section>
+
+  <!-- 5. MANIFESTO -->
+  <section class="manifesto" data-deep="1" data-rail="3" data-screen-label="05 Manifesto">
+    <div class="wrap">
+      <p class="mf-big">
+        Virtual reality has given us the ability to create an experience that goes
+        <span class="em">beyond spacetime</span>, for the first time ever. <b>It is, quite literally, a dream come true.</b>
+      </p>
+      <div class="mf-cols">
+        <div>
+          <p>We are now able to exist, interact with others, and perform activities, in a completely simulated realm. We can have parties, host fashion shows, and conduct classes all in a space that is not physical.</p>
+          <p>To contribute to this, ILLUSORR is transitioning the design disciplines from the physical to the virtual world, creating the world's first design-oriented virtual platform.</p>
+        </div>
+        <div>
+          <p>Architects have always been the leaders of designing physical reality. Now it is our duty to make the transition into also designing the virtual realm.</p>
+          <p>For the first time, designers are leading the creation of a fully immersive experience where attendees engage with the latest frontiers of the design world.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- visual band -->
+  <section class="vband" data-tone="light" data-screen-label="Visual 05">
+    <div class="vb-frame">
+      <img src="../assets/projects/pylon/illusorr-pylon-world-view-04.webp" alt="The auditorium, lit" loading="lazy" decoding="async">
+    </div>
+    <div class="vb-cap"><span>The Launch</span><span>05</span></div>
+  </section>
+
+  <!-- 6. THE LAUNCH EVENT -->
+  <section class="module" data-rail="4" data-screen-label="06 Launch">
+    <div class="wrap">
+      <div class="module-head">
+        <div class="section-num"><span class="num">02</span>The Launch</div>
+        <div>
+          <h2 class="module-title">A three-day event. <em>December 11 · 12 · 13.</em></h2>
+          <p class="lede">Pylon hosted the ILLUSORR launch event in 2020, a three-day gathering of artists, architects, musicians and the public inside a single virtual world.</p>
+        </div>
+      </div>
+      <div class="days">
+        <div class="day">
+          <span class="d-date">Dec 11</span>
+          <span class="d-n">01<span class="su">/03</span></span>
+          <p>Opening night. Talks and exhibitions launch the world, with the first concerts after dark.</p>
+        </div>
+        <div class="day">
+          <span class="d-date">Dec 12</span>
+          <span class="d-n">02<span class="su">/03</span></span>
+          <p>Fashion shows, stores and workshops fill the membrane as the program reaches full scale.</p>
+        </div>
+        <div class="day">
+          <span class="d-date">Dec 13</span>
+          <span class="d-n">03<span class="su">/03</span></span>
+          <p>Closing day. Headline performances and a final showcase of the design frontier.</p>
+        </div>
+      </div>
+
+      <figure class="venue-map">
+        <img src="../assets/projects/pylon/illusorr-pylon-world-map.webp" alt="Pylon venue map: gallery, concert hall, auditorium, exhibitions" loading="lazy" decoding="async">
+        <figcaption>Venue map · gallery, concert hall, auditorium, exhibitions</figcaption>
+      </figure>
+
+      <div class="program">
+        <span class="chip">Fashion Shows</span>
+        <span class="chip">Exhibitions</span>
+        <span class="chip">Stores</span>
+        <span class="chip">Workshops</span>
+        <span class="chip">Talks</span>
+        <span class="chip">Concerts</span>
+        <span class="chip">Talk Shows</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- visual band -->
+  <section class="vband" data-tone="light" data-screen-label="Visual 02">
+    <div class="vb-frame">
+      <img src="../assets/projects/pylon/illusorr-pylon-world-view-05.webp" alt="The launch stage with the artist bill" loading="lazy" decoding="async">
+    </div>
+    <div class="vb-cap"><span>The Launch</span><span>02</span></div>
+  </section>
+
+  <!-- 7. LINEUP -->
+  <section class="module" data-deep="1" data-rail="5" data-screen-label="07 Lineup" style="padding-top: clamp(60px,9vw,140px);">
+    <div class="wrap">
+      <div class="module-head">
+        <div class="section-num"><span class="num">03</span>The Lineup</div>
+        <div>
+          <h2 class="module-title">Artists, architects <em>and DJs.</em></h2>
+          <p class="lede">The launch brought together leading voices in art, architecture and music for three days inside Pylon. Enter a pavilion to see the work.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="marquee" aria-hidden="true">
+      <div class="mq-row" id="mqArtists">
+        <span class="mq-item">Pokras Lampas</span><span class="mq-item">OUCHHH</span><span class="mq-item">Cyril Lancelin</span><span class="mq-item">Ken Kelleher</span><span class="mq-item">ICA &amp; KOSTIKA</span><span class="mq-item">Arturo Tedeschi</span><span class="mq-item">Fabeeo Breen</span><span class="mq-item">JohnDave</span><span class="mq-item">Maotik</span><span class="mq-item">Melike Altınışık</span><span class="mq-item">Georges Kachaamy</span><span class="mq-item">Julian Frener</span>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <div class="lineup-grid">
+        <div class="artist" data-pav="pokras" aria-label="Enter the Pokras Lampas pavilion">
+          <div class="a-visual"><img src="../assets/projects/pylon/thumb/illusorr-pylon-world-view-06.webp" alt="Pokras Lampas" width="700" height="394" loading="lazy" decoding="async"></div>
+          <span class="a-tag">Calligrafuturism</span>
+          <span class="a-enter" aria-hidden="true"></span>
+          <div class="a-meta"><span class="a-role">Artist</span><span class="a-name">Pokras Lampas</span></div>
+          <div class="pavilion" data-pav="pokras">
+            <div class="pav-copy">
+              <div class="pav-k">Pavilion · Pylon 2020</div>
+              <h3 class="pav-t">Pokras Lampas</h3>
+              <span class="pav-role">Calligrafuturism</span>
+              <p>The membrane itself carries his hand. Lampas’ calligrafuturist script runs across the world’s skin, so the pattern you read as texture from a distance resolves into writing as you approach it.</p>
+              <button class="pav-exit" type="button">Back to the lineup</button>
+            </div>
+            <div class="pav-shots n2"><figure><img data-src="../assets/projects/pylon/thumb/illusorr-pylon-world-view-17.webp" alt="Pokras Lampas at Pylon" loading="lazy" decoding="async"></figure><figure><img data-src="../assets/projects/pylon/thumb/illusorr-pylon-world-view-02.webp" alt="Pokras Lampas at Pylon" loading="lazy" decoding="async"></figure></div>
+          </div>
+        </div>
+        <div class="artist" data-pav="ouchhh" aria-label="Enter the OUCHHH pavilion">
+          <div class="a-visual"><img src="../assets/projects/pylon/thumb/illusorr-pylon-world-view-10.webp" alt="OUCHHH" width="700" height="394" loading="lazy" decoding="async"></div>
+          <span class="a-tag">Data Art</span>
+          <span class="a-enter" aria-hidden="true"></span>
+          <div class="a-meta"><span class="a-role">Studio</span><span class="a-name">OUCHHH</span></div>
+          <div class="pavilion" data-pav="ouchhh">
+            <div class="pav-copy">
+              <div class="pav-k">Pavilion · Pylon 2020</div>
+              <h3 class="pav-t">OUCHHH</h3>
+              <span class="pav-role">Data Art</span>
+              <p>The standing towers are theirs. OUCHHH clad each monolith in generated data-art, so the tallest objects in Pylon are not architecture with artwork on them but artwork holding itself up.</p>
+              <button class="pav-exit" type="button">Back to the lineup</button>
+            </div>
+            <div class="pav-shots n2"><figure><img data-src="../assets/projects/pylon/thumb/illusorr-pylon-world-view-11.webp" alt="OUCHHH at Pylon" loading="lazy" decoding="async"></figure><figure><img data-src="../assets/projects/pylon/thumb/illusorr-pylon-world-view-16.webp" alt="OUCHHH at Pylon" loading="lazy" decoding="async"></figure></div>
+          </div>
+        </div>
+        <div class="artist" data-pav="cyril" aria-label="Enter the Cyril Lancelin pavilion">
+          <div class="a-visual"><img src="../assets/projects/pylon/thumb/illusorr-pylon-artist-cyril-work-01.webp" alt="Cyril Lancelin" width="700" height="394" loading="lazy" decoding="async"></div>
+          <span class="a-tag">Architecture</span>
+          <span class="a-enter" aria-hidden="true"></span>
+          <div class="a-meta"><span class="a-role">Artist</span><span class="a-name">Cyril Lancelin</span></div>
+          <div class="pavilion" data-pav="cyril">
+            <div class="pav-copy">
+              <div class="pav-k">Pavilion · Pylon 2020</div>
+              <h3 class="pav-t">Cyril Lancelin</h3>
+              <span class="pav-role">Architecture</span>
+              <p>Lancelin’s stacked toruses and pyramids landed in hot pink against the black membrane, the single loudest colour in Pylon and the piece most visitors photographed first.</p>
+              <button class="pav-exit" type="button">Back to the lineup</button>
+            </div>
+            <div class="pav-shots n3"><figure><img data-src="../assets/projects/pylon/thumb/illusorr-pylon-artist-cyril-work-02.webp" alt="Cyril Lancelin at Pylon" loading="lazy" decoding="async"></figure><figure><img data-src="../assets/projects/pylon/thumb/illusorr-pylon-artist-cyril-work-03.webp" alt="Cyril Lancelin at Pylon" loading="lazy" decoding="async"></figure><figure><img data-src="../assets/projects/pylon/thumb/illusorr-pylon-artist-cyril-work-04.webp" alt="Cyril Lancelin at Pylon" loading="lazy" decoding="async"></figure></div>
+          </div>
+        </div>
+        <div class="artist" data-pav="ken" aria-label="Enter the Ken Kelleher pavilion">
+          <div class="a-visual"><img src="../assets/projects/pylon/thumb/illusorr-pylon-artist-ken-work-01.webp" alt="Ken Kelleher" width="700" height="394" loading="lazy" decoding="async"></div>
+          <span class="a-tag">Sculpture</span>
+          <span class="a-enter" aria-hidden="true"></span>
+          <div class="a-meta"><span class="a-role">Artist</span><span class="a-name">Ken Kelleher</span></div>
+          <div class="pavilion" data-pav="ken">
+            <div class="pav-copy">
+              <div class="pav-k">Pavilion · Pylon 2020</div>
+              <h3 class="pav-t">Ken Kelleher</h3>
+              <span class="pav-role">Sculpture</span>
+              <p>Kelleher placed sculptures the way he places them in physical sites: one object, one horizon, nothing else competing for the frame.</p>
+              <button class="pav-exit" type="button">Back to the lineup</button>
+            </div>
+            <div class="pav-shots n2"><figure><img data-src="../assets/projects/pylon/thumb/illusorr-pylon-artist-ken-work-02.webp" alt="Ken Kelleher at Pylon" loading="lazy" decoding="async"></figure><figure><img data-src="../assets/projects/pylon/thumb/illusorr-pylon-artist-ken-work-03.webp" alt="Ken Kelleher at Pylon" loading="lazy" decoding="async"></figure></div>
+          </div>
+        </div>
+        <div class="artist" data-pav="ica" aria-label="Enter the ICA and Kostika pavilion">
+          <div class="a-visual"><img src="../assets/projects/pylon/thumb/illusorr-pylon-artist-ica-work-01.webp" alt="ICA and Kostika" width="700" height="394" loading="lazy" decoding="async"></div>
+          <span class="a-tag">Wearable 3D</span>
+          <span class="a-enter" aria-hidden="true"></span>
+          <div class="a-meta"><span class="a-role">Studio</span><span class="a-name">ICA &amp; Kostika</span></div>
+          <div class="pavilion" data-pav="ica">
+            <div class="pav-copy">
+              <div class="pav-k">Pavilion · Pylon 2020</div>
+              <h3 class="pav-t">ICA &amp; Kostika</h3>
+              <span class="pav-role">Design Duo</span>
+              <p>ICA &amp; Kostika brought Exobiology, their 3D-printed footwear, into the world and let it grow. The shoes are shown as wearable objects and as architecture, the same shell logic at both scales.</p>
+              <button class="pav-exit" type="button">Back to the lineup</button>
+            </div>
+            <div class="pav-shots n2"><figure><img data-src="../assets/projects/pylon/thumb/illusorr-pylon-artist-ica-work-02.webp" alt="ICA and Kostika at Pylon" loading="lazy" decoding="async"></figure><figure><img data-src="../assets/projects/pylon/thumb/illusorr-pylon-artist-ica-work-03.webp" alt="ICA and Kostika at Pylon" loading="lazy" decoding="async"></figure></div>
+          </div>
+        </div>
+        <div class="artist" data-pav="arturo" aria-label="Enter the Arturo Tedeschi pavilion">
+          <div class="a-visual"><img src="../assets/projects/pylon/thumb/illusorr-pylon-artist-arturo-work-01.webp" alt="Arturo Tedeschi" width="700" height="394" loading="lazy" decoding="async"></div>
+          <span class="a-tag">Computational Design</span>
+          <span class="a-enter" aria-hidden="true"></span>
+          <div class="a-meta"><span class="a-role">Artist</span><span class="a-name">Arturo Tedeschi</span></div>
+          <div class="pavilion" data-pav="arturo">
+            <div class="pav-copy">
+              <div class="pav-k">Pavilion · Pylon 2020</div>
+              <h3 class="pav-t">Arturo Tedeschi</h3>
+              <span class="pav-role">Computational Design</span>
+              <p>Tedeschi showed computational vehicle and product studies, the algorithmic design practice he is known for, parked inside a world made the same way.</p>
+              <button class="pav-exit" type="button">Back to the lineup</button>
+            </div>
+            <div class="pav-shots n1"><figure><img data-src="../assets/projects/pylon/illusorr-pylon-artist-arturo-work-01.webp" alt="Arturo Tedeschi at Pylon" loading="lazy" decoding="async"></figure></div>
+          </div>
+        </div>
+        <div class="artist" data-pav="fabeeo" aria-label="Enter the Fabeeo Breen pavilion">
+          <div class="a-visual"><img src="../assets/projects/pylon/thumb/illusorr-pylon-artist-fabeeo-work-01.webp" alt="Fabeeo Breen" width="700" height="394" loading="lazy" decoding="async"></div>
+          <span class="a-tag">3D Art</span>
+          <span class="a-enter" aria-hidden="true"></span>
+          <div class="a-meta"><span class="a-role">Artist</span><span class="a-name">Fabeeo Breen</span></div>
+          <div class="pavilion" data-pav="fabeeo">
+            <div class="pav-copy">
+              <div class="pav-k">Pavilion · Pylon 2020</div>
+              <h3 class="pav-t">Fabeeo Breen</h3>
+              <span class="pav-role">3D Art</span>
+              <p>Breen’s black crystalline forms rise straight out of the membrane, reading as growth rather than installation.</p>
+              <button class="pav-exit" type="button">Back to the lineup</button>
+            </div>
+            <div class="pav-shots n1"><figure><img data-src="../assets/projects/pylon/thumb/illusorr-pylon-artist-fabeeo-work-02.webp" alt="Fabeeo Breen at Pylon" loading="lazy" decoding="async"></figure></div>
+          </div>
+        </div>
+        <div class="artist" data-pav="johndave" aria-label="Enter the JohnDave pavilion">
+          <div class="a-visual"><img src="../assets/projects/pylon/thumb/illusorr-pylon-artist-johndave-work-01.webp" alt="JohnDave" width="700" height="394" loading="lazy" decoding="async"></div>
+          <span class="a-tag">3D Art</span>
+          <span class="a-enter" aria-hidden="true"></span>
+          <div class="a-meta"><span class="a-role">Artist</span><span class="a-name">JohnDave</span></div>
+          <div class="pavilion" data-pav="johndave">
+            <div class="pav-copy">
+              <div class="pav-k">Pavilion · Pylon 2020</div>
+              <h3 class="pav-t">JohnDave</h3>
+              <span class="pav-role">3D Art</span>
+              <p>A room made only of light apertures. JohnDave’s piece removes every surface cue and leaves the visitor to judge the size of the space by the openings alone.</p>
+              <button class="pav-exit" type="button">Back to the lineup</button>
+            </div>
+            <div class="pav-shots n1"><figure><img data-src="../assets/projects/pylon/illusorr-pylon-artist-johndave-work-01.webp" alt="JohnDave at Pylon" loading="lazy" decoding="async"></figure></div>
+          </div>
+        </div>
+        <div class="artist" data-pav="maotik" aria-label="Enter the Maotik pavilion">
+          <div class="a-visual"><img src="../assets/projects/pylon/thumb/illusorr-pylon-artist-maotik-work-01.webp" alt="Maotik" width="700" height="394" loading="lazy" decoding="async"></div>
+          <span class="a-tag">Motion</span>
+          <span class="a-enter" aria-hidden="true"></span>
+          <div class="a-meta"><span class="a-role">Artist</span><span class="a-name">Maotik</span></div>
+          <div class="pavilion" data-pav="maotik">
+            <div class="pav-copy">
+              <div class="pav-k">Pavilion · Pylon 2020</div>
+              <h3 class="pav-t">Maotik</h3>
+              <span class="pav-role">Motion</span>
+              <p>Maotik’s immersive motion work took the auditorium, a slow field of light that resolves and dissolves across the whole vault.</p>
+              <button class="pav-exit" type="button">Back to the lineup</button>
+            </div>
+            <div class="pav-shots n1"><figure><img data-src="../assets/projects/pylon/thumb/illusorr-pylon-artist-maotik-work-02.webp" alt="Maotik at Pylon" loading="lazy" decoding="async"></figure></div>
+          </div>
+        </div>
+        <div class="artist" data-pav="melike" aria-label="Enter the Melike Altınışık pavilion">
+          <div class="a-visual"><img src="../assets/projects/pylon/thumb/illusorr-pylon-artist-melike-work-01.webp" alt="Melike Altınışık" width="700" height="394" loading="lazy" decoding="async"></div>
+          <span class="a-tag">Architecture</span>
+          <span class="a-enter" aria-hidden="true"></span>
+          <div class="a-meta"><span class="a-role">Studio</span><span class="a-name">Melike Altınışık</span></div>
+          <div class="pavilion" data-pav="melike">
+            <div class="pav-copy">
+              <div class="pav-k">Pavilion · Pylon 2020</div>
+              <h3 class="pav-t">Melike Altınışık</h3>
+              <span class="pav-role">Architecture</span>
+              <p>A woven canopy stretched across the desert plate. Altınışık’s structure is all line and no mass, the opposite of the membrane it sits on.</p>
+              <button class="pav-exit" type="button">Back to the lineup</button>
+            </div>
+            <div class="pav-shots n1"><figure><img data-src="../assets/projects/pylon/thumb/illusorr-pylon-artist-melike-work-02.webp" alt="Melike Altınışık at Pylon" loading="lazy" decoding="async"></figure></div>
+          </div>
+        </div>
+        <div class="artist" data-pav="georges" aria-label="Enter the Georges Kachaamy pavilion">
+          <div class="a-visual"><img src="../assets/projects/pylon/thumb/illusorr-pylon-artist-georges-work-01.webp" alt="Georges Kachaamy" width="700" height="394" loading="lazy" decoding="async"></div>
+          <span class="a-tag">Architecture</span>
+          <span class="a-enter" aria-hidden="true"></span>
+          <div class="a-meta"><span class="a-role">Artist</span><span class="a-name">Georges Kachaamy</span></div>
+          <div class="pavilion" data-pav="georges">
+            <div class="pav-copy">
+              <div class="pav-k">Pavilion · Pylon 2020</div>
+              <h3 class="pav-t">Georges Kachaamy</h3>
+              <span class="pav-role">Architecture</span>
+              <p>Kachaamy’s gallery is a single lit aperture onto the horizon, an architecture of framing rather than enclosure.</p>
+              <button class="pav-exit" type="button">Back to the lineup</button>
+            </div>
+            <div class="pav-shots n1"><figure><img data-src="../assets/projects/pylon/illusorr-pylon-artist-georges-work-01.webp" alt="Georges Kachaamy at Pylon" loading="lazy" decoding="async"></figure></div>
+          </div>
+        </div>
+        <div class="artist" data-pav="julian" aria-label="Enter the Julian Frener pavilion">
+          <div class="a-visual"><img src="../assets/projects/pylon/thumb/illusorr-pylon-artist-julian-work-01.webp" alt="Julian Frener" width="700" height="394" loading="lazy" decoding="async"></div>
+          <span class="a-tag">Digital Art</span>
+          <span class="a-enter" aria-hidden="true"></span>
+          <div class="a-meta"><span class="a-role">Artist</span><span class="a-name">Julian Frener</span></div>
+          <div class="pavilion" data-pav="julian">
+            <div class="pav-copy">
+              <div class="pav-k">Pavilion · Pylon 2020</div>
+              <h3 class="pav-t">Julian Frener</h3>
+              <span class="pav-role">Digital Art</span>
+              <p>Frener hung large-format digital canvases in the exhibition wing, work made for a wall that does not need to obey gravity.</p>
+              <button class="pav-exit" type="button">Back to the lineup</button>
+            </div>
+            <div class="pav-shots n1"><figure><img data-src="../assets/projects/pylon/illusorr-pylon-artist-julian-work-01.webp" alt="Julian Frener at Pylon" loading="lazy" decoding="async"></figure></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="marquee steel" aria-hidden="true" style="margin-top: clamp(36px,4vw,56px);">
+      <div class="mq-row" id="mqMusic" style="animation-duration: 28s;">
+        <span class="mq-item">Emika</span><span class="mq-item">Ahmed Romel</span><span class="mq-item">Astro Pilot</span><span class="mq-item">Live Concerts</span><span class="mq-item">DJ Sets</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- 7b. RECORDINGS -->
+  <section class="module" data-rail="5" data-screen-label="07b Recordings" style="padding-top: clamp(60px,9vw,140px);">
+    <div class="wrap">
+      <div class="module-head">
+        <div class="section-num"><span class="num">03b</span>The Recordings</div>
+        <div>
+          <h2 class="module-title">Three days, <em>as they happened.</em></h2>
+          <p class="lede">Captured live inside Pylon during the launch. Concerts, talks, the gallery walk and the fashion show.</p>
+        </div>
+      </div>
+      <div class="recs">
+        <div class="rec" data-yt="s466xp2AYSQ" data-title="Ahmed Romel · Pylon 2020" role="button" tabindex="0" aria-label="Play Ahmed Romel">
+          <img src="https://i.ytimg.com/vi/s466xp2AYSQ/maxresdefault.jpg" onerror="this.src='https://i.ytimg.com/vi/s466xp2AYSQ/hqdefault.jpg'" alt="" loading="lazy" decoding="async">
+          <span class="rec-play" aria-hidden="true"></span>
+          <div class="rec-meta">
+            <span class="rec-k">Concert</span>
+            <span class="rec-n">Ahmed Romel<small>A full trance set inside the membrane</small></span>
+          </div>
+        </div>
+        <div class="rec" data-yt="OW2B7RSWDzU" data-title="Pylon Talks · Pylon 2020" role="button" tabindex="0" aria-label="Play Pylon Talks">
+          <img src="https://i.ytimg.com/vi/OW2B7RSWDzU/maxresdefault.jpg" onerror="this.src='https://i.ytimg.com/vi/OW2B7RSWDzU/hqdefault.jpg'" alt="" loading="lazy" decoding="async">
+          <span class="rec-play" aria-hidden="true"></span>
+          <div class="rec-meta">
+            <span class="rec-k">Talks</span>
+            <span class="rec-n">Pylon Talks<small>Architects and artists on designing the virtual</small></span>
+          </div>
+        </div>
+        <div class="rec" data-yt="XzZ4e92-Lxk" data-title="Pylon Gallery · Pylon 2020" role="button" tabindex="0" aria-label="Play Pylon Gallery">
+          <img src="https://i.ytimg.com/vi/XzZ4e92-Lxk/maxresdefault.jpg" onerror="this.src='https://i.ytimg.com/vi/XzZ4e92-Lxk/hqdefault.jpg'" alt="" loading="lazy" decoding="async">
+          <span class="rec-play" aria-hidden="true"></span>
+          <div class="rec-meta">
+            <span class="rec-k">Exhibition</span>
+            <span class="rec-n">Pylon Gallery<small>A walk through the exhibition wing</small></span>
+          </div>
+        </div>
+        <div class="rec" data-yt="rycJYeqwyOQ" data-title="ICA &amp; Kostika · Pylon 2020" role="button" tabindex="0" aria-label="Play ICA and Kostika">
+          <img src="https://i.ytimg.com/vi/rycJYeqwyOQ/maxresdefault.jpg" onerror="this.src='https://i.ytimg.com/vi/rycJYeqwyOQ/hqdefault.jpg'" alt="" loading="lazy" decoding="async">
+          <span class="rec-play" aria-hidden="true"></span>
+          <div class="rec-meta">
+            <span class="rec-k">Wearable 3D</span>
+            <span class="rec-n">ICA &amp; Kostika<small>Exobiology, shown in the round</small></span>
+          </div>
+        </div>
+        <div class="rec" data-yt="z3LFkVUD_L8" data-title="Fabeeo Breen · Pylon 2020" role="button" tabindex="0" aria-label="Play Fabeeo Breen">
+          <img src="https://i.ytimg.com/vi/z3LFkVUD_L8/maxresdefault.jpg" onerror="this.src='https://i.ytimg.com/vi/z3LFkVUD_L8/hqdefault.jpg'" alt="" loading="lazy" decoding="async">
+          <span class="rec-play" aria-hidden="true"></span>
+          <div class="rec-meta">
+            <span class="rec-k">Fashion</span>
+            <span class="rec-n">Fabeeo Breen<small>The fashion show, staged in the world</small></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. FULL BLEED -->
+  <section class="bleed" data-rail="6" data-screen-label="08 Still" style="padding-top: clamp(60px,9vw,140px);">
+    <div class="wrap">
+      <div class="ph has-media" style="aspect-ratio: 21 / 9;overflow:hidden">
+        <img src="../assets/projects/pylon/illusorr-pylon-world-view-09.webp" alt="The membrane, seen wide" loading="lazy" decoding="async">
+        <span class="caption"><span>Layered noise displacement, molten membrane</span><span>The world · Oleg Soroko</span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. BMW BAND -->
+  <section data-rail="6" data-screen-label="09 BMW">
+    <div class="wrap">
+      <div class="band">
+        <div class="band-txt">
+          <h3>BMW, inside <em>the membrane.</em></h3>
+          <p>We were able to showcase BMW within the Pylon world during the launch, bringing a global automotive brand into a fully procedural virtual space. The collaboration was featured by BMW Russia.</p>
+          <span class="badge">Featured by BMW Russia</span>
+        </div>
+        <div class="band-media">
+          <div class="ph has-media"><img src="../assets/projects/pylon/illusorr-pylon-artist-bmw-work-01.webp" alt="BMW inside the Pylon world" loading="lazy" decoding="async"><span class="caption"><span>Brand showcase inside the world</span><span>2020</span></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. PULL QUOTE -->
+  <section class="quote-wrap" data-deep="1" data-rail="7" data-screen-label="10 Quote">
+    <div class="wrap">
+      <blockquote class="quote">
+        <span class="quote-mark">“</span>
+        Architects have always led the design of physical reality. Now it is our duty to design the virtual realm.
+        <div class="quote-attrib"><span class="rule"></span><span>ILLUSORR · 2020</span></div>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- visual band -->
+  <section class="vband" data-tone="light" data-screen-label="Visual 06">
+    <div class="vb-frame">
+      <img src="../assets/projects/pylon/illusorr-pylon-world-view-18.webp" alt="Closing night, the towers lit" loading="lazy" decoding="async">
+    </div>
+    <div class="vb-cap"><span>The Outcome</span><span>06</span></div>
+  </section>
+
+  <!-- 11. STATS + CREDITS -->
+  <section class="module" data-rail="7" data-screen-label="11 Outcome" style="padding-top: clamp(60px,9vw,140px);">
+    <div class="wrap">
+      <div class="module-head">
+        <div class="section-num"><span class="num">04</span>The Outcome</div>
+        <div><h2 class="module-title">The world that <em>started it all.</em></h2></div>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><span class="stat-n">3</span><span class="stat-k">Day launch event, December 2020</span></div>
+        <div class="stat"><span class="stat-n">01</span><span class="stat-k">One of the first worlds we ever launched</span></div>
+        <div class="stat"><span class="stat-n">12<span class="sm">+</span></span><span class="stat-k">Featured artists, architects and studios</span></div>
+        <div class="stat"><span class="stat-n">1</span><span class="stat-k">Continuous noise-displaced membrane</span></div>
+      </div>
+
+      <div class="credits">
+        <div>
+          <span class="section-num" style="display:block; margin-bottom: 0;">
+            <span class="num" style="font-size: clamp(28px, 3vw, 48px);">05</span>
+            Credits
+          </span>
+        </div>
+        <div class="credit-list">
+          <div class="credit-row"><span class="role">Designed By</span><span class="who">ILLUSORR</span></div>
+          <div class="credit-row"><span class="role">World Artist</span><span class="who">Oleg Soroko</span></div>
+          <div class="credit-row" style="grid-column: 1 / -1;"><span class="role">Team</span><span class="who">Sara El Jamal · Begüm Aydınoğlu · Hamid Hassanzadeh · Oleg Soroko · Faisal UK · Marc Haddad</span></div>
+          <div class="credit-row"><span class="role">Sponsor</span><span class="who">Parametric Architecture</span></div>
+          <div class="credit-row"><span class="role">Platform</span><span class="who">Built in Sansar</span></div>
+          <div class="credit-row"><span class="role">Method</span><span class="who">Procedural Modeling · Houdini FX</span></div>
+          <div class="credit-row"><span class="role">Event</span><span class="who">ILLUSORR Launch · Dec 11–13, 2020</span></div>
+          <div class="credit-row"><span class="role">Featuring</span><span class="who">BMW · OUCHHH · Pokras Lampas</span></div>
+          <div class="credit-row"><span class="role">Music</span><span class="who">Emika · Ahmed Romel · Astro Pilot</span></div>
+          <div class="credit-row"><span class="role">Year</span><span class="who">2020</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12. NEXT -->
+  <section class="next" data-rail="7" data-screen-label="12 Next">
+    <div class="next-bg">
+      <div class="ph is-filled" style="overflow:hidden"><img src="../assets/img/projects/disney-plus/illusorr-disney-plus-streaming-brand-campaign-cover.webp" alt="Disney+, next project" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+    </div>
+    <div class="next-inner">
+      <span class="next-k">Next Project · M01</span>
+      <h3><span style="display:block">Disney+</span><span style="display:block; font-weight:400; font-style:italic; color: var(--ink-soft); letter-spacing: 0;">a castle, scaled to a service.</span></h3>
+      <div class="next-meta">
+        <span>2025</span>
+        <span>·</span>
+        <span>3D</span>
+        <span>·</span>
+        <span>Art</span>
+      </div>
+      <a class="next-cta" href="disney-plus.html"><span>View Case Study</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19 L19 5"/><polyline points="9 5 19 5 19 15"/></svg></a>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <div>© ILLUSORR · MMXX</div>
+    <div>Pylon · The First World</div>
+  </footer>
+
+<script>
+  /* ─── Liquid-metal flow: a domain-warped curl-noise field rendered
+     per-pixel as electric-blue contour veins on black, folding and
+     rippling like molten metal frozen mid-flow. Low-res buffer upscaled
+     by the GPU. Live params are exposed in the Tweaks panel. Throttled,
+     pauses off-screen / reduced-motion. ───────────────────────────── */
+  window.__pylonFlow = (function () {
+    const canvas = document.getElementById('swirl');
+    if (!canvas) return {};
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const ctx = canvas.getContext('2d');
+    const hero = canvas.closest('.hero');
+
+    // Defaults (rewritten on disk by the Tweaks host between the markers).
+    const P = /*EDITMODE-BEGIN*/{
+      "renderScale": 0.24,
+      "noiseScale": 2.4,
+      "vStretch": 2.5,
+      "curlSteps": 4,
+      "curlScale": 1.75,
+      "lineDensity": 13.5,
+      "lineSharp": 6.5,
+      "topFade": 0.85,
+      "speed": 0.01,
+      "hotStrength": 1.1,
+      "bodyLo": "#000000",
+      "bodyHi": "#0059ff",
+      "vein": "#0533cc"
+    }/*EDITMODE-END*/;
+
+    function hex(c) { return [parseInt(c.slice(1,3),16), parseInt(c.slice(3,5),16), parseInt(c.slice(5,7),16)]; }
+    let BODY_LO = hex(P.bodyLo), BODY_HI = hex(P.bodyHi), VEIN = hex(P.vein);
+    const HOT_R = 0.30;
+
+    let W = 0, H = 0, w = 0, h = 0, buf = null, img = null;
+    function size() {
+      const r = hero.getBoundingClientRect();
+      W = r.width; H = r.height;
+      // Resolution scales with the perf-friendly renderScale param.
+      w = Math.max(2, Math.min(520, Math.round(W * P.renderScale)));
+      h = Math.max(2, Math.round(w * (H / Math.max(1, W))));
+      canvas.width = w; canvas.height = h;
+      canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+      img = ctx.createImageData(w, h);
+      buf = img.data;
+    }
+    size();
+    addEventListener('resize', size);
+
+    // Cheap smooth lattice-free noise, ~[-1,1].
+    function sn(x, y) {
+      return (Math.sin(x) * Math.cos(y * 0.9)
+            + Math.sin(x * 0.5 - y * 0.7) * 0.7
+            + Math.cos(x * 0.31 + y * 1.3) * 0.5) * 0.4255;
+    }
+
+    let mx = 0.5, my = 0.5, mActive = 0, mInf = 0;
+    hero.addEventListener('pointermove', (e) => {
+      const r = hero.getBoundingClientRect();
+      mx = (e.clientX - r.left) / r.width; my = (e.clientY - r.top) / r.height; mActive = 1;
+    }, { passive: true });
+    hero.addEventListener('pointerleave', () => { mActive = 0; });
+
+    let running = !reduce, raf = 0, last = 0, clock = 0;
+    const FRAME_MS = 1000 / 30;
+
+    function render(t) {
+      const NS = P.noiseScale, VS = P.vStretch, STEPS = P.curlSteps | 0,
+            CS = P.curlScale * 0.35, LD = P.lineDensity, SH = P.lineSharp,
+            TF = P.topFade, HS = P.hotStrength;
+      const bl0 = BODY_LO[0], bl1 = BODY_LO[1], bl2 = BODY_LO[2];
+      const bd0 = BODY_HI[0]-BODY_LO[0], bd1 = BODY_HI[1]-BODY_LO[1], bd2 = BODY_HI[2]-BODY_LO[2];
+      const ve0 = VEIN[0], ve1 = VEIN[1], ve2 = VEIN[2];
+      for (let py = 0; py < h; py++) {
+        const v = py / h;
+        const fade = 1 - TF * Math.abs(v - 0.5) * 2;
+        for (let px = 0; px < w; px++) {
+          const u = px / w;
+          let uu = u, vv = v;
+          // Cursor = a soft radial lens that DILATES the field outward
+          // (magnifies it) with a smooth falloff, no directional skew.
+          if (mInf > 0.001) {
+            const dx = u - mx, dy = v - my, d = Math.hypot(dx, dy);
+            if (d < HOT_R) {
+              const tt = 1 - d / HOT_R;
+              const sm = tt * tt * (3 - 2 * tt);          // smoothstep
+              const f = 1 - 0.55 * sm * HS * mInf;         // contract toward cursor
+              uu = mx + dx * f;
+              vv = my + dy * f;
+            }
+          }
+          let x = uu * NS;
+          let y = vv * NS * VS;
+          let n = 0;
+          for (let s = 0; s < STEPS; s++) {
+            const a = sn(x + t, y - t * 0.6) * Math.PI;
+            x += Math.cos(a) * CS;
+            y += Math.sin(a) * CS;
+            n = sn(x * 1.1, y * 1.1 + t * 0.5);
+          }
+          const f = (n * 0.5 + 0.5) * LD;
+          const tri = Math.abs((f - (f | 0)) - 0.5) * 2;
+          let line = 1 - tri; line = Math.pow(line, SH);
+          const body = 0.5 + 0.5 * n;
+          const i = (py * w + px) * 4;
+          buf[i]     = Math.min(255, (bl0 + bd0 * body + ve0 * line) * fade);
+          buf[i + 1] = Math.min(255, (bl1 + bd1 * body + ve1 * line) * fade);
+          buf[i + 2] = Math.min(255, (bl2 + bd2 * body + ve2 * line) * fade);
+          buf[i + 3] = 255;
+        }
+      }
+      ctx.putImageData(img, 0, 0);
+    }
+
+    function frame(now) {
+      if (!last) last = now;
+      const elapsed = now - last;
+      if (elapsed >= FRAME_MS) {
+        const dt = Math.min(0.05, elapsed / 1000);
+        last = now;
+        clock += dt * P.speed * 10;
+        mInf += ((mActive ? 1 : 0) - mInf) * Math.min(1, dt * 6);
+        render(clock);
+      }
+      if (running) raf = requestAnimationFrame(frame);
+    }
+
+    if (!reduce) {
+      raf = requestAnimationFrame(frame);
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(([en]) => {
+          running = en.isIntersecting;
+          if (running && !raf) { last = 0; raf = requestAnimationFrame(frame); }
+          else if (!running) { cancelAnimationFrame(raf); raf = 0; }
+        }, { threshold: 0 }).observe(hero);
+      }
+    } else {
+      render(3.0);
+    }
+
+    // Live API for the Tweaks panel.
+    return {
+      P,
+      set(key, val) {
+        P[key] = val;
+        if (key === 'bodyLo') BODY_LO = hex(val);
+        else if (key === 'bodyHi') BODY_HI = hex(val);
+        else if (key === 'vein') VEIN = hex(val);
+        else if (key === 'renderScale') size();
+        if (reduce) render(3.0);
+      }
+    };
+  })();
+</script>
+
+<script>
+  /* ─── Tweaks panel: live flow parameters (host edit-mode gated) ──── */
+  (function () {
+    const flow = window.__pylonFlow;
+    if (!flow || !flow.P) return;
+    const P = flow.P;
+
+    const panel = document.createElement('div');
+    panel.className = 'fab-cpanel';
+    panel.innerHTML =
+      '<div class="fcp-body">' +
+        '<div class="fcp-title">Flow Field <button class="fcp-x" aria-label="Close">\u00d7</button></div>' +
+        '<div class="fcp-h">Performance</div><div class="fcp-grp" id="fcpPerf"></div>' +
+        '<div class="fcp-h">Flow</div><div class="fcp-grp" id="fcpFlow"></div>' +
+        '<div class="fcp-h">Contours</div><div class="fcp-grp" id="fcpCont"></div>' +
+        '<div class="fcp-h">Colour</div><div class="fcp-grp" id="fcpCol"></div>' +
+        '<button class="fcp-reset">Reset to default</button>' +
+      '</div>';
+    document.body.appendChild(panel);
+
+    function save(edits) { try { window.parent.postMessage({ type: '__edit_mode_set_keys', edits }, '*'); } catch (e) {} }
+
+    function slider(wrap, label, key, min, max, step) {
+      const row = document.createElement('div'); row.className = 'fcp-row fcp-srow';
+      const nm = document.createElement('span'); nm.className = 'fcp-nm'; nm.textContent = label;
+      const tx = document.createElement('span'); tx.className = 'fcp-val'; tx.textContent = (+P[key]).toFixed(2);
+      const sl = document.createElement('input'); sl.type = 'range'; sl.min = min; sl.max = max; sl.step = step; sl.value = P[key]; sl.className = 'fcp-range';
+      sl.addEventListener('input', () => { const val = +sl.value; tx.textContent = val.toFixed(2); flow.set(key, val); save({ [key]: val }); });
+      const top = document.createElement('div'); top.className = 'fcp-srow-top'; top.appendChild(nm); top.appendChild(tx);
+      row.appendChild(top); row.appendChild(sl); wrap.appendChild(row);
+    }
+    function colour(wrap, label, key) {
+      const row = document.createElement('label'); row.className = 'fcp-row';
+      const sw = document.createElement('input'); sw.type = 'color'; sw.value = P[key];
+      const nm = document.createElement('span'); nm.className = 'fcp-nm'; nm.textContent = label;
+      const tx = document.createElement('span'); tx.className = 'fcp-val'; tx.textContent = P[key].toUpperCase();
+      sw.addEventListener('input', () => { tx.textContent = sw.value.toUpperCase(); flow.set(key, sw.value); save({ [key]: sw.value }); });
+      row.appendChild(sw); row.appendChild(nm); row.appendChild(tx); wrap.appendChild(row);
+    }
+
+    const perf = panel.querySelector('#fcpPerf'), fl = panel.querySelector('#fcpFlow'),
+          cont = panel.querySelector('#fcpCont'), col = panel.querySelector('#fcpCol');
+    slider(perf, 'Render scale', 'renderScale', 0.15, 0.6, 0.01);
+    slider(perf, 'Speed', 'speed', 0, 0.2, 0.005);
+    slider(fl, 'Noise scale', 'noiseScale', 1, 5, 0.05);
+    slider(fl, 'Vertical stretch', 'vStretch', 0.5, 3, 0.05);
+    slider(fl, 'Curl steps', 'curlSteps', 2, 9, 1);
+    slider(fl, 'Curl scale', 'curlScale', 0.5, 3, 0.05);
+    slider(fl, 'Mouse strength', 'hotStrength', 0, 1.2, 0.05);
+    slider(cont, 'Line density', 'lineDensity', 2, 18, 0.5);
+    slider(cont, 'Line sharpness', 'lineSharp', 2, 24, 0.5);
+    slider(cont, 'Top–bottom fade', 'topFade', 0, 0.9, 0.05);
+    colour(col, 'Body dark', 'bodyLo');
+    colour(col, 'Body light', 'bodyHi');
+    colour(col, 'Vein', 'vein');
+
+    const DEF = JSON.parse(JSON.stringify(P));
+    panel.querySelector('.fcp-reset').addEventListener('click', () => {
+      Object.keys(DEF).forEach((k) => flow.set(k, DEF[k]));
+      save(DEF);
+      rebuild();
+    });
+    function rebuild() {
+      perf.innerHTML = fl.innerHTML = cont.innerHTML = col.innerHTML = '';
+      slider(perf, 'Render scale', 'renderScale', 0.15, 0.6, 0.01);
+      slider(perf, 'Speed', 'speed', 0, 0.2, 0.005);
+      slider(fl, 'Noise scale', 'noiseScale', 1, 5, 0.05);
+      slider(fl, 'Vertical stretch', 'vStretch', 0.5, 3, 0.05);
+      slider(fl, 'Curl steps', 'curlSteps', 2, 9, 1);
+      slider(fl, 'Curl scale', 'curlScale', 0.5, 3, 0.05);
+      slider(fl, 'Mouse strength', 'hotStrength', 0, 1.2, 0.05);
+      slider(cont, 'Line density', 'lineDensity', 2, 18, 0.5);
+      slider(cont, 'Line sharpness', 'lineSharp', 2, 24, 0.5);
+      slider(cont, 'Top–bottom fade', 'topFade', 0, 0.9, 0.05);
+      colour(col, 'Body dark', 'bodyLo');
+      colour(col, 'Body light', 'bodyHi');
+      colour(col, 'Vein', 'vein');
+    }
+
+    function closePanel() { panel.classList.remove('open'); try { window.parent.postMessage({ type: '__edit_mode_dismissed' }, '*'); } catch (e) {} }
+    panel.querySelector('.fcp-x').addEventListener('click', closePanel);
+    window.addEventListener('message', (e) => {
+      const d = e.data || {};
+      if (d.type === '__activate_edit_mode') panel.classList.add('open');
+      else if (d.type === '__deactivate_edit_mode') panel.classList.remove('open');
+    });
+    try { window.parent.postMessage({ type: '__edit_mode_available' }, '*'); } catch (e) {}
+  })();
+</script>
+
+<script>
+  /* ─── Cover carousel ────────────────────────────────────────────── */
+  (function () {
+    const root = document.getElementById('cover');
+    if (!root) return;
+    const track = document.getElementById('crTrack');
+    const slides = Array.from(track.children);
+    const N = slides.length, DUR = 5200;
+    root.style.setProperty('--cr-dur', (DUR / 1000) + 's');
+    const nowEl = document.getElementById('crNow'), totEl = document.getElementById('crTot');
+    const tagEl = document.getElementById('crTag'), titleEl = document.getElementById('crTitle'), subEl = document.getElementById('crSub');
+    const barsWrap = document.getElementById('crBars');
+    let i = 0, timer = null, paused = false;
+    totEl.textContent = '/ ' + String(N).padStart(2, '0');
+    const bars = slides.map((_, k) => { const b = document.createElement('button'); b.className = 'cr-bar'; b.setAttribute('aria-label', 'Go to render ' + (k + 1)); b.innerHTML = '<span class="fill"></span>'; b.addEventListener('click', () => go(k, true)); barsWrap.appendChild(b); return b; });
+    function render() {
+      track.style.transform = 'translateX(' + (-i * 100) + '%)';
+      const s = slides[i];
+      nowEl.textContent = String(i + 1).padStart(2, '0');
+      tagEl.textContent = s.dataset.tag || ''; titleEl.textContent = s.dataset.title || ''; subEl.textContent = s.dataset.sub || '';
+      bars.forEach((b, k) => { b.classList.toggle('is-done', k < i); b.classList.remove('is-active'); });
+      if (bars[i]) { void bars[i].offsetWidth; if (!paused) bars[i].classList.add('is-active'); }
+    }
+    function go(n, user) { i = (n + N) % N; render(); if (user) restart(); }
+    function next() { go(i + 1); }
+    function restart() { clearTimeout(timer); if (paused) return; timer = setTimeout(next, DUR); }
+    document.getElementById('crNext').addEventListener('click', () => go(i + 1, true));
+    document.getElementById('crPrev').addEventListener('click', () => go(i - 1, true));
+    root.addEventListener('pointerenter', () => { paused = true; clearTimeout(timer); if (bars[i]) bars[i].classList.remove('is-active'); });
+    root.addEventListener('pointerleave', () => { paused = false; render(); restart(); });
+    let down = false, sx = 0, dx = 0;
+    track.addEventListener('pointerdown', (e) => { down = true; sx = e.clientX; dx = 0; track.classList.add('no-anim'); track.setPointerCapture?.(e.pointerId); });
+    track.addEventListener('pointermove', (e) => { if (!down) return; dx = e.clientX - sx; track.style.transform = 'translateX(calc(' + (-i * 100) + '% + ' + dx + 'px))'; });
+    function end() { if (!down) return; down = false; track.classList.remove('no-anim'); const th = root.clientWidth * 0.14; if (dx < -th) go(i + 1, true); else if (dx > th) go(i - 1, true); else render(); }
+    track.addEventListener('pointerup', end); track.addEventListener('pointercancel', end);
+    root.setAttribute('tabindex', '0');
+    root.addEventListener('keydown', (e) => { if (e.key === 'ArrowRight') go(i + 1, true); else if (e.key === 'ArrowLeft') go(i - 1, true); });
+    render(); restart();
+    if ('IntersectionObserver' in window) { new IntersectionObserver(([en]) => { if (en.isIntersecting && !paused) { render(); restart(); } else { clearTimeout(timer); if (bars[i]) bars[i].classList.remove('is-active'); } }, { threshold: 0.2 }).observe(root); }
+  })();
+</script>
+
+<script>
+  /* ─── Cover 360 cylinder: panorama mapped onto a 3D cylinder that
+     rotates as you scroll the section (or drag inside it). The wide
+     equirectangular image is sliced across N faces arranged in a ring;
+     CSS perspective gives the real curved-cylinder look. ──────────── */
+  (function () {
+    const pano = document.getElementById('pano');
+    if (!pano) return;
+    const cyl = document.getElementById('cyl');
+    const stage = pano.querySelector('.pano-stage');
+    const degEl = document.getElementById('panoDeg');
+    const fill = document.getElementById('panoFill');
+
+    // 3 videos spaced around the ring, with metallic filler faces between
+    // them so it still reads as a continuous cylinder. Autoplay + muted +
+    // looped; display-only (pointer-events off) so drag-to-rotate works.
+    const VID = [
+      'rycJYeqwyOQ',
+      'RUwl66SqxEw',
+      'sj_eTzREoiw',
+    ];
+    function embed(id) {
+      return 'https://www.youtube.com/embed/' + id +
+        '?autoplay=1&mute=1&loop=1&playlist=' + id +
+        '&controls=0&modestbranding=1&rel=0&playsinline=1&showinfo=0';
+    }
+    // the faces between the video panels carry real world renders
+    const STILLS = ['pl-14','pl-07','pl-08','pl-15','pl-13','pl-12'];
+    const GAP = 2;                      // filler faces between each video
+    const N = VID.length * (GAP + 1);   // total faces around the ring (9)
+    const SEG = 360 / N;
+    let faceW = 0, R = 0;
+
+    // The ring holds three autoplaying YouTube iframes. Building it on load
+    // starves the lineup images of connections, so hold until the cover
+    // section is within a viewport of the fold.
+    let built = false;
+    function build() {
+      built = true;
+      const H = stage.clientHeight, vw = stage.clientWidth;
+      // face sized to a 16:9 video; radius from regular-polygon geometry so
+      // faces sit edge-to-edge. A wide face → large radius → gently curved.
+      faceW = Math.min(H * 16 / 9, vw * 1.05);
+      R = (faceW / 2) / Math.tan(Math.PI / N);
+      const persp = Math.max(900, vw * 1.0);
+      cyl.style.setProperty('--cyl-fw', faceW + 'px');
+      cyl.style.setProperty('--cyl-r', R + 'px');
+      stage.style.setProperty('--cyl-persp', persp + 'px');
+
+      cyl.innerHTML = '';
+      let stillIdx = 0;
+      for (let i = 0; i < N; i++) {
+        const f = document.createElement('div');
+        f.className = 'cyl-face';
+        f.style.transform = 'rotateY(' + (i * SEG) + 'deg) translateZ(' + R + 'px)';
+        if (i % (GAP + 1) === 0) {
+          // video panel
+          f.classList.add('is-video');
+          const fr = document.createElement('iframe');
+          fr.src = embed(VID[i / (GAP + 1)]);
+          fr.title = 'Pylon · clip ' + (i / (GAP + 1) + 1);
+          fr.setAttribute('frameborder', '0');
+          fr.setAttribute('allow', 'autoplay; encrypted-media; picture-in-picture');
+          fr.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+          f.appendChild(fr);
+        } else {
+          const img = document.createElement('div');
+          img.className = 'fimg';
+          img.style.backgroundImage = 'url(../assets/projects/pylon/' + STILLS[stillIdx++ % STILLS.length] + '.jpg)';
+          img.style.backgroundSize = 'cover';
+          img.style.backgroundPosition = 'center';
+          f.appendChild(img);
+        }
+        const sh = document.createElement('div'); sh.className = 'fsh';
+        f.appendChild(sh);
+        f._sh = sh;
+        cyl.appendChild(f);
+      }
+    }
+
+    let rot = 0;                        // current cylinder rotation (deg)
+    let target = 0;                     // where we want to be (scroll + drag)
+    function apply() {
+      cyl.style.setProperty('--cyl-rot', rot.toFixed(2) + 'deg');
+      // shade each face by how far it faces away from the viewer (front = lit)
+      const faces = cyl.children;
+      for (let i = 0; i < faces.length; i++) {
+        let a = ((i * SEG + rot) % 360 + 360) % 360;   // 0 = facing viewer
+        if (a > 180) a -= 360;
+        const away = Math.min(1, Math.abs(a) / 90);
+        if (faces[i]._sh) faces[i]._sh.style.opacity = (away * 0.82).toFixed(3);
+      }
+      const norm = ((-rot % 360) + 360) % 360;
+      if (degEl) degEl.textContent = String(Math.round(norm)).padStart(3, '0');
+      if (fill) fill.style.left = (norm / 360 * 68).toFixed(1) + '%';
+    }
+
+    // continuous ease: rot glides toward target every frame (smooth scroll
+    // + flick). Sleeps when settled to save cycles.
+    let anim = 0;
+    function loop() {
+      const d = target - rot;
+      if (Math.abs(d) < 0.02) { rot = target; apply(); anim = 0; return; }
+      rot += d * 0.12;                  // critically-damped-ish glide
+      apply();
+      anim = requestAnimationFrame(loop);
+    }
+    function kick() { if (!anim) anim = requestAnimationFrame(loop); }
+
+    // scroll drives rotation: while the tall track is pinned, progress goes
+    // 0→1 and sweeps the cylinder across all three videos (~300°). Drag adds
+    // manual rotation on top.
+    const track = document.getElementById('coverTrack');
+    let scrollRot = 0, dragRot = 0, raf = 0;
+    function onScroll() {
+      let prog;
+      if (track) {
+        const r = track.getBoundingClientRect();
+        const span = r.height - innerHeight;            // pinned travel distance
+        prog = span > 0 ? (-r.top) / span : 0;          // 0 at enter, 1 at release
+      } else {
+        const r = pano.getBoundingClientRect();
+        prog = (innerHeight - r.top) / (innerHeight + r.height);
+      }
+      prog = Math.max(0, Math.min(1, prog));
+      scrollRot = -prog * 300;
+      target = scrollRot + dragRot;
+      kick();
+      raf = 0;
+    }
+    addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(onScroll); }, { passive: true });
+
+    let down = false, sx = 0, base = 0;
+    pano.addEventListener('pointerdown', (e) => { down = true; sx = e.clientX; base = dragRot; pano.classList.add('is-grab'); pano.setPointerCapture?.(e.pointerId); });
+    pano.addEventListener('pointermove', (e) => { if (!down) return; dragRot = base + (e.clientX - sx) * 0.22; target = scrollRot + dragRot; kick(); });
+    function end() { if (!down) return; down = false; pano.classList.remove('is-grab'); }
+    pano.addEventListener('pointerup', end);
+    pano.addEventListener('pointercancel', end);
+
+    function init() { build(); rot = target; onScroll(); apply(); }
+    // hold the ring until the cover section is within a viewport of the fold
+    new IntersectionObserver((es, o) => {
+      if (!es.some(e => e.isIntersecting)) return;
+      o.disconnect();
+      init();
+      setTimeout(init, 400);
+    }, { rootMargin: '100% 0px' }).observe(pano);
+    let rt = null;
+    addEventListener('resize', () => { if (!built) return; clearTimeout(rt); rt = setTimeout(init, 180); });
+  })();
+</script>
+
+<script>
+  /* ─── Marquee duplication (seamless loop) ───────────────────────── */
+  (function () {
+    document.querySelectorAll('.mq-row').forEach((row) => { row.innerHTML += row.innerHTML; });
+  })();
+
+  /* ─── Cursor ────────────────────────────────────────────────────── */
+  (function () {
+    if (window.matchMedia('(hover: none)').matches) return;
+    const cursor = document.getElementById('kCursor');
+    if (!cursor) return;
+    const pt = { x: innerWidth / 2, y: innerHeight / 2 }, lp = { x: pt.x, y: pt.y };
+    let visible = false;
+    (function tick() { lp.x += (pt.x - lp.x) * 0.22; lp.y += (pt.y - lp.y) * 0.22; cursor.style.transform = 'translate3d(' + lp.x + 'px,' + lp.y + 'px,0)'; requestAnimationFrame(tick); })();
+    addEventListener('pointermove', (e) => { pt.x = e.clientX; pt.y = e.clientY; if (!visible) { cursor.classList.add('is-visible'); visible = true; } }, { passive: true });
+    document.addEventListener('mouseleave', () => cursor.classList.remove('is-visible'));
+    document.addEventListener('mouseenter', () => cursor.classList.add('is-visible'));
+    addEventListener('pointerdown', () => cursor.classList.add('is-down'));
+    addEventListener('pointerup', () => cursor.classList.remove('is-down'));
+    function bind() {
+      document.querySelectorAll('a, button, [role="button"], .next, label, .topnav .logo-lockup, .artist, .day, .chip').forEach((el) => {
+        if (el.__kb) return; el.__kb = 1;
+        el.addEventListener('pointerenter', () => {
+          cursor.classList.add('is-link');
+          const label = cursor.querySelector('.label-link');
+          let verb = 'Open';
+          if (el.matches('.next, .next-cta')) verb = 'View';
+          else if (el.matches('.artist')) verb = 'Artist';
+          else if (el.matches('.chip, .day')) verb = 'Explore';
+          else if (el.matches('[href^="http"]')) verb = 'Visit';
+          if (label) label.setAttribute('data-verb', verb);
+        });
+        el.addEventListener('pointerleave', () => cursor.classList.remove('is-link'));
+      });
+    }
+    bind(); setTimeout(bind, 0);
+  })();
+
+  /* ─── Side rail ─────────────────────────────────────────────────── */
+  (function () {
+    const sections = Array.from(document.querySelectorAll('[data-rail]'));
+    const dots = Array.from(document.querySelectorAll('.rail-dot'));
+    function tick() {
+      const mid = innerHeight / 2; let best = 0, bestDist = Infinity;
+      for (const s of sections) { const r = s.getBoundingClientRect(); const c = (r.top + r.bottom) / 2; const d = Math.abs(c - mid); if (d < bestDist) { bestDist = d; best = +s.dataset.rail; } }
+      dots.forEach((d) => d.classList.toggle('is-active', +d.dataset.i === best));
+    }
+    tick(); addEventListener('scroll', () => requestAnimationFrame(tick), { passive: true }); addEventListener('resize', tick);
+  })();
+
+  /* ─── Smooth anchor scroll ──────────────────────────────────────── */
+  document.querySelectorAll('a[href^="#"]').forEach((a) => {
+    a.addEventListener('click', (e) => { const id = a.getAttribute('href'); if (id.length < 2) { e.preventDefault(); return; } const t = document.querySelector(id); if (!t) return; e.preventDefault(); scrollTo({ top: t.getBoundingClientRect().top + scrollY, behavior: 'smooth' }); });
+  });
+
+  /* ─── Reveal ────────────────────────────────────────────────────── */
+  (function () {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const sel = '.module-head, .body-grid > div, .day, .artist, .stat, .credits, .bleed .ph, .band, .quote, .next-inner, .meta-cell, .mf-big, .mf-cols > div, .carousel, .program';
+    const io = new IntersectionObserver((entries) => { entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }); }, { threshold: 0.12, rootMargin: '0px 0px -7% 0px' });
+    document.querySelectorAll(sel).forEach((el) => { el.classList.add('reveal'); io.observe(el); });
+  })();
+</script>
+
+<script>
+  /* ─── Dot field: small white "data" dot-clusters that FLOW down the
+     page along a gentle path, hugging one side per section and
+     alternating sides as you descend. Each node is drawn as a faint,
+     spread-out back cloud overlaid by a brighter, tighter front cluster
+     (depth). A few very soft clusters sit on the opposite side. ────── */
+  window.__pylonDots = (function () {
+    const canvas = document.createElement('canvas');
+    canvas.id = 'dotfield';
+    canvas.setAttribute('aria-hidden', 'true');
+    canvas.style.cssText = 'position:absolute;top:0;left:0;width:100%;pointer-events:none;z-index:1;';
+    document.body.appendChild(canvas);
+    const ctx = canvas.getContext('2d');
+    const DPR = Math.min(devicePixelRatio || 1, 1.5);
+    let W = 0, DH = 0;
+
+    // Tunable parameters (persisted in localStorage; editable via the panel).
+    const DEFAULTS = {
+      density:    1.0,    // how many clusters along the stream
+      overlap:    1.0,    // packing: higher = tighter, more overlap
+      scale:      1.0,    // cluster size
+      randomness: 1.0,    // positional jitter / stray clusters
+      spread:     1.0,    // perpendicular sideways scatter
+      amplitude:  1.0,    // how much the stream meanders
+      depthBias:  1.15,   // depth distribution (low = more bright/front, high = more faint/back)
+      opacity:    1.0,    // overall brightness
+      altStrength:0.5,    // strength of the gentle opposite-side wisps
+      shape:      'stream', // overall distribution: stream/column/wave/diagonal/arc/edge/scatter
+      color:      '#E0433A',
+    };
+    let P = Object.assign({}, DEFAULTS);
+    try { const s = JSON.parse(localStorage.getItem('pylon_dots_v1') || '{}'); P = Object.assign(P, s); } catch (e) {}
+    function persist() { try { localStorage.setItem('pylon_dots_v1', JSON.stringify(P)); } catch (e) {} }
+
+    let DOT = '224,67,58';
+    function syncColor() {
+      const c = P.color || '#E0433A';
+      DOT = [parseInt(c.slice(1,3),16), parseInt(c.slice(3,5),16), parseInt(c.slice(5,7),16)].join(',');
+    }
+    syncColor();
+
+    // deterministic RNG so the field is stable across redraws (no flicker)
+    function rng(seed) { let s = seed >>> 0; return function () { s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296; }; }
+
+    // The dot shapes a cluster can be built from.
+    const SHAPES = ['sq', 'sqO', 'ci', 'ciO', 'di', 'diO'];
+    function drawDot(x, y, s, shape, a) {
+      const col = 'rgba(' + DOT + ',' + a.toFixed(3) + ')';
+      ctx.fillStyle = col; ctx.strokeStyle = col; ctx.lineWidth = 1;
+      const cx = x + s / 2, cy = y + s / 2;
+      if (shape === 'sq') ctx.fillRect(x, y, s, s);
+      else if (shape === 'sqO') ctx.strokeRect(x + 0.5, y + 0.5, Math.max(1, s - 1), Math.max(1, s - 1));
+      else if (shape === 'ci') { ctx.beginPath(); ctx.arc(cx, cy, s / 2, 0, 6.2832); ctx.fill(); }
+      else if (shape === 'ciO') { ctx.beginPath(); ctx.arc(cx, cy, Math.max(0.6, s / 2 - 0.5), 0, 6.2832); ctx.stroke(); }
+      else if (shape === 'di') { ctx.beginPath(); ctx.moveTo(cx, y); ctx.lineTo(x + s, cy); ctx.lineTo(cx, y + s); ctx.lineTo(x, cy); ctx.closePath(); ctx.fill(); }
+      else { ctx.beginPath(); ctx.moveTo(cx, y); ctx.lineTo(x + s, cy); ctx.lineTo(cx, y + s); ctx.lineTo(x, cy); ctx.closePath(); ctx.stroke(); }
+    }
+
+    // One grid-cluster — each gets its OWN random shape and scale, so the
+    // ribbon is built from squares, circles and diamonds of varied sizes.
+    function cluster(cx, cy, depth, alpha, rand) {
+      const shape = SHAPES[(rand() * SHAPES.length) | 0];
+      const sizeMul = (0.55 + rand() * 1.5) * P.scale;       // per-cluster scale
+      let cells = depth > 0.6 ? (4 + (rand() * 3 | 0)) : (3 + (rand() * 2 | 0));
+      cells = Math.max(2, cells);
+      const dotSize = Math.max(1, Math.round((1 + depth * 1.4) * sizeMul + rand()));
+      const gap = Math.max(dotSize + 2, Math.round((dotSize + 3) * (0.85 + 0.6 * rand())));
+      const fill = 0.55 + 0.4 * depth;
+      const ox = cx - cells * gap / 2, oy = cy - cells * gap / 2;
+      for (let gy = 0; gy < cells; gy++) {
+        for (let gx = 0; gx < cells; gx++) {
+          if (rand() > fill) continue;
+          const a = Math.min(1, alpha * (0.75 + rand() * 0.3) * P.opacity);
+          drawDot(Math.round(ox + gx * gap), Math.round(oy + gy * gap), dotSize, shape, a);
+        }
+      }
+    }
+
+    // A flowing ribbon of OVERLAPPING square clusters following a meandering
+    // path: clusters packed close along the spine, each at a different depth,
+    // drawn back-to-front so the bright ones overlap the faint ones.
+    function flow(top, h, side, strength, gentle) {
+      const small = W < 820;
+      const baseFrac = side < 0
+        ? (gentle ? 0.075 : (small ? 0.12 : 0.10))
+        : (gentle ? 0.925 : (small ? 0.88 : 0.90));
+      const amp = W * (gentle ? 0.03 : (small ? 0.035 : 0.06)) * P.amplitude;
+      const phase = (top * 0.013) % 6.2832;
+      const rand = rng((Math.round(top) * 2654435761 + (side < 0 ? 7 : 13) + (gentle ? 101 : 0)) >>> 0);
+      const mode = P.shape || 'stream';
+
+      // The spine: x as a function of vertical position t, per distribution.
+      function spineX(t) {
+        switch (mode) {
+          case 'column':   return W * baseFrac;
+          case 'wave':     return W * baseFrac + Math.sin(t * Math.PI * 2.6 + phase) * amp * 1.9;
+          case 'diagonal': return W * (side < 0 ? (0.08 + 0.40 * t) : (0.92 - 0.40 * t)) + Math.sin(t * Math.PI * 1.4 + phase) * amp * 0.3;
+          case 'arc':      return W * (baseFrac + (side < 0 ? 1 : -1) * Math.sin(t * Math.PI) * 0.24);
+          case 'edge':     return W * (side < 0 ? 0.05 : 0.95);
+          case 'scatter':  return W * baseFrac;
+          case 'stream':
+          default:         return W * baseFrac + (Math.sin(t * Math.PI * 1.7 + phase) + Math.sin(t * Math.PI * 3.3 + phase * 1.7) * 0.35) * amp;
+        }
+      }
+      // Sideways band width per distribution (how far clusters spray off the spine).
+      const band = (mode === 'scatter') ? W * 0.17 : (mode === 'edge' ? 16 : (gentle ? 30 : 46));
+
+      const pad = 30;
+      const spacing = (gentle ? 150 : 30) / Math.max(0.2, P.overlap);
+      const count = Math.max(gentle ? 2 : 5, Math.round(h / spacing * P.density));
+
+      const items = [];
+      for (let i = 0; i < count; i++) {
+        let t = count > 1 ? i / (count - 1) : 0.5;
+        if (mode === 'scatter') t = rand();                  // fill the whole side
+        const jt = Math.max(0, Math.min(1, t + (rand() - 0.5) * 0.04 * P.randomness));
+        const sy = top + pad + jt * (h - pad * 2);
+        const off = ((rand() - 0.5) * band * P.spread)
+                  + (rand() < 0.16 * P.randomness ? (rand() - 0.5) * 130 * P.spread : 0);
+        let x = spineX(jt) + off;
+        x = Math.max(W * 0.02, Math.min(W * 0.98, x));
+        const depth = Math.pow(rand(), P.depthBias);
+        const a = (gentle ? 0.5 : 1) * strength * (0.12 + depth * 0.85);
+        items.push({ x, y: sy, d: depth, a });
+      }
+      items.sort((p, q) => p.d - q.d);                       // faint back → bright front
+      for (const it of items) cluster(it.x, it.y, it.d, it.a, rand);
+    }
+
+    function draw() {
+      W = innerWidth;
+      DH = Math.max(document.documentElement.scrollHeight, innerHeight);
+      canvas.width = W * DPR; canvas.height = DH * DPR;
+      canvas.style.height = DH + 'px';
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      ctx.clearRect(0, 0, W, DH);
+
+      let idx = 0;
+      document.querySelectorAll('section').forEach((sec) => {
+        if (sec.matches('.hero, .next') || sec.querySelector('.pano')) return;
+        const r = sec.getBoundingClientRect();
+        const top = r.top + scrollY, h = r.height;
+        if (h < 220) return;
+        const side = (idx % 2 === 0) ? -1 : 1;        // alternate L / R per section
+        flow(top, h, side, 1.0, false);               // primary side
+        flow(top, h, -side, P.altStrength, true);     // gentle opposite-side wisps
+        idx++;
+      });
+      ctx.globalAlpha = 1;
+    }
+
+    draw();
+    addEventListener('load', draw);
+    setTimeout(draw, 600);   // re-measure once fonts/layout settle
+    let rt = null;
+    addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(draw, 200); });
+
+    return {
+      P, DEFAULTS,
+      set(key, val) { P[key] = val; if (key === 'color') syncColor(); persist(); draw(); },
+      reset() { Object.assign(P, DEFAULTS); syncColor(); persist(); draw(); },
+      redraw: draw,
+    };
+  })();
+</script>
+
+<script>
+  /* ─── Dot-flow Tweaks panel (host edit-mode gated) ──────────────── */
+  (function () {
+    const dots = window.__pylonDots;
+    if (!dots || !dots.P) return;
+    const P = dots.P;
+
+    const panel = document.createElement('div');
+    panel.className = 'fab-cpanel left';
+    panel.innerHTML =
+      '<div class="fcp-body">' +
+        '<div class="fcp-title">Dot Flow <button class="fcp-x" aria-label="Close">\u00d7</button></div>' +
+        '<div class="fcp-h">Distribution</div><div class="fcp-grp" id="dfDist"></div>' +
+        '<div class="fcp-h">Shape</div><div class="fcp-grp" id="dfShape"></div>' +
+        '<div class="fcp-h">Colour</div><div class="fcp-grp" id="dfCol"></div>' +
+        '<button class="fcp-reset">Reset to default</button>' +
+      '</div>';
+    document.body.appendChild(panel);
+
+    function select(wrap, label, key, opts) {
+      const row = document.createElement('div'); row.className = 'fcp-row';
+      const nm = document.createElement('span'); nm.className = 'fcp-nm'; nm.textContent = label;
+      const sel = document.createElement('select'); sel.className = 'fcp-select';
+      opts.forEach((o) => { const op = document.createElement('option'); op.value = o.v; op.textContent = o.l; if (P[key] === o.v) op.selected = true; sel.appendChild(op); });
+      sel.addEventListener('change', () => dots.set(key, sel.value));
+      row.appendChild(nm); row.appendChild(sel); wrap.appendChild(row);
+    }
+
+    function slider(wrap, label, key, min, max, step) {
+      const row = document.createElement('div'); row.className = 'fcp-row fcp-srow';
+      const nm = document.createElement('span'); nm.className = 'fcp-nm'; nm.textContent = label;
+      const tx = document.createElement('span'); tx.className = 'fcp-val'; tx.textContent = (+P[key]).toFixed(2);
+      const sl = document.createElement('input'); sl.type = 'range'; sl.min = min; sl.max = max; sl.step = step; sl.value = P[key]; sl.className = 'fcp-range';
+      sl.addEventListener('input', () => { const v = +sl.value; tx.textContent = v.toFixed(2); dots.set(key, v); });
+      const top = document.createElement('div'); top.className = 'fcp-srow-top'; top.appendChild(nm); top.appendChild(tx);
+      row.appendChild(top); row.appendChild(sl); wrap.appendChild(row); return sl;
+    }
+    function colour(wrap, label, key) {
+      const row = document.createElement('label'); row.className = 'fcp-row';
+      const sw = document.createElement('input'); sw.type = 'color'; sw.value = P[key];
+      const nm = document.createElement('span'); nm.className = 'fcp-nm'; nm.textContent = label;
+      const tx = document.createElement('span'); tx.className = 'fcp-val'; tx.textContent = P[key].toUpperCase();
+      sw.addEventListener('input', () => { tx.textContent = sw.value.toUpperCase(); dots.set(key, sw.value); });
+      row.appendChild(sw); row.appendChild(nm); row.appendChild(tx); wrap.appendChild(row);
+    }
+
+    function buildAll() {
+      const dist = panel.querySelector('#dfDist'), shape = panel.querySelector('#dfShape'), col = panel.querySelector('#dfCol');
+      dist.innerHTML = shape.innerHTML = col.innerHTML = '';
+      select(dist, 'Pattern', 'shape', [
+        { v: 'stream', l: 'Stream' }, { v: 'column', l: 'Column' }, { v: 'wave', l: 'Wave' },
+        { v: 'diagonal', l: 'Diagonal' }, { v: 'arc', l: 'Arc' }, { v: 'edge', l: 'Edge' }, { v: 'scatter', l: 'Scatter' },
+      ]);
+      slider(dist, 'Density', 'density', 0.2, 3, 0.05);
+      slider(dist, 'Overlap', 'overlap', 0.3, 3, 0.05);
+      slider(dist, 'Randomness', 'randomness', 0, 3, 0.05);
+      slider(dist, 'Depth bias', 'depthBias', 0.4, 3, 0.05);
+      slider(shape, 'Cluster scale', 'scale', 0.4, 2.5, 0.05);
+      slider(shape, 'Flow amplitude', 'amplitude', 0, 3, 0.05);
+      slider(shape, 'Side spread', 'spread', 0, 3, 0.05);
+      slider(shape, 'Opacity', 'opacity', 0.2, 2, 0.05);
+      slider(shape, 'Alt-side wisps', 'altStrength', 0, 1.5, 0.05);
+      colour(col, 'Dot colour', 'color');
+    }
+    buildAll();
+
+    panel.querySelector('.fcp-reset').addEventListener('click', () => { dots.reset(); buildAll(); });
+    function closePanel() { panel.classList.remove('open'); try { window.parent.postMessage({ type: '__edit_mode_dismissed' }, '*'); } catch (e) {} }
+    panel.querySelector('.fcp-x').addEventListener('click', closePanel);
+    window.addEventListener('message', (e) => {
+      const d = e.data || {};
+      if (d.type === '__activate_edit_mode') panel.classList.add('open');
+      else if (d.type === '__deactivate_edit_mode') panel.classList.remove('open');
+    });
+    try { window.parent.postMessage({ type: '__edit_mode_available' }, '*'); } catch (e) {}
+  })();
+</script>
+
+  <script src="../assets/js/case/image-slot.js"></script>
+  <script src="../assets/js/case/pylon-pavilions.js?v=3"></script>
+<script src="../assets/js/nav.js" defer></script>
+<script src="../assets/js/site-footer.js" defer></script>
+<script src="../assets/js/to-top.js" defer></script>
+</body>
+</html>

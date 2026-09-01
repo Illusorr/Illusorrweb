@@ -1,0 +1,1799 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="preload" as="font" type="font/woff" crossorigin href="../assets/fonts/outfit-variable.woff">
+<link rel="stylesheet" href="../assets/css/nav.css">
+<link rel="stylesheet" href="../assets/css/case/fonts.css">
+<title>ILLUSORR × Koton: Koton Russia, the AI Lookbook</title>
+<link rel="preload" as="font" type="font/otf" crossorigin href="../assets/projects/shared/fonts/PPMonumentExtended-Black.otf">
+<link rel="preload" as="font" type="font/ttf" crossorigin href="../assets/projects/shared/fonts/Squaresharps-v2.ttf">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+  /* ─────────────────────────────────────────────────────────────────
+     Fonts — same stack as the Illusorr hero
+     Outfit       → body / paragraphs / UI
+     PP Monument  → display headlines
+     Squaresharps → small caps labels, eyebrows, UI chrome
+     ───────────────────────────────────────────────────────────────── */
+  @font-face { font-family:'Outfit'; font-weight:100 900; font-display:swap;
+    src:url('../assets/fonts/outfit-variable.woff') format('woff'); }
+  @font-face { font-family:'PP Monument Extended'; font-weight:400; font-display:swap;
+    src:url('../assets/projects/shared/fonts/PPMonumentExtended-Regular.otf') format('opentype'); }
+  @font-face { font-family:'PP Monument Extended'; font-weight:900; font-display:swap;
+    src:url('../assets/projects/shared/fonts/PPMonumentExtended-Black.otf') format('opentype'); }
+  @font-face { font-family:'Squaresharps'; font-weight:400; font-display:swap;
+    src:url('../assets/projects/shared/fonts/Squaresharps-v2.ttf') format('truetype'); }
+
+  /* ─────────────────────────────────────────────────────────────────
+     Theme tokens — light + dark halves both defined up-front.
+     A section just sets data-tone="light|dark" and gets the full kit.
+     ───────────────────────────────────────────────────────────────── */
+  :root {
+    --light-bg: #eaf2f1;
+    --light-bg-2: #eaf2f1;
+    --light-ink: #14140f;
+    --light-ink-soft: rgba(20, 20, 15, 0.62);
+    --light-ink-faint: rgba(20, 20, 15, 0.14);
+    --light-tile: #e3e2df;
+
+    --dark-bg: #0a0a0c;
+    --dark-bg-2: #111114;
+    --dark-ink: #f3ecdf;
+    --dark-ink-soft: rgba(243, 236, 223, 0.62);
+    --dark-ink-faint: rgba(243, 236, 223, 0.16);
+    --dark-tile: #1c1c20;
+
+    --accent: #ff5b2e;       /* warm flag for highlights */
+
+    --maxw: 1440px;
+    --gutter: clamp(20px, 4vw, 64px);
+  }
+
+  /* Subtle noise grain — SVG <feTurbulence> rendered to a tile and
+     drawn at low opacity. Same paper-grain feel as the landing
+     page's WebGL plaster, just static and very quiet. */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    background-size: 220px 220px;
+    opacity: 0.06;
+    mix-blend-mode: multiply;
+  }
+  /* On the dark half, multiply would hide the noise — invert the
+     blend by flagging sections that should use a lighter grain. */
+  section[data-tone="dark"] {
+    position: relative;
+  }
+  section[data-tone="dark"]::after {
+    content: '';
+    position: absolute; inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    background-size: 220px 220px;
+    opacity: 0.035;
+    mix-blend-mode: screen;
+  }
+  /* Keep section content above the dark-half grain overlay. */
+  section[data-tone="dark"] > * { position: relative; z-index: 1; }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 400;
+    background: var(--light-bg);
+    color: var(--light-ink);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  /* Sections inherit a tone from data-tone. */
+  section[data-tone="light"] {
+    background: var(--light-bg);
+    color: var(--light-ink);
+    --bg: var(--light-bg);
+    --bg-2: var(--light-bg-2);
+    --ink: var(--light-ink);
+    --ink-soft: var(--light-ink-soft);
+    --ink-faint: var(--light-ink-faint);
+    --tile: var(--light-tile);
+  }
+  section[data-tone="dark"] {
+    background: var(--dark-bg);
+    color: var(--dark-ink);
+    --bg: var(--dark-bg);
+    --bg-2: var(--dark-bg-2);
+    --ink: var(--dark-ink);
+    --ink-soft: var(--dark-ink-soft);
+    --ink-faint: var(--dark-ink-faint);
+    --tile: var(--dark-tile);
+  }
+
+  .wrap {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+  }
+
+  /* ─────────────────────────────────────────────────────────────────
+     Fixed top nav — matches the Illusorr chrome. Inverts with theme.
+     ───────────────────────────────────────────────────────────────── */
+  .topnav {
+    position: fixed; left: 0; right: 0; top: 0;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 22px var(--gutter);
+    z-index: 50;
+    pointer-events: none;
+    /* mix-blend-mode removed — was creating compositing artefacts with
+       the custom cursor. Theme inversion is now handled per-section
+       via JS toggling .on-dark on the topnav. */
+  }
+  .topnav > * { pointer-events: auto; }
+  .topnav a, .topnav button {
+    text-decoration: none;
+    background: transparent; border: 0;
+    font-family: 'Squaresharps', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+    cursor: pointer;
+    transition: color .35s ease;
+  }
+  .topnav .logo-lockup {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-family: 'Squaresharps', system-ui, sans-serif;
+    font-size: 13px; letter-spacing: 0.30em; text-transform: uppercase;
+    transition: color .35s ease;
+    text-decoration: none;
+  }
+  .topnav .logo-mark {
+    width: 26px; height: 26px;
+    background: url('../assets/projects/shared/illusorr-logo.webp') left center / auto 100% no-repeat;
+  }
+  .topnav.on-dark .logo-mark { filter: invert(1) hue-rotate(180deg); }
+  .topnav .logo-lockup, .topnav a, .topnav button { color: #14140f; }
+  .topnav.on-dark .logo-lockup, .topnav.on-dark a, .topnav.on-dark button { color: #f3ecdf; }
+  .topnav nav { display: flex; gap: 32px; align-items: center; }
+
+  /* ─────────────────────────────────────────────────────────────────
+     HERO — Dogstudio-style: tiny meta strip, gigantic title, scroll cue
+     ───────────────────────────────────────────────────────────────── */
+  section.hero[data-tone="light"] {
+    /* 21:9 letterbox panel, with a floor so it never collapses on phones */
+    width: 100%; max-width: 100vw;
+    aspect-ratio: 21 / 9;
+    min-height: 560px;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: clamp(40px, 8vh, 96px) var(--gutter);
+    position: relative;
+    /* White hero ground, black text. */
+    background: #ffffff;
+  }
+  .hero .hero-inner { max-width: var(--maxw); width: 100%; margin: 0 auto; position: relative; z-index: 2; display: flex; flex-direction: column; flex: 1 1 auto; }
+
+  /* ──────────────────────────────────────────────────────────────────
+     HERO EMBLEM FIELD — small Koton cloverleaf marks scattered around
+     the hero edges. JS gives each one cursor-repulsion physics: the
+     pointer pushes nearby marks away, they spring back home, and idle-
+     spin slowly. Sits behind the hero text (z-index 1), non-interactive.
+     ────────────────────────────────────────────────────────────────── */
+  .hero-emblems {
+    position: absolute;
+    left: 0;
+    pointer-events: none;
+    overflow: visible;
+    z-index: 30;
+  }
+  .hero-emblem {
+    position: absolute;
+    top: 0; left: 0;
+    will-change: transform;
+  }
+  .hero-emblem svg { display: block; width: 100%; height: 100%; }
+  .hero-emblem svg path { fill: currentColor; }
+
+  .eyebrow-row {
+    display: flex; gap: 28px; align-items: center;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 28px;
+  }
+  .eyebrow-row .dotsep {
+    width: 4px; height: 4px; border-radius: 50%;
+    background: var(--ink-faint);
+  }
+
+  .hero-title {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(40px, 5.5vw, 55px);
+    line-height: 0.92;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    margin: 0;
+    color: var(--ink);
+    max-width: 100%;
+    overflow-wrap: break-word;
+  }
+  .hero-title .ln { display: block; max-width: 100%; }
+  /* Italic tagline drops to its own block and is allowed to wrap so it
+     never extends past the viewport / triggers horizontal overflow. */
+  .hero-title .ln-ital {
+    display: block;
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 0.42em;
+    letter-spacing: 0;
+    color: var(--ink-soft);
+    margin-top: 0.28em;
+    max-width: 100%;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    text-transform: none;
+  }
+
+  .hero-foot {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 18px;
+  }
+  .hero-lede {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: clamp(15px, 1.05vw, 17px);
+    line-height: 1.55;
+    color: var(--ink);
+    max-width: 420px;
+    margin: 0;
+  }
+  .hero-lede strong { font-weight: 600; }
+
+  .scroll-cue {
+    justify-self: center;
+    display: inline-flex; flex-direction: column; align-items: center; gap: 10px;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.30em; text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .scroll-cue .line {
+    width: 1px; height: 44px;
+    background: linear-gradient(180deg, transparent 0%, var(--ink) 50%, transparent 100%);
+    background-size: 100% 200%;
+    animation: scrollPulse 1.8s ease-in-out infinite;
+  }
+  @keyframes scrollPulse {
+    0%   { background-position: 0 -100%; }
+    100% { background-position: 0 200%; }
+  }
+
+  .hero-credit {
+    justify-self: end;
+    text-align: right;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--ink-soft);
+    line-height: 1.7;
+  }
+
+  /* ─────────────────────────────────────────────────────────────────
+     PROJECT META — horizontal strip of label/value cells (the
+     "Client / Year / Services" row that anchors every Dogstudio case).
+     ───────────────────────────────────────────────────────────────── */
+  .meta-bar {
+    border-top: 1px solid var(--ink-faint);
+    border-bottom: 1px solid var(--ink-faint);
+    padding: 28px 0;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr 1.4fr 1.4fr 1fr;
+    gap: clamp(20px, 3vw, 48px);
+  }
+  .meta-cell .meta-k {
+    display: block;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 8px;
+  }
+  .meta-cell .meta-v {
+    display: block;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 15px; line-height: 1.5;
+    color: var(--ink);
+  }
+
+  /* ─────────────────────────────────────────────────────────────────
+     COVER — full-bleed featured visual right after the meta bar
+     ───────────────────────────────────────────────────────────────── */
+  .cover {
+    padding: clamp(40px, 6vw, 96px) 0 clamp(90px, 11vw, 170px);
+  }
+  .cover .frame { position: relative; aspect-ratio: 16 / 9; overflow: hidden; }
+  /* The .ph inside .frame must explicitly fill the frame — block
+     children don't inherit the parent's aspect-ratio height. */
+  .cover .frame .ph { position: absolute; inset: 0; }
+
+  /* Placeholder media block — base style for any image/video stand-in.
+     The dotted hatch + corner label tells the user "fill me in". */
+  .ph {
+    position: relative;
+    width: 100%;
+    background: var(--tile);
+    color: var(--ink-soft);
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .ph::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(45deg, var(--ink-faint) 1px, transparent 1px),
+      linear-gradient(-45deg, var(--ink-faint) 1px, transparent 1px);
+    background-size: 14px 14px;
+    opacity: 0.55;
+    pointer-events: none;
+  }
+  .ph::after { content: none; }
+  /* When a .ph holds a real <img> or <video>, drop the dotted hatch +
+     center diamond + label chips so the asset reads cleanly. */
+  .ph.is-filled::before,
+  .ph.is-filled::after { display: none; }
+  .ph > img,
+  .ph > video {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    z-index: 1;
+  }
+  .ph .ph-label {
+    position: absolute; left: 20px; top: 16px;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink);
+    background: var(--bg);
+    padding: 6px 10px;
+    border: 1px solid var(--ink-faint);
+    z-index: 2;
+  }
+  .ph .ph-dim {
+    position: absolute; right: 20px; top: 16px;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 12px; letter-spacing: 0.06em;
+    color: var(--ink-soft);
+    z-index: 2;
+  }
+  .ph[data-kind="video"] .play {
+    position: absolute; left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    width: 72px; height: 72px; border-radius: 50%;
+    border: 1px solid var(--ink-faint);
+    background: var(--bg);
+    display: grid; place-items: center;
+    z-index: 3;
+  }
+  .ph[data-kind="video"] .play::after {
+    content: '';
+    width: 0; height: 0;
+    border-left: 14px solid var(--ink);
+    border-top: 9px solid transparent;
+    border-bottom: 9px solid transparent;
+    margin-left: 4px;
+  }
+  .ph[data-kind="video"]::after { display: none; } /* hide diamond; play takes over */
+  .ph .caption {
+    position: absolute; left: 20px; bottom: 14px; right: 20px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase;
+    color: var(--ink-soft);
+    z-index: 2;
+  }
+
+  /* ─────────────────────────────────────────────────────────────────
+     INTRO — left label + right paragraphs, the classic Dogstudio
+     "01 — The Brief" two-column module
+     ───────────────────────────────────────────────────────────────── */
+  .module {
+    padding: clamp(120px, 15vw, 240px) 0;
+  }
+  .module-head {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: clamp(24px, 5vw, 80px);
+    align-items: start;
+  }
+  .section-num {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .section-num .num {
+    display: block;
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(36px, 4vw, 64px);
+    line-height: 1;
+    color: var(--ink);
+    margin-bottom: 14px;
+    letter-spacing: -0.02em;
+  }
+  .module-title {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(24px, 2.7vw, 42px);
+    line-height: 1.06;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin: 0 0 32px;
+  }
+  .module-title em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--ink-soft);
+    letter-spacing: 0;
+  }
+
+  .lede {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: clamp(18px, 1.45vw, 25px);
+    line-height: 1.45;
+    color: var(--ink);
+    max-width: 46ch;
+    margin: 0;
+    text-wrap: pretty;
+  }
+  .body-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(24px, 4vw, 64px);
+    margin-top: clamp(40px, 5vw, 64px);
+  }
+  .body-grid p {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .body-grid p + p { margin-top: 18px; }
+
+  /* ─────────────────────────────────────────────────────────────────
+     SIDE-BY-SIDE — uneven two-up gallery with offset rhythm
+     ───────────────────────────────────────────────────────────────── */
+  .duo {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: clamp(20px, 3vw, 48px);
+    align-items: end;
+    padding: 0 0 clamp(90px, 11vw, 170px);
+  }
+  .duo .col { display: flex; flex-direction: column; gap: 14px; }
+  .duo .col-a .ph { aspect-ratio: 4 / 3; }
+  .duo .col-b { padding-bottom: clamp(40px, 6vw, 96px); }
+  .duo .col-b .ph { aspect-ratio: 3 / 4; }
+  .duo .cap {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 13px; letter-spacing: 0.01em;
+    color: var(--ink-soft);
+  }
+
+  /* ─────────────────────────────────────────────────────────────────
+     FULL-BLEED MEDIA — edge-to-edge video / image
+     ───────────────────────────────────────────────────────────────── */
+  .bleed {
+    padding: 0 0 clamp(90px, 11vw, 170px);
+  }
+  .bleed .ph { aspect-ratio: 21 / 9; }
+
+  /* ─────────────────────────────────────────────────────────────────
+     PULL QUOTE — large editorial statement on its own panel
+     ───────────────────────────────────────────────────────────────── */
+  .quote-wrap {
+    padding: clamp(120px, 15vw, 240px) 0;
+  }
+  .quote {
+    max-width: 1100px; margin: 0 auto;
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: clamp(28px, 3.8vw, 60px);
+    line-height: 1.08;
+    letter-spacing: -0.005em;
+    color: var(--ink);
+    text-align: left;
+    text-wrap: balance;
+  }
+  .quote .quote-mark {
+    display: block;
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(80px, 10vw, 160px);
+    line-height: 0.6;
+    color: var(--accent);
+    margin-bottom: 24px;
+  }
+  .quote-attrib {
+    margin-top: 40px;
+    display: flex; align-items: center; gap: 14px;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .quote-attrib .rule { width: 36px; height: 1px; background: var(--ink-faint); }
+
+  /* ─────────────────────────────────────────────────────────────────
+     TRIPTYCH — three-up grid with offset middle (gallery moment)
+     ───────────────────────────────────────────────────────────────── */
+  .trio {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: clamp(16px, 2vw, 32px);
+    padding: 0 0 clamp(90px, 11vw, 170px);
+    align-items: start;
+  }
+  .trio .ph { aspect-ratio: 3 / 4; }
+  .trio .col:nth-child(2) { padding-top: clamp(40px, 6vw, 96px); }
+
+  /* ─────────────────────────────────────────────────────────────────
+     PROCESS — three-up of labeled steps (text only)
+     ───────────────────────────────────────────────────────────────── */
+  .process {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(24px, 3vw, 56px);
+    margin-top: clamp(48px, 6vw, 80px);
+    border-top: 1px solid var(--ink-faint);
+    padding-top: clamp(28px, 3vw, 48px);
+  }
+  .process .step {
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .process .step .step-k {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-soft);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .process .step .step-k::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent);
+  }
+  .process .step h4 {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(20px, 1.6vw, 26px);
+    line-height: 1.1;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin: 0;
+    letter-spacing: -0.005em;
+  }
+  .process .step p {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 15px; line-height: 1.6;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* ─────────────────────────────────────────────────────────────────
+     STATS — large numbers + small captions (results)
+     ───────────────────────────────────────────────────────────────── */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(16px, 2vw, 40px);
+    padding: clamp(90px, 11vw, 170px) 0;
+    border-top: 1px solid var(--ink-faint);
+    border-bottom: 1px solid var(--ink-faint);
+  }
+  .stat .stat-n {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(48px, 6.5vw, 108px);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    display: block;
+  }
+  .stat .stat-n .sm { font-size: 0.45em; vertical-align: top; padding-left: 0.2em; color: var(--accent); }
+  .stat .stat-k {
+    display: block;
+    margin-top: 14px;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink-soft);
+    max-width: 18ch;
+  }
+
+  /* ─────────────────────────────────────────────────────────────────
+     CREDITS — wide grid of role/name pairs
+     ───────────────────────────────────────────────────────────────── */
+  .credits {
+    padding: clamp(90px, 11vw, 170px) 0;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: clamp(24px, 5vw, 80px);
+  }
+  .credits .credit-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px 48px;
+  }
+  .credits .credit-row .role {
+    display: block;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 6px;
+  }
+  .credits .credit-row .who {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 15px; line-height: 1.5;
+    color: var(--ink);
+  }
+
+  /* ─────────────────────────────────────────────────────────────────
+     NEXT PROJECT — final full-bleed teaser, hover reveals title
+     ───────────────────────────────────────────────────────────────── */
+  .next {
+    position: relative;
+    min-height: 90vh;
+    display: grid; place-items: center;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .next .next-bg {
+    position: absolute; inset: 0;
+    background: var(--tile);
+    overflow: hidden;
+  }
+  .next .next-bg .ph {
+    position: absolute; inset: 0;
+    transform: scale(1.04);
+    transition: transform 1.2s cubic-bezier(.2,.7,.2,1);
+  }
+  .next:hover .next-bg .ph { transform: scale(1.0); }
+  .next .next-inner {
+    position: relative; z-index: 2;
+    text-align: center;
+    display: flex; flex-direction: column; align-items: center; gap: 22px;
+  }
+  .next .next-k {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.30em; text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .next h3 {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(44px, 7vw, 120px);
+    line-height: 0.95;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+  .next .next-meta {
+    display: flex; gap: 24px;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .next .next-cta {
+    margin-top: 12px;
+    display: inline-flex; align-items: center; gap: 14px;
+    padding: 16px 28px;
+    border: 1px solid var(--ink-faint);
+    border-radius: 999px;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase;
+    color: var(--ink);
+    transition: background .3s ease, color .3s ease, border-color .3s ease;
+  }
+  .next:hover .next-cta {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+  .next-cta svg { width: 14px; height: 14px; }
+
+  /* ─────────────────────────────────────────────────────────────────
+     FOOTER — small chrome strip at the very bottom
+     ───────────────────────────────────────────────────────────────── */
+  footer.foot {
+    padding: 40px var(--gutter);
+    border-top: 1px solid var(--ink-faint);
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  /* ─────────────────────────────────────────────────────────────────
+     Half-marker — the visual stitch between the light and dark halves
+     ───────────────────────────────────────────────────────────────── */
+  .seam {
+    height: 1px;
+    background: transparent;
+    position: relative;
+  }
+  .seam::before {
+    content: '';
+    position: absolute; left: 50%; top: -10px; transform: translate(-50%, -100%);
+    background: var(--bg);
+    padding: 6px 14px;
+    border: 1px solid var(--ink-faint);
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink-soft);
+    z-index: 4;
+  }
+
+  /* ─────────────────────────────────────────────────────────────────
+     Side rail — tiny chapter / progress indicator on the right
+     ───────────────────────────────────────────────────────────────── */
+  .rail {
+    position: fixed; right: 18px; top: 50%; transform: translateY(-50%);
+    display: flex; flex-direction: column; gap: 8px;
+    z-index: 40;
+  }
+  .rail .rail-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: #14140f;
+    opacity: 0.35;
+    transition: opacity .3s ease, transform .3s ease, background .35s ease;
+  }
+  .rail.on-dark .rail-dot { background: #f3ecdf; }
+  .rail .rail-dot.is-active { opacity: 1; transform: scale(1.5); }
+
+  /* ──────────────────────────────────────────────────────────────────
+     KOTON cursor — a small black disc badge stamped with the
+     wordmark. Sits over the whole page, uses mix-blend-mode:
+     difference so it inverts cleanly against both the light and
+     the dark halves without any per-section logic.
+     ────────────────────────────────────────────────────────────────── */
+  html, body { cursor: none; }
+  a, button, [role="button"], .next, input, label, .topnav .logo-lockup { cursor: none; }
+
+  .koton-cursor {
+    position: fixed;
+    left: 0; top: 0;
+    width: 36px; height: 36px;
+    margin-left: -18px; margin-top: -18px;
+    background: transparent;
+    color: #0a0a0c;
+    display: flex; align-items: center; justify-content: center;
+    pointer-events: none;
+    /* Highest possible 32-bit signed int — the cursor must sit above
+     every other stacking context on the page, no exceptions. */
+    z-index: 2147483647;
+    isolation: isolate;
+    transition: width .35s cubic-bezier(.2,.7,.2,1),
+                height .35s cubic-bezier(.2,.7,.2,1),
+                margin .35s cubic-bezier(.2,.7,.2,1),
+                opacity .25s ease,
+                color .35s ease;
+    will-change: transform, width, height;
+    opacity: 0;
+  }
+  .koton-cursor.is-visible { opacity: 1; }
+
+  /* On dark sections, flip the emblem fill so it always contrasts. */
+  .koton-cursor.on-dark { color: #f3ecdf; }
+
+  /* The Koton emblem — the 4-petal cloverleaf mark, now the whole
+     cursor with no disc behind it. Filled with currentColor so the
+     tone-detection class swaps it between black (over light bg) and
+     cream (over dark bg). */
+  .koton-cursor .km {
+    width: 100%;
+    height: 100%;
+    display: block;
+    color: inherit;
+    transition: opacity .25s ease;
+    animation: kotonSpin 14s linear infinite;
+    animation-play-state: paused;
+  }
+  .koton-cursor .km path { fill: currentColor; }
+
+  /* On text hover, slow continuous rotation. */
+  .koton-cursor.is-text .km { animation-play-state: running; }
+  /* On link hover, hide the emblem and reveal the action verb pill. */
+  .koton-cursor.is-link .km { opacity: 0; }
+
+  @keyframes kotonSpin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+
+  /* Hovering a link reveals an action verb pill anchored to the cursor */
+  .koton-cursor .label-link {
+    position: absolute; left: 50%; top: 50%;
+    transform: translate(-50%, -50%) scale(0.7);
+    opacity: 0;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: currentColor;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase;
+    transition: opacity .25s ease, transform .35s cubic-bezier(.2,.7,.2,1);
+    white-space: nowrap;
+  }
+  .koton-cursor .label-link::after {
+    /* The verb text itself sits in this pseudo so the pill bg can use
+       currentColor (which flips with tone) and the text stays the
+       opposite. JS writes the verb into a CSS var. */
+    content: attr(data-verb);
+    color: #f3ecdf;
+  }
+  .koton-cursor.on-dark .label-link::after { color: #0a0a0c; }
+  .koton-cursor.is-link { width: 0; height: 0; margin-left: 0; margin-top: 0; }
+  .koton-cursor.is-link .label-link { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+
+  /* Press feedback — a small scale-down on the emblem */
+  .koton-cursor.is-down .km { transform: scale(0.78); transition: transform .15s ease; }
+
+  /* Touch devices: no fake cursor */
+  @media (hover: none) {
+    html, body, a, button { cursor: auto; }
+    .koton-cursor { display: none; }
+  }
+
+  /* ───────────────────────────────────────────────────────────────────────
+     HERO CAROUSEL — Zara-style full-bleed horizontal image scroll.
+     ─────────────────────────────────────────────────────────────────────── */
+  .hero-carousel {
+    position: relative;
+    --hc-vis: 3;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    height: clamp(520px, 86vh, 960px);
+    overflow: hidden;
+    background: var(--tile);
+    isolation: isolate;
+    touch-action: pan-y;
+    user-select: none;
+  }
+  .hc-track {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 12px;
+    height: 100%;
+    will-change: transform;
+    transition: transform .9s cubic-bezier(.72, 0, .18, 1);
+  }
+  .hc-track.no-anim { transition: none; }
+  .hc-slide {
+    position: relative;
+    flex: 0 0 calc((100% - (var(--hc-vis) - 1) * 12px) / var(--hc-vis));
+    height: 100%;
+    overflow: hidden;
+  }
+  .hc-slide img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center 16%;
+    display: block;
+    transform: scale(1.08);
+    transition: transform 7s cubic-bezier(.2, .6, .2, 1);
+  }
+  .hc-slide.is-active img { transform: scale(1); }
+  .hc-slide::after {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(180deg, rgba(8,8,10,0.30) 0%, transparent 24%, transparent 62%, rgba(8,8,10,0.50) 100%);
+    pointer-events: none;
+  }
+  .hc-top {
+    position: absolute; left: 0; right: 0; top: 0;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: clamp(20px, 3vw, 40px) clamp(20px, 4vw, 56px);
+    z-index: 6; pointer-events: none;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.26em; text-transform: uppercase;
+    color: #f3ecdf;
+  }
+  .hc-top .hc-count .now { color: #fff; }
+  .hc-top .hc-count .tot { opacity: 0.6; }
+  .hc-caption {
+    position: absolute; left: clamp(20px, 4vw, 56px); bottom: clamp(40px, 5vw, 64px);
+    z-index: 6; max-width: 520px; color: #f3ecdf;
+  }
+  .hc-caption .hc-look {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.26em; text-transform: uppercase;
+    color: rgba(243,236,223,0.78);
+    margin-bottom: 12px;
+  }
+  .hc-caption .hc-title {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(22px, 2.4vw, 40px);
+    line-height: 1.02; letter-spacing: -0.01em; text-transform: uppercase;
+    margin: 0; color: #fff;
+    text-wrap: balance;
+  }
+  .hc-caption .hc-sub {
+    margin-top: 12px;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 400; font-size: 13px; letter-spacing: 0.02em;
+    color: rgba(243,236,223,0.82);
+  }
+  .hc-nav {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    z-index: 7;
+    width: 54px; height: 54px; border-radius: 50%;
+    border: 1px solid rgba(243,236,223,0.45);
+    background: rgba(10,10,12,0.18);
+    backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+    display: grid; place-items: center;
+    color: #f3ecdf;
+    transition: background .3s ease, border-color .3s ease, transform .3s ease;
+  }
+  .hc-nav:hover { background: var(--accent); border-color: var(--accent); }
+  .hc-nav svg { width: 18px; height: 18px; }
+  .hc-prev { left: clamp(14px, 2vw, 32px); }
+  .hc-next { right: clamp(14px, 2vw, 32px); }
+  .hc-bars {
+    position: absolute; right: clamp(20px, 4vw, 56px); bottom: clamp(44px, 5vw, 68px);
+    z-index: 6; display: flex; gap: 8px; pointer-events: auto;
+  }
+  .hc-bar {
+    width: 38px; height: 2px;
+    background: rgba(243,236,223,0.30);
+    position: relative; overflow: hidden;
+    cursor: none; border: 0; padding: 0;
+  }
+  .hc-bar .fill {
+    position: absolute; inset: 0;
+    transform-origin: left center; transform: scaleX(0);
+    background: #f3ecdf;
+  }
+  .hc-bar.is-active .fill { animation: hcFill var(--hc-dur, 5s) linear forwards; }
+  .hc-bar.is-done .fill { transform: scaleX(1); }
+  @keyframes hcFill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  @media (max-width: 1180px) { .hero-carousel { --hc-vis: 2; } }
+  @media (max-width: 720px)  { .hero-carousel { --hc-vis: 1; } }
+
+  @media (max-width: 880px) {
+    .hc-nav { width: 44px; height: 44px; }
+    .hc-bar { width: 26px; }
+    .hc-caption .hc-title { font-size: clamp(20px, 6vw, 30px); }
+  }
+
+  /* Responsive nudges */
+  @media (max-width: 880px) {
+    .meta-bar { grid-template-columns: 1fr 1fr; }
+    .module-head { grid-template-columns: 1fr; }
+    .body-grid { grid-template-columns: 1fr; }
+    .duo { grid-template-columns: 1fr; }
+    .trio { grid-template-columns: 1fr; }
+    .trio .col:nth-child(2) { padding-top: 0; }
+    .process { grid-template-columns: 1fr; }
+    .stats { grid-template-columns: 1fr 1fr; }
+    .credits { grid-template-columns: 1fr; }
+    .credits .credit-list { grid-template-columns: 1fr; }
+    .hero-foot { grid-template-columns: 1fr; gap: 32px; }
+    .hero-credit { justify-self: start; text-align: left; }
+    .rail { display: none; }
+  }
+</style>
+<style id="proj-tags-css">
+  .proj-tags{ display:flex; flex-wrap:wrap; gap:26px 56px; align-items:flex-start; margin-bottom:30px; padding-top:120px; }
+  .proj-tags .ptg{ display:flex; flex-direction:column; gap:14px; }
+  .proj-tags .ptg-k{ font-family:'Outfit',system-ui,sans-serif; font-size: 12px; letter-spacing:0.26em; text-transform:uppercase; color:var(--ink-soft); display:flex; align-items:center; gap:8px; }
+  .proj-tags .ptg-k::before{ content:''; width:14px; height:1px; background:var(--ink-soft); opacity:.7; }
+  .proj-tags .ptg-c{ display:flex; flex-wrap:wrap; gap:9px; padding-left:22px; align-items:center; min-height:34px; }
+  .proj-tags .ptg-client .cl-logo{ height:21px; width:auto; object-fit:contain; object-position:left center; }
+  .proj-tags .ptag{ font-family:'Outfit',system-ui,sans-serif; font-weight:500; font-size: 15px; letter-spacing:0.005em; color:var(--ink-bright, var(--ink)); border:1px solid var(--ink-faint); border-radius:8px; padding:8px 14px; line-height:1; white-space:nowrap; background:rgba(125,140,170,0.06); transition:border-color .25s, background .25s; }
+  .proj-tags .ptag:hover{ border-color:color-mix(in srgb, var(--accent) 55%, transparent); background:color-mix(in srgb, var(--accent) 9%, transparent); }
+  .proj-tags .ptag.sector{ border-style:dashed; color:var(--ink); }
+  .hero-head{ display:flex; justify-content:space-between; align-items:flex-start; gap:32px; flex-wrap:wrap; }
+  .client-lockup{ display:flex; flex-direction:column; align-items:flex-end; gap:11px; flex:0 0 auto; }
+  .client-lockup .cl-k{ font-family:'Outfit',system-ui,sans-serif; font-size: 12px; letter-spacing:0.26em; text-transform:uppercase; color:var(--ink-soft); }
+  .client-lockup .cl-logo{ height:30px; width:auto; max-width:220px; object-fit:contain; object-position:right center; }
+</style>
+
+
+<link rel="stylesheet" href="../assets/css/case/hero-refine.css">
+
+<link rel="stylesheet" href="../assets/css/case/rhythm-refine-b.css">
+
+<meta name="description" content="Koton Lookbook Russia: generative editorial produced beside the photographed campaign.">
+<link rel="canonical" href="https://illusorr.com/projects/koton-lookbook-russia.html">
+<meta name="theme-color" content="#05060a">
+<meta property="og:site_name" content="ILLUSORR">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ILLUSORR × Koton, Koton Russia, the AI Lookbook">
+<meta property="og:description" content="Koton Lookbook Russia: generative editorial produced beside the photographed campaign.">
+<meta property="og:url" content="https://illusorr.com/projects/koton-lookbook-russia.html">
+<meta property="og:image" content="https://illusorr.com/assets/img/og/og-default.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CreativeWork","name":"ILLUSORR × Koton, Koton Russia, the AI Lookbook","url":"https://illusorr.com/projects/koton-lookbook-russia.html","creator":{"@type":"Organization","name":"ILLUSORR","url":"https://illusorr.com/"}}</script>
+<!-- phone + tablet: shared touch layer, then the shared case layout -->
+<link rel="stylesheet" href="../assets/css/mobile.css">
+<link rel="stylesheet" href="../assets/css/case/case-mobile.css">
+<script src="../assets/js/mobile.js"></script>
+<style id="kt-portrait-grain">
+  /* ─────────────────────────────────────────────────────────────────
+     Koton Russia ships portrait plates only (ratios 0.66 to 0.91), so
+     no frame on this page pins an aspect: every image sets its own
+     height and nothing is ever cropped.
+     ───────────────────────────────────────────────────────────────── */
+  .ph.nat { position: relative; aspect-ratio: auto !important; height: auto !important; overflow: visible; background: none; }
+  .ph.nat img { position: static !important; width: 100%; height: auto; object-fit: contain !important; display: block; }
+  .plate-mid { max-width: min(720px, 92vw); margin: 0 auto; }
+
+  /* Lookbook rail: portrait frames at one common height, natural widths. */
+  .lk-wrap { position: relative; }
+  .lk-head {
+    display: flex; justify-content: space-between; align-items: center; gap: 10px 24px;
+    max-width: var(--maxw); margin: 0 auto clamp(16px, 2vw, 26px); padding: 0 var(--gutter);
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-soft);
+  }
+  .lk-rail {
+    display: flex; align-items: flex-end; gap: clamp(12px, 1.6vw, 28px);
+    overflow-x: auto; overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity; scroll-behavior: smooth;
+    padding: 0 var(--gutter) 16px; scroll-padding-left: var(--gutter); scrollbar-width: none; outline: none;
+  }
+  .lk-rail::-webkit-scrollbar { display: none; }
+  .lk-fig { flex: 0 0 auto; margin: 0; scroll-snap-align: start; display: flex; flex-direction: column; gap: 12px; }
+  .lk-fig img { display: block; height: clamp(380px, 68vh, 780px); width: auto; max-width: 86vw; }
+  .lk-cap {
+    display: flex; justify-content: space-between; gap: 8px 18px;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft);
+  }
+  .lk-btn {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 48px; height: 48px; border-radius: 50%;
+    border: 1px solid var(--ink-faint); background: rgba(244,244,242,0.86);
+    -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+    display: grid; place-items: center; color: var(--ink); z-index: 4;
+    transition: background .3s ease, border-color .3s ease, color .3s ease;
+  }
+  .lk-btn:hover { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+  .lk-btn svg { width: 17px; height: 17px; }
+  .lk-prev { left: clamp(8px, 1.4vw, 22px); }
+  .lk-next { right: clamp(8px, 1.4vw, 22px); }
+  @media (hover: none) { .lk-btn { display: none; } }
+
+  /* ─────────────────────────────────────────────────────────────────
+     Subtle film grain over every photograph. One SVG turbulence tile
+     drawn at low opacity in overlay, so it reads as part of the image
+     rather than a haze on top of it. Never over captions or UI.
+     ───────────────────────────────────────────────────────────────── */
+  .lk-shot { position: relative; display: block; isolation: isolate; }
+  .ph.is-filled, .plate-mid, .next-bg .ph { position: relative; isolation: isolate; }
+  .lk-shot::after,
+  .ph.is-filled::after,
+  .plate-mid::after,
+  .next-bg .ph::after {
+    content: '';
+    position: absolute; inset: 0;
+    display: block;
+    pointer-events: none;
+    z-index: 3;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%' height='100%' filter='url(%23g)'/></svg>");
+    background-size: 160px 160px;
+    opacity: 0.13;
+    mix-blend-mode: overlay;
+  }
+  .ph .caption, .ph .ph-label, .ph .ph-dim { z-index: 4; }
+  /* Portrait frames are narrow, so the two caption runs need a real gutter
+     and permission to stack rather than butting together. */
+  .ph .caption { flex-wrap: wrap; gap: 4px 16px; align-items: baseline; }
+  @media (max-width: 1100px) { .ph .caption { flex-direction: column; align-items: flex-start; } }
+</style>
+</head>
+<body>
+<header class="il-topbar" id="ilTopbar">
+  <a class="il-brand" href="../index.html" aria-label="ILLUSORR home"><span class="il-logo" role="img" aria-label="ILLUSORR"></span></a>
+  <div class="il-right">
+    <a class="il-talk" href="../contact.html">Let's talk</a>
+    <button class="il-burger" id="ilMenuOpen" aria-label="Open menu"><i></i><i></i></button>
+  </div>
+</header>
+<div class="il-overlay" id="ilOverlay">
+  <div class="il-ohead"><span class="il-logo" role="img" aria-label="ILLUSORR"></span><button class="il-oclose" id="ilMenuClose">Close ✕</button></div>
+  <nav>
+    <a href="../index.html">Home <span>01</span></a>
+    <a href="../about.html">About <span>02</span></a>
+    <a href="../sectors.html">Sectors <span>03</span></a>
+    <a href="../work.html">Work <span>04</span></a>
+    <a href="../lab.html">Lab <span>05</span></a>
+    <a href="../collective.html">Collective <span>06</span></a>
+    <a href="../contact.html">Contact <span>07</span></a>
+  </nav>
+  <div class="il-ofoot"><span>Abu Dhabi · Yas Creative Hub</span><span>hello@illusorr.com</span></div>
+</div>
+
+
+  <!-- ─── Fixed chrome ─────────────────────────────────────────────── -->
+  <!-- topnav removed, menu bar to be added separately -->
+
+  <!-- KOTON badge cursor, emblem follows pointer with smooth lerp -->
+  <div class="koton-cursor" id="kCursor" aria-hidden="true">
+    <svg class="km" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M34.9 14.5C35.4 15.5 35.6 16.6 35.6 17.8C35.6 19 35.3 20.1 34.9 21.1C33.7 23.7 31 25.5 27.9 25.5C26.8 25.5 25.8 25.3 24.9 24.9C25.3 25.8 25.5 26.8 25.5 27.8C25.5 32 22.1 35.5 17.8 35.5H17.7C13.5 35.5 10 32 10 27.8C10 26.8 10.2 25.8 10.6 24.9C9.7 25.3 8.7 25.5 7.7 25.5C6 25.5 4.4 24.9 3.2 24C1.3 22.6 0 20.3 0 17.8C0 15.3 1.3 13 3.2 11.6C4.5 10.7 6.1 10.1 7.7 10.1C8.7 10.1 9.7 10.3 10.6 10.7C10.2 9.8 10 8.7 10 7.7C10 3.5 13.5 0 17.7 0H17.8C22 0 25.5 3.5 25.5 7.7C25.5 8.8 25.3 9.8 24.9 10.7C25.8 10.3 26.9 10.1 28 10.1C31 10.1 33.7 11.9 34.9 14.5ZM20.3 17.8C20.3 16.7 20.5 15.7 20.9 14.8C20 15.2 19 15.4 17.9 15.4H17.8C16.8 15.4 15.8 15.2 14.9 14.8C15.3 15.7 15.5 16.8 15.5 17.8C15.5 18.8 15.3 19.8 14.9 20.7C15.8 20.3 16.7 20.1 17.8 20.1H17.9C18.9 20.1 19.9 20.3 20.8 20.7C20.5 19.8 20.3 18.9 20.3 17.8Z"/>
+    </svg>
+    <span class="label-link" data-verb="Click"></span>
+  </div>
+
+  <aside class="rail" aria-hidden="true">
+    <span class="rail-dot is-active" data-i="0"></span>
+    <span class="rail-dot" data-i="1"></span>
+    <span class="rail-dot" data-i="2"></span>
+    <span class="rail-dot" data-i="3"></span>
+    <span class="rail-dot" data-i="4"></span>
+    <span class="rail-dot" data-i="5"></span>
+    <span class="rail-dot" data-i="6"></span>
+    <span class="rail-dot" data-i="7"></span>
+  </aside>
+
+  <!-- ════════════════════════════════════════════════════════════════
+       LIGHT HALF
+       ════════════════════════════════════════════════════════════════ -->
+
+  <!-- 1. HERO -->
+  <section class="hero" data-tone="light" data-rail="0" data-screen-label="01 Hero">
+    <div class="hero-inner">
+      <div class="proj-tags hero-meta">
+        <div class="ptg ptg-client">
+          <div class="ptg-k">Client</div>
+          <div class="ptg-c"><img class="cl-logo" src="../assets/projects/koton-russia/koton-logo.svg" alt="Koton"></div>
+        </div>
+        <div class="ptg" style="margin-left:auto">
+          <div class="ptg-k">Category</div>
+          <div class="ptg-c"><span class="ptag">AI</span><span class="ptag">Production</span><span class="ptag">Branding</span></div>
+        </div>
+        <div class="ptg">
+          <div class="ptg-k">Sector</div>
+          <div class="ptg-c"><span class="ptag sector">Fashion</span></div>
+        </div>
+      </div>
+
+      <h1 class="hero-title">
+        <span class="ln">Koton Russia<span class="ln-ital">a season, shot without a set.</span></span>
+      </h1>
+
+      <p class="hero-lede">
+          <strong>A full seasonal lookbook for Koton's Russia market</strong>: cast,
+          styled and localised entirely with AI talent, then shipped across editorial,
+          e-commerce and social in a single production cycle.
+        </p>
+
+      <div class="hero-foot">
+        <div class="hero-credit">
+          <div>Koton Russia / 2025</div>
+          <div>Produced by ILLUSORR</div>
+        </div>
+        <div class="scroll-cue">
+          <span>Scroll</span>
+          <span class="line"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 1b. COVER MEDIA -->
+  <section class="hero-media" data-tone="light" data-screen-label="01b Cover Media">
+    <div class="hm-inner">
+      <div class="hm-frame" style="height:auto;overflow:visible;background:none">
+        <div class="plate-mid"><img src="../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-campaign-cover.webp" alt="Koton Russia FW25, cover plate" loading="eager" fetchpriority="high" style="width:100%;height:auto;display:block"></div>
+      </div>
+      <div class="hm-cap"><span>Koton Russia</span><span>Cover</span></div>
+    </div>
+  </section>
+
+  <!-- 2. THE LOOKBOOK, portrait rail at natural ratios -->
+  <section data-tone="light" data-rail="1" data-screen-label="02 Lookbook">
+    <div class="lk-wrap" style="padding-bottom: clamp(90px, 11vw, 170px)">
+      <div class="lk-head">
+        <span>Koton Russia · FW25 · 8 looks</span>
+        <span>Scroll →</span>
+      </div>
+      <div class="lk-rail" id="lkRail" tabindex="0" aria-label="Koton Russia FW25 lookbook">
+        <figure class="lk-fig">
+          <span class="lk-shot"><img src="../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-look-05.webp" alt="Koton Russia FW25, bouclé knit co-ord" loading="eager" decoding="async"></span>
+          <figcaption class="lk-cap"><span>Bouclé knit co-ord</span><span>Look 01</span></figcaption>
+        </figure>
+        <figure class="lk-fig">
+          <span class="lk-shot"><img src="../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-look-08.webp" alt="Koton Russia FW25, textured wool, oak panelling" loading="eager" decoding="async"></span>
+          <figcaption class="lk-cap"><span>Textured wool, oak panelling</span><span>Look 02</span></figcaption>
+        </figure>
+        <figure class="lk-fig">
+          <span class="lk-shot"><img src="../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-editorial-frame-02.webp" alt="Koton Russia FW25, tuxedo blazer and waistcoat" loading="lazy" decoding="async"></span>
+          <figcaption class="lk-cap"><span>Tuxedo blazer and waistcoat</span><span>Look 03</span></figcaption>
+        </figure>
+        <figure class="lk-fig">
+          <span class="lk-shot"><img src="../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-look-07.webp" alt="Koton Russia FW25, double-breasted tailoring" loading="lazy" decoding="async"></span>
+          <figcaption class="lk-cap"><span>Double-breasted tailoring</span><span>Look 04</span></figcaption>
+        </figure>
+        <figure class="lk-fig">
+          <span class="lk-shot"><img src="../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-look-09.webp" alt="Koton Russia FW25, oxblood tailoring" loading="lazy" decoding="async"></span>
+          <figcaption class="lk-cap"><span>Oxblood tailoring</span><span>Look 05</span></figcaption>
+        </figure>
+        <figure class="lk-fig">
+          <span class="lk-shot"><img src="../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-look-03.webp" alt="Koton Russia FW25, relaxed wool suit" loading="lazy" decoding="async"></span>
+          <figcaption class="lk-cap"><span>Relaxed wool suit</span><span>Look 06</span></figcaption>
+        </figure>
+        <figure class="lk-fig">
+          <span class="lk-shot"><img src="../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-look-02.webp" alt="Koton Russia FW25, knit blazer, roll-neck" loading="lazy" decoding="async"></span>
+          <figcaption class="lk-cap"><span>Knit blazer, roll-neck</span><span>Look 07</span></figcaption>
+        </figure>
+        <figure class="lk-fig">
+          <span class="lk-shot"><img src="../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-look-10.webp" alt="Koton Russia FW25, camel belted blazer" loading="lazy" decoding="async"></span>
+          <figcaption class="lk-cap"><span>Camel belted blazer</span><span>Look 08</span></figcaption>
+        </figure>
+      </div>
+      <button class="lk-btn lk-prev" id="lkPrev" aria-label="Previous look">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 5 8 12 15 19"/></svg>
+      </button>
+      <button class="lk-btn lk-next" id="lkNext" aria-label="Next look">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 5 16 12 9 19"/></svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- 3. PROJECT META BAR -->
+  <section data-tone="light" data-rail="1" data-screen-label="03 Meta">
+    <div class="wrap">
+      <div class="meta-bar">
+        <div class="meta-cell">
+          <span class="meta-k">Client</span>
+          <span class="meta-v">Koton · Russia<br><a href="https://www.koton.com" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline; text-decoration-color: var(--ink-faint); text-underline-offset: 4px;">koton.com</a></span>
+        </div>
+        <div class="meta-cell">
+          <span class="meta-k">Year</span>
+          <span class="meta-v">2025</span>
+        </div>
+        <div class="meta-cell">
+          <span class="meta-k">Services</span>
+          <span class="meta-v">AI Lookbook, Styling Direction, Localisation, Generative Imaging, Production</span>
+        </div>
+        <div class="meta-cell">
+          <span class="meta-k">Stack</span>
+          <span class="meta-v">FLUX, Stable Diffusion, ComfyUI, Custom LoRAs, Retouch Pipeline</span>
+        </div>
+        <div class="meta-cell">
+          <span class="meta-k">Output</span>
+          <span class="meta-v">Lookbook Editorial, E-commerce Plates, Social Reels</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- visual band -->
+  <section class="vband" data-tone="light" data-screen-label="Visual 01">
+    <div class="vb-frame" style="height:auto;overflow:visible;background:none">
+      <div class="plate-mid"><img src="../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-look-06.webp" alt="Koton Russia FW25, the brief plate" loading="lazy" style="width:100%;height:auto;display:block"></div>
+    </div>
+    <div class="vb-cap"><span>The Brief</span><span>01</span></div>
+  </section>
+
+  <!-- 3. THE BRIEF -->
+  <section class="module" data-tone="light" data-rail="2" data-screen-label="03 Brief">
+    <div class="wrap">
+      <div class="module-head">
+        <div class="section-num">
+          <span class="num">01</span>
+          The Brief
+        </div>
+        <div>
+          <h2 class="module-title">A full season, <em>without a single flight.</em></h2>
+          <p class="lede">
+            Koton needed a complete seasonal lookbook for the Russian market: local
+            mood, local styling, the whole capsule, without a physical shoot, a
+            travelling crew, or a booked location.
+          </p>
+          <div class="body-grid">
+            <div>
+              <p>A conventional market lookbook means flights, a local crew, a studio day per story and weeks of post. For a fast-moving capsule in a distinct regional market, that timeline rarely survives contact with the drop calendar.</p>
+              <p>We proposed producing the campaign in-engine. AI talent matched to the Russia audience, the full Koton capsule rendered on a consistent model, and every scene localised for season and place, cold-weather styling, regional light, the right interiors, without leaving the studio.</p>
+            </div>
+            <div>
+              <p>Consistency was the hard part. The same face, the same proportions and the same skin had to carry sixty-plus looks so the set read as one talent across the book, not a different person per frame.</p>
+              <p>The capsule led the work. Each Koton garment entered the pipeline as a conditioning input, garment-first, body-second, so the clothing drove the frame and the model served it the way an editorial talent would. Everything finished in-studio.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. DUO (side-by-side) -->
+  <section data-tone="light" data-rail="3" data-screen-label="04 Visual A">
+    <div class="wrap">
+      <div class="duo">
+        <div class="col col-a">
+          <div class="ph is-filled nat">
+            <img src="../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-look-11.webp" alt="Koton Russia FW25, the brown wool suit standing in soft light" loading="lazy" decoding="async">
+            <span class="ph-label">Plate 01</span>
+            <span class="ph-dim">Koton FW25 · Tailoring</span>
+            <span class="caption">
+              <span>FW25: brown wool suit, full length</span>
+              <span>Plate 0104</span>
+            </span>
+          </div>
+          <div class="cap">Fig 01: The capsule opens on tailoring. One consistent talent carries the chocolate-wool story across the book.</div>
+        </div>
+        <div class="col col-b">
+          <div class="ph is-filled nat">
+            <img src="../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-look-12.webp" alt="Koton Russia FW25, the check blazer worn with dark denim" loading="lazy" decoding="async">
+            <span class="ph-label">Plate 02</span>
+            <span class="ph-dim">Koton FW25 · Knitwear</span>
+            <span class="caption">
+              <span>FW25: check blazer with dark denim</span>
+              <span>Plate 0188</span>
+            </span>
+          </div>
+          <div class="cap">Fig 02: Knitwear in the same hand. Season, light and place tuned to the market, rendered in-studio.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. FULL BLEED VIDEO -->
+  <section class="bleed" data-tone="light" data-rail="4" data-screen-label="05 Editorial">
+    <div class="wrap">
+      <div class="ph is-filled nat plate-mid">
+        <img src="../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-editorial-frame-01.webp" alt="Koton Russia FW25, the dark brown suit seated in the studio" loading="lazy" decoding="async">
+        <span class="ph-label">Editorial Plate</span>
+        <span class="ph-dim">Koton FW25 · Tailoring</span>
+        <span class="caption">
+          <span>FW25: dark brown suit, seated studio</span>
+          <span>Frame 02 / 14</span>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════════
+       SEAM, visual stitch between halves
+       ════════════════════════════════════════════════════════════════ -->
+  <div class="seam" aria-hidden="true"></div>
+
+  <!-- ════════════════════════════════════════════════════════════════
+       DARK HALF
+       ════════════════════════════════════════════════════════════════ -->
+
+  <!-- 6. THE APPROACH -->
+  <section class="module" data-tone="dark" data-rail="5" data-screen-label="06 Approach">
+    <div class="wrap">
+      <div class="module-head">
+        <div class="section-num">
+          <span class="num">02</span>
+          The Approach
+        </div>
+        <div>
+          <h2 class="module-title">One capsule. <em>Localised.</em> Shot in-engine.</h2>
+          <p class="lede">
+            We collapsed casting, travel, and the shoot into a single generative pipeline,
+            with Koton's art direction and the Russia localisation sitting at the prompt
+            stage, not the cleanup stage.
+          </p>
+        </div>
+      </div>
+
+      <div class="process">
+        <div class="step">
+          <span class="step-k">Phase 01 · Casting</span>
+          <h4>Talent for the Market</h4>
+          <p>A synthetic model designed and matched to the Russia audience, then locked into a LoRA dataset deep enough to carry the entire capsule: same face, same proportions, every frame.</p>
+        </div>
+        <div class="step">
+          <span class="step-k">Phase 02 · Wardrobe</span>
+          <h4>Garment-First Prompting</h4>
+          <p>Every Koton look entered the pipeline as a conditioning input rather than a finish. The clothing led the frame; the model served it the way an editorial talent would.</p>
+        </div>
+        <div class="step">
+          <span class="step-k">Phase 03 · Localisation</span>
+          <h4>Russia, Rendered</h4>
+          <p>Season, light and place tuned for the market: cold-weather styling, regional interiors and mood, so the book read as a campaign shot in-country, not a generic set.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. TRIPTYCH -->
+  <section data-tone="dark" data-rail="6" data-screen-label="07 Gallery">
+    <div class="wrap">
+      <div class="trio">
+        <div class="col">
+          <div class="ph is-filled nat">
+            <img src="../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-look-04.webp" alt="Koton Russia FW25, the taupe suit full length against steel" loading="lazy" decoding="async">
+            <span class="ph-label">Look 03</span>
+            <span class="ph-dim">Koton FW25 · Tailoring</span>
+            <span class="caption"><span>FW25: taupe suit, brushed steel</span><span>Plate 0142</span></span>
+          </div>
+        </div>
+        <div class="col">
+          <div class="ph is-filled nat">
+            <img src="../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-look-01.webp" alt="Koton Russia FW25, the check blazer seated on a studio stool" loading="lazy" decoding="async">
+            <span class="ph-label">Look 07</span>
+            <span class="ph-dim">Koton FW25 · Tailoring</span>
+            <span class="caption"><span>FW25: check blazer, studio stool</span><span>Plate 0388</span></span>
+          </div>
+        </div>
+        <div class="col">
+          <div class="ph is-filled nat">
+            <img src="../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-look-13.webp" alt="Koton Russia FW25, the check blazer with burgundy roll-neck and denim" loading="lazy" decoding="async">
+            <span class="ph-label">Look 11</span>
+            <span class="ph-dim">Koton FW25 · Outerwear</span>
+            <span class="caption"><span>FW25: houndstooth blazer & roll-neck</span><span>Plate 0571</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. PULL QUOTE -->
+  <section class="quote-wrap" data-tone="dark" data-rail="7" data-screen-label="08 Quote">
+    <div class="wrap">
+      <blockquote class="quote">
+        <span class="quote-mark">“</span>
+        We stopped storyboarding a shoot and started directing a season. The book
+        came back localised, consistent, and on the drop calendar, with no plane tickets.
+        <div class="quote-attrib">
+          <span class="rule"></span>
+          <span>Koton · Russia Marketing Lead</span>
+        </div>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- 10. RESULTS / STATS -->
+  <section class="module" data-tone="dark" data-rail="7" data-screen-label="10 Results">
+    <div class="wrap">
+      <div class="module-head">
+        <div class="section-num">
+          <span class="num">03</span>
+          The Outcome
+        </div>
+        <div>
+          <h2 class="module-title">A market lookbook. <em>Localised, on calendar.</em></h2>
+        </div>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <span class="stat-n">60<span class="sm">+</span></span>
+          <span class="stat-k">Lookbook looks produced across the full FW25 capsule</span>
+        </div>
+        <div class="stat">
+          <span class="stat-n">09<span class="sm">d</span></span>
+          <span class="stat-k">From greenlight to first shippable lookbook frame</span>
+        </div>
+        <div class="stat">
+          <span class="stat-n">03<span class="sm">ch</span></span>
+          <span class="stat-k">Channels delivered, lookbook, e-commerce and social</span>
+        </div>
+        <div class="stat">
+          <span class="stat-n">00<span class="sm">✈</span></span>
+          <span class="stat-k">Flights, sets or travel crew, produced entirely in-studio</span>
+        </div>
+      </div>
+
+      <div class="credits">
+        <div>
+          <span class="section-num" style="display:block; margin-bottom: 0;">
+            <span class="num" style="font-size: clamp(28px, 3vw, 48px);">04</span>
+            Credits
+          </span>
+        </div>
+        <div class="credit-list">
+          <div class="credit-row"><span class="role">Creative Direction</span><span class="who">ILLUSORR Labs</span></div>
+          <div class="credit-row"><span class="role">Styling Direction</span><span class="who">ILLUSORR · AI Production</span></div>
+          <div class="credit-row"><span class="role">Talent &amp; LoRA</span><span class="who">FLUX.1 · SDXL fine-tunes</span></div>
+          <div class="credit-row"><span class="role">Generative Imaging</span><span class="who">ILLUSORR Studio Pipeline</span></div>
+          <div class="credit-row"><span class="role">Wardrobe</span><span class="who">Koton FW25 Capsule</span></div>
+          <div class="credit-row"><span class="role">Localisation</span><span class="who">Koton Russia Market Team</span></div>
+          <div class="credit-row"><span class="role">Retouch · Color</span><span class="who">In-studio, ILLUSORR</span></div>
+          <div class="credit-row"><span class="role">Year</span><span class="who">2025</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. NEXT PROJECT TEASER -->
+  <section class="next" data-tone="dark" data-rail="7" data-screen-label="11 Next">
+    <div class="next-bg">
+      <div class="ph is-filled" style="overflow:hidden"><img src="../assets/img/projects/morphellum/illusorr-morphellum-machimatch-digital-garment-artwork.webp" alt="Morphellum, next project" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+    </div>
+    <div class="next-inner">
+      <span class="next-k">Next Project · 010</span>
+      <h3>
+        <span style="display:block">Morphellum</span>
+        <span style="display:block; font-weight:400; font-style:italic; color: var(--ink-soft); letter-spacing: 0;">garments grown, not sewn.</span>
+      </h3>
+      <div class="next-meta">
+        <span>2023</span>
+        <span>·</span>
+        <span>3D</span>
+        <span>·</span>
+        <span>Art</span>
+      </div>
+      <a class="next-cta" href="morphellum.html">
+        <span>View Case Study</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 19 L19 5"/><polyline points="9 5 19 5 19 15"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <footer class="foot" data-tone="dark">
+    <div>© ILLUSORR Labs · MMXXV</div>
+    <div>Koton Russia · Case 009</div>
+  </footer>
+
+
+<script src="../assets/js/case/cursor-scroll.js"></script>
+
+<!-- ──────────────────────────────────────────────────────────────────────
+     Hero carousel, Zara-style horizontal image scroll.
+     ────────────────────────────────────────────────────────────────────── -->
+
+<script src="../assets/js/case/hero-carousel.js"></script>
+
+<!-- ──────────────────────────────────────────────────────────────────────
+     Hero emblem pile, black Koton cloverleaf marks with gravity. They
+     fall into the blank pocket on the right of the hero and stack on top
+     of each other (circle collision + floor). The cursor knocks the pile
+     around; gravity re-settles it. Pure DOM + transform, no canvas.
+     ────────────────────────────────────────────────────────────────────── -->
+<script>
+(() => {
+  const hero = document.querySelector('.hero');
+  if (!hero) return;
+
+  const EMBLEM = '<svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M34.9 14.5C35.4 15.5 35.6 16.6 35.6 17.8C35.6 19 35.3 20.1 34.9 21.1C33.7 23.7 31 25.5 27.9 25.5C26.8 25.5 25.8 25.3 24.9 24.9C25.3 25.8 25.5 26.8 25.5 27.8C25.5 32 22.1 35.5 17.8 35.5H17.7C13.5 35.5 10 32 10 27.8C10 26.8 10.2 25.8 10.6 24.9C9.7 25.3 8.7 25.5 7.7 25.5C6 25.5 4.4 24.9 3.2 24C1.3 22.6 0 20.3 0 17.8C0 15.3 1.3 13 3.2 11.6C4.5 10.7 6.1 10.1 7.7 10.1C8.7 10.1 9.7 10.3 10.6 10.7C10.2 9.8 10 8.7 10 7.7C10 3.5 13.5 0 17.7 0H17.8C22 0 25.5 3.5 25.5 7.7C25.5 8.8 25.3 9.8 24.9 10.7C25.8 10.3 26.9 10.1 28 10.1C31 10.1 33.7 11.9 34.9 14.5ZM20.3 17.8C20.3 16.7 20.5 15.7 20.9 14.8C20 15.2 19 15.4 17.9 15.4H17.8C16.8 15.4 15.8 15.2 14.9 14.8C15.3 15.7 15.5 16.8 15.5 17.8C15.5 18.8 15.3 19.8 14.9 20.7C15.8 20.3 16.7 20.1 17.8 20.1H17.9C18.9 20.1 19.9 20.3 20.8 20.7C20.5 19.8 20.3 18.9 20.3 17.8Z"/></svg>';
+
+  const BLACK = '#15161d';
+  const SIZES = [44, 30, 36, 26, 40, 32, 28, 38, 30, 34, 26, 42, 30];
+
+  const layer = document.createElement('div');
+  layer.className = 'hero-emblems';
+  layer.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(layer);
+
+  const items = SIZES.map(s => {
+    const el = document.createElement('div');
+    el.className = 'hero-emblem';
+    el.style.width = el.style.height = s + 'px';
+    el.style.color = BLACK;
+    el.innerHTML = EMBLEM;
+    layer.appendChild(el);
+    return {
+      el, s,
+      r: (s / 2) * 0.74,        // collision radius (tight so they overlap/nest)
+      x: 0, y: 0, vx: 0, vy: 0,
+      rot: Math.random() * 360,
+    };
+  });
+
+  // Pile pocket: the genuinely-empty zone on the right, to the RIGHT of
+  // the headline/tagline and ABOVE the hero-foot (lede / scroll / credit).
+  // Measured from the live element boxes so the walls always keep the
+  // marks clear of text, even when the cursor knocks the pile.
+  const titleEl = hero.querySelector('.hero-title');
+  const eyebrowEl = hero.querySelector('.eyebrow-row');
+  const taglineEl = hero.querySelector('.ln-ital');
+  const peraNode = hero.querySelector('.hero-title .ln');  // holds "Pera" + tagline
+  // Right edge of just the FIRST line of the title (the "PERA" word),
+  // ignoring the wide italic tagline that sits on the line below it.
+  function peraRight() {
+    if (!peraNode) return 0;
+    const range = document.createRange();
+    range.selectNodeContents(peraNode);
+    const rects = range.getClientRects();
+    // first rect = the "Pera" glyph run before the tagline wraps
+    return rects.length ? rects[0].right : 0;
+  }
+  let W = 0, H = 0, leftWall = 0, rightWall = 0, floorY = 0, ceil = 0;
+  let seeded = false;
+  let running = true, raf = 0;
+  function layout() {
+    const hr = hero.getBoundingClientRect();
+    H = hr.height;
+    W = document.documentElement.clientWidth;
+    layer.style.top = hero.offsetTop + 'px';
+    layer.style.width = W + 'px';
+    layer.style.height = H + 'px';
+
+    // Pocket = the empty top-right band: right of the "PERA" word,
+    // below the eyebrow strip, above the italic tagline.
+    const pr = peraRight();
+    const eb = eyebrowEl ? eyebrowEl.getBoundingClientRect() : null;
+    const tg = taglineEl ? taglineEl.getBoundingClientRect() : null;
+    leftWall  = Math.max(W * 0.46, (pr ? pr - hr.left : W * 0.5) + 32);
+    rightWall = W - 18;
+    ceil      = (eb ? eb.bottom - hr.top : H * 0.30) + 14;
+    floorY    = (tg ? tg.top - hr.top : H * 0.78) - 14;
+
+    // Too little blank room (narrow screens), hide the pile entirely.
+    const tooTight = (rightWall - leftWall) < 150 || (floorY - ceil) < 90;
+    layer.style.display = tooTight ? 'none' : 'block';
+    running = !tooTight;
+
+    if (!seeded && !tooTight) {
+      const pocketW = rightWall - leftWall;
+      items.forEach((it, i) => {
+        it.x = leftWall + it.r + Math.random() * Math.max(pocketW - it.r * 2, 1);
+        it.y = ceil - 30 - i * 40;
+        it.vx = (Math.random() - 0.5) * 1.2;
+      });
+      seeded = true;
+    } else {
+      for (const it of items) {
+        it.x = Math.max(leftWall + it.r, Math.min(rightWall - it.r, it.x));
+        it.y = Math.min(floorY - it.r, it.y);
+      }
+    }
+    // Restart the physics loop if a previous (tight) layout had stopped it.
+    if (running && !raf) raf = requestAnimationFrame(step);
+  }
+  layout();
+  window.addEventListener('resize', layout);
+  window.addEventListener('load', layout);
+  setTimeout(layout, 350);   // re-measure once fonts settle the title width
+
+  // Pointer tracking in layer-local coords.
+  let mx = -9999, my = -9999, active = false;
+  window.addEventListener('pointermove', (e) => {
+    const r = layer.getBoundingClientRect();
+    mx = e.clientX - r.left; my = e.clientY - r.top;
+    active = mx >= -80 && mx <= r.width + 80 && my >= -80 && my <= r.height + 80;
+  }, { passive: true });
+  window.addEventListener('pointerleave', () => { active = false; });
+
+  const G = 0.55;       // gravity
+  const AIR = 0.992;    // air drag
+  const REST = 0.16;    // floor/wall restitution
+  const FRICT = 0.82;   // ground friction
+  const CURSOR_R = 120; // cursor knock radius
+  const CURSOR_F = 2.6; // cursor knock force
+
+  function step() {
+    if (!running) { raf = 0; return; }
+
+    // Integrate, gravity, cursor knock, air drag.
+    for (const it of items) {
+      it.vy += G;
+      if (active) {
+        const dx = it.x - mx, dy = it.y - my;
+        const d = Math.hypot(dx, dy) || 1;
+        if (d < CURSOR_R) {
+          const f = (1 - d / CURSOR_R) * CURSOR_F;
+          it.vx += (dx / d) * f * 6;
+          it.vy += (dy / d) * f * 6;
+        }
+      }
+      it.vx *= AIR; it.vy *= AIR;
+      it.x += it.vx; it.y += it.vy;
+    }
+
+    // Resolve circle–circle collisions (a few relaxation passes).
+    for (let pass = 0; pass < 4; pass++) {
+      for (let i = 0; i < items.length; i++) {
+        for (let j = i + 1; j < items.length; j++) {
+          const a = items[i], b = items[j];
+          let dx = b.x - a.x, dy = b.y - a.y;
+          let d = Math.hypot(dx, dy);
+          const min = a.r + b.r;
+          if (d < min && d > 0) {
+            const overlap = (min - d) / 2;
+            const nx = dx / d, ny = dy / d;
+            a.x -= nx * overlap; a.y -= ny * overlap;
+            b.x += nx * overlap; b.y += ny * overlap;
+            // exchange a little velocity along the normal
+            const rvx = b.vx - a.vx, rvy = b.vy - a.vy;
+            const vn = rvx * nx + rvy * ny;
+            if (vn < 0) {
+              const imp = vn * 0.5;
+              a.vx += nx * imp; a.vy += ny * imp;
+              b.vx -= nx * imp; b.vy -= ny * imp;
+            }
+          }
+        }
+      }
+      // Walls + floor each pass so stacks stay put.
+      for (const it of items) {
+        if (it.x - it.r < leftWall)  { it.x = leftWall + it.r;  it.vx *= -REST; }
+        if (it.x + it.r > rightWall) { it.x = rightWall - it.r; it.vx *= -REST; }
+        if (it.y + it.r > floorY)    { it.y = floorY - it.r;    it.vy *= -REST; it.vx *= FRICT; }
+        if (it.y - it.r < ceil - 560){ it.y = ceil - 560 + it.r; it.vy *= -REST; }
+      }
+    }
+
+    // Render, rotation rolls a touch with horizontal motion.
+    for (const it of items) {
+      it.rot += it.vx * 0.5;
+      it.el.style.transform =
+        `translate(${(it.x - it.s / 2).toFixed(2)}px, ${(it.y - it.s / 2).toFixed(2)}px) rotate(${it.rot.toFixed(2)}deg)`;
+    }
+    raf = requestAnimationFrame(step);
+  }
+  raf = requestAnimationFrame(step);
+
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(([en]) => {
+      running = en.isIntersecting;
+      if (running && !raf) raf = requestAnimationFrame(step);
+    }, { threshold: 0 }).observe(layer);
+  }
+})();
+</script>
+
+
+  <script src="../assets/js/case/image-slot.js"></script>
+<script src="../assets/js/nav.js" defer></script><script>
+(() => {
+  const rail = document.getElementById('lkRail');
+  if (!rail) return;
+  const figs = () => Array.from(rail.querySelectorAll('.lk-fig'));
+  function goTo(dir) {
+    const pl = parseFloat(getComputedStyle(rail).scrollPaddingLeft) || 0;
+    const stops = figs().map(f => f.offsetLeft - rail.offsetLeft - pl);
+    const cur = rail.scrollLeft;
+    const next = dir > 0
+      ? stops.find(s => s > cur + 4)
+      : [...stops].reverse().find(s => s < cur - 4);
+    const max = rail.scrollWidth - rail.clientWidth;
+    rail.scrollTo({ left: Math.max(0, Math.min(next ?? (dir > 0 ? max : 0), max)), behavior: 'smooth' });
+  }
+  document.getElementById('lkPrev').addEventListener('click', () => goTo(-1));
+  document.getElementById('lkNext').addEventListener('click', () => goTo(1));
+  rail.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') { e.preventDefault(); goTo(1); }
+    else if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(-1); }
+  });
+  rail.addEventListener('wheel', (e) => {
+    if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
+    const max = rail.scrollWidth - rail.clientWidth;
+    if ((e.deltaY < 0 && rail.scrollLeft <= 0) || (e.deltaY > 0 && rail.scrollLeft >= max - 1)) return;
+    e.preventDefault();
+    rail.scrollLeft += e.deltaY;
+  }, { passive: false });
+  let down = false, sx = 0, sl = 0;
+  rail.addEventListener('pointerdown', (e) => { down = true; sx = e.clientX; sl = rail.scrollLeft; rail.style.scrollBehavior = 'auto'; });
+  rail.addEventListener('pointermove', (e) => { if (down) rail.scrollLeft = sl - (e.clientX - sx); });
+  const up = () => { down = false; rail.style.scrollBehavior = 'smooth'; };
+  rail.addEventListener('pointerup', up);
+  rail.addEventListener('pointerleave', up);
+})();
+</script>
+
+<script src="../assets/js/site-footer.js" defer></script>
+<script src="../assets/js/to-top.js" defer></script>
+</body>
+</html>

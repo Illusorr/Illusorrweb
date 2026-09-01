@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<link rel="preload" as="font" type="font/otf" crossorigin href="../assets/projects/shared/fonts/PPMonumentExtended-Black.otf">
+<link rel="preload" as="font" type="font/ttf" crossorigin href="../assets/projects/shared/fonts/Squaresharps-v2.ttf">
+
+<link rel="preload" as="font" type="font/woff" crossorigin href="../assets/fonts/outfit-variable.woff">
+<link rel="stylesheet" href="../assets/css/nav.css">
+<link rel="stylesheet" href="../assets/css/case/fonts.css">
+
+<link rel="stylesheet" href="../assets/css/case/cm-type-b.css">
+<title>ILLUSORR × Bawtaqah · RiyadhVerse</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+  :root {
+    --light-bg: #f3ecdf;
+    --light-bg-2: #f3ecdf;
+    --light-ink: #14140F;
+    --light-ink-soft: rgba(20, 20, 15, 0.60);
+    --light-ink-faint: rgba(20, 20, 15, 0.14);
+    --light-tile: #e4dfd5;
+    --dark-bg: #07091A;
+    --dark-bg-2: #040615;
+    --dark-ink: #eef1f8;
+    --dark-ink-soft: rgba(238, 240, 252, 0.65);
+    --dark-ink-faint: rgba(238, 240, 252, 0.20);
+    --dark-tile: #0a1033;
+    --accent: #14140F;
+    --maxw: 1440px;
+    --gutter: clamp(20px, 4vw, 64px);
+  }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    background-size: 220px 220px;
+    opacity: 0.06;
+    mix-blend-mode: multiply;
+  }
+  section[data-tone="dark"] { position: relative; }
+  section[data-tone="dark"]::after {
+    content: '';
+    position: absolute; inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    background-size: 220px 220px;
+    opacity: 0.030;
+    mix-blend-mode: screen;
+  }
+  /* No decorative texture on dark sections. */
+  section[data-tone="dark"] > * { position: relative; z-index: 1; }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 400;
+    background: var(--light-bg);
+    color: var(--light-ink);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+  section[data-tone="light"] {
+    background: var(--light-bg);
+    color: var(--light-ink);
+    --bg: var(--light-bg);
+    --bg-2: var(--light-bg-2);
+    --ink: var(--light-ink);
+    --ink-soft: var(--light-ink-soft);
+    --ink-faint: var(--light-ink-faint);
+    --tile: var(--light-tile);
+  }
+  section[data-tone="dark"] {
+    background: var(--dark-bg);
+    color: var(--dark-ink);
+    --bg: var(--dark-bg);
+    --bg-2: var(--dark-bg-2);
+    --ink: var(--dark-ink);
+    --ink-soft: var(--dark-ink-soft);
+    --ink-faint: var(--dark-ink-faint);
+    --tile: var(--dark-tile);
+  }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter); }
+
+  /* ── Top nav ── */
+  .topnav {
+    position: fixed; left: 0; right: 0; top: 0;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 22px var(--gutter);
+    z-index: 50;
+    pointer-events: none;
+  }
+  .topnav > * { pointer-events: auto; }
+  .topnav a, .topnav button {
+    text-decoration: none;
+    background: transparent; border: 0;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase;
+    cursor: pointer;
+    transition: color .35s ease;
+  }
+  .topnav .logo-lockup {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-family: 'Squaresharps', system-ui, sans-serif;
+    font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase;
+    transition: color .35s ease;
+    text-decoration: none;
+  }
+  .topnav .logo-mark { width: 30px; height: 30px; display: inline-flex; align-items: center; justify-content: center; }
+  .topnav .logo-mark img { width: 100%; height: 100%; object-fit: contain; display: block; }
+  .topnav .logo-lockup, .topnav a, .topnav button { color: #080A1A; }
+  .topnav.on-dark .logo-lockup, .topnav.on-dark a, .topnav.on-dark button { color: #eef1f8; }
+  .topnav nav { display: flex; gap: 32px; align-items: center; }
+
+  /* ── Hero ── */
+  section.hero[data-tone] {
+    width: 100%; max-width: 100vw;
+    aspect-ratio: 21 / 9;
+    min-height: 560px;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: clamp(24px, 4vh, 56px) var(--gutter);
+    position: relative;
+    background: var(--light-bg);
+  }
+  .hero .hero-inner { max-width: var(--maxw); width: 100%; margin: 0 auto; position: relative; z-index: 2; display: flex; flex-direction: column; flex: 1 1 auto; }
+
+  .hero-emblems { position: absolute; left: 0; pointer-events: none; overflow: visible; z-index: 30; }
+  .hero-emblem { position: absolute; top: 0; left: 0; will-change: transform; }
+  .hero-emblem svg { display: block; width: 100%; height: 100%; }
+  .hero-emblem svg path { fill: currentColor; }
+  .hero-emblem img { display: block; width: 100%; height: 100%; object-fit: contain; filter: invert(1) brightness(1.7); }
+
+  .eyebrow-row {
+    display: flex; gap: 28px; align-items: center;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 28px;
+  }
+  .eyebrow-row .dotsep { width: 4px; height: 4px; border-radius: 50%; background: currentColor; opacity: .5; flex-shrink: 0; }
+
+  .hero-title {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(36px, 5.8vw, 92px);
+    line-height: 1.0;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin: 0 0 clamp(16px, 2vw, 28px);
+    max-width: 85%;
+    overflow-wrap: break-word;
+  }
+  .hero-title .ln { display: block; max-width: 100%; }
+  .hero-title .ln-ital {
+    display: block;
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-style: italic;
+    font-size: 0.55em;
+    letter-spacing: 0.01em;
+    color: var(--ink-soft);
+    margin-top: 0.15em;
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+  .hero-foot {
+    margin-top: auto;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 18px;
+  }
+  .hero-lede {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: clamp(14px, 1.1vw, 16px);
+    line-height: 1.65;
+    color: var(--ink-soft);
+    max-width: 580px;
+    margin: 0 0 clamp(20px, 2.5vw, 36px);
+  }
+  .hero-lede strong { font-weight: 600; }
+  .scroll-cue {
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: var(--ink-soft);
+    flex-shrink: 0;
+  }
+  .scroll-cue .line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, var(--ink-soft), transparent);
+  }
+  .hero-credit {
+    justify-self: end;
+    text-align: right;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--ink-soft);
+    line-height: 1.9;
+  }
+
+  /* ── Section module ── */
+  .module { padding: clamp(70px, 9vw, 140px) 0; }
+  .module-head {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: clamp(24px, 3vw, 56px);
+    margin-bottom: clamp(40px, 5vw, 72px);
+    align-items: start;
+  }
+  .section-num {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--ink-soft);
+    display: flex; flex-direction: column; gap: 10px;
+    padding-top: 8px;
+  }
+  .section-num .num {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-size: clamp(44px, 5vw, 72px);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    color: var(--ink-faint);
+    line-height: 1;
+  }
+  .module-title {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(26px, 3.2vw, 50px);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin: 0 0 clamp(18px, 2vw, 28px);
+  }
+  .lede {
+    font-size: clamp(15px, 1.3vw, 18px);
+    line-height: 1.65;
+    color: var(--ink-soft);
+    max-width: 640px;
+    margin: 0;
+  }
+  .body-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(28px, 3vw, 56px);
+  }
+  .body-grid p {
+    font-size: clamp(14px, 1.1vw, 16px);
+    line-height: 1.75;
+    color: var(--ink-soft);
+    margin: 0 0 1.1em;
+  }
+  .body-grid p:last-child { margin-bottom: 0; }
+
+  /* ── Seam ── */
+  .seam {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--light-ink-faint) 30%, var(--dark-bg) 60%, transparent);
+    margin: 0;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ── Process steps ── */
+  .process {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(24px, 2.5vw, 48px);
+    margin-top: clamp(40px, 5vw, 64px);
+  }
+  .step {
+    border-top: 1px solid var(--ink-faint);
+    padding-top: 24px;
+  }
+  .step-k {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.30em; text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+    display: block;
+  }
+  .step h4 {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(17px, 1.6vw, 22px);
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin: 0 0 14px;
+  }
+  .step p {
+    font-size: clamp(13px, 1vw, 15px);
+    line-height: 1.7;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* ── Placeholder image blocks ── */
+  .ph {
+    background: var(--tile);
+    aspect-ratio: 16 / 9;
+    position: relative;
+    overflow: hidden;
+    display: flex; align-items: flex-end;
+  }
+  .ph-label {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.26em; text-transform: uppercase;
+    color: var(--ink-soft);
+    white-space: nowrap;
+  }
+  .ph-dim {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, calc(-50% + 22px));
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.20em; text-transform: uppercase;
+    color: var(--ink-soft);
+    opacity: 0.5;
+    white-space: nowrap;
+  }
+  .caption {
+    position: relative; z-index: 2;
+    display: flex; justify-content: space-between; align-items: flex-end;
+    width: 100%;
+    padding: 12px 16px;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-soft);
+    background: linear-gradient(to top, rgba(0,0,0,0.12), transparent);
+    gap: 12px;
+  }
+
+  /* ── About: eyebrow, one wide title, three even text columns ── */
+  .rv-about .wrap { display: flex; flex-direction: column; }
+  .rv-eyebrow {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--ink-soft); display: flex; align-items: baseline; gap: 12px;
+    padding-bottom: 18px; border-bottom: 1px solid var(--ink-faint);
+  }
+  .rv-eyebrow .rv-num { color: var(--ink); font-weight: 500; }
+  .rv-title {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 400; font-size: clamp(28px, 3.4vw, 52px); line-height: 1.12;
+    letter-spacing: -0.01em; color: var(--ink);
+    margin: clamp(28px, 3.4vw, 52px) 0 clamp(32px, 4vw, 64px); max-width: 20ch;
+  }
+  .rv-title em {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-style: italic; font-weight: 300; color: var(--ink-soft);
+  }
+  .rv-cols {
+    display: grid; grid-template-columns: 1.25fr 1fr 1fr;
+    gap: clamp(28px, 3.6vw, 68px); align-items: start;
+  }
+  .rv-lede {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: clamp(17px, 1.35vw, 22px); line-height: 1.5; color: var(--ink);
+    margin: 0; text-wrap: pretty;
+  }
+  .rv-note { display: flex; flex-direction: column; gap: 12px; padding-top: 6px; }
+  .rv-note .rv-k {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink-soft);
+  }
+  .rv-note p {
+    margin: 0; font-size: 15px; line-height: 1.62; color: var(--ink-soft); text-wrap: pretty;
+  }
+  @media (max-width: 900px) { .rv-cols { grid-template-columns: 1fr; } .rv-title { max-width: none; } }
+
+  /* ── Reel rail ── */
+  .reel-rail {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    cursor: grab;
+    user-select: none;
+    padding-bottom: 4px;
+  }
+  .reel-rail::-webkit-scrollbar { display: none; }
+  .reel-rail:active { cursor: grabbing; }
+  .reel-rail .ph {
+    flex: 0 0 auto;
+    width: clamp(160px, 18vw, 240px);
+    aspect-ratio: 9 / 16;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .reel-play {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .reel-play::after {
+    content: '';
+    border-left: 14px solid rgba(255,255,255,0.8);
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    margin-left: 3px;
+  }
+
+  /* ── Post / image grid ── */
+  .post-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(10px, 1.2vw, 18px);
+    margin-top: 20px;
+  }
+  .post-grid .ph {
+    aspect-ratio: 3 / 4;
+  }
+  .looks-head {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--ink-soft);
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--ink-faint);
+  }
+
+  /* ── Look split ── */
+  .look-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(28px, 3vw, 56px);
+    margin-top: clamp(40px, 5vw, 64px);
+  }
+  .look-group { display: flex; flex-direction: column; gap: 14px; }
+  .lg-head {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--ink-soft);
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--ink-faint);
+  }
+  .lg-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .lg-grid .ph { aspect-ratio: 1; }
+  .lg-grid .caption span:first-child { max-width: 60%; }
+
+  /* ── Bleed ── */
+  .bleed { padding: clamp(28px, 3.5vw, 48px) 0; }
+
+  /* ── Meta bar ── */
+  .meta-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    border-top: 1px solid var(--ink-faint);
+    border-bottom: 1px solid var(--ink-faint);
+    padding: clamp(28px, 3.5vw, 48px) 0;
+    margin: clamp(40px, 5vw, 64px) 0;
+  }
+  .meta-cell {
+    flex: 1 1 180px;
+    padding: 0 clamp(16px, 2vw, 32px);
+    border-right: 1px solid var(--ink-faint);
+  }
+  .meta-cell:first-child { padding-left: 0; }
+  .meta-cell:last-child { border-right: 0; }
+  .meta-k {
+    display: block;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.30em; text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 10px;
+  }
+  .meta-v {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: clamp(13px, 1.1vw, 15px);
+    line-height: 1.55;
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  /* ── Credits ── */
+  .credits {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: clamp(28px, 3vw, 56px);
+    padding: clamp(56px, 7vw, 112px) 0;
+    border-top: 1px solid var(--ink-faint);
+  }
+  .credits-head {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(20px, 2.2vw, 32px);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .credit-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(20px, 2vw, 36px) clamp(28px, 3vw, 56px);
+  }
+  .credit-row { display: flex; flex-direction: column; gap: 6px; }
+  .credit-k {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .credit-row .who {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: clamp(13px, 1.1vw, 16px);
+    color: var(--ink);
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  /* ── Quote ── */
+  .quote-wrap { padding: clamp(70px, 9vw, 130px) 0; }
+  .quote {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-style: italic;
+    font-size: clamp(22px, 3.0vw, 46px);
+    line-height: 1.35;
+    color: var(--ink);
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+  }
+  .quote .quote-mark {
+    font-size: 1.4em;
+    line-height: 0.5;
+    vertical-align: -0.25em;
+    color: var(--accent);
+    margin-right: 0.05em;
+  }
+  .quote-attrib {
+    display: flex; align-items: center; justify-content: center;
+    gap: 16px;
+    margin-top: 28px;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-style: normal;
+    font-size: 12px; letter-spacing: 0.30em; text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .quote-attrib .rule { width: 36px; height: 1px; background: var(--ink-faint); }
+
+  /* ── Hero Carousel ── */
+  .hero-carousel {
+    position: relative;
+    --hc-vis: 3;
+    overflow: hidden;
+    user-select: none;
+  }
+  .hc-track {
+    display: flex;
+    transition: transform 0.55s cubic-bezier(0.77, 0, 0.175, 1);
+    will-change: transform;
+  }
+  .hc-slide {
+    flex: 0 0 calc(100% / var(--hc-vis));
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+  }
+  .hc-slide .ph {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    background: var(--tile);
+  }
+  .hc-top {
+    position: absolute; left: 0; right: 0; top: 0;
+    padding: 18px var(--gutter);
+    display: flex; justify-content: space-between;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.26em; text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    z-index: 4;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.22), transparent);
+  }
+  .hc-count { display: flex; gap: 4px; }
+  .hc-count .tot { opacity: 0.5; }
+  .hc-caption {
+    position: absolute; bottom: 0; left: 0;
+    padding: clamp(20px, 2.5vw, 36px) var(--gutter) clamp(24px, 3vw, 44px);
+    z-index: 4;
+    background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 100%);
+  }
+  .hc-look {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.30em; text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 6px;
+  }
+  .hc-title {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(20px, 2.2vw, 34px);
+    letter-spacing: -0.01em;
+    color: #fff;
+    margin: 0 0 6px;
+  }
+  .hc-sub {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+  }
+  .hc-nav {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff;
+    cursor: pointer;
+    z-index: 5;
+    display: flex; align-items: center; justify-content: center;
+    transition: background .2s;
+  }
+  .hc-nav:hover { background: rgba(255,255,255,0.22); }
+  .hc-nav svg { width: 20px; height: 20px; }
+  .hc-prev { left: clamp(12px, 2vw, 28px); }
+  .hc-next { right: clamp(12px, 2vw, 28px); }
+  .hc-bars {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    display: flex; height: 3px;
+    z-index: 6;
+  }
+  .hc-bar {
+    flex: 1; height: 100%;
+    background: rgba(255,255,255,0.22);
+    position: relative;
+    overflow: hidden;
+  }
+  .hc-bar::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: rgba(255,255,255,0.9);
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  .hc-bar.is-active::after { animation: hcFill var(--hc-dur, 4s) linear forwards; }
+  .hc-bar.is-done::after { transform: scaleX(1); animation: none; }
+  @keyframes hcFill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  @media (max-width: 1180px) { .hero-carousel { --hc-vis: 2; } }
+  @media (max-width: 720px)  { .hero-carousel { --hc-vis: 1; } }
+
+  /* ── Zone grid ── */
+  .zone-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(20px, 2.5vw, 40px);
+    margin-top: clamp(40px, 5vw, 64px);
+  }
+  .zone-card {
+    background: var(--tile);
+    border-radius: 4px;
+    padding: clamp(28px, 3vw, 44px);
+    border: 1px solid var(--ink-faint);
+    transition: border-color .25s;
+  }
+  .zone-card:hover { border-color: color-mix(in srgb, var(--accent) 40%, transparent); }
+  .zone-num {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(36px, 4vw, 56px);
+    letter-spacing: -0.02em;
+    color: color-mix(in srgb, var(--accent) 35%, transparent);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+  .zone-name {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(16px, 1.6vw, 22px);
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+  .zone-desc {
+    font-size: clamp(13px, 1.1vw, 15px);
+    line-height: 1.65;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* ── Side rail ── */
+  .rail {
+    position: fixed;
+    right: clamp(16px, 2vw, 32px);
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 40;
+  }
+  .rail-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: rgba(8,10,26,0.25);
+    transition: background .35s, transform .35s;
+    cursor: pointer;
+  }
+  .rail-dot.is-active { background: var(--accent); transform: scale(1.5); }
+  .rail-dot.on-dark { background: rgba(238,240,252,0.3); }
+  .rail-dot.on-dark.is-active { background: #fff; }
+
+  /* ── Custom cursor ── */
+  html, body { cursor: none; }
+  a, button, [role="button"], .hc-nav, input, label, .topnav .logo-lockup { cursor: none; }
+  .koton-cursor {
+    position: fixed;
+    top: 0; left: 0;
+    width: 36px; height: 36px;
+    margin: -18px 0 0 -18px;
+    pointer-events: none;
+    z-index: 9000;
+    color: var(--accent);
+    transition: transform .18s ease, opacity .18s ease;
+  }
+  .koton-cursor .km {
+    width: 100%; height: 100%;
+    fill: currentColor;
+    opacity: 0.85;
+    transition: transform .25s ease;
+  }
+  .koton-cursor.is-link { transform: scale(1.7); color: var(--accent); }
+  .koton-cursor.is-link .km { opacity: 0.6; }
+  .koton-cursor .label-link {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: #fff;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .18s;
+    white-space: nowrap;
+  }
+  .koton-cursor.is-link .label-link { opacity: 1; }
+
+  /* Hero is flat cream: the mesh paint canvas is retired. */
+  .hero .hero-paint { display: none; }
+
+  /* ── Tweaks panel ── */
+  .fab-cpanel { position: fixed; right: 20px; bottom: 20px; z-index: 2147483000; font-family: 'Outfit', system-ui, sans-serif; display: none; }
+  .fab-cpanel.is-open { display: block; }
+  .fab-cpanel .fcp-inner { background: #0d0f1a; border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; padding: 20px; width: 240px; box-shadow: 0 8px 40px rgba(0,0,0,0.55); }
+  .fab-cpanel .fcp-title { font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 16px; }
+  .fab-cpanel .fcp-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 14px; }
+  .fab-cpanel .fcp-label { font-size: 13px; letter-spacing: 0.06em; color: rgba(255,255,255,0.75); flex: 0 0 auto; }
+  .fab-cpanel .fcp-swatch { width: 28px; height: 28px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.18); cursor: pointer; flex-shrink: 0; }
+  .fab-cpanel .fcp-val { font-size: 12px; letter-spacing: 0.06em; color: rgba(255,255,255,0.45); font-variant-numeric: tabular-nums; }
+  .fab-cpanel .fcp-srow { flex-direction: column; align-items: stretch; gap: 6px; }
+  .fab-cpanel .fcp-srow-top { display: flex; align-items: center; justify-content: space-between; }
+  .fab-cpanel .fcp-range { -webkit-appearance: none; appearance: none; width: 100%; height: 3px; border-radius: 3px; background: rgba(255,255,255,0.18); outline: none; }
+  .fab-cpanel .fcp-range::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 14px; height: 14px; border-radius: 50%; background: var(--accent, #3B70F5); cursor: pointer; }
+  .fab-cpanel .fcp-range::-moz-range-thumb { width: 14px; height: 14px; border: none; border-radius: 50%; background: var(--accent, #3B70F5); cursor: pointer; }
+  .fab-cpanel .fcp-select { flex: 0 0 auto; background: #0d0f1a; color: #fff; border: 1px solid rgba(255,255,255,0.18); border-radius: 6px; font-size: 13px; padding: 5px 8px; font-family: inherit; cursor: pointer; }
+  .fab-cpanel .fcp-reset { margin-top: 16px; width: 100%; cursor: pointer; border: 1px solid rgba(255,255,255,0.18); background: transparent; color: rgba(255,255,255,0.7); font-size: 12px; letter-spacing: 0.04em; padding: 8px; border-radius: 8px; }
+  .fab-cpanel .fcp-reset:hover { background: rgba(255,255,255,0.06); color: #fff; }
+  section.hero[data-tone]::after { display: none; }
+
+  @media (max-width: 880px) {
+    .module-head { grid-template-columns: 1fr; }
+    .body-grid { grid-template-columns: 1fr; }
+    .process { grid-template-columns: 1fr; }
+    .look-split { grid-template-columns: 1fr; }
+    .post-grid { grid-template-columns: repeat(2, 1fr); }
+    .credits { grid-template-columns: 1fr; }
+    .credit-list { grid-template-columns: 1fr; }
+    .hero-foot { grid-template-columns: 1fr; gap: 32px; }
+    .hero-credit { justify-self: start; text-align: left; }
+    .rail { display: none; }
+    .zone-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<link rel="stylesheet" href="../assets/css/case/proj-tags-b.css">
+
+<style id="hero-refine">
+  /* Hero refinement: smaller, lighter, more elegant title + real breathing
+     room between title, tagline and intro copy. */
+  .hero-title{
+    font-weight:400;
+    font-size:clamp(30px,3.3vw,44px);
+    line-height:1.06;
+    letter-spacing:0.005em;
+    margin:0 0 clamp(30px,3.4vw,52px);
+  }
+  .hero-title .ln-ital{
+    font-weight:400;
+    font-size:0.46em;
+    line-height:1.35;
+    margin-top:0.85em;
+    letter-spacing:0.01em;
+  }
+  .hero-lede{
+    font-size:clamp(15px,1.02vw,17px);
+    line-height:1.68;
+    max-width:52ch;
+  }
+  .proj-tags{ margin-bottom:clamp(44px,5vw,72px); }
+
+  /* Cover media band, sits under the intro copy */
+  .hero-media{ padding:0; }
+  .hero-media .hm-inner{ width:100%; margin:0; }
+  .hero-media .hm-frame{ position:relative; width:100%; height:100vh; height:100svh; overflow:hidden; border-radius:0; background:#14140F; }
+  .hero-media .hm-video{ position:absolute; inset:0; width:100%; height:100%; border:0; display:block; }
+  /* Keep the emblem layer out of flow: section[data-tone] > * sets
+     position:relative and would otherwise add its height to the hero. */
+  section.hero .hero-emblems{ position:absolute !important; }
+  .hero-media .hm-cap{
+    display:flex; flex-wrap:wrap; justify-content:space-between; gap:10px 30px;
+    margin:16px auto 0; max-width:var(--maxw); padding:0 var(--gutter) clamp(90px,11vw,170px);
+    font-family:'Outfit',system-ui,sans-serif;
+    font-size:12px; letter-spacing:0.2em; text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+
+  /* Carousel slides already carry their label in .hc-caption, so the
+     placeholder badge is redundant and collided with the .hc-top header. */
+  .hc-slide .ph-label{ display:none; }
+</style>
+<style id="rhythm-refine">
+  /* Minimal section numbering: a single quiet line, number inline with the
+     label instead of an oversized display figure. */
+  .section-num{
+    display:flex; align-items:baseline; gap:10px;
+    font-family:'Outfit',system-ui,sans-serif;
+    font-size: 12px; letter-spacing:0.2em;
+    text-transform:uppercase; color:var(--ink-soft); font-weight:400;
+  }
+  .section-num .num{
+    display:inline;
+    font-family:'Outfit',system-ui,sans-serif;
+    font-size: 12px; font-weight:400;
+    letter-spacing:0.2em; line-height:1;
+    color:var(--ink-faint); opacity:1; margin:0;
+    -webkit-text-fill-color:currentColor;
+  }
+  /* Visual band between sections, edge to edge. */
+  .vband{ padding:0 0 clamp(90px,11vw,170px); }
+  .vband .vb-frame{ position:relative; width:100%; height:clamp(420px,74vh,900px); overflow:hidden; background:color-mix(in srgb, var(--ink) 6%, transparent); }
+  .vband .vb-cap{
+    display:flex; justify-content:space-between; gap:10px 30px;
+    max-width:var(--maxw); margin:14px auto 0; padding:0 var(--gutter);
+    font-family:'Outfit',system-ui,sans-serif;
+    font-size: 12px; letter-spacing:0.2em; text-transform:uppercase; color:var(--ink-soft);
+  }
+  @media (max-width:760px){ .vband .vb-frame{ height:clamp(340px,56vh,620px); } }
+  /* The hero was pinned by aspect-ratio:21/9, so its height derived from its
+     WIDTH and content could never grow it — that is what pushed the footer and
+     scroll cue down onto the cover band. Drop the ratio, let content set the
+     height, and use justify-content (the real axis on a column flexbox). */
+  section.hero[data-tone]{
+    aspect-ratio:auto;
+    height:auto;
+    min-height:0;
+    justify-content:flex-start;
+    padding-block:clamp(96px,11vh,132px) clamp(34px,4.4vh,58px);
+  }
+  section.hero[data-tone] .hero-inner{ flex:0 0 auto; }
+  /* Push the footer to the bottom only when there is genuine room to spare. */
+  section.hero[data-tone] .hero-foot{ margin-top:auto; }
+  /* Compact hero band, matched to the Hind Al Oud proportions. */
+  section.hero[data-tone] .proj-tags{ padding-top:clamp(26px,3vh,42px); }
+  section.hero[data-tone] .hero-title{ margin-bottom:clamp(16px,1.8vw,26px); }
+  section.hero[data-tone] .hero-foot{ padding-top:clamp(20px,2.6vh,36px); }
+  /* On short viewports the tag gutter is the first thing to give. */
+  @media (max-height:820px){
+    .proj-tags{ padding-top:clamp(22px,3vh,36px); }
+  }
+
+  /* Carousel frames fill their slide. */
+  .hc-slide .ph{position:absolute;inset:0;}
+  /* figure carries a UA default margin: 1em 40px, which breaks the track maths */
+  .hc-slide{ margin:0; }
+  /* slide gutter (was supplied by the figure default margin before the margin:0 fix) */
+  .hc-track{ gap:12px; }
+</style>
+
+<meta name="description" content="Riyadhverse for Bawtaqah: a real-time digital twin of Riyadh for exploration and planning.">
+<link rel="canonical" href="https://illusorr.com/projects/riyadhverse.html">
+<meta name="theme-color" content="#05060a">
+<meta property="og:site_name" content="ILLUSORR">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ILLUSORR × Bawtaqah · RiyadhVerse">
+<meta property="og:description" content="Riyadhverse for Bawtaqah: a real-time digital twin of Riyadh for exploration and planning.">
+<meta property="og:url" content="https://illusorr.com/projects/riyadhverse.html">
+<meta property="og:image" content="https://illusorr.com/assets/img/og/og-default.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CreativeWork","name":"ILLUSORR × Bawtaqah · RiyadhVerse","url":"https://illusorr.com/projects/riyadhverse.html","creator":{"@type":"Organization","name":"ILLUSORR","url":"https://illusorr.com/"}}</script>
+<!-- phone + tablet: shared touch layer, then the shared case layout -->
+<link rel="stylesheet" href="../assets/css/mobile.css">
+<link rel="stylesheet" href="../assets/css/case/case-mobile.css">
+<script src="../assets/js/mobile.js"></script>
+</head>
+
+<body>
+<header class="il-topbar" id="ilTopbar">
+  <a class="il-brand" href="../index.html" aria-label="ILLUSORR home"><span class="il-logo" role="img" aria-label="ILLUSORR"></span></a>
+  <div class="il-right">
+    <a class="il-talk" href="../contact.html">Let's talk</a>
+    <button class="il-burger" id="ilMenuOpen" aria-label="Open menu"><i></i><i></i></button>
+  </div>
+</header>
+<div class="il-overlay" id="ilOverlay">
+  <div class="il-ohead"><span class="il-logo" role="img" aria-label="ILLUSORR"></span><button class="il-oclose" id="ilMenuClose">Close ✕</button></div>
+  <nav>
+    <a href="../index.html">Home <span>01</span></a>
+    <a href="../about.html">About <span>02</span></a>
+    <a href="../sectors.html">Sectors <span>03</span></a>
+    <a href="../work.html">Work <span>04</span></a>
+    <a href="../lab.html">Lab <span>05</span></a>
+    <a href="../collective.html">Collective <span>06</span></a>
+    <a href="../contact.html">Contact <span>07</span></a>
+  </nav>
+  <div class="il-ofoot"><span>Abu Dhabi · Yas Creative Hub</span><span>hello@illusorr.com</span></div>
+</div>
+
+
+  <!-- ─── Fixed chrome ─────────────────────────────────────────────── -->
+  <!-- topnav removed, menu bar to be added separately -->
+
+  <!-- Cursor -->
+  <div class="koton-cursor" id="kCursor" aria-hidden="true">
+    <svg class="km" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M50 3 C54 31 69 46 97 50 C69 54 54 69 50 97 C46 69 31 54 3 50 C31 46 46 31 50 3 Z"></path></svg>
+    <span class="label-link" data-verb="Click"></span>
+  </div>
+
+  <aside class="rail" aria-hidden="true">
+    <span class="rail-dot is-active" data-i="0"></span>
+    <span class="rail-dot" data-i="1"></span>
+    <span class="rail-dot" data-i="2"></span>
+  </aside>
+
+  <!-- ════════════════════════════ LIGHT HALF ════════════════════════════ -->
+
+  <!-- 1. HERO -->
+  <section class="hero" data-tone="light" data-rail="0" data-screen-label="01 Hero">
+    <div class="hero-inner">
+      <div class="proj-tags hero-meta">
+        <div class="ptg ptg-client">
+          <div class="ptg-k">Client</div>
+          <div class="ptg-c">
+            <img src="../assets/projects/v5/bawtaqah-emblem.webp" alt="Bawtaqah Research Center" style="height:64px; width:auto; display:block; object-fit:contain;">
+          </div>
+        </div>
+        <div class="ptg" style="margin-left:auto">
+          <div class="ptg-k">Category</div>
+          <div class="ptg-c"><span class="ptag">3D Assets</span><span class="ptag">3D Environment Design</span><span class="ptag">Real Estate</span><span class="ptag">Design</span></div>
+        </div>
+        <div class="ptg">
+          <div class="ptg-k">Sector</div>
+          <div class="ptg-c">
+            <span class="ptag sector">Immersive Worlds</span>
+            <span class="ptag sector">Ecommerce</span>
+          </div>
+        </div>
+      </div>
+
+      <h1 class="hero-title">
+        <span class="ln">RiyadhVerse<span class="ln-ital">the city, twinned into the digital.</span></span>
+      </h1>
+
+      <p class="hero-lede">
+        <strong>A digital twin MVP for Bawtaqah Research Center in Riyadh</strong>: RiyadhVerse explores the future of urban digital twins, pioneering new methods of visualising and storing data on past and present cities. Built by ILLUSORR.
+      </p>
+
+      <div class="hero-foot">
+        <div class="hero-credit">
+          <div>Bawtaqah / RiyadhVerse · 2024</div>
+          <div>Built by ILLUSORR</div>
+        </div>
+        <div class="scroll-cue">
+          <span>Scroll</span>
+          <span class="line"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 1b. THE FILM -->
+  <section class="hero-media" data-tone="light" data-rail="1" data-screen-label="02 Film">
+    <div class="hm-inner">
+      <div class="hm-frame" style="height:auto;aspect-ratio:16/9">
+        <iframe class="hm-video" src="https://www.youtube.com/embed/otcuztqaxDw?rel=0&amp;modestbranding=1" title="RiyadhVerse digital twin walkthrough" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="hm-cap"><span>RiyadhVerse · Digital twin walkthrough</span><span>Film</span></div>
+    </div>
+  </section>
+
+  <!-- 2. THE EXPLANATION -->
+  <section class="module rv-about" data-tone="light" data-rail="2" data-screen-label="03 About">
+    <div class="wrap">
+      <div class="rv-eyebrow"><span class="rv-num">01</span> What it is</div>
+      <h2 class="rv-title">A living digital twin, <em>built in Unreal Engine.</em></h2>
+      <div class="rv-cols">
+        <p class="rv-lede">RiyadhVerse is a digital twin of Riyadh with a live database wired directly to the buildings: select any structure in the city and its real records surface on the spot.</p>
+        <div class="rv-note">
+          <span class="rv-k">Real time</span>
+          <p>The city geometry was modelled and lit as a real-time environment, so it can be navigated at street level or read from above, without pre-rendering a single frame.</p>
+        </div>
+        <div class="rv-note">
+          <span class="rv-k">Connected</span>
+          <p>Every building carries an identity that maps to a record in the connected database. Update the data and the twin updates with it: the model and the archive stay one thing, not two.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. CREDITS -->
+  <section data-tone="light" data-screen-label="11 Credits">
+    <div class="wrap">
+      <div class="credits">
+        <div>
+          <div class="credits-head">RiyadhVerse<br>Digital Twin<br>2024</div>
+        </div>
+        <div class="credit-list">
+          <div class="credit-row">
+            <span class="credit-k">Client</span>
+            <span class="who">Bawtaqah Research Center for Architecture &amp; Urbanism</span>
+          </div>
+          <div class="credit-row">
+            <span class="credit-k">Project</span>
+            <span class="who">RiyadhVerse · Urban Digital Twin MVP</span>
+          </div>
+          <div class="credit-row">
+            <span class="credit-k">3D Environment Design</span>
+            <span class="who">ILLUSORR</span>
+          </div>
+          <div class="credit-row">
+            <span class="credit-k">Architecture &amp; Real Estate</span>
+            <span class="who">ILLUSORR</span>
+          </div>
+          <div class="credit-row">
+            <span class="credit-k">3D Animation</span>
+            <span class="who">ILLUSORR</span>
+          </div>
+          <div class="credit-row">
+            <span class="credit-k">Technology Consultancy</span>
+            <span class="who">ILLUSORR</span>
+          </div>
+          <div class="credit-row">
+            <span class="credit-k">Web</span>
+            <span class="who">ILLUSORR</span>
+          </div>
+          <div class="credit-row">
+            <span class="credit-k">Output</span>
+            <span class="who">Digital Twin MVP · Web Platform · Urban Data Layer</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- ─── Tweaks panel ──────────────────────────────────────────────── -->
+<div class="fab-cpanel" id="fabCpanel">
+  <div class="fcp-inner">
+    <div class="fcp-title">Hero Tweaks</div>
+    <div class="fcp-row">
+      <span class="fcp-label">Stop 1</span>
+      <div id="sw1" class="fcp-swatch" style="background:#C4782A"></div>
+      <span class="fcp-val" id="sv1">#C4782A</span>
+    </div>
+    <div class="fcp-row">
+      <span class="fcp-label">Stop 2</span>
+      <div id="sw2" class="fcp-swatch" style="background:#7A3A0E"></div>
+      <span class="fcp-val" id="sv2">#7A3A0E</span>
+    </div>
+    <div class="fcp-row">
+      <span class="fcp-label">Stop 3</span>
+      <div id="sw3" class="fcp-swatch" style="background:#0C0806"></div>
+      <span class="fcp-val" id="sv3">#0C0806</span>
+    </div>
+    <div class="fcp-row fcp-srow">
+      <div class="fcp-srow-top">
+        <span class="fcp-label">Frequency</span>
+        <span class="fcp-val" id="sFreq">0.55</span>
+      </div>
+      <input class="fcp-range" id="rFreq" type="range" min="0.1" max="1.2" step="0.05" value="0.55">
+    </div>
+    <div class="fcp-row fcp-srow">
+      <div class="fcp-srow-top">
+        <span class="fcp-label">Speed</span>
+        <span class="fcp-val" id="sSpeed">0.75</span>
+      </div>
+      <input class="fcp-range" id="rSpeed" type="range" min="0" max="2" step="0.05" value="0.75">
+    </div>
+    <div class="fcp-row">
+      <span class="fcp-label">Noise</span>
+      <select class="fcp-select" id="selNoise">
+        <option value="curl" selected>Curl</option>
+        <option value="simplex">Simplex</option>
+        <option value="perlin">Perlin</option>
+      </select>
+    </div>
+    <button class="fcp-reset" id="fcpReset">Reset to Defaults</button>
+  </div>
+</div>
+
+<!-- ─── Top nav scroll detection ─────────────────────────────────── -->
+
+<script src="../assets/js/case/nav-tone.js"></script>
+
+<!-- ─── Hero emblem physics ────────────────────────────────────────── -->
+<script>
+(() => {
+  const hero = document.querySelector('.hero');
+  if (!hero) return;
+  const CLOVER = `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M50 3 C54 31 69 46 97 50 C69 54 54 69 50 97 C46 69 31 54 3 50 C31 46 46 31 50 3 Z"/></svg>`;
+  const POSITIONS = [
+    { x: 0.04, y: 0.12, s: 52 }, { x: 0.92, y: 0.08, s: 40 },
+    { x: 0.88, y: 0.78, s: 56 }, { x: 0.06, y: 0.82, s: 36 },
+    { x: 0.50, y: 0.04, s: 30 }, { x: 0.14, y: 0.44, s: 44 },
+    { x: 0.78, y: 0.42, s: 38 }, { x: 0.46, y: 0.88, s: 32 },
+  ];
+  const container = document.createElement('div');
+  container.className = 'hero-emblems';
+  hero.appendChild(container);
+  const emblems = POSITIONS.map(p => {
+    const el = document.createElement('div');
+    el.className = 'hero-emblem';
+    el.style.width = p.s + 'px';
+    el.style.height = p.s + 'px';
+    el.style.color = 'rgba(20,20,15,0.10)';
+    el.innerHTML = CLOVER;
+    container.appendChild(el);
+    return { el, hx: p.x, hy: p.y, x: p.x, y: p.y, vx: 0, vy: 0, s: p.s, angle: Math.random() * Math.PI * 2, spin: (Math.random() - 0.5) * 0.008 };
+  });
+  let mx = -1, my = -1, W = 0, H = 0;
+  function resize() {
+    const r = hero.getBoundingClientRect();
+    W = r.width; H = r.height;
+    container.style.width = W + 'px';
+    container.style.height = H + 'px';
+  }
+  window.addEventListener('resize', resize); resize();
+  hero.addEventListener('pointermove', e => {
+    const r = hero.getBoundingClientRect();
+    mx = (e.clientX - r.left) / W;
+    my = (e.clientY - r.top) / H;
+  }, { passive: true });
+  hero.addEventListener('pointerleave', () => { mx = -1; my = -1; });
+  function tick() {
+    requestAnimationFrame(tick);
+    for (const em of emblems) {
+      em.angle += em.spin;
+      const rep = 0.14;
+      if (mx >= 0) {
+        const dx = em.x - mx, dy = em.y - my;
+        const d = Math.sqrt(dx * dx + dy * dy);
+        if (d < 0.22 && d > 0.001) {
+          em.vx += dx / d * rep * (0.22 - d) / 0.22;
+          em.vy += dy / d * rep * (0.22 - d) / 0.22;
+        }
+      }
+      em.vx += (em.hx - em.x) * 0.04;
+      em.vy += (em.hy - em.y) * 0.04;
+      em.vx *= 0.82; em.vy *= 0.82;
+      em.x += em.vx; em.y += em.vy;
+      const px = em.x * W - em.s / 2;
+      const py = em.y * H - em.s / 2;
+      em.el.style.transform = `translate(${px}px,${py}px) rotate(${em.angle}rad)`;
+    }
+  }
+  tick();
+})();
+</script>
+
+<!-- ─── Hero carousel ────────────────────────────────────────────── -->
+
+<script src="../assets/js/case/hero-carousel-c.js"></script>
+
+<!-- ─── Reel rail drag ──────────────────────────────────────────── -->
+
+<script src="../assets/js/case/rail-drag.js"></script>
+
+<!-- ─── Custom cursor ───────────────────────────────────────────── -->
+
+<script src="../assets/js/case/cursor-dot.js"></script>
+
+<!-- ─── Hero mesh paint canvas ─────────────────────────────────── -->
+<script>
+(() => {
+  const hero = document.querySelector('.hero');
+  if (!hero) return;
+  const canvas = document.createElement('canvas');
+  canvas.className = 'hero-paint';
+  canvas.setAttribute('aria-hidden', 'true');
+  hero.insertBefore(canvas, hero.firstChild);
+  const ctx = canvas.getContext('2d');
+  const SCALE = 0.24;
+  let W = 0, H = 0, w = 0, h = 0, BLUR = 6;
+  function size() {
+    const r = hero.getBoundingClientRect();
+    W = r.width; H = r.height;
+    w = Math.max(2, Math.round(W * SCALE));
+    h = Math.max(2, Math.round(H * SCALE));
+    canvas.width = W; canvas.height = H;
+    BLUR = Math.round(W * SCALE * 0.18);
+  }
+  size();
+  window.addEventListener('resize', size);
+  const TWEAKS = /*EDITMODE-BEGIN*/{
+    "mesh1": "#C4782A",
+    "mesh2": "#7A3A0E",
+    "mesh3": "#0C0806",
+    "heroStop1": "#C4782A",
+    "heroStop2": "#7A3A0E",
+    "heroStop3": "#0C0806",
+    "frequency": 0.55,
+    "speed": 0.75,
+    "noiseType": "curl"
+  }/*EDITMODE-END*/;
+  let PAL = [TWEAKS.mesh1, TWEAKS.mesh2, TWEAKS.mesh3];
+  let FREQ = TWEAKS.frequency, SPEED = TWEAKS.speed, NOISE = TWEAKS.noiseType;
+  const PI = [0, 1, 2, 0, 1, 2];
+  const BLOBS = PI.map((pi) => {
+    const x = 0.12 + Math.random() * 0.76, y = 0.12 + Math.random() * 0.76;
+    return { pi, x, y, hx: x, hy: y, vx: 0, vy: 0, r: 0.24 + Math.random() * 0.18 };
+  });
+  function hash(n) { let x = Math.sin(n) * 43758.5; return x - Math.floor(x); }
+  function noise2(x, y) {
+    const ix = Math.floor(x), iy = Math.floor(y);
+    const fx = x - ix, fy = y - iy;
+    const a = hash(ix + iy * 57), b = hash(ix + 1 + iy * 57);
+    const c = hash(ix + (iy + 1) * 57), d = hash(ix + 1 + (iy + 1) * 57);
+    const ux = fx * fx * (3 - 2 * fx), uy = fy * fy * (3 - 2 * fy);
+    return a + (b - a) * ux + (c - a) * uy + (a - b - c + d) * ux * uy;
+  }
+  function curlX(x, y, t) { return Math.sin(y * FREQ + t) * Math.cos(x * FREQ * 0.7 + t * 0.6); }
+  function curlY(x, y, t) { return Math.cos(x * FREQ + t * 0.8) * Math.sin(y * FREQ * 0.8 + t); }
+
+  let mx = 0.5, my = 0.5, mActive = 0, t0 = performance.now();
+  hero.addEventListener('pointermove', (e) => {
+    const r = hero.getBoundingClientRect();
+    mx = (e.clientX - r.left) / r.width;
+    my = (e.clientY - r.top) / r.height;
+    mActive = 1;
+  }, { passive: true });
+  hero.addEventListener('pointerenter', () => { mActive = 1; start(); });
+  hero.addEventListener('pointerleave', () => { mActive = 0; start(); });
+  let hovering = false;
+  hero.addEventListener('pointerenter', () => { hovering = true; });
+  hero.addEventListener('pointerleave', () => { hovering = false; });
+
+  function frame(now) {
+    if (!hovering) { rafId = null; canvas.style.opacity = '0'; return; }
+    rafId = requestAnimationFrame(frame);
+    const t = (now - t0) * 0.001 * SPEED;
+    for (const bl of BLOBS) {
+      const nx = curlX(bl.x, bl.y, t), ny = curlY(bl.x, bl.y, t);
+      const rep = 0.1;
+      const dx = bl.x - mx, dy = bl.y - my;
+      const dd = Math.sqrt(dx * dx + dy * dy);
+      let rx = 0, ry = 0;
+      if (mActive && dd < 0.35 && dd > 0.001) { rx = dx / dd * rep * (0.35 - dd) / 0.35; ry = dy / dd * rep * (0.35 - dd) / 0.35; }
+      bl.vx += (nx * 0.003 + (bl.hx - bl.x) * 0.012 + rx) * 1;
+      bl.vy += (ny * 0.003 + (bl.hy - bl.y) * 0.012 + ry) * 1;
+      bl.vx *= 0.88; bl.vy *= 0.88;
+      bl.x += bl.vx; bl.y += bl.vy;
+      bl.x = Math.max(0.02, Math.min(0.98, bl.x));
+      bl.y = Math.max(0.02, Math.min(0.98, bl.y));
+    }
+    const offCtx = document.createElement('canvas');
+    offCtx.width = w; offCtx.height = h;
+    const oc = offCtx.getContext('2d');
+    oc.clearRect(0, 0, w, h);
+    for (const bl of BLOBS) {
+      const gx = bl.x * w, gy = bl.y * h, gr = bl.r * Math.min(w, h);
+      const g = oc.createRadialGradient(gx, gy, 0, gx, gy, gr);
+      g.addColorStop(0, PAL[bl.pi] + 'cc');
+      g.addColorStop(1, PAL[bl.pi] + '00');
+      oc.globalCompositeOperation = 'source-over';
+      oc.fillStyle = g;
+      oc.beginPath();
+      oc.arc(gx, gy, gr, 0, Math.PI * 2);
+      oc.fill();
+    }
+    ctx.clearRect(0, 0, W, H);
+    ctx.filter = `blur(${BLUR}px) saturate(1.1)`;
+    ctx.drawImage(offCtx, 0, 0, W, H);
+    ctx.filter = 'none';
+    canvas.style.opacity = hovering ? '0.9' : '0';
+  }
+  let rafId = null;
+  function start() {
+    if (hovering && !rafId) rafId = requestAnimationFrame(frame);
+  }
+
+  // Tweaks panel hookup
+  const HG = ['--hg1', '--hg2', '--hg3'];
+  const heroEl = hero;
+  let HGV = [TWEAKS.heroStop1, TWEAKS.heroStop2, TWEAKS.heroStop3];
+  HG.forEach((v, i) => heroEl.style.setProperty(v, HGV[i]));
+
+  function applyPalette() {
+    PAL = [TWEAKS.mesh1, TWEAKS.mesh2, TWEAKS.mesh3];
+  }
+  function save(obj) { try { localStorage.setItem('riyadhverse-tweaks', JSON.stringify(obj)); } catch(e) {} }
+
+  const sw = [document.getElementById('sw1'), document.getElementById('sw2'), document.getElementById('sw3')];
+  const sv = [document.getElementById('sv1'), document.getElementById('sv2'), document.getElementById('sv3')];
+  const rFreq = document.getElementById('rFreq');
+  const rSpeed = document.getElementById('rSpeed');
+  const selNoise = document.getElementById('selNoise');
+  const sFreq = document.getElementById('sFreq');
+  const sSpeed = document.getElementById('sSpeed');
+
+  function buildRows() {
+    if (!sw[0]) return;
+    sw.forEach((s, i) => { if (s) { s.style.background = HGV[i]; sv[i].textContent = HGV[i]; } });
+    if (rFreq) { rFreq.value = FREQ; sFreq.textContent = FREQ.toFixed(2); }
+    if (rSpeed) { rSpeed.value = SPEED; sSpeed.textContent = SPEED.toFixed(2); }
+    if (selNoise) selNoise.value = NOISE;
+  }
+  buildRows();
+
+  const cols = ['#C4782A','#7A3A0E','#0C0806','#D4B483','#5C3D1E','#E8C16A','#2E1A0C'];
+  sw.forEach((s, i) => {
+    if (!s) return;
+    let pi = 0;
+    s.addEventListener('click', () => {
+      HGV[i] = cols[pi % cols.length];
+      TWEAKS['mesh' + (i + 1)] = HGV[i];
+      TWEAKS['heroStop' + (i + 1)] = HGV[i];
+      pi++;
+      s.style.background = HGV[i];
+      sv[i].textContent = HGV[i];
+      heroEl.style.setProperty(HG[i], HGV[i]);
+      applyPalette();
+      save({ mesh1: PAL[0], mesh2: PAL[1], mesh3: PAL[2], heroStop1: HGV[0], heroStop2: HGV[1], heroStop3: HGV[2], frequency: FREQ, speed: SPEED, noiseType: NOISE });
+    });
+  });
+  if (rFreq) rFreq.addEventListener('input', () => { FREQ = parseFloat(rFreq.value); sFreq.textContent = FREQ.toFixed(2); });
+  if (rSpeed) rSpeed.addEventListener('input', () => { SPEED = parseFloat(rSpeed.value); sSpeed.textContent = SPEED.toFixed(2); });
+  if (selNoise) selNoise.addEventListener('change', () => { NOISE = selNoise.value; });
+  const fcpReset = document.getElementById('fcpReset');
+  if (fcpReset) fcpReset.addEventListener('click', () => {
+    HGV = ['#C4782A', '#7A3A0E', '#0C0806'];
+    FREQ = 0.55; SPEED = 0.75; NOISE = 'curl';
+    HG.forEach((v, i) => heroEl.style.setProperty(v, HGV[i]));
+    applyPalette(); buildRows();
+    save({ mesh1: PAL[0], mesh2: PAL[1], mesh3: PAL[2], heroStop1: HGV[0], heroStop2: HGV[1], heroStop3: HGV[2], frequency: FREQ, speed: SPEED, noiseType: NOISE });
+  });
+
+  // Expose for host edit mode
+  window.__riyadhverseTweaks = { open: () => document.getElementById('fabCpanel').classList.add('is-open') };
+})();
+</script>
+
+  <script src="../assets/js/case/image-slot.js"></script>
+<script src="../assets/js/nav.js" defer></script>
+<script src="../assets/js/site-footer.js" defer></script>
+<script src="../assets/js/to-top.js" defer></script>
+</body>
+</html>

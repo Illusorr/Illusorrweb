@@ -1,0 +1,1900 @@
+/* ─────────────────────────────────────────────────────────────────────
+   CASE STUDIES — THE PHONE EDITION
+   One layer for all 34 project pages.
+
+   The case pages share one vocabulary (hero-title / meta-bar / module /
+   module-head / lede / body-grid / duo / trio / process / stats / quote /
+   credits / next / ph / hero-carousel / film-carousel), whether they link
+   case-base.css or inline their own copy of it. case-base already
+   collapses the multi-column modules to one column at 880px, so this file
+   does the other half: it applies the same structure every other page on
+   the site now uses on a phone.
+
+       eyebrow      11px label, the floor
+       headline     28px, tight
+       body         16px, full column
+       media        full width, aspect reserved, after the words
+       ─── 128px ───
+
+   One gutter (20px). One spacing scale (8/12/20/40/128). Three things go:
+   the custom cursor, the fixed chapter rail, and any hover-only reveal.
+   Gated on html[data-touch] — remove the <link> and desktop is untouched.
+   ───────────────────────────────────────────────────────────────────── */
+
+@media (max-width: 880px) {
+
+/* ═══════════════════════════════════════════════════════════════════════
+   FRAME · one gutter, one rhythm
+
+   The desktop rhythm is clamp(120px, 15vw, 240px) between modules — at
+   390px that resolves to 120px of padding on a 348px column, which is
+   why these pages scroll forever with very little on screen.
+   ═════════════════════════════════════════════════════════════════════ */
+html[data-touch] .wrap {
+  max-width: none !important;
+  padding-inline: 20px !important;
+}
+html[data-touch] .module,
+html[data-touch] .quote-wrap { padding: 64px 0 !important; }
+html[data-touch] .cover { padding: 40px 0 56px !important; }
+html[data-touch] .bleed { padding: 0 0 56px !important; }
+html[data-touch] .credits { padding: 56px 0 !important; }
+
+/* the group gap by default; media is a change of content type, so 40px */
+html[data-touch] .module-head > * + *,
+html[data-touch] .body-grid > * + * { margin-top: 20px !important; }
+html[data-touch] .module-head { gap: 12px !important; }
+html[data-touch] .module > * + *,
+html[data-touch] .module-head + *,
+html[data-touch] .duo,
+html[data-touch] .trio,
+html[data-touch] .vband,
+html[data-touch] .post-grid { margin-top: 40px !important; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   TYPE — four sizes, 11px floor
+   ═════════════════════════════════════════════════════════════════════ */
+html[data-touch] .eyebrow-row,
+html[data-touch] .section-num,
+html[data-touch] .meta-k,
+html[data-touch] .hero-credit,
+html[data-touch] .scroll-cue,
+html[data-touch] .caption,
+html[data-touch] .ph-label,
+html[data-touch] .step-k,
+html[data-touch] .stat-k,
+html[data-touch] .role,
+html[data-touch] .next-k,
+html[data-touch] .ptg-k,
+html[data-touch] .vb-cap,
+html[data-touch] .hm-cap,
+html[data-touch] .hc-count,
+html[data-touch] .fl-k,
+html[data-touch] .km,
+html[data-touch] .gen-btn,
+html[data-touch] .who,
+/* HUD labels inside the bespoke diagrams were 9.5px — that is caption
+   furniture on a 27-inch screen and unreadable on a phone. (The ruler
+   numerals stay small: they are scale marks inside a scrollable diagram,
+   not text anyone reads.) */
+html[data-touch] .map-top span,
+html[data-touch] .plan-top span,
+html[data-touch] [class$="-top"] > span {
+  font-size: 11px !important;
+  letter-spacing: .16em !important;
+}
+
+/* PP Monument Extended is a very wide face — 28px is the ceiling at 375px,
+   and the hero gets 30px because it is the one title card on the page */
+html[data-touch] .hero-title {
+  font-size: 30px !important;
+  line-height: 1.04 !important;
+  letter-spacing: 0 !important;
+  white-space: normal !important;
+}
+html[data-touch] .hero-title .ln { display: block; }
+html[data-touch] .module-title,
+html[data-touch] .next-inner h2,
+html[data-touch] .looks-head h2 {
+  font-size: 28px !important;
+  line-height: 1.12 !important;
+  letter-spacing: -.01em !important;
+}
+html[data-touch] .quote {
+  font-size: 24px !important;
+  line-height: 1.2 !important;
+  max-width: none !important;
+}
+html[data-touch] .quote-mark { font-size: 34px !important; margin-bottom: 16px !important; }
+
+html[data-touch] .hero-lede,
+html[data-touch] .lede,
+html[data-touch] .body-grid p,
+html[data-touch] .module p,
+html[data-touch] .step p,
+html[data-touch] .next-meta p {
+  font-size: 16px !important;
+  line-height: 1.62 !important;
+  letter-spacing: 0 !important;
+  /* full column: a ch-cap here breaks lines early and reads as ragged */
+  max-width: none !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   HERO — a title card that clears the fixed topbar
+   ═════════════════════════════════════════════════════════════════════ */
+html[data-touch] .hero {
+  min-height: 100svh !important;
+  height: auto !important;
+  display: flex !important;
+  align-items: flex-end !important;
+}
+html[data-touch] .hero-inner {
+  width: 100%;
+  padding: 104px 20px 48px !important;
+  box-sizing: border-box;
+  height: auto !important;
+  min-height: 0 !important;
+  flex: 0 0 auto !important;
+  align-self: flex-end !important;
+}
+html[data-touch] .hero-foot {
+  display: flex !important;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px !important;
+  margin-top: 28px !important;
+}
+html[data-touch] .hero-credit { text-align: left !important; justify-self: start !important; }
+
+/* A few pages (Disney+, and the other chapter-driven builds) wrap the hero
+   in .chapter-hero > .chapter-inner instead of .hero > .hero-inner, so none
+   of the above reached them and the credit strip started hard under the
+   fixed bar. Same title card, same clearance. */
+html[data-touch] .chapter-hero {
+  min-height: 100svh !important;
+  display: flex !important;
+  align-items: flex-end !important;
+}
+html[data-touch] .chapter-hero > .chapter-inner { width: 100%; box-sizing: border-box; }
+/* the inner adds vertical clearance only — the gutter belongs to the
+   chapter, at each tier's own value */
+@media (max-width: 640px) {
+  html[data-touch] .chapter-hero > .chapter-inner { padding: 104px 0 48px !important; }
+  html[data-touch] .chapter-hero:not(:has(> .wrap)) { padding-inline: 20px !important; }
+}
+@media (min-width: 641px) and (max-width: 1024px) {
+  html[data-touch] .chapter-hero > .chapter-inner { padding: 120px 0 64px !important; }
+  html[data-touch] .chapter-hero:not(:has(> .wrap)) { padding-inline: 40px !important; }
+}
+
+/* On most case pages .hero-inner sits INSIDE .wrap, which already carries
+   the 20px gutter — its own inline padding then pushed the hero title to
+   40px while every module title sat at 20px. Nested, it adds nothing; on
+   the pages where it is a direct child of .hero it keeps the gutter above. */
+html[data-touch] .wrap .hero-inner { padding-inline: 0 !important; }
+/* same double gutter when .hero itself carries the 20px: the hero type then
+   started at x=40 while every module title on the page sat at x=20 */
+/* the doubled class beats the per-page mobile layers that load after this
+   file and restate .hero-inner's padding */
+html[data-touch] .hero > .hero-inner.hero-inner { padding-inline: 0 !important; }
+@media (max-width: 640px) {
+  html[data-touch] .hero:not(:has(> .wrap)) { padding-inline: 20px !important; }
+}
+/* the tablet tier keeps the page's own 40px gutter */
+@media (min-width: 641px) and (max-width: 1024px) {
+  html[data-touch] .hero:not(:has(> .wrap)) { padding-inline: 40px !important; }
+}
+/* the slow-spinning emblems sit behind the hero type on a wide stage; at
+   390px they sit directly under the headline */
+html[data-touch] .hero-emblems { display: none !important; }
+/* nobody needs telling to scroll on a phone */
+html[data-touch] .scroll-cue { display: none !important; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   META BAR — a two-up grid reads better than four squeezed cells
+   ═════════════════════════════════════════════════════════════════════ */
+html[data-touch] .meta-bar {
+  grid-template-columns: 1fr 1fr !important;
+  gap: 24px 20px !important;
+  padding: 24px 0 !important;
+}
+html[data-touch] .meta-v { font-size: 14px !important; line-height: 1.4 !important; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MEDIA — one treatment: full width, shape reserved
+   ═════════════════════════════════════════════════════════════════════ */
+html[data-touch] .ph,
+html[data-touch] .hm-inner,
+html[data-touch] .vb-frame,
+html[data-touch] .sm {
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+}
+html[data-touch] .ph:not([style*="aspect"]) { aspect-ratio: 4 / 3; }
+/* A video plate (.yt) is absolutely positioned inside its frame, so the
+   frame — height:auto on a phone — collapsed to 0 and the band showed as
+   a bare light strip with a caption under it. Give the frame the film's
+   own ratio and let the plate flow inside it. */
+html[data-touch] .vb-frame:has(.yt),
+html[data-touch] .hm-frame:has(.yt) { aspect-ratio: 16 / 9; }
+html[data-touch] .vb-frame > .yt,
+html[data-touch] .hm-frame > .yt {
+  position: relative !important;
+  inset: auto !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+/* Those frames carry a pale plate colour for the desktop layout. Whenever
+   their media is a plate that sizes itself (a video facade, a drop slot),
+   the plate shows around it as a light box on a dark page. The media
+   supplies its own surface, so the frame does not need one.
+
+   The cover frame also carries a viewport-derived fixed height (758px =
+   svh minus the topbar). At 369px wide that slab cropped a 16:9 cover to
+   a featureless slice, because the slot's image was sized wider than its
+   box rather than fitted to it. The frame takes the media's ratio instead
+   and the image is fitted, so wide and tall sources both survive. */
+html[data-touch] .vb-frame,
+html[data-touch] .hm-frame { background: transparent !important; }
+html[data-touch] .hm-frame {
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+}
+html[data-touch] .hm-frame > image-slot,
+html[data-touch] .vb-frame > image-slot {
+  display: block;
+  width: 100% !important;
+  /* the slot crops its own source to whatever box it is given, so one
+     ratio here keeps every cover consistent instead of a viewport slab */
+  height: auto !important;
+  aspect-ratio: 3 / 2 !important;
+}
+html[data-touch] .hm-frame > img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+}
+html[data-touch] .ph img,
+html[data-touch] .ph video,
+html[data-touch] .hm-inner img,
+html[data-touch] .hm-inner video,
+html[data-touch] .vb-frame img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+html[data-touch] .duo,
+html[data-touch] .trio,
+html[data-touch] .vband,
+html[data-touch] .post-grid {
+  grid-template-columns: 1fr !important;
+  gap: 20px !important;
+}
+html[data-touch] .trio .col:nth-child(2) { padding-top: 0 !important; }
+/* a caption belongs to the frame above it */
+html[data-touch] .caption,
+html[data-touch] .vb-cap { padding-top: 12px !important; }
+
+/* the full-bleed hero media block keeps its own edge, no gutter */
+html[data-touch] .hero-media { padding-inline: 0 !important; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   PROCESS · STATS · CREDITS — stacked lists with a number column
+   ═════════════════════════════════════════════════════════════════════ */
+html[data-touch] .process {
+  grid-template-columns: 1fr !important;
+  gap: 0 !important;
+}
+html[data-touch] .step {
+  padding: 20px 0 !important;
+  border-top: 1px solid currentColor;
+  border-color: color-mix(in srgb, currentColor 14%, transparent);
+}
+html[data-touch] .step h3,
+html[data-touch] .step h4 { font-size: 17px !important; line-height: 1.2 !important; margin: 8px 0 !important; }
+
+html[data-touch] .stats {
+  grid-template-columns: 1fr 1fr !important;
+  gap: 28px 20px !important;
+}
+html[data-touch] .stat-n { font-size: 32px !important; line-height: 1 !important; }
+
+html[data-touch] .credits,
+html[data-touch] .credit-list { grid-template-columns: 1fr !important; gap: 0 !important; }
+/* A 96px role column forced every label to wrap onto two lines ("CREATIVE /
+   DIRECTION") while its value sat on one, so each row read as a ragged
+   two-column table with a hole in it. Stacked, quieted, and set on its own
+   plate so the section's starfield stops showing between the lines. */
+html[data-touch] .credit-list {
+  border: 1px solid var(--ink-faint);
+  padding: 2px 16px !important;
+  background: rgba(0, 0, 0, .16);
+}
+html[data-touch] [data-tone="light"] .credit-list,
+html[data-touch] section.light .credit-list { background: rgba(255, 255, 255, .5); }
+html[data-touch] .credit-row {
+  display: block !important;
+  padding: 11px 0 !important;
+  border-bottom: 1px solid var(--ink-faint);
+}
+html[data-touch] .credit-list > .credit-row:last-child { border-bottom: 0; }
+html[data-touch] .credit-row .role {
+  display: block !important;
+  font-size: 10.5px !important;
+  letter-spacing: .14em !important;
+  margin-bottom: 3px !important;
+  white-space: normal;
+}
+html[data-touch] .credit-row .who {
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  line-height: 1.4 !important;
+}
+/* the collaboration row keeps its logo, at credit scale */
+html[data-touch] .credit-collab .who { gap: 10px !important; align-items: center !important; }
+html[data-touch] .credits .collab-logo { width: 30px !important; height: 30px !important; }
+html[data-touch] .credit-collab .who small { font-size: 12px !important; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CAROUSELS — one slide per screen, swiped
+
+   The hero carousel shows three slides at a time on a desktop with prev/
+   next arrows. At 390px three slides is 110px each, so it shows one and
+   the arrows become a 44px tap target instead of a hover affordance.
+   ═════════════════════════════════════════════════════════════════════ */
+html[data-touch] .hero-carousel { --hc-vis: 1 !important; }
+html[data-touch] .hc-slide { flex: 0 0 100% !important; }
+html[data-touch] .hc-nav {
+  width: 44px !important;
+  height: 44px !important;
+}
+html[data-touch] .hc-caption {
+  left: 20px !important;
+  right: 20px !important;
+  bottom: 48px !important;
+  max-width: none !important;
+}
+html[data-touch] .hc-title { font-size: 22px !important; line-height: 1.1 !important; }
+html[data-touch] .hc-top { padding-inline: 20px !important; }
+html[data-touch] .hc-bars { right: 20px !important; bottom: 20px !important; }
+html[data-touch] .hc-bar { width: 22px !important; }
+
+html[data-touch] .film-nav { width: 44px !important; height: 44px !important; }
+html[data-touch] .film-play { width: 62px !important; height: 62px !important; }
+html[data-touch] .film-cap { left: 20px !important; right: 20px !important; bottom: 20px !important; }
+html[data-touch] .film-cap .fl-t { font-size: 20px !important; line-height: 1.1 !important; }
+html[data-touch] .film-dots { right: 20px !important; bottom: 16px !important; }
+html[data-touch] .film-dot { width: 22px !important; min-height: 22px; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   NEXT PROJECT — a card, not a caption over a photograph
+
+   Desktop stacks the teaser's title, meta and CTA on top of a full-bleed
+   image and reveals them on hover. On a phone that is unreadable: centred
+   display type over a busy 62svh photograph, in whatever colour the page
+   ink happens to be.
+
+   So it splits into the same object the rest of the page uses: framed
+   image on top, then the words below it on the page's own surface, left
+   aligned on the 20px gutter.
+   ═════════════════════════════════════════════════════════════════════ */
+html[data-touch] .next {
+  display: block !important;
+  min-height: 0 !important;
+  padding: 0 20px 88px !important;
+  overflow: visible !important;
+}
+/* the card sits on the page's own gutter at each tier, and its image and
+   its words share one edge — the inner never adds a second inset */
+@media (min-width: 641px) and (max-width: 1024px) {
+  html[data-touch] .next { padding: 0 40px 112px !important; }
+  /* doubled class so it beats the tablet tier's own .next-inner padding
+     further down the file */
+  html[data-touch] .next-inner.next-inner { padding-inline: 0 !important; }
+}
+html[data-touch] .next .next-bg {
+  position: relative !important;
+  inset: auto !important;
+  width: 100% !important;
+  aspect-ratio: 4 / 3;
+  border: 1px solid var(--ink-faint);
+  overflow: hidden !important;
+  background: var(--tile);
+}
+html[data-touch] .next .next-bg .ph {
+  position: absolute !important;
+  inset: 0 !important;
+  transform: none !important;
+  aspect-ratio: auto !important;
+}
+html[data-touch] .next-inner {
+  position: relative !important;
+  opacity: 1 !important;
+  transform: none !important;
+  width: 100%;
+  text-align: left !important;
+  align-items: flex-start !important;
+  gap: 12px !important;
+  padding: 20px 0 0 !important;
+}
+/* the next-project heading carries a negative inline margin for optical
+   alignment of very large display type — at 390px that made a 424px
+   heading inside a 369px column, starting 27px off the left edge */
+html[data-touch] .next-inner h2,
+html[data-touch] .next-inner h3 {
+  width: auto !important;
+  max-width: 100% !important;
+  margin-inline: 0 !important;
+}
+html[data-touch] .next-inner h3 {
+  font-size: 28px !important;
+  line-height: 1.12 !important;
+}
+html[data-touch] .next-inner h3 span { display: block; }
+html[data-touch] .next-k { font-size: 11px !important; letter-spacing: .2em !important; }
+html[data-touch] .next-meta {
+  flex-wrap: wrap;
+  gap: 8px 16px !important;
+  font-size: 11px !important;
+  letter-spacing: .16em !important;
+}
+
+html[data-touch] .next-cta {
+  display: inline-flex !important;
+  align-items: center;
+  min-height: 48px;
+  margin-top: 8px !important;
+  opacity: 1 !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   OVERFLOW GUARD · fixed-width diagrams
+
+   Several case pages build bespoke diagrams — floor plans, maps, seating
+   charts, spec tables — in containers with hard pixel widths (a 1,243px
+   floor plan, a 530px site plan). At 390px those drag the whole document
+   sideways: disney-plus measured 569px of horizontal scroll, so every
+   section on the page sat 180px off-centre.
+
+   The diagram keeps its real size and becomes swipeable inside its own
+   box, instead of moving the page underneath it. A page-level guard backs
+   that up, because these blocks are per-page and hand-authored — I cannot
+   enumerate every one across 34 case studies.
+   ═════════════════════════════════════════════════════════════════════ */
+html[data-touch] [class*="-canvas"],
+html[data-touch] [class*="-floor"],
+html[data-touch] [class*="-plan"],
+html[data-touch] [class*="-chart"],
+html[data-touch] [class*="-diagram"],
+html[data-touch] [class*="-table"],
+html[data-touch] .lg-floor,
+html[data-touch] .map-canvas,
+html[data-touch] .plan-canvas {
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+}
+/* the last line of defence: content may be clipped or swipeable, but the
+   page itself never scrolls sideways */
+html[data-touch] body { overflow-x: hidden; }
+
+/* a wide table or spec grid gets a real scroll box rather than a squeeze */
+html[data-touch] table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   REMOVED ON A PHONE
+   ═════════════════════════════════════════════════════════════════════ */
+/* the custom cursor: there is no cursor to replace, and cursor:none on
+   every control removes the tap feedback the browser would give */
+html[data-touch] .koton-cursor { display: none !important; }
+html[data-touch],
+html[data-touch] body,
+html[data-touch] a,
+html[data-touch] button,
+html[data-touch] [role="button"],
+html[data-touch] input,
+html[data-touch] label,
+html[data-touch] .next { cursor: auto !important; }
+
+/* the fixed chapter rail on the right edge overlaps the copy at 390px */
+html[data-touch] .rail { display: none !important; }
+
+/* ─── HERO META (client / category / sector) ──────────────────────────
+   Desktop treats this as a hover flyout pinned above the title, with a
+   120px top pad, a 22px hanging indent on every value row and an inline
+   margin-left:auto that throws the middle group to the right. Stacked at
+   390px that reads as a random pile floating in an empty screen.
+
+   On a phone it becomes one compact credit strip: no field labels (the
+   mark reads as the client, the chips as the tags), everything on one
+   wrapping row, tight to the title it heads. */
+html[data-touch] .proj-tags {
+  position: static !important;
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding-top: 0 !important;
+  margin: 0 0 20px !important;
+}
+html[data-touch] .proj-tags .ptg-k { display: none !important; }
+html[data-touch] .proj-tags .ptg {
+  display: contents !important;
+  margin: 0 !important;
+}
+html[data-touch] .proj-tags .ptg-c {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  padding-left: 0 !important;
+  gap: 8px !important;
+  min-height: 0 !important;
+}
+html[data-touch] .proj-tags .ptg-client .ptg-c { width: 100%; }
+/* the client mark is an image at wildly different intrinsic sizes across
+   the 34 pages; cap it so it reads as a credit, not a hero illustration */
+html[data-touch] .proj-tags .ptg-client .ptg-c img {
+  height: 44px !important;
+  width: auto !important;
+  max-width: 60vw !important;
+  object-fit: contain;
+  object-position: left center;
+}
+html[data-touch] .ptag {
+  min-height: 30px;
+  display: inline-flex !important;
+  align-items: center;
+  font-size: 13px !important;
+  padding: 4px 12px !important;
+}
+
+/* every control clears the 44px floor */
+html[data-touch] .label-link,
+html[data-touch] .fcp-reset,
+html[data-touch] .fcp-x {
+  min-height: 44px;
+  display: inline-flex !important;
+  align-items: center;
+}
+
+/* the lightbox: full screen, and its close button reachable by thumb */
+html[data-touch] .lightbox .fcp-x {
+  top: 12px !important;
+  right: 12px !important;
+  width: 44px !important;
+  height: 44px !important;
+}
+
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   TABLET TIER · 641–1024px, touch
+   Same structure, larger frame — an iPad is not a big phone.
+   ═════════════════════════════════════════════════════════════════════ */
+@media (min-width: 641px) and (max-width: 1024px) {
+
+  html[data-touch] .wrap { padding-inline: 40px !important; }
+  html[data-touch] .module,
+  html[data-touch] .quote-wrap { padding: 96px 0 !important; }
+  html[data-touch] .hero-inner { padding: 120px 40px 64px !important; }
+  html[data-touch] .next-inner { padding: 56px 40px !important; }
+
+  html[data-touch] .hero-title { font-size: 56px !important; }
+  html[data-touch] .module-title,
+  html[data-touch] .next-inner h2 { font-size: 44px !important; }
+  html[data-touch] .quote { font-size: 34px !important; }
+  html[data-touch] .hero-lede,
+  html[data-touch] .lede,
+  html[data-touch] .body-grid p,
+  html[data-touch] .module p,
+  html[data-touch] .step p {
+    font-size: 18px !important;
+    line-height: 1.66 !important;
+    max-width: 68ch !important;
+  }
+  html[data-touch] .stat-n { font-size: 44px !important; }
+
+  html[data-touch] .module > * + *,
+  html[data-touch] .duo,
+  html[data-touch] .trio,
+  html[data-touch] .vband,
+  html[data-touch] .post-grid { margin-top: 56px !important; }
+
+  /* two across where the content supports it */
+  html[data-touch] .duo,
+  html[data-touch] .vband,
+  html[data-touch] .post-grid,
+  html[data-touch] .body-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 28px !important;
+  }
+  html[data-touch] .trio { grid-template-columns: repeat(3, 1fr) !important; gap: 20px !important; }
+  html[data-touch] .stats { grid-template-columns: repeat(4, 1fr) !important; }
+  html[data-touch] .meta-bar { grid-template-columns: repeat(4, 1fr) !important; }
+  html[data-touch] .process { grid-template-columns: repeat(3, 1fr) !important; gap: 28px !important; }
+  html[data-touch] .step { border-top-width: 1px; }
+
+  /* two slides visible in the hero carousel */
+  html[data-touch] .hero-carousel { --hc-vis: 2 !important; }
+  html[data-touch] .hc-slide { flex: 0 0 calc((100% - 12px) / 2) !important; }
+  html[data-touch] .hc-title { font-size: 30px !important; }
+
+  html[data-touch] .credit-row { grid-template-columns: 160px minmax(0, 1fr) !important; }
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   READABILITY ON DARK — same move as the shell pages
+
+   Every soft ink on these pages is the page's own ink at a low alpha.
+   Those alphas are tuned for a desktop panel; on a phone held at arm's
+   length, in daylight, the body copy disappears. Raise the alpha only —
+   the hues stay exactly the ones the pages already use (#f3ecdf /
+   233,235,223 on the case shell, 238,241,251 on the pitch pages).
+   ───────────────────────────────────────────────────────────────────── */
+html[data-touch] {
+  --dark-ink-soft: rgba(233, 235, 223, .88);
+  --dark-ink-faint: rgba(233, 235, 223, .34);
+}
+
+/* pitch-module pages hardcode their soft ink instead of taking a token */
+html[data-touch] .pbody,
+html[data-touch] .ptitle em,
+html[data-touch] .pnum b { color: rgba(238, 241, 251, .88) !important; }
+html[data-touch] .plabel,
+html[data-touch] .pnum { color: rgba(238, 241, 251, .72) !important; }
+html[data-touch] .frame-step p,
+html[data-touch] .typo .t-row { color: rgba(238, 241, 251, .78) !important; }
+
+/* the two spaces pages (TRT, U-Hub) */
+html[data-touch] .space-copy p { color: rgba(233, 235, 223, .9) !important; }
+html[data-touch] .pod-t small,
+html[data-touch] .orb-sp,
+html[data-touch] .ob-sp,
+html[data-touch] .space-facts span { color: rgba(233, 235, 223, .78) !important; }
+
+/* light beats inside a case study keep their dark ink */
+html[data-touch] section.on-light .pbody,
+html[data-touch] section[data-tone="light"] .pbody { color: rgba(10, 10, 10, .78) !important; }
+
+/* ─────────────────────────────────────────────────────────────────────
+   FULL-BLEED CAROUSEL, PHONE EDITION
+   .hero-carousel widens itself by the desktop container gutter
+   (calc(100% + gutter) with a matching negative margin). The phone layout
+   has no such gutter to cancel, so the extra ~10px became a real sideways
+   pan: the ancestor's overflow is visible and <html> does not clip.
+   ───────────────────────────────────────────────────────────────────── */
+html[data-touch] .hero-carousel {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+/* same full-bleed calc, same 10px pan — metagenus's anamorphic stage,
+   optiverse's gallery scroller. */
+html[data-touch] .anamorph-stage,
+html[data-touch] .mscroll,
+html[data-touch] .hero-film,
+html[data-touch] .hero-film .hf-embed {
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-inline: 0 !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   THE HERO BLOCK — one object, all 31 case studies
+
+   Every project opens with the same four parts in the same order. Until
+   now each page's own mobile layer sized them slightly differently, so
+   the same block read differently from case to case. This is the single
+   definition; the doubled class (.proj-tags.proj-tags) outranks the
+   per-page layers that load after this file, so no page can drift.
+
+       client mark        44px tall, left aligned, aspect kept
+       ── 12px ──
+       tag chips          13px, 30px tall, wrapping — no field labels
+       ── 20px ──
+       title              30px / 1.04
+       tagline            15px italic, its own line
+       ── 16px ──
+       lede               16px / 1.62
+       ── 28px ──
+       credit foot        11px, stacked
+
+   Phone tier only; the tablet tier further down scales the same block.
+   ═════════════════════════════════════════════════════════════════════ */
+@media (max-width: 640px) {
+
+  html[data-touch] .proj-tags.proj-tags {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    gap: 8px 8px !important;
+    padding: 0 !important;
+    margin: 0 0 20px !important;
+  }
+  html[data-touch] .proj-tags.proj-tags .ptg-k { display: none !important; }
+  html[data-touch] .proj-tags.proj-tags .ptg { display: contents !important; }
+  html[data-touch] .proj-tags.proj-tags .ptg-c {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    gap: 8px !important;
+    padding: 0 !important;
+    min-height: 0 !important;
+  }
+  /* the mark owns its own line, the chips fill the rest */
+  html[data-touch] .proj-tags.proj-tags .ptg-client .ptg-c {
+    width: 100%;
+    margin-bottom: 4px;
+  }
+  html[data-touch] .proj-tags.proj-tags .ptg-client .ptg-c img {
+    height: 44px !important;
+    width: auto !important;
+    max-width: 60vw !important;
+    object-fit: contain;
+    object-position: left center;
+  }
+  html[data-touch] .proj-tags.proj-tags .ptag {
+    font-size: 13px !important;
+    letter-spacing: .01em !important;
+    padding: 4px 12px !important;
+    min-height: 30px;
+    display: inline-flex !important;
+    align-items: center;
+  }
+
+  html[data-touch] .hero-title.hero-title {
+    font-size: 30px !important;
+    line-height: 1.04 !important;
+    letter-spacing: -.01em !important;
+    margin: 0 0 12px !important;
+    white-space: normal !important;
+  }
+  html[data-touch] .hero-title .ln { display: block; }
+  html[data-touch] .hero-title .ln-ital {
+    display: block;
+    font-size: 15px !important;
+    line-height: 1.3 !important;
+    letter-spacing: 0 !important;
+    margin-top: 10px !important;
+    text-transform: none;
+  }
+  html[data-touch] .hero-lede.hero-lede {
+    font-size: 16px !important;
+    line-height: 1.62 !important;
+    max-width: none !important;
+    margin: 16px 0 0 !important;
+  }
+  html[data-touch] .hero-foot.hero-foot {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 14px !important;
+    margin-top: 28px !important;
+  }
+  html[data-touch] .hero-credit.hero-credit {
+    text-align: left !important;
+    font-size: 11px !important;
+    letter-spacing: .16em !important;
+    line-height: 1.7 !important;
+  }
+
+  /* metagenus hid its spec chips; the block is now the same everywhere */
+  html[data-touch] .hero .proj-tags.proj-tags { display: flex !important; }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   THE COVER CAROUSEL — a card, not a full-bleed stage
+
+   Desktop runs it as a 100vw stage 86vh tall with everything overlaid on
+   the photograph: eyebrow and counter top, caption bottom-left, progress
+   bars bottom-right, arrows on the sides. At 369px those overlays collide
+   — the caption ran straight through the bars — and the cream-on-photo
+   chrome sat on whatever the image happened to be, which on a pale frame
+   is unreadable. The whole thing was also 725px of mostly grey box.
+
+   On a phone it becomes a three-row grid inside the page gutter:
+
+       ┌─────────────────────┐  media   4:5, framed, arrows inside it
+       │        image        │
+       └─────────────────────┘
+       EDITORIAL 02             caption  on the PAGE surface, page ink
+       Summit Set
+       The Coffee Merchant
+       ▬▬▬ ▬▬▬ ▬▬▬ ▬▬▬          bars     full width, one per slide
+
+   No text sits on the photograph, so nothing depends on how light the
+   frame is.
+   ═════════════════════════════════════════════════════════════════════ */
+@media (max-width: 640px) {
+
+  html[data-touch] .hero-carousel {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    grid-template-areas: "media" "caption" "bars" !important;
+    width: auto !important;
+    max-width: none !important;
+    /* the card sits in the page gutter like every other block */
+    margin: 0 20px !important;
+    height: auto !important;
+    overflow: visible !important;
+    background: transparent !important;
+    isolation: auto !important;
+  }
+
+  /* the media frame */
+  html[data-touch] .hero-carousel .hc-track {
+    grid-area: media;
+    aspect-ratio: 4 / 5;
+    height: auto !important;
+    gap: 8px !important;
+    border: 1px solid var(--ink-faint);
+    overflow: hidden;
+  }
+  html[data-touch] .hero-carousel .hc-slide { height: 100% !important; }
+  /* the slide's .ph inherits the shared 4/3 placeholder ratio, which left a
+     cream tile band under the photo inside a 4/5 frame — the grey gap */
+  html[data-touch] .hero-carousel .hc-slide .ph {
+    aspect-ratio: auto !important;
+    position: absolute !important;
+    inset: 0 !important;
+    height: 100% !important;
+    background: transparent !important;
+  }
+  html[data-touch] .hero-carousel .hc-slide .ph img { height: 100% !important; }
+  html[data-touch] .hero-carousel .hc-slide img { object-position: center center !important; }
+  /* the vignette existed to carry overlaid text; there is none now */
+  html[data-touch] .hero-carousel .hc-slide::after { opacity: .35 !important; }
+
+  /* arrows live inside the media row, not beside the whole block */
+  html[data-touch] .hero-carousel .hc-nav {
+    grid-area: media;
+    position: relative !important;
+    top: auto !important; left: auto !important; right: auto !important;
+    transform: none !important;
+    align-self: center;
+    width: 44px !important; height: 44px !important;
+    background: rgba(10, 10, 12, .45) !important;
+    border-color: rgba(243, 236, 223, .5) !important;
+    color: #f3ecdf !important;
+  }
+  html[data-touch] .hero-carousel .hc-prev { justify-self: start; margin-left: 10px; }
+  html[data-touch] .hero-carousel .hc-next { justify-self: end; margin-right: 10px; }
+
+  /* the counter chip stays on the image, so it gets its own plate */
+  html[data-touch] .hero-carousel .hc-top {
+    grid-area: media;
+    position: relative !important;
+    inset: auto !important;
+    align-self: start;
+    justify-self: stretch;
+    padding: 14px 16px !important;
+    font-size: 11px !important;
+    letter-spacing: .16em !important;
+    text-shadow: 0 1px 12px rgba(8, 8, 10, .65);
+  }
+
+  /* caption on the page surface, in page ink */
+  html[data-touch] .hero-carousel .hc-caption {
+    grid-area: caption;
+    position: static !important;
+    inset: auto !important;
+    max-width: none !important;
+    margin-top: 16px !important;
+    color: var(--ink) !important;
+  }
+  html[data-touch] .hero-carousel .hc-look {
+    font-size: 11px !important;
+    letter-spacing: .2em !important;
+    margin-bottom: 8px !important;
+    color: var(--ink-soft) !important;
+  }
+  html[data-touch] .hero-carousel .hc-title {
+    font-size: 22px !important;
+    line-height: 1.06 !important;
+    color: var(--ink) !important;
+  }
+  html[data-touch] .hero-carousel .hc-sub {
+    margin-top: 8px !important;
+    font-size: 13px !important;
+    color: var(--ink-soft) !important;
+  }
+
+  /* bars: one row, full width, equal shares */
+  html[data-touch] .hero-carousel .hc-bars {
+    grid-area: bars;
+    position: static !important;
+    inset: auto !important;
+    display: flex !important;
+    gap: 6px !important;
+    margin-top: 20px !important;
+  }
+  html[data-touch] .hero-carousel .hc-bar {
+    flex: 1 1 0 !important;
+    width: auto !important;
+    /* the arrows are the control here, so the bars stay a 4px readout
+       rather than inheriting the 44px tap-target floor */
+    min-height: 0 !important;
+    height: 4px !important;
+    background: var(--ink-faint) !important;
+  }
+  html[data-touch] .hero-carousel .hc-bar .fill { background: var(--ink) !important; }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   PORTRAIT SOURCES IN LANDSCAPE BOXES
+
+   Several pages frame a rotating banner at 16/9 — right on a wide stage,
+   wrong at 369px, where 16/9 is 208px tall and a portrait or square photo
+   shows as a featureless horizontal slice (the "stretched" look). On a
+   phone those boxes take a portrait-leaning ratio so the subject survives
+   the crop, and the crop favours the upper half where subjects sit.
+   ═════════════════════════════════════════════════════════════════════ */
+@media (max-width: 640px) {
+  html[data-touch] .ho-banner,
+  html[data-touch] .band-media > .ph,
+  html[data-touch] .bleed-frame {
+    aspect-ratio: 4 / 5 !important;
+    height: auto !important;
+    min-height: 0 !important;
+  }
+  html[data-touch] .ho-banner img,
+  html[data-touch] .band-media > .ph img,
+  html[data-touch] .bleed-frame img {
+    object-fit: cover !important;
+    object-position: center 38% !important;
+  }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   THE HERO BLOCK · SECOND VOCABULARY
+
+   Two pages (Aquatic Architects, Lapillus) were built before the shared
+   credit markup and use .hero-meta / .hm-col / .hm-label / .chips / .chip
+   instead of .proj-tags / .ptg / .ptg-k / .ptg-c / .ptag. Same block, same
+   order, different class names — so the phone edition maps one onto the
+   other rather than leaving those two heroes on their own layout.
+   ═════════════════════════════════════════════════════════════════════ */
+@media (max-width: 640px) {
+  html[data-touch] .hero-meta {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    gap: 8px !important;
+    padding: 0 !important;
+    margin: 0 0 20px !important;
+  }
+  html[data-touch] .hero-meta .hm-label { display: none !important; }
+  html[data-touch] .hero-meta .hm-col {
+    display: contents !important;
+    margin: 0 !important;
+  }
+  html[data-touch] .hero-meta .chips {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    gap: 8px !important;
+    padding: 0 !important;
+    min-height: 0 !important;
+  }
+  html[data-touch] .hero-meta .chip {
+    font-size: 13px !important;
+    letter-spacing: .01em !important;
+    padding: 4px 12px !important;
+    min-height: 30px;
+    display: inline-flex !important;
+    align-items: center;
+  }
+  /* the client mark owns its own line at credit scale, as on every other page */
+  html[data-touch] .hero-meta .hm-client { display: flex !important; width: 100%; margin-bottom: 4px !important; }
+  html[data-touch] .hero-meta .hm-client > div { flex-direction: row !important; align-items: center !important; gap: 10px !important; }
+  html[data-touch] .hero-meta .hm-client img,
+  html[data-touch] .hero-client-mark {
+    height: 44px !important;
+    width: auto !important;
+    max-width: 60vw !important;
+    object-fit: contain;
+    object-position: left center;
+  }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   THE TWO EMBEDDED-PROTOTYPE PAGES · Aquatic Architects + Lapillus
+
+   Both are built on the .aa-root shell, which was authored as a desktop
+   canvas. Four things break at 369px, and all four are structural:
+
+     1. <body> keeps the UA's 8px margin, so the page's own background
+        stops 8px short of every edge and the dark shell shows through.
+     2. .hero is pinned to 100svh while its content (credit block, title,
+        tagline, lede, foot) runs ~900px tall, so the last two lines spill
+        out of the section and land on the carousel below.
+     3. The live-site slide is an iframe scaled to 0.4 but sized at 100%,
+        so it paints a 125px-wide page inside a 312px black frame.
+     4. The brand key visual is a 21:9 band holding a wordmark sized for a
+        wide stage — at 158px tall the wordmark is cut in half.
+   ═════════════════════════════════════════════════════════════════════ */
+@media (max-width: 640px) {
+
+  /* 1 · the page background reaches the edges */
+  html[data-touch] body { margin: 0 !important; }
+
+  /* 2 · the hero is as tall as its content, never shorter.
+     The page authors a 21/9 aspect-ratio on the hero. With a definite
+     369px width that pins the used height to 158px and `height: auto`
+     cannot win, so ~700px of hero content spilled onto the section below.
+     Clearing the ratio is the fix; the padding still gives it presence. */
+  html[data-touch] section.hero,
+  html[data-touch] .aa-root .hero {
+    aspect-ratio: auto !important;
+    height: auto !important;
+    min-height: 100svh !important;
+    display: flex !important;
+    align-items: flex-end !important;
+  }
+  html[data-touch] .aa-root .hero > .hero-inner {
+    height: auto !important;
+    align-self: flex-end !important;
+  }
+
+  /* 3 · the scaled prototype fills its slide */
+  html[data-touch] .hc-embed { background: #0b0b0d !important; }
+  html[data-touch] .hc-embed iframe {
+    width: 250% !important;   /* 1 / 0.4 — the frame's own scale factor */
+    height: 250% !important;
+    transform-origin: 0 0 !important;
+  }
+
+  /* 4 · the key visual gives the wordmark room */
+  html[data-touch] .bleed .ph { aspect-ratio: 4 / 3 !important; }
+  html[data-touch] .brandmark {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 20px !important;
+    inset: 0 !important;
+  }
+  html[data-touch] .brandmark img {
+    max-width: 78% !important;
+    max-height: 40% !important;
+    width: auto !important;
+    height: auto !important;
+    object-fit: contain;
+  }
+
+  /* the desktop cursor pod is still in the DOM on these two pages */
+  html[data-touch] .aa-cursor,
+  html[data-touch] [class*="cursor"] { display: none !important; }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   FILM STRIPS — one at a time, swiped
+
+   Several pages lay their vertical films out as an inline flex row with
+   flex:1 1 0 on each figure. Five of them in a 329px column is 58px each:
+   a row of slivers with the play button clipped. On a phone the row turns
+   into a snap rail — one film fills the column, the next one peeks — and
+   each frame keeps the 9:16 the films were shot in.
+   ═════════════════════════════════════════════════════════════════════ */
+@media (max-width: 640px) {
+  html[data-touch] div[style*="display:flex"]:has(> figure > video),
+  html[data-touch] div[style*="display:flex"]:has(> figure > .m-defer),
+  html[data-touch] div[style*="display:flex"]:has(> figure > img),
+  html[data-touch] div[style*="display: flex"]:has(> figure > video),
+  html[data-touch] div[style*="display: flex"]:has(> figure > .m-defer),
+  html[data-touch] div[style*="display: flex"]:has(> figure > img) {
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 12px !important;
+    padding-bottom: 4px;
+  }
+  html[data-touch] div[style*="display:flex"]:has(> figure > video)::-webkit-scrollbar,
+  html[data-touch] div[style*="display:flex"]:has(> figure > .m-defer)::-webkit-scrollbar,
+  html[data-touch] div[style*="display:flex"]:has(> figure > img)::-webkit-scrollbar { display: none; }
+
+  html[data-touch] div[style*="display:flex"]:has(> figure > video) > figure,
+  html[data-touch] div[style*="display:flex"]:has(> figure > .m-defer) > figure,
+  html[data-touch] div[style*="display:flex"]:has(> figure > img) > figure,
+  html[data-touch] div[style*="display: flex"]:has(> figure > video) > figure,
+  html[data-touch] div[style*="display: flex"]:has(> figure > .m-defer) > figure,
+  html[data-touch] div[style*="display: flex"]:has(> figure > img) > figure {
+    flex: 0 0 78% !important;
+    min-width: 0 !important;
+    scroll-snap-align: start;
+  }
+  html[data-touch] div[style*="display:flex"]:has(> figure > video) > figure video,
+  html[data-touch] div[style*="display:flex"]:has(> figure > .m-defer) > figure video,
+  html[data-touch] div[style*="display:flex"]:has(> figure > .m-defer) > figure .m-defer {
+    width: 100% !important;
+    aspect-ratio: 9 / 16 !important;
+    height: auto !important;
+    object-fit: cover;
+  }
+  html[data-touch] div[style*="display:flex"]:has(> figure > img) > figure img,
+  html[data-touch] div[style*="display: flex"]:has(> figure > img) > figure img {
+    width: 100% !important;
+    height: auto !important;
+  }
+}
+
+
+/* the same rails on the tablet tier — two across instead of one, because
+   768px has the room, but never five slivers */
+@media (min-width: 641px) and (max-width: 1024px) {
+  html[data-touch] div[style*="display:flex"]:has(> figure > video),
+  html[data-touch] div[style*="display:flex"]:has(> figure > .m-defer),
+  html[data-touch] div[style*="display:flex"]:has(> figure > img),
+  html[data-touch] div[style*="display: flex"]:has(> figure > video),
+  html[data-touch] div[style*="display: flex"]:has(> figure > .m-defer),
+  html[data-touch] div[style*="display: flex"]:has(> figure > img) {
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 16px !important;
+  }
+  html[data-touch] div[style*="display:flex"]:has(> figure > video) > figure,
+  html[data-touch] div[style*="display:flex"]:has(> figure > .m-defer) > figure,
+  html[data-touch] div[style*="display:flex"]:has(> figure > img) > figure,
+  html[data-touch] div[style*="display: flex"]:has(> figure > video) > figure,
+  html[data-touch] div[style*="display: flex"]:has(> figure > .m-defer) > figure,
+  html[data-touch] div[style*="display: flex"]:has(> figure > img) > figure {
+    flex: 0 0 calc(50% - 8px) !important;
+    min-width: 0 !important;
+    scroll-snap-align: start;
+  }
+  html[data-touch] div[style*="display:flex"]:has(> figure > video) > figure video,
+  html[data-touch] div[style*="display:flex"]:has(> figure > .m-defer) > figure video,
+  html[data-touch] div[style*="display:flex"]:has(> figure > .m-defer) > figure .m-defer {
+    width: 100% !important;
+    aspect-ratio: 9 / 16 !important;
+    height: auto !important;
+    object-fit: cover;
+  }
+  html[data-touch] div[style*="display:flex"]:has(> figure > img) > figure img,
+  html[data-touch] div[style*="display: flex"]:has(> figure > img) > figure img {
+    width: 100% !important;
+    height: auto !important;
+  }
+}
+
+
+/* the cover carousel card on the tablet tier — same object as the phone,
+   one slide at a time, caption and bars below the frame rather than laid
+   over the photograph */
+@media (min-width: 641px) and (max-width: 1024px) {
+  html[data-touch] .hero-carousel {
+    --hc-vis: 1 !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    grid-template-areas: "media" "caption" "bars" !important;
+    width: auto !important;
+    max-width: none !important;
+    margin: 0 40px !important;
+    height: auto !important;
+    overflow: visible !important;
+    background: transparent !important;
+  }
+  html[data-touch] .hero-carousel .hc-track {
+    grid-area: media;
+    aspect-ratio: 3 / 2;
+    height: auto !important;
+    border: 1px solid var(--ink-faint);
+    overflow: hidden;
+  }
+  html[data-touch] .hero-carousel .hc-slide { height: 100% !important; flex: 0 0 100% !important; }
+  html[data-touch] .hero-carousel .hc-slide .ph {
+    position: absolute !important;
+    inset: 0 !important;
+    aspect-ratio: auto !important;
+    height: 100% !important;
+    background: transparent !important;
+  }
+  html[data-touch] .hero-carousel .hc-nav {
+    grid-area: media;
+    position: relative !important;
+    top: auto !important; left: auto !important; right: auto !important;
+    transform: none !important;
+    align-self: center;
+    background: rgba(10, 10, 12, .45) !important;
+  }
+  html[data-touch] .hero-carousel .hc-prev { justify-self: start; margin-left: 16px; }
+  html[data-touch] .hero-carousel .hc-next { justify-self: end; margin-right: 16px; }
+  html[data-touch] .hero-carousel .hc-top {
+    grid-area: media;
+    position: relative !important;
+    inset: auto !important;
+    align-self: start;
+    justify-self: stretch;
+    padding: 18px 20px !important;
+    text-shadow: 0 1px 12px rgba(8, 8, 10, .65);
+  }
+  html[data-touch] .hero-carousel .hc-caption {
+    grid-area: caption;
+    position: static !important;
+    inset: auto !important;
+    max-width: none !important;
+    margin-top: 20px !important;
+    color: var(--ink) !important;
+  }
+  html[data-touch] .hero-carousel .hc-look { color: var(--ink-soft) !important; }
+  html[data-touch] .hero-carousel .hc-title { font-size: 30px !important; color: var(--ink) !important; }
+  html[data-touch] .hero-carousel .hc-sub { color: var(--ink-soft) !important; }
+  html[data-touch] .hero-carousel .hc-bars {
+    grid-area: bars;
+    position: static !important;
+    inset: auto !important;
+    display: flex !important;
+    gap: 8px !important;
+    margin-top: 22px !important;
+  }
+  html[data-touch] .hero-carousel .hc-bar {
+    flex: 1 1 0 !important;
+    width: auto !important;
+    min-height: 0 !important;
+    height: 4px !important;
+    background: var(--ink-faint) !important;
+  }
+  html[data-touch] .hero-carousel .hc-bar .fill { background: var(--ink) !important; }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   OPTIVERSE · THE ASSET LIST
+
+   Eleven accordion tabs built for a wide stage: the index, the name and
+   the toggle each sit on their own column, so at 329px the name takes two
+   lines and the × runs to the very edge. On a phone the row becomes a
+   proper list item — index above the name, toggle pinned right, one line
+   of breathing room — and the open panel gets a real media ratio.
+   ═════════════════════════════════════════════════════════════════════ */
+@media (max-width: 640px) {
+  html[data-touch] .as-tab {
+    display: grid !important;
+    grid-template-columns: 34px minmax(0, 1fr) 24px !important;
+    align-items: center !important;
+    gap: 10px !important;
+    padding: 14px 12px !important;
+    min-height: 56px;
+  }
+  html[data-touch] .as-tab .as-i { font-size: 11px !important; letter-spacing: .14em !important; }
+  html[data-touch] .as-tab .as-n {
+    font-size: 14px !important;
+    line-height: 1.25 !important;
+    letter-spacing: .01em !important;
+    text-wrap: balance;
+  }
+  html[data-touch] .as-tab .as-x { justify-self: end; font-size: 16px !important; }
+  html[data-touch] .as-stage { display: block !important; }
+  html[data-touch] .as-frame { aspect-ratio: 4 / 3 !important; height: auto !important; }
+  html[data-touch] .as-info { padding-top: 14px !important; }
+  html[data-touch] .as-vis { width: 100% !important; height: 100% !important; object-fit: contain; }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   TEXT READS FROM ONE EDGE ON A PHONE
+
+   Centred type works on a wide stage where a line is a shape. In a 329px
+   column every line breaks at a different place, so the ragged left edge
+   makes the block look accidental. Body-level text takes the page's left
+   edge; buttons, chips and the pull-quote keep their own alignment.
+   ═════════════════════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  html[data-touch] .next-inner,
+  html[data-touch] .module-head,
+  html[data-touch] .phead,
+  html[data-touch] .section-num,
+  html[data-touch] .lede,
+  html[data-touch] .pbody,
+  html[data-touch] .body-grid,
+  html[data-touch] .body-grid p,
+  html[data-touch] .stat,
+  html[data-touch] .stats,
+  html[data-touch] .credits,
+  html[data-touch] .credit-row,
+  html[data-touch] .meta-cell,
+  html[data-touch] .as-info,
+  html[data-touch] .hero-inner,
+  html[data-touch] .chapter-inner {
+    text-align: left !important;
+  }
+  html[data-touch] .next-inner,
+  html[data-touch] .module-head,
+  html[data-touch] .credits {
+    align-items: flex-start !important;
+  }
+  /* the meta row is a flex line of its own — left aligned and wrapping,
+     not centred under the title */
+  html[data-touch] .next-meta,
+  html[data-touch] .hero-meta,
+  html[data-touch] .meta-row {
+    justify-content: flex-start !important;
+    flex-wrap: wrap;
+  }
+  /* controls and small chrome are still centred inside themselves */
+  html[data-touch] .next-cta,
+  html[data-touch] .m-defer-btn,
+  html[data-touch] .il-talk,
+  html[data-touch] [class*="btn"] { text-align: center !important; }
+}
+
+
+/* Full-bleed scrollers, last word. Pages declare these in an inline <style>
+   that loads after this file, so the reset is restated here at the end with
+   a doubled class to guarantee it wins. */
+html[data-touch] .mscroll.mscroll,
+html[data-touch] .ms-rail.ms-rail,
+html[data-touch] .anamorph-stage.anamorph-stage {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  left: auto !important;
+  right: auto !important;
+}
+
+/* .devrow's grid track sized to its item's intrinsic content (a fixed-
+   pixel iframe before it is scaled down) rather than to the column, so
+   each card ran 37px wider than the row that was supposed to contain it —
+   the two build frames on ANT Systems were never actually the same width. */
+html[data-touch] .devrow > * {
+  min-width: 0 !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   METACULTURE · THE SAME STRUCTURE AS EVERY OTHER CASE
+
+   This page keeps its desk-scale grids at 369px: the module head is still
+   a 75px + 243px two-column split (so every title and lede started at
+   x=107 while the section number sat at x=20), the craft board is a
+   12-column grid, and the meta blocks run edge to edge with no gutter.
+
+   Same system as the rest: one column, one 20px gutter, one 16/20/40
+   rhythm, media in framed cards.
+   ═════════════════════════════════════════════════════════════════════ */
+@media (max-width: 640px) {
+  html[data-touch] .module-head,
+  html[data-touch] .wrap.module-head {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  html[data-touch] .meta-grid,
+  html[data-touch] .meta-bar {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 20px 16px !important;
+    padding-inline: 20px !important;
+  }
+  /* …but never twice: the grid nested in the bar inherits its gutter */
+  html[data-touch] .meta-bar > .meta-grid,
+  html[data-touch] .wrap > .meta-grid { padding-inline: 0 !important; }
+  html[data-touch] .craft {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 12px !important;
+  }
+  html[data-touch] .craft > * { grid-column: auto !important; }
+  html[data-touch] .craft .c-tall,
+  html[data-touch] .craft .c-wide { aspect-ratio: 3 / 4; }
+  html[data-touch] .craft .c-wide { grid-column: 1 / -1 !important; aspect-ratio: 16 / 10; }
+  /* the filter chips are a control row, not centred text */
+  html[data-touch] .mc-chip { text-align: center !important; }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  /* one column here too: a 120px label column pushed every title to x=184
+     while its own number sat at x=40, so the head read as two unrelated
+     blocks. Everything on the page's one 40px edge. */
+  html[data-touch] .module-head,
+  html[data-touch] .wrap.module-head {
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+  }
+  /* the meta grid sits inside the meta bar, which already carries the
+     gutter — a second one pushed the cells to x=80 */
+  html[data-touch] .meta-bar { padding-inline: 40px !important; }
+  html[data-touch] .meta-bar > .meta-grid,
+  html[data-touch] .wrap > .meta-grid { padding-inline: 0 !important; }
+  html[data-touch] .craft { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+  html[data-touch] .craft > * { grid-column: auto !important; }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   WEBSITE CASE STUDIES · THE LIVE FRAME
+
+   The browser chrome stays — it is what says "this is the live site" —
+   but on a phone the viewport inside it is a phone, not a shrunken
+   desktop (see mobile.js). These rules keep the frame tight around it:
+   a real chrome bar, no stray white, and the caption below the card.
+   ═════════════════════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  html[data-touch] .stage { border-radius: 2px; overflow: hidden; }
+  /* nothing in this template may exceed the column: two of the frames were
+     368–374px wide inside a 329px column and panned the page 27px */
+  html[data-touch] .stage,
+  html[data-touch] .dev-tab,
+  html[data-touch] [data-frame] {
+    max-width: 100% !important;
+    width: 100% !important;
+    box-sizing: border-box;
+  }
+  html[data-touch] [data-frame] iframe { max-width: none; }
+  html[data-touch] .stage-bar {
+    height: 40px !important;
+    gap: 8px !important;
+    padding: 0 10px !important;
+  }
+  html[data-touch] .stage-url {
+    font-size: 11px !important;
+    letter-spacing: .08em !important;
+    height: 22px !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  html[data-touch] .stage-live { font-size: 11px !important; letter-spacing: .1em !important; white-space: nowrap; }
+  html[data-touch] .stage-view { background: #0a0a0a !important; }
+  html[data-touch] .stage-hint { font-size: 11px !important; letter-spacing: .1em !important; padding: 10px !important; }
+  /* the device row is one column here, and its caption sits under the card */
+  html[data-touch] .devrow { grid-template-columns: 1fr !important; gap: 20px !important; }
+  html[data-touch] .dev-cap,
+  html[data-touch] .hm-cap {
+    font-size: 11px !important;
+    letter-spacing: .12em !important;
+    gap: 8px !important;
+    flex-wrap: wrap;
+    padding-top: 12px !important;
+  }
+}
+
+
+/* the website template again: whatever wraps the live frames must not be
+   wider than the column either. A clip (not hidden) keeps sticky and
+   parallax working while stopping the page from panning. */
+@media (max-width: 1024px) {
+  html[data-touch] .devrow,
+  html[data-touch] .devrow > *,
+  html[data-touch] .stage-view,
+  html[data-touch] .stage > * {
+    max-width: 100% !important;
+    box-sizing: border-box;
+  }
+  html[data-touch] section:has([data-frame]) { overflow-x: clip; }
+}
+
+
+/* The live window shows the WHOLE phone page, scaled to the card — the
+   earlier cap cropped it. mobile.js fits the iframe to this box, so the
+   card's ratio is the only thing that decides how big the page reads.
+   A phone page at 430×932 in a 3:4 card lands around half scale, which
+   is the size a device mock wants anyway. */
+@media (max-width: 640px) {
+  html[data-touch] [data-frame] {
+    aspect-ratio: 3 / 4 !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: hidden !important;
+    background: #0a0a0a !important;
+  }
+  /* every window in the set is the same card: one column width, one ratio,
+     one caption underneath — the section reads as a series, not a pile of
+     differently sized screenshots */
+  html[data-touch] .stage,
+  html[data-touch] .dev-tab {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-inline: 0 !important;
+    box-sizing: border-box;
+  }
+  html[data-touch] .stage + .stage,
+  html[data-touch] .dev-tab + .dev-tab { margin-top: 24px !important; }
+}
+@media (min-width: 641px) and (max-width: 1024px) {
+  html[data-touch] [data-frame] {
+    aspect-ratio: 4 / 5 !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: hidden !important;
+    background: #0a0a0a !important;
+  }
+}
+
+
+/* A stage bar that holds a CHIP ROW is not browser chrome — metaculture
+   puts its filters there. Pinning it to the 40px chrome height made the
+   two rows of chips spill over the section below (the overlap on "03 ·
+   The Platform"). It grows to fit instead. */
+@media (max-width: 1024px) {
+  html[data-touch] .stage-bar:has(.chips),
+  html[data-touch] .stage-bar:has(button) {
+    height: auto !important;
+    min-height: 44px;
+    flex-wrap: wrap !important;
+    align-items: center;
+    gap: 8px !important;
+    padding: 10px !important;
+  }
+  html[data-touch] .stage-bar .chips {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+    width: 100%;
+  }
+  html[data-touch] .stage-bar .mc-chip {
+    padding: 8px 14px !important;
+    font-size: 11px !important;
+    min-height: 36px;
+  }
+}
+
+
+/* the hint and caption rows are two labels sharing one line; ellipsis only
+   works on a box with a real width, and a bare flex child sizes to its own
+   content by default — so the second label kept its full width and ran
+   past the card's right edge no matter what overflow rule sat on it. Each
+   label now truly shares the row (flex:1, min-width:0) so it has an actual
+   box to ellipsize against. */
+@media (max-width: 1024px) {
+  html[data-touch] .stage-hint,
+  html[data-touch] .hm-cap,
+  html[data-touch] .dev-cap,
+  html[data-touch] .vb-cap {
+    flex-wrap: nowrap !important;
+    gap: 10px !important;
+  }
+  html[data-touch] .stage-hint > *,
+  html[data-touch] .hm-cap > *,
+  html[data-touch] .dev-cap > *,
+  html[data-touch] .vb-cap > * {
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  html[data-touch] .stage-hint > *:last-child,
+  html[data-touch] .hm-cap > *:last-child,
+  html[data-touch] .dev-cap > *:last-child,
+  html[data-touch] .vb-cap > *:last-child { text-align: right; }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   "CLICK TO USE" READS AS A BUTTON, NOT A CAPTION
+
+   The hint was a text label at the bottom of the frame — same weight as
+   any other caption, so nothing told you it was tappable. The left side
+   (the actual instruction) becomes a real pill button; the right side
+   stays a plain label, since it is just naming what you'd be opening.
+   ═════════════════════════════════════════════════════════════════════ */
+html[data-touch] .stage-hint {
+  align-items: center !important;
+  padding: 12px !important;
+  background: linear-gradient(to top, rgba(0,0,0,.85), rgba(0,0,0,0)) !important;
+}
+html[data-touch] .stage-hint > *:first-child {
+  flex: 0 1 auto !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border: 1px solid rgba(255,255,255,.4);
+  border-radius: 999px;
+  background: rgba(255,255,255,.08);
+  font-weight: 600;
+  min-height: 40px;
+}
+html[data-touch] .stage-hint > *:first-child::after {
+  content: '↗';
+  font-weight: 400;
+}
+html[data-touch] .stage-hint > *:last-child {
+  flex: 1 1 0 !important;
+  opacity: .6;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   .ph OVERLAY LABELS — off the photograph, on the page
+
+   .ph-label / .ph-dim (top corners) and .caption (bottom, two spans) are
+   absolutely positioned ON the image, sized for a desktop frame with a
+   short caption on one line. On a phone the frame is narrower, so the
+   same text wraps to two or three lines and grows past the corners it was
+   pinned to — straight onto a face in a portrait, or across the subject
+   in a diptych. They read as a caption block below the frame instead,
+   in the same left-to-right order the desktop version reads in.
+
+   Every .ph the fabrika/pera reference-sheet pages use is a photo, not a
+   short/wide plate, so it also takes the shared 4/5 portrait ratio rather
+   than whatever ratio was authored for a wide desktop composition.
+   ═════════════════════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  html[data-touch] .ph:has(.ph-label),
+  html[data-touch] .ph:has(.caption) {
+    aspect-ratio: auto !important;
+    height: auto !important;
+    overflow: visible !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  html[data-touch] .ph:has(.ph-label) > img,
+  html[data-touch] .ph:has(.caption) > img {
+    position: static !important;
+    aspect-ratio: 4 / 5 !important;
+    height: auto !important;
+    width: 100% !important;
+    object-fit: cover !important;
+    flex: none;
+  }
+  html[data-touch] .ph-label,
+  html[data-touch] .ph-dim,
+  html[data-touch] .ph .caption {
+    position: static !important;
+    inset: auto !important;
+    left: auto !important; right: auto !important; top: auto !important; bottom: auto !important;
+    background: none !important;
+    padding: 0 !important;
+    width: auto !important;
+    max-width: none !important;
+  }
+  html[data-touch] .ph-label {
+    margin: 14px 0 4px !important;
+    font-size: 11px !important;
+    letter-spacing: .14em !important;
+  }
+  html[data-touch] .ph-dim {
+    margin-bottom: 10px !important;
+    font-size: 11px !important;
+    color: var(--ink-soft) !important;
+  }
+  html[data-touch] .ph .caption {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 4px !important;
+    margin-top: 10px !important;
+    padding-bottom: 4px !important;
+  }
+  html[data-touch] .ph .caption span {
+    font-size: 12px !important;
+    color: var(--ink-soft) !important;
+  }
+  html[data-touch] .ph .caption span:first-child { color: var(--ink) !important; }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   GRID BLOWOUT, THE GENERAL CASE
+
+   A CSS grid item defaults to min-width:auto, so a 1fr track still won't
+   shrink an <img> below its own width/height ATTRIBUTES (fabrika's three-
+   up campaign grids set width="1160" on every image) — the grid quietly
+   grows past its container and the whole page gains a right-hand pan into
+   blank space. Same root cause already fixed once for .devrow; this
+   covers every other grid, including the ones authored as inline styles.
+   ═════════════════════════════════════════════════════════════════════ */
+html[data-touch] [style*="display:grid"] > *,
+html[data-touch] [style*="display: grid"] > * {
+  min-width: 0 !important;
+}
+/* and the same guard for every class-based grid on the page — a grid
+   track this narrow has no room to host an item sized to its own
+   intrinsic content (a long unbroken word, a wide image attribute) */
+html[data-touch] .craft,
+html[data-touch] .stats,
+html[data-touch] .meta-bar,
+html[data-touch] .meta-grid,
+html[data-touch] .body-grid,
+html[data-touch] .duo,
+html[data-touch] .trio,
+html[data-touch] .post-grid,
+html[data-touch] .look-group .lg-grid,
+html[data-touch] .credit-list,
+html[data-touch] [class*="grid"] {
+  min-width: 0 !important;
+}
+html[data-touch] .craft > *,
+html[data-touch] .stats > *,
+html[data-touch] .meta-bar > *,
+html[data-touch] .meta-grid > *,
+html[data-touch] .body-grid > *,
+html[data-touch] .duo > *,
+html[data-touch] .trio > *,
+html[data-touch] .post-grid > *,
+html[data-touch] .look-group .lg-grid > *,
+html[data-touch] .credit-list > *,
+html[data-touch] [class*="grid"] > * {
+  min-width: 0 !important;
+}
+
+
+/* the earlier max-width:none rule for hero copy removed the desktop cap
+   but relied on flex "stretch" to size the box — in a column flex hero
+   (align-items:normal) that quietly failed for at least one page, and the
+   paragraph sized to its own unbroken content width (467px in a 329px
+   column) instead, which is the real source of Fabrika's horizontal pan.
+   An explicit width closes the gap regardless of the parent's alignment. */
+html[data-touch] .hero-lede,
+html[data-touch] .hero-body p,
+html[data-touch] .hero-inner p {
+  width: 100% !important;
+  box-sizing: border-box;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   HERO CREDIT LINE — never "pushed to the bottom" on touch
+
+   .hero-foot uses margin-top:auto to pin the credit line to the bottom of
+   a tall desktop hero, inside a flex column whose height is meant to be
+   externally constrained. On touch the hero's height comes from its own
+   content (so wrapped copy can be any length), and margin-top:auto then
+   has no real "remaining space" to measure against — it collapses
+   unpredictably and the credit line lands wherever the flex math puts it,
+   which on these pages is on top of the lede paragraph. A fixed gap
+   removes the ambiguity: the credit always follows the content above it.
+   ═════════════════════════════════════════════════════════════════════ */
+html[data-touch] .hero-foot {
+  margin-top: 28px !important;
+}
+/* the decorative floating tag cloud is a wide-stage-only ornament: it has
+   nowhere to go once the hero's height comes from its own content, so it
+   overlaps whatever text is nearby. Off at both touch tiers, not just the
+   phone one. */
+html[data-touch] .hero-emblems { display: none !important; }
+
+
+/* A desktop-only optical correction: the first line inside .hero-credit
+   carries an inline margin:-100px, hauling the credit up over the lede.
+   Inline styles beat stylesheet rules, so this has to be !important and
+   has to target the child itself, not the .hero-foot around it. */
+html[data-touch] .hero-credit > *,
+html[data-touch] .hero-foot [style*="margin: -"],
+html[data-touch] .hero-foot [style*="margin:-"] {
+  margin-top: 0 !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   KEYBOARD LEGENDS DO NOT BELONG ON A PHONE
+
+   The playable beats draw a little WASD key cluster (plus Shift / Space)
+   to teach the desktop controls. There is no keyboard here, so the
+   diagram is instruction for something the visitor cannot do. The tip
+   line beside it is rewritten in mobile.js to say what they DO get.
+   ═════════════════════════════════════════════════════════════════════ */
+html[data-touch] .wasd,
+html[data-touch] .ph-row,
+html[data-touch] .ph-meta { display: none !important; }
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   NESTED HERO WRAPPERS ADD ONE GUTTER, NOT THREE
+
+   TRT stacks .hero > .hero-sticky > .hero-inner and each one carries its
+   own 20px inline padding, so the hero copy started at x=60 inside a
+   249px column while every other block on the page sits at x=20 in a
+   329px one. The section keeps the gutter; the wrappers inside it stop
+   re-adding it. (The earlier rule only covered .hero-inner as a DIRECT
+   child of .hero, which is why this page slipped through.) */
+@media (max-width: 640px) {
+  html[data-touch] .hero .hero-sticky,
+  html[data-touch] .hero .hero-inner,
+  html[data-touch] .hero .hero-sticky .hero-inner {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+@media (min-width: 641px) and (max-width: 1024px) {
+  html[data-touch] .hero .hero-sticky,
+  html[data-touch] .hero .hero-inner,
+  html[data-touch] .hero .hero-sticky .hero-inner {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   TRT / U-HUB · three alignment faults in the shared blocks
+
+   1. .meta-bar cells: the first cell has no inline padding and the rest
+      carry 16px, so the first row's text sat 16px left of every other.
+   2. .credit-row here uses .credit-k (not .role), so the shared stacked
+      credits treatment never matched: the label and the value ran
+      together inline with no gap, and the row indented off the list edge.
+   3. the caption over the .yt video plate is pinned to the bottom of the
+      frame; at this size it lands across the still.
+   ═════════════════════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  /* 1 · one left edge for every meta cell */
+  html[data-touch] .meta-bar > *,
+  html[data-touch] .meta-grid > * {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  /* 2 · label above value, one edge, real gap between rows */
+  html[data-touch] .credit-row {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  html[data-touch] .credit-row .credit-k {
+    display: block !important;
+    margin-bottom: 4px !important;
+    font-size: 10.5px !important;
+    letter-spacing: .14em !important;
+  }
+  html[data-touch] .credit-row .who {
+    display: block !important;
+    font-size: 14px !important;
+    line-height: 1.45 !important;
+  }
+
+  /* 3 · the video caption sits under the plate, not across it */
+  html[data-touch] .bleed .yt + .caption,
+  html[data-touch] .yt > .caption,
+  html[data-touch] .yt-cap {
+    position: static !important;
+    inset: auto !important;
+    margin-top: 10px !important;
+    padding: 0 !important;
+    background: none !important;
+  }
+}
+
+
+/* .yt-label is pinned inside the video plate; at this size it prints
+   across the still. It belongs under the frame with the other captions.
+   (The frame itself is already a true 16:9 — 369×208 with a 1280×720
+   poster filling it — so only the label needed moving.) */
+@media (max-width: 1024px) {
+  html[data-touch] .yt-label {
+    position: static !important;
+    inset: auto !important;
+    left: auto !important; right: auto !important; bottom: auto !important; top: auto !important;
+    display: block !important;
+    margin-top: 10px !important;
+    padding: 0 !important;
+    background: none !important;
+    text-shadow: none !important;
+  }
+  /* the plate is the ratio box; the label now lives outside it */
+  html[data-touch] .vb-frame:has(.yt) { overflow: visible !important; }
+}
+
+
+/* NOTE: .yt iframe is deliberately sized width:max(100%,177.78vh) so the
+   player COVERS its 16:9 box instead of letterboxing inside it. That is
+   why it measures a few px wider than the column — the frame clips it and
+   the page does not pan. Forcing width:100% here would trade the overscan
+   for black bars, so it is left alone on purpose. */

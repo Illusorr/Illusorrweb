@@ -1,0 +1,1529 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<link rel="preload" as="font" type="font/otf" crossorigin href="../assets/projects/shared/fonts/PPMonumentExtended-Black.otf">
+<link rel="preload" as="font" type="font/ttf" crossorigin href="../assets/projects/shared/fonts/Squaresharps-v2.ttf">
+
+<link rel="preload" as="font" type="font/woff" crossorigin href="../assets/fonts/outfit-variable.woff">
+<link rel="stylesheet" href="../assets/css/nav.css">
+<link rel="stylesheet" href="../assets/css/case/fonts.css">
+
+<link rel="stylesheet" href="../assets/css/case/cm-type-b.css">
+<title>ILLUSORR × Unilever · U-Hub Metaverse</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+  :root {
+    --light-bg: #eef1f8;
+    --light-bg-2: #E2E6F6;
+    --light-ink: #080A1A;
+    --light-ink-soft: rgba(8, 10, 26, 0.60);
+    --light-ink-faint: rgba(8, 10, 26, 0.13);
+    --light-tile: #e2e6f6;
+    --dark-bg: #07091A;
+    --dark-bg-2: #040615;
+    --dark-ink: #eef1f8;
+    --dark-ink-soft: rgba(238, 240, 252, 0.65);
+    --dark-ink-faint: rgba(238, 240, 252, 0.20);
+    --dark-tile: #0a1033;
+    --accent: #3B70F5;
+    --maxw: 1440px;
+    --gutter: clamp(20px, 4vw, 64px);
+  }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    background-size: 220px 220px;
+    opacity: 0.06;
+    mix-blend-mode: multiply;
+  }
+  section[data-tone="dark"] { position: relative; }
+  section[data-tone="dark"]::after {
+    content: '';
+    position: absolute; inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    background-size: 220px 220px;
+    opacity: 0.030;
+    mix-blend-mode: screen;
+  }
+  /* Diamond wireframe metaverse texture on dark sections */
+  section[data-tone="dark"]::before {
+    content: '';
+    position: absolute; inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><path d='M100 10 L190 100 L100 190 L10 100 Z' fill='none' stroke='white' stroke-width='0.7'/><path d='M100 55 L145 100 L100 145 L55 100 Z' fill='none' stroke='white' stroke-width='0.4'/><circle cx='100' cy='100' r='2' fill='white' opacity='0.25'/></svg>");
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    opacity: 0.08;
+    mix-blend-mode: screen;
+  }
+  section[data-tone="dark"] > * { position: relative; z-index: 1; }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 400;
+    background: var(--light-bg);
+    color: var(--light-ink);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+  section[data-tone="light"] {
+    background: var(--light-bg);
+    color: var(--light-ink);
+    --bg: var(--light-bg);
+    --bg-2: var(--light-bg-2);
+    --ink: var(--light-ink);
+    --ink-soft: var(--light-ink-soft);
+    --ink-faint: var(--light-ink-faint);
+    --tile: var(--light-tile);
+  }
+  section[data-tone="dark"] {
+    background: var(--dark-bg);
+    color: var(--dark-ink);
+    --bg: var(--dark-bg);
+    --bg-2: var(--dark-bg-2);
+    --ink: var(--dark-ink);
+    --ink-soft: var(--dark-ink-soft);
+    --ink-faint: var(--dark-ink-faint);
+    --tile: var(--dark-tile);
+  }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter); }
+
+  /* ── Top nav ── */
+  .topnav {
+    position: fixed; left: 0; right: 0; top: 0;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 22px var(--gutter);
+    z-index: 50;
+    pointer-events: none;
+  }
+  .topnav > * { pointer-events: auto; }
+  .topnav a, .topnav button {
+    text-decoration: none;
+    background: transparent; border: 0;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase;
+    cursor: pointer;
+    transition: color .35s ease;
+  }
+  .topnav .logo-lockup {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-family: 'Squaresharps', system-ui, sans-serif;
+    font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase;
+    transition: color .35s ease;
+    text-decoration: none;
+  }
+  .topnav .logo-mark { width: 30px; height: 30px; display: inline-flex; align-items: center; justify-content: center; }
+  .topnav .logo-mark img { width: 100%; height: 100%; object-fit: contain; display: block; }
+  .topnav .logo-lockup, .topnav a, .topnav button { color: #080A1A; }
+  .topnav.on-dark .logo-lockup, .topnav.on-dark a, .topnav.on-dark button { color: #eef1f8; }
+  .topnav nav { display: flex; gap: 32px; align-items: center; }
+
+  /* ── Hero ── */
+  section.hero[data-tone="dark"] {
+    width: 100%; max-width: 100vw;
+    aspect-ratio: 21 / 9;
+    min-height: 560px;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: clamp(24px, 4vh, 56px) var(--gutter);
+    position: relative;
+    --hg1: #3B70F5; --hg2: #1A3CC8; --hg3: #07091A;
+    background:
+      radial-gradient(80% 90% at 78% 6%, rgba(100,160,255,0.38), transparent 58%),
+      linear-gradient(135deg, var(--hg1) 0%, var(--hg2) 55%, var(--hg3) 100%);
+  }
+  .hero .hero-inner { max-width: var(--maxw); width: 100%; margin: 0 auto; position: relative; z-index: 2; display: flex; flex-direction: column; flex: 1 1 auto; }
+
+  .hero-emblems { position: absolute; left: 0; pointer-events: none; overflow: visible; z-index: 30; }
+  .hero-emblem { position: absolute; top: 0; left: 0; will-change: transform; }
+  .hero-emblem svg { display: block; width: 100%; height: 100%; }
+  .hero-emblem svg path { fill: currentColor; }
+  .hero-emblem img { display: block; width: 100%; height: 100%; object-fit: contain; filter: invert(1) brightness(1.7); }
+
+  .eyebrow-row {
+    display: flex; gap: 28px; align-items: center;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 28px;
+  }
+  .eyebrow-row .dotsep { width: 4px; height: 4px; border-radius: 50%; background: currentColor; opacity: .5; flex-shrink: 0; }
+
+  .hero-title {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(36px, 5.8vw, 92px);
+    line-height: 1.0;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin: 0 0 clamp(16px, 2vw, 28px);
+    max-width: 85%;
+    overflow-wrap: break-word;
+  }
+  .hero-title .ln { display: block; max-width: 100%; }
+  .hero-title .ln-ital {
+    display: block;
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-style: italic;
+    font-size: 0.55em;
+    letter-spacing: 0.01em;
+    color: rgba(238,240,252,0.72);
+    margin-top: 0.15em;
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+  .hero-foot {
+    margin-top: auto;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 18px;
+  }
+  .hero-lede {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: clamp(14px, 1.1vw, 16px);
+    line-height: 1.65;
+    color: var(--ink-soft);
+    max-width: 580px;
+    margin: 0 0 clamp(20px, 2.5vw, 36px);
+  }
+  .hero-lede strong { font-weight: 600; }
+  .scroll-cue {
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: var(--ink-soft);
+    flex-shrink: 0;
+  }
+  .scroll-cue .line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, var(--ink-soft), transparent);
+  }
+  .hero-credit {
+    justify-self: end;
+    text-align: right;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--ink-soft);
+    line-height: 1.9;
+  }
+
+  /* ── Section module ── */
+  .module { padding: clamp(70px, 9vw, 140px) 0; }
+  .module-head {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: clamp(24px, 3vw, 56px);
+    margin-bottom: clamp(40px, 5vw, 72px);
+    align-items: start;
+  }
+  .section-num {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--ink-soft);
+    display: flex; flex-direction: column; gap: 10px;
+    padding-top: 8px;
+  }
+  .section-num .num {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-size: clamp(44px, 5vw, 72px);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    color: var(--ink-faint);
+    line-height: 1;
+  }
+  .module-title {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(26px, 3.2vw, 50px);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin: 0 0 clamp(18px, 2vw, 28px);
+  }
+  .lede {
+    font-size: clamp(15px, 1.3vw, 18px);
+    line-height: 1.65;
+    color: var(--ink-soft);
+    max-width: 640px;
+    margin: 0;
+  }
+  .body-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(28px, 3vw, 56px);
+  }
+  .body-grid p {
+    font-size: clamp(14px, 1.1vw, 16px);
+    line-height: 1.75;
+    color: var(--ink-soft);
+    margin: 0 0 1.1em;
+  }
+  .body-grid p:last-child { margin-bottom: 0; }
+
+  /* ── Seam ── */
+  .seam {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--light-ink-faint) 30%, var(--dark-bg) 60%, transparent);
+    margin: 0;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ── Process steps ── */
+  .process {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(24px, 2.5vw, 48px);
+    margin-top: clamp(40px, 5vw, 64px);
+  }
+  .step {
+    border-top: 1px solid var(--ink-faint);
+    padding-top: 24px;
+  }
+  .step-k {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.30em; text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+    display: block;
+  }
+  .step h4 {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(17px, 1.6vw, 22px);
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin: 0 0 14px;
+  }
+  .step p {
+    font-size: clamp(13px, 1vw, 15px);
+    line-height: 1.7;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* ── Placeholder image blocks ── */
+  .ph {
+    background: var(--tile);
+    aspect-ratio: 16 / 9;
+    position: relative;
+    overflow: hidden;
+    display: flex; align-items: flex-end;
+  }
+  .ph-label {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.26em; text-transform: uppercase;
+    color: var(--ink-soft);
+    white-space: nowrap;
+  }
+  .ph-dim {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, calc(-50% + 22px));
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.20em; text-transform: uppercase;
+    color: var(--ink-soft);
+    opacity: 0.5;
+    white-space: nowrap;
+  }
+  .caption {
+    position: relative; z-index: 2;
+    display: flex; justify-content: space-between; align-items: flex-end;
+    width: 100%;
+    padding: 12px 16px;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-soft);
+    background: linear-gradient(to top, rgba(0,0,0,0.12), transparent);
+    gap: 12px;
+  }
+
+  /* ── Reel rail ── */
+  .reel-rail {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    cursor: grab;
+    user-select: none;
+    padding-bottom: 4px;
+  }
+  .reel-rail::-webkit-scrollbar { display: none; }
+  .reel-rail:active { cursor: grabbing; }
+  .reel-rail .ph {
+    flex: 0 0 auto;
+    width: clamp(160px, 18vw, 240px);
+    aspect-ratio: 9 / 16;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .reel-play {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .reel-play::after {
+    content: '';
+    border-left: 14px solid rgba(255,255,255,0.8);
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    margin-left: 3px;
+  }
+
+  /* ── Post / image grid ── */
+  .post-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(10px, 1.2vw, 18px);
+    margin-top: 20px;
+  }
+  .post-grid .ph {
+    aspect-ratio: 3 / 4;
+  }
+  .looks-head {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--ink-soft);
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--ink-faint);
+  }
+
+  /* ── Look split ── */
+  .look-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(28px, 3vw, 56px);
+    margin-top: clamp(40px, 5vw, 64px);
+  }
+  .look-group { display: flex; flex-direction: column; gap: 14px; }
+  .lg-head {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--ink-soft);
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--ink-faint);
+  }
+  .lg-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .lg-grid .ph { aspect-ratio: 1; }
+  .lg-grid .caption span:first-child { max-width: 60%; }
+
+  /* ── Bleed ── */
+  .bleed { padding: clamp(28px, 3.5vw, 48px) 0; }
+
+  /* ── Meta bar ── */
+  .meta-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    border-top: 1px solid var(--ink-faint);
+    border-bottom: 1px solid var(--ink-faint);
+    padding: clamp(28px, 3.5vw, 48px) 0;
+    margin: clamp(40px, 5vw, 64px) 0;
+  }
+  .meta-cell {
+    flex: 1 1 180px;
+    padding: 0 clamp(16px, 2vw, 32px);
+    border-right: 1px solid var(--ink-faint);
+  }
+  .meta-cell:first-child { padding-left: 0; }
+  .meta-cell:last-child { border-right: 0; }
+  .meta-k {
+    display: block;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.30em; text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 10px;
+  }
+  .meta-v {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: clamp(13px, 1.1vw, 15px);
+    line-height: 1.55;
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  /* ── Credits ── */
+  .credits {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: clamp(28px, 3vw, 56px);
+    padding: clamp(56px, 7vw, 112px) 0;
+    border-top: 1px solid var(--ink-faint);
+  }
+  .credits-head {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(20px, 2.2vw, 32px);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .credit-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(20px, 2vw, 36px) clamp(28px, 3vw, 56px);
+  }
+  .credit-row { display: flex; flex-direction: column; gap: 6px; }
+  .credit-k {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .credit-row .who {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: clamp(13px, 1.1vw, 16px);
+    color: var(--ink);
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  /* ── Quote ── */
+  .quote-wrap { padding: clamp(70px, 9vw, 130px) 0; }
+  .quote {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-style: italic;
+    font-size: clamp(22px, 3.0vw, 46px);
+    line-height: 1.35;
+    color: var(--ink);
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+  }
+  .quote .quote-mark {
+    font-size: 1.4em;
+    line-height: 0.5;
+    vertical-align: -0.25em;
+    color: var(--accent);
+    margin-right: 0.05em;
+  }
+  .quote-attrib {
+    display: flex; align-items: center; justify-content: center;
+    gap: 16px;
+    margin-top: 28px;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-style: normal;
+    font-size: 12px; letter-spacing: 0.30em; text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .quote-attrib .rule { width: 36px; height: 1px; background: var(--ink-faint); }
+
+  /* ── Hero Carousel ── */
+  .hero-carousel {
+    position: relative;
+    --hc-vis: 3;
+    overflow: hidden;
+    user-select: none;
+  }
+  .hc-track {
+    display: flex;
+    transition: transform 0.55s cubic-bezier(0.77, 0, 0.175, 1);
+    will-change: transform;
+  }
+  .hc-slide {
+    flex: 0 0 calc(100% / var(--hc-vis));
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+  }
+  .hc-slide .ph {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    background: var(--tile);
+  }
+  .hc-top {
+    position: absolute; left: 0; right: 0; top: 0;
+    padding: 18px var(--gutter);
+    display: flex; justify-content: space-between;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.26em; text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    z-index: 4;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.22), transparent);
+  }
+  .hc-count { display: flex; gap: 4px; }
+  .hc-count .tot { opacity: 0.5; }
+  .hc-caption {
+    position: absolute; bottom: 0; left: 0;
+    padding: clamp(20px, 2.5vw, 36px) var(--gutter) clamp(24px, 3vw, 44px);
+    z-index: 4;
+    background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 100%);
+  }
+  .hc-look {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.30em; text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 6px;
+  }
+  .hc-title {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(20px, 2.2vw, 34px);
+    letter-spacing: -0.01em;
+    color: #fff;
+    margin: 0 0 6px;
+  }
+  .hc-sub {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+  }
+  .hc-nav {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff;
+    cursor: pointer;
+    z-index: 5;
+    display: flex; align-items: center; justify-content: center;
+    transition: background .2s;
+  }
+  .hc-nav:hover { background: rgba(255,255,255,0.22); }
+  .hc-nav svg { width: 20px; height: 20px; }
+  .hc-prev { left: clamp(12px, 2vw, 28px); }
+  .hc-next { right: clamp(12px, 2vw, 28px); }
+  .hc-bars {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    display: flex; height: 3px;
+    z-index: 6;
+  }
+  .hc-bar {
+    flex: 1; height: 100%;
+    background: rgba(255,255,255,0.22);
+    position: relative;
+    overflow: hidden;
+  }
+  .hc-bar::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: rgba(255,255,255,0.9);
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  .hc-bar.is-active::after { animation: hcFill var(--hc-dur, 4s) linear forwards; }
+  .hc-bar.is-done::after { transform: scaleX(1); animation: none; }
+  @keyframes hcFill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  @media (max-width: 1180px) { .hero-carousel { --hc-vis: 2; } }
+  @media (max-width: 720px)  { .hero-carousel { --hc-vis: 1; } }
+
+  /* ── Zone grid ── */
+  .zone-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(20px, 2.5vw, 40px);
+    margin-top: clamp(40px, 5vw, 64px);
+  }
+  .zone-card {
+    background: var(--tile);
+    border-radius: 4px;
+    padding: clamp(28px, 3vw, 44px);
+    border: 1px solid var(--ink-faint);
+    transition: border-color .25s;
+  }
+  .zone-card:hover { border-color: color-mix(in srgb, var(--accent) 40%, transparent); }
+  .zone-num {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(36px, 4vw, 56px);
+    letter-spacing: -0.02em;
+    color: color-mix(in srgb, var(--accent) 35%, transparent);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+  .zone-name {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(16px, 1.6vw, 22px);
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+  .zone-desc {
+    font-size: clamp(13px, 1.1vw, 15px);
+    line-height: 1.65;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* ── Side rail ── */
+  .rail {
+    position: fixed;
+    right: clamp(16px, 2vw, 32px);
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 40;
+  }
+  .rail-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: rgba(8,10,26,0.25);
+    transition: background .35s, transform .35s;
+    cursor: pointer;
+  }
+  .rail-dot.is-active { background: var(--accent); transform: scale(1.5); }
+  .rail-dot.on-dark { background: rgba(238,240,252,0.3); }
+  .rail-dot.on-dark.is-active { background: #fff; }
+
+  /* ── Custom cursor ── */
+  html, body { cursor: none; }
+  a, button, [role="button"], .hc-nav, input, label, .topnav .logo-lockup { cursor: none; }
+  .koton-cursor {
+    position: fixed;
+    top: 0; left: 0;
+    width: 36px; height: 36px;
+    margin: -18px 0 0 -18px;
+    pointer-events: none;
+    z-index: 9000;
+    color: var(--accent);
+    transition: transform .18s ease, opacity .18s ease;
+  }
+  .koton-cursor .km {
+    width: 100%; height: 100%;
+    fill: currentColor;
+    opacity: 0.85;
+    transition: transform .25s ease;
+  }
+  .koton-cursor.is-link { transform: scale(1.7); color: var(--accent); }
+  .koton-cursor.is-link .km { opacity: 0.6; }
+  .koton-cursor .label-link {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: #fff;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .18s;
+    white-space: nowrap;
+  }
+  .koton-cursor.is-link .label-link { opacity: 1; }
+
+  /* ── Hero mesh paint canvas ── */
+  .hero .hero-paint { position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: 0; transition: opacity .7s ease; filter: blur(6px) saturate(1.04); transform: translateZ(0); will-change: opacity; }
+
+  /* ── Tweaks panel ── */
+  .fab-cpanel { position: fixed; right: 20px; bottom: 20px; z-index: 2147483000; font-family: 'Outfit', system-ui, sans-serif; display: none; }
+  .fab-cpanel.is-open { display: block; }
+  .fab-cpanel .fcp-inner { background: #0d0f1a; border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; padding: 20px; width: 240px; box-shadow: 0 8px 40px rgba(0,0,0,0.55); }
+  .fab-cpanel .fcp-title { font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 16px; }
+  .fab-cpanel .fcp-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 14px; }
+  .fab-cpanel .fcp-label { font-size: 13px; letter-spacing: 0.06em; color: rgba(255,255,255,0.75); flex: 0 0 auto; }
+  .fab-cpanel .fcp-swatch { width: 28px; height: 28px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.18); cursor: pointer; flex-shrink: 0; }
+  .fab-cpanel .fcp-val { font-size: 12px; letter-spacing: 0.06em; color: rgba(255,255,255,0.45); font-variant-numeric: tabular-nums; }
+  .fab-cpanel .fcp-srow { flex-direction: column; align-items: stretch; gap: 6px; }
+  .fab-cpanel .fcp-srow-top { display: flex; align-items: center; justify-content: space-between; }
+  .fab-cpanel .fcp-range { -webkit-appearance: none; appearance: none; width: 100%; height: 3px; border-radius: 3px; background: rgba(255,255,255,0.18); outline: none; }
+  .fab-cpanel .fcp-range::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 14px; height: 14px; border-radius: 50%; background: var(--accent, #3B70F5); cursor: pointer; }
+  .fab-cpanel .fcp-range::-moz-range-thumb { width: 14px; height: 14px; border: none; border-radius: 50%; background: var(--accent, #3B70F5); cursor: pointer; }
+  .fab-cpanel .fcp-select { flex: 0 0 auto; background: #0d0f1a; color: #fff; border: 1px solid rgba(255,255,255,0.18); border-radius: 6px; font-size: 13px; padding: 5px 8px; font-family: inherit; cursor: pointer; }
+  .fab-cpanel .fcp-reset { margin-top: 16px; width: 100%; cursor: pointer; border: 1px solid rgba(255,255,255,0.18); background: transparent; color: rgba(255,255,255,0.7); font-size: 12px; letter-spacing: 0.04em; padding: 8px; border-radius: 8px; }
+  .fab-cpanel .fcp-reset:hover { background: rgba(255,255,255,0.06); color: #fff; }
+  section.hero[data-tone="dark"]::after { display: none; }
+
+  @media (max-width: 880px) {
+    .module-head { grid-template-columns: 1fr; }
+    .body-grid { grid-template-columns: 1fr; }
+    .process { grid-template-columns: 1fr; }
+    .look-split { grid-template-columns: 1fr; }
+    .post-grid { grid-template-columns: repeat(2, 1fr); }
+    .credits { grid-template-columns: 1fr; }
+    .credit-list { grid-template-columns: 1fr; }
+    .hero-foot { grid-template-columns: 1fr; gap: 32px; }
+    .hero-credit { justify-self: start; text-align: left; }
+    .rail { display: none; }
+    .zone-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<link rel="stylesheet" href="../assets/css/case/proj-tags-b.css">
+
+
+<link rel="stylesheet" href="../assets/css/case/hero-refine.css">
+
+<link rel="stylesheet" href="../assets/css/case/rhythm-refine-c.css">
+<link rel="stylesheet" href="../assets/css/case/uhub-spaces.css?v=15">
+
+<meta name="description" content="U-Hub for Unilever: a branded metaverse hub with sixteen spaces and live events.">
+<link rel="canonical" href="https://illusorr.com/projects/u-hub-metaverse.html">
+<meta name="theme-color" content="#05060a">
+<meta property="og:site_name" content="ILLUSORR">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ILLUSORR × Unilever · U-Hub Metaverse">
+<meta property="og:description" content="U-Hub for Unilever: a branded metaverse hub with sixteen spaces and live events.">
+<meta property="og:url" content="https://illusorr.com/projects/u-hub-metaverse.html">
+<meta property="og:image" content="https://illusorr.com/assets/img/og/og-default.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CreativeWork","name":"ILLUSORR × Unilever · U-Hub Metaverse","url":"https://illusorr.com/projects/u-hub-metaverse.html","creator":{"@type":"Organization","name":"ILLUSORR","url":"https://illusorr.com/"}}</script>
+<!-- phone + tablet: shared touch layer, then the shared case layout -->
+<link rel="stylesheet" href="../assets/css/mobile.css">
+<link rel="stylesheet" href="../assets/css/case/case-mobile.css">
+<script src="../assets/js/mobile.js"></script>
+</head>
+
+<body>
+<header class="il-topbar" id="ilTopbar">
+  <a class="il-brand" href="../index.html" aria-label="ILLUSORR home"><span class="il-logo" role="img" aria-label="ILLUSORR"></span></a>
+  <div class="il-right">
+    <a class="il-talk" href="../contact.html">Let's talk</a>
+    <button class="il-burger" id="ilMenuOpen" aria-label="Open menu"><i></i><i></i></button>
+  </div>
+</header>
+<div class="il-overlay" id="ilOverlay">
+  <div class="il-ohead"><span class="il-logo" role="img" aria-label="ILLUSORR"></span><button class="il-oclose" id="ilMenuClose">Close ✕</button></div>
+  <nav>
+    <a href="../index.html">Home <span>01</span></a>
+    <a href="../about.html">About <span>02</span></a>
+    <a href="../sectors.html">Sectors <span>03</span></a>
+    <a href="../work.html">Work <span>04</span></a>
+    <a href="../lab.html">Lab <span>05</span></a>
+    <a href="../collective.html">Collective <span>06</span></a>
+    <a href="../contact.html">Contact <span>07</span></a>
+  </nav>
+  <div class="il-ofoot"><span>Abu Dhabi · Yas Creative Hub</span><span>hello@illusorr.com</span></div>
+</div>
+
+
+  <!-- ─── Fixed chrome ─────────────────────────────────────────────── -->
+  <!-- topnav removed, menu bar to be added separately -->
+
+  <!-- Cursor: the bird from the Unilever mark -->
+  <div class="koton-cursor" id="kCursor" aria-hidden="true">
+    <svg class="km" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" id="kBird"></svg>
+    <span class="label-link" data-verb="Click"></span>
+  </div>
+
+  <aside class="rail" aria-hidden="true">
+    <span class="rail-dot is-active" data-i="0"></span>
+    <span class="rail-dot" data-i="1"></span>
+    <span class="rail-dot" data-i="2"></span>
+    <span class="rail-dot" data-i="3"></span>
+    <span class="rail-dot" data-i="4"></span>
+    <span class="rail-dot" data-i="5"></span>
+    <span class="rail-dot" data-i="6"></span>
+    <span class="rail-dot" data-i="7"></span>
+  </aside>
+
+  <!-- ════════════════════════════ LIGHT HALF ════════════════════════════ -->
+
+  <!-- 1. HERO -->
+  <section class="hero" data-tone="dark" data-rail="0" data-screen-label="01 Hero">
+    <div class="hero-inner">
+      <div class="proj-tags hero-meta">
+        <div class="ptg ptg-client">
+          <div class="ptg-k">Client</div>
+          <div class="ptg-c">
+            <img src="../assets/projects/v5/unilever-uhub.webp" alt="Unilever" style="height:52px; width:auto; display:block; object-fit:contain;">
+          </div>
+        </div>
+        <div class="ptg" style="margin-left:auto">
+          <div class="ptg-k">Category</div>
+          <div class="ptg-c"><span class="ptag">3D Environment Design</span><span class="ptag">Character Creation</span><span class="ptag">3D Animation</span><span class="ptag">Technology Consultancy</span></div>
+        </div>
+        <div class="ptg">
+          <div class="ptg-k">Sector</div>
+          <div class="ptg-c">
+            <span class="ptag sector">Immersive Worlds</span>
+            <span class="ptag sector">Ecommerce</span>
+          </div>
+        </div>
+      </div>
+
+      <h1 class="hero-title">
+        <span class="ln">U-Hub Metaverse<span class="ln-ital">a world that brings people together.</span></span>
+      </h1>
+
+      <p class="hero-lede">
+        <strong>A single virtual world for Unilever's whole portfolio.</strong> One arrival plaza with four wings off it, and a space for every business group, built to hold thousands of employees and partners at once. Built by ILLUSORR.
+      </p>
+
+      <div class="hero-foot">
+        <div class="hero-credit">
+          <div>Unilever / U-Hub Metaverse · 2022</div>
+          <div>Built by ILLUSORR</div>
+        </div>
+        <div class="scroll-cue">
+          <span>Scroll</span>
+          <span class="line"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 1b. COVER MEDIA -->
+  <section class="hero-media" data-tone="dark" data-screen-label="01b Cover Media" style="background-color:#FFFFFF">
+    <div class="hm-inner">
+      <div class="hm-frame">
+        <div class="yt" data-yt="O_-T4WIpeac" data-title="U-Hub Metaverse" role="button" tabindex="0" aria-label="Play the U-Hub Metaverse film">
+          <img class="yt-poster" src="https://i.ytimg.com/vi/O_-T4WIpeac/maxresdefault.jpg" onerror="this.src='https://i.ytimg.com/vi/O_-T4WIpeac/hqdefault.jpg'" alt="" decoding="async">
+          <span class="yt-play" aria-hidden="true"></span>
+        </div>
+      </div>
+      <div class="hm-cap"><span>U-Hub Metaverse</span><span>The film</span></div>
+    </div>
+  </section>
+
+  <!-- 2. PROJECT META BAR -->
+  <section class="on-light" data-tone="light" data-rail="1" data-screen-label="02 Meta">
+    <div class="wrap">
+      <div class="meta-bar">
+        <div class="meta-cell"><span class="meta-k">Client</span><span class="meta-v">Unilever<br>Consumer goods</span></div>
+        <div class="meta-cell"><span class="meta-k">Year</span><span class="meta-v">2022</span></div>
+        <div class="meta-cell"><span class="meta-k">Scope</span><span class="meta-v">Strategy, world design, characters, animation, technology consultancy</span></div>
+        <div class="meta-cell"><span class="meta-k">Plan</span><span class="meta-v">A central plaza with four wings</span></div>
+        <div class="meta-cell"><span class="meta-k">Output</span><span class="meta-v">Five category spaces inside one world</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. THE BRIEF -->
+  <section class="pitch pmod on-light" data-tone="light" data-rail="2" data-screen-label="03 Brief">
+    <div class="wrap">
+      <div class="phead">
+        <div>
+          <div class="pnum"><b>01</b> The brief</div>
+          <h2 class="ptitle">One company, <em>four hundred brands.</em></h2>
+        </div>
+        <div>
+          <p class="pbody">Unilever does not have a product, it has a portfolio. A single virtual space that tried to speak for all of it would have said nothing, and one space per brand would have been unmanageable before it launched.</p>
+          <p class="pbody" style="margin-top:18px">So ILLUSORR designed by category instead. One arrival plaza, then a space per business group, each with its own light, material and pace, all built from the same plan so a new brand can be placed without a rebuild.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. THE PLAN, one top view -->
+  <section class="pitch pmod pmod-tight on-light" data-tone="light" data-rail="3" data-screen-label="04 Plan">
+    <div class="wrap">
+      <div class="phead">
+        <div>
+          <div class="pnum"><b>02</b> The plan</div>
+          <h2 class="ptitle">A plaza, <em>and four wings off it.</em></h2>
+        </div>
+        <div>
+          <p class="pbody">Seen from above the world is a single figure: a ring at the centre with four petals reaching out of it. The ring is the arrival, where every visitor lands and every route begins. Each petal is a category, and each petal is the same shape, so the world stays readable from the air and from the ground.</p>
+        </div>
+      </div>
+      <div class="planview">
+        <img src="../assets/projects/uhub/g-05.webp" alt="U-Hub Metaverse, seen from above" loading="lazy" decoding="async">
+        <span class="plan-note">Top view · central plaza with four wings</span>
+      </div>
+      <div class="wings">
+        <figure><img src="../assets/projects/uhub/g-06.webp" alt="Plan detail" loading="lazy" decoding="async"><figcaption>Petals</figcaption></figure>
+        <figure><img src="../assets/projects/uhub/g-07.webp" alt="Central ring" loading="lazy" decoding="async"><figcaption>The ring</figcaption></figure>
+        <figure><img src="../assets/projects/uhub/g-09.webp" alt="Arrival plaza" loading="lazy" decoding="async"><figcaption>Arrival</figcaption></figure>
+        <figure><img src="../assets/projects/uhub/g-11.webp" alt="Plaza floor" loading="lazy" decoding="async"><figcaption>Plaza floor</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. THE FILM -->
+  <section class="pitch pmod pmod-tight on-light" data-tone="light" data-rail="4" data-screen-label="05 Film">
+    <div class="wrap">
+      <div class="phead">
+        <div>
+          <div class="pnum"><b>03</b> The film</div>
+          <h2 class="ptitle">The whole world, <em>in one pass.</em></h2>
+        </div>
+        <div>
+          <p class="pbody">One continuous walkthrough: the mark assembling, the descent into the plaza, then each wing in turn. It was the piece that made the plan legible to people who had never worn a headset.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="vband on-light" data-tone="light" data-screen-label="05b Film">
+    <div class="vb-frame"><img src="../assets/projects/uhub/g-08.webp" alt="Arrival at the plaza" loading="lazy" decoding="async"></div>
+    <div class="vb-cap"><span>U-Hub Metaworld · walkthrough</span><span>Film</span></div>
+  </section>
+
+  <!-- 6. THE SPACES -->
+  <section class="pitch pmod pmod-tight on-light" data-tone="light" data-rail="5" data-screen-label="06 Spaces">
+    <div class="wrap">
+      <div class="phead">
+        <div>
+          <div class="pnum"><b>04</b> The spaces</div>
+          <h2 class="ptitle">Five categories, <em>five rooms.</em></h2>
+        </div>
+        <div>
+          <p class="pbody">Each business group got a space shaped around how its products are actually chosen: browsed, tried, explained, cooked or grabbed. Same plan, different rules. Click a category to go in.</p>
+        </div>
+      </div>
+      <div class="spaces-hint">Click a category to enter its space</div>
+      <div class="pods">
+        <div class="pod" data-space="market" style="--pc:#FFC24D" tabindex="0" role="button" aria-label="Enter the U-Hub Marketplace space">
+          <div class="pod-inner">
+            <div class="pod-obj"><img src="../assets/projects/uhub/g-14.webp" alt="" loading="lazy" decoding="async"></div>
+            <div class="pod-glow"></div>
+            <div class="pod-meta">
+              <div class="pod-k">Space 01</div>
+              <div class="pod-t">U-Hub Marketplace<small>Every brand, one street</small></div>
+            </div>
+          </div>
+          <div class="space" data-space="market" style="--pc:#FFC24D">
+            <div class="space-media"><img src="../assets/projects/uhub/f-11.webp" alt="U-Hub Marketplace space" decoding="async"></div>
+            <div class="space-copy">
+              <div class="space-k">U-Hub Marketplace · Entered</div>
+              <h3 class="space-t">A street, not a catalogue</h3>
+              <p>The Marketplace is where the portfolio meets the visitor. Brand pods line a single route, each one a room its owner can restyle without touching the street, so a launch can be dropped in overnight.</p>
+              <div class="space-facts"><span>Brand pods</span><span>Launch bays</span><span>Live footfall</span></div>
+              <button class="space-exit" type="button">Back to the plaza</button>
+            </div>
+          </div>
+        </div>
+        <div class="pod" data-space="beauty" style="--pc:#f06aa8" tabindex="0" role="button" aria-label="Enter the Beauty and Wellbeing space">
+          <div class="pod-inner">
+            <div class="pod-obj"><img src="../assets/projects/uhub/g-13.webp" alt="" loading="lazy" decoding="async"></div>
+            <div class="pod-glow"></div>
+            <div class="pod-meta">
+              <div class="pod-k">Space 02</div>
+              <div class="pod-t">Beauty &amp; Wellbeing<small>Hair, skin, self-care</small></div>
+            </div>
+          </div>
+          <div class="space" data-space="beauty" style="--pc:#f06aa8">
+            <div class="space-media"><img src="../assets/projects/uhub/elidor.webp" alt="Beauty and Wellbeing space" decoding="async"></div>
+            <div class="space-copy">
+              <div class="space-k">Beauty &amp; Wellbeing · Entered</div>
+              <h3 class="space-t">A mirror that holds a shelf</h3>
+              <p>Beauty gets the most tactile room in the world. Product sits at hand height on lit plinths, and the wall behind is a mirror that shows the visitor holding what they are looking at.</p>
+              <div class="space-facts"><span>Try-on wall</span><span>Lit plinths</span><span>Ritual demo</span></div>
+              <button class="space-exit" type="button">Back to the plaza</button>
+            </div>
+          </div>
+        </div>
+        <div class="pod" data-space="personal" style="--pc:#17c8e8" tabindex="0" role="button" aria-label="Enter the Home Care space">
+          <div class="pod-inner">
+            <div class="pod-obj"><img src="../assets/projects/uhub/g-15.webp" alt="" loading="lazy" decoding="async"></div>
+            <div class="pod-glow"></div>
+            <div class="pod-meta">
+              <div class="pod-k">Space 03</div>
+              <div class="pod-t">Home Care<small>The house, cut open</small></div>
+            </div>
+          </div>
+          <div class="space" data-space="personal" style="--pc:#17c8e8">
+            <div class="space-media"><img src="../assets/projects/uhub/g-16.webp" alt="Home Care space" decoding="async"></div>
+            <div class="space-copy">
+              <div class="space-k">Home Care · Entered</div>
+              <h3 class="space-t">Function made visible</h3>
+              <p>Home Care is explained rather than displayed. Surfaces, water and fabric are shown mid-process at a scale a shelf can never manage, so the claim on the bottle becomes something you can walk around.</p>
+              <div class="space-facts"><span>Process at scale</span><span>Surface labs</span><span>Refill station</span></div>
+              <button class="space-exit" type="button">Back to the plaza</button>
+            </div>
+          </div>
+        </div>
+        <div class="pod" data-space="foods" style="--pc:#7ED957" tabindex="0" role="button" aria-label="Enter the Foods and Nutrition space">
+          <div class="pod-inner">
+            <div class="pod-obj"><img src="../assets/projects/uhub/f-05.webp" alt="" loading="lazy" decoding="async"></div>
+            <div class="pod-glow"></div>
+            <div class="pod-meta">
+              <div class="pod-k">Space 04</div>
+              <div class="pod-t">Foods &amp; Nutrition<small>Cooking, kitchens, growing</small></div>
+            </div>
+          </div>
+          <div class="space" data-space="foods" style="--pc:#7ED957">
+            <div class="space-media"><img src="../assets/projects/uhub/f-02.webp" alt="Foods and Nutrition space" decoding="async"></div>
+            <div class="space-copy">
+              <div class="space-k">Foods &amp; Nutrition · Entered</div>
+              <h3 class="space-t">A garden that keeps a kitchen</h3>
+              <p>Nutrition is the only zone with weather. It runs outdoors: planting beds, a long table, and brand kitchens set into the landscape, so provenance and cooking sit in the same view.</p>
+              <div class="space-facts"><span>Growing beds</span><span>Long table</span><span>Brand kitchens</span></div>
+              <button class="space-exit" type="button">Back to the plaza</button>
+            </div>
+          </div>
+        </div>
+        <div class="pod" data-space="ice" style="--pc:#C58BFF" tabindex="0" role="button" aria-label="Enter the Ice Cream space">
+          <div class="pod-inner">
+            <div class="pod-obj"><img src="../assets/projects/uhub/f-07.webp" alt="" loading="lazy" decoding="async"></div>
+            <div class="pod-glow"></div>
+            <div class="pod-meta">
+              <div class="pod-k">Space 05</div>
+              <div class="pod-t">Ice Cream<small>Treats and impulse</small></div>
+            </div>
+          </div>
+          <div class="space" data-space="ice" style="--pc:#C58BFF">
+            <div class="space-media"><img src="../assets/projects/uhub/f-08.webp" alt="Ice Cream space" decoding="async"></div>
+            <div class="space-copy">
+              <div class="space-k">Ice Cream · Entered</div>
+              <h3 class="space-t">Built for a five-second decision</h3>
+              <p>Ice cream is impulse, so the room is short. One approach, one counter, one wall of cones at giant scale. Nothing to read, everything to point at.</p>
+              <div class="space-facts"><span>Single counter</span><span>Giant cones</span><span>Impulse loop</span></div>
+              <button class="space-exit" type="button">Back to the plaza</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. THE SHELF -->
+  <section class="pitch pmod pmod-tight on-light" data-tone="light" data-rail="6" data-screen-label="07 Brands">
+    <div class="wrap">
+      <div class="phead">
+        <div>
+          <div class="pnum"><b>05</b> Brands in the world</div>
+          <h2 class="ptitle">The portfolio, <em>placed not pasted.</em></h2>
+        </div>
+        <div>
+          <p class="pbody">Brands enter the world as architecture, not as logos on a wall. Each one gets a volume with its own colour and material inside its category, which keeps the parent world coherent while letting a brand be recognisably itself.</p>
+        </div>
+      </div>
+      <div class="shelf">
+        <figure><img src="../assets/projects/uhub/f-03.webp" alt="Brand pods in the foods wing" loading="lazy" decoding="async"><figcaption>Foods wing</figcaption></figure>
+        <figure><img src="../assets/projects/uhub/f-06.webp" alt="Nutrition signage" loading="lazy" decoding="async"><figcaption>Positive nutrition</figcaption></figure>
+        <figure><img src="../assets/projects/uhub/f-12.webp" alt="Marketplace pod" loading="lazy" decoding="async"><figcaption>Marketplace pod</figcaption></figure>
+        <figure><img src="../assets/projects/uhub/f-15.webp" alt="Product plinth" loading="lazy" decoding="async"><figcaption>Product plinth</figcaption></figure>
+        <figure><img src="../assets/projects/uhub/f-09.webp" alt="Marketplace approach" loading="lazy" decoding="async"><figcaption>Marketplace approach</figcaption></figure>
+        <figure><img src="../assets/projects/uhub/f-04.webp" alt="Garden table" loading="lazy" decoding="async"><figcaption>The long table</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. INHABITANTS -->
+  <section class="pitch pmod pmod-tight on-light" data-tone="light" data-rail="6" data-screen-label="08 Inhabitants">
+    <div class="wrap">
+      <div class="phead">
+        <div>
+          <div class="pnum"><b>06</b> Inhabitants</div>
+          <h2 class="ptitle">A world for staff <em>before it was for shoppers.</em></h2>
+        </div>
+        <div>
+          <p class="pbody">U-Hub was built to hold thousands of employees and partners at once, so the avatar system was designed alongside the architecture: scale, silhouette and lighting resolved together rather than borrowed from a marketplace.</p>
+        </div>
+      </div>
+      <div class="wings">
+        <figure style="aspect-ratio:3/4"><img src="../assets/projects/uhub/g-12.webp" alt="Avatar on a plinth" loading="lazy" decoding="async"><figcaption>Avatar</figcaption></figure>
+        <figure style="aspect-ratio:3/4"><img src="../assets/projects/uhub/g-10.webp" alt="Visitors in the plaza" loading="lazy" decoding="async"><figcaption>In the plaza</figcaption></figure>
+        <figure style="aspect-ratio:3/4"><img src="../assets/projects/uhub/f-16.webp" alt="Visitor at a pod" loading="lazy" decoding="async"><figcaption>At a pod</figcaption></figure>
+        <figure style="aspect-ratio:3/4"><img src="../assets/projects/uhub/f-14.webp" alt="Product at scale" loading="lazy" decoding="async"><figcaption>At scale</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. PULL QUOTE -->
+  <section class="quote-wrap on-light" data-tone="light" data-rail="7" data-screen-label="09 Quote">
+    <div class="wrap">
+      <blockquote class="quote">
+        <span class="mark">&ldquo;</span>A portfolio is not a place. So we built the place first, then let the portfolio move in.<span class="mark">&rdquo;</span>
+      </blockquote>
+      <div class="quote-attrib"><span>ILLUSORR</span><span>on designing U-Hub</span></div>
+    </div>
+  </section>
+
+  <!-- 10. KEY VISUAL -->
+  <section class="bleed on-light" data-tone="light" data-rail="7" data-screen-label="10 Key Visual">
+    <div class="wrap">
+      <div class="ph has-media" style="aspect-ratio:16/9;overflow:hidden">
+        <img src="../assets/projects/uhub/g-04.webp" alt="U-Hub Metaverse key visual" loading="lazy" decoding="async">
+        <span class="caption"><span>Four wings, one mark</span><span>Key visual</span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. CREDITS -->
+  <section class="on-light" data-tone="light" data-rail="7" data-screen-label="11 Credits">
+    <div class="wrap">
+      <div class="credits">
+        <div>
+          <div class="credits-head">U-Hub<br>Metaverse<br>2022</div>
+        </div>
+        <div class="credit-list">
+          <div class="credit-row">
+            <span class="credit-k">Client</span>
+            <span class="who">Unilever</span>
+          </div>
+          <div class="credit-row">
+            <span class="credit-k">Project</span>
+            <span class="who">U-Hub Metaverse · Multi-Zone Virtual Environment</span>
+          </div>
+          <div class="credit-row">
+            <span class="credit-k">3D Environment Design</span>
+            <span class="who">ILLUSORR</span>
+          </div>
+          <div class="credit-row">
+            <span class="credit-k">Character Creation</span>
+            <span class="who">ILLUSORR</span>
+          </div>
+          <div class="credit-row">
+            <span class="credit-k">3D Animation</span>
+            <span class="who">ILLUSORR</span>
+          </div>
+          <div class="credit-row">
+            <span class="credit-k">Technology Consultancy</span>
+            <span class="who">ILLUSORR</span>
+          </div>
+          <div class="credit-row">
+            <span class="credit-k">Web</span>
+            <span class="who">ILLUSORR</span>
+          </div>
+          <div class="credit-row credit-collab">
+            <span class="credit-k">In collaboration with</span>
+            <span class="who"><img class="collab-logo" src="../assets/projects/uhub/me-logo.webp" alt="ME Creative Technology Agency"><span class="collab-txt">ME Creative Technology Agency<small>Istanbul, Türkiye</small></span></span>
+          </div>
+          <div class="credit-row">
+            <span class="credit-k">Output</span>
+            <span class="who">One world · central plaza · five category spaces</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- ─── Tweaks panel ──────────────────────────────────────────────── -->
+<div class="fab-cpanel" id="fabCpanel">
+  <div class="fcp-inner">
+    <div class="fcp-title">Hero Tweaks</div>
+    <div class="fcp-row">
+      <span class="fcp-label">Stop 1</span>
+      <div id="sw1" class="fcp-swatch" style="background:#3B70F5"></div>
+      <span class="fcp-val" id="sv1">#3B70F5</span>
+    </div>
+    <div class="fcp-row">
+      <span class="fcp-label">Stop 2</span>
+      <div id="sw2" class="fcp-swatch" style="background:#1A3CC8"></div>
+      <span class="fcp-val" id="sv2">#1A3CC8</span>
+    </div>
+    <div class="fcp-row">
+      <span class="fcp-label">Stop 3</span>
+      <div id="sw3" class="fcp-swatch" style="background:#07091A"></div>
+      <span class="fcp-val" id="sv3">#07091A</span>
+    </div>
+    <div class="fcp-row fcp-srow">
+      <div class="fcp-srow-top">
+        <span class="fcp-label">Frequency</span>
+        <span class="fcp-val" id="sFreq">0.55</span>
+      </div>
+      <input class="fcp-range" id="rFreq" type="range" min="0.1" max="1.2" step="0.05" value="0.55">
+    </div>
+    <div class="fcp-row fcp-srow">
+      <div class="fcp-srow-top">
+        <span class="fcp-label">Speed</span>
+        <span class="fcp-val" id="sSpeed">0.75</span>
+      </div>
+      <input class="fcp-range" id="rSpeed" type="range" min="0" max="2" step="0.05" value="0.75">
+    </div>
+    <div class="fcp-row">
+      <span class="fcp-label">Noise</span>
+      <select class="fcp-select" id="selNoise">
+        <option value="curl" selected>Curl</option>
+        <option value="simplex">Simplex</option>
+        <option value="perlin">Perlin</option>
+      </select>
+    </div>
+    <button class="fcp-reset" id="fcpReset">Reset to Defaults</button>
+  </div>
+</div>
+
+<!-- ─── Top nav scroll detection ─────────────────────────────────── -->
+
+<script src="../assets/js/case/nav-tone.js"></script>
+
+<script src="../assets/js/case/uhub-icons.js?v=1"></script>
+<!-- ─── Hero emblem physics ────────────────────────────────────────── -->
+<script>
+(() => {
+  const hero = document.querySelector('.hero');
+  if (!hero) return;
+  const G = window.UHUB_ICONS || {};
+  const GLYPHS = ['leaf','sparkle','hand','swirl','face','sparkle','leaf','hand']
+    .map(k => (G[k] || []).map(d => '<path fill-rule="evenodd" d="' + d + '"/>').join(''))
+    .map(p => '<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">' + p + '</svg>');
+  const POSITIONS = [
+    { x: 0.04, y: 0.12, s: 52 }, { x: 0.92, y: 0.08, s: 40 },
+    { x: 0.88, y: 0.78, s: 56 }, { x: 0.06, y: 0.82, s: 36 },
+    { x: 0.50, y: 0.04, s: 30 }, { x: 0.14, y: 0.44, s: 44 },
+    { x: 0.78, y: 0.42, s: 38 }, { x: 0.46, y: 0.88, s: 32 },
+  ];
+  const container = document.createElement('div');
+  container.className = 'hero-emblems';
+  hero.appendChild(container);
+  const emblems = POSITIONS.map(p => {
+    const el = document.createElement('div');
+    el.className = 'hero-emblem';
+    el.style.width = p.s + 'px';
+    el.style.height = p.s + 'px';
+    el.style.color = 'rgba(255,255,255,0.16)';
+    el.innerHTML = GLYPHS[POSITIONS.indexOf(p) % GLYPHS.length];
+    container.appendChild(el);
+    return { el, hx: p.x, hy: p.y, x: p.x, y: p.y, vx: 0, vy: 0, s: p.s, angle: Math.random() * Math.PI * 2, spin: (Math.random() - 0.5) * 0.008 };
+  });
+  let mx = -1, my = -1, W = 0, H = 0;
+  function resize() {
+    const r = hero.getBoundingClientRect();
+    W = r.width; H = r.height;
+    container.style.width = W + 'px';
+    container.style.height = H + 'px';
+  }
+  window.addEventListener('resize', resize); resize();
+  hero.addEventListener('pointermove', e => {
+    const r = hero.getBoundingClientRect();
+    mx = (e.clientX - r.left) / W;
+    my = (e.clientY - r.top) / H;
+  }, { passive: true });
+  hero.addEventListener('pointerleave', () => { mx = -1; my = -1; });
+  function tick() {
+    requestAnimationFrame(tick);
+    for (const em of emblems) {
+      em.angle += em.spin;
+      const rep = 0.14;
+      if (mx >= 0) {
+        const dx = em.x - mx, dy = em.y - my;
+        const d = Math.sqrt(dx * dx + dy * dy);
+        if (d < 0.22 && d > 0.001) {
+          em.vx += dx / d * rep * (0.22 - d) / 0.22;
+          em.vy += dy / d * rep * (0.22 - d) / 0.22;
+        }
+      }
+      em.vx += (em.hx - em.x) * 0.04;
+      em.vy += (em.hy - em.y) * 0.04;
+      em.vx *= 0.82; em.vy *= 0.82;
+      em.x += em.vx; em.y += em.vy;
+      const px = em.x * W - em.s / 2;
+      const py = em.y * H - em.s / 2;
+      em.el.style.transform = `translate(${px}px,${py}px) rotate(${em.angle}rad)`;
+    }
+  }
+  tick();
+})();
+</script>
+
+<!-- ─── Hero carousel ────────────────────────────────────────────── -->
+
+<script src="../assets/js/case/hero-carousel-c.js"></script>
+
+<!-- ─── Reel rail drag ──────────────────────────────────────────── -->
+
+<script src="../assets/js/case/rail-drag.js"></script>
+
+<!-- ─── Custom cursor ───────────────────────────────────────────── -->
+<script>
+(() => {
+  const cur = document.getElementById('kCursor');
+  if (!cur) return;
+  let cx = -100, cy = -100, tx = -100, ty = -100;
+  document.addEventListener('pointermove', e => {
+    tx = e.clientX; ty = e.clientY;
+    // --accent is white on this page, so the bird vanishes over the light
+    // sections; flip it to Unilever blue whenever the tone underneath is light.
+    const s = e.target.closest && e.target.closest('[data-tone]');
+    cur.classList.toggle('on-light', !!s && s.getAttribute('data-tone') !== 'dark');
+  });
+  const linkSel = 'a, button, [role="button"], .hc-nav, label, .topnav .logo-lockup';
+  document.querySelectorAll(linkSel).forEach(el => {
+    el.addEventListener('pointerenter', () => cur.classList.add('is-link'));
+    el.addEventListener('pointerleave', () => cur.classList.remove('is-link'));
+  });
+  function frame() {
+    cx += (tx - cx) * 0.18;
+    cy += (ty - cy) * 0.18;
+    cur.style.left = cx + 'px';
+    cur.style.top = cy + 'px';
+    requestAnimationFrame(frame);
+  }
+  frame();
+})();
+</script>
+
+<!-- ─── Hero mesh paint canvas ─────────────────────────────────── -->
+<script>
+(() => {
+  const hero = document.querySelector('.hero');
+  if (!hero) return;
+  const canvas = document.createElement('canvas');
+  canvas.className = 'hero-paint';
+  canvas.setAttribute('aria-hidden', 'true');
+  hero.insertBefore(canvas, hero.firstChild);
+  const ctx = canvas.getContext('2d');
+  const SCALE = 0.24;
+  let W = 0, H = 0, w = 0, h = 0, BLUR = 6;
+  function size() {
+    const r = hero.getBoundingClientRect();
+    W = r.width; H = r.height;
+    w = Math.max(2, Math.round(W * SCALE));
+    h = Math.max(2, Math.round(H * SCALE));
+    canvas.width = W; canvas.height = H;
+    BLUR = Math.round(W * SCALE * 0.18);
+  }
+  size();
+  window.addEventListener('resize', size);
+  const TWEAKS = /*EDITMODE-BEGIN*/{
+    "mesh1": "#3B70F5",
+    "mesh2": "#1A3CC8",
+    "mesh3": "#07091A",
+    "heroStop1": "#3B70F5",
+    "heroStop2": "#1A3CC8",
+    "heroStop3": "#07091A",
+    "frequency": 0.55,
+    "speed": 0.75,
+    "noiseType": "curl"
+  }/*EDITMODE-END*/;
+  let PAL = [TWEAKS.mesh1, TWEAKS.mesh2, TWEAKS.mesh3];
+  let FREQ = TWEAKS.frequency, SPEED = TWEAKS.speed, NOISE = TWEAKS.noiseType;
+  const PI = [0, 1, 2, 0, 1, 2];
+  const BLOBS = PI.map((pi) => {
+    const x = 0.12 + Math.random() * 0.76, y = 0.12 + Math.random() * 0.76;
+    return { pi, x, y, hx: x, hy: y, vx: 0, vy: 0, r: 0.24 + Math.random() * 0.18 };
+  });
+  function hash(n) { let x = Math.sin(n) * 43758.5; return x - Math.floor(x); }
+  function noise2(x, y) {
+    const ix = Math.floor(x), iy = Math.floor(y);
+    const fx = x - ix, fy = y - iy;
+    const a = hash(ix + iy * 57), b = hash(ix + 1 + iy * 57);
+    const c = hash(ix + (iy + 1) * 57), d = hash(ix + 1 + (iy + 1) * 57);
+    const ux = fx * fx * (3 - 2 * fx), uy = fy * fy * (3 - 2 * fy);
+    return a + (b - a) * ux + (c - a) * uy + (a - b - c + d) * ux * uy;
+  }
+  function curlX(x, y, t) { return Math.sin(y * FREQ + t) * Math.cos(x * FREQ * 0.7 + t * 0.6); }
+  function curlY(x, y, t) { return Math.cos(x * FREQ + t * 0.8) * Math.sin(y * FREQ * 0.8 + t); }
+
+  let mx = 0.5, my = 0.5, mActive = 0, t0 = performance.now();
+  hero.addEventListener('pointermove', (e) => {
+    const r = hero.getBoundingClientRect();
+    mx = (e.clientX - r.left) / r.width;
+    my = (e.clientY - r.top) / r.height;
+    mActive = 1;
+  }, { passive: true });
+  hero.addEventListener('pointerenter', () => { mActive = 1; start(); });
+  hero.addEventListener('pointerleave', () => { mActive = 0; start(); });
+  let hovering = false;
+  hero.addEventListener('pointerenter', () => { hovering = true; });
+  hero.addEventListener('pointerleave', () => { hovering = false; });
+
+  function frame(now) {
+    if (!hovering) { rafId = null; canvas.style.opacity = '0'; return; }
+    rafId = requestAnimationFrame(frame);
+    const t = (now - t0) * 0.001 * SPEED;
+    for (const bl of BLOBS) {
+      const nx = curlX(bl.x, bl.y, t), ny = curlY(bl.x, bl.y, t);
+      const rep = 0.1;
+      const dx = bl.x - mx, dy = bl.y - my;
+      const dd = Math.sqrt(dx * dx + dy * dy);
+      let rx = 0, ry = 0;
+      if (mActive && dd < 0.35 && dd > 0.001) { rx = dx / dd * rep * (0.35 - dd) / 0.35; ry = dy / dd * rep * (0.35 - dd) / 0.35; }
+      bl.vx += (nx * 0.003 + (bl.hx - bl.x) * 0.012 + rx) * 1;
+      bl.vy += (ny * 0.003 + (bl.hy - bl.y) * 0.012 + ry) * 1;
+      bl.vx *= 0.88; bl.vy *= 0.88;
+      bl.x += bl.vx; bl.y += bl.vy;
+      bl.x = Math.max(0.02, Math.min(0.98, bl.x));
+      bl.y = Math.max(0.02, Math.min(0.98, bl.y));
+    }
+    const offCtx = document.createElement('canvas');
+    offCtx.width = w; offCtx.height = h;
+    const oc = offCtx.getContext('2d');
+    oc.clearRect(0, 0, w, h);
+    for (const bl of BLOBS) {
+      const gx = bl.x * w, gy = bl.y * h, gr = bl.r * Math.min(w, h);
+      const g = oc.createRadialGradient(gx, gy, 0, gx, gy, gr);
+      g.addColorStop(0, PAL[bl.pi] + 'cc');
+      g.addColorStop(1, PAL[bl.pi] + '00');
+      oc.globalCompositeOperation = 'source-over';
+      oc.fillStyle = g;
+      oc.beginPath();
+      oc.arc(gx, gy, gr, 0, Math.PI * 2);
+      oc.fill();
+    }
+    ctx.clearRect(0, 0, W, H);
+    ctx.filter = `blur(${BLUR}px) saturate(1.1)`;
+    ctx.drawImage(offCtx, 0, 0, W, H);
+    ctx.filter = 'none';
+    canvas.style.opacity = hovering ? '0.9' : '0';
+  }
+  let rafId = null;
+  function start() {
+    if (hovering && !rafId) rafId = requestAnimationFrame(frame);
+  }
+
+  // Tweaks panel hookup
+  const HG = ['--hg1', '--hg2', '--hg3'];
+  const heroEl = hero;
+  let HGV = [TWEAKS.heroStop1, TWEAKS.heroStop2, TWEAKS.heroStop3];
+  HG.forEach((v, i) => heroEl.style.setProperty(v, HGV[i]));
+
+  function applyPalette() {
+    PAL = [TWEAKS.mesh1, TWEAKS.mesh2, TWEAKS.mesh3];
+  }
+  function save(obj) { try { localStorage.setItem('uhub-tweaks', JSON.stringify(obj)); } catch(e) {} }
+
+  const sw = [document.getElementById('sw1'), document.getElementById('sw2'), document.getElementById('sw3')];
+  const sv = [document.getElementById('sv1'), document.getElementById('sv2'), document.getElementById('sv3')];
+  const rFreq = document.getElementById('rFreq');
+  const rSpeed = document.getElementById('rSpeed');
+  const selNoise = document.getElementById('selNoise');
+  const sFreq = document.getElementById('sFreq');
+  const sSpeed = document.getElementById('sSpeed');
+
+  function buildRows() {
+    if (!sw[0]) return;
+    sw.forEach((s, i) => { if (s) { s.style.background = HGV[i]; sv[i].textContent = HGV[i]; } });
+    if (rFreq) { rFreq.value = FREQ; sFreq.textContent = FREQ.toFixed(2); }
+    if (rSpeed) { rSpeed.value = SPEED; sSpeed.textContent = SPEED.toFixed(2); }
+    if (selNoise) selNoise.value = NOISE;
+  }
+  buildRows();
+
+  const cols = ['#3B70F5','#1A3CC8','#07091A','#6B3BF5','#F54B4B','#3BF59A','#F5BC3B'];
+  sw.forEach((s, i) => {
+    if (!s) return;
+    let pi = 0;
+    s.addEventListener('click', () => {
+      HGV[i] = cols[pi % cols.length];
+      TWEAKS['mesh' + (i + 1)] = HGV[i];
+      TWEAKS['heroStop' + (i + 1)] = HGV[i];
+      pi++;
+      s.style.background = HGV[i];
+      sv[i].textContent = HGV[i];
+      heroEl.style.setProperty(HG[i], HGV[i]);
+      applyPalette();
+      save({ mesh1: PAL[0], mesh2: PAL[1], mesh3: PAL[2], heroStop1: HGV[0], heroStop2: HGV[1], heroStop3: HGV[2], frequency: FREQ, speed: SPEED, noiseType: NOISE });
+    });
+  });
+  if (rFreq) rFreq.addEventListener('input', () => { FREQ = parseFloat(rFreq.value); sFreq.textContent = FREQ.toFixed(2); });
+  if (rSpeed) rSpeed.addEventListener('input', () => { SPEED = parseFloat(rSpeed.value); sSpeed.textContent = SPEED.toFixed(2); });
+  if (selNoise) selNoise.addEventListener('change', () => { NOISE = selNoise.value; });
+  const fcpReset = document.getElementById('fcpReset');
+  if (fcpReset) fcpReset.addEventListener('click', () => {
+    HGV = ['#3B70F5', '#1A3CC8', '#07091A'];
+    FREQ = 0.55; SPEED = 0.75; NOISE = 'curl';
+    HG.forEach((v, i) => heroEl.style.setProperty(v, HGV[i]));
+    applyPalette(); buildRows();
+    save({ mesh1: PAL[0], mesh2: PAL[1], mesh3: PAL[2], heroStop1: HGV[0], heroStop2: HGV[1], heroStop3: HGV[2], frequency: FREQ, speed: SPEED, noiseType: NOISE });
+  });
+
+  // Expose for host edit mode
+  window.__uhubTweaks = { open: () => document.getElementById('fabCpanel').classList.add('is-open') };
+})();
+</script>
+
+  <script src="../assets/js/case/image-slot.js"></script>
+  <script src="../assets/js/case/uhub-spaces.js?v=1"></script>
+  <script>(()=>{const b=document.getElementById('kBird'),G=window.UHUB_ICONS;if(b&&G&&G.bird)b.innerHTML=G.bird.map(d=>'<path fill-rule="evenodd" d="'+d+'"/>').join('')})();</script>
+<script src="../assets/js/nav.js" defer></script>
+<script src="../assets/js/site-footer.js" defer></script>
+<script src="../assets/js/to-top.js" defer></script>
+</body>
+</html>

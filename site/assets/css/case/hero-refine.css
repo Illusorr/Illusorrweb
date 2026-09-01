@@ -1,0 +1,38 @@
+  /* Hero refinement: smaller, lighter, more elegant title + real breathing
+     room between title, tagline and intro copy. */
+  .hero-title{
+    font-weight:400;
+    font-size:clamp(30px,3.3vw,44px);
+    line-height:1.06;
+    letter-spacing:0.005em;
+    margin:0 0 clamp(30px,3.4vw,52px);
+  }
+  .hero-title .ln-ital{
+    font-weight:400;
+    font-size:0.46em;
+    line-height:1.35;
+    margin-top:0.85em;
+    letter-spacing:0.01em;
+  }
+  .hero-lede{
+    font-size:clamp(15px,1.02vw,17px);
+    line-height:1.68;
+    max-width:52ch;
+  }
+  .proj-tags{ margin-bottom:clamp(44px,5vw,72px); }
+
+  /* Cover media band, sits under the intro copy */
+  .hero-media{ padding:0; }
+  .hero-media .hm-inner{ width:100%; margin:0; }
+  .hero-media .hm-frame{ position:relative; width:100%; height:100vh; height:100svh; overflow:hidden; border-radius:0; background:color-mix(in srgb, var(--ink) 6%, transparent); }
+  .hero-media .hm-cap{
+    display:flex; flex-wrap:wrap; justify-content:space-between; gap:10px 30px;
+    margin:16px auto 0; max-width:var(--maxw); padding:0 var(--gutter) clamp(90px,11vw,170px);
+    font-family:'Outfit',system-ui,sans-serif;
+    font-size:12px; letter-spacing:0.2em; text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+
+  /* Carousel slides already carry their label in .hc-caption, so the
+     placeholder badge is redundant and collided with the .hc-top header. */
+  .hc-slide .ph-label{ display:none; }

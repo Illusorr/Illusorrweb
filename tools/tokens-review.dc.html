@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta charset="utf-8">
+<title>ILLUSORR — colour cluster review</title>
+<style>
+  @font-face{font-family:'Outfit';font-style:normal;font-weight:100 900;font-display:swap;
+    src:url("../site/assets/fonts/outfit-variable.woff") format("woff")}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#05060a;color:#eef1f8;font-family:'Outfit',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:#8ea2ff;text-decoration:none}
+  a:hover{color:#eef1f8}
+</style>
+</helmet>
+
+<div style="max-width:1180px;margin:0 auto;padding:56px 32px 120px">
+
+  <div style="display:flex;flex-direction:column;gap:14px;padding-bottom:28px;border-bottom:1px solid #1b2231">
+    <div style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#4a5268">Architecture · step 6 of the audit</div>
+    <h1 style="font-size:clamp(28px,3.4vw,44px);font-weight:600;letter-spacing:-.02em;line-height:1.05">Colour clusters, for your judgement</h1>
+    <p style="max-width:66ch;font-size:16px;line-height:1.6;color:#8b96ad;text-wrap:pretty">Every colour on the site, grouped where the difference is smaller than the eye reliably sees (CIELAB ΔE ≤ 3.5). Each group is one decision: <strong style="color:#eef1f8;font-weight:500">unify</strong> means all its variants become one token; <strong style="color:#eef1f8;font-weight:500">keep</strong> means the differences are deliberate and I leave them alone. Nothing is applied until you decide, and I apply nothing without showing you the page first.</p>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:#1b2231;border:1px solid #1b2231;margin:28px 0 8px">
+    <div style="background:#05060a;padding:18px 20px;display:flex;flex-direction:column;gap:6px">
+      <div style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#4a5268">Distinct colours</div>
+      <div style="font-size:26px;font-weight:600;letter-spacing:-.02em">497</div>
+    </div>
+    <div style="background:#05060a;padding:18px 20px;display:flex;flex-direction:column;gap:6px">
+      <div style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#4a5268">Groups to review</div>
+      <div style="font-size:26px;font-weight:600;letter-spacing:-.02em">{{ total }}</div>
+    </div>
+    <div style="background:#05060a;padding:18px 20px;display:flex;flex-direction:column;gap:6px">
+      <div style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#4a5268">Colours inside them</div>
+      <div style="font-size:26px;font-weight:600;letter-spacing:-.02em">{{ inCluster }}</div>
+    </div>
+    <div style="background:#05060a;padding:18px 20px;display:flex;flex-direction:column;gap:6px">
+      <div style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#4a5268">Decided</div>
+      <div style="font-size:26px;font-weight:600;letter-spacing:-.02em;color:#8affc4">{{ decidedLabel }}</div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:22px 0 10px;position:sticky;top:0;background:#05060a;z-index:5">
+    <sc-for list="{{ filters }}" as="f" hint-placeholder-count="4">
+      <button onClick="{{ f.pick }}" style="{{ f.style }}">{{ f.label }}</button>
+    </sc-for>
+    <div style="flex:1"></div>
+    <button onClick="{{ acceptAllSafe }}" style="font-family:inherit;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#eef1f8;background:none;border:1px solid rgba(255,255,255,.28);border-radius:100px;padding:9px 17px;cursor:pointer" style-hover="border-color:#4c63ff;background:#4c63ff">Mark all safe as unify</button>
+    <button onClick="{{ exportDecisions }}" style="font-family:inherit;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#05060a;background:#8affc4;border:1px solid #8affc4;border-radius:100px;padding:9px 17px;cursor:pointer" style-hover="filter:brightness(1.1)">Copy decisions</button>
+  </div>
+
+  <sc-if value="{{ exportText }}" hint-placeholder-val="{{ false }}">
+    <div style="border:1px solid rgba(138,255,196,.42);background:rgba(138,255,196,.04);padding:22px;margin:14px 0;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+        <div style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#8affc4">Your decisions</div>
+        <div style="flex:1"></div>
+        <button onClick="{{ copyFallback }}" style="font-family:inherit;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#05060a;background:#8affc4;border:1px solid #8affc4;border-radius:100px;padding:9px 17px;cursor:pointer">Copy again</button>
+        <button onClick="{{ closeExport }}" style="font-family:inherit;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#eef1f8;background:none;border:1px solid rgba(255,255,255,.28);border-radius:100px;padding:9px 17px;cursor:pointer">Close</button>
+      </div>
+      <p style="font-size:13px;line-height:1.55;color:#8b96ad;max-width:70ch;text-wrap:pretty">Paste this back to me in chat. {{ copied }}</p>
+      <textarea id="exportArea" readonly value="{{ exportText }}" onFocus="{{ selectAll }}" style="width:100%;min-height:260px;resize:vertical;background:#05060a;color:#eef1f8;border:1px solid #1b2231;padding:14px;font-family:ui-monospace,Menlo,monospace;font-size:12.5px;line-height:1.55"></textarea>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ loadError }}" hint-placeholder-val="{{ false }}">
+    <div style="border:1px solid #4a5268;padding:20px;color:#8b96ad;font-size:14px;line-height:1.6">{{ loadError }}</div>
+  </sc-if>
+
+  <div style="display:flex;flex-direction:column;gap:14px;margin-top:14px">
+    <sc-for list="{{ shown }}" as="c" hint-placeholder-count="6">
+      <div style="{{ c.cardStyle }}">
+
+        <div style="display:flex;flex-wrap:wrap;gap:18px;align-items:flex-start">
+          <div style="{{ c.leadSwatch }}"></div>
+          <div style="flex:1;min-width:240px;display:flex;flex-direction:column;gap:8px">
+            <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center">
+              <span style="font-family:ui-monospace,Menlo,monospace;font-size:15px;letter-spacing:.02em">{{ c.lead }}</span>
+              <span style="{{ c.badgeStyle }}">{{ c.badge }}</span>
+              <sc-if value="{{ c.token }}" hint-placeholder-val="{{ false }}">
+                <span style="font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#8affc4;border:1px solid rgba(138,255,196,.3);padding:3px 8px">{{ c.token }}</span>
+              </sc-if>
+            </div>
+            <div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#4a5268">{{ c.meta }}</div>
+            <p style="font-size:14px;line-height:1.55;color:#8b96ad;max-width:70ch;text-wrap:pretty">{{ c.why }}</p>
+          </div>
+          <div style="display:flex;gap:8px;flex:none">
+            <button onClick="{{ c.unify }}" style="{{ c.unifyStyle }}">Unify</button>
+            <button onClick="{{ c.keep }}" style="{{ c.keepStyle }}">Keep</button>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(196px,1fr));gap:1px;background:#1b2231;border:1px solid #1b2231;margin-top:18px">
+          <sc-for list="{{ c.members }}" as="m" hint-placeholder-count="4">
+            <div style="background:#080a10;padding:12px;display:flex;gap:11px;align-items:flex-start">
+              <div style="{{ m.swatch }}"></div>
+              <div style="min-width:0;display:flex;flex-direction:column;gap:3px">
+                <div style="font-family:ui-monospace,Menlo,monospace;font-size:12.5px">{{ m.c }}</div>
+                <div style="font-size:11px;color:#4a5268;letter-spacing:.04em">{{ m.uses }}</div>
+                <sc-for list="{{ m.files }}" as="fl" hint-placeholder-count="2">
+                  <div style="font-size:11px;color:#8b96ad;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ fl }}</div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+
+      </div>
+    </sc-for>
+  </div>
+
+  <div style="margin-top:44px;padding-top:26px;border-top:1px solid #1b2231;display:flex;flex-direction:column;gap:10px">
+    <div style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#4a5268">What happens next</div>
+    <p style="max-width:70ch;font-size:14px;line-height:1.6;color:#8b96ad;text-wrap:pretty">Work through the groups, hit <strong style="color:#eef1f8;font-weight:500">Copy decisions</strong>, and paste the result back to me in chat. I apply them one page at a time against <span style="font-family:ui-monospace,Menlo,monospace;font-size:13px;color:#eef1f8">assets/css/base.css</span>, and you approve each page before I touch the next. Your decisions are saved in this browser as you go, so you can close the tab and come back.</p>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const KEY = 'illusorr-token-decisions-v1';
+
+class Component extends DCLogic {
+  state = { data: null, loadError: '', filter: 'all', decisions: {} };
+
+  componentDidMount() {
+    try { this.setState({ decisions: JSON.parse(localStorage.getItem(KEY) || '{}') }); } catch (e) {}
+    fetch('_tokens-view.json')
+      .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(data => this.setState({ data }))
+      .catch(e => this.setState({ loadError: 'Could not load _tokens-view.json (' + e.message + '). It sits next to this file in tools/ — serve the folder over http rather than opening the file directly.' }));
+  }
+
+  decide(lead, value) {
+    const decisions = Object.assign({}, this.state.decisions);
+    if (decisions[lead] === value) delete decisions[lead]; else decisions[lead] = value;
+    this.setState({ decisions });
+    try { localStorage.setItem(KEY, JSON.stringify(decisions)); } catch (e) {}
+  }
+
+  renderVals() {
+    const data = this.state.data || [];
+    const dec = this.state.decisions;
+    const counts = { all: data.length, safe: 0, likely: 0, judgement: 0, open: 0 };
+    data.forEach(c => { counts[c.v]++; if (!dec[c.l]) counts.open++; });
+    const decidedCount = data.filter(c => dec[c.l]).length;
+
+    const pill = (on) => 'font-family:inherit;font-size:12px;letter-spacing:.1em;text-transform:uppercase;border-radius:100px;padding:9px 16px;cursor:pointer;transition:.2s;'
+      + (on ? 'background:#4c63ff;border:1px solid #4c63ff;color:#fff' : 'background:none;border:1px solid rgba(255,255,255,.22);color:#8b96ad');
+
+    const filters = [
+      { k: 'all', label: 'All ' + counts.all },
+      { k: 'safe', label: 'Safe ' + counts.safe },
+      { k: 'likely', label: 'Likely ' + counts.likely },
+      { k: 'judgement', label: 'Judgement ' + counts.judgement },
+      { k: 'open', label: 'Undecided ' + counts.open }
+    ].map(f => ({
+      label: f.label,
+      style: pill(this.state.filter === f.k),
+      pick: () => this.setState({ filter: f.k })
+    }));
+
+    const badgeFor = (v) => {
+      const c = v === 'safe' ? '#8affc4' : v === 'likely' ? '#8ea2ff' : '#ffcf8a';
+      return 'font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:' + c
+        + ';border:1px solid ' + c + '55;padding:3px 9px';
+    };
+    const btn = (active, colour) => 'font-family:inherit;font-size:12px;letter-spacing:.1em;text-transform:uppercase;border-radius:100px;padding:9px 18px;cursor:pointer;transition:.2s;'
+      + (active ? 'background:' + colour + ';border:1px solid ' + colour + ';color:#05060a'
+                : 'background:none;border:1px solid rgba(255,255,255,.22);color:#eef1f8');
+
+    const shown = data
+      .filter(c => this.state.filter === 'all' ? true : this.state.filter === 'open' ? !dec[c.l] : c.v === this.state.filter)
+      .map(c => {
+        const d = dec[c.l];
+        return {
+          lead: c.lead || c.l,
+          token: c.k || '',
+          badge: c.v,
+          badgeStyle: badgeFor(c.v),
+          why: c.w,
+          meta: c.m.length + ' variants · ' + c.t + ' uses · ' + c.f + ' files',
+          cardStyle: 'border:1px solid ' + (d === 'unify' ? 'rgba(138,255,196,.42)' : d === 'keep' ? 'rgba(255,207,138,.42)' : '#1b2231')
+            + ';background:' + (d ? 'rgba(255,255,255,.018)' : 'transparent') + ';padding:22px;transition:.25s',
+          leadSwatch: 'width:64px;height:64px;flex:none;border:1px solid rgba(255,255,255,.14);background:' + c.l,
+          unify: () => this.decide(c.l, 'unify'),
+          keep: () => this.decide(c.l, 'keep'),
+          unifyStyle: btn(d === 'unify', '#8affc4'),
+          keepStyle: btn(d === 'keep', '#ffcf8a'),
+          members: c.m.map(m => ({
+            c: m.c,
+            uses: m.n + (m.n === 1 ? ' use' : ' uses'),
+            swatch: 'width:30px;height:30px;flex:none;border:1px solid rgba(255,255,255,.14);background:' + m.c,
+            files: m.f.concat(m.more ? ['+ ' + m.more + ' more'] : [])
+          }))
+        };
+      });
+
+    return {
+      total: data.length,
+      inCluster: data.reduce((s, c) => s + c.m.length, 0),
+      decidedLabel: decidedCount + ' / ' + data.length,
+      loadError: this.state.loadError,
+      filters,
+      shown,
+      acceptAllSafe: () => {
+        const decisions = Object.assign({}, this.state.decisions);
+        data.filter(c => c.v === 'safe').forEach(c => { decisions[c.l] = 'unify'; });
+        this.setState({ decisions });
+        try { localStorage.setItem(KEY, JSON.stringify(decisions)); } catch (e) {}
+      },
+      exportDecisions: () => {
+        const unify = data.filter(c => dec[c.l] === 'unify');
+        const keep = data.filter(c => dec[c.l] === 'keep');
+        const open = data.filter(c => !dec[c.l]);
+        const lines = ['COLOUR DECISIONS', ''];
+        lines.push('UNIFY (' + unify.length + '):');
+        unify.forEach(c => lines.push('  ' + c.l + '  <- ' + c.m.map(m => m.c).join(' '))); 
+        lines.push('', 'KEEP SEPARATE (' + keep.length + '):');
+        keep.forEach(c => lines.push('  ' + c.l + '  (' + c.m.length + ' variants)'));
+        lines.push('', 'UNDECIDED (' + open.length + '):');
+        open.forEach(c => lines.push('  ' + c.l));
+        const text = lines.join('\n');
+        this.setState({ exportText: text, copied: '' });
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text)
+            .then(() => this.setState({ copied: 'Copied to your clipboard.' }))
+            .catch(() => this.setState({ copied: '' }));
+        }
+      },
+      exportText: this.state.exportText || '',
+      copied: this.state.copied || '',
+      closeExport: () => this.setState({ exportText: '', copied: '' }),
+      selectAll: (e) => { if (e && e.target && e.target.select) e.target.select(); },
+      copyFallback: () => {
+        const ta = document.getElementById('exportArea');
+        const manual = 'Select the text above and copy it manually (⌘C).';
+        /* never claim success unless the box really holds the payload */
+        if (!ta || !ta.value || ta.value.indexOf('COLOUR DECISIONS') !== 0) {
+          this.setState({ copied: manual });
+          return;
+        }
+        ta.focus(); ta.select();
+        let ok = false;
+        try { ok = document.execCommand('copy'); } catch (err) { ok = false; }
+        this.setState({ copied: ok ? 'Copied to your clipboard.' : manual });
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

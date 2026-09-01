@@ -1,0 +1,11 @@
+  /* Italic / light display accents stay in Outfit (Monument file is Black weight only) */
+  .hero-title .ln-ital, .module-title em, .quote { font-family:'Outfit', system-ui, sans-serif; }
+  .cm-lockup { display:flex; flex-direction:column; line-height:1; }
+  .cm-lockup .cm-name { font-family:'Cormorant Garamond', Georgia, serif; font-weight:600;
+    font-size:clamp(21px,1.7vw,27px); letter-spacing:0.015em; color:var(--ink); white-space:nowrap; }
+  .cm-lockup .cm-sub { font-family:'Outfit', system-ui, sans-serif; font-size: 12px; letter-spacing:0.4em;
+    text-transform:uppercase; color:var(--ink-soft); margin-top:7px; padding-left:2px; }
+  .client-lockup .cm-lockup { align-items:flex-end; }
+  .client-lockup .cm-lockup .cm-sub { padding-left:0; padding-right:2px; }
+  .cm-logo-img { height:112px; width:auto; display:block; }
+  @media (max-width: 880px) { .cm-logo-img { height:88px; } }

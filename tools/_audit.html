@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Mobile audit · ILLUSORR case studies</title>
+<style>
+  :root { --bg:#05060c; --ink:#eef1f8; --dim:#8b96ad; --faint:#4a5268; --line:#1b2231; --ok:#8affc4; --warn:#ffd479; --bad:#ff8080; }
+  * { box-sizing:border-box; margin:0; padding:0 }
+  body { background:var(--bg); color:var(--ink); font:14px/1.5 'Outfit',system-ui,sans-serif; padding:28px 22px 80px }
+  h1 { font-size:19px; font-weight:600; letter-spacing:-.01em }
+  .sub { color:var(--dim); font-size:12.5px; margin-top:5px }
+  .bar { margin:18px 0 22px; height:3px; background:var(--line); position:relative; overflow:hidden }
+  .bar i { position:absolute; inset:0 auto 0 0; background:#4c63ff; width:0; transition:width .3s }
+  table { border-collapse:collapse; width:100%; font-size:12.5px; font-variant-numeric:tabular-nums }
+  th { text-align:left; font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--faint); padding:8px 10px 8px 0; border-bottom:1px solid var(--line); white-space:nowrap }
+  td { padding:7px 10px 7px 0; border-bottom:1px solid rgba(27,34,49,.6); vertical-align:top }
+  td.name { color:var(--ink); white-space:nowrap }
+  .ok { color:var(--ok) } .warn { color:var(--warn) } .bad { color:var(--bad) } .dim { color:var(--dim) }
+  .flags { color:var(--warn); font-size:11.5px; line-height:1.45 }
+  iframe { position:fixed; left:-9999px; top:0; width:390px; height:844px; border:0 }
+  .totals { margin-top:22px; padding-top:14px; border-top:1px solid var(--line); color:var(--dim); font-size:12.5px }
+</style>
+</head>
+<body>
+<h1>Mobile audit · case studies</h1>
+<div class="sub" id="sub">Loading each page at 390px with the mobile layer forced on…</div>
+<div class="bar"><i id="pb"></i></div>
+<table>
+  <thead><tr>
+    <th>Page</th><th>KB</th><th>Reqs</th><th>Fonts</th><th>Imgs</th><th>Nodes</th><th>Height</th>
+    <th>Pan</th><th>Overlaps</th><th>Crops</th><th>Tiny type</th><th>Notes</th>
+  </tr></thead>
+  <tbody id="rows"></tbody>
+</table>
+<div class="totals" id="totals"></div>
+<iframe id="probe"></iframe>
+<script>
+const PAGES = ["al-berwaz","anfasic","ant-systems","aquatic-architects","arga","art-post-office","asir-bank","barbie","coffee-merchant","denim","disney-plus","echoes-of-light","egro-coffee","fabrika","hind-al-oud","hob","illusorr-spaces","khaltat","koton-lookbook-russia","lapillus","majestay","marlia-swimwear","metacon","metaculture","metagenus","michael-cinco","monaco-chain","moodie-kiosk","morphellum","optiverse","pera","pixelpaint","pylon","riyadhverse","spaces-breakpoints","trt-metaverse","u-hub-metaverse"];
+const ONLY = new URLSearchParams(location.search).get('only');
+if (ONLY) { const keep = ONLY.split(','); PAGES.length = 0; keep.forEach(k => PAGES.push(k)); }
+const RESULTS = [];
+window.__AUDIT = { done:false, results:RESULTS };
+
+const rows = document.getElementById('rows');
+const cell = (v, cls) => '<td class="' + (cls||'') + '">' + v + '</td>';
+
+function auditDoc(d, w) {
+  const vw = d.documentElement.clientWidth;
+  // force lazy sections to lay out
+  d.querySelectorAll('section, .chapter').forEach(s => { s.style.contentVisibility = 'visible'; });
+
+  const abs = r => ({ t:r.top + w.scrollY, b:r.bottom + w.scrollY, l:r.left, r:r.right });
+  const vis = n => { const cs = getComputedStyle(n); return cs.display !== 'none' && cs.visibility !== 'hidden' && +cs.opacity > .05; };
+
+  // 1 · horizontal pan
+  const pan = d.documentElement.scrollWidth - vw;
+
+  // 2 · text over media overlaps
+  const all = [...d.querySelectorAll('body *')].filter(n => { if (!vis(n)) return false; const r = n.getBoundingClientRect(); return r.width > 8 && r.height > 8; });
+  const media = all.filter(n => /^(IMG|VIDEO)$/.test(n.tagName)).map(n => ({ n, ...abs(n.getBoundingClientRect()) }));
+  // fixed chrome (the topbar, the talk button, overlay controls) floats over
+  // everything by design and must not count as a collision
+  const isFixed = n => { let p = n; while (p && p !== d.body) { if (getComputedStyle(p).position === 'fixed') return true; p = p.parentElement; } return false; };
+  const texts = all.filter(n => [...n.childNodes].some(c => c.nodeType === 3 && c.textContent.trim().length > 2))
+    .filter(n => !isFixed(n))
+    .map(n => ({ n, ...abs(n.getBoundingClientRect()) }));
+  let overlaps = 0; const overlapEg = new Set();
+  // A caption sitting on its own figure is design, not a defect. Only count
+  // collisions between subtrees that were never meant to share space.
+  const DESIGNED = 'figure, .ph, .next, [class*="hero"], [class*="slide"], [class*="card"], [class*="frame"], [class*="banner"], [class*="cover"], [class*="poster"], [class*="tile"], [class*="realm"], [class*="pod"], [class*="vband"], [class*="bleed"]';
+  for (const t of texts) for (const m of media) {
+    if (t.n.contains(m.n) || m.n.contains(t.n)) continue;
+    const shell = m.n.closest(DESIGNED);
+    if (shell && shell.contains(t.n)) continue;
+    if (t.n.closest(DESIGNED) === shell && shell) continue;
+    const ox = Math.min(t.r, m.r) - Math.max(t.l, m.l), oy = Math.min(t.b, m.b) - Math.max(t.t, m.t);
+    if (ox > 8 && oy > 8) { overlaps++; overlapEg.add((t.n.className || t.n.tagName).toString().slice(0, 18) + '×' + (m.n.className || 'img').toString().slice(0, 14)); }
+  }
+
+  // 3 · media scale: heavy crops and oversized downloads
+  let crops = 0, oversize = 0, imgBytes = 0;
+  const cropEg = new Set();
+  d.querySelectorAll('img').forEach(img => {
+    const r = img.getBoundingClientRect();
+    if (!img.naturalWidth || r.width < 40 || r.height < 30) return;
+    const nat = img.naturalWidth / img.naturalHeight, box = r.width / r.height;
+    if (Math.max(nat, box) / Math.min(nat, box) > 1.9) { crops++; cropEg.add((img.className || img.parentElement.className || '').toString().slice(0, 18)); }
+    if (img.naturalWidth > r.width * 3.2) oversize++;
+  });
+
+  // 4 · type floor
+  let tiny = 0;
+  d.querySelectorAll('p, li, span, div, h1, h2, h3, h4, h5, td').forEach(n => {
+    if (!n.childNodes.length) return;
+    const hasText = [...n.childNodes].some(c => c.nodeType === 3 && c.textContent.trim().length > 3);
+    if (!hasText || !vis(n)) return;
+    if (parseFloat(getComputedStyle(n).fontSize) < 11) tiny++;
+  });
+
+  // 5 · structure
+  const has = s => !!d.querySelector(s);
+  const structure = {
+    hero: has('.proj-tags') ? (getComputedStyle(d.querySelector('.proj-tags')).flexDirection === 'row' ? 'shared' : 'other') : 'none',
+    next: has('.next') ? (getComputedStyle(d.querySelector('.next')).display === 'block' ? 'card' : 'overlay') : 'none',
+    credits: has('.credit-list') ? 'plate' : 'none'
+  };
+
+  // 6 · gutter consistency: do the main blocks share one left edge?
+  const edges = {};
+  ['.hero-title', '.module-title', '.ptitle', '.lede', '.meta-bar', '.credit-list'].forEach(sel => {
+    const n = d.querySelector(sel); if (!n) return;
+    const x = Math.round(n.getBoundingClientRect().left);
+    edges[sel] = x;
+  });
+  const xs = Object.values(edges);
+  const gutterSpread = xs.length ? Math.max(...xs) - Math.min(...xs) : 0;
+
+  // 7 · weight
+  const res = w.performance.getEntriesByType('resource');
+  // decodedBodySize survives the cache, transferSize does not
+  const kb = e => (e.decodedBodySize || e.encodedBodySize || e.transferSize || 0) / 1024;
+  const fonts = res.filter(e => /\.(woff2?|ttf|otf)(\?|$)/i.test(e.name));
+  const imgs = res.filter(e => /\.(webp|png|jpe?g|svg)(\?|$)/i.test(e.name));
+  imgs.forEach(e => imgBytes += kb(e));
+  const totalKB = res.reduce((a, e) => a + kb(e), 0);
+
+  return {
+    kb: Math.round(totalKB), reqs: res.length,
+    fonts: fonts.length, fontKB: Math.round(fonts.reduce((a, e) => a + kb(e), 0)),
+    imgs: imgs.length, imgKB: Math.round(imgBytes),
+    srcset: d.querySelectorAll('img[srcset]').length,
+    nodes: d.querySelectorAll('*').length,
+    height: Math.round(d.body.scrollHeight),
+    pan, overlaps, overlapEg: [...overlapEg].slice(0, 3),
+    crops, cropEg: [...cropEg].slice(0, 3), oversize, tiny,
+    structure, gutterSpread, sections: d.querySelectorAll('section').length
+  };
+}
+
+function render() {
+  rows.innerHTML = RESULTS.map(r => {
+    if (r.error) return '<tr>' + cell(r.page, 'name') + '<td colspan="11" class="bad">' + r.error + '</td></tr>';
+    const flags = [];
+    if (r.pan > 1) flags.push('pans ' + r.pan + 'px');
+    if (r.gutterSpread > 4) flags.push('gutter spread ' + r.gutterSpread + 'px');
+    if (r.structure.hero === 'other') flags.push('hero block not shared');
+    if (r.structure.next === 'overlay') flags.push('next is an overlay');
+    if (r.oversize > 6) flags.push(r.oversize + ' images >3× their box');
+    if (r.srcset === 0 && r.imgs > 4) flags.push('no srcset');
+    return '<tr>' +
+      cell(r.page, 'name') +
+      cell(r.kb, r.kb > 4000 ? 'bad' : r.kb > 2000 ? 'warn' : 'ok') +
+      cell(r.reqs, r.reqs > 90 ? 'warn' : 'dim') +
+      cell(r.fonts + ' · ' + r.fontKB + 'KB', r.fonts > 4 ? 'warn' : 'dim') +
+      cell(r.imgs + ' · ' + r.imgKB + 'KB', r.imgKB > 3000 ? 'bad' : r.imgKB > 1500 ? 'warn' : 'dim') +
+      cell(r.nodes, r.nodes > 3000 ? 'warn' : 'dim') +
+      cell((r.height / 1000).toFixed(1) + 'k', r.height > 20000 ? 'warn' : 'dim') +
+      cell(r.pan > 1 ? r.pan + 'px' : 'none', r.pan > 1 ? 'bad' : 'ok') +
+      cell(r.overlaps || 'none', r.overlaps ? 'bad' : 'ok') +
+      cell(r.crops || 'none', r.crops > 2 ? 'warn' : r.crops ? 'dim' : 'ok') +
+      cell(r.tiny || 'none', r.tiny > 4 ? 'warn' : r.tiny ? 'dim' : 'ok') +
+      '<td class="flags">' + (flags.join(' · ') || '<span class="ok">clean</span>') + '</td>' +
+      '</tr>';
+  }).join('');
+
+  const ok = RESULTS.filter(r => !r.error);
+  if (!ok.length) return;
+  const sum = k => ok.reduce((a, r) => a + (r[k] || 0), 0);
+  document.getElementById('totals').innerHTML =
+    ok.length + ' pages audited · median weight ' +
+    Math.round([...ok.map(r => r.kb)].sort((a, b) => a - b)[Math.floor(ok.length / 2)]) + 'KB · ' +
+    'heaviest ' + ok.slice().sort((a, b) => b.kb - a.kb)[0].page + ' at ' + Math.max(...ok.map(r => r.kb)) + 'KB · ' +
+    sum('overlaps') + ' overlaps · ' + ok.filter(r => r.pan > 1).length + ' pages pan · ' +
+    sum('oversize') + ' oversized image loads';
+}
+
+async function run() {
+  const probe = document.getElementById('probe');
+  for (let i = 0; i < PAGES.length; i++) {
+    const page = PAGES[i];
+    document.getElementById('sub').textContent = 'Auditing ' + page + '  (' + (i + 1) + '/' + PAGES.length + ')';
+    document.getElementById('pb').style.width = ((i / PAGES.length) * 100) + '%';
+    try {
+      await new Promise((res, rej) => {
+        const to = setTimeout(() => rej(new Error('timeout')), 12000);
+        probe.onload = () => { clearTimeout(to); res(); };
+        probe.src = '../site/projects/' + page + '.html?mobile=1&audit=' + Date.now();
+      });
+      const w = probe.contentWindow, d = probe.contentDocument;
+      // scroll through so lazy media and observers fire
+      for (let y = 0; y < d.body.scrollHeight; y += 1200) { w.scrollTo(0, y); await new Promise(r => setTimeout(r, 30)); }
+      w.scrollTo(0, 0);
+      await new Promise(r => setTimeout(r, 500));
+      RESULTS.push({ page, ...auditDoc(d, w) });
+    } catch (e) {
+      RESULTS.push({ page, error: e.message || 'failed' });
+    }
+    render();
+  }
+  document.getElementById('pb').style.width = '100%';
+  document.getElementById('sub').textContent = 'Done · ' + RESULTS.length + ' pages, 390px, mobile layer on';
+  window.__AUDIT.done = true;
+}
+run();
+</script>
+</body>
+</html>

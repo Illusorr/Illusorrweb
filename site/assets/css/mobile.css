@@ -1,0 +1,520 @@
+/* ─────────────────────────────────────────────────────────────────────
+   ILLUSORR — mobile layer.
+
+   ADDITIVE ONLY. Remove the <link> and the page is exactly as it was.
+
+   Two kinds of rule, gated differently on purpose:
+
+     html[data-touch] …    FEATURE rules. mobile.js sets that attribute on
+                           devices with no hover-capable pointer — and when
+                           ?mobile=1 is in the URL, so the mobile build can
+                           be reviewed from a desktop browser. Anything that
+                           switches behaviour off belongs here.
+
+     @media (max-width: …) LAYOUT rules only. Narrow is narrow, whatever the
+                           input device, so a small desktop window gets these
+                           too. Never used to disable a feature.
+
+   Load AFTER the page's own styles so it wins on equal specificity.
+   ───────────────────────────────────────────────────────────────────── */
+
+/* ═══ 1. CUSTOM CURSORS ═══════════════════════════════════════════════
+   28 pages hide the real cursor and draw their own follower. On a touch
+   screen that draws nothing and runs a rAF loop forever. Give the cursor
+   back and hide the follower; mobile.js removes the element. */
+html[data-touch] *,
+html[data-touch] *::before,
+html[data-touch] *::after { cursor: auto !important; }
+
+html[data-touch] a,
+html[data-touch] button,
+html[data-touch] [role="button"],
+html[data-touch] summary,
+html[data-touch] label,
+html[data-touch] .adv-cell,
+html[data-touch] .av-cell { cursor: pointer !important; }
+
+html[data-touch] .k-cursor,
+html[data-touch] .cursor,
+html[data-touch] .cursor-dot,
+html[data-touch] .cur,
+html[data-touch] .il-cursor,
+html[data-touch] [class*="cursor-follow"] { display: none !important; }
+
+/* ═══ 1b. THE FIXED TOPBAR MUST BE OPAQUE ═════════════════════════════
+   .is-glass leaves the bar fully transparent (backgroundColor is
+   rgba(0,0,0,0), no backdrop-filter). On a desktop that reads as an
+   overlay above a wide stage. On a phone the whole page scrolls through
+   an 88px band of live content: section labels land beside the logo and
+   the bar's own link underline cuts across them, which is exactly the
+   hairline that appeared under "// ADD-ON RARITY".
+
+   A fixed bar over scrolling content needs its own surface — but a flat
+   opaque slab on top of nav.css's own gradient scrim double-darkens it
+   into a black brick with a hard edge, which is worse than the problem.
+   So: no fill of our own. Deepen the page's existing frosted gradient
+   instead, which already flips to paper over light sections. */
+html[data-touch] .il-topbar,
+html[data-touch] .il-topbar.is-glass {
+  background: transparent !important;
+  border-bottom: 0 !important;
+}
+html[data-touch] .il-topbar::before {
+  opacity: 1;
+  -webkit-backdrop-filter: blur(20px) saturate(1.3);
+  backdrop-filter: blur(20px) saturate(1.3);
+}
+html[data-touch] .il-topbar.on-light::before {
+  background: linear-gradient(180deg, rgba(255, 255, 255, .82), rgba(255, 255, 255, .5) 62%, rgba(255, 255, 255, 0));
+}
+
+/* and nothing may come to rest underneath it: anchored jumps and
+   scroll-snap stops clear the bar's height */
+html[data-touch] section,
+html[data-touch] [id] { scroll-margin-top: 104px; }
+
+/* ═══ 1c. NO TEXT TOUCHES AN EDGE ═════════════════════════════════════
+   A defensive floor, not a layout: any text block that ends up inside a
+   full-bleed or absolutely positioned frame (an overlay caption, a HUD
+   label, a band sitting edge to edge) gets its own inline padding, so a
+   line can never run into the frame's border or the screen edge — even
+   on a container I have not styled by hand.
+
+   Sections that already carry the 20/40px gutter are excluded, so this
+   cannot double up. */
+html[data-touch] .band > p,
+html[data-touch] .band > h2,
+html[data-touch] .band > h3,
+html[data-touch] .full-bleed > p,
+html[data-touch] .overlay-cap,
+html[data-touch] figcaption,
+html[data-touch] .stage-note,
+html[data-touch] .hf-cap {
+  padding-inline: 20px;
+  box-sizing: border-box;
+}
+/* …unless the frame already indents its contents */
+html[data-touch] .scene figcaption,
+html[data-touch] .pin figcaption,
+html[data-touch] .col figcaption,
+html[data-touch] .col .stage-note { padding-inline: 0; }
+
+/* a caption belongs to the media above it, so it sits close — but never
+   flush against the frame's bottom edge */
+html[data-touch] figcaption,
+html[data-touch] .stage-note { padding-top: 12px; }
+
+/* ═══ 1d. THE BACKGROUND FIELD MUST NOT COMPETE WITH THE TYPE ═════════
+   The live noise field (#nf, fixed, z-index:0) is calibrated for a wide
+   screen where the type sits in a column beside its brightest passages.
+   On a phone the copy is full width, so the ribbons run straight under
+   every line and the text loses contrast as the field animates.
+
+
+   A flat scrim over the whole viewport was the wrong instrument: it dulled
+   the page's own blacks and read as a grey sheet. Lowering the canvas's own
+   opacity was wrong for the same reason in reverse: the light sections are
+   PAINTED by the field, so fading it over a black body turned every white
+   passage grey. The tone-down now happens inside the shader, per section,
+   and only on dark ones — see toneDarkSections() in mobile.js. */
+
+/* ═══ 1e. BODY COPY ON DARK ═══════════════════════════════════════════
+   --dim (#8b96ad) is calibrated for a desktop viewing distance on a
+   colour-managed display. On a phone, held further from the eye and often
+   in daylight, it sinks into the ground — especially over the field's
+   moving contours. Raising the token lifts every dark-section paragraph
+   at once; light sections use --cream-dim and are untouched.
+
+   Every value here is already in the palette: body copy takes --ink, and
+   --faint inherits the old --dim, so the three-step hierarchy survives one
+   notch brighter rather than being flattened.
+   Repeated for the scoped roots (#aboutRoot, #workGrid) because each
+   redefines the tokens locally and would otherwise keep the desktop set. */
+html[data-touch],
+html[data-touch] #aboutRoot,
+html[data-touch] #workGrid { --dim: #eef1f8; --faint: #8b96ad; }
+
+html[data-touch] .body,
+html[data-touch] .sb-in p,
+html[data-touch] .cb-in p,
+html[data-touch] .sector-txt .sof,
+html[data-touch] .wwd-slide p { color: var(--ink); }
+html[data-touch] section.light .body,
+html[data-touch] section.light .sector-txt .sof { color: var(--cream-dim); }
+
+/* Light beats are marked with data-bg-theme="light" rather than .light on
+   the home page (the field paints their white). Their body copy and ghost
+   buttons inherit the dark-scheme tokens otherwise, which on white is all
+   but invisible. */
+html[data-touch] [data-bg-theme="light"] .body,
+html[data-touch] [data-bg-theme="light"] p,
+html[data-touch] [data-bg-theme="light"] .wwa-foot .body {
+  color: var(--cream-dim);
+  /* Outfit Light over a live field is too fine to hold its edge at 15px;
+     Regular gives the stroke enough mass to sit on the pattern. */
+  font-weight: 400;
+}
+html[data-touch] [data-bg-theme="light"] .fakebtn {
+  color: var(--cream-ink);
+  background: var(--cream);
+  font-weight: 500;
+}
+html[data-touch] [data-bg-theme="light"] .fakebtn.primary {
+  color: #fff;
+  border-color: var(--indigo);
+}
+
+html[data-touch] .wwd-method {
+  color: var(--ink) !important;
+}
+
+/* ═══ 2. HOVER-ONLY CONTENT ═══════════════════════════════════════════
+   Anything revealed only on hover is unreachable by tap. Show it. */
+html[data-touch] .reveal-on-hover,
+html[data-touch] .hover-only,
+html[data-touch] .card-hover-body {
+  opacity: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
+}
+
+/* ═══ 3. TAP TARGETS ══════════════════════════════════════════════════
+   44px is the floor, on real controls only.
+
+   The :not() list matters: a full-bleed poster or card wrapped in a
+   <button> is not a control, and forcing a min-height on it fights the
+   layout it sits in. Add a class here rather than loosening the rule.
+
+   Position indicators are the other exception. A carousel dot or progress
+   bar is a 6px mark; stretching it to 44px turns it into a tall oval sat
+   over the artwork (the "stretched icons"). They keep their drawn size —
+   the arrows beside them are the real 44px control. */
+html[data-touch] a[class*="btn"],
+html[data-touch] button:not(.fplay):not([class*="poster"]):not([class*="card"]):not([class*="dot"]):not([class*="bar"]):not([class*="pip"]):not([class*="indicator"]):not([class*="tick"]),
+html[data-touch] .il-talk,
+html[data-touch] .il-oclose,
+html[data-touch] input[type="submit"],
+html[data-touch] input[type="button"],
+html[data-touch] .rail-nav > *,
+html[data-touch] .pager > * {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+/* and undo it wherever a page already applied the floor to an indicator */
+html[data-touch] [class*="dot"],
+html[data-touch] [class*="-bar"],
+html[data-touch] [class*="pip"],
+html[data-touch] [class*="indicator"] {
+  min-height: 0 !important;
+}
+html[data-touch] .kt-dots,
+html[data-touch] [class*="dots"] { min-height: 0 !important; align-items: center !important; }
+html[data-touch] .il-burger { min-height: 44px; min-width: 44px; justify-content: center; }
+/* Round controls need BOTH floors. A 34px arrow with min-height:44px alone
+   becomes a 34×44 oval — the "stretched icon" on the case carousels. */
+html[data-touch] [class*="arrow"],
+html[data-touch] [class*="-nav"]:not(nav):not([class*="rail"]),
+html[data-touch] .hc-nav,
+html[data-touch] .fplay,
+html[data-touch] [class*="round"] {
+  min-width: 44px;
+  min-height: 44px;
+  aspect-ratio: 1 / 1;
+  flex: none;
+}
+html[data-touch] nav a,
+html[data-touch] .il-overlay nav a { min-height: 44px; }
+
+/* ═══ 4. MOTION ═══════════════════════════════════════════════════════
+   Reveals stay: they are the site's character and cost nothing. Pinned
+   and parallax sections are what stutter, because they recompute layout
+   on every scroll frame. Unpin them and let the content flow. */
+@media (max-width: 900px) {
+  html[data-touch] .pin,
+  html[data-touch] .hero-scroll,
+  html[data-touch] .pinwrap {
+    height: auto !important;
+    min-height: 0 !important;
+  }
+  html[data-touch] .pin > .pinner,
+  html[data-touch] .pin > .sticky,
+  html[data-touch] .pinwrap > .pinned {
+    position: relative !important;
+    top: auto !important;
+    height: auto !important;
+    min-height: 0 !important;
+    transform: none !important;
+  }
+  /* A hero is the one pinned block that SHOULD stay a full screen tall: it
+     is a title card, not a scroll scene. Unpin it, but leave its height to
+     the page — this blanket min-height:0 was flattening the opening screen
+     to a 55%-tall band and cropping its background render with it. */
+  html[data-touch] .hero-scroll > .hero {
+    position: relative !important;
+    top: auto !important;
+    height: auto !important;
+    transform: none !important;
+  }
+  /* parallax offsets are inline transforms driven by scroll: neutralise */
+  html[data-touch] [data-parallax],
+  html[data-touch] [data-speed] { transform: none !important; }
+  /* full-viewport blocks become content-height so nothing is stranded */
+  html[data-touch] .scene,
+  html[data-touch] .scene.auto { min-height: 0 !important; }
+}
+
+/* ═══ 5. FILM GRAIN, NEBULAE, FOG ═════════════════════════════════════
+   Large blurred layers are the most expensive thing to composite on a
+   phone GPU; the blur radius alone can halve the frame rate. */
+@media (max-width: 900px) {
+  html[data-touch] .grain,
+  html[data-touch] body::after { display: none !important; }
+  html[data-touch] .cosmos .neb,
+  html[data-touch] .cosmos .fog,
+  html[data-touch] .cosmos .fog-2 {
+    filter: none !important;
+    opacity: .5 !important;
+    animation: none !important;
+  }
+  html[data-touch] .fluid { animation: none !important; filter: none !important; }
+}
+
+/* ═══ 6. READABILITY ══════════════════════════════════════════════════
+   Floors, not rewrites: nothing here shrinks text, it only stops text
+   being too small or too tightly packed. This is most of what makes a
+   phone page feel calm rather than cluttered. */
+@media (max-width: 640px) {
+  body { text-wrap: pretty; }
+  p, li { font-size: max(1em, 16px); line-height: 1.6; }
+  h1 { line-height: 1.08; }
+  h2, h3 { line-height: 1.15; }
+  p { max-width: 100%; }
+  /* uppercase tracked labels become unreadable when small */
+  .mono, [class*="eyebrow"], [class*="-lbl"], .dk-lbl {
+    font-size: max(.72em, 11px);
+    letter-spacing: .12em;
+  }
+}
+
+/* ═══ 6b. UPPERCASE BODY COPY ═════════════════════════════════════════
+   A tracked uppercase line is a label. A tracked uppercase PARAGRAPH is
+   a wall. Where the case comes from CSS rather than the text itself, a
+   phone gets sentence case back — the biggest readability gain available
+   here, and it costs nothing on desktop. */
+@media (max-width: 640px) {
+  html[data-touch] p,
+  html[data-touch] li {
+    text-transform: none !important;
+    letter-spacing: normal !important;
+    text-align: left;
+    /* hard breaks authored for a wide column strand words on a phone */
+    white-space: normal !important;
+  }
+}
+
+/* ═══ 6c. NO SIDEWAYS SCROLL ══════════════════════════════════════════
+   One oversized element drags the whole document wider and clips every
+   other section. clip, not hidden, so position:sticky keeps working. */
+html[data-touch] body { overflow-x: clip; }
+html[data-touch] img,
+html[data-touch] video,
+html[data-touch] canvas,
+html[data-touch] svg,
+html[data-touch] iframe { max-width: 100%; }
+
+/* ═══ 7. MULTI-COLUMN GRIDS ══════════════════════════════════════════
+   Any grid under ~420px per column is unreadable. Collapse to one. */
+@media (max-width: 640px) {
+  .cols-2, .cols-3, .cols-4,
+  .holo, .filters, .offers, .mockrow,
+  .grid-2, .grid-3 { grid-template-columns: 1fr !important; }
+}
+
+/* ═══ 8. HORIZONTAL RAILS ════════════════════════════════════════════
+   Drag rails work on touch but need snap and a visible edge so it is
+   obvious there is more to the right. */
+html[data-touch] .rail,
+html[data-touch] .eco-row,
+html[data-touch] [class*="-rail"] {
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+}
+html[data-touch] .rail > *,
+html[data-touch] [class*="-rail"] > * { scroll-snap-align: start; }
+
+/* ═══ 9. DEFERRED MEDIA PLACEHOLDERS ═════════════════════════════════
+   mobile.js turns autoplay video and 3D canvases into tap-to-load
+   placeholders. These style them. */
+.m-defer {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 200px;
+  background: #0a0c12 center / cover no-repeat;
+  border: 1px solid rgba(255, 255, 255, .1);
+  overflow: hidden;
+  /* the box is inserted after first paint, so without a reserved ratio the
+     content below it jumps the moment the script runs — most of the "weird
+     placements" on load. mobile.js copies the real geometry when the media
+     has one; this is the floor for the ones that do not. */
+  content-visibility: visible;
+}
+video[data-src], video[data-m-pending] {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #0a0c12;
+}
+.m-defer > .m-defer-btn {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 0 20px;
+  border: 1px solid rgba(255, 255, 255, .34);
+  border-radius: 100px;
+  background: rgba(8, 10, 16, .62);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  color: #eef1f8;
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-size: 12px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.m-defer > .m-defer-btn::before {
+  content: '';
+  width: 0;
+  height: 0;
+  border-left: 8px solid currentColor;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+}
+.m-defer.is-3d > .m-defer-btn::before {
+  border: 1px solid currentColor;
+  width: 9px;
+  height: 9px;
+  transform: rotate(45deg);
+}
+/* The note used to be pinned bottom-left, where it collided with any
+   caption or HUD label the frame already had. Sitting under the button it
+   cannot overlap anything. */
+.m-defer {
+  grid-auto-flow: row;
+  gap: 12px;
+  align-content: center;
+}
+.m-defer > .m-defer-note {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-size: 11px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: rgba(238, 241, 248, .62);
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   HEAVY DISPLAY FACES DO NOT TRAVEL TO A PHONE
+
+   Fraunces is a 349KB unsubsetted variable TTF and Cormorant Garamond is
+   999KB; each is used for a single pull-quote. On a phone they arrive long
+   after first paint and the quote visibly re-sets when they do — the "font
+   changes a second later" glitch. On touch those quotes take the system
+   serif, which is in the same genre and costs nothing. Desktop is
+   untouched, and subsetted woff2 versions would let this rule go away.
+   ═════════════════════════════════════════════════════════════════════ */
+html[data-touch] .hero-quote .q,
+html[data-touch] .scr-h,
+html[data-touch] .scr-kpi b,
+html[data-touch] [style*="Fraunces"],
+html[data-touch] [style*="Cormorant"] {
+  font-family: ui-serif, Georgia, 'Times New Roman', serif !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   REVEALS DO NOT TRAVEL ON A PHONE
+
+   The scroll reveals fade and slide each element in from an offset, one
+   after another. On a desktop they read as choreography. On a phone the
+   viewport is short, so a whole section animates at once while you are
+   still scrolling into it — and any glance mid-flight shows rows at
+   different indents, captions floating over their images, headlines
+   half-placed. That is the "weird placements on load".
+
+   On touch the content is simply there: no offset, no stagger, no wait.
+   It also removes the risk of a missed observer leaving a block invisible.
+   ═════════════════════════════════════════════════════════════════════ */
+html[data-touch] .reveal,
+html[data-touch] [class*="reveal"],
+html[data-touch] .is-in,
+html[data-touch] [data-reveal] {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+  animation-duration: .01ms !important;
+  animation-delay: 0s !important;
+}
+/* and the small active-state nudges that read as a broken indent when the
+   row happens to be the selected one */
+html[data-touch] .wm-key,
+html[data-touch] .wm-key.is-on,
+html[data-touch] .wm-key:hover { padding-left: 0 !important; }
+/* the legend rows centre their own content, so every row started at a
+   different x depending on how long its list of spaces was — the rows
+   looked floated rather than listed. One left edge for all of them. */
+html[data-touch] .wm-key,
+html[data-touch] .wm-keys,
+html[data-touch] .wm-side {
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+  text-align: left !important;
+}
+html[data-touch] .wmk-t,
+html[data-touch] .wm-key > * { text-align: left !important; }
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   NO ORPHANS
+
+   At 369px a display line breaks wherever it lands, and a two-letter word
+   ("A", "IN", "&") regularly ends up alone on its own line. text-wrap
+   balance distributes a heading's lines evenly instead of filling the
+   first one; pretty does the same job for body copy by pulling the last
+   line up. Both are typographic, not layout — nothing moves.
+   ═════════════════════════════════════════════════════════════════════ */
+html[data-touch] h1,
+html[data-touch] h2,
+html[data-touch] h3,
+html[data-touch] h4,
+html[data-touch] .hero-title,
+html[data-touch] .hero-title .ln,
+html[data-touch] .hero-title .ln-ital,
+html[data-touch] .module-title,
+html[data-touch] .ptitle,
+html[data-touch] .ch-h,
+html[data-touch] .hc-title,
+html[data-touch] .next-inner h3,
+html[data-touch] .quote,
+html[data-touch] .stat-k,
+html[data-touch] .as-n {
+  text-wrap: balance;
+}
+html[data-touch] p,
+html[data-touch] .lede,
+html[data-touch] .pbody,
+html[data-touch] .hero-lede,
+html[data-touch] .body,
+html[data-touch] .who,
+html[data-touch] figcaption {
+  text-wrap: pretty;
+}

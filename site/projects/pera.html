@@ -1,0 +1,2059 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="preload" as="font" type="font/woff" crossorigin href="../assets/fonts/outfit-variable.woff">
+<link rel="stylesheet" href="../assets/css/nav.css">
+<link rel="stylesheet" href="../assets/css/case/fonts.css">
+<title>ILLUSORR × Koton — PERA, the AI Influencer</title>
+<link rel="preload" as="font" type="font/otf" crossorigin href="../assets/projects/shared/fonts/PPMonumentExtended-Black.otf">
+<link rel="preload" as="font" type="font/ttf" crossorigin href="../assets/projects/shared/fonts/Squaresharps-v2.ttf">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+  /* ─────────────────────────────────────────────────────────────────
+     Fonts — same stack as the Illusorr hero
+     Outfit       → body / paragraphs / UI
+     PP Monument  → display headlines
+     Squaresharps → small caps labels, eyebrows, UI chrome
+     ───────────────────────────────────────────────────────────────── */
+  @font-face { font-family:'Outfit'; font-weight:100 900; font-display:swap;
+    src:url('../assets/fonts/outfit-variable.woff') format('woff'); }
+  @font-face { font-family:'PP Monument Extended'; font-weight:400; font-display:swap;
+    src:url('../assets/projects/shared/fonts/PPMonumentExtended-Regular.otf') format('opentype'); }
+  @font-face { font-family:'PP Monument Extended'; font-weight:900; font-display:swap;
+    src:url('../assets/projects/shared/fonts/PPMonumentExtended-Black.otf') format('opentype'); }
+  @font-face { font-family:'Squaresharps'; font-weight:400; font-display:swap;
+    src:url('../assets/projects/shared/fonts/Squaresharps-v2.ttf') format('truetype'); }
+
+  /* ─────────────────────────────────────────────────────────────────
+     Theme tokens — light + dark halves both defined up-front.
+     A section just sets data-tone="light|dark" and gets the full kit.
+     ───────────────────────────────────────────────────────────────── */
+  :root {
+    --light-bg: #eaf2f1;
+    --light-bg-2: #eaf2f1;
+    --light-ink: #14140f;
+    --light-ink-soft: rgba(20, 20, 15, 0.62);
+    --light-ink-faint: rgba(20, 20, 15, 0.14);
+    --light-tile: #e3e2df;
+
+    --dark-bg: #0a0a0c;
+    --dark-bg-2: #111114;
+    --dark-ink: #f3ecdf;
+    --dark-ink-soft: rgba(243, 236, 223, 0.62);
+    --dark-ink-faint: rgba(243, 236, 223, 0.16);
+    --dark-tile: #1c1c20;
+
+    --accent: #ffffff;       /* white highlight accent */
+
+    --maxw: 1440px;
+    --gutter: clamp(20px, 4vw, 64px);
+  }
+
+  /* Subtle noise grain — SVG <feTurbulence> rendered to a tile and
+     drawn at low opacity. Same paper-grain feel as the landing
+     page's WebGL plaster, just static and very quiet. */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    background-size: 220px 220px;
+    opacity: 0.06;
+    mix-blend-mode: multiply;
+  }
+  /* On the dark half, multiply would hide the noise — invert the
+     blend by flagging sections that should use a lighter grain. */
+  section[data-tone="dark"] {
+    position: relative;
+  }
+  section[data-tone="dark"]::after {
+    content: '';
+    position: absolute; inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    background-size: 220px 220px;
+    opacity: 0.035;
+    mix-blend-mode: screen;
+  }
+  /* Keep section content above the dark-half grain overlay. */
+  section[data-tone="dark"] > * { position: relative; z-index: 1; }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 400;
+    background: var(--light-bg);
+    color: var(--light-ink);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  /* Sections inherit a tone from data-tone. */
+  section[data-tone="light"] {
+    background: var(--light-bg);
+    color: var(--light-ink);
+    --bg: var(--light-bg);
+    --bg-2: var(--light-bg-2);
+    --ink: var(--light-ink);
+    --ink-soft: var(--light-ink-soft);
+    --ink-faint: var(--light-ink-faint);
+    --tile: var(--light-tile);
+  }
+  section[data-tone="dark"] {
+    background: var(--dark-bg);
+    color: var(--dark-ink);
+    --bg: var(--dark-bg);
+    --bg-2: var(--dark-bg-2);
+    --ink: var(--dark-ink);
+    --ink-soft: var(--dark-ink-soft);
+    --ink-faint: var(--dark-ink-faint);
+    --tile: var(--dark-tile);
+  }
+
+  .wrap {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+  }
+
+  /* ─────────────────────────────────────────────────────────────────
+     Fixed top nav — matches the Illusorr chrome. Inverts with theme.
+     ───────────────────────────────────────────────────────────────── */
+  .topnav {
+    position: fixed; left: 0; right: 0; top: 0;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 22px var(--gutter);
+    z-index: 50;
+    pointer-events: none;
+    /* mix-blend-mode removed — was creating compositing artefacts with
+       the custom cursor. Theme inversion is now handled per-section
+       via JS toggling .on-dark on the topnav. */
+  }
+  .topnav > * { pointer-events: auto; }
+  .topnav a, .topnav button {
+    text-decoration: none;
+    background: transparent; border: 0;
+    font-family: 'Squaresharps', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+    cursor: pointer;
+    transition: color .35s ease;
+  }
+  .topnav .logo-lockup {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-family: 'Squaresharps', system-ui, sans-serif;
+    font-size: 13px; letter-spacing: 0.30em; text-transform: uppercase;
+    transition: color .35s ease;
+    text-decoration: none;
+  }
+  .topnav .logo-mark {
+    width: 26px; height: 26px;
+    background: url('../assets/projects/shared/illusorr-logo.webp') left center / auto 100% no-repeat;
+  }
+  .topnav.on-dark .logo-mark { filter: invert(1) hue-rotate(180deg); }
+  .topnav .logo-lockup, .topnav a, .topnav button { color: #14140f; }
+  .topnav.on-dark .logo-lockup, .topnav.on-dark a, .topnav.on-dark button { color: #f3ecdf; }
+  .topnav nav { display: flex; gap: 32px; align-items: center; }
+
+  /* ─────────────────────────────────────────────────────────────────
+     HERO — Dogstudio-style: tiny meta strip, gigantic title, scroll cue
+     ───────────────────────────────────────────────────────────────── */
+  section.hero[data-tone="light"] {
+    /* 21:9 letterbox panel, with a floor so it never collapses on phones */
+    width: 100%; max-width: 100vw;
+    aspect-ratio: 21 / 9;
+    min-height: 560px;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: clamp(40px, 8vh, 96px) var(--gutter);
+    position: relative;
+    /* White hero ground, black text. */
+    background: #ffffff;
+  }
+  .hero .hero-inner { max-width: var(--maxw); width: 100%; margin: 0 auto; position: relative; z-index: 2; display: flex; flex-direction: column; flex: 1 1 auto; }
+
+  /* ──────────────────────────────────────────────────────────────────
+     HERO EMBLEM FIELD — small Koton cloverleaf marks scattered around
+     the hero edges. JS gives each one cursor-repulsion physics: the
+     pointer pushes nearby marks away, they spring back home, and idle-
+     spin slowly. Sits behind the hero text (z-index 1), non-interactive.
+     ────────────────────────────────────────────────────────────────── */
+  .hero-emblems {
+    position: absolute;
+    left: 0;
+    pointer-events: none;
+    overflow: visible;
+    z-index: 30;
+  }
+  .hero-emblem {
+    position: absolute;
+    top: 0; left: 0;
+    will-change: transform;
+  }
+  .hero-emblem svg { display: block; width: 100%; height: 100%; }
+  .hero-emblem svg path { fill: currentColor; }
+
+  .eyebrow-row {
+    display: flex; gap: 28px; align-items: center;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 28px;
+  }
+  .eyebrow-row .dotsep {
+    width: 4px; height: 4px; border-radius: 50%;
+    background: var(--ink-faint);
+  }
+
+  .hero-title {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(40px, 5.5vw, 55px);
+    line-height: 0.92;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    margin: 0;
+    color: var(--ink);
+    max-width: 100%;
+    overflow-wrap: break-word;
+  }
+  .hero-title .ln { display: block; max-width: 100%; }
+  /* Italic tagline drops to its own block and is allowed to wrap so it
+     never extends past the viewport / triggers horizontal overflow. */
+  .hero-title .ln-ital {
+    display: block;
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 0.42em;
+    letter-spacing: 0;
+    color: var(--ink-soft);
+    margin-top: 0.28em;
+    max-width: 100%;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    text-transform: none;
+  }
+
+  .hero-foot {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 18px;
+  }
+  .hero-lede {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: clamp(15px, 1.05vw, 17px);
+    line-height: 1.55;
+    color: var(--ink);
+    max-width: 420px;
+    margin: 0;
+  }
+  .hero-lede strong { font-weight: 600; }
+
+  .scroll-cue {
+    justify-self: center;
+    display: inline-flex; flex-direction: column; align-items: center; gap: 10px;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.30em; text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .scroll-cue .line {
+    width: 1px; height: 44px;
+    background: linear-gradient(180deg, transparent 0%, var(--ink) 50%, transparent 100%);
+    background-size: 100% 200%;
+    animation: scrollPulse 1.8s ease-in-out infinite;
+  }
+  @keyframes scrollPulse {
+    0%   { background-position: 0 -100%; }
+    100% { background-position: 0 200%; }
+  }
+
+  .hero-credit {
+    justify-self: end;
+    text-align: right;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--ink-soft);
+    line-height: 1.7;
+  }
+
+  /* ─────────────────────────────────────────────────────────────────
+     PROJECT META — horizontal strip of label/value cells (the
+     "Client / Year / Services" row that anchors every Dogstudio case).
+     ───────────────────────────────────────────────────────────────── */
+  .meta-bar {
+    border-top: 1px solid var(--ink-faint);
+    border-bottom: 1px solid var(--ink-faint);
+    padding: 28px 0;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr 1.4fr 1.4fr 1fr;
+    gap: clamp(20px, 3vw, 48px);
+  }
+  .meta-cell .meta-k {
+    display: block;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 8px;
+  }
+  .meta-cell .meta-v {
+    display: block;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 15px; line-height: 1.5;
+    color: var(--ink);
+  }
+
+  /* ─────────────────────────────────────────────────────────────────
+     COVER — full-bleed featured visual right after the meta bar
+     ───────────────────────────────────────────────────────────────── */
+  .cover {
+    padding: clamp(40px, 6vw, 96px) 0 clamp(90px, 11vw, 170px);
+  }
+  .cover .frame { position: relative; aspect-ratio: 16 / 9; overflow: hidden; }
+  /* The .ph inside .frame must explicitly fill the frame — block
+     children don't inherit the parent's aspect-ratio height. */
+  .cover .frame .ph { position: absolute; inset: 0; }
+
+  /* Placeholder media block — base style for any image/video stand-in.
+     The dotted hatch + corner label tells the user "fill me in". */
+  .ph {
+    position: relative;
+    width: 100%;
+    background: var(--tile);
+    color: var(--ink-soft);
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .ph::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(45deg, var(--ink-faint) 1px, transparent 1px),
+      linear-gradient(-45deg, var(--ink-faint) 1px, transparent 1px);
+    background-size: 14px 14px;
+    opacity: 0.55;
+    pointer-events: none;
+  }
+  .ph::after { content: none; }
+  /* When a .ph holds a real <img> or <video>, drop the dotted hatch +
+     center diamond + label chips so the asset reads cleanly. */
+  .ph.is-filled::before,
+  .ph.is-filled::after { display: none; }
+  .ph > img,
+  .ph > video {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    z-index: 1;
+  }
+  .ph .ph-label {
+    position: absolute; left: 20px; top: 16px;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink);
+    background: var(--bg);
+    padding: 6px 10px;
+    border: 1px solid var(--ink-faint);
+    z-index: 2;
+  }
+  .ph .ph-dim {
+    position: absolute; right: 20px; top: 16px;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 12px; letter-spacing: 0.06em;
+    color: var(--ink-soft);
+    z-index: 2;
+  }
+  .ph[data-kind="video"] .play {
+    position: absolute; left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    width: 72px; height: 72px; border-radius: 50%;
+    border: 1px solid var(--ink-faint);
+    background: var(--bg);
+    display: grid; place-items: center;
+    z-index: 3;
+  }
+  .ph[data-kind="video"] .play::after {
+    content: '';
+    width: 0; height: 0;
+    border-left: 14px solid var(--ink);
+    border-top: 9px solid transparent;
+    border-bottom: 9px solid transparent;
+    margin-left: 4px;
+  }
+  .ph[data-kind="video"]::after { display: none; } /* hide diamond; play takes over */
+  .ph .caption {
+    position: absolute; left: 20px; bottom: 14px; right: 20px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase;
+    color: var(--ink-soft);
+    z-index: 2;
+  }
+
+  /* ─────────────────────────────────────────────────────────────────
+     INTRO — left label + right paragraphs, the classic Dogstudio
+     "01 — The Brief" two-column module
+     ───────────────────────────────────────────────────────────────── */
+  .module {
+    padding: clamp(120px, 15vw, 240px) 0;
+  }
+  .module-head {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: clamp(24px, 5vw, 80px);
+    align-items: start;
+  }
+  .section-num {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .section-num .num {
+    display: block;
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(36px, 4vw, 64px);
+    line-height: 1;
+    color: var(--ink);
+    margin-bottom: 14px;
+    letter-spacing: -0.02em;
+  }
+  .module-title {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(24px, 2.7vw, 42px);
+    line-height: 1.06;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin: 0 0 32px;
+  }
+  .module-title em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--ink-soft);
+    letter-spacing: 0;
+  }
+
+  .lede {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: clamp(18px, 1.45vw, 25px);
+    line-height: 1.45;
+    color: var(--ink);
+    max-width: 46ch;
+    margin: 0;
+    text-wrap: pretty;
+  }
+  .body-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(24px, 4vw, 64px);
+    margin-top: clamp(40px, 5vw, 64px);
+  }
+  .body-grid p {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .body-grid p + p { margin-top: 18px; }
+
+  /* ─────────────────────────────────────────────────────────────────
+     SIDE-BY-SIDE — uneven two-up gallery with offset rhythm
+     ───────────────────────────────────────────────────────────────── */
+  .duo {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: clamp(20px, 3vw, 48px);
+    align-items: end;
+    padding: 0 0 clamp(90px, 11vw, 170px);
+  }
+  .duo .col { display: flex; flex-direction: column; gap: 14px; }
+  .duo .col-a .ph { aspect-ratio: 4 / 3; }
+  .duo .col-b { padding-bottom: clamp(40px, 6vw, 96px); }
+  .duo .col-b .ph { aspect-ratio: 3 / 4; }
+  .duo .cap {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 13px; letter-spacing: 0.01em;
+    color: var(--ink-soft);
+  }
+
+  /* ─────────────────────────────────────────────────────────────────
+     FULL-BLEED MEDIA — edge-to-edge video / image
+     ───────────────────────────────────────────────────────────────── */
+  .bleed {
+    padding: 0 0 clamp(90px, 11vw, 170px);
+  }
+  .bleed .ph { aspect-ratio: 21 / 9; }
+
+  /* ─────────────────────────────────────────────────────────────────
+     PULL QUOTE — large editorial statement on its own panel
+     ───────────────────────────────────────────────────────────────── */
+  .quote-wrap {
+    padding: clamp(120px, 15vw, 240px) 0;
+  }
+  .quote {
+    max-width: 1100px; margin: 0 auto;
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: clamp(28px, 3.8vw, 60px);
+    line-height: 1.08;
+    letter-spacing: -0.005em;
+    color: var(--ink);
+    text-align: left;
+    text-wrap: balance;
+  }
+  .quote .quote-mark {
+    display: block;
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(80px, 10vw, 160px);
+    line-height: 0.6;
+    color: var(--accent);
+    margin-bottom: 24px;
+  }
+  .quote-attrib {
+    margin-top: 40px;
+    display: flex; align-items: center; gap: 14px;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .quote-attrib .rule { width: 36px; height: 1px; background: var(--ink-faint); }
+
+  /* ─────────────────────────────────────────────────────────────────
+     TRIPTYCH — three-up grid with offset middle (gallery moment)
+     ───────────────────────────────────────────────────────────────── */
+  .trio {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: clamp(16px, 2vw, 32px);
+    padding: 0 0 clamp(90px, 11vw, 170px);
+    align-items: start;
+  }
+  .trio .ph { aspect-ratio: 3 / 4; }
+  .trio .col:nth-child(2) { padding-top: clamp(40px, 6vw, 96px); }
+
+  /* ─────────────────────────────────────────────────────────────────
+     PROCESS — three-up of labeled steps (text only)
+     ───────────────────────────────────────────────────────────────── */
+  .process {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(24px, 3vw, 56px);
+    margin-top: clamp(48px, 6vw, 80px);
+    border-top: 1px solid var(--ink-faint);
+    padding-top: clamp(28px, 3vw, 48px);
+  }
+  .process .step {
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .process .step .step-k {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-soft);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .process .step .step-k::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent);
+  }
+  .process .step h4 {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(20px, 1.6vw, 26px);
+    line-height: 1.1;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin: 0;
+    letter-spacing: -0.005em;
+  }
+  .process .step p {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 15px; line-height: 1.6;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* ─────────────────────────────────────────────────────────────────
+     STATS — large numbers + small captions (results)
+     ───────────────────────────────────────────────────────────────── */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(16px, 2vw, 40px);
+    padding: clamp(90px, 11vw, 170px) 0;
+    border-top: 1px solid var(--ink-faint);
+    border-bottom: 1px solid var(--ink-faint);
+  }
+  .stat .stat-n {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(48px, 6.5vw, 108px);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    display: block;
+  }
+  .stat .stat-n .sm { font-size: 0.45em; vertical-align: top; padding-left: 0.2em; color: var(--accent); }
+  .stat .stat-k {
+    display: block;
+    margin-top: 14px;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink-soft);
+    max-width: 18ch;
+  }
+
+  /* ─────────────────────────────────────────────────────────────────
+     CREDITS — wide grid of role/name pairs
+     ───────────────────────────────────────────────────────────────── */
+  .credits {
+    padding: clamp(90px, 11vw, 170px) 0;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: clamp(24px, 5vw, 80px);
+  }
+  .credits .credit-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px 48px;
+  }
+  .credits .credit-row .role {
+    display: block;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 6px;
+  }
+  .credits .credit-row .who {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 15px; line-height: 1.5;
+    color: var(--ink);
+  }
+
+  /* ─────────────────────────────────────────────────────────────────
+     NEXT PROJECT — final full-bleed teaser, hover reveals title
+     ───────────────────────────────────────────────────────────────── */
+  .next {
+    position: relative;
+    min-height: 90vh;
+    display: grid; place-items: center;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .next .next-bg {
+    position: absolute; inset: 0;
+    background: var(--tile);
+    overflow: hidden;
+  }
+  .next .next-bg .ph {
+    position: absolute; inset: 0;
+    transform: scale(1.04);
+    transition: transform 1.2s cubic-bezier(.2,.7,.2,1);
+  }
+  .next:hover .next-bg .ph { transform: scale(1.0); }
+  .next .next-inner {
+    position: relative; z-index: 2;
+    text-align: center;
+    display: flex; flex-direction: column; align-items: center; gap: 22px;
+  }
+  .next .next-k {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.30em; text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .next h3 {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(44px, 7vw, 120px);
+    line-height: 0.95;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+  .next .next-meta {
+    display: flex; gap: 24px;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .next .next-cta {
+    margin-top: 12px;
+    display: inline-flex; align-items: center; gap: 14px;
+    padding: 16px 28px;
+    border: 1px solid var(--ink-faint);
+    border-radius: 999px;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase;
+    color: var(--ink);
+    transition: background .3s ease, color .3s ease, border-color .3s ease;
+  }
+  .next:hover .next-cta {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #0a0a0c;
+  }
+  .next-cta svg { width: 14px; height: 14px; }
+
+  /* ─────────────────────────────────────────────────────────────────
+     FOOTER — small chrome strip at the very bottom
+     ───────────────────────────────────────────────────────────────── */
+  footer.foot {
+    padding: 40px var(--gutter);
+    border-top: 1px solid var(--ink-faint);
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  /* ─────────────────────────────────────────────────────────────────
+     Half-marker — the visual stitch between the light and dark halves
+     ───────────────────────────────────────────────────────────────── */
+  .seam {
+    height: 1px;
+    background: transparent;
+    position: relative;
+  }
+  .seam::before {
+    content: '';
+    position: absolute; left: 50%; top: -10px; transform: translate(-50%, -100%);
+    background: var(--bg);
+    padding: 6px 14px;
+    border: 1px solid var(--ink-faint);
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink-soft);
+    z-index: 4;
+  }
+
+  /* ─────────────────────────────────────────────────────────────────
+     Side rail — tiny chapter / progress indicator on the right
+     ───────────────────────────────────────────────────────────────── */
+  .rail {
+    position: fixed; right: 18px; top: 50%; transform: translateY(-50%);
+    display: flex; flex-direction: column; gap: 8px;
+    z-index: 40;
+  }
+  .rail .rail-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: #14140f;
+    opacity: 0.35;
+    transition: opacity .3s ease, transform .3s ease, background .35s ease;
+  }
+  .rail.on-dark .rail-dot { background: #f3ecdf; }
+  .rail .rail-dot.is-active { opacity: 1; transform: scale(1.5); }
+
+  /* ──────────────────────────────────────────────────────────────────
+     KOTON cursor — a small black disc badge stamped with the
+     wordmark. Sits over the whole page, uses mix-blend-mode:
+     difference so it inverts cleanly against both the light and
+     the dark halves without any per-section logic.
+     ────────────────────────────────────────────────────────────────── */
+  html, body { cursor: none; }
+  a, button, [role="button"], .next, input, label, .topnav .logo-lockup { cursor: none; }
+
+  .koton-cursor {
+    position: fixed;
+    left: 0; top: 0;
+    width: 36px; height: 36px;
+    margin-left: -18px; margin-top: -18px;
+    background: transparent;
+    color: #0a0a0c;
+    display: flex; align-items: center; justify-content: center;
+    pointer-events: none;
+    /* Highest possible 32-bit signed int — the cursor must sit above
+     every other stacking context on the page, no exceptions. */
+    z-index: 2147483647;
+    isolation: isolate;
+    transition: width .35s cubic-bezier(.2,.7,.2,1),
+                height .35s cubic-bezier(.2,.7,.2,1),
+                margin .35s cubic-bezier(.2,.7,.2,1),
+                opacity .25s ease,
+                color .35s ease;
+    will-change: transform, width, height;
+    opacity: 0;
+  }
+  .koton-cursor.is-visible { opacity: 1; }
+
+  /* On dark sections, flip the emblem fill so it always contrasts. */
+  .koton-cursor.on-dark { color: #f3ecdf; }
+
+  /* The Koton emblem — the 4-petal cloverleaf mark, now the whole
+     cursor with no disc behind it. Filled with currentColor so the
+     tone-detection class swaps it between black (over light bg) and
+     cream (over dark bg). */
+  .koton-cursor .km {
+    width: 100%;
+    height: 100%;
+    display: block;
+    color: inherit;
+    transition: opacity .25s ease;
+    animation: kotonSpin 14s linear infinite;
+    animation-play-state: paused;
+  }
+  .koton-cursor .km path { fill: currentColor; }
+
+  /* On text hover, slow continuous rotation. */
+  .koton-cursor.is-text .km { animation-play-state: running; }
+  /* On link hover, hide the emblem and reveal the action verb pill. */
+  .koton-cursor.is-link .km { opacity: 0; }
+
+  @keyframes kotonSpin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+
+  /* Hovering a link reveals an action verb pill anchored to the cursor */
+  .koton-cursor .label-link {
+    position: absolute; left: 50%; top: 50%;
+    transform: translate(-50%, -50%) scale(0.7);
+    opacity: 0;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: currentColor;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase;
+    transition: opacity .25s ease, transform .35s cubic-bezier(.2,.7,.2,1);
+    white-space: nowrap;
+  }
+  .koton-cursor .label-link::after {
+    /* The verb text itself sits in this pseudo so the pill bg can use
+       currentColor (which flips with tone) and the text stays the
+       opposite. JS writes the verb into a CSS var. */
+    content: attr(data-verb);
+    color: #f3ecdf;
+  }
+  .koton-cursor.on-dark .label-link::after { color: #0a0a0c; }
+  .koton-cursor.is-link { width: 0; height: 0; margin-left: 0; margin-top: 0; }
+  .koton-cursor.is-link .label-link { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+
+  /* Press feedback — a small scale-down on the emblem */
+  .koton-cursor.is-down .km { transform: scale(0.78); transition: transform .15s ease; }
+
+  /* Touch devices: no fake cursor */
+  @media (hover: none) {
+    html, body, a, button { cursor: auto; }
+    .koton-cursor { display: none; }
+  }
+
+  /* ─────────────────────────────────────────────────────────────────
+     HERO CAROUSEL — Zara-style full-bleed horizontal image scroll.
+     A flex track of full-width slides slid via translateX; autoplay,
+     drag, arrows, thin progress bars. Breaks out of .wrap to span the
+     full viewport width like a campaign hero.
+     ───────────────────────────────────────────────────────────────── */
+  .hero-carousel {
+    position: relative;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    height: clamp(540px, 88vh, 1040px);
+    overflow: hidden;
+    background: var(--tile);
+    isolation: isolate;
+    touch-action: pan-y;
+    user-select: none;
+  }
+  .hc-track {
+    display: flex;
+    height: 100%;
+    will-change: transform;
+    transition: transform .9s cubic-bezier(.72, 0, .18, 1);
+  }
+  .hc-track.no-anim { transition: none; }
+  .hc-slide {
+    position: relative;
+    flex: 0 0 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  .hc-slide img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center 22%;
+    display: block;
+    transform: scale(1.08);
+    transition: transform 7s cubic-bezier(.2, .6, .2, 1);
+  }
+  .hc-slide.is-active img { transform: scale(1); }
+  /* Soft vignette so the overlaid chrome stays legible over any frame */
+  .hc-slide::after {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(180deg, rgba(8,8,10,0.30) 0%, transparent 24%, transparent 62%, rgba(8,8,10,0.50) 100%);
+    pointer-events: none;
+  }
+
+  /* Eyebrow + counter, top of the hero */
+  .hc-top {
+    position: absolute; left: 0; right: 0; top: 0;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: clamp(20px, 3vw, 40px) clamp(20px, 4vw, 56px);
+    z-index: 6; pointer-events: none;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.26em; text-transform: uppercase;
+    color: #f3ecdf;
+  }
+  .hc-top .hc-count .now { color: #fff; }
+  .hc-top .hc-count .tot { opacity: 0.6; }
+
+  /* Caption block, bottom-left */
+  .hc-caption {
+    position: absolute; left: clamp(20px, 4vw, 56px); bottom: clamp(40px, 5vw, 64px);
+    z-index: 6; max-width: 520px; color: #f3ecdf;
+  }
+  .hc-caption .hc-look {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.26em; text-transform: uppercase;
+    color: rgba(243,236,223,0.78);
+    margin-bottom: 12px;
+  }
+  .hc-caption .hc-title {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(22px, 2.4vw, 40px);
+    line-height: 1.02; letter-spacing: -0.01em; text-transform: uppercase;
+    margin: 0; color: #fff;
+    text-wrap: balance;
+  }
+  .hc-caption .hc-sub {
+    margin-top: 12px;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 400; font-size: 13px; letter-spacing: 0.02em;
+    color: rgba(243,236,223,0.82);
+  }
+
+  /* Prev / next arrows */
+  .hc-nav {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    z-index: 7;
+    width: 54px; height: 54px; border-radius: 50%;
+    border: 1px solid rgba(243,236,223,0.45);
+    background: rgba(10,10,12,0.18);
+    backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+    display: grid; place-items: center;
+    color: #f3ecdf;
+    transition: background .3s ease, border-color .3s ease, transform .3s ease;
+  }
+  .hc-nav:hover { background: var(--accent); border-color: var(--accent); }
+  .hc-nav svg { width: 18px; height: 18px; }
+  .hc-prev { left: clamp(14px, 2vw, 32px); }
+  .hc-next { right: clamp(14px, 2vw, 32px); }
+
+  /* Thin progress bars, bottom-right */
+  .hc-bars {
+    position: absolute; right: clamp(20px, 4vw, 56px); bottom: clamp(44px, 5vw, 68px);
+    z-index: 6; display: flex; gap: 8px; pointer-events: auto;
+  }
+  .hc-bar {
+    width: 38px; height: 2px;
+    background: rgba(243,236,223,0.30);
+    position: relative; overflow: hidden;
+    cursor: none; border: 0; padding: 0;
+  }
+  .hc-bar .fill {
+    position: absolute; inset: 0;
+    transform-origin: left center; transform: scaleX(0);
+    background: #f3ecdf;
+  }
+  .hc-bar.is-active .fill { animation: hcFill var(--hc-dur, 5s) linear forwards; }
+  .hc-bar.is-done .fill { transform: scaleX(1); }
+  @keyframes hcFill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+  @media (max-width: 880px) {
+    .hc-nav { width: 44px; height: 44px; }
+    .hc-bar { width: 26px; }
+    .hc-caption .hc-title { font-size: clamp(20px, 6vw, 30px); }
+  }
+
+  /* Responsive nudges */
+  @media (max-width: 880px) {
+    .meta-bar { grid-template-columns: 1fr 1fr; }
+    .module-head { grid-template-columns: 1fr; }
+    .body-grid { grid-template-columns: 1fr; }
+    .duo { grid-template-columns: 1fr; }
+    .trio { grid-template-columns: 1fr; }
+    .trio .col:nth-child(2) { padding-top: 0; }
+    .process { grid-template-columns: 1fr; }
+    .stats { grid-template-columns: 1fr 1fr; }
+    .credits { grid-template-columns: 1fr; }
+    .credits .credit-list { grid-template-columns: 1fr; }
+    .hero-foot { grid-template-columns: 1fr; gap: 32px; }
+    .hero-credit { justify-self: start; text-align: left; }
+    .rail { display: none; }
+  }
+</style>
+<style id="proj-tags-css">
+  .proj-tags{ display:flex; flex-wrap:wrap; gap:26px 56px; align-items:flex-start; margin-bottom:30px; padding-top:120px; }
+  .proj-tags .ptg{ display:flex; flex-direction:column; gap:14px; }
+  .proj-tags .ptg-k{ font-family:'Outfit',system-ui,sans-serif; font-size: 12px; letter-spacing:0.26em; text-transform:uppercase; color:var(--ink-soft); display:flex; align-items:center; gap:8px; }
+  .proj-tags .ptg-k::before{ content:''; width:14px; height:1px; background:var(--ink-soft); }
+  .proj-tags .ptg-c{ display:flex; flex-wrap:wrap; gap:9px; padding-left:22px; align-items:center; min-height:34px; }
+  .proj-tags .ptg-client .cl-logo{ height:21px; width:auto; object-fit:contain; object-position:left center; }
+  .proj-tags .ptag{ font-family:'Outfit',system-ui,sans-serif; font-weight:500; font-size: 15px; letter-spacing:0.005em; color:var(--ink-bright, var(--ink)); border:1px solid var(--ink-faint); border-radius:8px; padding:8px 14px; line-height:1; white-space:nowrap; background:rgba(125,140,170,0.06); transition:border-color .25s, background .25s; }
+  .proj-tags .ptag:hover{ border-color:color-mix(in srgb, var(--accent) 55%, transparent); background:color-mix(in srgb, var(--accent) 9%, transparent); }
+  .proj-tags .ptag.sector{ border-style:dashed; color:var(--ink); }
+  .hero-head{ display:flex; justify-content:space-between; align-items:flex-start; gap:32px; flex-wrap:wrap; }
+  .client-lockup{ display:flex; flex-direction:column; align-items:flex-end; gap:11px; flex:0 0 auto; }
+  .client-lockup .cl-k{ font-family:'Outfit',system-ui,sans-serif; font-size: 12px; letter-spacing:0.26em; text-transform:uppercase; color:var(--ink-soft); }
+  .client-lockup .cl-logo{ height:30px; width:auto; max-width:220px; object-fit:contain; object-position:right center; }
+</style>
+
+
+<link rel="stylesheet" href="../assets/css/case/hero-refine.css">
+<style id="rhythm-refine">
+  /* Minimal section numbering: a single quiet line, number inline with the
+     label instead of an oversized display figure. */
+  .section-num{
+    display:flex; align-items:baseline; gap:10px;
+    font-family:'Outfit',system-ui,sans-serif;
+    font-size: 12px; letter-spacing:0.2em;
+    text-transform:uppercase; color:var(--ink-soft); font-weight:400;
+  }
+  .section-num .num{
+    display:inline;
+    font-family:'Outfit',system-ui,sans-serif;
+    font-size: 12px; font-weight:400;
+    letter-spacing:0.2em; line-height:1;
+    color:var(--ink-faint); opacity:1; margin:0;
+    -webkit-text-fill-color:currentColor;
+  }
+  /* Visual band between sections, edge to edge. */
+  .vband{ padding:0 0 clamp(90px,11vw,170px); }
+  .vband .vb-frame{ position:relative; width:100%; height:clamp(420px,74vh,900px); overflow:hidden; background:color-mix(in srgb, var(--ink) 6%, transparent); }
+  .vband .vb-cap{
+    display:flex; justify-content:space-between; gap:10px 30px;
+    max-width:var(--maxw); margin:14px auto 0; padding:0 var(--gutter);
+    font-family:'Outfit',system-ui,sans-serif;
+    font-size: 12px; letter-spacing:0.2em; text-transform:uppercase; color:var(--ink-soft);
+  }
+  @media (max-width:760px){ .vband .vb-frame{ height:clamp(340px,56vh,620px); } }
+  /* The hero was pinned by aspect-ratio:21/9, so its height derived from its
+     WIDTH and content could never grow it — that is what pushed the footer and
+     scroll cue down onto the cover band. Drop the ratio, let content set the
+     height, and use justify-content (the real axis on a column flexbox). */
+  section.hero[data-tone]{
+    aspect-ratio:auto;
+    height:auto;
+    min-height:0;
+    justify-content:flex-start;
+    padding-block:clamp(48px,6vh,96px) clamp(20px,2.4vh,36px);
+  }
+  section.hero[data-tone] .hero-inner{ flex:0 0 auto; }
+  /* Push the footer to the bottom only when there is genuine room to spare. */
+  section.hero[data-tone] .hero-foot{ margin-top:clamp(10px,1.4vw,20px); }
+  section.hero[data-tone] .scroll-cue .line{ height:26px; }
+  /* On short viewports the 120px tag gutter is the first thing to give. */
+  @media (max-height:820px){
+    .proj-tags{ padding-top:clamp(40px,7vh,120px); }
+  }
+
+  /* Carousel frames fill their slide. */
+  .hc-slide .ph{position:absolute;inset:0;}
+  /* figure carries a UA default margin: 1em 40px, which breaks the track maths */
+  .hc-slide{ margin:0; }
+  /* slide gutter (was supplied by the figure default margin before the margin:0 fix) */
+  .hc-track{ gap:12px; }
+</style>
+
+<meta name="description" content="Koton Pera: AI campaign and editorial content built to the drop calendar.">
+<link rel="canonical" href="https://illusorr.com/projects/pera.html">
+<meta name="theme-color" content="#05060a">
+<meta property="og:site_name" content="ILLUSORR">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ILLUSORR × Koton, PERA, the AI Influencer">
+<meta property="og:description" content="Koton Pera: AI campaign and editorial content built to the drop calendar.">
+<meta property="og:url" content="https://illusorr.com/projects/pera.html">
+<meta property="og:image" content="https://illusorr.com/assets/img/og/og-default.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CreativeWork","name":"ILLUSORR × Koton — PERA, the AI Influencer","url":"https://illusorr.com/projects/pera.html","creator":{"@type":"Organization","name":"ILLUSORR","url":"https://illusorr.com/"}}</script>
+<!-- phone + tablet: shared touch layer, then the shared case layout -->
+<link rel="stylesheet" href="../assets/css/mobile.css">
+<link rel="stylesheet" href="../assets/css/case/case-mobile.css">
+<script src="../assets/js/mobile.js"></script>
+</head>
+<template id="__bundler_thumbnail" data-bg-color="#0a0a0c">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#0a0a0c"/>
+    <text x="600" y="360" fill="#f3ecdf" font-family="Georgia, serif" font-weight="900" font-size="150" letter-spacing="6" text-anchor="middle">PERA</text>
+    <text x="600" y="455" fill="#ff5b2e" font-family="Georgia, serif" font-style="italic" font-size="46" text-anchor="middle">for Koton</text>
+    <text x="600" y="560" fill="rgba(243,236,223,0.55)" font-family="Arial, sans-serif" font-size="22" letter-spacing="8" text-anchor="middle">ILLUSORR · CASE 008</text>
+  </svg>
+</template>
+
+<body>
+<header class="il-topbar" id="ilTopbar">
+  <a class="il-brand" href="../index.html" aria-label="ILLUSORR home"><span class="il-logo" role="img" aria-label="ILLUSORR"></span></a>
+  <div class="il-right">
+    <a class="il-talk" href="../contact.html">Let's talk</a>
+    <button class="il-burger" id="ilMenuOpen" aria-label="Open menu"><i></i><i></i></button>
+  </div>
+</header>
+<div class="il-overlay" id="ilOverlay">
+  <div class="il-ohead"><span class="il-logo" role="img" aria-label="ILLUSORR"></span><button class="il-oclose" id="ilMenuClose">Close ✕</button></div>
+  <nav>
+    <a href="../index.html">Home <span>01</span></a>
+    <a href="../about.html">About <span>02</span></a>
+    <a href="../sectors.html">Sectors <span>03</span></a>
+    <a href="../work.html">Work <span>04</span></a>
+    <a href="../lab.html">Lab <span>05</span></a>
+    <a href="../collective.html">Collective <span>06</span></a>
+    <a href="../contact.html">Contact <span>07</span></a>
+  </nav>
+  <div class="il-ofoot"><span>Abu Dhabi · Yas Creative Hub</span><span>hello@illusorr.com</span></div>
+</div>
+
+
+  <template id="__bundler_thumbnail" data-bg-color="#eaf2f1">
+    <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+      <rect width="1200" height="800" fill="#eaf2f1"/>
+      <path transform="translate(540 250) scale(3.3)" fill="#14140f" fill-rule="evenodd" clip-rule="evenodd" d="M34.9 14.5C35.4 15.5 35.6 16.6 35.6 17.8C35.6 19 35.3 20.1 34.9 21.1C33.7 23.7 31 25.5 27.9 25.5C26.8 25.5 25.8 25.3 24.9 24.9C25.3 25.8 25.5 26.8 25.5 27.8C25.5 32 22.1 35.5 17.8 35.5H17.7C13.5 35.5 10 32 10 27.8C10 26.8 10.2 25.8 10.6 24.9C9.7 25.3 8.7 25.5 7.7 25.5C6 25.5 4.4 24.9 3.2 24C1.3 22.6 0 20.3 0 17.8C0 15.3 1.3 13 3.2 11.6C4.5 10.7 6.1 10.1 7.7 10.1C8.7 10.1 9.7 10.3 10.6 10.7C10.2 9.8 10 8.7 10 7.7C10 3.5 13.5 0 17.7 0H17.8C22 0 25.5 3.5 25.5 7.7C25.5 8.8 25.3 9.8 24.9 10.7C25.8 10.3 26.9 10.1 28 10.1C31 10.1 33.7 11.9 34.9 14.5ZM20.3 17.8C20.3 16.7 20.5 15.7 20.9 14.8C20 15.2 19 15.4 17.9 15.4H17.8C16.8 15.4 15.8 15.2 14.9 14.8C15.3 15.7 15.5 16.8 15.5 17.8C15.5 18.8 15.3 19.8 14.9 20.7C15.8 20.3 16.7 20.1 17.8 20.1H17.9C18.9 20.1 19.9 20.3 20.8 20.7C20.5 19.8 20.3 18.9 20.3 17.8Z"/>
+      <text x="600" y="560" font-family="Arial, sans-serif" font-weight="900" font-size="72" letter-spacing="8" text-anchor="middle" fill="#14140f">PERA</text>
+      <text x="600" y="610" font-family="Arial, sans-serif" font-size="22" letter-spacing="6" text-anchor="middle" fill="#888">ILLUSORR × KOTON</text>
+    </svg>
+  </template>
+
+  <!-- ─── Fixed chrome ─────────────────────────────────────────────── -->
+  <!-- topnav removed, menu bar to be added separately -->
+
+  <!-- KOTON badge cursor, emblem follows pointer with smooth lerp -->
+  <div class="koton-cursor" id="kCursor" aria-hidden="true">
+    <svg class="km" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M34.9 14.5C35.4 15.5 35.6 16.6 35.6 17.8C35.6 19 35.3 20.1 34.9 21.1C33.7 23.7 31 25.5 27.9 25.5C26.8 25.5 25.8 25.3 24.9 24.9C25.3 25.8 25.5 26.8 25.5 27.8C25.5 32 22.1 35.5 17.8 35.5H17.7C13.5 35.5 10 32 10 27.8C10 26.8 10.2 25.8 10.6 24.9C9.7 25.3 8.7 25.5 7.7 25.5C6 25.5 4.4 24.9 3.2 24C1.3 22.6 0 20.3 0 17.8C0 15.3 1.3 13 3.2 11.6C4.5 10.7 6.1 10.1 7.7 10.1C8.7 10.1 9.7 10.3 10.6 10.7C10.2 9.8 10 8.7 10 7.7C10 3.5 13.5 0 17.7 0H17.8C22 0 25.5 3.5 25.5 7.7C25.5 8.8 25.3 9.8 24.9 10.7C25.8 10.3 26.9 10.1 28 10.1C31 10.1 33.7 11.9 34.9 14.5ZM20.3 17.8C20.3 16.7 20.5 15.7 20.9 14.8C20 15.2 19 15.4 17.9 15.4H17.8C16.8 15.4 15.8 15.2 14.9 14.8C15.3 15.7 15.5 16.8 15.5 17.8C15.5 18.8 15.3 19.8 14.9 20.7C15.8 20.3 16.7 20.1 17.8 20.1H17.9C18.9 20.1 19.9 20.3 20.8 20.7C20.5 19.8 20.3 18.9 20.3 17.8Z"/>
+    </svg>
+    <span class="label-link" data-verb="Click"></span>
+  </div>
+
+  <aside class="rail" aria-hidden="true">
+    <span class="rail-dot is-active" data-i="0"></span>
+    <span class="rail-dot" data-i="1"></span>
+    <span class="rail-dot" data-i="2"></span>
+    <span class="rail-dot" data-i="3"></span>
+    <span class="rail-dot" data-i="4"></span>
+    <span class="rail-dot" data-i="5"></span>
+    <span class="rail-dot" data-i="6"></span>
+    <span class="rail-dot" data-i="7"></span>
+  </aside>
+
+  <!-- ════════════════════════════════════════════════════════════════
+       LIGHT HALF
+       ════════════════════════════════════════════════════════════════ -->
+
+  <!-- 1. HERO -->
+  <section class="hero" data-tone="light" data-rail="0" data-screen-label="01 Hero">
+    <div class="hero-inner">
+      <div class="proj-tags hero-meta">
+        <div class="ptg ptg-client">
+          <div class="ptg-k">Client</div>
+          <div class="ptg-c"><img class="cl-logo" src="../assets/projects/koton-pera/koton-logo.svg" alt="Koton"></div>
+        </div>
+        <div class="ptg" style="margin-left:auto">
+          <div class="ptg-k">Category</div>
+          <div class="ptg-c"><span class="ptag">AI</span><span class="ptag">Production</span><span class="ptag">Branding</span><span class="ptag">Product Development</span></div>
+        </div>
+        <div class="ptg">
+          <div class="ptg-k">Sector</div>
+          <div class="ptg-c"><span class="ptag sector">Fashion</span></div>
+        </div>
+      </div>
+
+      <h1 class="hero-title">
+        <span class="ln">Pera<span class="ln-ital">an influencer, synthesised.</span></span>
+      </h1>
+
+      <p class="hero-lede">
+          <strong>Koton's first AI model</strong>: designed from the face up,
+          trained for consistency across a full editorial wardrobe, and shipped
+          as a campaign-ready talent in a single production cycle.
+        </p>
+
+      <div class="hero-foot">
+        <div class="hero-credit">
+          <div>Pera for Koton / 2025</div>
+          <div>Produced by ILLUSORR</div>
+        </div>
+        <div class="scroll-cue">
+          <span>Scroll</span>
+          <span class="line"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. COVER, Zara-style full-bleed hero carousel -->
+  <section data-tone="light" data-rail="1" data-screen-label="02 Cover">
+    <div class="cover" style="padding: 0 0 clamp(90px, 11vw, 170px);">
+      <div class="hero-carousel" id="heroCarousel" aria-roledescription="carousel" aria-label="Pera for Koton, campaign looks">
+        <div class="hc-track" id="hcTrack">
+          <figure class="hc-slide is-active" data-look="Look 01" data-title="Mint Linen Co-ord" data-sub="SS25 · Roman piazza, vintage Fiat 500">
+            <img src="../assets/projects/koton-pera/ComfyUI_00641_.webp" alt="Pera in mint linen co-ord leaning on a vintage Fiat 500 in a Roman piazza" loading="eager" decoding="async">
+          </figure>
+          <figure class="hc-slide" data-look="Look 02" data-title="Logo Tee & Tiered Denim" data-sub="SS25 · Adriatic coast, lemon terraces">
+            <img src="../assets/projects/koton-pera/ComfyUI_00800_.webp" alt="Pera in a cream logo tee and tiered denim skirt walking a coastal lane" loading="lazy" decoding="async">
+          </figure>
+          <figure class="hc-slide" data-look="Look 03" data-title="Satin Halter & Trouser" data-sub="SS25 · Brushed-steel gallery floor">
+            <img src="../assets/projects/koton-pera/ComfyUI_00674_.webp" alt="Pera in a black satin halter top and wide trouser against a steel wall" loading="lazy" decoding="async">
+          </figure>
+          <figure class="hc-slide" data-look="Look 04" data-title="Tailored Blazer & Mini" data-sub="SS25 · Avenue Montaigne, golden hour">
+            <img src="../assets/projects/koton-pera/ComfyUI_00801_.webp" alt="Pera in a black tailored blazer and mini skirt walking past a Paris storefront" loading="lazy" decoding="async">
+          </figure>
+          <figure class="hc-slide" data-look="Look 05" data-title="Linen Shirting Set" data-sub="SS25 · Marrakech rooftop, terracotta">
+            <img src="../assets/projects/koton-pera/ComfyUI_00619_.webp" alt="Pera in a cream linen shirt and trouser on a terracotta rooftop" loading="lazy" decoding="async">
+          </figure>
+          <figure class="hc-slide" data-look="Look 06" data-title="Olive Halter Mini" data-sub="SS25 · Villa garden, reflecting pool">
+            <img src="../assets/projects/koton-pera/ComfyUI_00796_.webp" alt="Pera laughing in an olive halter mini dress beside a villa reflecting pool" loading="lazy" decoding="async">
+          </figure>
+          <figure class="hc-slide" data-look="Look 07" data-title="Bow-Rib Tank & Pink Denim" data-sub="SS25 · Koton storefront, matcha in hand">
+            <img src="../assets/projects/koton-pera/ComfyUI_00807_-604b791f.webp" alt="Pera in a pink bow-rib tank and pink wide-leg denim outside a Koton storefront" loading="lazy" decoding="async">
+          </figure>
+        </div>
+
+        <div class="hc-top">
+          <span>Pera for Koton · SS25</span>
+          <span class="hc-count"><span class="now" id="hcNow">01</span> <span class="tot" id="hcTot">/ 06</span></span>
+        </div>
+
+        <div class="hc-caption" id="hcCaption" aria-live="polite">
+          <div class="hc-look" id="hcLook">Look 01</div>
+          <h2 class="hc-title" id="hcTitle">Mint Linen Co-ord</h2>
+          <div class="hc-sub" id="hcSub">SS25 · Roman piazza, vintage Fiat 500</div>
+        </div>
+
+        <button class="hc-nav hc-prev" id="hcPrev" aria-label="Previous look">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 5 8 12 15 19"/></svg>
+        </button>
+        <button class="hc-nav hc-next" id="hcNext" aria-label="Next look">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 5 16 12 9 19"/></svg>
+        </button>
+
+        <div class="hc-bars" id="hcBars" aria-hidden="true"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. PROJECT META BAR -->
+  <section data-tone="light" data-rail="1" data-screen-label="03 Meta">
+    <div class="wrap">
+      <div class="meta-bar">
+        <div class="meta-cell">
+          <span class="meta-k">Client</span>
+          <span class="meta-v">Koton<br><a href="https://www.koton.com" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline; text-decoration-color: var(--ink-faint); text-underline-offset: 4px;">koton.com</a></span>
+        </div>
+        <div class="meta-cell">
+          <span class="meta-k">Year</span>
+          <span class="meta-v">March 2025</span>
+        </div>
+        <div class="meta-cell">
+          <span class="meta-k">Services</span>
+          <span class="meta-v">Character Design, LoRA Training, Generative Imaging, AI Direction, Production</span>
+        </div>
+        <div class="meta-cell">
+          <span class="meta-k">Stack</span>
+          <span class="meta-v">FLUX, Stable Diffusion, ComfyUI, Custom LoRAs, Retouch Pipeline</span>
+        </div>
+        <div class="meta-cell">
+          <span class="meta-k">Output</span>
+          <span class="meta-v">Hero Editorial, E-commerce Plates, Social Reels</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- 3. THE BRIEF -->
+  <section class="module" data-tone="light" data-rail="2" data-screen-label="03 Brief">
+    <div class="wrap">
+      <div class="module-head">
+        <div class="section-num">
+          <span class="num">01</span>
+          The Brief
+        </div>
+        <div>
+          <h2 class="module-title">A face that holds, <em>across an entire season.</em></h2>
+          <p class="lede">
+            Koton needed a campaign talent who could be in two cities at once,
+            wear a 40-piece capsule in a week, and never break the brand line.
+          </p>
+          <div class="body-grid">
+            <div>
+              <p>The ask sat at the edge of what was possible in March 2025. Character consistency in diffusion models was still a research problem: every model drift, every new pose, every change in lighting risked a different person showing up on the next frame.</p>
+              <p>We proposed building a person instead of casting one. A face designed from scratch, not lifted from a reference, not stitched from celebrity likeness, trained into a LoRA dataset deep enough that she could be re-summoned into any wardrobe, location, or expression Koton's art direction called for.</p>
+            </div>
+            <div>
+              <p>Her name became Pera. We started from facial geometry and worked outward: bone structure, eye colour, the specific way her hair catches light, a resting expression, a smile that doesn't yet exist in any photograph. Then we trained.</p>
+              <p>The wardrobe came second. Each Koton look became a conditioning input, garment-first, body-second, so the dress led the frame and Pera served the clothing the way an editorial talent would. The whole production cycle ran in our studio. No second-stage retouch house.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. DUO (side-by-side) -->
+  <section data-tone="light" data-rail="3" data-screen-label="04 Visual A">
+    <div class="wrap">
+      <div class="duo">
+        <div class="col col-a">
+          <div class="ph is-filled" style="aspect-ratio: 4 / 5;background: #ffffff;overflow:hidden">
+            <img src="../assets/projects/koton-pera/ComfyUI_00626_-3fc2f7bf.webp" alt="Pera, 3D face topology, wireframe over diffuse pass" loading="lazy" decoding="async" style="object-fit: contain; object-position: center bottom;">
+            <span class="ph-label">Topology · 3D Scan</span>
+            <span class="ph-dim">1508 × 1814 · Wireframe + Diffuse</span>
+            <span class="caption">
+              <span>Pera, base mesh, retopologised from the locked reference seed</span>
+              <span>Quad-dominant · 38k tris</span>
+            </span>
+          </div>
+          <div class="cap">Fig 01, The 3D topology. Locked geometry gave every downstream LoRA pass an anchor it could not drift away from.</div>
+        </div>
+        <div class="col col-b">
+          <div class="ph is-filled" style="aspect-ratio: 4 / 5;overflow:hidden">
+            <img src="../assets/projects/koton-pera/ComfyUI_00637_.webp" alt="Pera expression sheet, eight resting expressions in a 4×2 grid" loading="lazy" decoding="async">
+            <span class="ph-label">Expression Sheet</span>
+            <span class="ph-dim">1856 × 2304 · 8 expressions · 4×2 grid</span>
+            <span class="caption">
+              <span>Neutral · smile · sorrow · scowl · gasp · concern · disgust · doubt</span>
+              <span>Pera LoRA v2 · expression grid</span>
+            </span>
+          </div>
+          <div class="cap">Fig 02, Eight resting expressions trained into Pera's vocabulary, so emotion is a prompt, not a retouch.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. FULL BLEED VIDEO -->
+  <section class="bleed" data-tone="light" data-rail="4" data-screen-label="05 Editorial">
+    <div class="wrap">
+      <div class="ph is-filled" style="aspect-ratio: 16 / 9;overflow:hidden">
+        <img src="../assets/projects/koton-pera/ComfyUI_00613_.webp" alt="Pera editorial diptych, full-body and tight portrait against concrete" loading="lazy" decoding="async">
+        <span class="ph-label">Editorial Diptych</span>
+        <span class="ph-dim">2752 × 1536 · Pera LoRA v3 · FLUX</span>
+        <span class="caption">
+          <span>Wide + tight, SS25 linen tailoring, hand-finished leather mules</span>
+          <span>Frame 02 / 14</span>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════════
+       SEAM, visual stitch between halves
+       ════════════════════════════════════════════════════════════════ -->
+  <div class="seam" aria-hidden="true"></div>
+
+  <!-- ════════════════════════════════════════════════════════════════
+       DARK HALF
+       ════════════════════════════════════════════════════════════════ -->
+
+  <!-- 6. THE APPROACH -->
+  <section class="module" data-tone="dark" data-rail="5" data-screen-label="06 Approach">
+    <div class="wrap">
+      <div class="module-head">
+        <div class="section-num">
+          <span class="num">02</span>
+          The Approach
+        </div>
+        <div>
+          <h2 class="module-title">One face. <em>Forty looks.</em> One model.</h2>
+          <p class="lede">
+            We collapsed casting, fitting, and shoot into a single generative pipeline, with the brand's art direction sitting at the prompt stage, not the cleanup stage.
+          </p>
+        </div>
+      </div>
+
+      <div class="process">
+        <div class="step">
+          <span class="step-k">Phase 01 · Character</span>
+          <h4>Face from Scratch</h4>
+          <p>Bone structure, eye colour, lip line, the resting expression: designed deliberately, not sampled. A reference sheet of 240 plates locked Pera's identity before a single garment entered the system.</p>
+        </div>
+        <div class="step">
+          <span class="step-k">Phase 02 · Training</span>
+          <h4>LoRA Dataset</h4>
+          <p>Multiple LoRA passes on top of FLUX and Stable Diffusion. Tagged for pose, lens, lighting, expression, and wardrobe-agnostic body. In March 2025 this was research-grade work; we shipped it as production.</p>
+        </div>
+        <div class="step">
+          <span class="step-k">Phase 03 · Wardrobe</span>
+          <h4>Garment-First Prompting</h4>
+          <p>Every Koton look entered the pipeline as a conditioning input rather than a finish. The clothing led the frame; Pera served it the way an editorial talent would. Eight hundred plates retouched in-studio.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. GALLERY, two rows of looks -->
+  <section data-tone="dark" data-rail="6" data-screen-label="07 Gallery">
+    <div class="wrap">
+      <div class="trio" style="grid-template-columns: 1fr 1fr; max-width: 1060px; margin: 0 auto;">
+        <div class="col">
+          <div class="ph is-filled">
+            <img src="../assets/projects/koton-pera/ComfyUI_00794_.webp" alt="Pera in a bow-rib pink tank and pink wide-leg denim outside a Koton storefront" loading="lazy" decoding="async">
+            <span class="ph-label">Look 03</span>
+            <span class="ph-dim">Pera LoRA v3 · FLUX</span>
+            <span class="caption"><span>SS25, bow-rib tank, pink wide denim</span><span>Plate 0142</span></span>
+          </div>
+        </div>
+        <div class="col">
+          <div class="ph is-filled">
+            <img src="../assets/projects/koton-pera/ComfyUI_00797_.webp" alt="Pera from behind in the pink Koton tank and wide denim entering a boutique" loading="lazy" decoding="async">
+            <span class="ph-label">Look 05</span>
+            <span class="ph-dim">Pera LoRA v3 · FLUX</span>
+            <span class="caption"><span>SS25, back view, wide pink denim</span><span>Plate 0231</span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="trio">
+        <div class="col">
+          <div class="ph is-filled">
+            <img src="../assets/projects/koton-pera/ComfyUI_00801_.webp" alt="Pera in a black tailored blazer and mini, mid-stride with motion blur on a Paris avenue" loading="lazy" decoding="async">
+            <span class="ph-label">Look 06</span>
+            <span class="ph-dim">Pera LoRA v3 · FLUX</span>
+            <span class="caption"><span>SS25, tailored blazer & mini, in motion</span><span>Plate 0388</span></span>
+          </div>
+        </div>
+        <div class="col">
+          <div class="ph is-filled">
+            <img src="../assets/projects/koton-pera/ComfyUI_00810_.webp" alt="Pera in an olive halter mini dress by a villa reflecting pool" loading="lazy" decoding="async">
+            <span class="ph-label">Look 07</span>
+            <span class="ph-dim">Pera LoRA v3 · FLUX</span>
+            <span class="caption"><span>SS25, olive halter mini, villa garden</span><span>Plate 0512</span></span>
+          </div>
+        </div>
+        <div class="col">
+          <div class="ph is-filled">
+            <img src="../assets/projects/koton-pera/look-11.webp" alt="Pera in cream broderie shirt and shorts co-ord on a tropical beach" loading="lazy" decoding="async">
+            <span class="ph-label">Look 11</span>
+            <span class="ph-dim">Pera LoRA v3 · FLUX</span>
+            <span class="caption"><span>SS25, broderie resort co-ord</span><span>Plate 0571</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. PULL QUOTE -->
+  <section class="quote-wrap" data-tone="dark" data-rail="7" data-screen-label="08 Quote">
+    <div class="wrap">
+      <blockquote class="quote">
+        <span class="quote-mark">“</span>
+        We stopped thinking about her as an asset and started thinking about her
+        as a member of the casting roster. That is the line we crossed.
+        <div class="quote-attrib">
+          <span class="rule"></span>
+          <span>Koton · Brand &amp; Campaign Lead</span>
+        </div>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- 9. FULL BLEED IMAGE -->
+  <section class="bleed" data-tone="dark" data-rail="7" data-screen-label="09 Hero Still">
+    <div class="wrap">
+      <div class="ph is-filled" style="aspect-ratio: 21 / 9;overflow:hidden">
+        <img src="../assets/projects/koton-pera/ComfyUI_00614_.webp" alt="Pera hero plate, wide editorial against concrete column" loading="lazy" decoding="async" style="object-position: center 22%;">
+        <span class="ph-label">Campaign Hero · Final</span>
+        <span class="ph-dim">5760 × 2466 · Print-grade upres</span>
+        <span class="caption">
+          <span>Pera for Koton SS25, final campaign frame, hand-finished in studio</span>
+          <span>16-bit linear · ProPhoto</span>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. RESULTS / STATS -->
+  <section class="module" data-tone="dark" data-rail="7" data-screen-label="10 Results">
+    <div class="wrap">
+      <div class="module-head">
+        <div class="section-num">
+          <span class="num">03</span>
+          The Outcome
+        </div>
+        <div>
+          <h2 class="module-title">Koton's first AI talent. <em>Shipped, on brand.</em></h2>
+        </div>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <span class="stat-n">01<span class="sm">st</span></span>
+          <span class="stat-k">AI-generated influencer ever fronted by the Koton brand</span>
+        </div>
+        <div class="stat">
+          <span class="stat-n">40<span class="sm">+</span></span>
+          <span class="stat-k">Editorial looks produced from a single LoRA-trained character</span>
+        </div>
+        <div class="stat">
+          <span class="stat-n">11<span class="sm">d</span></span>
+          <span class="stat-k">From greenlight to first shippable hero plate</span>
+        </div>
+        <div class="stat">
+          <span class="stat-n">100<span class="sm">%</span></span>
+          <span class="stat-k">In-studio pipeline, no second-stage retouch house</span>
+        </div>
+      </div>
+
+      <div class="credits">
+        <div>
+          <span class="section-num" style="display:block; margin-bottom: 0;">
+            <span class="num" style="font-size: clamp(28px, 3vw, 48px);">04</span>
+            Credits
+          </span>
+        </div>
+        <div class="credit-list">
+          <div class="credit-row"><span class="role">Creative Direction</span><span class="who">ILLUSORR Labs</span></div>
+          <div class="credit-row"><span class="role">Character Design</span><span class="who">ILLUSORR · AI Production</span></div>
+          <div class="credit-row"><span class="role">LoRA Training</span><span class="who">FLUX.1 · SD 1.5 / SDXL fine-tunes</span></div>
+          <div class="credit-row"><span class="role">Generative Imaging</span><span class="who">ILLUSORR Studio Pipeline</span></div>
+          <div class="credit-row"><span class="role">Wardrobe</span><span class="who">Koton SS25 Capsule</span></div>
+          <div class="credit-row"><span class="role">Retouch · Color</span><span class="who">In-studio, ILLUSORR</span></div>
+          <div class="credit-row"><span class="role">Client</span><span class="who">Koton · Brand &amp; Campaign Team</span></div>
+          <div class="credit-row"><span class="role">Year</span><span class="who">March 2025</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. NEXT PROJECT TEASER -->
+  <section class="next" data-tone="dark" data-rail="7" data-screen-label="11 Next">
+    <div class="next-bg">
+      <div class="ph is-filled" style="overflow:hidden"><img src="../assets/img/projects/aquatic-architects/illusorr-aquatic-architects-floating-villa-render-cover.webp" alt="Aquatic Architects, next project" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+    </div>
+    <div class="next-inner">
+      <span class="next-k">Next Project · 009</span>
+      <h3>
+        <span style="display:block">Aquatic Architects</span>
+        <span style="display:block; font-weight:400; font-style:italic; color: var(--ink-soft); letter-spacing: 0;">architecture that floats.</span>
+      </h3>
+      <div class="next-meta">
+        <span>2025</span>
+        <span>·</span>
+        <span>Archi viz</span>
+        <span>·</span>
+        <span>3D</span>
+      </div>
+      <a class="next-cta" href="#">
+        <span>View Case Study</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 19 L19 5"/><polyline points="9 5 19 5 19 15"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <footer class="foot" data-tone="dark">
+    <div>© ILLUSORR Labs · MMXXV</div>
+    <div>Pera for Koton · Case 008</div>
+  </footer>
+
+<script>
+  /* ───────────────────────────────────────────────────────────────────
+     KOTON cursor — smooth-lerped pointer follower. Reads pointer
+     coords, animates the disc toward them with a fixed friction
+     factor (~0.18 per frame). Toggles .is-link when over a clickable
+     element and .is-down on press.
+     ─────────────────────────────────────────────────────────────────── */
+  (function() {
+    if (window.matchMedia('(hover: none)').matches) return;
+    const cursor = document.getElementById('kCursor');
+    if (!cursor) return;
+
+    const pt = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+    const lp = { x: pt.x, y: pt.y };
+    let raf = null;
+    let visible = false;
+
+    function tick() {
+      lp.x += (pt.x - lp.x) * 0.22;
+      lp.y += (pt.y - lp.y) * 0.22;
+      cursor.style.transform = `translate3d(${lp.x}px, ${lp.y}px, 0)`;
+      raf = requestAnimationFrame(tick);
+    }
+    tick();
+
+    window.addEventListener('pointermove', (e) => {
+      pt.x = e.clientX; pt.y = e.clientY;
+      if (!visible) { cursor.classList.add('is-visible'); visible = true; }
+    }, { passive: true });
+
+    // Fade out when the pointer leaves the document area
+    document.addEventListener('mouseleave', () => cursor.classList.remove('is-visible'));
+    document.addEventListener('mouseenter', () => cursor.classList.add('is-visible'));
+
+    /* Tone detection — sample the section under the cursor and flip
+       the disc colours so it always contrasts against the bg. Runs
+       once per pointermove, not per frame, to keep it cheap. */
+    let lastTone = null;
+    function updateTone() {
+      const el = document.elementFromPoint(pt.x, pt.y);
+      if (!el) return;
+      const sec = el.closest('[data-tone]');
+      const tone = sec ? sec.getAttribute('data-tone') : 'light';
+      if (tone === lastTone) return;
+      lastTone = tone;
+      cursor.classList.toggle('on-dark', tone === 'dark');
+    }
+    window.addEventListener('pointermove', updateTone, { passive: true });
+
+    // Press feedback
+    window.addEventListener('pointerdown', () => cursor.classList.add('is-down'));
+    window.addEventListener('pointerup',   () => cursor.classList.remove('is-down'));
+
+    // Detect interactive elements under the cursor and inflate the disc
+    const linkSel = 'a, button, [role="button"], .next, label, .topnav .logo-lockup';
+    document.querySelectorAll(linkSel).forEach(el => {
+      el.addEventListener('pointerenter', () => {
+        cursor.classList.add('is-link');
+        // Pick the verb that best fits the element
+        const label = cursor.querySelector('.label-link');
+        if (label) {
+          let verb = 'Click';
+          if (el.matches('.next') || el.matches('.next-cta')) verb = 'View Case';
+          else if (el.closest('.topnav')) verb = 'Open';
+          else if (el.matches('[href^="http"]')) verb = 'Visit';
+          label.setAttribute('data-verb', verb);
+        }
+      });
+      el.addEventListener('pointerleave', () => cursor.classList.remove('is-link'));
+    });
+
+    /* Text-hover detection — over any heading or paragraph block,
+       flip .is-text so the emblem starts its slow rotation. */
+    const textSel = 'p, h1, h2, h3, h4, blockquote, .lede, .hero-lede, .description, .meta-v, .credit-row .who, .quote, .module-title, .hero-title';
+    document.querySelectorAll(textSel).forEach(el => {
+      // Skip elements that are themselves inside links/buttons (the
+      // link state takes priority and hides the emblem anyway).
+      if (el.closest('a, button, [role="button"], .next')) return;
+      el.addEventListener('pointerenter', () => cursor.classList.add('is-text'));
+      el.addEventListener('pointerleave', () => cursor.classList.remove('is-text'));
+    });
+
+    /* Topnav + rail tone — synced to the section currently behind the
+       fixed chrome (topnav: section at top of viewport; rail: section
+       at viewport middle). Replaces the old mix-blend-mode trick that
+       was clashing with the cursor's compositing. */
+    const topnav = document.querySelector('.topnav');
+    const rail   = document.querySelector('.rail');
+    const sections = Array.from(document.querySelectorAll('section[data-tone]'));
+    function sectionAt(y) {
+      for (const s of sections) {
+        const r = s.getBoundingClientRect();
+        if (r.top <= y && r.bottom >= y) return s;
+      }
+      return null;
+    }
+    function updateChromeTone() {
+      const topSec = sectionAt(40);
+      const midSec = sectionAt(window.innerHeight / 2);
+      if (topnav) topnav.classList.toggle('on-dark', !!topSec && topSec.dataset.tone === 'dark');
+      if (rail)   rail.classList.toggle('on-dark', !!midSec && midSec.dataset.tone === 'dark');
+    }
+    updateChromeTone();
+    window.addEventListener('scroll', () => requestAnimationFrame(updateChromeTone), { passive: true });
+    window.addEventListener('resize', updateChromeTone);
+  })();
+
+  /* ───────────────────────────────────────────────────────────────────
+     Side-rail progress indicator. Each section carries data-rail="N"
+     pointing at one of the eight dots; the closest-to-viewport-center
+     section wins. Pure read of bounding rects, no observer overhead.
+     ─────────────────────────────────────────────────────────────────── */
+  (function() {
+    const sections = Array.from(document.querySelectorAll('[data-rail]'));
+    const dots = Array.from(document.querySelectorAll('.rail-dot'));
+    function tick() {
+      const mid = window.innerHeight / 2;
+      let best = 0, bestDist = Infinity;
+      for (const s of sections) {
+        const r = s.getBoundingClientRect();
+        const c = (r.top + r.bottom) / 2;
+        const d = Math.abs(c - mid);
+        if (d < bestDist) { bestDist = d; best = +s.dataset.rail; }
+      }
+      dots.forEach(d => d.classList.toggle('is-active', +d.dataset.i === best));
+    }
+    tick();
+    window.addEventListener('scroll', () => requestAnimationFrame(tick), { passive: true });
+    window.addEventListener('resize', tick);
+  })();
+
+  /* Smooth in-page anchor scroll for the topnav links (cosmetic — they
+     don't currently point anywhere meaningful, but if you wire them up
+     this gives the soft scroll Dogstudio uses). */
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const id = a.getAttribute('href');
+      if (id.length < 2) return;
+      const t = document.querySelector(id);
+      if (!t) return;
+      e.preventDefault();
+      const y = t.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    });
+  });
+</script>
+
+<!-- ──────────────────────────────────────────────────────────────────────
+     Hero carousel, Zara-style horizontal image scroll. translateX track,
+     autoplay with progress bars, arrows, drag/swipe, keyboard. Pauses on
+     hover and when off-screen.
+     ────────────────────────────────────────────────────────────────────── -->
+<script>
+(() => {
+  const root = document.getElementById('heroCarousel');
+  if (!root) return;
+  const track  = document.getElementById('hcTrack');
+  const slides = Array.from(track.children);
+  const N = slides.length;
+  const DUR = 5200; // ms per slide
+
+  const nowEl = document.getElementById('hcNow');
+  const lookEl = document.getElementById('hcLook');
+  const titleEl = document.getElementById('hcTitle');
+  const subEl = document.getElementById('hcSub');
+  const barsWrap = document.getElementById('hcBars');
+  document.getElementById('hcTot').textContent = '/ ' + String(N).padStart(2, '0');
+  root.style.setProperty('--hc-dur', (DUR / 1000) + 's');
+
+  // Build progress bars
+  const bars = slides.map((_, i) => {
+    const b = document.createElement('button');
+    b.className = 'hc-bar';
+    b.setAttribute('aria-label', 'Go to look ' + (i + 1));
+    b.innerHTML = '<span class="fill"></span>';
+    b.addEventListener('click', () => go(i, true));
+    barsWrap.appendChild(b);
+    return b;
+  });
+
+  let idx = 0, timer = null, paused = false;
+
+  function render() {
+    track.style.transform = `translateX(${-idx * 100}%)`;
+    slides.forEach((s, i) => s.classList.toggle('is-active', i === idx));
+    const s = slides[idx];
+    nowEl.textContent = String(idx + 1).padStart(2, '0');
+    lookEl.textContent = s.dataset.look || '';
+    titleEl.textContent = s.dataset.title || '';
+    subEl.textContent = s.dataset.sub || '';
+    bars.forEach((b, i) => {
+      b.classList.toggle('is-done', i < idx);
+      b.classList.remove('is-active');
+    });
+    // retrigger the active bar fill animation
+    const ab = bars[idx];
+    void ab.offsetWidth;
+    if (!paused) ab.classList.add('is-active');
+  }
+
+  function go(n, user) {
+    idx = (n + N) % N;
+    render();
+    if (user) restart();
+  }
+  function next() { go(idx + 1); }
+  function prev() { go(idx - 1, true); }
+
+  function restart() {
+    clearTimeout(timer);
+    if (paused) return;
+    timer = setTimeout(next, DUR);
+  }
+  // autoplay loop tied to bar animation end-time
+  function loop() { clearTimeout(timer); if (!paused) timer = setTimeout(next, DUR); }
+
+  document.getElementById('hcNext').addEventListener('click', () => { next(); restart(); });
+  document.getElementById('hcPrev').addEventListener('click', prev);
+
+  // Pause on hover
+  root.addEventListener('pointerenter', () => { paused = true; clearTimeout(timer); bars[idx].classList.remove('is-active'); });
+  root.addEventListener('pointerleave', () => { paused = false; render(); restart(); });
+
+  // Drag / swipe
+  let down = false, sx = 0, dx = 0;
+  track.addEventListener('pointerdown', (e) => { down = true; sx = e.clientX; dx = 0; track.classList.add('no-anim'); track.setPointerCapture?.(e.pointerId); });
+  track.addEventListener('pointermove', (e) => {
+    if (!down) return;
+    dx = e.clientX - sx;
+    track.style.transform = `translateX(calc(${-idx * 100}% + ${dx}px))`;
+  });
+  function endDrag() {
+    if (!down) return;
+    down = false; track.classList.remove('no-anim');
+    const th = root.clientWidth * 0.14;
+    if (dx < -th) go(idx + 1, true);
+    else if (dx > th) go(idx - 1, true);
+    else render();
+  }
+  track.addEventListener('pointerup', endDrag);
+  track.addEventListener('pointercancel', endDrag);
+
+  // Keyboard when carousel is in view / focused
+  root.setAttribute('tabindex', '0');
+  root.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') { next(); restart(); }
+    else if (e.key === 'ArrowLeft') { prev(); }
+  });
+
+  // Horizontal wheel / trackpad scroll → advance slides. We capture
+  // horizontal-intent gestures (trackpad swipe or shift+wheel) and
+  // step one slide per gesture, with a cooldown so a single flick
+  // doesn't blow through the whole set.
+  let wheelLock = false;
+  root.addEventListener('wheel', (e) => {
+    const horiz = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : (e.shiftKey ? e.deltaY : 0);
+    if (Math.abs(horiz) < 12) return;       // ignore vertical page scroll
+    e.preventDefault();                      // keep the page from scrolling sideways
+    if (wheelLock) return;
+    wheelLock = true;
+    if (horiz > 0) { next(); restart(); } else { prev(); }
+    setTimeout(() => { wheelLock = false; }, 520);
+  }, { passive: false });
+
+  render();
+
+  // Only autoplay while visible
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(([en]) => {
+      if (en.isIntersecting && !paused) { render(); restart(); }
+      else { clearTimeout(timer); bars[idx].classList.remove('is-active'); }
+    }, { threshold: 0.25 }).observe(root);
+  } else {
+    restart();
+  }
+})();
+</script>
+
+<!-- ──────────────────────────────────────────────────────────────────────
+     Hero emblem pile, black Koton cloverleaf marks with gravity. They
+     fall into the blank pocket on the right of the hero and stack on top
+     of each other (circle collision + floor). The cursor knocks the pile
+     around; gravity re-settles it. Pure DOM + transform, no canvas.
+     ────────────────────────────────────────────────────────────────────── -->
+<script>
+(() => {
+  const hero = document.querySelector('.hero');
+  if (!hero) return;
+
+  const EMBLEM = '<svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M34.9 14.5C35.4 15.5 35.6 16.6 35.6 17.8C35.6 19 35.3 20.1 34.9 21.1C33.7 23.7 31 25.5 27.9 25.5C26.8 25.5 25.8 25.3 24.9 24.9C25.3 25.8 25.5 26.8 25.5 27.8C25.5 32 22.1 35.5 17.8 35.5H17.7C13.5 35.5 10 32 10 27.8C10 26.8 10.2 25.8 10.6 24.9C9.7 25.3 8.7 25.5 7.7 25.5C6 25.5 4.4 24.9 3.2 24C1.3 22.6 0 20.3 0 17.8C0 15.3 1.3 13 3.2 11.6C4.5 10.7 6.1 10.1 7.7 10.1C8.7 10.1 9.7 10.3 10.6 10.7C10.2 9.8 10 8.7 10 7.7C10 3.5 13.5 0 17.7 0H17.8C22 0 25.5 3.5 25.5 7.7C25.5 8.8 25.3 9.8 24.9 10.7C25.8 10.3 26.9 10.1 28 10.1C31 10.1 33.7 11.9 34.9 14.5ZM20.3 17.8C20.3 16.7 20.5 15.7 20.9 14.8C20 15.2 19 15.4 17.9 15.4H17.8C16.8 15.4 15.8 15.2 14.9 14.8C15.3 15.7 15.5 16.8 15.5 17.8C15.5 18.8 15.3 19.8 14.9 20.7C15.8 20.3 16.7 20.1 17.8 20.1H17.9C18.9 20.1 19.9 20.3 20.8 20.7C20.5 19.8 20.3 18.9 20.3 17.8Z"/></svg>';
+
+  const BLACK = '#15161d';
+  const SIZES = [44, 30, 36, 26, 40, 32, 28, 38, 30, 34, 26, 42, 30];
+
+  const layer = document.createElement('div');
+  layer.className = 'hero-emblems';
+  layer.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(layer);
+
+  const items = SIZES.map(s => {
+    const el = document.createElement('div');
+    el.className = 'hero-emblem';
+    el.style.width = el.style.height = s + 'px';
+    el.style.color = BLACK;
+    el.innerHTML = EMBLEM;
+    layer.appendChild(el);
+    return {
+      el, s,
+      r: (s / 2) * 0.74,        // collision radius (tight so they overlap/nest)
+      x: 0, y: 0, vx: 0, vy: 0,
+      rot: Math.random() * 360,
+    };
+  });
+
+  // Pile pocket: the genuinely-empty zone on the right — to the RIGHT of
+  // the headline/tagline and ABOVE the hero-foot (lede / scroll / credit).
+  // Measured from the live element boxes so the walls always keep the
+  // marks clear of text, even when the cursor knocks the pile.
+  const titleEl = hero.querySelector('.hero-title');
+  const eyebrowEl = hero.querySelector('.eyebrow-row');
+  const taglineEl = hero.querySelector('.ln-ital');
+  const peraNode = hero.querySelector('.hero-title .ln');  // holds "Pera" + tagline
+  const ledeEl = hero.querySelector('.hero-lede');
+  const tagRow = hero.querySelector('.proj-tags');
+  const footEl = hero.querySelector('.hero-foot');
+  // Right edge of just the FIRST line of the title (the "PERA" word),
+  // ignoring the wide italic tagline that sits on the line below it.
+  function peraRight() {
+    if (!peraNode) return 0;
+    const range = document.createRange();
+    range.selectNodeContents(peraNode);
+    const rects = range.getClientRects();
+    // first rect = the "Pera" glyph run before the tagline wraps
+    return rects.length ? rects[0].right : 0;
+  }
+  let W = 0, H = 0, leftWall = 0, rightWall = 0, floorY = 0, ceil = 0;
+  let seeded = false;
+  let running = true, raf = 0;
+  function layout() {
+    const hr = hero.getBoundingClientRect();
+    H = hr.height;
+    W = document.documentElement.clientWidth;
+    layer.style.top = hero.offsetTop + 'px';
+    layer.style.width = W + 'px';
+    layer.style.height = H + 'px';
+
+    // Pocket = the empty column to the RIGHT of the text block, running
+    // from just under the tag row down to just above the hero footer.
+    // Measured live so the compact hero keeps the marks clear of copy.
+    const rightOf = (el) => { const r = el && el.getBoundingClientRect(); return r ? r.right - hr.left : 0; };
+    const textRight = Math.max(
+      peraRight() ? peraRight() - hr.left : 0,
+      rightOf(ledeEl)
+    );
+    const tagsBottom = tagRow ? tagRow.getBoundingClientRect().bottom - hr.top : H * 0.22;
+    const footTop = footEl ? footEl.getBoundingClientRect().top - hr.top : H * 0.86;
+    rightWall = W - 18;
+    leftWall  = Math.min(Math.max(W * 0.44, (textRight || W * 0.5) + 40), rightWall - 170);
+    ceil      = tagsBottom + 20;
+    floorY    = footTop - 20;
+
+    // Too little blank room (narrow screens) — hide the pile entirely.
+    const tooTight = (rightWall - leftWall) < 150 || (floorY - ceil) < 90;
+    layer.style.display = tooTight ? 'none' : 'block';
+    running = !tooTight;
+
+    if (!seeded && !tooTight) {
+      const pocketW = rightWall - leftWall;
+      items.forEach((it, i) => {
+        it.x = leftWall + it.r + Math.random() * Math.max(pocketW - it.r * 2, 1);
+        it.y = ceil - 30 - i * 40;
+        it.vx = (Math.random() - 0.5) * 1.2;
+      });
+      seeded = true;
+    } else {
+      for (const it of items) {
+        it.x = Math.max(leftWall + it.r, Math.min(rightWall - it.r, it.x));
+        it.y = Math.min(floorY - it.r, it.y);
+      }
+    }
+    // Restart the physics loop if a previous (tight) layout had stopped it.
+    if (running && !raf) raf = requestAnimationFrame(step);
+  }
+  layout();
+  window.addEventListener('resize', layout);
+  window.addEventListener('load', layout);
+  setTimeout(layout, 350);   // re-measure once fonts settle the title width
+
+  // Pointer tracking in layer-local coords.
+  let mx = -9999, my = -9999, active = false;
+  window.addEventListener('pointermove', (e) => {
+    const r = layer.getBoundingClientRect();
+    mx = e.clientX - r.left; my = e.clientY - r.top;
+    active = mx >= -80 && mx <= r.width + 80 && my >= -80 && my <= r.height + 80;
+  }, { passive: true });
+  window.addEventListener('pointerleave', () => { active = false; });
+
+  const G = 0.55;       // gravity
+  const AIR = 0.992;    // air drag
+  const REST = 0.16;    // floor/wall restitution
+  const FRICT = 0.82;   // ground friction
+  const CURSOR_R = 120; // cursor knock radius
+  const CURSOR_F = 2.6; // cursor knock force
+
+  function step() {
+    if (!running) { raf = 0; return; }
+
+    // Integrate — gravity, cursor knock, air drag.
+    for (const it of items) {
+      it.vy += G;
+      if (active) {
+        const dx = it.x - mx, dy = it.y - my;
+        const d = Math.hypot(dx, dy) || 1;
+        if (d < CURSOR_R) {
+          const f = (1 - d / CURSOR_R) * CURSOR_F;
+          it.vx += (dx / d) * f * 6;
+          it.vy += (dy / d) * f * 6;
+        }
+      }
+      it.vx *= AIR; it.vy *= AIR;
+      it.x += it.vx; it.y += it.vy;
+    }
+
+    // Resolve circle–circle collisions (a few relaxation passes).
+    for (let pass = 0; pass < 4; pass++) {
+      for (let i = 0; i < items.length; i++) {
+        for (let j = i + 1; j < items.length; j++) {
+          const a = items[i], b = items[j];
+          let dx = b.x - a.x, dy = b.y - a.y;
+          let d = Math.hypot(dx, dy);
+          const min = a.r + b.r;
+          if (d < min && d > 0) {
+            const overlap = (min - d) / 2;
+            const nx = dx / d, ny = dy / d;
+            a.x -= nx * overlap; a.y -= ny * overlap;
+            b.x += nx * overlap; b.y += ny * overlap;
+            // exchange a little velocity along the normal
+            const rvx = b.vx - a.vx, rvy = b.vy - a.vy;
+            const vn = rvx * nx + rvy * ny;
+            if (vn < 0) {
+              const imp = vn * 0.5;
+              a.vx += nx * imp; a.vy += ny * imp;
+              b.vx -= nx * imp; b.vy -= ny * imp;
+            }
+          }
+        }
+      }
+      // Walls + floor each pass so stacks stay put.
+      for (const it of items) {
+        if (it.x - it.r < leftWall)  { it.x = leftWall + it.r;  it.vx *= -REST; }
+        if (it.x + it.r > rightWall) { it.x = rightWall - it.r; it.vx *= -REST; }
+        if (it.y + it.r > floorY)    { it.y = floorY - it.r;    it.vy *= -REST; it.vx *= FRICT; }
+        if (it.y - it.r < ceil - 560){ it.y = ceil - 560 + it.r; it.vy *= -REST; }
+      }
+    }
+
+    // Render — rotation rolls a touch with horizontal motion.
+    for (const it of items) {
+      it.rot += it.vx * 0.5;
+      it.el.style.transform =
+        `translate(${(it.x - it.s / 2).toFixed(2)}px, ${(it.y - it.s / 2).toFixed(2)}px) rotate(${it.rot.toFixed(2)}deg)`;
+    }
+    raf = requestAnimationFrame(step);
+  }
+  raf = requestAnimationFrame(step);
+
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(([en]) => {
+      running = en.isIntersecting;
+      if (running && !raf) raf = requestAnimationFrame(step);
+    }, { threshold: 0 }).observe(layer);
+  }
+})();
+</script>
+
+
+  <script src="../assets/js/case/image-slot.js"></script>
+<script src="../assets/js/nav.js" defer></script>
+<script src="../assets/js/site-footer.js" defer></script>
+<script src="../assets/js/to-top.js" defer></script>
+</body>
+</html>

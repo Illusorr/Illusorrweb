@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<link rel="preload" as="font" type="font/otf" crossorigin href="../assets/projects/shared/fonts/PPMonumentExtended-Black.otf">
+<link rel="preload" as="font" type="font/ttf" crossorigin href="../assets/projects/shared/fonts/Squaresharps-v2.ttf">
+
+<link rel="preload" as="font" type="font/woff" crossorigin href="../assets/fonts/outfit-variable.woff">
+<link rel="stylesheet" href="../assets/css/nav.css">
+<link rel="stylesheet" href="../assets/css/case/fonts.css">
+
+<link rel="stylesheet" href="../assets/css/case/cm-type-b.css">
+<title>ILLUSORR × TRT · TRT Metaverse</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+  :root {
+    --light-bg: #eef1f8;
+    --light-bg-2: #E2E6F6;
+    --light-ink: #080A1A;
+    --light-ink-soft: rgba(8, 10, 26, 0.60);
+    --light-ink-faint: rgba(8, 10, 26, 0.13);
+    --light-tile: #e2e6f6;
+    --dark-bg: #07091A;
+    --dark-bg-2: #040615;
+    --dark-ink: #eef1f8;
+    --dark-ink-soft: rgba(238, 240, 252, 0.65);
+    --dark-ink-faint: rgba(238, 240, 252, 0.20);
+    --dark-tile: #0a1033;
+    --accent: #c8102e;
+    --maxw: 1440px;
+    --gutter: clamp(20px, 4vw, 64px);
+  }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    background-size: 220px 220px;
+    opacity: 0.06;
+    mix-blend-mode: multiply;
+  }
+  section[data-tone="dark"] { position: relative; }
+  section[data-tone="dark"]::after {
+    content: '';
+    position: absolute; inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    background-size: 220px 220px;
+    opacity: 0.030;
+    mix-blend-mode: screen;
+  }
+  section[data-tone="dark"]::before {
+    content: '';
+    position: absolute; inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><path d='M100 10 L190 100 L100 190 L10 100 Z' fill='none' stroke='white' stroke-width='0.7'/><path d='M100 55 L145 100 L100 145 L55 100 Z' fill='none' stroke='white' stroke-width='0.4'/><circle cx='100' cy='100' r='2' fill='white' opacity='0.25'/></svg>");
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    opacity: 0.08;
+    mix-blend-mode: screen;
+  }
+  section[data-tone="dark"] > * { position: relative; z-index: 1; }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 400;
+    background: var(--light-bg);
+    color: var(--light-ink);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+  section[data-tone="light"] {
+    background: var(--light-bg);
+    color: var(--light-ink);
+    --bg: var(--light-bg);
+    --bg-2: var(--light-bg-2);
+    --ink: var(--light-ink);
+    --ink-soft: var(--light-ink-soft);
+    --ink-faint: var(--light-ink-faint);
+    --tile: var(--light-tile);
+  }
+  section[data-tone="dark"] {
+    background: var(--dark-bg);
+    color: var(--dark-ink);
+    --bg: var(--dark-bg);
+    --bg-2: var(--dark-bg-2);
+    --ink: var(--dark-ink);
+    --ink-soft: var(--dark-ink-soft);
+    --ink-faint: var(--dark-ink-faint);
+    --tile: var(--dark-tile);
+  }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter); }
+
+  /* ── Top nav ── */
+  .topnav {
+    position: fixed; left: 0; right: 0; top: 0;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 22px var(--gutter);
+    z-index: 50;
+    pointer-events: none;
+  }
+  .topnav > * { pointer-events: auto; }
+  .topnav a, .topnav button {
+    text-decoration: none;
+    background: transparent; border: 0;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase;
+    cursor: pointer;
+    transition: color .35s ease;
+  }
+  .topnav .logo-lockup {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-family: 'Squaresharps', system-ui, sans-serif;
+    font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase;
+    transition: color .35s ease;
+    text-decoration: none;
+  }
+  .topnav .logo-mark { width: 30px; height: 30px; display: inline-flex; align-items: center; justify-content: center; }
+  .topnav .logo-mark img { width: 100%; height: 100%; object-fit: contain; display: block; }
+  .topnav .logo-lockup, .topnav a, .topnav button { color: #080A1A; }
+  .topnav.on-dark .logo-lockup, .topnav.on-dark a, .topnav.on-dark button { color: #eef1f8; }
+  .topnav nav { display: flex; gap: 32px; align-items: center; }
+
+  /* ── Hero ── */
+  section.hero[data-tone="dark"] {
+    width: 100%; max-width: 100vw;
+    aspect-ratio: 21 / 9;
+    min-height: 560px;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: clamp(24px, 4vh, 56px) var(--gutter);
+    position: relative;
+    --hg1: #0B3B47; --hg2: #12202b; --hg3: #04070C;
+    background:
+      radial-gradient(75% 85% at 75% 8%, rgba(23,200,232,0.26), transparent 55%),
+      linear-gradient(135deg, var(--hg1) 0%, var(--hg2) 52%, var(--hg3) 100%);
+  }
+  .hero .hero-inner { max-width: var(--maxw); width: 100%; margin: 0 auto; position: relative; z-index: 2; display: flex; flex-direction: column; flex: 1 1 auto; }
+
+  .hero-emblems { position: absolute; left: 0; pointer-events: none; overflow: visible; z-index: 30; }
+  .hero-emblem { position: absolute; top: 0; left: 0; will-change: transform; }
+  .hero-emblem svg { display: block; width: 100%; height: 100%; }
+  .hero-emblem svg path { fill: currentColor; }
+
+  .eyebrow-row {
+    display: flex; gap: 28px; align-items: center;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 28px;
+  }
+  .eyebrow-row .dotsep { width: 4px; height: 4px; border-radius: 50%; background: currentColor; opacity: .5; flex-shrink: 0; }
+
+  .hero-title {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(36px, 5.8vw, 92px);
+    line-height: 1.0;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin: 0 0 clamp(16px, 2vw, 28px);
+    max-width: 85%;
+    overflow-wrap: break-word;
+  }
+  .hero-title .ln { display: block; max-width: 100%; }
+  .hero-title .ln-ital {
+    display: block;
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-style: italic;
+    font-size: 0.55em;
+    letter-spacing: 0.01em;
+    color: rgba(238,240,252,0.72);
+    margin-top: 0.15em;
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+  .hero-foot {
+    margin-top: auto;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 18px;
+  }
+  .hero-lede {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: clamp(14px, 1.1vw, 16px);
+    line-height: 1.65;
+    color: var(--ink-soft);
+    max-width: 580px;
+    margin: 0 0 clamp(20px, 2.5vw, 36px);
+  }
+  .hero-lede strong { font-weight: 600; }
+  .scroll-cue {
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: var(--ink-soft);
+    flex-shrink: 0;
+  }
+  .scroll-cue .line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, var(--ink-soft), transparent);
+  }
+  .hero-credit {
+    justify-self: end;
+    text-align: right;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--ink-soft);
+    line-height: 1.9;
+  }
+
+  /* ── Section module ── */
+  .module { padding: clamp(70px, 9vw, 140px) 0; }
+  .module-head {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: clamp(24px, 3vw, 56px);
+    margin-bottom: clamp(40px, 5vw, 72px);
+    align-items: start;
+  }
+  .section-num {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--ink-soft);
+    display: flex; flex-direction: column; gap: 10px;
+    padding-top: 8px;
+  }
+  .section-num .num {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-size: clamp(44px, 5vw, 72px);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    color: var(--ink-faint);
+    line-height: 1;
+  }
+  .module-title {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(26px, 3.2vw, 50px);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin: 0 0 clamp(18px, 2vw, 28px);
+  }
+  .lede {
+    font-size: clamp(15px, 1.3vw, 18px);
+    line-height: 1.65;
+    color: var(--ink-soft);
+    max-width: 640px;
+    margin: 0;
+  }
+  .body-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(28px, 3vw, 56px);
+  }
+  .body-grid p {
+    font-size: clamp(14px, 1.1vw, 16px);
+    line-height: 1.75;
+    color: var(--ink-soft);
+    margin: 0 0 1.1em;
+  }
+  .body-grid p:last-child { margin-bottom: 0; }
+
+  /* ── Seam ── */
+  .seam {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--light-ink-faint) 30%, var(--dark-bg) 60%, transparent);
+    margin: 0;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ── Process steps ── */
+  .process {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(24px, 2.5vw, 48px);
+    margin-top: clamp(40px, 5vw, 64px);
+  }
+  .step {
+    border-top: 1px solid var(--ink-faint);
+    padding-top: 24px;
+  }
+  .step-k {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.30em; text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+    display: block;
+  }
+  .step h4 {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(17px, 1.6vw, 22px);
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin: 0 0 14px;
+  }
+  .step p {
+    font-size: clamp(13px, 1vw, 15px);
+    line-height: 1.7;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* ── Placeholder image blocks ── */
+  .ph {
+    background: var(--tile);
+    aspect-ratio: 16 / 9;
+    position: relative;
+    overflow: hidden;
+    display: flex; align-items: flex-end;
+  }
+  .ph-label {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.26em; text-transform: uppercase;
+    color: var(--ink-soft);
+    white-space: nowrap;
+  }
+  .ph-dim {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, calc(-50% + 22px));
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.20em; text-transform: uppercase;
+    color: var(--ink-soft);
+    opacity: 0.5;
+    white-space: nowrap;
+  }
+  .caption {
+    position: relative; z-index: 2;
+    display: flex; justify-content: space-between; align-items: flex-end;
+    width: 100%;
+    padding: 12px 16px;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-soft);
+    background: linear-gradient(to top, rgba(0,0,0,0.12), transparent);
+    gap: 12px;
+  }
+
+  /* ── Reel rail ── */
+  .reel-rail {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    cursor: grab;
+    user-select: none;
+    padding-bottom: 4px;
+  }
+  .reel-rail::-webkit-scrollbar { display: none; }
+  .reel-rail:active { cursor: grabbing; }
+  .reel-rail .ph {
+    flex: 0 0 auto;
+    width: clamp(160px, 18vw, 240px);
+    aspect-ratio: 9 / 16;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .reel-play {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .reel-play::after {
+    content: '';
+    border-left: 14px solid rgba(255,255,255,0.8);
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    margin-left: 3px;
+  }
+
+  /* ── Post / image grid ── */
+  .post-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(10px, 1.2vw, 18px);
+    margin-top: 20px;
+  }
+  .post-grid .ph { aspect-ratio: 3 / 4; }
+
+  /* ── Look split ── */
+  .look-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(28px, 3vw, 56px);
+    margin-top: clamp(40px, 5vw, 64px);
+  }
+  .look-group { display: flex; flex-direction: column; gap: 14px; }
+  .lg-head {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--ink-soft);
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--ink-faint);
+  }
+  .lg-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .lg-grid .ph { aspect-ratio: 1; }
+  .lg-grid .caption span:first-child { max-width: 60%; }
+
+  /* ── Bleed ── */
+  .bleed { padding: clamp(28px, 3.5vw, 48px) 0; }
+
+  /* ── Meta bar ── */
+  .meta-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    border-top: 1px solid var(--ink-faint);
+    border-bottom: 1px solid var(--ink-faint);
+    padding: clamp(28px, 3.5vw, 48px) 0;
+    margin: clamp(40px, 5vw, 64px) 0;
+  }
+  .meta-cell {
+    flex: 1 1 180px;
+    padding: 0 clamp(16px, 2vw, 32px);
+    border-right: 1px solid var(--ink-faint);
+  }
+  .meta-cell:first-child { padding-left: 0; }
+  .meta-cell:last-child { border-right: 0; }
+  .meta-k {
+    display: block;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.30em; text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 10px;
+  }
+  .meta-v {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: clamp(13px, 1.1vw, 15px);
+    line-height: 1.55;
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  /* ── Credits ── */
+  .credits {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: clamp(28px, 3vw, 56px);
+    padding: clamp(56px, 7vw, 112px) 0;
+    border-top: 1px solid var(--ink-faint);
+  }
+  .credits-head {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(20px, 2.2vw, 32px);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .credit-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(20px, 2vw, 36px) clamp(28px, 3vw, 56px);
+  }
+  .credit-row { display: flex; flex-direction: column; gap: 6px; }
+  .credit-k {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .credit-row .who {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: clamp(13px, 1.1vw, 16px);
+    color: var(--ink);
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  /* ── Quote ── */
+  .quote-wrap { padding: clamp(70px, 9vw, 130px) 0; }
+  .quote {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-style: italic;
+    font-size: clamp(22px, 3.0vw, 46px);
+    line-height: 1.35;
+    color: var(--ink);
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+  }
+  .quote .quote-mark {
+    font-size: 1.4em;
+    line-height: 0.5;
+    vertical-align: -0.25em;
+    color: var(--accent);
+    margin-right: 0.05em;
+  }
+  .quote-attrib {
+    display: flex; align-items: center; justify-content: center;
+    gap: 16px;
+    margin-top: 28px;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-style: normal;
+    font-size: 12px; letter-spacing: 0.30em; text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .quote-attrib .rule { width: 36px; height: 1px; background: var(--ink-faint); }
+
+  /* ── Hero Carousel ── */
+  .hero-carousel {
+    position: relative;
+    --hc-vis: 3;
+    overflow: hidden;
+    user-select: none;
+  }
+  .hc-track {
+    display: flex;
+    transition: transform 0.55s cubic-bezier(0.77, 0, 0.175, 1);
+    will-change: transform;
+  }
+  .hc-slide {
+    flex: 0 0 calc(100% / var(--hc-vis));
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+  }
+  .hc-slide .ph {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    background: var(--tile);
+  }
+  .hc-top {
+    position: absolute; left: 0; right: 0; top: 0;
+    padding: 18px var(--gutter);
+    display: flex; justify-content: space-between;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.26em; text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    z-index: 4;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.22), transparent);
+  }
+  .hc-count { display: flex; gap: 4px; }
+  .hc-count .tot { opacity: 0.5; }
+  .hc-caption {
+    position: absolute; bottom: 0; left: 0;
+    padding: clamp(20px, 2.5vw, 36px) var(--gutter) clamp(24px, 3vw, 44px);
+    z-index: 4;
+    background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 100%);
+  }
+  .hc-look {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.30em; text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 6px;
+  }
+  .hc-title {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(20px, 2.2vw, 34px);
+    letter-spacing: -0.01em;
+    color: #fff;
+    margin: 0 0 6px;
+  }
+  .hc-sub {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+  }
+  .hc-nav {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff;
+    cursor: pointer;
+    z-index: 5;
+    display: flex; align-items: center; justify-content: center;
+    transition: background .2s;
+  }
+  .hc-nav:hover { background: rgba(255,255,255,0.22); }
+  .hc-nav svg { width: 20px; height: 20px; }
+  .hc-prev { left: clamp(12px, 2vw, 28px); }
+  .hc-next { right: clamp(12px, 2vw, 28px); }
+  .hc-bars {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    display: flex; height: 3px;
+    z-index: 6;
+  }
+  .hc-bar {
+    flex: 1; height: 100%;
+    background: rgba(255,255,255,0.22);
+    position: relative;
+    overflow: hidden;
+  }
+  .hc-bar::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: rgba(255,255,255,0.9);
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  .hc-bar.is-active::after { animation: hcFill var(--hc-dur, 4s) linear forwards; }
+  .hc-bar.is-done::after { transform: scaleX(1); animation: none; }
+  @keyframes hcFill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  @media (max-width: 1180px) { .hero-carousel { --hc-vis: 2; } }
+  @media (max-width: 720px)  { .hero-carousel { --hc-vis: 1; } }
+
+  /* ── Zone grid ── */
+  .zone-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(20px, 2.5vw, 40px);
+    margin-top: clamp(40px, 5vw, 64px);
+  }
+  .zone-card {
+    background: var(--tile);
+    border-radius: 4px;
+    padding: clamp(28px, 3vw, 44px);
+    border: 1px solid var(--ink-faint);
+    transition: border-color .25s;
+  }
+  .zone-card:hover { border-color: color-mix(in srgb, var(--accent) 40%, transparent); }
+  .zone-num {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(36px, 4vw, 56px);
+    letter-spacing: -0.02em;
+    color: color-mix(in srgb, var(--accent) 35%, transparent);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+  .zone-name {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(16px, 1.6vw, 22px);
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+  .zone-desc {
+    font-size: clamp(13px, 1.1vw, 15px);
+    line-height: 1.65;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* ── Side rail ── */
+  .rail {
+    position: fixed;
+    right: clamp(16px, 2vw, 32px);
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 40;
+  }
+  .rail-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: rgba(8,10,26,0.25);
+    transition: background .35s, transform .35s;
+    cursor: pointer;
+  }
+  .rail-dot.is-active { background: var(--accent); transform: scale(1.5); }
+  .rail-dot.on-dark { background: rgba(238,240,252,0.3); }
+  .rail-dot.on-dark.is-active { background: #fff; }
+
+  /* ── Custom cursor ── */
+  html, body { cursor: none; }
+  a, button, [role="button"], .hc-nav, input, label, .topnav .logo-lockup { cursor: none; }
+  .koton-cursor {
+    position: fixed;
+    top: 0; left: 0;
+    width: 36px; height: 36px;
+    margin: -18px 0 0 -18px;
+    pointer-events: none;
+    z-index: 9000;
+    color: var(--accent);
+    transition: transform .18s ease, opacity .18s ease;
+  }
+  .koton-cursor .km {
+    width: 100%; height: 100%;
+    fill: currentColor;
+    opacity: 0.85;
+    transition: transform .25s ease;
+  }
+  .koton-cursor.is-link { transform: scale(1.7); color: var(--accent); }
+  .koton-cursor.is-link .km { opacity: 0.6; }
+  .koton-cursor .label-link {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: #fff;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .18s;
+    white-space: nowrap;
+  }
+  .koton-cursor.is-link .label-link { opacity: 1; }
+
+  /* ── Hero mesh paint canvas ── */
+  .hero .hero-paint { position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: 0; transition: opacity .7s ease; filter: blur(6px) saturate(1.04); transform: translateZ(0); will-change: opacity; }
+
+  section.hero[data-tone="dark"]::after { display: none; }
+
+  @media (max-width: 880px) {
+    .module-head { grid-template-columns: 1fr; }
+    .body-grid { grid-template-columns: 1fr; }
+    .process { grid-template-columns: 1fr; }
+    .look-split { grid-template-columns: 1fr; }
+    .post-grid { grid-template-columns: repeat(2, 1fr); }
+    .credits { grid-template-columns: 1fr; }
+    .credit-list { grid-template-columns: 1fr; }
+    .hero-foot { grid-template-columns: 1fr; gap: 32px; }
+    .hero-credit { justify-self: start; text-align: left; }
+    .rail { display: none; }
+    .zone-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<link rel="stylesheet" href="../assets/css/case/proj-tags-b.css">
+
+
+<link rel="stylesheet" href="../assets/css/case/hero-refine.css">
+
+<link rel="stylesheet" href="../assets/css/case/rhythm-refine-c.css">
+<link rel="stylesheet" href="../assets/css/case/trt-spaces.css?v=23">
+
+<meta name="description" content="TRT Metaverse: broadcast-grade virtual spaces and real-time environments for TRT.">
+<link rel="canonical" href="https://illusorr.com/projects/trt-metaverse.html">
+<meta name="theme-color" content="#05060a">
+<meta property="og:site_name" content="ILLUSORR">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ILLUSORR × TRT · TRT Metaverse">
+<meta property="og:description" content="TRT Metaverse: broadcast-grade virtual spaces and real-time environments for TRT.">
+<meta property="og:url" content="https://illusorr.com/projects/trt-metaverse.html">
+<meta property="og:image" content="https://illusorr.com/assets/img/og/og-default.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CreativeWork","name":"ILLUSORR × TRT · TRT Metaverse","url":"https://illusorr.com/projects/trt-metaverse.html","creator":{"@type":"Organization","name":"ILLUSORR","url":"https://illusorr.com/"}}</script>
+<!-- phone + tablet: shared touch layer, then the shared case layout -->
+<link rel="stylesheet" href="../assets/css/mobile.css">
+<link rel="stylesheet" href="../assets/css/case/case-mobile.css">
+<script src="../assets/js/mobile.js"></script>
+</head>
+
+<body>
+<header class="il-topbar" id="ilTopbar">
+  <a class="il-brand" href="../index.html" aria-label="ILLUSORR home"><span class="il-logo" role="img" aria-label="ILLUSORR"></span></a>
+  <div class="il-right">
+    <a class="il-talk" href="../contact.html">Let's talk</a>
+    <button class="il-burger" id="ilMenuOpen" aria-label="Open menu"><i></i><i></i></button>
+  </div>
+</header>
+<div class="il-overlay" id="ilOverlay">
+  <div class="il-ohead"><span class="il-logo" role="img" aria-label="ILLUSORR"></span><button class="il-oclose" id="ilMenuClose">Close ✕</button></div>
+  <nav>
+    <a href="../index.html">Home <span>01</span></a>
+    <a href="../about.html">About <span>02</span></a>
+    <a href="../sectors.html">Sectors <span>03</span></a>
+    <a href="../work.html">Work <span>04</span></a>
+    <a href="../lab.html">Lab <span>05</span></a>
+    <a href="../collective.html">Collective <span>06</span></a>
+    <a href="../contact.html">Contact <span>07</span></a>
+  </nav>
+  <div class="il-ofoot"><span>Abu Dhabi · Yas Creative Hub</span><span>hello@illusorr.com</span></div>
+</div>
+
+
+  <!-- ─── Fixed chrome ─────────────────────────────────────────────── -->
+  <!-- topnav removed, menu bar to be added separately -->
+
+  <!-- Cursor -->
+  <div class="koton-cursor" id="kCursor" aria-hidden="true">
+    <span class="km globe-mark" aria-hidden="true"></span>
+    <span class="label-link" data-verb="Click"></span>
+  </div>
+
+  <aside class="rail" aria-hidden="true">
+    <span class="rail-dot is-active" data-i="0"></span>
+    <span class="rail-dot" data-i="1"></span>
+    <span class="rail-dot" data-i="2"></span>
+    <span class="rail-dot" data-i="3"></span>
+    <span class="rail-dot" data-i="4"></span>
+    <span class="rail-dot" data-i="5"></span>
+    <span class="rail-dot" data-i="6"></span>
+    <span class="rail-dot" data-i="7"></span>
+  </aside>
+
+  <!-- ════════════════════════════ HERO ════════════════════════════ -->
+
+  <!-- 1. HERO -->
+  <section class="hero" data-tone="dark" data-rail="0" data-screen-label="01 Hero">
+    <div class="hero-sticky">
+    <div class="orb-stage" id="orbStage" role="group" aria-label="Browse the TRT world"></div>
+    <div class="hero-inner">
+      <div class="proj-tags hero-meta">
+        <div class="ptg ptg-client">
+          <div class="ptg-k">Client</div>
+          <div class="ptg-c">
+            <span style="font-family:'PP Monument Extended',system-ui,sans-serif; font-weight:900; font-size:clamp(28px,3vw,44px); letter-spacing:0.04em; color:#eef1f8; line-height:1;">TRT</span>
+          </div>
+        </div>
+        <div class="ptg" style="margin-left:auto">
+          <div class="ptg-k">Category</div>
+          <div class="ptg-c"><span class="ptag">3D Environment</span><span class="ptag">Design</span><span class="ptag">Web</span><span class="ptag">Technology Consultancy</span></div>
+        </div>
+        <div class="ptg">
+          <div class="ptg-k">Sector</div>
+          <div class="ptg-c"><span class="ptag sector">Immersive Worlds</span><span class="ptag sector">Media</span></div>
+        </div>
+      </div>
+
+      <h1 class="hero-title">
+        <span class="ln">TRT Metaverse<span class="ln-ital">the broadcaster, stepped into virtual space.</span></span>
+      </h1>
+
+      <p class="hero-lede">
+        <strong>ILLUSORR designed TRT's first immersive metaverse environment</strong>, reimagining the role of a global broadcaster in virtual space. One main space that expands into a space per channel, where audiences explore programming, cultural initiatives and live broadcasts at full scale.
+      </p>
+
+      <div class="hero-foot">
+        <div class="hero-credit">
+          <div>TRT · TRT Metaverse · 2022</div>
+          <div>Built by ILLUSORR</div>
+        </div>
+        <div class="scroll-cue">
+          <span>Scroll</span>
+          <span class="line"></span>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- 2. PROJECT META BAR -->
+  <section data-tone="dark" data-rail="1" data-screen-label="02 Meta">
+    <div class="wrap">
+      <div class="meta-bar">
+        <div class="meta-cell"><span class="meta-k">Client</span><span class="meta-v">TRT<br>Turkish Radio and Television Corporation</span></div>
+        <div class="meta-cell"><span class="meta-k">Year</span><span class="meta-v">2022</span></div>
+        <div class="meta-cell"><span class="meta-k">Scope</span><span class="meta-v">Strategy, world design, characters, technology consultancy</span></div>
+        <div class="meta-cell"><span class="meta-k">Output</span><span class="meta-v">One main space, expandable into a space per channel</span></div>
+        <div class="meta-cell"><span class="meta-k">Reveal</span><span class="meta-v">TRT International Metaverse &amp; Broadcasting Forum, Istanbul</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. IN THE PRESS -->
+  <section class="pitch pmod" data-tone="dark" data-rail="1" data-screen-label="03 Press">
+    <div class="wrap">
+      <div class="phead">
+        <div>
+          <div class="pnum"><b>01</b> In the press</div>
+          <h2 class="ptitle">A public broadcaster <em>announced a world.</em></h2>
+        </div>
+        <div>
+          <p class="pbody">TRT published the collaboration itself. The launch ran on TRT World and TRT Arabi, and the Turkish trade press covered it as a first for the market: a national broadcaster commissioning a purpose-built metaverse rather than renting a plot in someone else’s.</p>
+          <p class="pbody" style="margin-top:18px">That mattered for the design. The environment had to survive being written about, screenshotted and broadcast, not just walked through.</p>
+        </div>
+      </div>
+      <div class="press">
+        <a class="press-card" href="https://www.trtworld.com/article/12787853" target="_blank" rel="noopener">
+          <div class="press-out"><span>TRT World</span><span class="date">2022</span></div>
+          <h3 class="press-h">&ldquo;Groundbreaking and revolutionary&rdquo;: TRT enters the Metaverse</h3>
+          <p class="press-x">The broadcaster’s own report on the launch of its virtual environment.</p>
+          <span class="press-go"><i></i>Read on TRT World</span>
+        </a>
+        <a class="press-card" href="https://www.trtworld.com/article/12787847" target="_blank" rel="noopener">
+          <div class="press-out"><span>TRT World</span><span class="date">2022</span></div>
+          <h3 class="press-h">The forum, reported from inside</h3>
+          <p class="press-x">TRT World’s companion piece from the metaverse and broadcasting forum where the space was shown.</p>
+          <span class="press-go"><i></i>Read the report</span>
+        </a>
+        <a class="press-card" href="https://www.marketingturkiye.com.tr/haberler/turkiyenin-ilk-metaverse-ajansi-meden-bir-ilk-daha-trt-metaverse/" target="_blank" rel="noopener">
+          <div class="press-out"><span>Marketing Türkiye</span><span class="date">2022</span></div>
+          <h3 class="press-h">A first for Türkiye’s first metaverse agency: TRT Metaverse</h3>
+          <p class="press-x">Trade coverage of the commission and what it signalled for Turkish media.</p>
+          <span class="press-go"><i></i>Read in Turkish</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- visual band 01 -->
+  <section class="vband" data-tone="dark" data-screen-label="Visual 01">
+    <div class="vb-frame"><img src="../assets/projects/trt/x-16.webp" alt="The TRT main space from the air" loading="lazy" decoding="async"></div>
+    <div class="vb-cap"><span>The main space, from the air</span><span>01</span></div>
+  </section>
+
+  <!-- 4. THE FORUM -->
+  <section class="pitch pmod pmod-tight" data-tone="dark" data-rail="2" data-screen-label="04 Forum">
+    <div class="wrap">
+      <div class="phead">
+        <div>
+          <div class="pnum"><b>02</b> On the stage</div>
+          <h2 class="ptitle">TRT put the work <em>on its own stage.</em></h2>
+        </div>
+        <div>
+          <p class="pbody">The space was not launched in a press release. TRT convened an international forum on the metaverse and broadcasting in Istanbul and gave the design a panel, so the argument was made in the room, in front of the people who would have to run it.</p>
+        </div>
+      </div>
+      <div class="forum">
+        <div class="forum-media"><img src="../assets/projects/trt/x-04.webp" alt="The collaboration title card, shown at the forum" loading="lazy" decoding="async"></div>
+        <div class="forum-list">
+          <div class="forum-row"><div class="forum-k">Event</div><div class="forum-v">TRT International Metaverse &amp; Broadcasting Forum<small>Istanbul, June 2022</small></div></div>
+          <div class="forum-row"><div class="forum-k">Panel</div><div class="forum-v">Designing the Metaverse</div></div>
+          <div class="forum-row"><div class="forum-k">Speakers</div><div class="forum-v">Sara El Jamal, Begüm Aydınoğlu, Faisal U-K<small>Co-founders, ILLUSORR</small></div></div>
+          <div class="forum-row"><div class="forum-k">Moderator</div><div class="forum-v">Can Yurdakul<small>Chief Executive, STANDBY.ME</small></div></div>
+          <div class="forum-row"><div class="forum-k">Opening</div><div class="forum-v">Mehmet Zahid Sobacı, Director General, TRT<small>Fahrettin Altun, Director of Communications</small></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. THE REVEAL -->
+  <section class="pitch pmod pmod-tight" data-tone="dark" data-rail="3" data-screen-label="05 Reveal">
+    <div class="wrap">
+      <div class="phead">
+        <div>
+          <div class="pnum"><b>03</b> The reveal</div>
+          <h2 class="ptitle">The world, <em>moving.</em></h2>
+        </div>
+        <div>
+          <p class="pbody">The reveal film runs the whole approach in order: the arrival, the broadcast floor, the channel spaces, and the characters who live in them.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="vband vband-full" data-tone="dark" data-screen-label="05b Reveal Video">
+    <div class="vb-frame">
+      <div class="yt" data-yt="JLaljufa3Sw" data-title="TRT Metaverse reveal" role="button" tabindex="0" aria-label="Play the TRT metaverse reveal">
+        <img class="yt-poster" src="https://i.ytimg.com/vi/JLaljufa3Sw/maxresdefault.jpg" onerror="this.src='https://i.ytimg.com/vi/JLaljufa3Sw/hqdefault.jpg'" alt="" loading="lazy" decoding="async">
+        <span class="yt-play" aria-hidden="true"></span>
+        <span class="yt-label">Watch the reveal</span>
+      </div>
+    </div>
+    <div class="vb-cap"><span>TRT International Metaverse &amp; Broadcasting Forum</span><span>Reveal</span></div>
+  </section>
+
+  <!-- 6. THE MAIN SPACE -->
+  <section class="pitch pmod pmod-tight" data-tone="dark" data-rail="3" data-screen-label="06 Main Space">
+    <div class="wrap">
+      <div class="phead">
+        <div>
+          <div class="pnum"><b>04</b> The main space</div>
+          <h2 class="ptitle">One space, designed <em>to be added to.</em></h2>
+        </div>
+        <div>
+          <p class="pbody">ILLUSORR designed the main TRT space first, and designed it as a host. Four arms reach out from a central broadcast core, each arm ending in an open edge rather than a wall, so a new space can be attached without touching what already works.</p>
+          <p class="pbody" style="margin-top:18px">The geometry does the arguing. A rectangular plan can be extended twice before it reads as a corridor. This one grows in six directions and stays legible from above, which is how a broadcaster with more than a dozen channels can keep expanding without a redesign.</p>
+        </div>
+      </div>
+      <div class="plan4">
+        <figure><img src="../assets/projects/trt/top-01.webp" alt="Main space from above" loading="lazy" decoding="async"><figcaption>Plan</figcaption></figure>
+        <figure><img src="../assets/projects/trt/top-02.webp" alt="Main space, core" loading="lazy" decoding="async"><figcaption>Core</figcaption></figure>
+        <figure><img src="../assets/projects/trt/top-04.webp" alt="Main space, arms" loading="lazy" decoding="async"><figcaption>Arms</figcaption></figure>
+        <figure><img src="../assets/projects/trt/x-15.webp" alt="Main space, exterior" loading="lazy" decoding="async"><figcaption>Exterior</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. TWIN AND EXTENSION -->
+  <section class="pitch pmod pmod-tight" data-tone="dark" data-rail="4" data-screen-label="07 Twin">
+    <div class="wrap">
+      <div class="phead">
+        <div>
+          <div class="pnum"><b>05</b> Twin and extension</div>
+          <h2 class="ptitle">A twin of what exists. <em>Then the part that cannot.</em></h2>
+        </div>
+        <div>
+          <p class="pbody">Every space in the world does two jobs. It carries a function TRT already performs, so staff recognise it and can run it on day one. Then it does the thing the physical version cannot: change scale, change language, change lighting state, or hold an audience that would not fit in a building.</p>
+        </div>
+      </div>
+      <div class="twin">
+        <div class="twin-row">
+          <div class="twin-cell"><span class="twin-tag">Digital twin</span><img src="../assets/projects/trt/x-12.webp" alt="Broadcast studio, twinned" loading="lazy" decoding="async"></div>
+          <div class="twin-cell is-ext"><span class="twin-tag">New reality</span><img src="../assets/projects/trt/broadcast-01.webp" alt="Broadcast studio, extended" loading="lazy" decoding="async"></div>
+          <div class="twin-cap">
+            <div class="twin-name">The broadcast floor</div>
+            <p class="twin-x">A working studio: desk, gallery, running order. In world the same floor drops its ceiling, wraps the feed around the full 360, and lets the audience stand inside the set instead of watching it through a frame.</p>
+          </div>
+        </div>
+        <div class="twin-row">
+          <div class="twin-cell"><span class="twin-tag">Digital twin</span><img src="../assets/projects/trt/x-17.webp" alt="Shop, twinned" loading="lazy" decoding="async"></div>
+          <div class="twin-cell is-ext"><span class="twin-tag">New reality</span><img src="../assets/projects/trt/store-01.webp" alt="Shop, extended" loading="lazy" decoding="async"></div>
+          <div class="twin-cap">
+            <div class="twin-name">The shop</div>
+            <p class="twin-x">A retail counter that behaves like one, with stock, prices and a queue. Then the stock becomes wearable, the shelf becomes infinite, and a character from a series can be standing next to the thing it comes from.</p>
+          </div>
+        </div>
+        <div class="twin-row">
+          <div class="twin-cell"><span class="twin-tag">Digital twin</span><img src="../assets/projects/trt/x-08.webp" alt="Exhibition wall, twinned" loading="lazy" decoding="async"></div>
+          <div class="twin-cell is-ext"><span class="twin-tag">New reality</span><img src="../assets/projects/trt/x-01.webp" alt="Gallery, extended" loading="lazy" decoding="async"></div>
+          <div class="twin-cap">
+            <div class="twin-name">The gallery</div>
+            <p class="twin-x">A foyer with a hanging wall, which is what a broadcaster’s cultural arm already has. In world the wall is not a wall: the exhibition can be re-hung between two broadcasts, in as many languages as there are channels.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. EXPANSION -->
+  <section class="pitch pmod pmod-tight" data-tone="dark" data-rail="5" data-screen-label="08 Expansion">
+    <div class="wrap">
+      <div class="phead">
+        <div>
+          <div class="pnum"><b>06</b> One becomes many</div>
+          <h2 class="ptitle">The main space is <em>the unit, not the whole.</em></h2>
+        </div>
+        <div>
+          <p class="pbody">TRT runs fourteen television channels and nineteen radio stations. A single environment could never speak for all of them, and a separate build for each would fragment the brand. So the main space was designed as a cell: it clones, it keeps its circulation logic, and each copy is retuned to the channel that occupies it.</p>
+        </div>
+      </div>
+      <div class="expand">
+        <div class="expand-step">
+          <div class="expand-k">Generation 01</div>
+          <svg class="expand-svg" viewBox="0 0 200 120"><polygon class="cell on" points="13,0 6.5,11.26 -6.5,11.26 -13,0 -6.5,-11.26 6.5,-11.26" transform="translate(100,60)"></polygon></svg>
+          <div class="expand-t">The main space</div>
+          <p class="expand-x">Broadcast core, four arms, six open edges. Built once, in full.</p>
+        </div>
+        <div class="expand-step">
+          <div class="expand-k">Generation 02</div>
+          <svg class="expand-svg" viewBox="0 0 200 120"><line class="link" x1="100" y1="60" x2="80.5" y2="48.74"></line><line class="link" x1="100" y1="60" x2="80.5" y2="71.26"></line><line class="link" x1="100" y1="60" x2="119.5" y2="48.74"></line><line class="link" x1="100" y1="60" x2="119.5" y2="71.26"></line><polygon class="cell on" points="13,0 6.5,11.26 -6.5,11.26 -13,0 -6.5,-11.26 6.5,-11.26" transform="translate(100,60)"></polygon><polygon class="cell" points="13,0 6.5,11.26 -6.5,11.26 -13,0 -6.5,-11.26 6.5,-11.26" transform="translate(80.5,48.74)"></polygon><polygon class="cell" points="13,0 6.5,11.26 -6.5,11.26 -13,0 -6.5,-11.26 6.5,-11.26" transform="translate(80.5,71.26)"></polygon><polygon class="cell" points="13,0 6.5,11.26 -6.5,11.26 -13,0 -6.5,-11.26 6.5,-11.26" transform="translate(119.5,48.74)"></polygon><polygon class="cell" points="13,0 6.5,11.26 -6.5,11.26 -13,0 -6.5,-11.26 6.5,-11.26" transform="translate(119.5,71.26)"></polygon></svg>
+          <div class="expand-t">The first channels</div>
+          <p class="expand-x">Each attaches to an open edge and inherits the plan. Only light, colour and programme change.</p>
+        </div>
+        <div class="expand-step">
+          <div class="expand-k">Generation 03</div>
+          <svg class="expand-svg" viewBox="0 0 200 120"><line class="link" x1="100" y1="60" x2="100" y2="37.48"></line><line class="link" x1="100" y1="60" x2="100" y2="82.52"></line><line class="link" x1="100" y1="60" x2="80.5" y2="48.74"></line><line class="link" x1="100" y1="60" x2="80.5" y2="71.26"></line><line class="link" x1="100" y1="60" x2="119.5" y2="48.74"></line><line class="link" x1="100" y1="60" x2="119.5" y2="71.26"></line><line class="link" x1="100" y1="60" x2="139" y2="60"></line><line class="link" x1="100" y1="60" x2="61" y2="60"></line><polygon class="cell on" points="13,0 6.5,11.26 -6.5,11.26 -13,0 -6.5,-11.26 6.5,-11.26" transform="translate(100,60)"></polygon><polygon class="cell" points="13,0 6.5,11.26 -6.5,11.26 -13,0 -6.5,-11.26 6.5,-11.26" transform="translate(100,37.48)"></polygon><polygon class="cell" points="13,0 6.5,11.26 -6.5,11.26 -13,0 -6.5,-11.26 6.5,-11.26" transform="translate(100,82.52)"></polygon><polygon class="cell" points="13,0 6.5,11.26 -6.5,11.26 -13,0 -6.5,-11.26 6.5,-11.26" transform="translate(80.5,48.74)"></polygon><polygon class="cell" points="13,0 6.5,11.26 -6.5,11.26 -13,0 -6.5,-11.26 6.5,-11.26" transform="translate(80.5,71.26)"></polygon><polygon class="cell" points="13,0 6.5,11.26 -6.5,11.26 -13,0 -6.5,-11.26 6.5,-11.26" transform="translate(119.5,48.74)"></polygon><polygon class="cell" points="13,0 6.5,11.26 -6.5,11.26 -13,0 -6.5,-11.26 6.5,-11.26" transform="translate(119.5,71.26)"></polygon><polygon class="cell" points="13,0 6.5,11.26 -6.5,11.26 -13,0 -6.5,-11.26 6.5,-11.26" transform="translate(139,60)"></polygon><polygon class="cell" points="13,0 6.5,11.26 -6.5,11.26 -13,0 -6.5,-11.26 6.5,-11.26" transform="translate(61,60)"></polygon></svg>
+          <div class="expand-t">The full network</div>
+          <p class="expand-x">Every channel, and room left for the next one. Nothing already standing has to be rebuilt.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. CHANNEL SPACES -->
+  <section class="pitch pmod pmod-tight" data-tone="dark" data-rail="5" data-screen-label="09 Channel Spaces">
+    <div class="wrap">
+      <div class="phead">
+        <div>
+          <div class="pnum"><b>07</b> Channel spaces</div>
+          <h2 class="ptitle">Every channel <em>gets its own room.</em></h2>
+        </div>
+        <div>
+          <p class="pbody">Eight spaces from the same plan, each one a twin of what that channel already does and an extension of what it could. Click a channel to go in.</p>
+        </div>
+      </div>
+      <div class="spaces-hint">Click a channel to enter its space</div>
+      <div class="pods">
+        <div class="pod" data-space="world" style="--pc:#17C8E8" tabindex="0" role="button" aria-label="Enter the TRT World space">
+          <div class="pod-inner">
+            <div class="pod-obj"><img src="../assets/projects/trt/x-02.webp" alt="" loading="lazy" decoding="async"></div>
+            <div class="pod-glow"></div>
+            <div class="pod-meta">
+              <div class="pod-k">Space 01</div>
+              <div class="pod-t">TRT World<small>English-language global news</small></div>
+            </div>
+          </div>
+          <div class="space" data-space="world" style="--pc:#17C8E8">
+            <div class="space-media"><img src="../assets/projects/trt/x-09.webp" alt="TRT World space" decoding="async"></div>
+            <div class="space-copy">
+              <div class="space-k">TRT World · Entered</div>
+              <h3 class="space-t">Newsroom at planetary scale</h3>
+              <p>The flagship international channel takes the main space itself. A 360 broadcast floor where the running order is the architecture: live feeds wrap the walls, and the studio ring at the centre can hold an anchor and an audience in the same frame.</p>
+              <div class="space-facts"><span>Live broadcast floor</span><span>Audience ring</span><span>Feed wall</span></div>
+              <button class="space-exit" type="button">Back to the main space</button>
+            </div>
+          </div>
+        </div>
+        <div class="pod" data-space="haber" style="--pc:#E8262A" tabindex="0" role="button" aria-label="Enter the TRT Haber space">
+          <div class="pod-inner">
+            <div class="pod-obj"><img src="../assets/projects/trt/broadcast-02.webp" alt="" loading="lazy" decoding="async"></div>
+            <div class="pod-glow"></div>
+            <div class="pod-meta">
+              <div class="pod-k">Space 02</div>
+              <div class="pod-t">TRT Haber<small>Turkish news and current affairs</small></div>
+            </div>
+          </div>
+          <div class="space" data-space="haber" style="--pc:#E8262A">
+            <div class="space-media"><img src="../assets/projects/trt/broadcast-03.webp" alt="TRT Haber space" decoding="async"></div>
+            <div class="space-copy">
+              <div class="space-k">TRT Haber · Entered</div>
+              <h3 class="space-t">On air, in red</h3>
+              <p>Haber inherits the broadcast geometry and recolours it. Every surface is a signal: the ribbing overhead reads as a waveform, the desk is a lit plinth, and the perimeter carries the wire in real time.</p>
+              <div class="space-facts"><span>Anchor desk</span><span>Wire perimeter</span><span>On-air lighting state</span></div>
+              <button class="space-exit" type="button">Back to the main space</button>
+            </div>
+          </div>
+        </div>
+        <div class="pod" data-space="arabi" style="--pc:#10B9A6" tabindex="0" role="button" aria-label="Enter the TRT Arabi space">
+          <div class="pod-inner">
+            <div class="pod-obj"><img src="../assets/projects/trt/x-05.webp" alt="" loading="lazy" decoding="async"></div>
+            <div class="pod-glow"></div>
+            <div class="pod-meta">
+              <div class="pod-k">Space 03</div>
+              <div class="pod-t">TRT Arabi<small>Arabic-language news and drama</small></div>
+            </div>
+          </div>
+          <div class="space" data-space="arabi" style="--pc:#10B9A6">
+            <div class="space-media"><img src="../assets/projects/trt/x-06.webp" alt="TRT Arabi space" decoding="async"></div>
+            <div class="space-copy">
+              <div class="space-k">TRT Arabi · Entered</div>
+              <h3 class="space-t">A room that reads right to left</h3>
+              <p>The same shell, mirrored. Circulation, screen order and seating all invert so the space reads in the direction its audience reads, which is the part a translated interface can never do.</p>
+              <div class="space-facts"><span>Mirrored circulation</span><span>Drama screening bay</span><span>Majlis seating</span></div>
+              <button class="space-exit" type="button">Back to the main space</button>
+            </div>
+          </div>
+        </div>
+        <div class="pod" data-space="trt1" style="--pc:#E8A13C" tabindex="0" role="button" aria-label="Enter the TRT 1 space">
+          <div class="pod-inner">
+            <div class="pod-obj"><img src="../assets/projects/trt/x-11.webp" alt="" loading="lazy" decoding="async"></div>
+            <div class="pod-glow"></div>
+            <div class="pod-meta">
+              <div class="pod-k">Space 04</div>
+              <div class="pod-t">TRT 1<small>The flagship general channel</small></div>
+            </div>
+          </div>
+          <div class="space" data-space="trt1" style="--pc:#E8A13C">
+            <div class="space-media"><img src="../assets/projects/trt/main-03.webp" alt="TRT 1 space" decoding="async"></div>
+            <div class="space-copy">
+              <div class="space-k">TRT 1 · Entered</div>
+              <h3 class="space-t">Premiere floor</h3>
+              <p>TRT 1 is where things launch. The space is built around an arrival: a long approach, a held threshold, then a room that opens for a first look at a series before it airs.</p>
+              <div class="space-facts"><span>Premiere hall</span><span>Cast meet</span><span>Series vault</span></div>
+              <button class="space-exit" type="button">Back to the main space</button>
+            </div>
+          </div>
+        </div>
+        <div class="pod" data-space="trt2" style="--pc:#9A7BE8" tabindex="0" role="button" aria-label="Enter the TRT 2 space">
+          <div class="pod-inner">
+            <div class="pod-obj"><img src="../assets/projects/trt/interior-03.webp" alt="" loading="lazy" decoding="async"></div>
+            <div class="pod-glow"></div>
+            <div class="pod-meta">
+              <div class="pod-k">Space 05</div>
+              <div class="pod-t">TRT 2<small>Culture and the arts</small></div>
+            </div>
+          </div>
+          <div class="space" data-space="trt2" style="--pc:#9A7BE8">
+            <div class="space-media"><img src="../assets/projects/trt/x-07.webp" alt="TRT 2 space" decoding="async"></div>
+            <div class="space-copy">
+              <div class="space-k">TRT 2 · Entered</div>
+              <h3 class="space-t">Gallery logic</h3>
+              <p>Culture and art get the quietest volume in the world. Light is indirect, the walls are hangable, and the programme is an exhibition that changes without a rebuild.</p>
+              <div class="space-facts"><span>Hangable walls</span><span>Rotating exhibition</span><span>Talk platform</span></div>
+              <button class="space-exit" type="button">Back to the main space</button>
+            </div>
+          </div>
+        </div>
+        <div class="pod" data-space="spor" style="--pc:#46C86A" tabindex="0" role="button" aria-label="Enter the TRT Spor space">
+          <div class="pod-inner">
+            <div class="pod-obj"><img src="../assets/projects/trt/top-03.webp" alt="" loading="lazy" decoding="async"></div>
+            <div class="pod-glow"></div>
+            <div class="pod-meta">
+              <div class="pod-k">Space 06</div>
+              <div class="pod-t">TRT Spor<small>Sport, live and archive</small></div>
+            </div>
+          </div>
+          <div class="space" data-space="spor" style="--pc:#46C86A">
+            <div class="space-media"><img src="../assets/projects/trt/side-02.webp" alt="TRT Spor space" decoding="async"></div>
+            <div class="space-copy">
+              <div class="space-k">TRT Spor · Entered</div>
+              <h3 class="space-t">A stand, not a studio</h3>
+              <p>Sport needs a crowd, so the room is shaped like one. Tiered viewing around a central field of play, with the archive stacked underneath as a reel you can walk into.</p>
+              <div class="space-facts"><span>Tiered stand</span><span>Live field</span><span>Archive reel</span></div>
+              <button class="space-exit" type="button">Back to the main space</button>
+            </div>
+          </div>
+        </div>
+        <div class="pod" data-space="cocuk" style="--pc:#F06AA8" tabindex="0" role="button" aria-label="Enter the TRT Çocuk space">
+          <div class="pod-inner">
+            <div class="pod-obj"><img src="../assets/projects/trt/store-02.webp" alt="" loading="lazy" decoding="async"></div>
+            <div class="pod-glow"></div>
+            <div class="pod-meta">
+              <div class="pod-k">Space 07</div>
+              <div class="pod-t">TRT Çocuk<small>Children’s programming</small></div>
+            </div>
+          </div>
+          <div class="space" data-space="cocuk" style="--pc:#F06AA8">
+            <div class="space-media"><img src="../assets/projects/trt/x-03.webp" alt="TRT Çocuk space" decoding="async"></div>
+            <div class="space-copy">
+              <div class="space-k">TRT Çocuk · Entered</div>
+              <h3 class="space-t">Built to be handled</h3>
+              <p>The children’s space is the only one where everything is meant to be picked up. Characters are objects, objects are toys, and the shop is a play area that happens to sell things.</p>
+              <div class="space-facts"><span>Character objects</span><span>Play floor</span><span>Merch counter</span></div>
+              <button class="space-exit" type="button">Back to the main space</button>
+            </div>
+          </div>
+        </div>
+        <div class="pod" data-space="belgesel" style="--pc:#6E9FD8" tabindex="0" role="button" aria-label="Enter the TRT Belgesel space">
+          <div class="pod-inner">
+            <div class="pod-obj"><img src="../assets/projects/trt/x-10.webp" alt="" loading="lazy" decoding="async"></div>
+            <div class="pod-glow"></div>
+            <div class="pod-meta">
+              <div class="pod-k">Space 08</div>
+              <div class="pod-t">TRT Belgesel<small>Documentary</small></div>
+            </div>
+          </div>
+          <div class="space" data-space="belgesel" style="--pc:#6E9FD8">
+            <div class="space-media"><img src="../assets/projects/trt/interior-01.webp" alt="TRT Belgesel space" decoding="async"></div>
+            <div class="space-copy">
+              <div class="space-k">TRT Belgesel · Entered</div>
+              <h3 class="space-t">The world as exhibit</h3>
+              <p>Documentary gets the horizon. The space opens outward instead of inward, so the subject of the film sits in the room with you at its own scale.</p>
+              <div class="space-facts"><span>Open horizon</span><span>Full-scale subject</span><span>Field dossier</span></div>
+              <button class="space-exit" type="button">Back to the main space</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. CHARACTERS -->
+  <section class="pitch pmod pmod-tight" data-tone="dark" data-rail="6" data-screen-label="10 Characters">
+    <div class="wrap">
+      <div class="phead">
+        <div>
+          <div class="pnum"><b>08</b> Inhabitants</div>
+          <h2 class="ptitle">Someone has to <em>be in the room.</em></h2>
+        </div>
+        <div>
+          <p class="pbody">A broadcaster’s space is only as convincing as the people standing in it. ILLUSORR designed the avatar system alongside the architecture, so scale, silhouette and lighting were resolved together rather than borrowed from a marketplace.</p>
+        </div>
+      </div>
+      <div class="chars chars-4">
+        <figure><img src="../assets/projects/trt/avatar-a.webp" alt="TRT avatar study" loading="lazy" decoding="async"><figcaption>In world</figcaption></figure>
+        <figure><img src="../assets/projects/trt/avatar-b.webp" alt="TRT avatar study" loading="lazy" decoding="async"><figcaption>At the desk</figcaption></figure>
+        <figure><img src="../assets/projects/trt/x-13.webp" alt="Avatar turnaround, front" loading="lazy" decoding="async"><figcaption>Turnaround, front</figcaption></figure>
+        <figure><img src="../assets/projects/trt/x-14.webp" alt="Avatar turnaround, side" loading="lazy" decoding="async"><figcaption>Turnaround, side</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. PULL QUOTE -->
+  <section class="quote-wrap" data-tone="dark" data-rail="7" data-screen-label="11 Quote">
+    <div class="wrap">
+      <blockquote class="quote">
+        <span class="mark">&ldquo;</span>Groundbreaking and revolutionary.<span class="mark">&rdquo;</span>
+      </blockquote>
+      <div class="quote-attrib"><span>TRT World</span><span>on the launch of the TRT Metaverse</span></div>
+    </div>
+  </section>
+
+  <!-- 12. FORUM FILM -->
+  <section class="bleed" data-tone="dark" data-rail="7" data-screen-label="12 Forum Film">
+    <div class="wrap">
+      <div class="ph has-media" style="aspect-ratio:16/9;overflow:hidden">
+        <div class="yt" data-yt="Cs2YjHGVWl0" data-title="TRT International Metaverse &amp; Broadcasting Forum" role="button" tabindex="0" aria-label="Play the forum film">
+          <img class="yt-poster" src="https://i.ytimg.com/vi/Cs2YjHGVWl0/maxresdefault.jpg" onerror="this.src='https://i.ytimg.com/vi/Cs2YjHGVWl0/hqdefault.jpg'" alt="" loading="lazy" decoding="async">
+          <span class="yt-play" aria-hidden="true"></span>
+          <span class="yt-label">TRT International Metaverse &amp; Broadcasting Forum</span>
+        </div>
+        <span class="caption"><span>Shown at the forum in Istanbul</span><span>Film</span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 13. CREDITS -->
+  <section data-tone="dark" data-rail="7" data-screen-label="13 Credits">
+    <div class="wrap">
+      <div class="credits">
+        <div>
+          <div class="credits-head">TRT<br>Metaverse<br>2022</div>
+        </div>
+        <div class="credit-list">
+          <div class="credit-row">
+            <span class="credit-k">Client</span>
+            <span class="who">TRT · Turkish Radio and Television Corporation</span>
+          </div>
+          <div class="credit-row">
+            <span class="credit-k">Project</span>
+            <span class="who">TRT Metaverse · Immersive Broadcast Environment</span>
+          </div>
+          <div class="credit-row">
+            <span class="credit-k">3D Environment Design</span>
+            <span class="who">ILLUSORR</span>
+          </div>
+          <div class="credit-row">
+            <span class="credit-k">Character Design</span>
+            <span class="who">ILLUSORR</span>
+          </div>
+          <div class="credit-row">
+            <span class="credit-k">3D Animation</span>
+            <span class="who">ILLUSORR</span>
+          </div>
+          <div class="credit-row">
+            <span class="credit-k">Technology Consultancy</span>
+            <span class="who">ILLUSORR</span>
+          </div>
+          <div class="credit-row">
+            <span class="credit-k">Design &amp; Web</span>
+            <span class="who">ILLUSORR</span>
+          </div>
+          <div class="credit-row credit-collab">
+            <span class="credit-k">In collaboration with</span>
+            <span class="who"><img class="collab-logo" src="../assets/projects/shared/me-logo.webp" alt="ME Creative Technology Agency"><span class="collab-txt">ME Creative Technology Agency<small>Istanbul, Türkiye</small></span></span>
+          </div>
+          <div class="credit-row">
+            <span class="credit-k">Output</span>
+            <span class="who">Metaverse Environment · 3D Digital Hub · Interactive Broadcast Space</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- ─── Top nav scroll detection ─────────────────────────────────── -->
+
+<script src="../assets/js/case/nav-tone.js"></script>
+
+<!-- ─── Hero emblem physics ────────────────────────────────────────── -->
+<script>
+(() => {
+  const hero = document.querySelector('.hero');
+  if (!hero) return;
+  const CLOVER = `<span class="globe-mark" aria-hidden="true"></span>`;
+  const POSITIONS = [
+    { x: 0.03, y: 0.46, s: 44 }, { x: 0.92, y: 0.08, s: 40 },
+    { x: 0.88, y: 0.78, s: 56 }, { x: 0.06, y: 0.82, s: 36 },
+    { x: 0.50, y: 0.04, s: 30 }, { x: 0.14, y: 0.44, s: 44 },
+    { x: 0.78, y: 0.42, s: 38 }, { x: 0.46, y: 0.88, s: 32 },
+  ];
+  const container = document.createElement('div');
+  container.className = 'hero-emblems';
+  hero.appendChild(container);
+  const emblems = POSITIONS.map(p => {
+    const el = document.createElement('div');
+    el.className = 'hero-emblem';
+    el.style.width = p.s + 'px';
+    el.style.height = p.s + 'px';
+    el.style.color = 'rgba(255,255,255,0.10)';
+    el.innerHTML = CLOVER;
+    container.appendChild(el);
+    return { el, hx: p.x, hy: p.y, x: p.x, y: p.y, vx: 0, vy: 0, s: p.s, angle: Math.random() * Math.PI * 2, spin: (Math.random() - 0.5) * 0.008 };
+  });
+  let mx = -1, my = -1, W = 0, H = 0;
+  function resize() {
+    const r = hero.getBoundingClientRect();
+    W = r.width; H = r.height;
+    container.style.width = W + 'px';
+    container.style.height = H + 'px';
+  }
+  window.addEventListener('resize', resize); resize();
+  hero.addEventListener('pointermove', e => {
+    const r = hero.getBoundingClientRect();
+    mx = (e.clientX - r.left) / W;
+    my = (e.clientY - r.top) / H;
+  }, { passive: true });
+  hero.addEventListener('pointerleave', () => { mx = -1; my = -1; });
+  function tick() {
+    requestAnimationFrame(tick);
+    for (const em of emblems) {
+      em.angle += em.spin;
+      const rep = 0.14;
+      if (mx >= 0) {
+        const dx = em.x - mx, dy = em.y - my;
+        const d = Math.sqrt(dx * dx + dy * dy);
+        if (d < 0.22 && d > 0.001) {
+          em.vx += dx / d * rep * (0.22 - d) / 0.22;
+          em.vy += dy / d * rep * (0.22 - d) / 0.22;
+        }
+      }
+      em.vx += (em.hx - em.x) * 0.04;
+      em.vy += (em.hy - em.y) * 0.04;
+      em.vx *= 0.82; em.vy *= 0.82;
+      em.x += em.vx; em.y += em.vy;
+      const px = em.x * W - em.s / 2;
+      const py = em.y * H - em.s / 2;
+      em.el.style.transform = `translate(${px}px,${py}px) rotate(${em.angle}rad)`;
+    }
+  }
+  tick();
+})();
+</script>
+
+<!-- ─── Hero carousel ────────────────────────────────────────────── -->
+
+<script src="../assets/js/case/hero-carousel-c.js"></script>
+
+<!-- ─── Reel rail drag ──────────────────────────────────────────── -->
+
+<script src="../assets/js/case/rail-drag.js"></script>
+
+<!-- ─── Hero mesh paint canvas ─────────────────────────────────── -->
+<script>
+(() => {
+  const hero = document.querySelector('.hero');
+  if (!hero) return;
+  const canvas = document.createElement('canvas');
+  canvas.className = 'hero-paint';
+  canvas.setAttribute('aria-hidden', 'true');
+  hero.insertBefore(canvas, hero.firstChild);
+  const ctx = canvas.getContext('2d');
+  const SCALE = 0.24;
+  let W = 0, H = 0, w = 0, h = 0, BLUR = 6;
+  function size() {
+    const r = hero.getBoundingClientRect();
+    W = r.width; H = r.height;
+    w = Math.max(2, Math.round(W * SCALE));
+    h = Math.max(2, Math.round(H * SCALE));
+    canvas.width = W; canvas.height = H;
+    BLUR = Math.round(W * SCALE * 0.18);
+  }
+  size();
+  window.addEventListener('resize', size);
+  let PAL = ['#c8102e', '#6B0A1A', '#080206'];
+  let FREQ = 0.55, SPEED = 0.75;
+  const PI = [0, 1, 2, 0, 1, 2];
+  const BLOBS = PI.map((pi) => {
+    const x = 0.12 + Math.random() * 0.76, y = 0.12 + Math.random() * 0.76;
+    return { pi, x, y, hx: x, hy: y, vx: 0, vy: 0, r: 0.24 + Math.random() * 0.18 };
+  });
+  function curlX(x, y, t) { return Math.sin(y * FREQ + t) * Math.cos(x * FREQ * 0.7 + t * 0.6); }
+  function curlY(x, y, t) { return Math.cos(x * FREQ + t * 0.8) * Math.sin(y * FREQ * 0.8 + t); }
+
+  let mx = 0.5, my = 0.5, mActive = 0, t0 = performance.now();
+  hero.addEventListener('pointermove', (e) => {
+    const r = hero.getBoundingClientRect();
+    mx = (e.clientX - r.left) / r.width;
+    my = (e.clientY - r.top) / r.height;
+    mActive = 1;
+  }, { passive: true });
+  let hovering = false;
+  hero.addEventListener('pointerenter', () => { hovering = true; start(); });
+  hero.addEventListener('pointerleave', () => { hovering = false; });
+
+  function frame(now) {
+    if (!hovering) { rafId = null; canvas.style.opacity = '0'; return; }
+    rafId = requestAnimationFrame(frame);
+    const t = (now - t0) * 0.001 * SPEED;
+    for (const bl of BLOBS) {
+      const nx = curlX(bl.x, bl.y, t), ny = curlY(bl.x, bl.y, t);
+      const rep = 0.1;
+      const dx = bl.x - mx, dy = bl.y - my;
+      const dd = Math.sqrt(dx * dx + dy * dy);
+      let rx = 0, ry = 0;
+      if (mActive && dd < 0.35 && dd > 0.001) { rx = dx / dd * rep * (0.35 - dd) / 0.35; ry = dy / dd * rep * (0.35 - dd) / 0.35; }
+      bl.vx += (nx * 0.003 + (bl.hx - bl.x) * 0.012 + rx) * 1;
+      bl.vy += (ny * 0.003 + (bl.hy - bl.y) * 0.012 + ry) * 1;
+      bl.vx *= 0.88; bl.vy *= 0.88;
+      bl.x += bl.vx; bl.y += bl.vy;
+      bl.x = Math.max(0.02, Math.min(0.98, bl.x));
+      bl.y = Math.max(0.02, Math.min(0.98, bl.y));
+    }
+    const offCtx = document.createElement('canvas');
+    offCtx.width = w; offCtx.height = h;
+    const oc = offCtx.getContext('2d');
+    oc.clearRect(0, 0, w, h);
+    for (const bl of BLOBS) {
+      const gx = bl.x * w, gy = bl.y * h, gr = bl.r * Math.min(w, h);
+      const g = oc.createRadialGradient(gx, gy, 0, gx, gy, gr);
+      g.addColorStop(0, PAL[bl.pi] + 'cc');
+      g.addColorStop(1, PAL[bl.pi] + '00');
+      oc.globalCompositeOperation = 'source-over';
+      oc.fillStyle = g;
+      oc.beginPath();
+      oc.arc(gx, gy, gr, 0, Math.PI * 2);
+      oc.fill();
+    }
+    ctx.clearRect(0, 0, W, H);
+    ctx.filter = `blur(${BLUR}px) saturate(1.1)`;
+    ctx.drawImage(offCtx, 0, 0, W, H);
+    ctx.filter = 'none';
+    canvas.style.opacity = hovering ? '0.9' : '0';
+  }
+  let rafId = null;
+  function start() {
+    if (hovering && !rafId) rafId = requestAnimationFrame(frame);
+  }
+})();
+</script>
+
+<!-- ─── Custom cursor ───────────────────────────────────────────── -->
+
+<script src="../assets/js/case/cursor-dot.js"></script>
+
+  <script src="../assets/js/case/trt-spaces.js?v=1"></script>
+  <script src="../assets/js/case/trt-orb.js?v=7"></script>
+<script src="../assets/js/nav.js" defer></script>
+<script src="../assets/js/site-footer.js" defer></script>
+<script src="../assets/js/to-top.js" defer></script>
+</body>
+</html>

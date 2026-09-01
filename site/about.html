@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About · ILLUSORR</title>
+<meta name="description" content="ILLUSORR works beyond the traditional agency model. Design, technology and production are one language. Meet the studio at Yas Creative Hub, Abu Dhabi.">
+<link rel="canonical" href="https://illusorr.com/about.html">
+<meta name="theme-color" content="#05060a">
+<meta property="og:site_name" content="ILLUSORR">
+<meta property="og:type" content="website">
+<meta property="og:title" content="About · ILLUSORR">
+<meta property="og:description" content="ILLUSORR works beyond the traditional agency model. Design, technology and production are one language. Meet the studio at Yas Creative Hub, Abu Dhabi.">
+<meta property="og:url" content="https://illusorr.com/about.html">
+<meta property="og:image" content="https://illusorr.com/assets/img/og/og-default.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="assets/fonts/outfit-variable.woff" as="font" type="font/woff" crossorigin>
+<link rel="preload" as="font" type="font/woff" crossorigin href="assets/fonts/monument-extended-400.woff">
+<link rel="preload" as="font" type="font/woff" crossorigin href="assets/fonts/squaresharps-400.woff">
+<link rel="stylesheet" href="assets/css/main.css">
+<link rel="stylesheet" href="assets/css/nav.css">
+<!-- phone + tablet: shared touch layer, then this page's own layout -->
+<link rel="stylesheet" href="assets/css/mobile.css">
+<link rel="stylesheet" href="assets/css/about-mobile.css">
+<script src="assets/js/mobile.js"></script>
+<style>
+  #p-contact .ct-sec{background:radial-gradient(60% 60% at 50% 40%,#101736,#070a16 75%)}
+  /* the fluid field lives behind the whole page, so the opaque #aboutRoot
+     ground moves down onto the beats that actually need it — the intro panel
+     is the only one that lets the field through */
+  #aboutRoot{background:transparent}
+  /* no scrim panes: the field runs clean behind the first three panels and
+     the type carries its own shadow instead of sitting on a rectangle */
+  #aboutRoot .p-statement,
+  #aboutRoot .p-team,
+  #aboutRoot .p-virtual{background:transparent}
+  /* soft pools of dimming under the copy on the two open panels — no edges,
+     just enough fall-off for the ribbons to sit behind the type */
+  #aboutRoot .p-statement::before,
+  #aboutRoot .p-team::before,
+  #aboutRoot .p-virtual::before{content:"";position:absolute;inset:0;z-index:-1;
+    pointer-events:none;
+    background:radial-gradient(64% 52% at 38% 52%,rgba(4,5,10,.9),rgba(4,5,10,.5) 46%,rgba(4,5,10,0) 84%)}
+
+  #aboutRoot .p-clients{background:var(--bg)}
+  #aboutRoot .p-statement .st,
+  #aboutRoot .p-team .thead,
+  #aboutRoot .p-virtual .thead,
+  #aboutRoot .p-virtual .realtag,
+  #aboutRoot .p-statement .realtag,
+  #aboutRoot .p-team .realtag{text-shadow:0 2px 34px rgba(4,5,10,.9)}
+  #aboutRoot > section{background:var(--bg)}
+  #aboutRoot .p-intro{background:transparent}
+  /* .env was the old faux atmosphere: a radial veil at 80% opacity plus a
+     300x150 2D canvas pinned top-left. The later panels now carry their own
+     ground, so .env only ever paints over the intro, where the real field
+     supersedes it. This also neutralises the max-width:860px
+     layer-opacity-1-important rule, which would fully veil the field. */
+  #aboutRoot .env{display:none}
+  /* near-white ribbons drift through the wordmark, so the intro type gets the
+     same guard the landing hero has */
+  #aboutRoot .p-intro h1,
+  #aboutRoot .p-intro .sub,
+  #aboutRoot .p-intro .cue{text-shadow:0 2px 40px rgba(4,5,10,.85)}
+  /* the ribbons run bright through the middle of the frame, so the wordmark
+     sits on a soft scrim rather than fighting them */
+  #aboutRoot .p-intro::before{content:"";position:absolute;inset:0;z-index:-1;
+    pointer-events:none;
+    background:radial-gradient(58% 54% at 50% 50%,rgba(4,5,10,.88),rgba(4,5,10,.55) 48%,rgba(4,5,10,0) 82%)}
+
+  /* the cue and the fixed rail both anchored into the same 18px band at the
+     bottom of the frame, so the cue printed through the rail's centre labels.
+     The cue clears the rail band entirely. */
+  #aboutRoot .p-intro .cue{bottom:58px}
+  /* faint 8px labels over a live field: raised to the small-label floor and
+     given the same shadow guard as the rest of the intro type */
+  #aboutRoot .hrail .lbl{font-size:12px;color:var(--dim);
+    text-shadow:0 2px 40px rgba(4,5,10,.85)}
+  /* five panels means four crossings, so the run gets one more viewport of
+     scroll — otherwise every beat loses a quarter of its dwell */
+  #aboutRoot .hwrap{height:580vh}
+</style>
+
+</head>
+<body>
+<canvas id="nf" aria-hidden="true"></canvas>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><path id="adgPath" d="M19.7548 0.0800781C8.86153 0.0800781 0 8.85781 0 19.6481C0 30.4384 8.86153 39.2161 19.7548 39.2161C30.6481 39.2161 39.5112 30.4384 39.5112 19.6481C39.5112 8.85781 30.6481 0.0800781 19.7548 0.0800781ZM19.7548 35.9563C10.6759 35.9563 3.29095 28.6396 3.29095 19.6481C3.29095 10.6566 10.6759 3.33839 19.7548 3.33839C28.8337 3.33839 36.2187 10.6551 36.2187 19.6481C36.2187 28.6411 28.8345 35.9563 19.7548 35.9563ZM31.1424 16.9934C30.928 20.5116 28.341 23.5493 24.1601 24.3841L23.1785 21.5783L24.2432 21.3872C26.2269 21.0321 27.6142 19.6723 27.7317 17.6915C27.84 15.9486 26.911 15.0405 25.3689 15.0632C25.1332 15.0662 24.8838 15.0911 24.6215 15.1387L23.2708 15.379L21.1673 15.8383L20.1575 12.9502L24.7527 12.129C25.3056 12.0285 25.8227 11.9779 26.3093 11.9711C29.5873 11.925 31.3284 13.9028 31.1424 16.9934ZM17.3082 13.4435L21.644 24.8759L18.1219 25.5256L17.3593 23.4209L16.5684 20.9626L15.4549 17.7353L13.9051 21.4416L12.7771 24.2421L11.7986 26.6905L8.33986 27.3274L14.1362 14.0131L17.3074 13.4435H17.3082ZM78.8218 19.1382L70.4087 38.7221H74.8117L76.019 35.7878H85.4945L86.7018 38.7221H91.2168L82.8037 19.1382H78.8218ZM77.5397 32.0936L80.7567 24.2776L83.9737 32.0936H77.5397ZM109.221 19.2772H113.876V38.7221H109.585V26.0272L104.06 34.3328H103.948L98.4798 26.1103V38.7213H94.2454V19.2772H98.9008L104.061 27.4996L109.221 19.2772H109.221ZM118.783 19.2772H123.102V38.7221H118.783V19.2772ZM145.452 19.2772V38.7221H141.778L132.272 26.3612V38.7221H128.009V19.2772H131.991L141.189 31.2498V19.2772H145.452ZM62.3152 27.5276H67.9415V35.9722C65.9219 37.6667 63.1458 39.0552 59.5566 39.0552C53.443 39.0552 49.2368 34.805 49.2368 29.0551V29C49.2368 23.4723 53.5833 18.944 59.5292 18.944C63.0626 18.944 65.1936 19.8883 67.2413 21.6108L64.5209 24.8608C63.0062 23.6105 61.6601 22.8883 59.3888 22.8883C56.2481 22.8883 53.7519 25.6382 53.7519 28.9441V29C53.7519 32.556 56.2199 35.1668 59.6969 35.1668C61.2673 35.1668 62.6691 34.7778 63.7635 34.0004V31.2226H59.2241L62.3167 27.5283L62.3152 27.5276ZM167.999 27.5276V35.9722C165.98 37.6667 163.204 39.0552 159.614 39.0552C153.501 39.0552 149.295 34.805 149.295 29.0551V29C149.295 23.4723 153.641 18.944 159.586 18.944C163.12 18.944 165.251 19.8883 167.298 21.6108L164.578 24.8608C163.063 23.6105 161.717 22.8883 159.446 22.8883C156.305 22.8883 153.809 25.6382 153.809 28.9441V29C153.809 32.556 156.277 35.1668 159.754 35.1668C161.324 35.1668 162.726 34.7778 163.821 34.0004V31.2226H159.281L162.374 27.5283H168L167.999 27.5276ZM53.5467 12.0716H60.2247L61.1872 14.4105H64.4538L58.3668 0.240236H55.4855L49.3985 14.4097H52.5842L53.5467 12.0708V12.0716ZM56.8857 3.95863L59.1661 9.49845H54.6061L56.8865 3.95863H56.8857ZM138.874 0.240236L132.786 14.4097H135.972L136.935 12.0708H143.613L144.575 14.4097H147.842L141.756 0.240236H138.874ZM142.554 9.49845H137.994L140.274 3.95863L142.554 9.49845ZM78.7173 10.5115C78.7173 8.62211 77.703 7.67778 76.0594 7.05452C77.0738 6.4917 77.9264 5.60781 77.9264 4.01982V3.97978C77.9264 3.01506 77.6015 2.23088 76.9525 1.58798C76.141 0.78417 74.8628 0.342224 73.239 0.342224H66.6442V14.4112H73.4007C76.607 14.4112 78.7173 13.1247 78.7173 10.5523V10.5115ZM69.688 3.05434H72.7723C74.0909 3.05434 74.8216 3.57712 74.8216 4.50181V4.54185C74.8216 5.58665 73.9491 6.02936 72.5694 6.02936H69.688V3.05434ZM73.2993 8.60171C74.9024 8.60171 75.6125 9.18493 75.6125 10.1293V10.1693C75.6125 11.2141 74.7804 11.6968 73.4007 11.6968H69.6872V8.60171H73.2993ZM93.4469 0.340713V8.27988C93.4469 12.5407 91.0322 14.6311 87.2173 14.6311C83.4024 14.6311 81.0694 12.5211 81.0694 8.38036V0.340713H84.1941V8.29953C84.1941 10.5908 85.3511 11.7769 87.2578 11.7769C89.1645 11.7769 90.3214 10.6309 90.3214 8.4V0.340713H93.4469ZM108.258 0.340713H102.719V14.4097H108.258C112.722 14.4097 115.806 11.3342 115.806 7.37484V7.3348C115.806 3.37541 112.722 0.340713 108.258 0.340713ZM112.539 7.41563C112.539 9.90791 110.815 11.616 108.257 11.616H105.843V3.13442H108.257C110.814 3.13442 112.539 4.88332 112.539 7.37559V7.41563ZM127.472 14.4105V8.76262H121.709V14.4105H118.585V0.340713H121.709V5.90848H127.472V0.340713H130.597V14.4097H127.472V14.4105ZM162.105 10.5516V10.5115C162.105 8.62211 161.091 7.67778 159.447 7.05452C160.462 6.4917 161.314 5.60781 161.314 4.01982V3.97978C161.314 3.01506 160.99 2.23088 160.34 1.58798C159.529 0.78417 158.251 0.342224 156.627 0.342224H150.032V14.4112H156.789C159.995 14.4112 162.105 13.1247 162.105 10.5523L162.105 10.5516ZM153.076 3.05434H156.16C157.479 3.05434 158.21 3.57712 158.21 4.50181V4.54185C158.21 5.58665 157.337 6.02936 155.957 6.02936H153.076V3.05434ZM153.076 8.60171H156.688C158.291 8.60171 159.001 9.18493 159.001 10.1293V10.1693C159.001 11.2141 158.169 11.6968 156.789 11.6968H153.076V8.60171ZM167.948 14.4105H164.823V0.340713H167.948V14.4105Z" fill="currentColor"/></defs></svg>
+
+
+<header class="il-topbar" id="ilTopbar">
+  <div class="il-brand"><span class="il-logo" role="img" aria-label="ILLUSORR"></span></div>
+  <div class="il-right">
+    <a class="il-talk" href="contact.html">Let's talk</a>
+    <button class="il-burger" id="ilMenuOpen" aria-label="Open menu"><i></i><i></i></button>
+  </div>
+</header>
+
+<div class="il-overlay" id="ilOverlay">
+  <div class="il-ohead">
+    <div class="il-brand"><span class="il-logo" role="img" aria-label="ILLUSORR"></span></div>
+    <button class="il-oclose" id="ilMenuClose">Close ✕</button>
+  </div>
+  <nav>
+    <a href="index.html">Home <span>01</span></a>
+    <a href="about.html">About <span>02</span></a>
+    <a href="sectors.html">Sectors <span>03</span></a>
+    <a href="work.html">Work <span>04</span></a>
+    <a href="lab.html">Lab <span>05</span></a>
+    <a href="collective.html">Collective <span>06</span></a>
+    <a href="contact.html">Contact <span>07</span></a>
+  </nav>
+  <div class="il-ofoot"><span>Abu Dhabi · Yas Creative Hub</span><span>hello@illusorr.com</span></div>
+</div>
+
+
+<div class="page show" id="p-about">
+<div id="aboutRoot">
+<div class="top"><a class="wm" href="index.html" target="_top" style="text-decoration:none;color:inherit"><span class="orb"></span>ILLUSORR</a><a class="mono" href="index.html" target="_top" style="font-size:11px;color:#fff;text-decoration:none">← Back to site</a></div>
+<div class="badge">Direction 1 · Crossing realities</div>
+
+<div class="hwrap" id="hwrap">
+  <div class="hsticky">
+    <div class="env">
+      <div class="layer physical" id="lPhysical"></div>
+      <div class="layer digital" id="lDigital"><canvas id="fieldCanvas"></canvas></div>
+      <div class="layer virtual" id="lVirtual"></div>
+    </div>
+    <div class="htrack" id="htrack">
+      <section class="panel p-intro" data-bg-theme="dark" data-bg-morph="0" data-bg-ov="{&quot;topFade&quot;: 2.2}">
+        <div class="bigwm"><span class="bigorb"></span><h1 class="disp">ILLUSORR</h1></div>
+        <div class="sub mono">We are ILLUSORR · Across every reality</div>
+        <div class="cue mono">Scroll to cross →</div>
+      </section>
+      <section class="panel p-statement">
+        <div class="st"><div class="a">We began in <em>built space.</em> Architecture, structure, the discipline of things that stand.</div><div class="b">Spatial rigor is where the studio started, and it is still the baseline of everything we make.</div></div>
+      </section>
+      <section class="panel p-team">
+        <div class="thead"><h2 class="disp">We render worlds<br>before they exist.</h2><p>Architectural visualization, AI content, and web. Photoreal, and built on a pipeline rather than a one-off.</p></div>
+      </section>
+      <section class="panel p-virtual">
+        <div class="thead"><h2 class="disp">Then we build the ones<br>you can stand inside.</h2><p>Immersive environments, real-time worlds, and games. Spaces that exist only while someone is in them.</p></div>
+      </section>
+      <section class="panel p-clients">
+        <div class="realtag mono">Clients</div>
+        <div class="chead">
+          <h2 class="disp">Brands we<br>build with</h2>
+          <p>Global brands, cultural institutions and forward thinking teams, across seven sectors.</p>
+        </div>
+        <div class="cflow cflow-logos">
+          <div class="cflow-row" data-dir="l">
+            <div class="cflow-track"><img src="assets/img/clients/fit/disney.webp" alt="Disney+" decoding="async" fetchpriority="low"><img src="assets/img/clients/fit/unilever.webp" alt="Unilever" decoding="async" fetchpriority="low"><img src="assets/img/clients/fit/trt.webp" alt="TRT" decoding="async" fetchpriority="low"><img src="assets/img/clients/fit/abb.webp" alt="ABB Robotics" decoding="async" fetchpriority="low"><img src="assets/img/clients/fit/roblox.webp" alt="Roblox" decoding="async" fetchpriority="low"><img src="assets/img/clients/fit/bmw.webp" alt="BMW" decoding="async" fetchpriority="low"><img src="assets/img/clients/fit/dressx.webp" alt="DressX" decoding="async" fetchpriority="low"><img src="assets/img/clients/fit/koton.webp" alt="Koton" decoding="async" fetchpriority="low"><img src="assets/img/clients/fit/disney.webp" alt="Disney+" decoding="async" fetchpriority="low"><img src="assets/img/clients/fit/unilever.webp" alt="Unilever" decoding="async" fetchpriority="low"><img src="assets/img/clients/fit/trt.webp" alt="TRT" decoding="async" fetchpriority="low"><img src="assets/img/clients/fit/abb.webp" alt="ABB Robotics" decoding="async" fetchpriority="low"><img src="assets/img/clients/fit/roblox.webp" alt="Roblox" decoding="async" fetchpriority="low"><img src="assets/img/clients/fit/bmw.webp" alt="BMW" decoding="async" fetchpriority="low"><img src="assets/img/clients/fit/dressx.webp" alt="DressX" decoding="async" fetchpriority="low"><img src="assets/img/clients/fit/koton.webp" alt="Koton" decoding="async" fetchpriority="low"></div>
+          </div>
+          <div class="cflow-row" data-dir="r">
+            <div class="cflow-track"><img src="assets/img/clients/fit/hind-al-oud.webp" alt="Hind Al Oud" decoding="async" fetchpriority="low"><img src="assets/img/clients/fit/khaltat.webp" alt="Khaltat" decoding="async" fetchpriority="low"><img src="assets/img/clients/fit/aquatic-architects.webp" alt="Aquatic Architects" decoding="async" fetchpriority="low"><img src="assets/img/clients/fit/lapillus.webp" alt="Lapillus" decoding="async" fetchpriority="low"><img src="assets/img/clients/fit/autography.webp" alt="Autography Istanbul" decoding="async" fetchpriority="low"><img src="assets/img/clients/fit/bega.webp" alt="BEGA" decoding="async" fetchpriority="low"><img src="assets/img/clients/fit/alium.webp" alt="Alium" decoding="async" fetchpriority="low"><img src="assets/img/clients/fit/ahmed-romel.webp" alt="Ahmed Romel" decoding="async" fetchpriority="low"><img src="assets/img/clients/fit/hind-al-oud.webp" alt="Hind Al Oud" decoding="async" fetchpriority="low"><img src="assets/img/clients/fit/khaltat.webp" alt="Khaltat" decoding="async" fetchpriority="low"><img src="assets/img/clients/fit/aquatic-architects.webp" alt="Aquatic Architects" decoding="async" fetchpriority="low"><img src="assets/img/clients/fit/lapillus.webp" alt="Lapillus" decoding="async" fetchpriority="low"><img src="assets/img/clients/fit/autography.webp" alt="Autography Istanbul" decoding="async" fetchpriority="low"><img src="assets/img/clients/fit/bega.webp" alt="BEGA" decoding="async" fetchpriority="low"><img src="assets/img/clients/fit/alium.webp" alt="Alium" decoding="async" fetchpriority="low"><img src="assets/img/clients/fit/ahmed-romel.webp" alt="Ahmed Romel" decoding="async" fetchpriority="low"></div>
+          </div>
+        </div>
+      </section>
+      </div>
+    <div class="hrail" id="hrail">
+      <div class="seg"><div class="bar"><i id="b0"></i></div><div class="lbl">Intro</div></div>
+      <div class="seg"><div class="bar"><i id="b1"></i></div><div class="lbl">Physical</div></div>
+      <div class="seg"><div class="bar"><i id="b2"></i></div><div class="lbl">Digital</div></div>
+      <div class="seg"><div class="bar"><i id="b4"></i></div><div class="lbl">Virtual</div></div>
+      <div class="seg"><div class="bar"><i id="b3"></i></div><div class="lbl">Clients</div></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ===== CINEMATIC TEAM ===== -->
+<section class="teamSec" id="teamSec">
+  <div class="teamSticky">
+    <div class="timgs" id="timgs"></div>
+    <div class="tscrim"></div>
+    <div class="tbridge-top"></div>
+    <div class="tbridge-bot"></div>
+    <div class="thead2"><div class="eyebrow">The team</div></div>
+    <div class="tcompose" id="tcompose">
+      <div class="tword disp">TEAM</div>
+      <div class="tcline tc-count mono" id="tcCount">01 / 08</div>
+      <div class="tcline tc-ticks d1" id="tcTicks">· · · ·</div>
+      <div class="tcline tc-name disp d1" id="tcName"></div>
+      <div class="tcline tc-role d2" id="tcRole"></div>
+      <div class="tcline tc-init disp d1" id="tcInit"></div>
+      <div class="tcline tc-desc d2" id="tcDesc"></div>
+      <div class="tcline tc-tags d3" id="tcTags"></div>
+    </div>
+    <div class="tdots" id="tdots"></div>
+  </div>
+</section>
+
+<!-- ===== COLLECTIVE NETWORK ===== -->
+<section class="collSec" id="collSec">
+  <div class="collSticky" id="collSticky">
+  <canvas id="collnet"></canvas>
+  <div class="collhead">
+    <div class="eyebrow rv">The Collective</div>
+    <h2 class="disp">A growing network.</h2>
+    <p>Around the core team runs the Collective, an open network of creators who connect into the studio and build with us on real work.</p>
+    <a class="cta mono" href="collective.html">Join the Collective →</a>
+  </div>
+  <div class="collcount mono">Network of <b id="collcnt">0</b><br><span style="font-size:10px">and growing</span></div>
+  <div class="colllegend">Each node a creator<br>Each line a collaboration</div>
+  </div>
+</section>
+
+<section class="vsec recognition">
+  <div class="eyebrow rv">Recognition</div><h2 class="disp rv d1">Awards, features, and talks.</h2>
+  <div class="rec-list">
+    <div class="rec-row rv"><div class="rn mono">Feature</div><div class="rt">Times Square Takeover</div><div class="rd">Metagenus, on the Nasdaq tower</div></div>
+    <div class="rec-row rv d1"><div class="rn mono">Feature</div><div class="rt">Riyadhverse</div><div class="rd">National digital twin, real time in Unreal Engine</div></div>
+    <div class="rec-row rv d2"><div class="rn mono">Programme</div><div class="rt">AD Gaming · twofour54</div><div class="rd">Operating within the Abu Dhabi gaming programme</div></div>
+    <div class="rec-row rv d3"><div class="rn mono">Pipeline</div><div class="rt">Creators Collective</div><div class="rd">Over sixty creators trained through the pipeline</div></div>
+  </div>
+</section>
+<section class="vsec expertise" id="expSec">
+  <div class="eyebrow rv">Area of expertise</div>
+  <div class="ehead disp rv d1" style="margin-top:16px">Every discipline,<br>one studio.</div>
+
+  <div class="expStage rv d2" id="expStage">
+    <div class="expHint mono" id="expHint">Click the deck to explore ↓</div>
+    <div class="flow" id="flow">
+      <article class="fcard" data-i="0">
+        <div class="fc-inner">
+          <div class="fc-front" style="--g1:#1a2150;--g2:#3b2360">
+            <div class="gc-frame">
+              <div class="gc-corner tl"></div><div class="gc-corner tr"></div><div class="gc-corner bl"></div><div class="gc-corner br"></div>
+              <div class="gc-head">
+                <span class="gc-emblem">◈</span>
+                <span class="gc-title">Content &amp; Film</span>
+                <span class="gc-rar mono">RARE</span>
+              </div>
+              <div class="gc-art">
+                <span class="gc-bignum disp">01</span>
+                <span class="gc-type mono">CREATIVE</span>
+              </div>
+              <ul class="gc-stats"><li><span class="s-name">Art Direction</span><span class="s-bar"><i style="width:95%"></i></span><span class="s-val mono">95</span></li><li><span class="s-name">Campaigns</span><span class="s-bar"><i style="width:90%"></i></span><span class="s-val mono">90</span></li><li><span class="s-name">Editorial &amp; Imagery</span><span class="s-bar"><i style="width:88%"></i></span><span class="s-val mono">88</span></li><li><span class="s-name">AI Video Production</span><span class="s-bar"><i style="width:94%"></i></span><span class="s-val mono">94</span></li><li><span class="s-name">Social &amp; Ecom</span><span class="s-bar"><i style="width:86%"></i></span><span class="s-val mono">86</span></li></ul>
+              <div class="gc-foot mono"><span>ILLUSORR</span><span>01/04</span><span class="gc-flip">TAP ⟳</span></div>
+            </div>
+          </div>
+          <div class="fc-back" style="--g1:#1a2150;--g2:#3b2360">
+            <div class="gc-frame">
+              <div class="gc-corner tl"></div><div class="gc-corner tr"></div><div class="gc-corner bl"></div><div class="gc-corner br"></div>
+              <div class="gc-head"><span class="gc-emblem">◈</span><span class="gc-title">Content &amp; Film</span><span class="gc-rar mono">RARE</span></div>
+              <p class="gc-desc">Cinematic campaigns and content built with AI production workflows, concept to delivery.</p>
+              <div class="gc-inds-label mono">Industries served</div>
+              <div class="gc-inds"><span>Fashion</span><span>Fragrance</span><span>Retail</span></div>
+              <a class="gc-cta mono" href="#content-film">Enter industry →</a>
+              <div class="gc-foot mono"><span>ILLUSORR</span><span>01/04</span><span class="gc-flip">⟲ BACK</span></div>
+            </div>
+          </div>
+        </div>
+      </article>
+      <article class="fcard" data-i="1">
+        <div class="fc-inner">
+          <div class="fc-front" style="--g1:#0e3040;--g2:#144a66">
+            <div class="gc-frame">
+              <div class="gc-corner tl"></div><div class="gc-corner tr"></div><div class="gc-corner bl"></div><div class="gc-corner br"></div>
+              <div class="gc-head">
+                <span class="gc-emblem">⬡</span>
+                <span class="gc-title">Spatial &amp; Immersive</span>
+                <span class="gc-rar mono">EPIC</span>
+              </div>
+              <div class="gc-art">
+                <span class="gc-bignum disp">02</span>
+                <span class="gc-type mono">SPATIAL</span>
+              </div>
+              <ul class="gc-stats"><li><span class="s-name">Architectural Viz</span><span class="s-bar"><i style="width:93%"></i></span><span class="s-val mono">93</span></li><li><span class="s-name">Installations</span><span class="s-bar"><i style="width:87%"></i></span><span class="s-val mono">87</span></li><li><span class="s-name">Immersive Worlds</span><span class="s-bar"><i style="width:91%"></i></span><span class="s-val mono">91</span></li><li><span class="s-name">Digital Twins</span><span class="s-bar"><i style="width:95%"></i></span><span class="s-val mono">95</span></li><li><span class="s-name">Real Time</span><span class="s-bar"><i style="width:89%"></i></span><span class="s-val mono">89</span></li></ul>
+              <div class="gc-foot mono"><span>ILLUSORR</span><span>02/04</span><span class="gc-flip">TAP ⟳</span></div>
+            </div>
+          </div>
+          <div class="fc-back" style="--g1:#0e3040;--g2:#144a66">
+            <div class="gc-frame">
+              <div class="gc-corner tl"></div><div class="gc-corner tr"></div><div class="gc-corner bl"></div><div class="gc-corner br"></div>
+              <div class="gc-head"><span class="gc-emblem">⬡</span><span class="gc-title">Spatial &amp; Immersive</span><span class="gc-rar mono">EPIC</span></div>
+              <p class="gc-desc">Real time spatial experiences and architectural visualization, from installations to full digital twins.</p>
+              <div class="gc-inds-label mono">Industries served</div>
+              <div class="gc-inds"><span>Real Estate</span><span>Culture</span><span>Events</span></div>
+              <a class="gc-cta mono" href="#spatial-immersive">Enter industry →</a>
+              <div class="gc-foot mono"><span>ILLUSORR</span><span>02/04</span><span class="gc-flip">⟲ BACK</span></div>
+            </div>
+          </div>
+        </div>
+      </article>
+      <article class="fcard" data-i="2">
+        <div class="fc-inner">
+          <div class="fc-front" style="--g1:#3a1730;--g2:#5a1f34">
+            <div class="gc-frame">
+              <div class="gc-corner tl"></div><div class="gc-corner tr"></div><div class="gc-corner bl"></div><div class="gc-corner br"></div>
+              <div class="gc-head">
+                <span class="gc-emblem">✦</span>
+                <span class="gc-title">Games &amp; IP</span>
+                <span class="gc-rar mono">LEGENDARY</span>
+              </div>
+              <div class="gc-art">
+                <span class="gc-bignum disp">03</span>
+                <span class="gc-type mono">LEGENDARY</span>
+              </div>
+              <ul class="gc-stats"><li><span class="s-name">Game Ready Assets</span><span class="s-bar"><i style="width:92%"></i></span><span class="s-val mono">92</span></li><li><span class="s-name">Characters</span><span class="s-bar"><i style="width:94%"></i></span><span class="s-val mono">94</span></li><li><span class="s-name">Original IP</span><span class="s-bar"><i style="width:96%"></i></span><span class="s-val mono">96</span></li><li><span class="s-name">Licensing</span><span class="s-bar"><i style="width:88%"></i></span><span class="s-val mono">88</span></li><li><span class="s-name">Worlds</span><span class="s-bar"><i style="width:93%"></i></span><span class="s-val mono">93</span></li></ul>
+              <div class="gc-foot mono"><span>ILLUSORR</span><span>03/04</span><span class="gc-flip">TAP ⟳</span></div>
+            </div>
+          </div>
+          <div class="fc-back" style="--g1:#3a1730;--g2:#5a1f34">
+            <div class="gc-frame">
+              <div class="gc-corner tl"></div><div class="gc-corner tr"></div><div class="gc-corner bl"></div><div class="gc-corner br"></div>
+              <div class="gc-head"><span class="gc-emblem">✦</span><span class="gc-title">Games &amp; IP</span><span class="gc-rar mono">LEGENDARY</span></div>
+              <p class="gc-desc">Game ready assets, original characters, and licensable IP for studios and brands.</p>
+              <div class="gc-inds-label mono">Industries served</div>
+              <div class="gc-inds"><span>Gaming</span><span>Entertainment</span><span>Web3</span></div>
+              <a class="gc-cta mono" href="#games-ip">Enter industry →</a>
+              <div class="gc-foot mono"><span>ILLUSORR</span><span>03/04</span><span class="gc-flip">⟲ BACK</span></div>
+            </div>
+          </div>
+        </div>
+      </article>
+      <article class="fcard" data-i="3">
+        <div class="fc-inner">
+          <div class="fc-front" style="--g1:#241a3a;--g2:#0e3b52">
+            <div class="gc-frame">
+              <div class="gc-corner tl"></div><div class="gc-corner tr"></div><div class="gc-corner bl"></div><div class="gc-corner br"></div>
+              <div class="gc-head">
+                <span class="gc-emblem">⣿</span>
+                <span class="gc-title">Production &amp; Tech</span>
+                <span class="gc-rar mono">RARE</span>
+              </div>
+              <div class="gc-art">
+                <span class="gc-bignum disp">04</span>
+                <span class="gc-type mono">CORE</span>
+              </div>
+              <ul class="gc-stats"><li><span class="s-name">3D &amp; Procedural</span><span class="s-bar"><i style="width:91%"></i></span><span class="s-val mono">91</span></li><li><span class="s-name">Generative Pipelines</span><span class="s-bar"><i style="width:93%"></i></span><span class="s-val mono">93</span></li><li><span class="s-name">Web &amp; CMS</span><span class="s-bar"><i style="width:87%"></i></span><span class="s-val mono">87</span></li><li><span class="s-name">Unreal &amp; Blender</span><span class="s-bar"><i style="width:90%"></i></span><span class="s-val mono">90</span></li><li><span class="s-name">Pipeline Dev</span><span class="s-bar"><i style="width:92%"></i></span><span class="s-val mono">92</span></li></ul>
+              <div class="gc-foot mono"><span>ILLUSORR</span><span>04/04</span><span class="gc-flip">TAP ⟳</span></div>
+            </div>
+          </div>
+          <div class="fc-back" style="--g1:#241a3a;--g2:#0e3b52">
+            <div class="gc-frame">
+              <div class="gc-corner tl"></div><div class="gc-corner tr"></div><div class="gc-corner bl"></div><div class="gc-corner br"></div>
+              <div class="gc-head"><span class="gc-emblem">⣿</span><span class="gc-title">Production &amp; Tech</span><span class="gc-rar mono">RARE</span></div>
+              <p class="gc-desc">Procedural 3D, generative pipelines, and web builds that let every discipline scale.</p>
+              <div class="gc-inds-label mono">Industries served</div>
+              <div class="gc-inds"><span>All Sectors</span><span>Platforms</span><span>Tooling</span></div>
+              <a class="gc-cta mono" href="#production-tech">Enter industry →</a>
+              <div class="gc-foot mono"><span>ILLUSORR</span><span>04/04</span><span class="gc-flip">⟲ BACK</span></div>
+            </div>
+          </div>
+        </div>
+      </article>
+    
+    <div class="flow-ui">
+      <button class="flow-arrow mono" id="flowPrev" aria-label="Previous">‹</button>
+      <div class="flow-dots" id="flowDots"></div>
+      <button class="flow-arrow mono" id="flowNext" aria-label="Next">›</button>
+    </div>
+  </div>
+</div></section>
+<section class="close">
+  <div class="eyebrow rv" style="justify-content:center;margin-bottom:22px">Start here</div>
+  <h2 class="disp rv d1">From a single campaign<br>to an <b>entire world.</b></h2>
+  <p class="sub rv d2">Let's build yours.</p><a class="cta rv d3" href="brief.html?intent=project">Start a project</a>
+</section>
+</div>
+</div>
+
+
+<script src="assets/js/nav.js" defer></script>
+<script src="assets/js/about.js?v=7" defer></script>
+<script src="assets/js/field.js?v=2" defer></script>
+<script src="assets/js/site-footer.js" defer></script>
+<script src="assets/js/to-top.js" defer></script>
+<script src="assets/js/ambience.js" defer></script>
+</body>
+</html>

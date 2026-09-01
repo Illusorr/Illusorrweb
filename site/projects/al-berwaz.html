@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<link rel="preload" as="font" type="font/otf" crossorigin href="../assets/projects/shared/fonts/PPMonumentExtended-Black.otf">
+<link rel="preload" as="font" type="font/ttf" crossorigin href="../assets/projects/shared/fonts/Squaresharps-v2.ttf">
+
+<link rel="preload" as="font" type="font/woff" crossorigin href="../assets/fonts/outfit-variable.woff">
+<link rel="stylesheet" href="../assets/css/nav.css">
+<link rel="stylesheet" href="../assets/css/case/fonts.css">
+
+<link rel="stylesheet" href="../assets/css/case/cm-type.css">
+<title>Al Berwaz Insurance · Website · ILLUSORR</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../assets/css/case/case-base.css">
+
+<link rel="stylesheet" href="../assets/css/case/proj-tags.css">
+
+
+<link rel="stylesheet" href="../assets/css/case/hero-refine.css">
+
+<link rel="stylesheet" href="../assets/css/case/rhythm-refine.css">
+
+<meta name="description" content="Al Berwaz Insurance Brokers by ILLUSORR: information architecture, design system and front-end build for a thirty-year-old Abu Dhabi insurance broker.">
+<link rel="canonical" href="https://illusorr.com/projects/al-berwaz.html">
+<meta name="theme-color" content="#05060a">
+<meta property="og:site_name" content="ILLUSORR">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Al Berwaz Insurance · Website · ILLUSORR">
+<meta property="og:description" content="Thirteen product lines, three audiences, one quote funnel. Architecture, design system and build.">
+<meta property="og:url" content="https://illusorr.com/projects/al-berwaz.html">
+<meta property="og:image" content="https://illusorr.com/assets/img/og/og-default.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CreativeWork","name":"Al Berwaz Insurance Website","url":"https://illusorr.com/projects/al-berwaz.html","creator":{"@type":"Organization","name":"ILLUSORR","url":"https://illusorr.com/"},"about":"Business & Institutions","keywords":"Web design, Information architecture, Design system, Insurance, Abu Dhabi"}</script>
+<!-- phone + tablet: shared touch layer, then the shared case layout -->
+<link rel="stylesheet" href="../assets/css/mobile.css">
+<link rel="stylesheet" href="../assets/css/case/case-mobile.css">
+<script src="../assets/js/mobile.js"></script>
+</head>
+
+
+
+<body>
+<header class="il-topbar" id="ilTopbar">
+  <a class="il-brand" href="../index.html" aria-label="ILLUSORR home"><span class="il-logo" role="img" aria-label="ILLUSORR"></span></a>
+  <div class="il-right">
+    <a class="il-talk" href="../contact.html">Let's talk</a>
+    <button class="il-burger" id="ilMenuOpen" aria-label="Open menu"><i></i><i></i></button>
+  </div>
+</header>
+<div class="il-overlay" id="ilOverlay">
+  <div class="il-ohead"><span class="il-logo" role="img" aria-label="ILLUSORR"></span><button class="il-oclose" id="ilMenuClose">Close ✕</button></div>
+  <nav>
+    <a href="../index.html">Home <span>01</span></a>
+    <a href="../about.html">About <span>02</span></a>
+    <a href="../sectors.html">Sectors <span>03</span></a>
+    <a href="../work.html">Work <span>04</span></a>
+    <a href="../lab.html">Lab <span>05</span></a>
+    <a href="../collective.html">Collective <span>06</span></a>
+    <a href="../contact.html">Contact <span>07</span></a>
+  </nav>
+  <div class="il-ofoot"><span>Abu Dhabi · Yas Creative Hub</span><span>hello@illusorr.com</span></div>
+</div>
+
+
+  <!-- ─── Fixed chrome ─────────────────────────────────────────────── -->
+  <!-- topnav removed, menu bar to be added separately -->
+
+
+<style>
+  /* ─── website-work modules: live frames, sitemap, system sheet ─── */
+  .stage { border: 1px solid var(--line); background: #0a0a0a; position: relative; overflow: hidden; }
+  .stage-bar { display: flex; align-items: center; gap: 10px; height: 34px; padding: 0 12px;
+    border-bottom: 1px solid var(--line); background: rgba(255,255,255,.03); }
+  .stage-dots { display: flex; gap: 6px; }
+  .stage-dots i { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.18); }
+  .stage-url { flex: 1; height: 18px; border-radius: 9px; background: rgba(255,255,255,.06);
+    display: flex; align-items: center; padding: 0 10px; font-size: 12px; letter-spacing: .12em;
+    text-transform: uppercase; color: rgba(255,255,255,.45); }
+  .stage-live { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--gold-ant); }
+  .stage-view { position: relative; overflow: hidden; background: #fff; }
+  .stage-view iframe { position: absolute; top: 0; left: 0; border: 0; transform-origin: top left; }
+  .stage, .dev-tab { contain: paint; }
+  .stage-view { contain: strict; }
+  .stage-view.is-locked iframe { pointer-events: none; }
+  .stage-hint { position: absolute; inset: auto 0 0 0; padding: 10px 12px; z-index: 3;
+    display: flex; justify-content: space-between; align-items: center; gap: 12px; cursor: pointer;
+    font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: #fff;
+    background: linear-gradient(to top, rgba(0,0,0,.78), rgba(0,0,0,0)); }
+  .stage-view:not(.is-locked) .stage-hint { background: none; color: var(--gold-ant); }
+  .devrow { display: grid; grid-template-columns: 1fr; gap: clamp(18px, 2.4vw, 34px); align-items: end; }
+  @media (min-width: 900px) { .devrow { grid-template-columns: 1.9fr .62fr; } }
+  .dev-tab { border-radius: 14px; padding: 8px; border: 1px solid var(--line); background: #0a0a0a; }
+  .dev-tab .stage-view { border-radius: 8px; }
+  .dev-cap { display: flex; justify-content: space-between; gap: 10px; margin-top: 10px;
+    font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint); }
+  .sitemap { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--line);
+    border: 1px solid var(--line); margin-top: clamp(28px, 3vw, 46px); }
+  @media (min-width: 760px) { .sitemap { grid-template-columns: repeat(4, 1fr); } }
+  .sm-col { background: var(--bg); padding: clamp(18px, 2vw, 26px); }
+  .sm-k { display: flex; align-items: baseline; gap: 8px; font-size: 12px; letter-spacing: .16em;
+    text-transform: uppercase; color: var(--gold-ant); }
+  .sm-k b { font-weight: 400; color: var(--ink-faint); }
+  .sm-col ul { list-style: none; margin: 14px 0 0; padding: 0; display: flex; flex-direction: column; gap: 7px; }
+  .sm-col li { font-size: 13px; line-height: 1.45; color: var(--ink-soft); }
+  .sm-col li.is-deep { padding-left: 12px; border-left: 1px solid var(--line); color: var(--ink-faint); }
+  .syssheet { display: grid; grid-template-columns: 1fr; gap: 1px; background: var(--line);
+    border: 1px solid var(--line); margin-top: clamp(28px, 3vw, 46px); }
+  @media (min-width: 860px) { .syssheet { grid-template-columns: 1.1fr 1fr 1fr; } }
+  .sys-cell { background: var(--bg); padding: clamp(20px, 2.2vw, 30px); display: flex; flex-direction: column; gap: 16px; }
+  .sys-k { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--gold-ant); }
+  .swatches { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .sw { aspect-ratio: 1; border: 1px solid var(--line); display: flex; align-items: flex-end; padding: 7px;
+    font-size: 12px; letter-spacing: .08em; }
+  .typerow { display: flex; flex-direction: column; gap: 10px; }
+  .typerow span { color: var(--ink); line-height: 1.05; }
+  .typerow small { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint); }
+  .uikit { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .ui-btn { padding: 11px 22px; border-radius: 6px; font-size: 13px; font-weight: 600; letter-spacing: .04em;
+    background: var(--gold-ant); color: #0a0a0a; }
+  .ui-btn.is-ghost { background: transparent; color: rgba(255,255,255,.72); border: 1px solid rgba(255,255,255,.22); font-weight: 500; }
+  .ui-eyebrow { font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--gold-ant); font-weight: 600; }
+  .ui-chip { padding: 7px 13px; border: 1px solid var(--line); font-size: 12px; color: var(--ink-soft); }
+  .featrow { display: grid; grid-template-columns: 1fr; gap: clamp(18px, 2.2vw, 30px); }
+  @media (min-width: 900px) { .featrow { grid-template-columns: 1fr 1fr; } }
+  .feat-cap { display: flex; justify-content: space-between; gap: 10px; margin-top: 10px;
+    font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint); }
+  :root { --gold-ant: #D4A017; --line: rgba(255,255,255,.10); }
+</style>
+
+
+  <style>
+    /* Al Berwaz runs brand red on near-black — distinct from ARGA's operational
+       blue and ANT's gold. */
+    :root { --gold-ant: #C8102E; --line: rgba(255,255,255,.10);
+            --dark-bg: #04070a; --dark-bg-2: #080d12; --dark-tile: #03111a; }
+    body { background: #04070a; }
+    body section[data-tone="dark"], body footer[data-tone="dark"] { background: #04070a; }
+    body section.hero[data-tone="dark"] { background: #04070a !important; color: #eaf2f1; }
+    body section.hero[data-tone="dark"]::before { background: radial-gradient(70% 70% at 74% 20%, rgba(200,16,46,.16), transparent 70%) !important; }
+    body section.hero[data-tone="dark"]::after { background: none !important; }
+    /* product matrix: the whole catalogue, three families side by side */
+    .matrix { display: grid; grid-template-columns: 1fr; gap: 1px; background: var(--line);
+      border: 1px solid var(--line); margin-top: clamp(28px, 3vw, 46px); }
+    @media (min-width: 820px) { .matrix { grid-template-columns: 1.2fr 1fr .7fr; } }
+    .mx-col { background: var(--bg); padding: clamp(20px, 2.2vw, 30px); }
+    .mx-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px;
+      padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+    .mx-head span { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--gold-ant); }
+    .mx-head b { font-family: 'PP Monument Extended', system-ui, sans-serif; font-weight: 400;
+      font-size: 18px; color: var(--ink); }
+    .mx-col ul { list-style: none; margin: 16px 0 0; padding: 0; display: flex; flex-direction: column; gap: 9px; }
+    .mx-col li { font-size: 13px; line-height: 1.4; color: var(--ink-soft); display: flex; gap: 9px; align-items: baseline; }
+    .mx-col li::before { content: ''; width: 4px; height: 4px; flex: 0 0 4px; margin-top: 6px;
+      background: var(--gold-ant); opacity: .7; }
+    /* quote funnel: four forms, one per audience */
+    .funnel { display: grid; grid-template-columns: 1fr; gap: 1px; background: var(--line);
+      border: 1px solid var(--line); margin-top: clamp(28px, 3vw, 46px); }
+    @media (min-width: 760px) { .funnel { grid-template-columns: repeat(4, 1fr); } }
+    .fn-cell { background: var(--bg); padding: clamp(18px, 2vw, 26px); display: flex; flex-direction: column; gap: 12px; }
+    .fn-k { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--gold-ant); }
+    .fn-cell h5 { margin: 0; font-family: 'Outfit', system-ui, sans-serif; font-size: 15px; font-weight: 500; color: var(--ink); }
+    .fn-cell p { margin: 0; font-size: 13px; line-height: 1.5; color: var(--ink-faint); }
+    .fn-fields { display: flex; flex-direction: column; gap: 6px; margin-top: auto; }
+    .fn-fields i { display: block; height: 26px; border: 1px solid var(--line); background: rgba(255,255,255,.02); }
+    .fn-fields i.is-sel { border-color: rgba(200,16,46,.5); background: rgba(200,16,46,.09); }
+    .fn-btn { height: 30px; background: var(--gold-ant); display: flex; align-items: center; justify-content: center;
+      font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: #fff; font-weight: 600; }
+  </style>
+
+  <div class="koton-cursor" id="kCursor" aria-hidden="true">
+    <svg class="km" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="42" fill="none" stroke="currentColor" stroke-width="7"></circle><circle cx="50" cy="50" r="9" fill="currentColor"></circle></svg>
+    <span class="label-link" data-verb="Open"></span>
+  </div>
+
+  <aside class="rail" aria-hidden="true">
+    <span class="rail-dot is-active" data-i="0"></span><span class="rail-dot" data-i="1"></span>
+    <span class="rail-dot" data-i="2"></span><span class="rail-dot" data-i="3"></span>
+    <span class="rail-dot" data-i="4"></span><span class="rail-dot" data-i="5"></span>
+    <span class="rail-dot" data-i="6"></span>
+  </aside>
+
+  <!-- 1. HERO -->
+  <section class="hero" data-tone="dark" data-rail="0" data-screen-label="01 Hero">
+    <div class="hero-inner">
+      <div class="proj-tags hero-meta">
+        <div class="ptg ptg-client">
+          <div class="ptg-k">Client</div>
+          <div class="ptg-c"><span class="cm-lockup"><span class="cm-name" style="font-size:clamp(22px,2.4vw,34px)">Al Berwaz</span><span class="cm-sub" style="font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faint)">Insurance Brokers</span></span></div>
+        </div>
+        <div class="ptg" style="margin-left:auto">
+          <div class="ptg-k">Category</div>
+          <div class="ptg-c"><span class="ptag">Web Design</span><span class="ptag">Web Build</span><span class="ptag">IA</span></div>
+        </div>
+        <div class="ptg">
+          <div class="ptg-k">Sector</div>
+          <div class="ptg-c"><span class="ptag sector">Business &amp; Institutions</span></div>
+        </div>
+      </div>
+
+      <h1 class="hero-title">
+        <span class="ln">Al Berwaz<span class="ln-ital">thirty years, finally legible.</span></span>
+      </h1>
+
+      <p class="hero-lede">
+        <strong>A broker founded in Abu Dhabi in 1995</strong> carrying thirteen product
+        lines across three unrelated audiences: businesses, families, and marine and
+        engineering operators. One site had to serve all three without asking anyone
+        to read the other two.
+      </p>
+
+      <div class="hero-foot">
+        <div class="hero-credit">
+          <div>Al Berwaz Insurance Brokers · Website · 2026</div>
+          <div>Designed and built by ILLUSORR</div>
+        </div>
+        <div class="scroll-cue"><span>Scroll</span><span class="line"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. LIVE COVER -->
+  <section class="hero-media" data-tone="dark" data-rail="1" data-screen-label="02 Live Site">
+    <div class="hm-inner">
+      <div class="stage">
+        <div class="stage-bar">
+          <div class="stage-dots"><i></i><i></i><i></i></div>
+          <div class="stage-url">alberwazinsurance.com</div>
+          <a class="stage-live" href="https://www.alberwazinsurance.com/" target="_blank" rel="noopener" style="text-decoration:none">Visit live site →</a>
+        </div>
+        <div class="stage-view is-locked" data-frame data-w="1440" data-h="900" style="aspect-ratio:1440/900">
+          <iframe data-src="https://www.alberwazinsurance.com/" title="Al Berwaz Insurance website, live" loading="lazy" referrerpolicy="no-referrer"></iframe>
+          <div class="stage-hint"><span>Click to use the live site</span><span>Home</span></div>
+        </div>
+      </div>
+      <div class="hm-cap"><span>Al Berwaz Insurance Brokers</span><span>Home · Live</span></div>
+    </div>
+  </section>
+
+  <!-- 3. META -->
+  <section data-tone="dark" data-rail="1" data-screen-label="03 Meta">
+    <div class="wrap">
+      <div class="meta-bar">
+        <div class="meta-cell"><span class="meta-k">Client</span><span class="meta-v">Al Berwaz Insurance Brokers<br>Abu Dhabi, United Arab Emirates</span></div>
+        <div class="meta-cell"><span class="meta-k">Year</span><span class="meta-v">2026</span></div>
+        <div class="meta-cell"><span class="meta-k">Services</span><span class="meta-v">Information Architecture, Web Design, Front-End Build, Lead Capture</span></div>
+        <div class="meta-cell"><span class="meta-k">Established</span><span class="meta-v">1995 · Three decades broking</span></div>
+        <div class="meta-cell"><span class="meta-k">Audiences</span><span class="meta-v">Businesses · Families · Marine &amp; engineering</span></div>
+        <div class="meta-cell"><span class="meta-k">Catalogue</span><span class="meta-v">13 product lines · 3 families · 16 carriers</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. BRIEF -->
+  <section class="module" data-tone="dark" data-rail="2" data-screen-label="04 Brief">
+    <div class="wrap">
+      <div class="module-head">
+        <div class="section-num"><span class="num">01</span>The Brief</div>
+        <div>
+          <h2 class="module-title">Nobody buys <em>&ldquo;insurance.&rdquo;</em></h2>
+          <p class="lede">
+            They buy group health for forty staff, or cover for one car, or a marine
+            cargo policy. A broker&rsquo;s site fails the moment it makes a facilities
+            manager wade through travel insurance to find liability.
+          </p>
+        </div>
+      </div>
+      <div class="body-grid">
+        <div>
+          <p>Al Berwaz has broked in Abu Dhabi since 1995, and the catalogue reflects
+          that: thirteen lines spanning financial lines and trade credit at one end,
+          pleasure craft and home at the other, marine and engineering in a category
+          of their own.</p>
+        </div>
+        <div>
+          <p>So the split came first. Three families, named for who is buying rather
+          than how insurers classify risk, and a quote form that already knows which
+          family you came from, so nobody chooses from thirteen options in a dropdown.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4b. SCALE -->
+  <section class="module" data-tone="dark" data-rail="2" data-screen-label="04b Scale" style="padding-top:0">
+    <div class="wrap">
+      <div class="stats">
+        <div class="stat"><span class="stat-n">1995</span><span class="stat-k">Broking in Abu Dhabi since</span></div>
+        <div class="stat"><span class="stat-n">13</span><span class="stat-k">Product lines across three families</span></div>
+        <div class="stat"><span class="stat-n">16</span><span class="stat-k">Carrier partners in the UAE and beyond</span></div>
+        <div class="stat"><span class="stat-n">04</span><span class="stat-k">Quote forms, one per audience</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. ARCHITECTURE -->
+  <section class="module" data-tone="dark" data-rail="3" data-screen-label="05 Architecture" style="padding-top:0">
+    <div class="wrap">
+      <div class="module-head">
+        <div class="section-num"><span class="num">02</span>Architecture</div>
+        <div>
+          <h2 class="module-title">Four pages. <em>The catalogue sits in one.</em></h2>
+          <p class="lede">
+            A broker does not need a large site, it needs a decisive one. Everything
+            resolves into four pages, with the whole catalogue anchored inside Products
+            so any line is one scroll and one jump away.
+          </p>
+        </div>
+      </div>
+      <div class="sitemap">
+        <div class="sm-col">
+          <div class="sm-k">Home <b>01</b></div>
+          <ul><li>Proposition &amp; film</li><li>Why Al Berwaz, four pillars</li><li>What we do, four stages</li><li>Product families</li><li>Client testimony</li><li>Carrier partners</li></ul>
+        </div>
+        <div class="sm-col">
+          <div class="sm-k">About <b>02</b></div>
+          <ul><li>Three decades of broking</li><li>Advisory approach</li><li>Recognition</li><li>Support commitment</li></ul>
+        </div>
+        <div class="sm-col">
+          <div class="sm-k">Products <b>03</b></div>
+          <ul><li>Business insurance</li><li class="is-deep">Six lines</li><li>Personal insurance</li><li class="is-deep">Five lines</li><li>Industry insurance</li><li class="is-deep">Two lines</li></ul>
+        </div>
+        <div class="sm-col">
+          <div class="sm-k">Contact <b>04</b></div>
+          <ul><li>Quote request</li><li>Khalifa Bin Zayed Street</li><li>Direct line and email</li><li>Regulatory disclaimer</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. SYSTEM -->
+  <section class="module" data-tone="dark" data-rail="3" data-screen-label="06 System" style="padding-top:0">
+    <div class="wrap">
+      <div class="module-head">
+        <div class="section-num"><span class="num">03</span>The System</div>
+        <div>
+          <h2 class="module-title">One accent. <em>Everything else gets out of the way.</em></h2>
+          <p class="lede">
+            Insurance copy is long and unavoidably dry. The system gives it one colour
+            for action and nothing else to compete with, so a page of policy detail
+            still has a single obvious next step.
+          </p>
+        </div>
+      </div>
+      <div class="syssheet">
+        <div class="sys-cell">
+          <div class="sys-k">Palette</div>
+          <div class="swatches">
+            <div class="sw" style="background:#C8102E;color:#fff">C8102E</div>
+            <div class="sw" style="background:#8E0C20;color:rgba(255,255,255,.8)">8E0C20</div>
+            <div class="sw" style="background:#04070A;color:rgba(255,255,255,.55)">04070A</div>
+            <div class="sw" style="background:#03111a;color:rgba(255,255,255,.55)">0E1620</div>
+            <div class="sw" style="background:#8A9299;color:#04070a">8A9299</div>
+            <div class="sw" style="background:#eaf2f1;color:#04070a">F2F4F5</div>
+          </div>
+        </div>
+        <div class="sys-cell">
+          <div class="sys-k">Type</div>
+          <div class="typerow">
+            <small>Statement</small>
+            <span style="font-weight:600;font-size:clamp(22px,2.6vw,34px)">We shield you.</span>
+            <small>Section title</small>
+            <span style="font-weight:500;font-size:19px">Business insurance</span>
+            <small>Policy body</small>
+            <span style="font-weight:300;font-size:13.5px;color:var(--ink-soft)">Comprehensive evaluation of your potential risks and vulnerabilities.</span>
+          </div>
+        </div>
+        <div class="sys-cell">
+          <div class="sys-k">Components</div>
+          <div class="uikit">
+            <span class="ui-btn">Get your quote</span>
+            <span class="ui-btn is-ghost">Learn more</span>
+          </div>
+          <div class="ui-eyebrow">Products</div>
+          <div class="uikit">
+            <span class="ui-chip">Business</span><span class="ui-chip">Personal</span><span class="ui-chip">Industry</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. THE CATALOGUE -->
+  <section class="module" data-tone="dark" data-rail="4" data-screen-label="07 Catalogue">
+    <div class="wrap">
+      <div class="module-head">
+        <div class="section-num"><span class="num">04</span>The Catalogue</div>
+        <div>
+          <h2 class="module-title">Thirteen lines, <em>sorted by who asks.</em></h2>
+          <p class="lede">
+            Insurers group products by class of risk. Buyers do not. The families below
+            are named for the person on the other end of the enquiry, which is why
+            marine and engineering sit apart from everything else.
+          </p>
+        </div>
+      </div>
+      <div class="matrix">
+        <div class="mx-col">
+          <div class="mx-head"><b>Business</b><span>Six lines</span></div>
+          <ul><li>Financial lines</li><li>General liability</li><li>Group health</li><li>General accidents</li><li>Trade credit</li><li>Property insurance</li></ul>
+        </div>
+        <div class="mx-col">
+          <div class="mx-head"><b>Personal</b><span>Five lines</span></div>
+          <ul><li>Health insurance</li><li>Home insurance</li><li>Auto insurance</li><li>Travel insurance</li><li>Pleasure craft insurance</li></ul>
+        </div>
+        <div class="mx-col">
+          <div class="mx-head"><b>Industry</b><span>Two lines</span></div>
+          <ul><li>Marine insurance</li><li>Engineering insurance</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. THE FUNNEL -->
+  <section class="module" data-tone="dark" data-rail="5" data-screen-label="08 Funnel" style="padding-top:0">
+    <div class="wrap">
+      <div class="module-head">
+        <div class="section-num"><span class="num">05</span>The Funnel</div>
+        <div>
+          <h2 class="module-title">Four forms, <em>not one long dropdown.</em></h2>
+          <p class="lede">
+            The quote request is the only conversion on the site, so it forks by family.
+            Arrive from Business and the insurance-type field already lists the six
+            business lines and nothing else.
+          </p>
+        </div>
+      </div>
+      <div class="funnel">
+        <div class="fn-cell">
+          <div class="fn-k">Entry · Generic</div>
+          <h5>Choose your type</h5>
+          <p>Global header and footer. Three families, then hand off to the matching form.</p>
+          <div class="fn-fields"><i></i><i></i><i class="is-sel"></i><div class="fn-btn">Submit</div></div>
+        </div>
+        <div class="fn-cell">
+          <div class="fn-k">Fork 01 · Business</div>
+          <h5>Business enquiry</h5>
+          <p>Six business lines in the type field. Company name promoted, not optional.</p>
+          <div class="fn-fields"><i></i><i class="is-sel"></i><i></i><div class="fn-btn">Submit</div></div>
+        </div>
+        <div class="fn-cell">
+          <div class="fn-k">Fork 02 · Personal</div>
+          <h5>Personal enquiry</h5>
+          <p>Five personal lines. Company dropped entirely, shortest path of the four.</p>
+          <div class="fn-fields"><i class="is-sel"></i><i></i><i></i><div class="fn-btn">Submit</div></div>
+        </div>
+        <div class="fn-cell">
+          <div class="fn-k">Fork 03 · Industry</div>
+          <h5>Industry enquiry</h5>
+          <p>Marine or engineering only. Two options, so the field is a pair, not a list.</p>
+          <div class="fn-fields"><i></i><i></i><i class="is-sel"></i><div class="fn-btn">Submit</div></div>
+        </div>
+      </div>
+      <p style="margin-top:clamp(20px,2.4vw,34px);max-width:760px;font-size:13px;line-height:1.6;color:var(--ink-faint)">
+        Every form carries the UAE Central Bank notice: premiums are paid by the client
+        direct to the insurer, and no employee collects cash. On a broker&rsquo;s site
+        that line is not fine print, it is the fraud defence, so it sits in the footer
+        of every page and under every form.
+      </p>
+    </div>
+  </section>
+
+  <!-- 9. THE BUILD -->
+  <section class="module" data-tone="dark" data-rail="5" data-screen-label="09 Build" style="padding-top:0">
+    <div class="wrap">
+      <div class="module-head">
+        <div class="section-num"><span class="num">06</span>The Build</div>
+        <div>
+          <h2 class="module-title">Client-editable, <em>and running right here.</em></h2>
+          <p class="lede">
+            Built so the team can add a line or swap a carrier without us. Both frames
+            below are the live site at the width they were designed for. Click in and use one.
+          </p>
+        </div>
+      </div>
+      <div class="devrow">
+        <div>
+          <div class="stage">
+            <div class="stage-bar">
+              <div class="stage-dots"><i></i><i></i><i></i></div>
+              <div class="stage-url">alberwazinsurance.com / products</div>
+              <div class="stage-live">1440 px</div>
+            </div>
+            <div class="stage-view is-locked" data-frame data-w="1440" data-h="880" style="aspect-ratio:1440/880">
+              <iframe data-src="https://www.alberwazinsurance.com/products" title="Al Berwaz products page" loading="lazy" referrerpolicy="no-referrer"></iframe>
+              <div class="stage-hint"><span>Click to use</span><span>Products</span></div>
+            </div>
+          </div>
+          <div class="dev-cap"><span>Desktop · Catalogue page</span><span>Three families</span></div>
+        </div>
+        <div>
+          <div class="dev-tab">
+            <div class="stage-view is-locked" data-frame data-w="420" data-h="880" style="aspect-ratio:420/880">
+              <iframe data-src="https://www.alberwazinsurance.com/about" title="Al Berwaz about page on mobile" loading="lazy" referrerpolicy="no-referrer"></iframe>
+              <div class="stage-hint"><span>Click to use</span><span>390</span></div>
+            </div>
+          </div>
+          <div class="dev-cap"><span>Mobile</span><span>420 px</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. APPROACH -->
+  <section class="module" data-tone="dark" data-rail="6" data-screen-label="10 Approach">
+    <div class="wrap">
+      <div class="module-head">
+        <div class="section-num"><span class="num">07</span>The Approach</div>
+        <div>
+          <h2 class="module-title">Sort the catalogue. <em>Then design the enquiry.</em></h2>
+          <p class="lede">Three passes, and the form was specified before any page was drawn.</p>
+        </div>
+      </div>
+      <div class="process">
+        <div class="step">
+          <span class="step-k">Phase 01 · Sort</span>
+          <h4>Group by Buyer</h4>
+          <p>Thirteen lines were listed and regrouped by who enquires rather than by class of risk. That produced three families, and the three families produced the navigation.</p>
+        </div>
+        <div class="step">
+          <span class="step-k">Phase 02 · Funnel</span>
+          <h4>Fork the Form</h4>
+          <p>One quote form became four, each pre-scoped to its family. The generic form stays for anyone arriving from the header with no context yet.</p>
+        </div>
+        <div class="step">
+          <span class="step-k">Phase 03 · Build</span>
+          <h4>Hand Over Editable</h4>
+          <p>Built on a managed platform so the team adds lines, carriers and testimony themselves. Thirty years of relationships change faster than a website budget.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. OUTCOME -->
+  <section class="module" data-tone="dark" data-rail="7" data-screen-label="11 Results">
+    <div class="wrap">
+      <div class="module-head">
+        <div class="section-num"><span class="num">08</span>The Outcome</div>
+        <div><h2 class="module-title">A broker that reads as a specialist. <em>Whichever door you came through.</em></h2></div>
+      </div>
+      <div class="stats">
+        <div class="stat"><span class="stat-n">03</span><span class="stat-k">Audiences served without diluting any of them</span></div>
+        <div class="stat"><span class="stat-n">04</span><span class="stat-k">Pages carrying thirteen product lines</span></div>
+        <div class="stat"><span class="stat-n">01</span><span class="stat-k">Conversion, forked four ways by context</span></div>
+        <div class="stat"><span class="stat-n">30</span><span class="stat-k">Years of broking made legible in one scroll</span></div>
+      </div>
+      <div class="credits">
+        <div>
+          <span class="section-num" style="display:block;margin-bottom:0">
+            <span class="num" style="font-size:clamp(28px,3vw,48px)">09</span>Credits
+          </span>
+        </div>
+        <div class="credit-list">
+          <div class="credit-row"><span class="role">Information Architecture</span><span class="who">ILLUSORR Studio</span></div>
+          <div class="credit-row"><span class="role">Art Direction · Design System</span><span class="who">ILLUSORR Studio</span></div>
+          <div class="credit-row"><span class="role">Front-End Build</span><span class="who">ILLUSORR Labs</span></div>
+          <div class="credit-row"><span class="role">Copy &amp; Content Structure</span><span class="who">ILLUSORR Studio</span></div>
+          <div class="credit-row"><span class="role">Client</span><span class="who">Al Berwaz Insurance Brokers</span></div>
+          <div class="credit-row"><span class="role">Sector</span><span class="who">Business &amp; Institutions</span></div>
+          <div class="credit-row"><span class="role">Year</span><span class="who">2026</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12. NEXT -->
+  <section class="next" data-tone="dark" data-rail="7" data-screen-label="12 Next">
+    <div class="next-bg">
+      <div class="ph is-filled" style="overflow:hidden"><img src="../assets/img/projects/arga/illusorr-arga-global-team-interface-cover.webp" alt="Arga, next project" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+    </div>
+    <div class="next-inner">
+      <span class="next-k">Featured Project · 016</span>
+      <h3>
+        <span style="display:block">Arga</span>
+        <span style="display:block;font-weight:400;font-style:italic;color:var(--ink-soft);letter-spacing:0">the science, made navigable.</span>
+      </h3>
+      <div class="next-meta">
+        <span>2025</span>
+        <span>·</span>
+        <span>Web</span>
+      </div>
+      <a class="next-cta" href="arga.html">
+        <span>View Case Study</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19 L19 5"></path><polyline points="9 5 19 5 19 15"></polyline></svg>
+      </a>
+    </div>
+  </section>
+
+  <footer class="foot" data-tone="dark">
+    <div>© ILLUSORR Labs · MMXXVI</div>
+    <div>Al Berwaz Insurance · Website</div>
+  </footer>
+
+<script>
+  (function () {
+    const frames = Array.from(document.querySelectorAll('[data-frame]'));
+    function fit() {
+      frames.forEach(function (v) {
+        const f = v.querySelector('iframe');
+        if (!f.getAttribute('src')) return;
+        const w = +v.dataset.w;
+        const s = v.clientWidth / w;
+        f.style.width = w + 'px';
+        f.style.height = (+v.dataset.h) + 'px';
+        f.style.transform = 'scale(' + s + ')';
+      });
+    }
+    fit();
+    window.addEventListener('resize', fit);
+    if (window.ResizeObserver) {
+      const ro = new ResizeObserver(fit);
+      frames.forEach(function (v) { ro.observe(v); });
+    }
+    /* Third-party site in three frames: mount on approach, tear down on exit. */
+    if (window.IntersectionObserver) {
+      const mio = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          const f = e.target.querySelector('iframe');
+          if (!f || !f.dataset.src) return;
+          if (e.isIntersecting) {
+            if (!f.getAttribute('src')) { f.src = f.dataset.src; fit(); }
+          } else if (f.getAttribute('src')) {
+            f.removeAttribute('src');
+            e.target.classList.add('is-locked');
+          }
+        });
+      }, { rootMargin: '600px 0px' });
+      frames.forEach(function (v) { mio.observe(v); });
+    } else {
+      frames.forEach(function (v) {
+        const f = v.querySelector('iframe');
+        if (f.dataset.src) f.src = f.dataset.src;
+      });
+    }
+    frames.forEach(function (v) {
+      const f = v.querySelector('iframe');
+      f.addEventListener('load', fit);
+      const hint = v.querySelector('.stage-hint');
+      if (hint) {
+        hint.addEventListener('click', function () {
+          const locked = v.classList.toggle('is-locked');
+          hint.firstElementChild.textContent = locked ? 'Click to use the live site' : 'Live — click here to release';
+        });
+      }
+    });
+  })();
+
+  (function () {
+    if (window.matchMedia('(hover: none)').matches) return;
+    const cursor = document.getElementById('kCursor');
+    if (!cursor) return;
+    const pt = { x: innerWidth / 2, y: innerHeight / 2 }, lp = { x: pt.x, y: pt.y };
+    let shown = false;
+    (function tick() {
+      lp.x += (pt.x - lp.x) * 0.22; lp.y += (pt.y - lp.y) * 0.22;
+      cursor.style.transform = 'translate3d(' + lp.x + 'px,' + lp.y + 'px,0)';
+      requestAnimationFrame(tick);
+    })();
+    addEventListener('pointermove', function (e) {
+      pt.x = e.clientX; pt.y = e.clientY;
+      if (!shown) { cursor.classList.add('is-visible'); shown = true; }
+      const link = e.target.closest && e.target.closest('a,button,.stage-hint');
+      cursor.classList.toggle('is-link', !!link);
+    }, { passive: true });
+    addEventListener('pointerdown', function () { cursor.classList.add('is-down'); });
+    addEventListener('pointerup', function () { cursor.classList.remove('is-down'); });
+  })();
+
+  (function () {
+    const sections = Array.from(document.querySelectorAll('[data-rail]'));
+    const dots = Array.from(document.querySelectorAll('.rail-dot'));
+    if (!sections.length || !dots.length) return;
+    let raf = null;
+    function update() {
+      raf = null;
+      const mid = innerHeight / 2;
+      let best = 0, bestD = Infinity;
+      sections.forEach(function (s) {
+        const r = s.getBoundingClientRect();
+        const d = Math.abs(r.top + r.height / 2 - mid);
+        if (d < bestD) { bestD = d; best = +s.dataset.rail; }
+      });
+      dots.forEach(function (d, i) { d.classList.toggle('is-active', i === best); });
+    }
+    addEventListener('scroll', function () { if (!raf) raf = requestAnimationFrame(update); }, { passive: true });
+    addEventListener('resize', update);
+    update();
+  })();
+</script>
+
+<style>
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity .85s cubic-bezier(.2,.7,.2,1), transform .85s cubic-bezier(.2,.7,.2,1); }
+    .reveal.is-in { opacity: 1; transform: none; }
+  }
+</style>
+<script>
+  (function () {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const sel = '.module-head, .body-grid > div, .process .step, .stats .stat, .credits, .next-inner, .meta-cell, .sm-col, .sys-cell, .mx-col, .fn-cell, .stage, .dev-tab';
+    const io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -7% 0px' });
+    document.querySelectorAll(sel).forEach(function (el) { el.classList.add('reveal'); io.observe(el); });
+    setTimeout(function () {
+      document.querySelectorAll('.reveal:not(.is-in)').forEach(function (e) {
+        if (e.getBoundingClientRect().top < innerHeight * 1.2) e.classList.add('is-in');
+      });
+    }, 2600);
+  })();
+</script>
+<script src="../assets/js/nav.js" defer></script>
+<script src="../assets/js/site-footer.js" defer></script>
+<script src="../assets/js/to-top.js" defer></script>
+</body></html>

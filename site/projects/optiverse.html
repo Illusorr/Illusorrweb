@@ -1,0 +1,2476 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="preload" as="font" type="font/woff" crossorigin href="../assets/fonts/outfit-variable.woff">
+<link rel="stylesheet" href="../assets/css/nav.css">
+<link rel="stylesheet" href="../assets/css/case/fonts.css">
+<title>ILLUSORR × Optima · Optiverse</title>
+<link rel="preload" as="font" type="font/otf" crossorigin href="../assets/projects/shared/fonts/PPMonumentExtended-Black.otf">
+<link rel="preload" as="font" type="font/ttf" crossorigin href="../assets/projects/shared/fonts/Squaresharps-v2.ttf">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+  /* ─────────────────────────────────────────────────────────────────
+     Fonts, same stack as the rest of the ILLUSORR work
+     Outfit       → body / paragraphs / UI
+     PP Monument  → display headlines
+     Squaresharps → small caps labels, eyebrows, UI chrome
+     ───────────────────────────────────────────────────────────────── */
+  @font-face { font-family:'Outfit'; font-weight:100 900; font-display:swap;
+    src:url('../assets/fonts/outfit-variable.woff') format('woff'); }
+  @font-face { font-family:'PP Monument Extended'; font-weight:400; font-display:swap;
+    src:url('../assets/projects/shared/fonts/PPMonumentExtended-Regular.otf') format('opentype'); }
+  @font-face { font-family:'PP Monument Extended'; font-weight:900; font-display:swap;
+    src:url('../assets/projects/shared/fonts/PPMonumentExtended-Black.otf') format('opentype'); }
+  @font-face { font-family:'Squaresharps'; font-weight:400; font-display:swap;
+    src:url('../assets/projects/shared/fonts/Squaresharps-v2.ttf') format('truetype'); }
+
+  /* ─────────────────────────────────────────────────────────────────
+     COOL SCI-FI THEME. Single dark tone throughout, ink in #B8BCCC.
+     A second, denser tone (--deep) anchors the section starters.
+     ───────────────────────────────────────────────────────────────── */
+  :root {
+    --bg:        #050609;
+    --bg-2:      #0A0C12;
+    --deep:      #030406;
+    --ink:       #B8BCCC;
+    --ink-bright:#e2e6f6;
+    --ink-soft:  rgba(184, 188, 204, 0.62);
+    --ink-faint: rgba(184, 188, 204, 0.16);
+    --ink-hair:  rgba(184, 188, 204, 0.10);
+    --tile:      #0C0E15;
+    --accent:    #B8BCCC;
+    --glow:      rgba(184, 188, 204, 0.55);
+
+    --maxw: 1440px;
+    --gutter: clamp(20px, 4vw, 64px);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 400;
+    background: var(--bg);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  /* Faint engineering grid + vignette, the whole page reads as a
+     technical drawing / HUD surface. Fixed, non-interactive. */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background-image:
+      linear-gradient(var(--ink-hair) 1px, transparent 1px),
+      linear-gradient(90deg, var(--ink-hair) 1px, transparent 1px);
+    background-size: 64px 64px, 64px 64px;
+    opacity: 0.5;
+    mask-image: radial-gradient(120% 120% at 50% 40%, #000 30%, transparent 92%);
+    -webkit-mask-image: radial-gradient(120% 120% at 50% 40%, #000 30%, transparent 92%);
+  }
+  /* Quiet film grain on top of the grid. */
+  body::after {
+    content: '';
+    position: fixed; inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.72 0 0 0 0 0.74 0 0 0 0 0.80 0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    background-size: 220px 220px;
+    opacity: 0.04;
+    mix-blend-mode: screen;
+  }
+
+  section { position: relative; }
+  section > * { position: relative; z-index: 2; }
+  section[data-deep="1"] { background: var(--deep); }
+
+  .wrap {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+  }
+
+  /* ─────────────────────────────────────────────────────────────────
+     Fixed top nav
+     ───────────────────────────────────────────────────────────────── */
+  .topnav {
+    position: fixed; left: 0; right: 0; top: 0;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 22px var(--gutter);
+    z-index: 50;
+    pointer-events: none;
+  }
+  .topnav > * { pointer-events: auto; }
+  .topnav a, .topnav button {
+    text-decoration: none;
+    background: transparent; border: 0;
+    font-family: 'Squaresharps', system-ui, sans-serif;
+    font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase;
+    cursor: pointer;
+    color: var(--ink);
+    transition: color .35s ease;
+  }
+  .topnav nav a { color: var(--ink-soft); }
+  .topnav nav a:hover { color: var(--ink-bright); }
+  .topnav .logo-lockup {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-family: 'Squaresharps', system-ui, sans-serif;
+    font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .topnav .logo-mark {
+    width: 24px; height: 24px;
+    background: url('../assets/projects/shared/illusorr-logo.webp') left center / auto 100% no-repeat;
+    filter: invert(1) hue-rotate(180deg) brightness(1.1);
+  }
+  .topnav nav { display: flex; gap: 32px; align-items: center; }
+
+  /* ─────────────────────────────────────────────────────────────────
+     HERO
+     ───────────────────────────────────────────────────────────────── */
+  section.hero {
+    width: 100%; max-width: 100vw;
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: clamp(96px, 14vh, 160px) var(--gutter) clamp(48px, 8vh, 96px);
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(120% 90% at 80% 12%, rgba(184,188,204,0.10), transparent 55%),
+      radial-gradient(90% 80% at 12% 96%, rgba(184,188,204,0.06), transparent 60%),
+      linear-gradient(180deg, #060810 0%, #050609 60%, #030406 100%);
+  }
+  .opti-sticky canvas.hero-field {
+    position: absolute; inset: 0; z-index: 0;
+    width: 100%; height: 100%;
+    opacity: 0.9;
+    pointer-events: none;
+  }
+  .hero .hero-inner { max-width: var(--maxw); width: 100%; margin: 0 auto; position: relative; z-index: 3; display: flex; flex-direction: column; flex: 1 1 auto; }
+
+  .eyebrow-row {
+    display: flex; gap: 18px; align-items: center; flex-wrap: wrap;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 30px;
+  }
+  .eyebrow-row .dotsep { width: 4px; height: 4px; border-radius: 50%; background: var(--ink-faint); }
+  .eyebrow-row .live {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: var(--ink-bright);
+  }
+  .eyebrow-row .live::before {
+    content: ''; width: 7px; height: 7px; border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 0 var(--glow);
+    animation: pulse 2.4s ease-out infinite;
+  }
+  @keyframes pulse {
+    0%   { box-shadow: 0 0 0 0 var(--glow); }
+    70%  { box-shadow: 0 0 0 12px rgba(184,188,204,0); }
+    100% { box-shadow: 0 0 0 0 rgba(184,188,204,0); }
+  }
+
+  .hero-title {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(40px, 5.5vw, 55px);
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    margin: 0;
+    color: var(--ink-bright);
+    text-shadow: 0 0 60px rgba(184,188,204,0.18);
+  }
+  .hero-title .ln { display: block; max-width: 100%; }
+  .hero-sub {
+    display: block;
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 400; font-style: italic;
+    font-size: clamp(15px, 2vw, 24px);
+    letter-spacing: 0;
+    color: var(--ink-soft);
+    text-transform: none;
+    margin-top: 0.5em;
+    text-shadow: none;
+  }
+
+  .hero-foot {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 18px;
+  }
+  .hero-lede {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: clamp(15px, 1.1vw, 18px);
+    line-height: 1.6;
+    color: var(--ink);
+    max-width: 460px; margin: 0;
+  }
+  .hero-lede strong { font-weight: 600; color: var(--ink-bright); }
+
+  .scroll-cue {
+    justify-self: center;
+    display: inline-flex; flex-direction: column; align-items: center; gap: 10px;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .scroll-cue .line {
+    width: 1px; height: 44px;
+    background: linear-gradient(180deg, transparent 0%, var(--ink) 50%, transparent 100%);
+    background-size: 100% 200%;
+    animation: scrollPulse 1.8s ease-in-out infinite;
+  }
+  @keyframes scrollPulse { 0% { background-position: 0 -100%; } 100% { background-position: 0 200%; } }
+
+  .hero-credit {
+    justify-self: end; text-align: right;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--ink-soft);
+    line-height: 1.7;
+  }
+
+  /* ─────────────────────────────────────────────────────────────────
+     META BAR
+     ───────────────────────────────────────────────────────────────── */
+  .meta-bar {
+    border-top: 1px solid var(--ink-faint);
+    border-bottom: 1px solid var(--ink-faint);
+    padding: 28px 0;
+    display: grid;
+    grid-template-columns: 1fr 0.7fr 1.8fr 1.2fr 1fr;
+    gap: clamp(20px, 3vw, 48px);
+  }
+  .meta-cell .meta-k {
+    display: block;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 10px;
+  }
+  .meta-cell .meta-v {
+    display: block;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 400; font-size: 15px; line-height: 1.55;
+    color: var(--ink-bright);
+  }
+
+  /* ─────────────────────────────────────────────────────────────────
+     Placeholder media block
+     ───────────────────────────────────────────────────────────────── */
+  .ph {
+    position: relative; width: 100%;
+    background: var(--tile);
+    color: var(--ink-soft);
+    overflow: hidden; isolation: isolate;
+    border: 1px solid var(--ink-faint);
+  }
+  .ph::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(45deg, var(--ink-faint) 1px, transparent 1px),
+      linear-gradient(-45deg, var(--ink-faint) 1px, transparent 1px);
+    background-size: 16px 16px;
+    opacity: 0.4; pointer-events: none;
+  }
+  .ph::after { content: none; }
+  .ph.is-filled::before, .ph.is-filled::after { display: none; }
+  .ph > img, .ph > video {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%; object-fit: cover; display: block; z-index: 1;
+  }
+  .ph .ph-label {
+    position: absolute; left: 16px; top: 14px;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-bright);
+    background: rgba(5,6,9,0.7);
+    padding: 6px 10px;
+    border: 1px solid var(--ink-faint);
+    z-index: 2;
+  }
+  .ph .ph-dim {
+    position: absolute; right: 16px; top: 14px;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.06em; color: var(--ink-soft); z-index: 2;
+  }
+  .ph .caption {
+    position: absolute; left: 16px; bottom: 14px; right: 16px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase;
+    color: var(--ink-soft); z-index: 2;
+  }
+
+  /* ─────────────────────────────────────────────────────────────────
+     COVER
+     ───────────────────────────────────────────────────────────────── */
+  .cover { padding: clamp(40px, 6vw, 96px) 0 clamp(90px, 11vw, 170px); }
+
+  /* Interactive cover carousel, sci-fi HUD framing shared with the viewer */
+  .carousel {
+    position: relative; width: 100%; aspect-ratio: 16 / 9;
+    background: #04050a;
+    border: 1px solid var(--ink-faint);
+    box-shadow: inset 0 0 120px rgba(184,188,204,0.05);
+    overflow: hidden; isolation: isolate;
+    touch-action: pan-y; user-select: none;
+  }
+  .carousel .cr-track { display: flex; height: 100%; will-change: transform; transition: transform .8s cubic-bezier(.72,0,.18,1); }
+  .carousel .cr-track.no-anim { transition: none; }
+  .carousel .cr-slide { position: relative; flex: 0 0 100%; height: 100%; overflow: hidden; }
+  .carousel .cr-slide .ph { position: absolute; inset: 0; border: 0; background: linear-gradient(135deg, #0E1119 0%, #07090E 100%); }
+  .carousel .cr-slide .ph > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
+  .carousel .cr-slide .ph .ph-dim { right: clamp(20px,4vw,56px); top: auto; bottom: 18px; z-index: 2; }
+  .carousel .cr-slide::after {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(180deg, rgba(4,5,10,0.5) 0%, transparent 22%, transparent 58%, rgba(4,5,10,0.72) 100%);
+  }
+
+  .carousel .cr-top {
+    position: absolute; left: 0; right: 0; top: 0; z-index: 6; pointer-events: none;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px clamp(20px, 4vw, 56px);
+    border-bottom: 1px solid var(--ink-faint);
+    background: linear-gradient(180deg, rgba(184,188,204,0.05), transparent);
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-soft);
+  }
+  .carousel .cr-top .cr-tag { color: var(--ink-bright); }
+  .carousel .cr-top .cr-count .now { color: var(--ink-bright); }
+  .carousel .cr-top .cr-count .tot { opacity: 0.55; margin-left: 4px; }
+
+  .carousel .cr-caption {
+    position: absolute; left: clamp(20px, 4vw, 56px); bottom: clamp(38px, 5vw, 58px);
+    z-index: 6; max-width: 560px;
+  }
+  .carousel .cr-caption .cr-title {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900; font-size: clamp(22px, 2.6vw, 44px);
+    line-height: 1.02; letter-spacing: -0.01em; text-transform: uppercase; margin: 0;
+    color: var(--ink-bright); text-shadow: 0 0 40px rgba(4,5,10,0.8); text-wrap: balance;
+  }
+  .carousel .cr-caption .cr-sub {
+    margin-top: 10px;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 400; font-size: 13px; letter-spacing: 0.02em; color: var(--ink-soft);
+  }
+
+  .carousel .cr-nav {
+    position: absolute; top: 50%; transform: translateY(-50%); z-index: 7;
+    width: 52px; height: 52px; border-radius: 50%;
+    border: 1px solid var(--ink-faint); background: rgba(10,12,18,0.4);
+    backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+    display: grid; place-items: center; color: var(--ink); cursor: none;
+    transition: background .3s ease, border-color .3s ease, color .3s ease;
+  }
+  .carousel .cr-nav:hover { background: var(--accent); border-color: var(--accent); color: #04050a; }
+  .carousel .cr-nav svg { width: 18px; height: 18px; }
+  .carousel .cr-prev { left: clamp(14px, 2vw, 28px); }
+  .carousel .cr-next { right: clamp(14px, 2vw, 28px); }
+
+  .carousel .cr-bars {
+    position: absolute; right: clamp(20px, 4vw, 56px); bottom: clamp(40px, 5vw, 60px);
+    z-index: 6; display: flex; gap: 8px;
+  }
+  .carousel .cr-bar { width: 38px; height: 2px; background: var(--ink-faint); position: relative; overflow: hidden; cursor: none; border: 0; padding: 0; }
+  .carousel .cr-bar .fill { position: absolute; inset: 0; transform-origin: left center; transform: scaleX(0); background: var(--accent); }
+  .carousel .cr-bar.is-active .fill { animation: crFill var(--cr-dur, 5.2s) linear forwards; }
+  .carousel .cr-bar.is-done .fill { transform: scaleX(1); }
+  @keyframes crFill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  /* Carousel uses its own bracket offsets (no HUD bar reservation like the viewer) */
+  .carousel .bracket {
+    position: absolute; width: 34px; height: 34px; z-index: 6; pointer-events: none;
+    border-color: var(--ink-soft); border-style: solid; border-width: 0; opacity: 0.7;
+  }
+  .carousel .bracket.tl { left: 16px; top: 70px; border-left-width: 2px; border-top-width: 2px; }
+  .carousel .bracket.tr { right: 16px; top: 70px; border-right-width: 2px; border-top-width: 2px; }
+  .carousel .bracket.bl { left: 16px; bottom: 70px; border-left-width: 2px; border-bottom-width: 2px; }
+  .carousel .bracket.br { right: 16px; bottom: 70px; border-right-width: 2px; border-bottom-width: 2px; }
+  @media (max-width: 600px) { .carousel .cr-nav { width: 42px; height: 42px; } .carousel .cr-bar { width: 24px; } }
+
+  /* ─────────────────────────────────────────────────────────────────
+     MEDIA SCROLL, full-bleed draggable horizontal filmstrip
+     ───────────────────────────────────────────────────────────────── */
+  .mscroll {
+    margin-top: clamp(40px, 6vw, 80px);
+    width: 100vw; margin-left: calc(50% - 50vw);
+    border-top: 1px solid var(--ink-faint);
+    border-bottom: 1px solid var(--ink-faint);
+    padding: clamp(28px, 4vw, 52px) 0 0;
+    overflow: hidden;
+  }
+  .ms-rail {
+    display: flex; gap: clamp(14px, 1.6vw, 24px);
+    padding: 0 var(--gutter);
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+    cursor: grab;
+    -webkit-overflow-scrolling: touch;
+  }
+  .ms-rail::-webkit-scrollbar { display: none; }
+  .ms-rail.is-drag { cursor: grabbing; scroll-snap-type: none; }
+  .ms-item {
+    flex: 0 0 auto; margin: 0; scroll-snap-align: center;
+    width: clamp(300px, 34vw, 540px);
+    height: clamp(360px, 56vh, 660px);
+  }
+  .ms-item.wide { width: clamp(440px, 52vw, 860px); }
+  .ms-item .ph {
+    position: relative; width: 100%; height: 100%;
+    background: linear-gradient(135deg, #0E1119 0%, #07090E 100%);
+    border: 1px solid var(--ink-faint);
+    transition: border-color .4s ease;
+  }
+  .ms-item .ph::before {
+    content: ''; position: absolute; inset: 0;
+    background-image:
+      linear-gradient(var(--ink-hair) 1px, transparent 1px),
+      linear-gradient(90deg, var(--ink-hair) 1px, transparent 1px);
+    background-size: 30px 30px;
+    transform: perspective(600px) rotateX(40deg) scale(1.5) translateY(14%);
+    transform-origin: center bottom; opacity: 0.55;
+  }
+  .ms-item .ph > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
+  .ms-item:hover .ph { border-color: var(--ink-soft); }
+  .ms-item .ph .ph-label {
+    position: absolute; left: 16px; top: 14px;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-bright); background: rgba(4,5,10,0.7);
+    padding: 6px 10px; border: 1px solid var(--ink-faint); z-index: 2;
+  }
+  .ms-item .ph .caption {
+    position: absolute; left: 16px; right: 16px; bottom: 14px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase;
+    color: var(--ink-soft); z-index: 2;
+  }
+  .ms-foot {
+    display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    padding: clamp(18px,2.4vw,30px) var(--gutter) clamp(22px,3vw,34px);
+  }
+  .ms-hint {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-soft);
+  }
+  .ms-prog { flex: 1; max-width: 420px; height: 2px; background: var(--ink-faint); position: relative; overflow: hidden; }
+  .ms-prog-fill { position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: var(--accent); box-shadow: 0 0 12px var(--glow); }
+  @media (max-width: 600px) { .ms-item, .ms-item.wide { width: 80vw; height: 50vh; } }
+
+  /* ─────────────────────────────────────────────────────────────────
+     MODULE (two-column head)
+     ───────────────────────────────────────────────────────────────── */
+  .module { padding: clamp(120px, 15vw, 240px) 0; }
+  .module-head {
+    display: grid; grid-template-columns: 1fr 2fr;
+    gap: clamp(24px, 5vw, 80px); align-items: start;
+  }
+  .section-num {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .section-num .num {
+    display: block;
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(36px, 4vw, 64px);
+    line-height: 1; color: var(--ink-bright);
+    margin-bottom: 14px; letter-spacing: -0.02em;
+  }
+  .module-title {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(24px, 2.7vw, 44px);
+    line-height: 1.05; letter-spacing: -0.01em; text-transform: uppercase;
+    color: var(--ink-bright); margin: 0 0 32px;
+  }
+  .module-title em { font-style: italic; font-weight: 400; color: var(--ink-soft); letter-spacing: 0; }
+  .lede {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: clamp(18px, 1.45vw, 26px);
+    line-height: 1.45; color: var(--ink); max-width: 46ch; margin: 0;
+    text-wrap: pretty;
+  }
+  .body-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: clamp(24px, 4vw, 64px); margin-top: clamp(40px, 5vw, 64px);
+  }
+  .body-grid p {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 400; font-size: 15px; line-height: 1.75; color: var(--ink-soft); margin: 0;
+  }
+  .body-grid p + p { margin-top: 18px; }
+
+  /* ─────────────────────────────────────────────────────────────────
+     PROCEDURAL QUESTIONS, large editorial provocations
+     ───────────────────────────────────────────────────────────────── */
+  .questions {
+    display: grid; gap: 0;
+    margin-top: clamp(48px, 6vw, 80px);
+    border-top: 1px solid var(--ink-faint);
+  }
+  .q-row {
+    display: grid; grid-template-columns: auto 1fr;
+    gap: clamp(20px, 4vw, 60px); align-items: baseline;
+    padding: clamp(26px, 3vw, 40px) 0;
+    border-bottom: 1px solid var(--ink-faint);
+  }
+  .q-row .q-i {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 13px; letter-spacing: 0.2em; color: var(--ink-soft);
+  }
+  .q-row .q-t {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: clamp(20px, 2.4vw, 38px);
+    line-height: 1.12; color: var(--ink-bright); margin: 0;
+    text-wrap: balance;
+  }
+  .q-row .q-t em { font-style: italic; color: var(--accent); }
+
+  /* ─────────────────────────────────────────────────────────────────
+     FEATURES, 4 capability cards
+     ───────────────────────────────────────────────────────────────── */
+  .features {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: clamp(16px, 1.6vw, 24px);
+    margin-top: clamp(48px, 6vw, 80px);
+  }
+  .feature {
+    border: 1px solid var(--ink-faint);
+    background: linear-gradient(180deg, rgba(184,188,204,0.04), transparent);
+    padding: clamp(26px, 3vw, 42px);
+    display: flex; flex-direction: column; gap: 14px;
+    min-height: 230px;
+    transition: border-color .4s ease, background .4s ease, transform .4s ease;
+  }
+  .feature:hover { border-color: var(--ink-soft); background: linear-gradient(180deg, rgba(184,188,204,0.08), transparent); transform: translateY(-3px); }
+  .feature .f-k {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--ink-soft);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .feature .f-k .gl { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 14px var(--glow); }
+  .feature h4 {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900; font-size: clamp(20px, 1.7vw, 28px);
+    line-height: 1.05; text-transform: uppercase; color: var(--ink-bright);
+    margin: 6px 0 0; letter-spacing: -0.01em;
+  }
+  .feature p {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 400; font-size: 15px; line-height: 1.65; color: var(--ink-soft); margin: 0;
+    margin-top: auto;
+  }
+
+  /* ─────────────────────────────────────────────────────────────────
+     13 SPACES, grid of explorable zones with a View button each
+     ───────────────────────────────────────────────────────────────── */
+  .spaces {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: clamp(14px, 1.4vw, 20px);
+    margin-top: clamp(48px, 6vw, 80px);
+  }
+  .space {
+    position: relative;
+    border: 1px solid var(--ink-faint);
+    background: var(--tile);
+    overflow: hidden;
+    display: flex; flex-direction: column;
+    min-height: 280px;
+    transition: border-color .4s ease, transform .4s ease;
+  }
+  .space:hover { border-color: var(--ink-soft); transform: translateY(-3px); }
+  .space .sp-visual {
+    position: relative; aspect-ratio: 16 / 10; overflow: hidden;
+    background:
+      radial-gradient(80% 120% at 70% 10%, rgba(184,188,204,0.12), transparent 60%),
+      linear-gradient(135deg, #0E1119 0%, #07090E 100%);
+    border-bottom: 1px solid var(--ink-faint);
+  }
+  .space .sp-visual::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(var(--ink-hair) 1px, transparent 1px),
+      linear-gradient(90deg, var(--ink-hair) 1px, transparent 1px);
+    background-size: 26px 26px;
+    transform: perspective(420px) rotateX(46deg) scale(1.6) translateY(18%);
+    transform-origin: center bottom;
+    opacity: 0.7;
+  }
+  .space .sp-visual::after {
+    content: '';
+    position: absolute; left: 50%; top: 46%;
+    width: 54px; height: 54px;
+    border: 1px solid var(--ink-soft);
+    transform: translate(-50%, -50%) rotate(45deg);
+    box-shadow: 0 0 30px rgba(184,188,204,0.25);
+    transition: transform .6s cubic-bezier(.2,.7,.2,1);
+  }
+  .space:hover .sp-visual::after { transform: translate(-50%, -50%) rotate(135deg) scale(1.1); }
+  .space .sp-visual img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; opacity: .88; transition: opacity .5s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+  .space:hover .sp-visual img { opacity: 1; transform: scale(1.03); }
+  .space .sp-visual::after { content: ''; display: block; position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; z-index: 1; pointer-events: none; border: 0; transform: none; opacity: 1;
+    background: linear-gradient(180deg, rgba(4,6,12,.78), rgba(4,6,12,.06) 30%, rgba(4,6,12,.06) 64%, rgba(4,6,12,.82)); }
+  .space .sp-w { position: absolute; left: 14px; bottom: 12px; z-index: 2; display: inline-flex; align-items: center; gap: 7px;
+    font-family: 'Outfit', system-ui, sans-serif; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: #eef1f8; text-shadow: 0 1px 6px rgba(4,6,12,.9); }
+  .space .sp-w i { width: 7px; height: 7px; background: var(--wc); transform: rotate(45deg); }
+  .space:hover { border-color: var(--wc); }
+  .space:hover .sp-view { background: var(--wc); border-color: var(--wc); }
+  .space .sp-tag {
+    position: absolute; left: 14px; top: 12px;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: rgba(234,242,255,.86); text-shadow: 0 1px 6px rgba(4,6,12,.9);
+    z-index: 2;
+  }
+  .space .sp-body {
+    padding: 20px 20px 22px;
+    display: flex; flex-direction: column; gap: 8px; flex: 1;
+  }
+  .space .sp-num {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.18em; color: var(--ink-soft);
+  }
+  .space h4 {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900; font-size: clamp(17px, 1.3vw, 21px);
+    line-height: 1.06; text-transform: uppercase; color: var(--ink-bright);
+    margin: 2px 0 0; letter-spacing: -0.01em;
+  }
+  .space .sp-desc {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 13px; line-height: 1.55; color: var(--ink-soft); margin: 0;
+  }
+  .space .sp-view {
+    margin-top: auto;
+    display: inline-flex; align-items: center; justify-content: space-between; gap: 12px;
+    padding: 11px 16px;
+    border: 1px solid var(--ink-faint);
+    text-decoration: none;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--ink);
+    transition: background .3s ease, color .3s ease, border-color .3s ease;
+  }
+  .space .sp-view svg { width: 14px; height: 14px; flex: 0 0 auto; }
+  .space:hover .sp-view { background: var(--accent); color: #04050a; border-color: var(--accent); }
+
+  /* ─────────────────────────────────────────────────────────────────
+     SYSTEM ASSETS, tabbed interactive showcase
+     ───────────────────────────────────────────────────────────────── */
+  .assets {
+    display: grid; grid-template-columns: 0.8fr 1.6fr;
+    gap: clamp(20px, 3vw, 48px);
+    margin-top: clamp(48px, 6vw, 80px);
+    align-items: start;
+  }
+  .as-list { display: flex; flex-direction: column; border-top: 1px solid var(--ink-faint); }
+  .as-tab {
+    display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 16px;
+    width: 100%; text-align: left; cursor: none;
+    background: transparent; border: 0; border-bottom: 1px solid var(--ink-faint);
+    padding: clamp(18px, 2vw, 26px) 4px;
+    color: var(--ink-soft);
+    transition: color .3s ease, padding-left .3s ease, background .3s ease;
+  }
+  .as-tab:hover { color: var(--ink); padding-left: 12px; }
+  .as-tab .as-i { font-family: 'Outfit', system-ui, sans-serif; font-size: 12px; letter-spacing: 0.18em; }
+  .as-tab .as-n {
+    font-family: 'PP Monument Extended', system-ui, sans-serif; font-weight: 900;
+    font-size: clamp(15px, 1.15vw, 19px); line-height: 1.05; text-transform: uppercase; letter-spacing: -0.01em;
+  }
+  .as-tab .as-x { font-family: 'Outfit', system-ui, sans-serif; font-size: 18px; color: var(--ink-faint); transition: transform .3s ease, color .3s ease; }
+  .as-tab.is-active { color: var(--ink-bright); background: linear-gradient(90deg, rgba(184,188,204,0.06), transparent); padding-left: 12px; }
+  .as-tab.is-active .as-i { color: var(--accent); }
+  .as-tab.is-active .as-x { transform: rotate(45deg); color: var(--accent); }
+
+  .as-stage { display: flex; flex-direction: column; gap: clamp(18px, 2vw, 28px); }
+  .as-frame {
+    position: relative; width: 100%; aspect-ratio: 4 / 3;
+    background: #04050a; border: 1px solid var(--ink-faint);
+    box-shadow: inset 0 0 120px rgba(184,188,204,0.05);
+    overflow: hidden; isolation: isolate;
+  }
+  /* reuse viewer hud-bar / bracket / scan styling inside .as-frame */
+  .as-frame .hud-bar {
+    position: relative; z-index: 4;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+    padding: 14px clamp(18px, 3vw, 32px);
+    border-bottom: 1px solid var(--ink-faint);
+    background: linear-gradient(180deg, rgba(184,188,204,0.05), transparent);
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft);
+  }
+  .as-frame .hud-bar .hud-l { display: inline-flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .as-frame .hud-bar .dot { display: inline-flex; align-items: center; gap: 9px; color: var(--ink-bright); }
+  .as-frame .hud-bar .dot b { font-weight: 400; color: var(--accent); }
+  .as-frame .hud-bar .dot::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 0 var(--glow); animation: pulse 2.4s ease-out infinite; }
+  .as-frame .hud-bar .coord { color: var(--ink); font-family: 'Outfit', system-ui, sans-serif; font-size: 13px; letter-spacing: 0.06em; text-transform: none; font-variant-numeric: tabular-nums; }
+  .as-frame .hud-bar .coord b { color: var(--ink-bright); font-weight: 600; }
+  .as-frame .hud-bar .hud-r { color: var(--ink-bright); }
+  .as-frame .bracket {
+    position: absolute; width: 32px; height: 32px; z-index: 5; pointer-events: none;
+    border-color: var(--ink-soft); border-style: solid; border-width: 0; opacity: 0.7;
+  }
+  .as-frame .bracket.tl { left: 16px; top: 64px; border-left-width: 2px; border-top-width: 2px; }
+  .as-frame .bracket.tr { right: 16px; top: 64px; border-right-width: 2px; border-top-width: 2px; }
+  .as-frame .bracket.bl { left: 16px; bottom: 16px; border-left-width: 2px; border-bottom-width: 2px; }
+  .as-frame .bracket.br { right: 16px; bottom: 16px; border-right-width: 2px; border-bottom-width: 2px; }
+  .as-frame .scan { position: absolute; left: 0; right: 0; top: 50px; height: 1px; z-index: 5; pointer-events: none; background: linear-gradient(90deg, transparent, var(--glow), transparent); opacity: 0.45; animation: scanY 7s linear infinite; }
+
+  .as-vis { position: absolute; inset: 50px 0 0; z-index: 2; display: grid; place-items: center; }
+  /* The clips are square. As a grid item with no definite parent height,
+     height:100% never resolved and the video fell back to its 1920x1920
+     intrinsic size and overflowed. Size it explicitly off the frame height. */
+  .as-vis .av-clip {
+    width: auto; height: 76%; aspect-ratio: 1 / 1; max-width: 76%;
+    object-fit: contain; display: block; background: transparent;
+    /* the plate is keyed out per frame in JS; no blending needed */
+    transition: opacity .35s ease, transform .5s cubic-bezier(.2,.7,.2,1);
+  }
+  .as-vis.is-swapping .av-clip { opacity: 0; transform: scale(0.985); }
+
+  .as-info { max-width: 64ch; }
+  .as-title {
+    font-family: 'PP Monument Extended', system-ui, sans-serif; font-weight: 900;
+    font-size: clamp(22px, 2vw, 32px); line-height: 1.04; text-transform: uppercase; letter-spacing: -0.01em;
+    color: var(--ink-bright); margin: 0 0 12px;
+  }
+  .as-desc { font-family: 'Outfit', system-ui, sans-serif; font-size: clamp(14px, 1.05vw, 16px); line-height: 1.65; color: var(--ink-soft); margin: 0; text-wrap: pretty; }
+  @media (max-width: 880px) { .assets { grid-template-columns: 1fr; } }
+
+  /* ─────────────────────────────────────────────────────────────────
+     3D INTERACTIVE, the live Sketchfab embed
+     ───────────────────────────────────────────────────────────────── */
+  /* Full-bleed immersive viewer, breaks out of .wrap to span the
+     whole viewport like an observation window into the world. */
+  .viewer {
+    position: relative;
+    margin-top: clamp(40px, 6vw, 80px);
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    background: #04050a;
+    border-top: 1px solid var(--ink-faint);
+    border-bottom: 1px solid var(--ink-faint);
+    box-shadow: inset 0 0 140px rgba(184,188,204,0.06), 0 0 80px rgba(0,0,0,0.6);
+    overflow: hidden;
+    isolation: isolate;
+  }
+  /* HUD status bar across the top of the viewer */
+  .viewer .hud-bar {
+    position: relative; z-index: 4;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    flex-wrap: wrap;
+    padding: 16px clamp(20px, 4vw, 56px);
+    border-bottom: 1px solid var(--ink-faint);
+    background: linear-gradient(180deg, rgba(184,188,204,0.05), transparent);
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .viewer .hud-bar .hud-l { display: inline-flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+  .viewer .hud-bar .dot { display: inline-flex; align-items: center; gap: 9px; color: var(--ink-bright); }
+  .viewer .hud-bar .dot::before {
+    content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--accent);
+    box-shadow: 0 0 0 0 var(--glow); animation: pulse 2.4s ease-out infinite;
+  }
+  .viewer .hud-bar .coord { color: var(--ink); font-family: 'Outfit', system-ui, sans-serif; font-size: 13px; letter-spacing: 0.06em; text-transform: none; font-variant-numeric: tabular-nums; }
+  .viewer .hud-bar .coord b { color: var(--ink-bright); font-weight: 600; }
+  .viewer .hud-fs {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: transparent; border: 1px solid var(--ink-faint);
+    padding: 9px 16px; cursor: none; color: var(--ink);
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
+    transition: background .3s ease, color .3s ease, border-color .3s ease;
+  }
+  .viewer .hud-fs svg { width: 14px; height: 14px; }
+  .viewer .hud-fs:hover { background: var(--accent); color: #04050a; border-color: var(--accent); }
+
+  .sketchfab-embed-wrapper {
+    position: relative; width: 100%;
+    height: clamp(460px, 78vh, 880px);
+    background: #04050a;
+  }
+  .sketchfab-embed-wrapper iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
+  /* Cosmetic corner masks: cover any residual Sketchfab badge that the
+     URL params can't remove on a free account. Cross-origin iframes can't
+     be edited directly, so this just paints over the corners. Clicks pass
+     straight through (pointer-events:none) so orbit/zoom still work. */
+  .sketchfab-embed-wrapper .sf-mask {
+    position: absolute; bottom: 0; z-index: 3; pointer-events: none;
+    width: 150px; height: 44px; background: #04050a;
+  }
+  .sketchfab-embed-wrapper .sf-mask-bl { left: 0; }
+  .sketchfab-embed-wrapper .sf-mask-br { right: 0; }
+
+  /* HUD corner brackets framing the viewport */
+  .viewer .bracket {
+    position: absolute; width: 38px; height: 38px; z-index: 5; pointer-events: none;
+    border-color: var(--ink-soft); border-style: solid; border-width: 0;
+    opacity: 0.7;
+  }
+  .viewer .bracket.tl { left: 18px; top: 76px; border-left-width: 2px; border-top-width: 2px; }
+  .viewer .bracket.tr { right: 18px; top: 76px; border-right-width: 2px; border-top-width: 2px; }
+  .viewer .bracket.bl { left: 18px; bottom: 62px; border-left-width: 2px; border-bottom-width: 2px; }
+  .viewer .bracket.br { right: 18px; bottom: 62px; border-right-width: 2px; border-bottom-width: 2px; }
+  /* A slow vertical scan-line sweeping the window */
+  .viewer .scan {
+    position: absolute; left: 0; right: 0; top: 57px; height: 1px; z-index: 5; pointer-events: none;
+    background: linear-gradient(90deg, transparent, var(--glow), transparent);
+    opacity: 0.5;
+    animation: scanY 7s linear infinite;
+  }
+  @keyframes scanY { 0% { transform: translateY(0); opacity: 0; } 8% { opacity: 0.5; } 92% { opacity: 0.5; } 100% { transform: translateY(78vh); opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { .viewer .scan { display: none; } }
+
+  .embed-foot {
+    position: relative; z-index: 4;
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+    padding: 14px clamp(20px, 4vw, 56px);
+    border-top: 1px solid var(--ink-faint);
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 13px; letter-spacing: 0.04em; color: var(--ink-soft);
+  }
+  .embed-foot a { color: var(--ink-bright); text-decoration: none; border-bottom: 1px solid var(--ink-faint); }
+  .viewer:fullscreen { display: flex; flex-direction: column; }
+  .viewer:fullscreen .sketchfab-embed-wrapper { flex: 1; height: auto; }
+
+  /* Full-bleed media frame, shares the viewer's HUD language */
+  .viewer.media-bleed { margin-top: 0; }
+  .media-stage { position: relative; width: 100%; height: clamp(460px, 78vh, 880px); }
+  .media-stage .ph { position: absolute; inset: 0; border: 0; }
+  .media-stage .ph .caption,
+  .media-stage .ph .ph-dim { z-index: 3; }
+  .media-stage .ph .ph-dim { top: auto; bottom: 18px; right: clamp(20px,4vw,56px); }
+  .media-stage .ph .caption { left: clamp(20px,4vw,56px); right: clamp(20px,4vw,56px); bottom: 16px; }
+
+  /* ─────────────────────────────────────────────────────────────────
+     FULL BLEED
+     ───────────────────────────────────────────────────────────────── */
+  .bleed { padding: 0 0 clamp(90px, 11vw, 170px); }
+  .bleed .ph { aspect-ratio: 21 / 9; }
+
+  /* ─────────────────────────────────────────────────────────────────
+     PULL QUOTE
+     ───────────────────────────────────────────────────────────────── */
+  .quote-wrap { padding: clamp(120px, 15vw, 240px) 0; }
+  .quote {
+    max-width: 1100px; margin: 0 auto;
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: clamp(28px, 3.8vw, 60px);
+    line-height: 1.08; letter-spacing: -0.005em;
+    color: var(--ink-bright); text-align: left; text-wrap: balance;
+  }
+  .quote .quote-mark {
+    display: block;
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900; font-size: clamp(80px, 10vw, 160px); line-height: 0.6;
+    color: var(--accent); margin-bottom: 24px;
+  }
+  .quote-attrib {
+    margin-top: 40px; display: flex; align-items: center; gap: 14px;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft);
+  }
+  .quote-attrib .rule { width: 36px; height: 1px; background: var(--ink-faint); }
+
+  /* ─────────────────────────────────────────────────────────────────
+     STATS
+     ───────────────────────────────────────────────────────────────── */
+  .stats {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: clamp(16px, 2vw, 40px);
+    padding: clamp(90px, 11vw, 170px) 0;
+    border-top: 1px solid var(--ink-faint);
+    border-bottom: 1px solid var(--ink-faint);
+  }
+  .stat .stat-n {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900; font-size: clamp(48px, 6.5vw, 108px);
+    line-height: 0.95; letter-spacing: -0.02em; color: var(--ink-bright); display: block;
+  }
+  .stat .stat-n .sm { font-size: 0.45em; vertical-align: top; padding-left: 0.2em; color: var(--accent); }
+  .stat .stat-k {
+    display: block; margin-top: 14px;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-soft); max-width: 18ch;
+  }
+
+  /* ─────────────────────────────────────────────────────────────────
+     CREDITS
+     ───────────────────────────────────────────────────────────────── */
+  .credits {
+    padding: clamp(90px, 11vw, 170px) 0;
+    display: grid; grid-template-columns: 1fr 2fr; gap: clamp(24px, 5vw, 80px);
+  }
+  .credits .credit-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px 48px; }
+  .credits .credit-row .role {
+    display: block;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-soft); margin-bottom: 6px;
+  }
+  .credits .credit-row .who {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 500; font-size: 15px; line-height: 1.5; color: var(--ink-bright);
+  }
+
+  /* ─────────────────────────────────────────────────────────────────
+     NEXT PROJECT
+     ───────────────────────────────────────────────────────────────── */
+  .next {
+    position: relative; min-height: 90vh;
+    display: grid; place-items: center; overflow: hidden; cursor: pointer;
+    background: var(--deep);
+  }
+  .next .next-bg { position: absolute; inset: 0; overflow: hidden; }
+  .next .next-bg .ph { position: absolute; inset: 0; transform: scale(1.04); transition: transform 1.2s cubic-bezier(.2,.7,.2,1); border: 0; }
+  .next:hover .next-bg .ph { transform: scale(1.0); }
+  .next .next-inner {
+    position: relative; z-index: 2; text-align: center;
+    display: flex; flex-direction: column; align-items: center; gap: 22px;
+  }
+  .next .next-k {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-soft);
+  }
+  .next h3 {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900; font-size: clamp(44px, 7vw, 120px); line-height: 0.95;
+    text-transform: uppercase; color: var(--ink-bright); margin: 0; letter-spacing: -0.01em;
+  }
+  .next .next-meta {
+    display: flex; gap: 24px;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-soft);
+  }
+  .next .next-cta {
+    margin-top: 12px;
+    display: inline-flex; align-items: center; gap: 14px;
+    padding: 16px 28px;
+    border: 1px solid var(--ink-faint); border-radius: 999px;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink);
+    text-decoration: none;
+    transition: background .3s ease, color .3s ease, border-color .3s ease;
+  }
+  .next:hover .next-cta { background: var(--accent); border-color: var(--accent); color: #04050a; }
+  .next-cta svg { width: 14px; height: 14px; }
+
+  /* ─────────────────────────────────────────────────────────────────
+     FOOTER
+     ───────────────────────────────────────────────────────────────── */
+  footer.foot {
+    padding: 40px var(--gutter);
+    border-top: 1px solid var(--ink-faint);
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft);
+  }
+
+  /* ─────────────────────────────────────────────────────────────────
+     Side rail
+     ───────────────────────────────────────────────────────────────── */
+  .rail {
+    position: fixed; right: 18px; top: 50%; transform: translateY(-50%);
+    display: flex; flex-direction: column; gap: 8px; z-index: 40;
+  }
+  .rail .rail-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--ink); opacity: 0.3;
+    transition: opacity .3s ease, transform .3s ease;
+  }
+  .rail .rail-dot.is-active { opacity: 1; transform: scale(1.6); box-shadow: 0 0 12px var(--glow); }
+
+  /* ─────────────────────────────────────────────────────────────────
+     Custom cursor
+     ───────────────────────────────────────────────────────────────── */
+  html, body { cursor: none; }
+  a, button, [role="button"], .next, input, label, .topnav .logo-lockup { cursor: none; }
+  .k-cursor {
+    position: fixed; left: 0; top: 0;
+    width: 30px; height: 30px; margin-left: -15px; margin-top: -15px;
+    color: var(--ink-bright);
+    display: flex; align-items: center; justify-content: center;
+    pointer-events: none; z-index: 2147483647; isolation: isolate;
+    transition: width .35s cubic-bezier(.2,.7,.2,1), height .35s cubic-bezier(.2,.7,.2,1),
+                margin .35s cubic-bezier(.2,.7,.2,1), opacity .25s ease;
+    will-change: transform; opacity: 0;
+  }
+  .k-cursor.is-visible { opacity: 1; }
+  .k-cursor .km { width: 100%; height: 100%; display: block; }
+  .k-cursor .km path { fill: currentColor; }
+  .k-cursor.is-link .km { opacity: 0; }
+  .k-cursor .label-link {
+    position: absolute; left: 50%; top: 50%;
+    transform: translate(-50%, -50%) scale(0.7); opacity: 0;
+    padding: 8px 14px; border-radius: 999px; background: var(--ink-bright);
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase;
+    transition: opacity .25s ease, transform .35s cubic-bezier(.2,.7,.2,1); white-space: nowrap;
+  }
+  .k-cursor .label-link::after { content: attr(data-verb); color: #04050a; }
+  .k-cursor.is-link { width: 0; height: 0; margin-left: 0; margin-top: 0; }
+  .k-cursor.is-link .label-link { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  .k-cursor.is-down .km { transform: scale(0.78); transition: transform .15s ease; }
+  @media (hover: none) { html, body, a, button { cursor: auto; } .k-cursor { display: none; } }
+
+  /* ─────────────────────────────────────────────────────────────────
+     Reveal on scroll
+     ───────────────────────────────────────────────────────────────── */
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity .85s cubic-bezier(.2,.7,.2,1), transform .85s cubic-bezier(.2,.7,.2,1); }
+    .reveal.is-in { opacity: 1; transform: none; }
+  }
+
+  /* ─────────────────────────────────────────────────────────────────
+     Responsive
+     ───────────────────────────────────────────────────────────────── */
+  @media (max-width: 960px) {
+    .spaces { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 880px) {
+    .meta-bar { grid-template-columns: 1fr 1fr; }
+    .module-head { grid-template-columns: 1fr; }
+    .body-grid { grid-template-columns: 1fr; }
+    .features { grid-template-columns: 1fr; }
+    .stats { grid-template-columns: 1fr 1fr; }
+    .credits { grid-template-columns: 1fr; }
+    .credits .credit-list { grid-template-columns: 1fr; }
+    .hero-foot { grid-template-columns: 1fr; gap: 32px; }
+    .hero-credit { justify-self: start; text-align: left; }
+    .q-row { grid-template-columns: 1fr; gap: 12px; }
+    .rail { display: none; }
+  }
+  @media (max-width: 600px) {
+    .spaces { grid-template-columns: 1fr; }
+    .topnav nav { display: none; }
+  }
+</style>
+
+<link rel="stylesheet" href="../assets/css/case/proj-tags-c.css">
+
+<style id="hero-refine">
+  /* Hero refinement: smaller, lighter, more elegant title + real breathing
+     room between title, tagline and intro copy. */
+  .hero-title{
+    font-weight:400;
+    font-size:clamp(30px,3.3vw,44px);
+    line-height:1.06;
+    letter-spacing:0.005em;
+    margin:0 0 clamp(30px,3.4vw,52px);
+  }
+  .hero-title .ln-ital{
+    font-weight:400;
+    font-size:0.46em;
+    line-height:1.35;
+    margin-top:0.85em;
+    letter-spacing:0.01em;
+  }
+  .hero-lede{
+    font-size:clamp(15px,1.02vw,17px);
+    line-height:1.68;
+    max-width:52ch;
+  }
+  .proj-tags{ margin-bottom:clamp(44px,5vw,72px); }
+
+  /* ── Hero stage: sticky 3D behind, copy scrolling over it ────────── */
+  .opti-stage{ position:relative; background:#04050a; height:280svh; }
+  .opti-sticky{ position:sticky; top:0; height:100svh; overflow:hidden; z-index:1; }
+  .opti-sticky .hero-field{ position:absolute; inset:0; width:100%; height:100%; opacity:var(--field-o,1); transition:opacity .5s linear; }
+  .opti-viewer{ position:absolute; inset:0; opacity:0; transition:opacity .7s ease; pointer-events:none; }
+  .opti-viewer.is-live{ opacity:var(--viewer-o,0); }
+  .opti-viewer.is-hot{ pointer-events:auto; }
+  .opti-viewer .sketchfab-embed-wrapper{ position:absolute; inset:0; height:100%; background:transparent; }
+  .opti-viewer iframe{ background:transparent !important; }
+  /* Sketchfab paints its own white plate inside the frame and it is cross-origin,
+     so it cannot be styled. Knocking it out has to happen compositing-side:
+     invert drops white to black, the hue-rotate puts the colours back. */
+  .opti-viewer.is-knockout iframe{ filter:invert(1) hue-rotate(180deg); }
+  /* the corner masks hide the Sketchfab badge; with a transparent model they
+     must read as the stage, not as solid plates */
+  .opti-viewer .sf-mask{ background:linear-gradient(0deg,#04050a 55%,rgba(4,5,10,0)); }
+  /* Scroll guard: the embed swallows the wheel, so it stays inert until the
+     visitor opts in, and re-arms the moment the pointer leaves. */
+  .opti-guard{ position:absolute; inset:0; z-index:4; display:grid; place-items:center; cursor:pointer;
+    background:transparent; border:0; padding:0; font:inherit; opacity:0; transition:opacity .35s ease; }
+  .opti-viewer.is-hot .opti-guard{ opacity:1; }
+  .opti-viewer.is-free .opti-guard{ display:none; }
+  .opti-guard span{ font-family:'Outfit',system-ui,sans-serif; font-size: 12px; letter-spacing:.26em;
+    text-transform:uppercase; color:rgba(232,240,255,.72); padding:11px 18px;
+    border:1px solid rgba(232,240,255,.22); background:rgba(4,5,10,.42); backdrop-filter:blur(6px);
+    opacity:0; transform:translateY(6px); transition:opacity .3s ease, transform .3s ease; }
+  .opti-guard:hover span{ opacity:1; transform:none; }
+  .opti-vig{ position:absolute; inset:0; pointer-events:none; background:radial-gradient(78% 64% at 50% 46%, transparent 0%, rgba(4,5,10,.5) 64%, rgba(4,5,10,.92) 100%); }
+  .opti-hud{ position:absolute; left:clamp(16px,2vw,34px); bottom:clamp(16px,2vw,30px); display:flex; gap:18px; flex-wrap:wrap;
+    font-family:'Outfit',system-ui,sans-serif; font-size: 12px; letter-spacing:.24em; text-transform:uppercase; color:var(--ink-soft); }
+  .opti-hud .dot{ color:var(--accent); }
+  .opti-chapters{ position:relative; z-index:2; margin-top:-100svh; }
+  .opti-chapters .chapter{ min-height:100svh; display:flex; align-items:center; padding:clamp(56px,8vh,110px) var(--gutter); }
+  .opti-chapters .chapter-inner{ width:100%; max-width:var(--maxw); margin:0 auto; }
+  .chapter-hero{ align-items:flex-start; }
+  .chapter-hero .chapter-inner{ display:flex; flex-direction:column; min-height:calc(100svh - clamp(96px,16vh,220px)); }
+  .opti-chapters .ch-copy{ max-width:50ch; margin-left:auto; text-align:right; }
+  .opti-chapters .ch-k{ font-family:'Outfit',system-ui,sans-serif; font-size: 12px; letter-spacing:.26em; text-transform:uppercase; color:var(--ink-soft); display:flex; align-items:baseline; gap:10px; justify-content:flex-end; margin-bottom:clamp(18px,2vw,26px); }
+  .opti-chapters .ch-k .n{ color:var(--ink-faint); }
+  .opti-chapters .ch-h{ font-family:'Outfit',system-ui,sans-serif; font-weight:300; font-size:clamp(26px,3.4vw,50px); line-height:1.12; color:var(--ink); margin:0 0 clamp(18px,2.2vw,30px); text-wrap:pretty; }
+  .opti-chapters .ch-h em{ font-style:italic; color:var(--ink-soft); }
+  .opti-chapters .ch-p{ font-size:clamp(15px,1.05vw,17px); line-height:1.7; color:var(--ink-soft); margin:0 0 0 auto; max-width:44ch; }
+  .chapter-hero .hero-inner{ flex:1 1 auto; }
+  /* the hero copy dissolves as the model takes the frame */
+  .chapter-hero .hero-inner{ opacity:var(--hero-o,1); transform:translateY(calc((1 - var(--hero-o,1)) * -34px)); will-change:opacity,transform; }
+  .chapter-3d .ch-copy{ opacity:var(--ch3d-o,0); transform:translateY(calc((1 - var(--ch3d-o,0)) * 26px)); transition:none; }
+  @media (max-width:880px){ .opti-chapters .ch-copy{ margin-left:0; text-align:left; } .opti-chapters .ch-k{ justify-content:flex-start; } .opti-chapters .ch-p{ margin-left:0; } }
+
+  /* Cover media band, sits under the intro copy */
+  .hero-media{ padding:0; }
+  .hero-media .hm-inner{ width:100%; margin:0; }
+  .hero-media .hm-frame{ position:relative; width:100%; height:100vh; height:100svh; overflow:hidden; border-radius:0; background:color-mix(in srgb, var(--ink) 6%, transparent); }
+  .hero-media .hm-cap{
+    display:flex; flex-wrap:wrap; justify-content:space-between; gap:10px 30px;
+    margin:16px auto 0; max-width:var(--maxw); padding:0 var(--gutter) clamp(90px,11vw,170px);
+    font-family:'Outfit',system-ui,sans-serif;
+    font-size:12px; letter-spacing:0.2em; text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+
+</style>
+<style id="rhythm-refine">
+  /* Minimal section numbering: a single quiet line, number inline with the
+     label instead of an oversized display figure. */
+  .section-num{
+    display:flex; align-items:baseline; gap:10px;
+    font-family:'Outfit',system-ui,sans-serif;
+    font-size: 12px; letter-spacing:0.2em;
+    text-transform:uppercase; color:var(--ink-soft); font-weight:400;
+  }
+  .section-num .num{
+    display:inline;
+    font-family:'Outfit',system-ui,sans-serif;
+    font-size: 12px; font-weight:400;
+    letter-spacing:0.2em; line-height:1;
+    color:var(--ink-faint); opacity:1; margin:0;
+    -webkit-text-fill-color:currentColor;
+  }
+  /* Visual band between sections, edge to edge. */
+  .vband{ padding:0 0 clamp(90px,11vw,170px); }
+  .vband .vb-frame{ position:relative; width:100%; height:clamp(420px,74vh,900px); overflow:hidden; background:color-mix(in srgb, var(--ink) 6%, transparent); }
+  .vband .vb-cap{
+    display:flex; justify-content:space-between; gap:10px 30px;
+    max-width:var(--maxw); margin:14px auto 0; padding:0 var(--gutter);
+    font-family:'Outfit',system-ui,sans-serif;
+    font-size: 12px; letter-spacing:0.2em; text-transform:uppercase; color:var(--ink-soft);
+  }
+  @media (max-width:760px){ .vband .vb-frame{ height:clamp(340px,56vh,620px); } }
+  /* The hero was pinned by aspect-ratio:21/9, so its height derived from its
+     WIDTH and content could never grow it — that is what pushed the footer and
+     scroll cue down onto the cover band. Drop the ratio, let content set the
+     height, and use justify-content (the real axis on a column flexbox). */
+  section.hero[data-tone]{
+    aspect-ratio:auto;
+    height:auto;
+    min-height:100svh;
+    justify-content:flex-start;
+    padding-block:clamp(48px,6vh,96px) clamp(40px,5vh,80px);
+  }
+  section.hero[data-tone] .hero-inner{ flex:0 0 auto; }
+  /* Push the footer to the bottom only when there is genuine room to spare. */
+  section.hero[data-tone] .hero-foot{ margin-top:auto; }
+  /* On short viewports the 120px tag gutter is the first thing to give. */
+  @media (max-height:820px){
+    .proj-tags{ padding-top:clamp(40px,7vh,120px); }
+  }
+  /* real media inside the placeholder frames */
+  .ph.has-media{ background:transparent; border:0; overflow:hidden }
+  .ph.has-media::before,.ph.has-media::after{ content:none }
+  .ph.has-media > img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block }
+  .vb-frame.is-video{ background:#04050a }
+  .vb-frame > iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; display:block }
+  .vb-frame > img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block }
+  .hm-frame > img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block }
+  /* ── interactive world map ─────────────────────────────────────── */
+  .worldmap-sec{ background:transparent; color:#eef1f8 }
+  .worldmap-sec .module-title,.worldmap-sec .section-num{ color:#eef1f8 }
+  .worldmap-sec .lede{ color:rgba(234,242,255,.62) }
+  .worldmap{ display:grid; grid-template-columns:1.35fr .65fr; gap:clamp(20px,3vw,56px); align-items:center; margin-top:clamp(32px,4vw,60px) }
+  .wm-plate{ position:relative; aspect-ratio:5472/4037; background:transparent; overflow:visible }
+  .wm-map{ position:absolute; inset:0; width:100%; height:100%; object-fit:contain; display:block; opacity:0; transition:opacity .55s ease, filter .55s ease; pointer-events:none }
+  .wm-map.is-base{ opacity:.42 }
+  .worldmap.is-live .wm-map.is-base{ opacity:.1 }
+  .wm-map.is-on{ opacity:1; filter:drop-shadow(0 0 34px color-mix(in srgb,var(--wc) 40%,transparent)) }
+  .wm-hit{ position:absolute; inset:0; background:transparent; border:0; padding:0; cursor:pointer; outline:none }
+  .wm-hit:focus-visible{ background:rgba(255,255,255,.06) }
+  .wm-side{ display:flex; flex-direction:column; gap:clamp(20px,2.4vw,34px) }
+  .wm-keys{ display:flex; flex-direction:column }
+  .wm-key{ display:flex; align-items:flex-start; gap:12px; padding:14px 0; background:transparent; border:0; border-top:1px solid rgba(234,242,255,.14);
+    color:inherit; text-align:left; cursor:pointer; font-family:'Outfit',system-ui,sans-serif; transition:padding-left .3s ease }
+  .wm-key:last-child{ border-bottom:1px solid rgba(234,242,255,.14) }
+  .wm-key:hover,.wm-key.is-on{ padding-left:8px }
+  .wmk-dot{ width:9px; height:9px; margin-top:5px; background:var(--wc); flex:0 0 auto; transform:rotate(45deg); transition:transform .3s ease }
+  .wm-key:hover .wmk-dot,.wm-key.is-on .wmk-dot{ transform:rotate(45deg) scale(1.5) }
+  .wmk-t{ font-size:clamp(14px,1.15vw,17px); letter-spacing:.02em; color:#eef1f8 }
+  .wmk-t small{ display:block; font-size: 12px; letter-spacing:.16em; text-transform:uppercase; color:rgba(234,242,255,.45); margin-top:6px; line-height:1.5 }
+  .wm-key.is-on .wmk-t{ color:var(--wc) }
+  .wm-reads{ position:relative; min-height:130px }
+  .wm-read{ position:absolute; inset:0; opacity:0; transition:opacity .35s ease; pointer-events:none }
+  .wm-read.is-on{ opacity:1 }
+  .wm-read h4{ font-family:'Outfit',system-ui,sans-serif; font-size: 12px; letter-spacing:.26em; text-transform:uppercase; margin:0 0 10px; color:var(--wc,rgba(234,242,255,.6)) }
+  .wm-read p{ font-size: 15px; line-height:1.7; color:rgba(234,242,255,.7); margin:0; max-width:38ch }
+  .worldmap{ --wc:#eef1f8 }
+  .wm-media{ margin-top:clamp(30px,3.6vw,56px); border-top:1px solid rgba(234,242,255,.14); padding-top:clamp(18px,2vw,28px) }
+  .wm-mhead{ display:flex; justify-content:space-between; align-items:baseline; gap:16px; font-family:'Outfit',system-ui,sans-serif; font-size: 12px; letter-spacing:.24em; text-transform:uppercase; color:rgba(234,242,255,.45) }
+  .wm-mhead b{ color:var(--wc,#eef1f8); font-weight:500; letter-spacing:.18em }
+  .wm-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr)); gap:clamp(10px,1.1vw,16px); margin-top:clamp(14px,1.6vw,22px) }
+  .wm-tile{ position:relative; margin:0; aspect-ratio:16/10; overflow:hidden; background:#0A0C12; border:1px solid rgba(234,242,255,.1); opacity:0; animation:wmIn .5s ease forwards }
+  .wm-tile.is-wide{ grid-column:span 2 }
+  @media (max-width:700px){ .wm-tile.is-wide{ grid-column:span 1 } }
+  .wm-tile img,.wm-tile video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block }
+  .wm-tile figcaption{ position:absolute; left:0; right:0; bottom:0; z-index:2; display:flex; justify-content:space-between; gap:10px; padding:12px 13px;
+    font-family:'Outfit',system-ui,sans-serif; font-size: 12px; letter-spacing:.16em; text-transform:uppercase; color:#eef1f8;
+    background:linear-gradient(0deg,rgba(4,6,12,.88),rgba(4,6,12,0)) }
+  .wm-tile figcaption em{ font-style:normal; color:var(--wc,rgba(234,242,255,.6)) }
+  @keyframes wmIn{ from{ opacity:0; transform:translateY(10px) } to{ opacity:1; transform:none } }
+  .worldmap-sec .spaces{ margin-top:clamp(14px,1.6vw,22px) }
+  .worldmap-sec .space{ animation:wmIn .5s ease both }
+  .space[hidden]{ display:none }
+  /* space lightbox */
+  .sx{ position:fixed; inset:0; z-index:120; display:flex; align-items:center; justify-content:center; padding:clamp(16px,3vw,44px);
+    background:rgba(3,4,7,.9); backdrop-filter:blur(8px); opacity:0; pointer-events:none; transition:opacity .3s ease }
+  .sx.is-open{ opacity:1; pointer-events:auto }
+  .sx-panel{ width:min(1180px,100%); max-height:100%; overflow:auto; background:#06080E; border:1px solid rgba(234,242,255,.14);
+    transform:translateY(14px); transition:transform .35s cubic-bezier(.2,.7,.2,1) }
+  .sx.is-open .sx-panel{ transform:none }
+  .sx-bar{ display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 18px; border-bottom:1px solid rgba(234,242,255,.12);
+    font-family:'Outfit',system-ui,sans-serif; font-size: 12px; letter-spacing:.22em; text-transform:uppercase; color:rgba(234,242,255,.5) }
+  .sx-bar b{ color:var(--wc,#eef1f8); font-weight:500 }
+  .sx-x{ background:transparent; border:1px solid rgba(234,242,255,.2); color:#eef1f8; width:30px; height:30px; cursor:pointer; font-size:15px; line-height:1 }
+  .sx-x:hover{ background:var(--wc); border-color:var(--wc); color:#04050a }
+  .sx-head{ padding:clamp(18px,2.4vw,30px) clamp(18px,2.4vw,30px) 0 }
+  .sx-head h3{ font-family:'Outfit',system-ui,sans-serif; font-weight:700; font-size:clamp(22px,2.6vw,38px); letter-spacing:-.01em; margin:0; color:#eef1f8 }
+  .sx-head p{ font-size: 15px; line-height:1.7; color:rgba(234,242,255,.66); margin:10px 0 0; max-width:62ch }
+  .sx-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(min(100%,420px),1fr)); gap:clamp(10px,1.1vw,16px); padding:clamp(18px,2.4vw,30px) }
+  .sx-item{ position:relative; margin:0; aspect-ratio:16/9; overflow:hidden; background:#0A0C12; border:1px solid rgba(234,242,255,.1) }
+  .sx-item.is-lead{ grid-column:1/-1; aspect-ratio:16/8 }
+  .sx-item img,.sx-item video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block }
+  .sx-item figcaption{ position:absolute; left:0; right:0; bottom:0; padding:11px 13px; display:flex; justify-content:space-between; gap:10px;
+    font-family:'Outfit',system-ui,sans-serif; font-size: 12px; letter-spacing:.16em; text-transform:uppercase; color:#eef1f8;
+    background:linear-gradient(0deg,rgba(4,6,12,.88),rgba(4,6,12,0)) }
+  .sx-item figcaption em{ font-style:normal; color:var(--wc,rgba(234,242,255,.6)) }
+  @media (max-width:900px){ .worldmap{ grid-template-columns:1fr } }
+</style>
+
+<meta name="description" content="Optiverse for Optima: a monumental virtual hub of connected worlds, portals and interactive maps.">
+<link rel="canonical" href="https://illusorr.com/projects/optiverse.html">
+<meta name="theme-color" content="#05060a">
+<meta property="og:site_name" content="ILLUSORR">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ILLUSORR × Optima · Optiverse">
+<meta property="og:description" content="Optiverse for Optima: a monumental virtual hub of connected worlds, portals and interactive maps.">
+<meta property="og:url" content="https://illusorr.com/projects/optiverse.html">
+<meta property="og:image" content="https://illusorr.com/assets/img/og/og-default.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CreativeWork","name":"ILLUSORR × Optima · Optiverse","url":"https://illusorr.com/projects/optiverse.html","creator":{"@type":"Organization","name":"ILLUSORR","url":"https://illusorr.com/"}}</script>
+<!-- phone + tablet: shared touch layer, then the shared case layout -->
+<link rel="stylesheet" href="../assets/css/mobile.css">
+<link rel="stylesheet" href="../assets/css/case/case-mobile.css">
+<script src="../assets/js/mobile.js"></script>
+</head>
+<template id="__bundler_thumbnail" data-bg-color="#050609">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#050609"/>
+    <g stroke="#B8BCCC" stroke-opacity="0.25" stroke-width="1">
+      <path d="M600 300 L740 440 L600 580 L460 440 Z"/>
+      <path d="M600 360 L680 440 L600 520 L520 440 Z"/>
+    </g>
+    <text x="600" y="200" fill="#e2e6f6" font-family="Arial, sans-serif" font-weight="900" font-size="64" letter-spacing="6" text-anchor="middle">OPTIVERSE</text>
+    <text x="600" y="680" fill="rgba(184,188,204,0.6)" font-family="Arial, sans-serif" font-size="22" letter-spacing="8" text-anchor="middle">ILLUSORR × OPTIMA · METAVERSE</text>
+  </svg>
+</template>
+
+<body>
+<header class="il-topbar" id="ilTopbar">
+  <a class="il-brand" href="../index.html" aria-label="ILLUSORR home"><span class="il-logo" role="img" aria-label="ILLUSORR"></span></a>
+  <div class="il-right">
+    <a class="il-talk" href="../contact.html">Let's talk</a>
+    <button class="il-burger" id="ilMenuOpen" aria-label="Open menu"><i></i><i></i></button>
+  </div>
+</header>
+<div class="il-overlay" id="ilOverlay">
+  <div class="il-ohead"><span class="il-logo" role="img" aria-label="ILLUSORR"></span><button class="il-oclose" id="ilMenuClose">Close ✕</button></div>
+  <nav>
+    <a href="../index.html">Home <span>01</span></a>
+    <a href="../about.html">About <span>02</span></a>
+    <a href="../sectors.html">Sectors <span>03</span></a>
+    <a href="../work.html">Work <span>04</span></a>
+    <a href="../lab.html">Lab <span>05</span></a>
+    <a href="../collective.html">Collective <span>06</span></a>
+    <a href="../contact.html">Contact <span>07</span></a>
+  </nav>
+  <div class="il-ofoot"><span>Abu Dhabi · Yas Creative Hub</span><span>hello@illusorr.com</span></div>
+</div>
+
+
+  <!-- ─── Fixed chrome ─────────────────────────────────────────────── -->
+  <!-- topnav removed, menu bar to be added separately -->
+
+  <div class="k-cursor" id="kCursor" aria-hidden="true">
+    <svg class="km" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="currentColor" d="M12 1 L23 12 L12 23 L1 12 Z"/></svg>
+    <span class="label-link" data-verb="Enter"></span>
+  </div>
+
+  <aside class="rail" aria-hidden="true">
+    <span class="rail-dot is-active" data-i="0"></span>
+    <span class="rail-dot" data-i="1"></span>
+    <span class="rail-dot" data-i="2"></span>
+    <span class="rail-dot" data-i="3"></span>
+    <span class="rail-dot" data-i="4"></span>
+    <span class="rail-dot" data-i="5"></span>
+    <span class="rail-dot" data-i="6"></span>
+    <span class="rail-dot" data-i="7"></span>
+  </aside>
+
+  <!-- 1. HERO -->
+  <section class="opti-stage" data-rail="0" data-screen-label="01 Hero Stage">
+    <div class="opti-sticky">
+      <canvas class="hero-field" id="heroField" aria-hidden="true"></canvas>
+      <div class="opti-viewer is-knockout" id="optiViewer">
+        <div class="sketchfab-embed-wrapper">
+          <iframe id="optiFrame" title="OPTIVERSE" frameborder="0" allowtransparency="true" style="background:transparent" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share data-src="https://sketchfab.com/models/c898ee908ed74cae8d5d79b5c8cb70c5/embed?autostart=1&annotations_visible=1&annotation_cycle=3&transparent=1&ui_loading=0&ui_theme=dark&ui_infos=0&ui_controls=0&ui_watermark=0&ui_watermark_link=0&ui_hint=0&ui_help=0&ui_settings=0&ui_inspector=0&ui_stop=0&ui_ar=0&ui_vr=0&ui_fullscreen=0&dnt=1"></iframe>
+          <span class="sf-mask sf-mask-bl" aria-hidden="true"></span>
+          <span class="sf-mask sf-mask-br" aria-hidden="true"></span>
+        </div>
+        <button class="opti-guard" id="optiGuard" type="button"><span>Click to orbit</span></button>
+        <div class="opti-hud">
+          <span class="dot">Live 3D · Real-time</span>
+          <span class="coord">13 WORLDS · DRAG TO ORBIT</span>
+        </div>
+      </div>
+      <div class="opti-vig" aria-hidden="true"></div>
+    </div>
+    <div class="opti-chapters">
+    <div class="chapter chapter-hero" data-screen-label="01 Hero">
+      <div class="hero-inner chapter-inner">
+      <div class="proj-tags">
+        <div class="ptg">
+          <div class="ptg-k">Category</div>
+          <div class="ptg-c"><span class="ptag">3D</span><span class="ptag">Web</span><span class="ptag">Metaverse</span><span class="ptag">Immersive Experience</span></div>
+        </div>
+        <div class="ptg">
+          <div class="ptg-k">Sector</div>
+          <div class="ptg-c"><span class="ptag sector">Events</span><span class="ptag sector">Technology</span></div>
+        </div>
+      </div>
+
+      <h1 class="hero-title">
+        <span class="ln">Optiverse</span>
+        <span class="hero-sub">a digital expo for the future, with no physical limits.</span>
+      </h1>
+
+      <p class="hero-lede">
+          <strong>A metaverse built exclusively for Optima.</strong> A monumental virtual hub
+          of four worlds and eighteen spaces where audiences explore, connect and discover, navigated
+          through portals, interactive maps and layered pathways.
+        </p>
+
+      <div class="hero-foot">
+        <div class="hero-credit">
+          <div>Optiverse · Metaverse · 2024</div>
+          <div>Designed by ILLUSORR</div>
+        </div>
+        <div class="scroll-cue">
+          <span>Enter</span>
+          <span class="line"></span>
+        </div>
+      </div>
+      </div>
+    </div>
+
+    <div class="chapter chapter-3d" data-screen-label="01b Explore in 3D">
+      <div class="chapter-inner">
+        <div class="ch-copy">
+          <div class="ch-k"><span class="n">01</span> Explore in 3D</div>
+          <h2 class="ch-h">Walk the world <em>in your browser.</em></h2>
+          <p class="ch-p">A live, real-time model of Optiverse. Drag to orbit, scroll to zoom, and move through the procedural architecture yourself.</p>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- 3. META BAR -->
+  <section data-rail="0" data-screen-label="03 Meta">
+    <div class="wrap">
+      <div class="meta-bar">
+        <div class="meta-cell">
+          <span class="meta-k">Client</span>
+          <span class="meta-v">Optima</span>
+        </div>
+        <div class="meta-cell">
+          <span class="meta-k">Year</span>
+          <span class="meta-v">2024</span>
+        </div>
+        <div class="meta-cell">
+          <span class="meta-k">Disciplines</span>
+          <span class="meta-v">3D Environment · Design · Web · Character Design · 3D Animation · Technology Consultancy</span>
+        </div>
+        <div class="meta-cell">
+          <span class="meta-k">Method</span>
+          <span class="meta-v">Procedural Modeling · Multi-World Architecture</span>
+        </div>
+        <div class="meta-cell">
+          <span class="meta-k">Studio</span>
+          <span class="meta-v">Designed by ILLUSORR</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="module worldmap-sec" data-tone="dark" data-rail="0" data-screen-label="01c World Map">
+    <div class="wrap">
+      <div class="module-head">
+        <div class="section-num"><span class="num">01</span> The World Map</div>
+        <div>
+          <h2 class="module-title">Four worlds, <em>one axis.</em></h2>
+          <p class="lede">Seen from above, the Optiverse is a single spindle. A spire rises north, two wings reach east and west, the expo descends south. Select a world to light it and open its media.</p>
+        </div>
+      </div>
+      <div class="worldmap" id="worldMap">
+        <div class="wm-plate">
+          <img class="wm-map is-base" src="../assets/projects/optiverse/map/all.webp" alt="The Optiverse seen from above" decoding="async">
+          <img class="wm-map" data-w="syndicate" src="../assets/projects/optiverse/map/syndicate.webp" alt="syndicate" loading="lazy" decoding="async">
+          <img class="wm-map" data-w="salon" src="../assets/projects/optiverse/map/salon.webp" alt="salon" loading="lazy" decoding="async">
+          <img class="wm-map" data-w="sensory" src="../assets/projects/optiverse/map/sensory.webp" alt="sensory" loading="lazy" decoding="async">
+          <img class="wm-map" data-w="optima" src="../assets/projects/optiverse/map/optima.webp" alt="optima" loading="lazy" decoding="async">
+          <button class="wm-hit" type="button" data-w="syndicate" style="clip-path:polygon(38% 0%, 62% 0%, 62% 60%, 38% 60%)" aria-label="Syndicate"></button>
+          <button class="wm-hit" type="button" data-w="salon" style="clip-path:polygon(54% 57%, 100% 57%, 100% 71%, 54% 71%)" aria-label="The Salon"></button>
+          <button class="wm-hit" type="button" data-w="sensory" style="clip-path:polygon(0% 57%, 46% 57%, 46% 71%, 0% 71%)" aria-label="Sensory"></button>
+          <button class="wm-hit" type="button" data-w="optima" style="clip-path:polygon(38% 64%, 62% 64%, 62% 100%, 38% 100%)" aria-label="Optima"></button>
+        </div>
+        <div class="wm-side">
+          <div class="wm-keys">
+        <button class="wm-key" type="button" data-w="syndicate" style="--wc:#5566E8">
+          <span class="wmk-dot"></span>
+          <span class="wmk-t">Syndicate<small>Deal · Venture · Capital</small></span>
+        </button>
+        <button class="wm-key" type="button" data-w="salon" style="--wc:#C845AE">
+          <span class="wmk-dot"></span>
+          <span class="wmk-t">The Salon<small>Auditorium · Library · Virtue · Circle · Lounge · Faculty</small></span>
+        </button>
+        <button class="wm-key" type="button" data-w="sensory" style="--wc:#F5772F">
+          <span class="wmk-dot"></span>
+          <span class="wmk-t">Sensory<small>Atelier · Farm · Studio · Lounge</small></span>
+        </button>
+        <button class="wm-key" type="button" data-w="optima" style="--wc:#35B4F0">
+          <span class="wmk-dot"></span>
+          <span class="wmk-t">Optima<small>The Hall · Trade Center · Exhibition Hall · Chambers · Gallery</small></span>
+        </button>
+          </div>
+          <div class="wm-reads">
+            <div class="wm-read is-idle"><h4>The Optiverse</h4><p>Four worlds on one continuous axis. Select one on the map, or by name, to isolate it.</p></div>
+        <div class="wm-read" data-w="syndicate" style="--wc:#5566E8"><h4>Syndicate</h4><p>The spire. Deal, Venture and Capital stacked on one vertical axis, private rooms sitting directly above the floors they serve.</p></div>
+        <div class="wm-read" data-w="salon" style="--wc:#C845AE"><h4>The Salon</h4><p>The east wing. A long social gallery: staged talks, reading rooms, a circle of tables and the faculty floor.</p></div>
+        <div class="wm-read" data-w="sensory" style="--wc:#F5772F"><h4>Sensory</h4><p>The west wing. Built around what a space can do to you: making, growing, recording, resting.</p></div>
+        <div class="wm-read" data-w="optima" style="--wc:#35B4F0"><h4>Optima</h4><p>The expo proper, threaded on one descent: arrival concourse, trading floor, open exhibition floors, the council chambers and the gallery.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="wm-media" id="wmSpaces">
+        <div class="wm-mhead"><span>Spaces · <b id="wmSpacesName">All four worlds</b></span><span id="wmSpacesCount">18 spaces</span></div>
+        <div class="spaces" id="spaces"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- visual band -->
+  <section class="vband" data-tone="light" data-screen-label="Visual 06">
+    <div class="vb-frame is-video">
+      <iframe src="https://www.youtube.com/embed/jUwQDIohlOU?rel=0" title="Optiverse" loading="lazy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+    <div class="vb-cap"><span>The Concept</span><span>06</span></div>
+  </section>
+
+  <!-- 4. THE BRIEF -->
+  <section class="module" data-rail="2" data-screen-label="04 Concept">
+    <div class="wrap">
+      <div class="module-head">
+        <div class="section-num">
+          <span class="num">01</span>
+          The Concept
+        </div>
+        <div>
+          <h2 class="module-title">A world expo, <em>without walls.</em></h2>
+          <p class="lede">
+            Optiverse was envisioned as a digital expo for the future, a metaverse designed
+            exclusively for Optima and built as a monumental virtual hub.
+          </p>
+          <div class="body-grid">
+            <div>
+              <p>Inspired by the idea of a world expo, Optiverse became a space of endless exploration with no physical limitations, a place audiences could enter to explore, connect and discover.</p>
+              <p>Rather than a single venue, it was conceived as a living ecosystem of worlds, each tuned to a different kind of gathering, talk or cultural showcase.</p>
+            </div>
+            <div>
+              <p>The design merged art and architecture into a fluid, multi-level environment, generated through procedural modeling so the space could grow far beyond what conventional construction allows.</p>
+              <p>Every threshold was treated as a transition between worlds, stitched together by portals, maps and layered pathways into one continuous experience.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- visual band -->
+
+  <!-- 5. PROCEDURAL AESTHETIC, the provocations -->
+  <section class="module" data-deep="1" data-rail="3" data-screen-label="05 Procedural">
+    <div class="wrap">
+      <div class="module-head">
+        <div class="section-num">
+          <span class="num">02</span>
+          Procedural Aesthetic
+        </div>
+        <div>
+          <h2 class="module-title">An architecture that <em>questions the rules.</em></h2>
+          <p class="lede">
+            Procedural modeling let us challenge the conventions of physical space. In a world
+            without gravity, the old assumptions stop applying.
+          </p>
+        </div>
+      </div>
+      <div class="questions">
+        <div class="q-row">
+          <span class="q-i">Q.01</span>
+          <p class="q-t">Do we need stairs in a world <em>without gravity?</em></p>
+        </div>
+        <div class="q-row">
+          <span class="q-i">Q.02</span>
+          <p class="q-t">What defines a floor when navigation is <em>limitless?</em></p>
+        </div>
+        <div class="q-row">
+          <span class="q-i">Q.03</span>
+          <p class="q-t">How does a building behave when it answers to <em>code, not construction?</em></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- visual band -->
+  <section class="vband" data-tone="light" data-screen-label="Visual 02">
+    <div class="vb-frame">
+      <img src="../assets/projects/optiverse/w-topview.webp" alt="The Optiverse from above" loading="lazy" decoding="async">
+    </div>
+    <div class="vb-cap"><span>Procedural Aesthetic</span><span>02</span></div>
+  </section>
+
+  <!-- 6. CAPABILITIES / FEATURES -->
+  <section class="module" data-rail="4" data-screen-label="06 Features" style="padding-top: clamp(60px,9vw,140px);">
+    <div class="wrap">
+      <div class="module-head">
+        <div class="section-num">
+          <span class="num">03</span>
+          The System
+        </div>
+        <div>
+          <h2 class="module-title">Four ways to <em>move through it.</em></h2>
+          <p class="lede">A navigation system designed so visitors never hit a dead end, only the next world.</p>
+        </div>
+      </div>
+      <div class="features">
+        <div class="feature">
+          <span class="f-k"><span class="gl"></span>Navigation</span>
+          <h4>Interactive Maps</h4>
+          <p>A user-friendly navigation system that guides visitors across all eighteen spaces and keeps the whole world legible at a glance.</p>
+        </div>
+        <div class="feature">
+          <span class="f-k"><span class="gl"></span>Transport</span>
+          <h4>Immersive Portals</h4>
+          <p>Thresholds that transport users seamlessly into themed worlds and experiences, collapsing the distance between zones.</p>
+        </div>
+        <div class="feature">
+          <span class="f-k"><span class="gl"></span>Structure</span>
+          <h4>Multi-World Design</h4>
+          <p>Continuous exploration across diverse zones built for events, talks and cultural showcases, with no loading wall between them.</p>
+        </div>
+        <div class="feature">
+          <span class="f-k"><span class="gl"></span>Language</span>
+          <h4>Procedural Aesthetic</h4>
+          <p>An architectural language, generated rather than drawn, that questions the conventions of floors, stairs and gravity.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- 7b. SYSTEM ASSETS, interactive tabbed showcase -->
+  <section class="module" data-rail="5" data-screen-label="07 Assets" style="padding-top: clamp(60px,9vw,140px);">
+    <div class="wrap">
+      <div class="module-head">
+        <div class="section-num">
+          <span class="num">05</span>
+          System Assets
+        </div>
+        <div>
+          <h2 class="module-title">The pieces that <em>make it move.</em></h2>
+          <p class="lede">The interactive components built into Optiverse. Select one to preview how it behaves inside the world.</p>
+        </div>
+      </div>
+
+      <div class="assets" id="assets">
+        <div class="as-list" role="tablist" aria-label="System assets">
+          <button class="as-tab is-active" role="tab" aria-selected="true" data-k="0">
+            <span class="as-i">A01</span>
+            <span class="as-n">Product Display Unit</span>
+            <span class="as-x" aria-hidden="true">+</span>
+          </button>
+          <button class="as-tab" role="tab" aria-selected="false" data-k="1">
+            <span class="as-i">A02</span>
+            <span class="as-n">Interactive Map</span>
+            <span class="as-x" aria-hidden="true">+</span>
+          </button>
+          <button class="as-tab" role="tab" aria-selected="false" data-k="2">
+            <span class="as-i">A03</span>
+            <span class="as-n">Teleport</span>
+            <span class="as-x" aria-hidden="true">+</span>
+          </button>
+          <button class="as-tab" role="tab" aria-selected="false" data-k="3">
+            <span class="as-i">A04</span>
+            <span class="as-n">Capsule</span>
+            <span class="as-x" aria-hidden="true">+</span>
+          </button>
+          <button class="as-tab" role="tab" aria-selected="false" data-k="4">
+            <span class="as-i">A05</span>
+            <span class="as-n">Meeting Room</span>
+            <span class="as-x" aria-hidden="true">+</span>
+          </button>
+          <button class="as-tab" role="tab" aria-selected="false" data-k="5">
+            <span class="as-i">A06</span>
+            <span class="as-n">Meeting Room Generator</span>
+            <span class="as-x" aria-hidden="true">+</span>
+          </button>
+          <button class="as-tab" role="tab" aria-selected="false" data-k="6">
+            <span class="as-i">A07</span>
+            <span class="as-n">Deal Meeting Room</span>
+            <span class="as-x" aria-hidden="true">+</span>
+          </button>
+          <button class="as-tab" role="tab" aria-selected="false" data-k="7">
+            <span class="as-i">A08</span>
+            <span class="as-n">Salon Dashboard</span>
+            <span class="as-x" aria-hidden="true">+</span>
+          </button>
+          <button class="as-tab" role="tab" aria-selected="false" data-k="8">
+            <span class="as-i">A09</span>
+            <span class="as-n">Syndicate Dashboard</span>
+            <span class="as-x" aria-hidden="true">+</span>
+          </button>
+          <button class="as-tab" role="tab" aria-selected="false" data-k="9">
+            <span class="as-i">A10</span>
+            <span class="as-n">Sensory Dashboard</span>
+            <span class="as-x" aria-hidden="true">+</span>
+          </button>
+          <button class="as-tab" role="tab" aria-selected="false" data-k="10">
+            <span class="as-i">A11</span>
+            <span class="as-n">Asset Generator</span>
+            <span class="as-x" aria-hidden="true">+</span>
+          </button>
+        </div>
+
+        <div class="as-stage">
+          <div class="as-frame">
+            <div class="hud-bar">
+              <span class="hud-l">
+                <span class="dot">Asset · <b id="asNum">A01</b></span>
+                <span class="coord" id="asSpec">Modular · 1×1×2m · Real-time</span>
+              </span>
+              <span class="hud-r" id="asKind">Display</span>
+            </div>
+            <span class="bracket tl" aria-hidden="true"></span>
+            <span class="bracket tr" aria-hidden="true"></span>
+            <span class="bracket bl" aria-hidden="true"></span>
+            <span class="bracket br" aria-hidden="true"></span>
+            <span class="scan" aria-hidden="true"></span>
+            <div class="as-vis" id="asVis"></div>
+          </div>
+          <div class="as-info">
+            <h3 class="as-title" id="asTitle">Product Display Unit</h3>
+            <p class="as-desc" id="asDesc">A modular plinth that lifts any product into the round, letting visitors orbit, zoom and inspect it in full 3D from anywhere in the hall.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. MEDIA SCROLL, full-bleed draggable filmstrip -->
+  <section data-deep="1" data-rail="7" data-screen-label="09 Gallery" style="padding: clamp(70px,9vw,140px) 0;">
+    <div class="wrap">
+      <div class="module-head">
+        <div class="section-num">
+          <span class="num">07</span>
+          The Gallery
+        </div>
+        <div>
+          <h2 class="module-title">Stills from <em>across the worlds.</em></h2>
+          <p class="lede">Drag to travel through the expo. Renders from each zone, scrolled end to end like a single continuous wall.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mscroll" id="mscroll">
+      <div class="ms-rail" id="msRail">
+        <figure class="ms-item" data-i="01"><div class="ph has-media"><img src="../assets/projects/optiverse/w-hall.webp" alt="The Hall" loading="lazy" decoding="async"><span class="caption"><span>The Hall · Arrival concourse</span><span>01 / 09</span></span></div></figure>
+        <figure class="ms-item wide" data-i="02"><div class="ph has-media"><img src="../assets/projects/optiverse/w-tradecenter.webp" alt="Trade Center" loading="lazy" decoding="async"><span class="caption"><span>Trade Center · Trading floor</span><span>02 / 09</span></span></div></figure>
+        <figure class="ms-item" data-i="03"><div class="ph has-media"><img src="../assets/projects/optiverse/w-exhibition.webp" alt="Exhibition Hall" loading="lazy" decoding="async"><span class="caption"><span>Exhibition Hall · Open floors</span><span>03 / 09</span></span></div></figure>
+        <figure class="ms-item" data-i="04"><div class="ph has-media"><img src="../assets/projects/optiverse/w-chambers.webp" alt="The Chambers" loading="lazy" decoding="async"><span class="caption"><span>The Chambers · Council ring</span><span>04 / 09</span></span></div></figure>
+        <figure class="ms-item wide" data-i="05"><div class="ph has-media"><img src="../assets/projects/optiverse/w-gallery.webp" alt="The Gallery" loading="lazy" decoding="async"><span class="caption"><span>The Gallery · Suspended works</span><span>05 / 09</span></span></div></figure>
+        <figure class="ms-item" data-i="06"><div class="ph has-media"><img src="../assets/projects/optiverse/w-syn-deal.webp" alt="Syndicate · Deal" loading="lazy" decoding="async"><span class="caption"><span>Syndicate · Deal · Deal room</span><span>06 / 09</span></span></div></figure>
+        <figure class="ms-item" data-i="07"><div class="ph has-media"><img src="../assets/projects/optiverse/w-syn-venture.webp" alt="Syndicate · Venture" loading="lazy" decoding="async"><span class="caption"><span>Syndicate · Venture · Landscape lounge</span><span>07 / 09</span></span></div></figure>
+        <figure class="ms-item wide" data-i="08"><div class="ph has-media"><img src="../assets/projects/optiverse/w-syn-capital.webp" alt="Syndicate · Capital" loading="lazy" decoding="async"><span class="caption"><span>Syndicate · Capital · Capital floor</span><span>08 / 09</span></span></div></figure>
+        <figure class="ms-item" data-i="09"><div class="ph has-media"><img src="../assets/projects/optiverse/w-circle-b.webp" alt="The Circle" loading="lazy" decoding="async"><span class="caption"><span>The Circle · Observation deck</span><span>09 / 09</span></span></div></figure>
+      </div>
+      <div class="ms-foot">
+        <span class="ms-hint">Drag · Scroll · Shift + Wheel</span>
+        <div class="ms-prog"><span class="ms-prog-fill" id="msFill"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. PULL QUOTE -->
+  <section class="quote-wrap" data-deep="1" data-rail="7" data-screen-label="10 Quote">
+    <div class="wrap">
+      <blockquote class="quote">
+        <span class="quote-mark">“</span>
+        When navigation is limitless, architecture stops describing a building and starts
+        describing a journey.
+        <div class="quote-attrib">
+          <span class="rule"></span>
+          <span>ILLUSORR</span>
+        </div>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- 11. STATS + CREDITS -->
+  <section class="module" data-rail="7" data-screen-label="11 Outcome" style="padding-top: clamp(60px,9vw,140px);">
+    <div class="wrap">
+      <div class="module-head">
+        <div class="section-num">
+          <span class="num">08</span>
+          The Outcome
+        </div>
+        <div>
+          <h2 class="module-title">A hub with <em>no edges.</em></h2>
+        </div>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <span class="stat-n">18</span>
+          <span class="stat-k">Unique spaces in one continuous world</span>
+        </div>
+        <div class="stat">
+          <span class="stat-n">&infin;</span>
+          <span class="stat-k">Exploration with no physical limitations</span>
+        </div>
+        <div class="stat">
+          <span class="stat-n">1</span>
+          <span class="stat-k">Metaverse built exclusively for Optima</span>
+        </div>
+        <div class="stat">
+          <span class="stat-n">0</span>
+          <span class="stat-k">Rules of conventional space left unquestioned</span>
+        </div>
+      </div>
+
+      <div class="credits">
+        <div>
+          <span class="section-num" style="display:block; margin-bottom: 0;">
+            <span class="num" style="font-size: clamp(28px, 3vw, 48px);">09</span>
+            Credits
+          </span>
+        </div>
+        <div class="credit-list">
+          <div class="credit-row"><span class="role">Designed By</span><span class="who">ILLUSORR</span></div>
+          <div class="credit-row"><span class="role">Client</span><span class="who">Optima</span></div>
+          <div class="credit-row"><span class="role">Creative Lead</span><span class="who">Sara El Jamal · Begüm Aydınoğlu</span></div>
+          <div class="credit-row"><span class="role">Team</span><span class="who">Zeynep Topal · Oleg Soroko · Sara El Jamal</span></div>
+          <div class="credit-row"><span class="role">Method</span><span class="who">Procedural Modeling</span></div>
+          <div class="credit-row"><span class="role">Disciplines</span><span class="who">3D Environment · Web · Character Design · 3D Animation</span></div>
+          <div class="credit-row"><span class="role">Consultancy</span><span class="who">Technology Consultancy</span></div>
+          <div class="credit-row"><span class="role">Year</span><span class="who">2024</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12. NEXT PROJECT -->
+  <section class="next" data-rail="7" data-screen-label="12 Next">
+    <div class="next-bg">
+      <div class="ph is-filled" style="overflow:hidden"><img src="../assets/img/projects/trt-metaverse/illusorr-trt-metaverse-broadcast-virtual-studio-cover.webp" alt="TRT Metaverse, next project" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+    </div>
+    <div class="next-inner">
+      <span class="next-k">Next Project · M02</span>
+      <h3>
+        <span style="display:block">TRT Metaverse</span>
+        <span style="display:block; font-weight:400; font-style:italic; color: var(--ink-soft); letter-spacing: 0;">a broadcaster, embodied.</span>
+      </h3>
+      <div class="next-meta">
+        <span>2022</span>
+        <span>·</span>
+        <span>Metaverse</span>
+        <span>·</span>
+        <span>3D</span>
+      </div>
+      <a class="next-cta" href="../work.html">
+        <span>View Case Study</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 19 L19 5"/><polyline points="9 5 19 5 19 15"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <div>© ILLUSORR · MMXXIV</div>
+    <div>Optiverse · Metaverse for Optima</div>
+  </footer>
+
+<script>
+  /* ─── 18 spaces: filtered by the world map, media in a lightbox ─── */
+  (function () {
+    const W = {
+      optima:    { name: 'Optima',     wc: '#35B4F0' },
+      syndicate: { name: 'Syndicate',  wc: '#5566E8' },
+      salon:     { name: 'The Salon',  wc: '#C845AE' },
+      sensory:   { name: 'Sensory',    wc: '#F5772F' }
+    };
+    const IMG = '../assets/projects/optiverse/worlds/';
+    const VID = '../assets/projects/optiverse/';
+    const SPACES = [
+      { w:'optima', tag:'Arrival', name:'The Hall', img:'optima-hall', desc:'The arrival concourse. Every visitor lands here before choosing a world, with the interactive map and teleport thresholds built into the floor.', v:[['Interactive Map','map.mp4','poster-map.webp'],['Teleport','teleport.mp4','poster-teleport.webp']] },
+      { w:'optima', tag:'Trade', name:'Trade Center', img:'optima-tradecenter', desc:'The trading floor, ringed with product display units that lift any product into the round.', v:[['Product Display Unit','pdu.mp4','poster-pdu.webp']] },
+      { w:'optima', tag:'Exhibition', name:'Exhibition Hall', img:'optima-exhibition', desc:'Open floors for products, prototypes and interactive displays.', v:[] },
+      { w:'optima', tag:'Council', name:'The Chambers', img:'optima-chambers', desc:'A council ring for panels, closed sessions and announcements.', v:[['Meeting Room','meeting-room.mp4','poster-meeting-room.webp']] },
+      { w:'optima', tag:'Gallery', name:'The Gallery', img:'optima-gallery', desc:'A luminous hall built around suspended works and projections.', v:[] },
+      { w:'syndicate', tag:'Deal', name:'Deal', img:'syndicate-deal', desc:'The deal room. Private tables sit directly above the floor they serve.', v:[['Deal Meeting Room','deal-meeting-room.mp4','poster-deal-meeting-room.webp'],['Syndicate Dashboard','syndicate-dashboard.mp4','poster-syndicate-dashboard.webp']] },
+      { w:'syndicate', tag:'Venture', name:'Venture', img:'syndicate-venture', desc:'A landscape lounge for founders, funds and first meetings.', v:[['Meeting Room Generator','meeting-room-generator.mp4','poster-meeting-room-generator.webp']] },
+      { w:'syndicate', tag:'Capital', name:'Capital', img:'syndicate-capital', desc:'The capital floor, where positions and portfolios are read live off the walls.', v:[] },
+      { w:'salon', tag:'Stage', name:'Auditorium', img:'salon-auditorium', desc:'A monumental stage for keynotes, launches and live talks.', v:[['Salon Dashboard','salon-dashboard.mp4','poster-salon-dashboard.webp']] },
+      { w:'salon', tag:'Knowledge', name:'Library', img:'salon-library', desc:'A quiet archive of references, documents and recorded sessions.', v:[] },
+      { w:'salon', tag:'Culture', name:'Virtue', img:'salon-virtue', desc:'A pavilion for the work that carries the ideas rather than the products.', v:[] },
+      { w:'salon', tag:'Assembly', name:'The Circle', img:'salon-circle', desc:'A ring of tables where the room talks to itself instead of to a stage.', v:[] },
+      { w:'salon', tag:'Social', name:'Lounge', img:'salon-lounge', desc:'Intimate pockets tuned for conversation and one-to-ones.', v:[] },
+      { w:'salon', tag:'Faculty', name:'Faculty', img:'salon-faculty', desc:'The teaching floor: sessions, cohorts and guided programmes.', v:[] },
+      { w:'sensory', tag:'Making', name:'Atelier', img:'sensory-atelier', desc:'A workshop world for demos, reveals and hands-on experiments.', v:[['Asset Generator','asset-generator.mp4','poster-asset-generator.webp']] },
+      { w:'sensory', tag:'Growth', name:'Farm', img:'sensory-farm', desc:'A cultivated field, built to be walked through rather than watched.', v:[] },
+      { w:'sensory', tag:'Production', name:'Studio', img:'sensory-studio', desc:'A recording and capture stage for sound, light and performance.', v:[['Sensory Dashboard','sensory-dashboard.mp4','poster-sensory-dashboard.webp']] },
+      { w:'sensory', tag:'Rest', name:'Sensory Lounge', img:'sensory-lounge', desc:'The decompression floor, tuned by light and sound instead of content.', v:[['Capsule','capsule.mp4','poster-capsule.webp']] }
+    ];
+    const arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19 L19 5"/><polyline points="9 5 19 5 19 15"/></svg>';
+    const root = document.getElementById('spaces');
+    if (!root) return;
+    const nameEl = document.getElementById('wmSpacesName');
+    const countEl = document.getElementById('wmSpacesCount');
+
+    /* lightbox shell */
+    const sx = document.createElement('div');
+    sx.className = 'sx';
+    sx.innerHTML = '<div class="sx-panel" role="dialog" aria-modal="true">' +
+      '<div class="sx-bar"><span><b class="sx-dept"></b> · <span class="sx-tag"></span></span>' +
+      '<button class="sx-x" type="button" aria-label="Close">✕</button></div>' +
+      '<div class="sx-head"><h3></h3><p></p></div><div class="sx-grid"></div></div>';
+    document.body.appendChild(sx);
+    const sxPanel = sx.querySelector('.sx-panel');
+    const closeSx = () => {
+      sx.classList.remove('is-open');
+      sx.querySelectorAll('video').forEach((v) => v.pause());
+      document.body.style.overflow = '';
+    };
+    sx.addEventListener('click', (e) => { if (e.target === sx) closeSx(); });
+    sx.querySelector('.sx-x').addEventListener('click', closeSx);
+    addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSx(); });
+
+    function openSx(s) {
+      const d = W[s.w];
+      sx.style.setProperty('--wc', d.wc);
+      sx.querySelector('.sx-dept').textContent = d.name;
+      sx.querySelector('.sx-tag').textContent = s.tag;
+      sx.querySelector('.sx-head h3').textContent = s.name;
+      sx.querySelector('.sx-head p').textContent = s.desc;
+      const g = sx.querySelector('.sx-grid');
+      g.innerHTML = '';
+      const lead = document.createElement('figure');
+      lead.className = 'sx-item is-lead';
+      lead.innerHTML = '<img src="' + IMG + s.img + '.webp" alt="' + s.name + '" loading="lazy" decoding="async">' +
+        '<figcaption><span>' + s.name + '</span><em>01</em></figcaption>';
+      g.appendChild(lead);
+      s.v.forEach(([t, file, poster], i) => {
+        const fig = document.createElement('figure');
+        fig.className = 'sx-item';
+        const vid = document.createElement('video');
+        vid.src = VID + file; vid.poster = VID + poster;
+        vid.muted = true; vid.loop = true; vid.autoplay = true; vid.controls = true;
+        vid.playsInline = true; vid.setAttribute('playsinline', '');
+        vid.preload = 'metadata';
+        fig.appendChild(vid);
+        const cap = document.createElement('figcaption');
+        cap.innerHTML = '<span>' + t + '</span><em>' + String(i + 2).padStart(2, '0') + '</em>';
+        fig.appendChild(cap);
+        g.appendChild(fig);
+        vid.play().catch(() => {});
+      });
+      sx.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+      sxPanel.scrollTop = 0;
+      sx.querySelector('.sx-x').focus();
+    }
+
+    const cards = SPACES.map((s, i) => {
+      const d = W[s.w];
+      const el = document.createElement('div');
+      el.className = 'space';
+      el.dataset.w = s.w;
+      el.style.setProperty('--wc', d.wc);
+      el.innerHTML =
+        '<div class="sp-visual"><img src="' + IMG + s.img + '-sm.webp" alt="' + s.name + '" loading="lazy" decoding="async">' +
+          '<span class="sp-tag">' + s.tag + '</span><span class="sp-w"><i></i>' + d.name + '</span></div>' +
+        '<div class="sp-body">' +
+          '<span class="sp-num">Space ' + String(i + 1).padStart(2, '0') + ' / 18</span>' +
+          '<h4>' + s.name + '</h4>' +
+          '<p class="sp-desc">' + s.desc + '</p>' +
+          '<a class="sp-view" href="#" data-space="' + s.name + '"><span>Open space</span>' + arrow + '</a>' +
+        '</div>';
+      el.addEventListener('click', (e) => { e.preventDefault(); openSx(s); });
+      root.appendChild(el);
+      return { el, w: s.w };
+    });
+
+    window.optiFilterSpaces = (w) => {
+      let n = 0;
+      cards.forEach(({ el, w: cw }, i) => {
+        const on = !w || cw === w;
+        el.hidden = !on;
+        if (on) { el.style.animationDelay = (n * 45) + 'ms'; n++; }
+      });
+      if (nameEl) nameEl.textContent = w ? W[w].name : 'All four worlds';
+      if (countEl) countEl.textContent = n + (n === 1 ? ' space' : ' spaces');
+    };
+    window.optiFilterSpaces(window.__optiWorld || null);
+  })();
+</script>
+
+<script>
+  /* ─── Cover carousel: autoplay, drag, arrows, keyboard, bars ────── */
+  (function () {
+    const root = document.getElementById('cover');
+    if (!root) return;
+    const track = document.getElementById('crTrack');
+    const slides = Array.from(track.children);
+    const N = slides.length;
+    const DUR = 5200;
+    root.style.setProperty('--cr-dur', (DUR / 1000) + 's');
+
+    const nowEl = document.getElementById('crNow');
+    const totEl = document.getElementById('crTot');
+    const tagEl = document.getElementById('crTag');
+    const titleEl = document.getElementById('crTitle');
+    const subEl = document.getElementById('crSub');
+    const barsWrap = document.getElementById('crBars');
+
+    let i = 0, timer = null, paused = false;
+    totEl.textContent = '/ ' + String(N).padStart(2, '0');
+
+    const bars = slides.map((_, k) => {
+      const b = document.createElement('button');
+      b.className = 'cr-bar';
+      b.setAttribute('aria-label', 'Go to render ' + (k + 1));
+      b.innerHTML = '<span class="fill"></span>';
+      b.addEventListener('click', () => go(k, true));
+      barsWrap.appendChild(b);
+      return b;
+    });
+
+    function render() {
+      track.style.transform = 'translateX(' + (-i * 100) + '%)';
+      const s = slides[i];
+      nowEl.textContent = String(i + 1).padStart(2, '0');
+      tagEl.textContent = s.dataset.tag || '';
+      titleEl.textContent = s.dataset.title || '';
+      subEl.textContent = s.dataset.sub || '';
+      bars.forEach((b, k) => { b.classList.toggle('is-done', k < i); b.classList.remove('is-active'); });
+      if (bars[i]) { void bars[i].offsetWidth; if (!paused) bars[i].classList.add('is-active'); }
+    }
+    function go(n, user) { i = (n + N) % N; render(); if (user) restart(); }
+    function next() { go(i + 1); }
+    function restart() { clearTimeout(timer); if (paused) return; timer = setTimeout(next, DUR); }
+
+    document.getElementById('crNext').addEventListener('click', () => go(i + 1, true));
+    document.getElementById('crPrev').addEventListener('click', () => go(i - 1, true));
+
+    root.addEventListener('pointerenter', () => { paused = true; clearTimeout(timer); if (bars[i]) bars[i].classList.remove('is-active'); });
+    root.addEventListener('pointerleave', () => { paused = false; render(); restart(); });
+
+    // drag / swipe
+    let down = false, sx = 0, dx = 0;
+    track.addEventListener('pointerdown', (e) => { down = true; sx = e.clientX; dx = 0; track.classList.add('no-anim'); track.setPointerCapture?.(e.pointerId); });
+    track.addEventListener('pointermove', (e) => { if (!down) return; dx = e.clientX - sx; track.style.transform = 'translateX(calc(' + (-i * 100) + '% + ' + dx + 'px))'; });
+    function end() { if (!down) return; down = false; track.classList.remove('no-anim'); const th = root.clientWidth * 0.14; if (dx < -th) go(i + 1, true); else if (dx > th) go(i - 1, true); else render(); }
+    track.addEventListener('pointerup', end);
+    track.addEventListener('pointercancel', end);
+
+    root.setAttribute('tabindex', '0');
+    root.addEventListener('keydown', (e) => { if (e.key === 'ArrowRight') go(i + 1, true); else if (e.key === 'ArrowLeft') go(i - 1, true); });
+
+    render(); restart();
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(([en]) => {
+        if (en.isIntersecting && !paused) { render(); restart(); }
+        else { clearTimeout(timer); if (bars[i]) bars[i].classList.remove('is-active'); }
+      }, { threshold: 0.2 }).observe(root);
+    }
+  })();
+
+  /* ─── Media scroll: drag, wheel-to-horizontal, progress ─────────── */
+  (function () {
+    const rail = document.getElementById('msRail');
+    const fill = document.getElementById('msFill');
+    if (!rail) return;
+
+    function maxScroll() { return Math.max(1, rail.scrollWidth - rail.clientWidth); }
+    function updateProg() { fill.style.width = (rail.scrollLeft / maxScroll() * 100).toFixed(2) + '%'; }
+    rail.addEventListener('scroll', () => requestAnimationFrame(updateProg), { passive: true });
+
+    // drag to scroll
+    let down = false, sx = 0, sl = 0, moved = false;
+    rail.addEventListener('pointerdown', (e) => {
+      down = true; moved = false; sx = e.clientX; sl = rail.scrollLeft;
+      rail.classList.add('is-drag'); rail.setPointerCapture?.(e.pointerId);
+    });
+    rail.addEventListener('pointermove', (e) => {
+      if (!down) return;
+      const dx = e.clientX - sx;
+      if (Math.abs(dx) > 4) moved = true;
+      rail.scrollLeft = sl - dx;
+    });
+    function end() { if (!down) return; down = false; rail.classList.remove('is-drag'); }
+    rail.addEventListener('pointerup', end);
+    rail.addEventListener('pointercancel', end);
+    // swallow click after a drag so links/cursor don't misfire
+    rail.addEventListener('click', (e) => { if (moved) { e.preventDefault(); e.stopPropagation(); } }, true);
+
+    // vertical wheel → horizontal scroll while hovering
+    rail.addEventListener('wheel', (e) => {
+      const horiz = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+      if (Math.abs(horiz) < 2) return;
+      const before = rail.scrollLeft;
+      rail.scrollLeft += horiz;
+      if (rail.scrollLeft !== before) e.preventDefault();
+    }, { passive: false });
+
+    updateProg();
+    window.addEventListener('resize', updateProg);
+  })();
+
+  /* ─── System assets: tabbed showcase with schematic visuals ─────── */
+  (function () {
+    const root = document.getElementById('assets');
+    if (!root) return;
+    const vis = document.getElementById('asVis');
+    const tabs = Array.from(root.querySelectorAll('.as-tab'));
+    const numEl = document.getElementById('asNum');
+    const specEl = document.getElementById('asSpec');
+    const kindEl = document.getElementById('asKind');
+    const titleEl = document.getElementById('asTitle');
+    const descEl = document.getElementById('asDesc');
+
+    // Each asset is a real animation frame-rendered out of the production
+    // scene. Clips are square, load only on selection and loop silently.
+    const ASSETS = [
+      { num: 'A01', kind: 'Display', spec: 'Modular plinth · Real-time 3D', title: "Product Display Unit", desc: "A modular plinth that lifts any product into the round, letting visitors orbit, zoom and inspect it in full 3D from anywhere in the hall.", file: 'pdu' },
+      { num: 'A02', kind: 'Navigation', spec: '18 nodes · Live routing', title: "Interactive Map", desc: "The navigation system that connects all eighteen spaces, charting routes between worlds and keeping the whole expo legible at a glance.", file: 'map' },
+      { num: 'A03', kind: 'Transit', spec: 'Threshold · Instant', title: "Teleport", desc: "A threshold that moves the visitor between worlds in a single step, collapsing the distance between zones into one gesture.", file: 'teleport' },
+      { num: 'A04', kind: 'Enclosure', spec: 'Single occupant · Private', title: "Capsule", desc: "A sealed pod for focused viewing and private conversation, dropped anywhere in the hall without disturbing the space around it.", file: 'capsule' },
+      { num: 'A05', kind: 'Gathering', spec: 'Fixed plan · Seats 12', title: "Meeting Room", desc: "The standard room type: a fixed table, a screen wall and a door that reads as a door, so a first-time visitor knows what to do.", file: 'meeting-room' },
+      { num: 'A06', kind: 'System', spec: 'Parametric · On demand', title: "Meeting Room Generator", desc: "The room type as a machine. Set the headcount and the format, and the generator builds a room to match rather than picking one off a shelf.", file: 'meeting-room-generator' },
+      { num: 'A07', kind: 'Gathering', spec: 'Closed session · Secure', title: "Deal Meeting Room", desc: "A room built for the moment a deal is signed: no audience, no overspill, and a table geometry that puts two parties opposite each other.", file: 'deal-meeting-room' },
+      { num: 'A08', kind: 'Interface', spec: 'Live data · Wall-scale', title: "Salon Dashboard", desc: "The salon’s control surface, sized to the wall so a whole room can read the same numbers at the same time.", file: 'salon-dashboard' },
+      { num: 'A09', kind: 'Interface', spec: 'Multi-party · Live', title: "Syndicate Dashboard", desc: "A shared board for syndicate members, holding several parties’ positions in one view without collapsing them into an average.", file: 'syndicate-dashboard' },
+      { num: 'A10', kind: 'Interface', spec: 'Ambient · Presence-aware', title: "Sensory Dashboard", desc: "A dashboard that reports the state of the world itself: occupancy, flow and attention, read as light and movement rather than figures.", file: 'sensory-dashboard' },
+      { num: 'A11', kind: 'System', spec: 'Procedural · Instant', title: "Asset Generator", desc: "The tool underneath everything else. It builds new assets to the same rules as the existing ones, so the world can grow without a redesign.", file: 'asset-generator' },
+    ];
+
+    // The clips are rendered on a near-black plate. MP4 carries no alpha, so
+    // the plate is keyed out per frame: the video plays off-document into a
+    // canvas and dark pixels are written back with zero alpha.
+    const av = document.createElement('video');
+    av.muted = true; av.loop = true; av.playsInline = true; av.preload = 'none';
+    av.setAttribute('muted', ''); av.setAttribute('playsinline', '');
+    av.style.display = 'none';
+    vis.appendChild(av);
+    const cv = document.createElement('canvas');
+    cv.className = 'av-clip';
+    cv.width = cv.height = 560;
+    vis.appendChild(cv);
+    const cx = cv.getContext('2d', { willReadFrequently: true });
+    const LO = 26, HI = 64; // luma ramp: below LO fully clear, above HI fully opaque
+    let raf = null, onScreen = true;
+    function frame() {
+      raf = null;
+      if (!onScreen || av.readyState < 2) { raf = requestAnimationFrame(frame); return; }
+      cx.drawImage(av, 0, 0, cv.width, cv.height);
+      const d = cx.getImageData(0, 0, cv.width, cv.height);
+      const p = d.data;
+      for (let i = 0; i < p.length; i += 4) {
+        const l = (p[i] * 299 + p[i + 1] * 587 + p[i + 2] * 114) / 1000;
+        p[i + 3] = l <= LO ? 0 : l >= HI ? 255 : ((l - LO) / (HI - LO)) * 255;
+      }
+      cx.putImageData(d, 0, 0);
+      raf = requestAnimationFrame(frame);
+    }
+    frame();
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver((es) => {
+        onScreen = es[0].isIntersecting;
+        if (onScreen) av.play().catch(() => {}); else av.pause();
+      }, { threshold: 0.05 }).observe(vis);
+    }
+    let swapT = null;
+    function load(a) {
+      av.poster = '../assets/projects/optiverse/poster-' + a.file + '.webp';
+      av.src = '../assets/projects/optiverse/' + a.file + '.mp4';
+      // play() during load is aborted by the load itself; wait for the frame
+      av.addEventListener('canplay', () => av.play().catch(() => {}), { once: true });
+      av.load();
+    }
+    load(ASSETS[0]);
+
+    function select(k) {
+      tabs.forEach((t) => { const on = +t.dataset.k === k; t.classList.toggle('is-active', on); t.setAttribute('aria-selected', on ? 'true' : 'false'); });
+      const a = ASSETS[k];
+      numEl.textContent = a.num; specEl.textContent = a.spec; kindEl.textContent = a.kind;
+      titleEl.textContent = a.title; descEl.textContent = a.desc;
+      vis.classList.add('is-swapping');
+      clearTimeout(swapT);
+      swapT = setTimeout(() => { load(a); vis.classList.remove('is-swapping'); }, 240);
+    }
+    tabs.forEach((t) => t.addEventListener('click', () => select(+t.dataset.k)));
+    select(0);
+
+  })();
+
+  /* ─── Custom cursor ─────────────────────────────────────────────── */
+  (function () {
+    if (window.matchMedia('(hover: none)').matches) return;
+    const cursor = document.getElementById('kCursor');
+    if (!cursor) return;
+    const pt = { x: innerWidth / 2, y: innerHeight / 2 };
+    const lp = { x: pt.x, y: pt.y };
+    let visible = false;
+    (function tick() {
+      lp.x += (pt.x - lp.x) * 0.22; lp.y += (pt.y - lp.y) * 0.22;
+      cursor.style.transform = 'translate3d(' + lp.x + 'px,' + lp.y + 'px,0)';
+      requestAnimationFrame(tick);
+    })();
+    addEventListener('pointermove', (e) => {
+      pt.x = e.clientX; pt.y = e.clientY;
+      if (!visible) { cursor.classList.add('is-visible'); visible = true; }
+    }, { passive: true });
+    document.addEventListener('mouseleave', () => cursor.classList.remove('is-visible'));
+    document.addEventListener('mouseenter', () => cursor.classList.add('is-visible'));
+    addEventListener('pointerdown', () => cursor.classList.add('is-down'));
+    addEventListener('pointerup', () => cursor.classList.remove('is-down'));
+
+    function bind() {
+      document.querySelectorAll('a, button, [role="button"], .next, label, .topnav .logo-lockup, .space').forEach((el) => {
+        if (el.__kb) return; el.__kb = 1;
+        el.addEventListener('pointerenter', () => {
+          cursor.classList.add('is-link');
+          const label = cursor.querySelector('.label-link');
+          let verb = 'Open';
+          if (el.matches('.space') || el.querySelector?.('.sp-view')) verb = 'Enter';
+          else if (el.matches('.next, .next-cta')) verb = 'View';
+          else if (el.matches('[href^="http"]')) verb = 'Visit';
+          else if (el.matches('.sp-view')) verb = 'Enter';
+          if (label) label.setAttribute('data-verb', verb);
+        });
+        el.addEventListener('pointerleave', () => cursor.classList.remove('is-link'));
+      });
+    }
+    bind();
+    // re-bind after the spaces grid is injected
+    setTimeout(bind, 0);
+  })();
+
+  /* ─── Side-rail progress ────────────────────────────────────────── */
+  (function () {
+    const sections = Array.from(document.querySelectorAll('[data-rail]'));
+    const dots = Array.from(document.querySelectorAll('.rail-dot'));
+    function tick() {
+      const mid = innerHeight / 2;
+      let best = 0, bestDist = Infinity;
+      for (const s of sections) {
+        const r = s.getBoundingClientRect();
+        const c = (r.top + r.bottom) / 2;
+        const d = Math.abs(c - mid);
+        if (d < bestDist) { bestDist = d; best = +s.dataset.rail; }
+      }
+      dots.forEach((d) => d.classList.toggle('is-active', +d.dataset.i === best));
+    }
+    tick();
+    addEventListener('scroll', () => requestAnimationFrame(tick), { passive: true });
+    addEventListener('resize', tick);
+  })();
+
+  /* ─── 3D viewer: fullscreen + animated HUD readout ─────────────── */
+  (function () {
+    const viewer = document.getElementById('viewer');
+    const fsBtn = document.getElementById('hudFs');
+    if (viewer && fsBtn) {
+      fsBtn.addEventListener('click', () => {
+        if (document.fullscreenElement) { document.exitFullscreen?.(); }
+        else { (viewer.requestFullscreen || viewer.webkitRequestFullscreen)?.call(viewer); }
+      });
+    }
+    // Slowly drifting fake telemetry so the HUD feels alive (purely cosmetic)
+    const yawEl = document.getElementById('hudYaw');
+    const altEl = document.getElementById('hudAlt');
+    if (yawEl && altEl && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      let t = 0, raf = 0, running = true;
+      function loop() {
+        t += 0.012;
+        const yaw = Math.floor((Math.sin(t * 0.6) * 0.5 + 0.5) * 360);
+        const alt = Math.floor(38 + Math.sin(t) * 9);
+        yawEl.textContent = String(yaw).padStart(3, '0');
+        altEl.textContent = String(alt);
+        raf = running ? requestAnimationFrame(loop) : 0;
+      }
+      raf = requestAnimationFrame(loop);
+      if (viewer && 'IntersectionObserver' in window) {
+        new IntersectionObserver(([en]) => {
+          running = en.isIntersecting;
+          if (running && !raf) raf = requestAnimationFrame(loop);
+        }, { threshold: 0 }).observe(viewer);
+      }
+    }
+  })();
+
+  document.querySelectorAll('a[href^="#"]').forEach((a) => {
+    a.addEventListener('click', (e) => {
+      const id = a.getAttribute('href');
+      if (id.length < 2) { e.preventDefault(); return; }
+      const t = document.querySelector(id);
+      if (!t) return;
+      e.preventDefault();
+      scrollTo({ top: t.getBoundingClientRect().top + scrollY, behavior: 'smooth' });
+    });
+  });
+
+  /* ─── Reveal on scroll ──────────────────────────────────────────── */
+  (function () {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const sel = '.module-head, .body-grid > div, .feature, .stat, .credits, .bleed .ph, .frame .ph, .quote, .next-inner, .meta-cell, .q-row, .viewer, .carousel, .assets, .space';
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -7% 0px' });
+    // observe now + once the spaces grid is injected
+    function obs() { document.querySelectorAll(sel).forEach((el) => { if (!el.__rv) { el.__rv = 1; el.classList.add('reveal'); io.observe(el); } }); }
+    obs(); setTimeout(obs, 0);
+  })();
+</script>
+
+<script>
+  /* ─── Hero particle field, drifting nodes linked by faint lines ──
+     A quiet sci-fi constellation behind the title. Cool #B8BCCC on
+     black. Pauses when off-screen / reduced-motion. ───────────────── */
+  (function () {
+    const canvas = document.getElementById('heroField');
+    if (!canvas) return;
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const ctx = canvas.getContext('2d');
+    const hero = canvas.closest('.opti-sticky') || canvas.parentElement;
+    let W = 0, H = 0, DPR = Math.min(devicePixelRatio || 1, 2);
+    let nodes = [];
+    let mx = -9999, my = -9999;
+
+    function size() {
+      const r = hero.getBoundingClientRect();
+      W = r.width; H = r.height;
+      canvas.width = W * DPR; canvas.height = H * DPR;
+      canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      const count = Math.round(Math.min(90, (W * H) / 16000));
+      nodes = Array.from({ length: count }, () => ({
+        x: Math.random() * W, y: Math.random() * H,
+        vx: (Math.random() - 0.5) * 0.22, vy: (Math.random() - 0.5) * 0.22,
+        r: Math.random() * 1.6 + 0.6,
+      }));
+    }
+    size();
+    addEventListener('resize', size);
+    hero.addEventListener('pointermove', (e) => { const r = hero.getBoundingClientRect(); mx = e.clientX - r.left; my = e.clientY - r.top; }, { passive: true });
+    hero.addEventListener('pointerleave', () => { mx = -9999; my = -9999; });
+
+    const LINK = 132;
+    let running = !reduce, raf = 0;
+    function frame() {
+      ctx.clearRect(0, 0, W, H);
+      for (const n of nodes) {
+        n.x += n.vx; n.y += n.vy;
+        if (n.x < 0 || n.x > W) n.vx *= -1;
+        if (n.y < 0 || n.y > H) n.vy *= -1;
+        // gentle pull toward cursor
+        const dx = mx - n.x, dy = my - n.y, d = Math.hypot(dx, dy);
+        if (d < 180 && d > 0.1) { n.vx += (dx / d) * 0.006; n.vy += (dy / d) * 0.006; }
+        n.vx = Math.max(-0.5, Math.min(0.5, n.vx));
+        n.vy = Math.max(-0.5, Math.min(0.5, n.vy));
+      }
+      // links
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const a = nodes[i], b = nodes[j];
+          const dx = a.x - b.x, dy = a.y - b.y, d = Math.hypot(dx, dy);
+          if (d < LINK) {
+            ctx.strokeStyle = 'rgba(184,188,204,' + (0.16 * (1 - d / LINK)).toFixed(3) + ')';
+            ctx.lineWidth = 1;
+            ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+          }
+        }
+      }
+      // nodes
+      for (const n of nodes) {
+        ctx.fillStyle = 'rgba(228,231,241,0.55)';
+        ctx.beginPath(); ctx.arc(n.x, n.y, n.r, 0, 6.2832); ctx.fill();
+      }
+      if (running) raf = requestAnimationFrame(frame);
+    }
+    if (!reduce) {
+      raf = requestAnimationFrame(frame);
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(([en]) => {
+          running = en.isIntersecting;
+          if (running && !raf) raf = requestAnimationFrame(frame);
+          else if (!running) { cancelAnimationFrame(raf); raf = 0; }
+        }, { threshold: 0 }).observe(hero);
+      }
+    } else {
+      // static single frame for reduced motion
+      frame();
+    }
+  })();
+</script>
+
+  <script src="../assets/js/case/image-slot.js"></script>
+  <script>
+  (() => {
+    const stage = document.querySelector('.opti-stage');
+    if (!stage) return;
+    const sticky = stage.querySelector('.opti-sticky');
+    const viewer = document.getElementById('optiViewer');
+    const frame = document.getElementById('optiFrame');
+    const guard = document.getElementById('optiGuard');
+    if (guard) {
+      guard.addEventListener('click', () => viewer.classList.add('is-free'));
+      // release as soon as the pointer leaves the stage, so the next wheel
+      // event scrolls the page instead of zooming the model
+      sticky.addEventListener('pointerleave', () => viewer.classList.remove('is-free'));
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') viewer.classList.remove('is-free'); });
+    }
+    const field = stage.querySelector('.hero-field');
+    let loaded = false, raf = 0;
+    const clamp = (v) => v < 0 ? 0 : v > 1 ? 1 : v;
+    function update() {
+      raf = 0;
+      const r = stage.getBoundingClientRect();
+      const span = r.height - window.innerHeight;
+      const p = span > 0 ? clamp(-r.top / span) : 0;
+      // 0 → .55 : hero copy fades out and the model fades in
+      // .55 → 1 : the 3D chapter line arrives and the model is interactive
+      stage.style.setProperty('--hero-o', (1 - clamp(p / 0.42)).toFixed(3));
+      const vis = clamp((p - 0.12) / 0.36);
+      viewer.style.setProperty('--viewer-o', vis.toFixed(3));
+      if (field) field.style.setProperty('--field-o', (1 - vis * 0.85).toFixed(3));
+      stage.style.setProperty('--ch3d-o', clamp((p - 0.58) / 0.22).toFixed(3));
+      viewer.classList.toggle('is-hot', p > 0.55);
+      if (!loaded && p > 0.02) { loaded = true; frame.src = frame.dataset.src; viewer.classList.add('is-live'); }
+    }
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
+    addEventListener('scroll', onScroll, { passive: true });
+    addEventListener('resize', onScroll);
+    update();
+  })();
+  </script>
+<script>
+(() => {
+  const map = document.getElementById('worldMap');
+  if (!map) return;
+  const WORLDS = ['syndicate', 'salon', 'sensory', 'optima'];
+  const plates = [...map.querySelectorAll('.wm-map[data-w]')];
+  const keys = [...map.querySelectorAll('.wm-key')];
+  const reads = [...map.querySelectorAll('.wm-read')];
+  const idle = map.querySelector('.wm-read.is-idle');
+  const tint = (w) => {
+    const k = map.querySelector('.wm-key[data-w="' + w + '"]');
+    return (k && k.style.getPropertyValue('--wc').trim()) || '#eef1f8';
+  };
+  let sel = null;
+
+  function light(w) {
+    map.classList.toggle('is-live', !!w);
+    if (w) map.style.setProperty('--wc', tint(w));
+    plates.forEach((p) => p.classList.toggle('is-on', p.dataset.w === w));
+    keys.forEach((k) => k.classList.toggle('is-on', k.dataset.w === w));
+    reads.forEach((r) => r.classList.toggle('is-on', r.dataset.w === w));
+    if (idle) idle.classList.toggle('is-on', !w);
+  }
+  function paint(w) {
+    window.__optiWorld = w || null;
+    if (window.optiFilterSpaces) window.optiFilterSpaces(w || null);
+    const box = document.getElementById('wmSpaces');
+    if (box) box.style.setProperty('--wc', w ? tint(w) : '#eef1f8');
+  }
+  const select = (w) => { sel = w; light(w); paint(w); };
+  window.optiSelectWorld = (w) => {
+    if (!WORLDS.includes(w)) return;
+    select(w);
+    const y = document.querySelector('.worldmap-sec').offsetTop;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+  };
+  map.querySelectorAll('.wm-hit, .wm-key').forEach((el) => {
+    const w = el.dataset.w;
+    el.addEventListener('pointerenter', () => light(w));
+    el.addEventListener('focus', () => light(w));
+    el.addEventListener('click', () => select(sel === w ? null : w));
+  });
+  map.addEventListener('pointerleave', () => light(sel));
+  select(null);
+})();
+</script>
+<script src="../assets/js/nav.js" defer></script>
+<script src="../assets/js/site-footer.js" defer></script>
+<script src="../assets/js/to-top.js" defer></script>
+</body>
+</html>

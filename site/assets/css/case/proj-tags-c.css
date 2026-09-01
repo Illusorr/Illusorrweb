@@ -1,0 +1,8 @@
+  .proj-tags{ display:flex; flex-wrap:wrap; gap:26px 40px; align-items:flex-start; margin-bottom:30px; padding-top:120px; }
+  .proj-tags .ptg{ display:flex; flex-direction:column; gap:12px; }
+  .proj-tags .ptg-k{ font-family:'Outfit',system-ui,sans-serif; font-size: 12px; letter-spacing:0.26em; text-transform:uppercase; color:var(--ink-soft); display:flex; align-items:center; gap:8px; }
+  .proj-tags .ptg-k::before{ content:''; width:14px; height:1px; background:var(--accent); }
+  .proj-tags .ptg-c{ display:flex; flex-wrap:wrap; gap:9px; padding-left:22px; }
+  .proj-tags .ptag{ font-family:'Outfit',system-ui,sans-serif; font-weight:500; font-size: 15px; letter-spacing:0.005em; color:var(--ink-bright, var(--ink)); border:1px solid var(--ink-faint); border-radius:8px; padding:8px 14px; line-height:1; white-space:nowrap; background:rgba(125,140,170,0.06); transition:border-color .25s, background .25s; }
+  .proj-tags .ptag:hover{ border-color:color-mix(in srgb, var(--accent) 55%, transparent); background:color-mix(in srgb, var(--accent) 9%, transparent); }
+  .proj-tags .ptag.sector{ border-style:dashed; color:var(--ink); }

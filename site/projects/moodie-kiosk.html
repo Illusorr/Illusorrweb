@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<link rel="preload" as="font" type="font/otf" crossorigin href="../assets/projects/shared/fonts/PPMonumentExtended-Black.otf">
+<link rel="preload" as="font" type="font/ttf" crossorigin href="../assets/projects/shared/fonts/Squaresharps-v2.ttf">
+
+<link rel="preload" as="font" type="font/woff" crossorigin href="../assets/fonts/outfit-variable.woff">
+<link rel="stylesheet" href="../assets/css/nav.css">
+<link rel="stylesheet" href="../assets/css/case/fonts.css">
+
+<link rel="stylesheet" href="../assets/css/case/cm-type-c.css">
+<title>ILLUSORR × Moodie Kiosk · F&amp;B Retail</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+  :root {
+    --light-bg: #f3ecdf;
+    --light-bg-2: #E4DFD5;
+    --light-ink: #14140f;
+    --light-ink-soft: rgba(18, 14, 8, 0.60);
+    --light-ink-faint: rgba(18, 14, 8, 0.13);
+    --light-tile: #e4dfd5;
+
+    --dark-bg: #0C1828;
+    --dark-bg-2: #07101C;
+    --dark-ink: #f3ecdf;
+    --dark-ink-soft: rgba(240, 237, 230, 0.65);
+    --dark-ink-faint: rgba(240, 237, 230, 0.18);
+    --dark-tile: #0d243a;
+
+    --accent: #E05A72;
+
+    --maxw: 1440px;
+    --gutter: clamp(20px, 4vw, 64px);
+  }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    background-size: 220px 220px;
+    opacity: 0.05;
+    mix-blend-mode: multiply;
+  }
+  section[data-tone="dark"] { position: relative; }
+  section[data-tone="dark"]::after {
+    content: '';
+    position: absolute; inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    background-size: 220px 220px;
+    opacity: 0.03;
+    mix-blend-mode: screen;
+  }
+  section[data-tone="dark"] > * { position: relative; z-index: 1; }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 400;
+    background: var(--light-bg);
+    color: var(--light-ink);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+  section[data-tone="light"] {
+    background: var(--light-bg);
+    color: var(--light-ink);
+    --bg: var(--light-bg);
+    --bg-2: var(--light-bg-2);
+    --ink: var(--light-ink);
+    --ink-soft: var(--light-ink-soft);
+    --ink-faint: var(--light-ink-faint);
+    --tile: var(--light-tile);
+  }
+  section[data-tone="dark"] {
+    background: var(--dark-bg);
+    color: var(--dark-ink);
+    --bg: var(--dark-bg);
+    --bg-2: var(--dark-bg-2);
+    --ink: var(--dark-ink);
+    --ink-soft: var(--dark-ink-soft);
+    --ink-faint: var(--dark-ink-faint);
+    --tile: var(--dark-tile);
+  }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter); }
+
+  /* ── Top nav ── */
+  .topnav {
+    position: fixed; left: 0; right: 0; top: 0;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 22px var(--gutter);
+    z-index: 50;
+    pointer-events: none;
+  }
+  .topnav > * { pointer-events: auto; }
+  .topnav a, .topnav button {
+    text-decoration: none;
+    background: transparent; border: 0;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase;
+    cursor: pointer;
+    transition: color .35s ease;
+  }
+  .topnav .logo-lockup {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-family: 'Squaresharps', system-ui, sans-serif;
+    font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase;
+    transition: color .35s ease;
+    text-decoration: none;
+  }
+  .topnav .logo-mark { width: 30px; height: 30px; display: inline-flex; align-items: center; justify-content: center; }
+  .topnav .logo-mark img { width: 100%; height: 100%; object-fit: contain; display: block; }
+  .topnav .logo-lockup, .topnav a, .topnav button { color: #14140f; }
+  .topnav.on-dark .logo-lockup, .topnav.on-dark a, .topnav.on-dark button { color: #f3ecdf; }
+  .topnav nav { display: flex; gap: 32px; align-items: center; }
+
+  /* ── Hero ── */
+  section.hero[data-tone="dark"] {
+    width: 100%; max-width: 100vw;
+    aspect-ratio: 21 / 9;
+    min-height: 560px;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: clamp(40px, 8vh, 96px) var(--gutter);
+    position: relative;
+    --hg1: #6EC4BA; --hg2: #2A6B66; --hg3: #101b17;
+    background:
+      radial-gradient(85% 95% at 10% 98%, rgba(6,24,22,0.55), transparent 62%),
+      linear-gradient(135deg, var(--hg1) 0%, var(--hg2) 52%, var(--hg3) 100%);
+  }
+  .hero .hero-inner { max-width: var(--maxw); width: 100%; margin: 0 auto; position: relative; z-index: 2; display: flex; flex-direction: column; flex: 1 1 auto; }
+  .hero .hero-paint { position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: 0; transition: opacity .7s ease; filter: blur(6px) saturate(1.04); transform: translateZ(0); will-change: opacity; }
+  .hero:hover .hero-paint { opacity: 0.9; }
+
+  .hero-emblems { position: absolute; left: 0; pointer-events: none; overflow: visible; z-index: 30; }
+  .hero-emblem { position: absolute; top: 0; left: 0; will-change: transform; }
+  .hero-emblem svg { display: block; width: 100%; height: 100%; }
+  .hero-emblem svg path { fill: currentColor; }
+
+  .hero-title {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(40px, 5.5vw, 55px);
+    line-height: 0.92;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    margin: 0;
+    color: var(--ink);
+    max-width: 100%;
+    overflow-wrap: break-word;
+  }
+  .hero-title .ln { display: block; max-width: 100%; }
+  .hero-title .ln-ital {
+    display: block;
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 0.42em;
+    letter-spacing: 0;
+    color: var(--ink-soft);
+    margin-top: 0.28em;
+    max-width: 100%;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    text-transform: none;
+  }
+
+  .hero-foot {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 18px;
+  }
+  .hero-lede {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: clamp(15px, 1.05vw, 17px);
+    line-height: 1.55;
+    color: var(--ink);
+    max-width: 420px;
+    margin: 0;
+  }
+  .hero-lede strong { font-weight: 600; }
+  .scroll-cue {
+    display: inline-flex; flex-direction: column; align-items: center; gap: 10px;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .scroll-cue .line {
+    width: 1px; height: 44px;
+    background: linear-gradient(180deg, transparent 0%, var(--ink) 50%, transparent 100%);
+    background-size: 100% 200%;
+    animation: scrollPulse 1.8s ease-in-out infinite;
+  }
+  @keyframes scrollPulse { 0% { background-position: 0 -100%; } 100% { background-position: 0 200%; } }
+  .hero-credit {
+    text-align: right;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--ink-soft);
+    line-height: 1.7;
+  }
+
+  /* ── Meta bar ── */
+  .meta-bar {
+    border-top: 1px solid var(--ink-faint);
+    border-bottom: 1px solid var(--ink-faint);
+    padding: 28px 0;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr 1.4fr 1.4fr 1fr;
+    gap: clamp(20px, 3vw, 48px);
+  }
+  .meta-cell .meta-k {
+    display: block;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 8px;
+  }
+  .meta-cell .meta-v {
+    display: block;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 15px; line-height: 1.5;
+    color: var(--ink);
+  }
+
+  /* ── Cover / bleed ── */
+  .cover { padding: clamp(40px, 6vw, 96px) 0 clamp(90px, 11vw, 170px); }
+  .cover .frame { position: relative; aspect-ratio: 16 / 9; overflow: hidden; }
+  .cover .frame .ph { position: absolute; inset: 0; }
+  .bleed { padding: 0 0 clamp(90px, 11vw, 170px); }
+  .bleed .ph { aspect-ratio: 21 / 9; }
+
+  /* ── Placeholder ── */
+  .ph {
+    position: relative;
+    width: 100%;
+    background: var(--tile);
+    color: var(--ink-soft);
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .ph::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(45deg, var(--ink-faint) 1px, transparent 1px),
+      linear-gradient(-45deg, var(--ink-faint) 1px, transparent 1px);
+    background-size: 14px 14px;
+    opacity: 0.55;
+    pointer-events: none;
+  }
+  .ph::after { content: none; }
+  .ph.is-filled::before, .ph.is-filled::after { display: none; }
+  .ph > img, .ph > video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; z-index: 1; }
+  .ph .ph-label {
+    position: absolute; left: 20px; top: 16px;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink);
+    background: var(--bg, var(--light-bg));
+    padding: 6px 10px;
+    border: 1px solid var(--ink-faint);
+    z-index: 2;
+  }
+  .ph .ph-dim {
+    position: absolute; right: 20px; top: 16px;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 12px; letter-spacing: 0.06em;
+    color: var(--ink-soft);
+    z-index: 2;
+  }
+  .ph .caption {
+    position: absolute; left: 20px; bottom: 14px; right: 20px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase;
+    color: var(--ink-soft);
+    z-index: 2;
+  }
+
+  /* ── Module / section ── */
+  .module { padding: clamp(120px, 15vw, 240px) 0; }
+  .module-head {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: clamp(24px, 5vw, 80px);
+    align-items: start;
+  }
+  .section-num {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .section-num .num {
+    display: block;
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(36px, 4vw, 64px);
+    line-height: 1;
+    color: var(--ink);
+    margin-bottom: 14px;
+    letter-spacing: -0.02em;
+  }
+  .module-title {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(24px, 2.7vw, 42px);
+    line-height: 1.06;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin: 0 0 32px;
+  }
+  .module-title em { font-style: italic; font-weight: 400; color: var(--ink-soft); letter-spacing: 0; }
+  .lede {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: clamp(18px, 1.45vw, 25px);
+    line-height: 1.45;
+    color: var(--ink);
+    max-width: 46ch;
+    margin: 0;
+    text-wrap: pretty;
+  }
+  .body-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(24px, 4vw, 64px);
+    margin-top: clamp(40px, 5vw, 64px);
+  }
+  .body-grid p {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .body-grid p + p { margin-top: 18px; }
+
+  /* ── Duo layout ── */
+  .duo {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: clamp(20px, 3vw, 48px);
+    align-items: end;
+    padding: 0 0 clamp(90px, 11vw, 170px);
+  }
+  .duo .col { display: flex; flex-direction: column; gap: 14px; }
+  .duo .col-a .ph { aspect-ratio: 4 / 3; }
+  .duo .col-b { padding-bottom: clamp(40px, 6vw, 96px); }
+  .duo .col-b .ph { aspect-ratio: 3 / 4; }
+  .duo .cap { font-family: 'Outfit', system-ui, sans-serif; font-weight: 400; font-size: 13px; letter-spacing: 0.01em; color: var(--ink-soft); }
+
+  /* ── Quote ── */
+  .quote-wrap { padding: clamp(120px, 15vw, 240px) 0; }
+  .quote {
+    max-width: 1100px; margin: 0 auto;
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: clamp(28px, 3.8vw, 60px);
+    line-height: 1.08;
+    letter-spacing: -0.005em;
+    color: var(--ink);
+    text-align: left;
+    text-wrap: balance;
+  }
+  .quote .quote-mark {
+    display: block;
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(80px, 10vw, 160px);
+    line-height: 0.6;
+    color: var(--accent);
+    margin-bottom: 24px;
+  }
+  .quote-attrib {
+    margin-top: 40px;
+    display: flex; align-items: center; gap: 14px;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .quote-attrib .rule { width: 36px; height: 1px; background: var(--ink-faint); }
+
+  /* ── Process ── */
+  .process {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(24px, 3vw, 56px);
+    margin-top: clamp(48px, 6vw, 80px);
+    border-top: 1px solid var(--ink-faint);
+    padding-top: clamp(28px, 3vw, 48px);
+  }
+  .process .step { display: flex; flex-direction: column; gap: 14px; }
+  .process .step .step-k {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-soft);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .process .step .step-k::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+  .process .step h4 {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(20px, 1.6vw, 26px);
+    line-height: 1.1;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin: 0;
+    letter-spacing: -0.005em;
+  }
+  .process .step p { font-family: 'Outfit', system-ui, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: var(--ink-soft); margin: 0; }
+
+  /* ── Stats ── */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(16px, 2vw, 40px);
+    padding: clamp(90px, 11vw, 170px) 0;
+    border-top: 1px solid var(--ink-faint);
+    border-bottom: 1px solid var(--ink-faint);
+  }
+  .stat .stat-n {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(48px, 6.5vw, 108px);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    display: block;
+  }
+  .stat .stat-n .sm { font-size: 0.45em; vertical-align: top; padding-left: 0.2em; color: var(--accent); }
+  .stat .stat-k { display: block; margin-top: 14px; font-family: 'Outfit', system-ui, sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); max-width: 18ch; }
+
+  /* ── Credits ── */
+  .credits {
+    padding: clamp(90px, 11vw, 170px) 0;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: clamp(24px, 5vw, 80px);
+  }
+  .credits .credit-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px 48px; }
+  .credits .credit-row .role { display: block; font-family: 'Outfit', system-ui, sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 6px; }
+  .credits .credit-row .who { font-family: 'Outfit', system-ui, sans-serif; font-weight: 500; font-size: 15px; line-height: 1.5; color: var(--ink); }
+
+  /* ── Seam ── */
+  .seam { height: 1px; background: transparent; position: relative; }
+  .seam::before {
+    content: 'Deep blue';
+    position: absolute; left: 50%; top: -10px; transform: translate(-50%, -100%);
+    background: var(--light-bg);
+    padding: 6px 14px;
+    border: 1px solid var(--light-ink-faint);
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--light-ink-soft);
+    z-index: 4;
+  }
+
+  /* ── Features grid ── */
+  .feat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(16px, 2vw, 32px);
+    margin-top: clamp(48px, 6vw, 80px);
+  }
+  .feat-card {
+    border: 1px solid var(--ink-faint);
+    border-radius: 4px;
+    padding: clamp(24px, 2.5vw, 36px);
+    background: color-mix(in srgb, var(--accent) 4%, transparent);
+    transition: border-color .25s;
+  }
+  .feat-card:hover { border-color: color-mix(in srgb, var(--accent) 45%, transparent); }
+  .feat-num {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(32px, 3.5vw, 52px);
+    letter-spacing: -0.02em;
+    color: color-mix(in srgb, var(--accent) 30%, transparent);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+  .feat-name {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(15px, 1.4vw, 20px);
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+  .feat-desc { font-size: clamp(13px, 1vw, 14.5px); line-height: 1.65; color: var(--ink-soft); margin: 0; }
+
+  /* ── Look split ── */
+  .look-split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 4vw, 72px); align-items: start; }
+  .look-group { display: flex; flex-direction: column; gap: 16px; }
+  .look-group .lg-head { font-family: 'Outfit', system-ui, sans-serif; font-size: 13px; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-soft); display: flex; align-items: center; gap: 12px; }
+  .look-group .lg-head::after { content: ''; flex: 1; height: 1px; background: var(--ink-faint); }
+  .look-group .lg-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(12px, 1.4vw, 22px); }
+  .look-group .lg-grid .ph { aspect-ratio: 3 / 4; }
+
+  /* ── Reel rail ── */
+  .reel-rail { display: flex; gap: clamp(12px, 1.6vw, 22px); overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 12px; scrollbar-width: thin; }
+  .reel-rail .ph { flex: 0 0 auto; height: clamp(460px, 72vh, 820px); width: auto; aspect-ratio: 9 / 16; scroll-snap-align: start; }
+  .reel-rail::-webkit-scrollbar { height: 6px; }
+  .reel-rail::-webkit-scrollbar-track { background: transparent; }
+  .reel-rail::-webkit-scrollbar-thumb { background: var(--ink-faint); border-radius: 999px; }
+  .reel-play { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); width: 60px; height: 60px; border-radius: 50%; border: 1px solid var(--ink-faint); background: rgba(0,0,0,0.06); z-index: 2; transition: background .3s, border-color .3s; }
+  .reel-play::after { content: ''; position: absolute; left: 50%; top: 50%; transform: translate(-42%,-50%); width: 0; height: 0; border-left: 15px solid var(--ink-soft); border-top: 9px solid transparent; border-bottom: 9px solid transparent; }
+  .reel-rail .ph:hover .reel-play { background: var(--accent); border-color: var(--accent); }
+  .reel-rail .ph:hover .reel-play::after { border-left-color: #fff; }
+
+  /* ── Next teaser ── */
+  .next {
+    position: relative; min-height: 90vh;
+    display: grid; place-items: center;
+    overflow: hidden; cursor: pointer;
+  }
+  .next .next-bg { position: absolute; inset: 0; background: var(--tile); overflow: hidden; }
+  .next .next-bg .ph { position: absolute; inset: 0; transform: scale(1.04); transition: transform 1.2s cubic-bezier(.2,.7,.2,1); }
+  .next:hover .next-bg .ph { transform: scale(1.0); }
+  .next .next-inner { position: relative; z-index: 2; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 22px; }
+  .next .next-k { font-family: 'Outfit', system-ui, sans-serif; font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-soft); }
+  .next h3 { font-family: 'PP Monument Extended', system-ui, sans-serif; font-weight: 900; font-size: clamp(44px, 7vw, 120px); line-height: 0.95; text-transform: uppercase; color: var(--ink); margin: 0; letter-spacing: -0.01em; }
+  .next .next-meta { display: flex; gap: 24px; font-family: 'Outfit', system-ui, sans-serif; font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-soft); }
+  .next .next-cta { margin-top: 12px; display: inline-flex; align-items: center; gap: 14px; padding: 16px 28px; border: 1px solid var(--ink-faint); border-radius: 999px; font-family: 'Outfit', system-ui, sans-serif; font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink); transition: background .3s, color .3s, border-color .3s; }
+  .next:hover .next-cta { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .next-cta svg { width: 14px; height: 14px; }
+
+  /* ── Footer ── */
+  footer.foot { padding: 40px var(--gutter); border-top: 1px solid var(--ink-faint); display: flex; justify-content: space-between; align-items: center; font-family: 'Outfit', system-ui, sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); }
+
+  /* ── Rail ── */
+  .rail { position: fixed; right: 18px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 8px; z-index: 40; }
+  .rail .rail-dot { width: 6px; height: 6px; border-radius: 50%; background: #14140f; opacity: 0.35; transition: opacity .3s, transform .3s, background .35s; }
+  .rail.on-dark .rail-dot { background: #f3ecdf; }
+  .rail .rail-dot.is-active { opacity: 1; transform: scale(1.5); }
+
+  /* ── Cursor ── */
+
+  .koton-cursor {
+    display: none;
+    position: fixed; left: 0; top: 0;
+    width: 54px; height: 54px;
+    margin-left: -27px; margin-top: -27px;
+    background: transparent; color: #14140f;
+    display: flex; align-items: center; justify-content: center;
+    pointer-events: none;
+    z-index: 2147483647;
+    isolation: isolate;
+    transition: width .35s cubic-bezier(.2,.7,.2,1), height .35s cubic-bezier(.2,.7,.2,1), margin .35s cubic-bezier(.2,.7,.2,1), opacity .25s ease, color .35s ease;
+    will-change: transform, width, height;
+    opacity: 0;
+  }
+  .koton-cursor.is-visible { opacity: 1; }
+  .koton-cursor.on-dark { color: #ffffff; }
+  .koton-cursor .km { width: 100%; height: 100%; display: block; object-fit: contain; color: inherit; transition: opacity .25s ease; }
+  .koton-cursor .km path { fill: currentColor; }
+  .koton-cursor.is-link .km { opacity: 0; }
+  .koton-cursor .label-link { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%) scale(0.7); opacity: 0; padding: 8px 14px; border-radius: 999px; background: currentColor; font-family: 'Outfit', system-ui, sans-serif; font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; transition: opacity .25s, transform .35s cubic-bezier(.2,.7,.2,1); white-space: nowrap; }
+  .koton-cursor .label-link::after { content: attr(data-verb); color: #f3ecdf; }
+  .koton-cursor.on-dark .label-link::after { color: #0a0a0c; }
+  .koton-cursor.is-link { width: 0; height: 0; margin-left: 0; margin-top: 0; }
+  .koton-cursor.is-link .label-link { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  .koton-cursor.is-down .km { transform: scale(0.78); transition: transform .15s ease; }
+  @media (hover: none) { .koton-cursor { display: none; } }
+
+  /* ── Hero carousel ── */
+  .hero-carousel {
+    position: relative; --hc-vis: 3;
+    width: 100vw; margin-left: calc(50% - 50vw);
+    height: clamp(520px, 86vh, 960px);
+    overflow: hidden; background: var(--tile);
+    isolation: isolate; touch-action: pan-y; user-select: none;
+  }
+  .hc-track { display: flex; flex-wrap: nowrap; gap: 12px; height: 100%; will-change: transform; transition: transform .9s cubic-bezier(.72,0,.18,1); }
+  .hc-track.no-anim { transition: none; }
+  .hc-slide { position: relative; flex: 0 0 calc((100% - (var(--hc-vis) - 1) * 12px) / var(--hc-vis)); height: 100%; overflow: hidden; }
+  .hc-slide img { width: 100%; height: 100%; object-fit: cover; object-position: center 18%; display: block; transform: scale(1.08); transition: transform 7s cubic-bezier(.2,.6,.2,1); }
+  .hc-slide.is-active img { transform: scale(1); }
+  .hc-slide::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(8,8,10,0.30) 0%, transparent 24%, transparent 62%, rgba(8,8,10,0.50) 100%); pointer-events: none; }
+  .hc-slide .ph { position: absolute; inset: 0; aspect-ratio: auto; }
+  .hc-top { position: absolute; left: 0; right: 0; top: 0; display: flex; justify-content: space-between; align-items: center; padding: clamp(20px,3vw,40px) clamp(20px,4vw,56px); z-index: 6; pointer-events: none; font-family: 'Outfit', system-ui, sans-serif; font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase; color: #f3ecdf; }
+  .hc-top .hc-count .now { color: #fff; }
+  .hc-top .hc-count .tot { opacity: 0.6; }
+  .hc-caption { position: absolute; left: clamp(20px,4vw,56px); bottom: clamp(40px,5vw,64px); z-index: 6; max-width: 520px; color: #f3ecdf; }
+  .hc-caption .hc-look { font-family: 'Outfit', system-ui, sans-serif; font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(240,237,230,0.78); margin-bottom: 12px; }
+  .hc-caption .hc-title { font-family: 'PP Monument Extended', system-ui, sans-serif; font-weight: 900; font-size: clamp(22px,2.4vw,40px); line-height: 1.02; letter-spacing: -0.01em; text-transform: uppercase; margin: 0; color: #fff; text-wrap: balance; }
+  .hc-caption .hc-sub { margin-top: 12px; font-family: 'Outfit', system-ui, sans-serif; font-weight: 400; font-size: 13px; letter-spacing: 0.02em; color: rgba(240,237,230,0.82); }
+  .hc-nav { position: absolute; top: 50%; transform: translateY(-50%); z-index: 7; width: 54px; height: 54px; border-radius: 50%; border: 1px solid rgba(240,237,230,0.45); background: rgba(10,10,12,0.18); backdrop-filter: blur(6px); display: grid; place-items: center; color: #f3ecdf; transition: background .3s, border-color .3s; }
+  .hc-nav:hover { background: var(--accent); border-color: var(--accent); }
+  .hc-nav svg { width: 18px; height: 18px; }
+  .hc-prev { left: clamp(14px,2vw,32px); }
+  .hc-next { right: clamp(14px,2vw,32px); }
+  .hc-bars { position: absolute; right: clamp(20px,4vw,56px); bottom: clamp(44px,5vw,68px); z-index: 6; display: flex; gap: 8px; }
+  .hc-bar { width: 38px; height: 2px; background: rgba(240,237,230,0.30); position: relative; overflow: hidden; cursor: none; border: 0; padding: 0; }
+  .hc-bar .fill { position: absolute; inset: 0; transform-origin: left center; transform: scaleX(0); background: #f3ecdf; }
+  .hc-bar.is-active .fill { animation: hcFill var(--hc-dur,5s) linear forwards; }
+  .hc-bar.is-done .fill { transform: scaleX(1); }
+  @keyframes hcFill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  @media (max-width: 1180px) { .hero-carousel { --hc-vis: 2; } }
+  @media (max-width: 720px)  { .hero-carousel { --hc-vis: 1; } }
+
+  section.hero[data-tone="dark"]::after { display: none; }
+
+  @media (max-width: 880px) {
+    .meta-bar { grid-template-columns: 1fr 1fr; }
+    .module-head { grid-template-columns: 1fr; }
+    .body-grid { grid-template-columns: 1fr; }
+    .duo { grid-template-columns: 1fr; }
+    .feat-grid { grid-template-columns: 1fr 1fr; }
+    .process { grid-template-columns: 1fr; }
+    .stats { grid-template-columns: 1fr 1fr; }
+    .credits { grid-template-columns: 1fr; }
+    .credits .credit-list { grid-template-columns: 1fr; }
+    .look-split { grid-template-columns: 1fr; }
+    .rail { display: none; }
+  }
+</style>
+
+<link rel="stylesheet" href="../assets/css/case/proj-tags-d.css">
+
+
+<link rel="stylesheet" href="../assets/css/case/hero-refine.css">
+<style id="rhythm-refine">
+  /* Minimal section numbering: a single quiet line, number inline with the
+     label instead of an oversized display figure. */
+  .section-num{
+    display:flex; align-items:baseline; gap:10px;
+    font-family:'Outfit',system-ui,sans-serif;
+    font-size: 12px; letter-spacing:0.2em;
+    text-transform:uppercase; color:var(--ink-soft); font-weight:400;
+  }
+  .section-num .num{
+    display:inline;
+    font-family:'Outfit',system-ui,sans-serif;
+    font-size: 12px; font-weight:400;
+    letter-spacing:0.2em; line-height:1;
+    color:var(--ink-faint); opacity:1; margin:0;
+    -webkit-text-fill-color:currentColor;
+  }
+  /* Visual band between sections, edge to edge. */
+  .vband{ padding:0 0 clamp(90px,11vw,170px); }
+  .vband .vb-frame{ position:relative; width:100%; height:clamp(420px,74vh,900px); overflow:hidden; background:color-mix(in srgb, var(--ink) 6%, transparent); }
+  .vband .vb-cap{
+    display:flex; justify-content:space-between; gap:10px 30px;
+    max-width:var(--maxw); margin:14px auto 0; padding:0 var(--gutter);
+    font-family:'Outfit',system-ui,sans-serif;
+    font-size: 12px; letter-spacing:0.2em; text-transform:uppercase; color:var(--ink-soft);
+  }
+  @media (max-width:760px){ .vband .vb-frame{ height:clamp(340px,56vh,620px); } }
+  /* The hero was pinned by aspect-ratio:21/9, so its height derived from its
+     WIDTH and content could never grow it — that is what pushed the footer and
+     scroll cue down onto the cover band. Drop the ratio, let content set the
+     height, and use justify-content (the real axis on a column flexbox). */
+  section.hero[data-tone]{
+    aspect-ratio:auto;
+    height:auto;
+    min-height:0;
+    justify-content:flex-start;
+    padding-block:clamp(96px,11vh,132px) clamp(34px,4.4vh,58px);
+  }
+  section.hero[data-tone] .hero-inner{ flex:0 0 auto; }
+  /* Push the footer to the bottom only when there is genuine room to spare. */
+  section.hero[data-tone] .hero-foot{ margin-top:auto; }
+  /* Compact hero band, matched to the Hind Al Oud proportions. */
+  section.hero[data-tone] .proj-tags{ padding-top:clamp(26px,3vh,42px); margin-bottom:clamp(16px,1.8vw,26px); }
+  section.hero[data-tone] .hero-title{ margin-bottom:clamp(16px,1.8vw,26px); }
+  section.hero[data-tone] .hero-foot{ padding-top:clamp(20px,2.6vh,36px); }
+  /* On short viewports the tag gutter is the first thing to give. */
+  @media (max-height:820px){
+    .proj-tags{ padding-top:clamp(22px,3vh,36px); }
+  }
+
+  /* Carousel frames fill their slide. */
+  .hc-slide .ph{position:absolute;inset:0;}
+  /* figure carries a UA default margin: 1em 40px, which breaks the track maths */
+  .hc-slide{ margin:0; }
+</style>
+
+<meta name="description" content="Moodie Kiosk: AI content and product design.">
+<link rel="canonical" href="https://illusorr.com/projects/moodie-kiosk.html">
+<meta name="theme-color" content="#05060a">
+<meta property="og:site_name" content="ILLUSORR">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ILLUSORR × Moodie Kiosk · F&amp;B Retail">
+<meta property="og:description" content="Moodie Kiosk: AI content and product design.">
+<meta property="og:url" content="https://illusorr.com/projects/moodie-kiosk.html">
+<meta property="og:image" content="https://illusorr.com/assets/img/og/og-default.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CreativeWork","name":"ILLUSORR × Moodie Kiosk · F&amp;B Retail","url":"https://illusorr.com/projects/moodie-kiosk.html","creator":{"@type":"Organization","name":"ILLUSORR","url":"https://illusorr.com/"}}</script>
+<!-- phone + tablet: shared touch layer, then the shared case layout -->
+<link rel="stylesheet" href="../assets/css/mobile.css">
+<link rel="stylesheet" href="../assets/css/case/case-mobile.css">
+<script src="../assets/js/mobile.js"></script>
+</head>
+
+<body>
+<header class="il-topbar" id="ilTopbar">
+  <a class="il-brand" href="../index.html" aria-label="ILLUSORR home"><span class="il-logo" role="img" aria-label="ILLUSORR"></span></a>
+  <div class="il-right">
+    <a class="il-talk" href="../contact.html">Let's talk</a>
+    <button class="il-burger" id="ilMenuOpen" aria-label="Open menu"><i></i><i></i></button>
+  </div>
+</header>
+<div class="il-overlay" id="ilOverlay">
+  <div class="il-ohead"><span class="il-logo" role="img" aria-label="ILLUSORR"></span><button class="il-oclose" id="ilMenuClose">Close ✕</button></div>
+  <nav>
+    <a href="../index.html">Home <span>01</span></a>
+    <a href="../about.html">About <span>02</span></a>
+    <a href="../sectors.html">Sectors <span>03</span></a>
+    <a href="../work.html">Work <span>04</span></a>
+    <a href="../lab.html">Lab <span>05</span></a>
+    <a href="../collective.html">Collective <span>06</span></a>
+    <a href="../contact.html">Contact <span>07</span></a>
+  </nav>
+  <div class="il-ofoot"><span>Abu Dhabi · Yas Creative Hub</span><span>hello@illusorr.com</span></div>
+</div>
+
+
+  <!-- topnav removed, menu bar to be added separately -->
+
+
+
+  <aside class="rail" aria-hidden="true">
+    <span class="rail-dot is-active" data-i="0"></span>
+    <span class="rail-dot" data-i="1"></span>
+    <span class="rail-dot" data-i="2"></span>
+    <span class="rail-dot" data-i="3"></span>
+    <span class="rail-dot" data-i="4"></span>
+    <span class="rail-dot" data-i="5"></span>
+    <span class="rail-dot" data-i="6"></span>
+    <span class="rail-dot" data-i="7"></span>
+  </aside>
+
+  <!-- 1. HERO -->
+  <section class="hero" data-tone="dark" data-rail="0" data-screen-label="01 Hero">
+    <div class="hero-inner">
+      <div class="proj-tags hero-meta">
+        <div class="ptg ptg-client">
+          <div class="ptg-k">Client</div>
+          <div class="ptg-c">
+            <span style="font-family:'Cormorant Garamond',Georgia,serif; font-weight:600; font-size:clamp(22px,2.2vw,34px); letter-spacing:0.06em; color:#f3ecdf; line-height:1;">Moodie</span>
+          </div>
+        </div>
+        <div class="ptg" style="margin-left:auto">
+          <div class="ptg-k">Category</div>
+          <div class="ptg-c"><span class="ptag">Consultancy</span><span class="ptag">Logo Design</span><span class="ptag">Algorithmic Design</span><span class="ptag">Web</span></div>
+        </div>
+        <div class="ptg">
+          <div class="ptg-k">Sector</div>
+          <div class="ptg-c">
+            <span class="ptag sector">F&amp;B</span>
+            <span class="ptag sector">Retail</span>
+          </div>
+        </div>
+      </div>
+
+      <h1 class="hero-title">
+        <span class="ln">Moodie Kiosk<span class="ln-ital">a moment, a mood, a memorable interaction.</span></span>
+      </h1>
+
+      <p class="hero-lede">
+        <strong>An experiential kiosk for Moodie</strong>, a F&amp;B and retail brand: exploring how design, technology, and interaction can come together in a compact physical space.
+      </p>
+
+      <div class="hero-foot">
+        <div class="hero-credit">
+          <div>Moodie Kiosk · 2025</div>
+          <div>Built by ILLUSORR</div>
+        </div>
+        <div class="scroll-cue">
+          <span>Scroll</span>
+          <span class="line"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  <!-- 2. COVER CAROUSEL -->
+  <section data-tone="light" data-rail="1" data-screen-label="02 Cover">
+    <div class="cover" style="padding: 0 0 clamp(90px, 11vw, 170px);">
+      <div class="hero-carousel" id="heroCarousel" aria-roledescription="carousel" aria-label="Moodie Kiosk views">
+        <div class="hc-track" id="hcTrack">
+          <figure class="hc-slide is-active" data-look="Render 01" data-title="Mall Frontage" data-sub="Moodie Kiosk · Exterior">
+            <img src="../assets/img/projects/moodie-kiosk/illusorr-moodie-kiosk-retail-unit-render-01.webp" srcset="../assets/img/projects/moodie-kiosk/illusorr-moodie-kiosk-retail-unit-render-01.m.webp 820w, ../assets/img/projects/moodie-kiosk/illusorr-moodie-kiosk-retail-unit-render-01.webp 2000w" sizes="(max-width: 640px) 55vw, (max-width: 1024px) 60vw, 50vw" alt="Moodie kiosk frontage in the mall concourse" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block">
+          </figure>
+          <figure class="hc-slide" data-look="Render 02" data-title="Concourse Approach" data-sub="Moodie Kiosk · In Situ">
+            <img src="../assets/img/projects/moodie-kiosk/illusorr-moodie-kiosk-retail-unit-render-02.webp" alt="Moodie kiosk seen on approach along the concourse" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block">
+          </figure>
+          <figure class="hc-slide" data-look="Render 03" data-title="Dot Field Corner" data-sub="Moodie Kiosk · Facade">
+            <img src="../assets/img/projects/moodie-kiosk/illusorr-moodie-kiosk-retail-unit-render-03.webp" alt="Corner view with the ball-field facade sculpture" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block">
+          </figure>
+          <figure class="hc-slide" data-look="Render 04" data-title="Counter & Halo" data-sub="Moodie Kiosk · Service">
+            <img src="../assets/img/projects/moodie-kiosk/illusorr-moodie-kiosk-retail-unit-render-04.webp" alt="Serving counter beneath the lit halo canopy" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block">
+          </figure>
+          <figure class="hc-slide" data-look="Render 05" data-title="Blade Sign" data-sub="Moodie · Wayfinding">
+            <img src="../assets/img/projects/moodie-kiosk/illusorr-moodie-kiosk-brand-identity-board-02.webp" alt="Moodie blade sign mounted on a wall" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block">
+          </figure>
+          <figure class="hc-slide" data-look="Render 06" data-title="Cups & Lids" data-sub="Moodie · Packaging">
+            <img src="../assets/img/projects/moodie-kiosk/illusorr-moodie-kiosk-brand-identity-board-03.webp" alt="Moodie takeaway cup and lid packaging" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block">
+          </figure>
+        </div>
+
+        <div class="hc-top">
+          <span>Moodie · F&amp;B Kiosk</span>
+          <span class="hc-count"><span class="now" id="hcNow">01</span> <span class="tot" id="hcTot">/ 06</span></span>
+        </div>
+
+        <div class="hc-caption" id="hcCaption" aria-live="polite">
+          <div class="hc-look" id="hcLook">Render 01</div>
+          <h2 class="hc-title" id="hcTitle">Mall Frontage</h2>
+          <div class="hc-sub" id="hcSub">Moodie Kiosk · Exterior</div>
+        </div>
+
+        <button class="hc-nav hc-prev" id="hcPrev" aria-label="Previous view">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 5 8 12 15 19"></polyline></svg>
+        </button>
+        <button class="hc-nav hc-next" id="hcNext" aria-label="Next view">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 5 16 12 9 19"></polyline></svg>
+        </button>
+
+        <div class="hc-bars" id="hcBars" aria-hidden="true"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. META BAR -->
+  <section data-tone="light" data-rail="1" data-screen-label="03 Meta">
+    <div class="wrap">
+      <div class="meta-bar">
+        <div class="meta-cell">
+          <span class="meta-k">Client</span>
+          <span class="meta-v">Moodie<br>F&amp;B &amp; Retail</span>
+        </div>
+        <div class="meta-cell">
+          <span class="meta-k">Year</span>
+          <span class="meta-v">2025</span>
+        </div>
+        <div class="meta-cell">
+          <span class="meta-k">Services</span>
+          <span class="meta-v">Consultancy, Logo Design, Algorithmic Design, Web, Branding, Storytelling, Ai Content</span>
+        </div>
+        <div class="meta-cell">
+          <span class="meta-k">Sector</span>
+          <span class="meta-v">F&amp;B · Retail</span>
+        </div>
+        <div class="meta-cell">
+          <span class="meta-k">Output</span>
+          <span class="meta-v">Kiosk Design · Brand Identity · Algorithmic System</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- visual band -->
+  <section class="vband" data-tone="light" data-screen-label="Visual 01">
+    <div class="vb-frame">
+      <image-slot id="moodie-kiosk-vb1" src="../assets/img/projects/moodie-kiosk/illusorr-moodie-kiosk-concept-moodboard-01.webp" shape="rect" placeholder="Drop a visual for The Brief"></image-slot>
+    </div>
+    <div class="vb-cap"><span>The Brief</span><span>01</span></div>
+  </section>
+
+  <!-- 4. THE BRIEF -->
+  <section class="module" data-tone="light" data-rail="2" data-screen-label="04 Brief">
+    <div class="wrap">
+      <div class="module-head">
+        <div class="section-num">
+          <span class="num">01</span>
+          The Brief
+        </div>
+        <div>
+          <h2 class="module-title">A kiosk that sells a mood. <em>Not just a product.</em></h2>
+          <p class="lede">
+            Moodie is a F&amp;B concept exploring how design, technology, and interaction can come together in a compact physical space.
+          </p>
+          <div class="body-grid">
+            <div>
+              <p>The Moodie Kiosk was conceived as an experiential retail unit that goes beyond selling a product: it creates a moment, a mood, and a memorable interaction. Every surface, every detail, every touchpoint was designed to trigger an emotional response.</p>
+              <p>We approached the brief as a spatial branding challenge: how do you compress a full brand world into a 12-square-metre footprint and still make it feel expansive? The answer was in the system, a generative dot language that lives across signage, packaging, digital screens and the kiosk structure itself.</p>
+            </div>
+            <div>
+              <p>ILLUSORR led across consultancy, identity, spatial design and digital, building the algorithmic design system that powers Moodie's visual language and ensures every element adapts while staying unmistakably on-brand.</p>
+              <p>The result is a kiosk that feels alive: colour fields shift, patterns breathe, and the brand identity scales from a cup sleeve to a full-bleed wall without losing coherence or energy.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. PLATFORM SCREENS / DUO -->
+  <section data-tone="light" data-rail="2" data-screen-label="05 Platform" style="padding-bottom:0;">
+    <div class="wrap">
+      <div class="duo">
+        <div class="col col-a">
+          <div class="ph" style="aspect-ratio:4/3;overflow:hidden"><img src="../assets/img/projects/moodie-kiosk/illusorr-moodie-kiosk-retail-unit-render-03.webp" alt="Moodie kiosk exterior with dot-field facade" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"><span aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(to top,rgba(6,10,14,.62) 0%,rgba(6,10,14,.28) 26%,transparent 55%);z-index:1;pointer-events:none"></span><span class="caption" style="position:absolute;left:14px;right:14px;bottom:12px;z-index:2;color:#fff;text-shadow:0 1px 10px rgba(0,0,0,.55);display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline"><span>Full kiosk exterior, mint &amp; dot language</span><span>Spatial Design</span></span></div>
+          <p class="duo cap">The kiosk exterior carries the full Moodie brand language: the generative dot field, the mint palette, and the round-form signage system that makes the structure instantly recognisable from any angle.</p>
+        </div>
+        <div class="col col-b">
+          <div class="ph" style="aspect-ratio:3/4;overflow:hidden"><img src="../assets/img/projects/moodie-kiosk/illusorr-moodie-kiosk-concept-moodboard-02.webp" alt="Moodie takeaway packaging range" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"><span aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(to top,rgba(6,10,14,.62) 0%,rgba(6,10,14,.28) 26%,transparent 55%);z-index:1;pointer-events:none"></span><span class="caption" style="position:absolute;left:14px;right:14px;bottom:12px;z-index:2;color:#fff;text-shadow:0 1px 10px rgba(0,0,0,.55);display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline"><span>Takeaway system: boxes, cups, lids</span><span>Packaging</span></span></div>
+          <p class="duo cap">The same language travels off the kiosk: boxes, cups and lids share the mint-and-magenta split and the eyes mark, so a Moodie order still reads as Moodie once it leaves the counter.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. PLATFORM FEATURES -->
+  <section class="module" data-tone="light" data-rail="3" data-screen-label="06 Features" style="padding-top:0;">
+    <div class="wrap">
+      <div class="module-head">
+        <div class="section-num">
+          <span class="num">02</span>
+          The Platform
+        </div>
+        <div>
+          <h2 class="module-title">Seven disciplines. <em>One kiosk.</em></h2>
+          <p class="lede">Each capability ILLUSORR brought to Moodie was designed to make the kiosk feel like a complete world, compressed into a single footprint.</p>
+        </div>
+      </div>
+      <div class="feat-grid">
+        <div class="feat-card">
+          <div class="feat-num">01</div>
+          <div class="feat-name">Consultancy</div>
+          <p class="feat-desc">Brand strategy and concept development, defining the Moodie world before a single surface was designed. Purpose, positioning, and the emotional promise of the kiosk.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-num">02</div>
+          <div class="feat-name">Logo Design</div>
+          <p class="feat-desc">A mark that works at every scale, from a cup sleeve to a full-height kiosk fascia. Rounded, playful, unmistakable. Built to live alongside the generative dot system.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-num">03</div>
+          <div class="feat-name">Algorithmic Design</div>
+          <p class="feat-desc">A generative dot field system that produces infinite on-brand pattern variations, consistent in character, always unique in output. Powers all surfaces across the kiosk.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-num">04</div>
+          <div class="feat-name">Web</div>
+          <p class="feat-desc">A digital presence that extends the kiosk world online: same visual language, same emotional tone, built for screens from mobile to large-format display.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-num">05</div>
+          <div class="feat-name">Branding</div>
+          <p class="feat-desc">A full brand system spanning spatial, print and digital: palette, typography, pattern language and application rules that keep Moodie coherent across every touchpoint.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-num">06</div>
+          <div class="feat-name">Storytelling &amp; Ai Content</div>
+          <p class="feat-desc">Brand voice, copy and AI-assisted content production, giving Moodie a distinct narrative personality that shows up on menus, screens, packaging and social.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. FULL BLEED -->
+  <section class="bleed" data-tone="light" data-rail="3" data-screen-label="07 Bleed">
+    <div class="wrap">
+      <div class="ph" style="aspect-ratio:21/9;overflow:hidden"><img src="../assets/img/projects/moodie-kiosk/illusorr-moodie-kiosk-retail-unit-render-02.webp" alt="Moodie kiosk seen along the mall concourse" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"><span aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(to top,rgba(6,10,14,.62) 0%,rgba(6,10,14,.28) 26%,transparent 55%);z-index:1;pointer-events:none"></span><span class="caption" style="position:absolute;left:14px;right:14px;bottom:12px;z-index:2;color:#fff;text-shadow:0 1px 10px rgba(0,0,0,.55);display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline"><span>Exterior render, full kiosk with dot field</span><span>Full bleed</span></span></div>
+    </div>
+  </section>
+
+  <!-- ════════════════════ SEAM ════════════════════ -->
+  <div class="seam" style="--seam-label:'Spatial'"></div>
+
+  <!-- 8. APPROACH -->
+  <section class="module" data-tone="dark" data-rail="5" data-screen-label="08 Approach">
+    <div class="wrap">
+      <div class="module-head">
+        <div class="section-num">
+          <span class="num">03</span>
+          The Approach
+        </div>
+        <div>
+          <h2 class="module-title">Concept. <em>System. Space.</em></h2>
+          <p class="lede">From brand positioning to a built kiosk: a full-stack creative pipeline where every design decision was also a spatial and sensory decision.</p>
+        </div>
+      </div>
+      <div class="process">
+        <div class="step">
+          <span class="step-k">Phase 01 · Concept &amp; Strategy</span>
+          <h4>Define the World</h4>
+          <p>We established Moodie's positioning in the F&amp;B space, identifying the emotional territory the brand could own, and setting the tone for every decision that followed: joyful, unexpected, intensely tactile.</p>
+        </div>
+        <div class="step">
+          <span class="step-k">Phase 02 · Identity &amp; System</span>
+          <h4>Build the System</h4>
+          <p>Logo, palette, and the algorithmic dot language: a generative visual system that scales from sticker to structure, producing infinite on-brand variations without losing coherence or character.</p>
+        </div>
+        <div class="step">
+          <span class="step-k">Phase 03 · Spatial &amp; Digital</span>
+          <h4>Express the Space</h4>
+          <p>Kiosk spatial design, elevation drawings, digital screen content and web presence: every surface an extension of the same system, every touchpoint part of the same mood.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. GALLERY -->
+  <section data-tone="dark" data-rail="6" data-screen-label="09 Gallery">
+    <div class="wrap">
+      <div class="look-split">
+        <div class="look-group">
+          <div class="lg-head">Spatial Selects</div>
+          <div class="lg-grid">
+            <div class="ph" style="overflow:hidden"><img src="../assets/img/projects/moodie-kiosk/illusorr-moodie-kiosk-retail-unit-render-04.webp" alt="Moodie kiosk counter and halo canopy" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"><span aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(to top,rgba(6,10,14,.62) 0%,rgba(6,10,14,.28) 26%,transparent 55%);z-index:1;pointer-events:none"></span><span class="caption" style="position:absolute;left:14px;right:14px;bottom:12px;z-index:2;color:#fff;text-shadow:0 1px 10px rgba(0,0,0,.55);display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline"><span>Counter elevation, service side</span><span>Spatial</span></span></div>
+            <div class="ph" style="overflow:hidden"><img src="../assets/img/projects/moodie-kiosk/illusorr-moodie-kiosk-brand-identity-board-01.webp" alt="Moodie A-frame pavement sign" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"><span aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(to top,rgba(6,10,14,.62) 0%,rgba(6,10,14,.28) 26%,transparent 55%);z-index:1;pointer-events:none"></span><span class="caption" style="position:absolute;left:14px;right:14px;bottom:12px;z-index:2;color:#fff;text-shadow:0 1px 10px rgba(0,0,0,.55);display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline"><span>A-frame sign, pavement presence</span><span>Retail</span></span></div>
+          </div>
+        </div>
+        <div class="look-group">
+          <div class="lg-head">Identity Selects</div>
+          <div class="lg-grid">
+            <div class="ph" style="overflow:hidden"><video data-src="../assets/video/moodie-kiosk/eyes-animation.mp4" muted loop playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover;display:block;background:#c8e6d8" data-autoplay></video><span aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(to top,rgba(6,10,14,.62) 0%,rgba(6,10,14,.28) 26%,transparent 55%);z-index:1;pointer-events:none"></span><span class="caption" style="position:absolute;left:14px;right:14px;bottom:12px;z-index:2;color:#fff;text-shadow:0 1px 10px rgba(0,0,0,.55);display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline"><span>Eyes mark, motion identity</span><span>Motion</span></span></div>
+            <div class="ph" style="overflow:hidden"><img src="../assets/img/projects/moodie-kiosk/illusorr-moodie-kiosk-colour-palette.webp" alt="Moodie colour palette: mint, magenta, coral, blue" loading="lazy" style="width:100%;height:100%;object-fit:contain;display:block;background:#fff;padding:6%"><span aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(to top,rgba(6,10,14,.62) 0%,rgba(6,10,14,.28) 26%,transparent 55%);z-index:1;pointer-events:none"></span><span class="caption" style="position:absolute;left:14px;right:14px;bottom:12px;z-index:2;color:#fff;text-shadow:0 1px 10px rgba(0,0,0,.55);display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline"><span>Colour system: mint, magenta, coral</span><span>Brand</span></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. QUOTE -->
+  <section class="quote-wrap" data-tone="dark" data-rail="7" data-screen-label="10 Quote">
+    <div class="wrap">
+      <blockquote class="quote">
+        <span class="quote-mark">"</span>
+        The best retail experiences don't sell products. They sell the feeling of having been somewhere. Moodie is that somewhere.
+        <div class="quote-attrib">
+          <span class="rule"></span>
+          <span>ILLUSORR · Moodie Kiosk</span>
+        </div>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- visual band -->
+  <section class="vband" data-tone="dark" data-screen-label="Visual 02">
+    <div class="vb-frame">
+      <image-slot id="moodie-kiosk-vb2" src="../assets/img/projects/moodie-kiosk/illusorr-moodie-kiosk-brand-identity-board-04.webp" shape="rect" placeholder="Drop a visual for The Outcome"></image-slot>
+    </div>
+    <div class="vb-cap"><span>The Outcome</span><span>02</span></div>
+  </section>
+
+  <!-- 11. STATS + CREDITS -->
+  <section class="module" data-tone="dark" data-rail="7" data-screen-label="11 Results">
+    <div class="wrap">
+      <div class="module-head">
+        <div class="section-num">
+          <span class="num">04</span>
+          The Outcome
+        </div>
+        <div>
+          <h2 class="module-title">Moodie Kiosk. <em>On space, on system.</em></h2>
+        </div>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <span class="stat-n">07</span>
+          <span class="stat-k">Disciplines delivered across brand and space</span>
+        </div>
+        <div class="stat">
+          <span class="stat-n">∞<span class="sm"></span></span>
+          <span class="stat-k">Algorithmic pattern variations from one system</span>
+        </div>
+        <div class="stat">
+          <span class="stat-n">4</span>
+          <span class="stat-k">Elevation zones designed and documented</span>
+        </div>
+        <div class="stat">
+          <span class="stat-n">01</span>
+          <span class="stat-k">Coherent kiosk world, built to scale</span>
+        </div>
+      </div>
+
+      <div class="credits">
+        <div>
+          <span class="section-num" style="display:block; margin-bottom: 0;">
+            <span class="num" style="font-size: clamp(28px,3vw,48px);">05</span>
+            Credits
+          </span>
+        </div>
+        <div class="credit-list">
+          <div class="credit-row"><span class="role">Client</span><span class="who">Moodie · F&amp;B &amp; Retail</span></div>
+          <div class="credit-row"><span class="role">Project</span><span class="who">Moodie Kiosk: Brand &amp; Spatial Design</span></div>
+          <div class="credit-row"><span class="role">Creative Direction</span><span class="who">ILLUSORR Labs</span></div>
+          <div class="credit-row"><span class="role">Brand &amp; Identity</span><span class="who">ILLUSORR Studio</span></div>
+          <div class="credit-row"><span class="role">Algorithmic Design</span><span class="who">ILLUSORR · Generative Systems</span></div>
+          <div class="credit-row"><span class="role">Spatial Design</span><span class="who">ILLUSORR Studio</span></div>
+          <div class="credit-row"><span class="role">Web &amp; Digital</span><span class="who">ILLUSORR</span></div>
+          <div class="credit-row"><span class="role">Year</span><span class="who">2025</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot" data-tone="dark">
+    <div>© ILLUSORR Labs · MMXXV</div>
+    <div>Moodie Kiosk · F&amp;B Retail</div>
+  </footer>
+
+
+<script src="../assets/js/case/cursor-legacy.js"></script>
+
+
+<script src="../assets/js/case/hero-carousel-b.js"></script>
+
+<!-- Hero mesh paint -->
+<script>
+(() => {
+  const hero = document.querySelector('.hero');
+  if (!hero) return;
+  const canvas = document.createElement('canvas');
+  canvas.className = 'hero-paint';
+  canvas.setAttribute('aria-hidden', 'true');
+  hero.insertBefore(canvas, hero.firstChild);
+  const ctx = canvas.getContext('2d');
+  const SCALE = 0.24;
+  let W = 0, H = 0, w = 0, h = 0, BLUR = 6;
+  function size() { const r = hero.getBoundingClientRect(); W = r.width; H = r.height; w = Math.max(2, Math.round(W * SCALE)); h = Math.max(2, Math.round(H * SCALE)); canvas.width = w; canvas.height = h; canvas.style.width = W + 'px'; canvas.style.height = H + 'px'; BLUR = Math.max(4, Math.round(Math.min(w, h) * 0.09)); }
+  size(); window.addEventListener('resize', size);
+  let PAL = ['#6EC4BA', '#E05A72', '#101b17'];
+  let FREQ = 0.55, SPEED = 0.75;
+  const PI = [0, 1, 2, 0, 1, 2];
+  const BLOBS = PI.map((pi) => { const x = 0.12 + Math.random() * 0.76, y = 0.12 + Math.random() * 0.76; return { pi, x, y, hx: x, hy: y, vx: 0, vy: 0, r: 0.24 + Math.random() * 0.18 }; });
+  function curlX(x, y, t) { return Math.sin(y * FREQ + t) * Math.cos(x * FREQ * 0.7 + t * 0.6); }
+  function curlY(x, y, t) { return Math.cos(x * FREQ + t * 0.8) * Math.sin(y * FREQ * 0.8 + t); }
+  let mx = 0.5, my = 0.5, mActive = 0, t0 = performance.now(), hovering = false, rafId = null;
+  hero.addEventListener('pointermove', (e) => { const r = hero.getBoundingClientRect(); mx = (e.clientX - r.left) / r.width; my = (e.clientY - r.top) / r.height; mActive = 1; }, { passive: true });
+  hero.addEventListener('pointerenter', () => { hovering = true; if (!rafId) rafId = requestAnimationFrame(frame); });
+  hero.addEventListener('pointerleave', () => { hovering = false; });
+  function frame(now) {
+    if (!hovering) { rafId = null; canvas.style.opacity = '0'; return; }
+    rafId = requestAnimationFrame(frame);
+    const t = (now - t0) * 0.001 * SPEED;
+    for (const bl of BLOBS) {
+      const nx = curlX(bl.x, bl.y, t), ny = curlY(bl.x, bl.y, t);
+      const dx = bl.x - mx, dy = bl.y - my; const dd = Math.sqrt(dx*dx+dy*dy);
+      let rx = 0, ry = 0;
+      if (mActive && dd < 0.35 && dd > 0.001) { rx = dx/dd*0.1*(0.35-dd)/0.35; ry = dy/dd*0.1*(0.35-dd)/0.35; }
+      bl.vx += (nx*0.003+(bl.hx-bl.x)*0.012+rx); bl.vy += (ny*0.003+(bl.hy-bl.y)*0.012+ry);
+      bl.vx *= 0.88; bl.vy *= 0.88; bl.x += bl.vx; bl.y += bl.vy;
+      bl.x = Math.max(0.02, Math.min(0.98, bl.x)); bl.y = Math.max(0.02, Math.min(0.98, bl.y));
+    }
+    const off = document.createElement('canvas'); off.width = w; off.height = h;
+    const oc = off.getContext('2d'); oc.clearRect(0,0,w,h);
+    for (const bl of BLOBS) {
+      const gx = bl.x*w, gy = bl.y*h, gr = bl.r*Math.min(w,h);
+      const g = oc.createRadialGradient(gx,gy,0,gx,gy,gr);
+      g.addColorStop(0, PAL[bl.pi]+'cc'); g.addColorStop(1, PAL[bl.pi]+'00');
+      oc.fillStyle = g; oc.beginPath(); oc.arc(gx,gy,gr,0,Math.PI*2); oc.fill();
+    }
+    ctx.clearRect(0,0,w,h); ctx.filter = `blur(${BLUR}px) saturate(1.1)`; ctx.drawImage(off,0,0,w,h); ctx.filter='none';
+    canvas.style.opacity = '0.9';
+  }
+
+
+})();
+</script>
+
+  <script src="../assets/js/case/image-slot.js"></script>
+<script src="../assets/js/nav.js" defer></script>
+<script src="../assets/js/site-footer.js" defer></script>
+<script src="../assets/js/to-top.js" defer></script>
+</body>
+</html>

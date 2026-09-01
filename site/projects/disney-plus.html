@@ -1,0 +1,1935 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<link rel="preload" as="font" type="font/otf" crossorigin href="../assets/projects/shared/fonts/PPMonumentExtended-Black.otf">
+<link rel="preload" as="font" type="font/ttf" crossorigin href="../assets/projects/shared/fonts/Squaresharps-v2.ttf">
+
+<link rel="preload" as="font" type="font/woff" crossorigin href="../assets/fonts/outfit-variable.woff">
+<link rel="stylesheet" href="../assets/css/nav.css">
+<link rel="stylesheet" href="../assets/css/case/fonts.css">
+
+<link rel="stylesheet" href="../assets/css/case/cm-type.css">
+<title>ILLUSORR × Disney+ · Immersive World</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+  /* ─────────────────────────────────────────────────────────────────
+     Fonts, same stack as the Illusorr hero
+     Outfit       → body / paragraphs / UI
+     PP Monument  → display headlines
+     Squaresharps → small caps labels, eyebrows, UI chrome
+     ───────────────────────────────────────────────────────────────── */
+  /* Fonts loaded via Google Fonts <link> in <head> */
+
+  /* ─────────────────────────────────────────────────────────────────
+     Theme tokens, light + dark halves both defined up-front.
+     A section just sets data-tone="light|dark" and gets the full kit.
+     ───────────────────────────────────────────────────────────────── */
+  :root {
+    --light-bg: #eef1f8;
+    --light-bg-2: #e2e6f6;
+    --light-ink: #0A1033;
+    --light-ink-soft: rgba(10, 16, 51, 0.62);
+    --light-ink-faint: rgba(10, 16, 51, 0.14);
+    --light-tile: #eef1f8;
+
+    --dark-bg: #0A1033;
+    --dark-bg-2: #050822;
+    --dark-ink: #eef1f8;
+    --dark-ink-soft: rgba(238, 241, 251, 0.66);
+    --dark-ink-faint: rgba(238, 241, 251, 0.22);
+    --dark-tile: #141A40;
+
+    --accent: #1FA0E5;       /* Disney blue */
+
+    --maxw: 1440px;
+    --gutter: clamp(20px, 4vw, 64px);
+  }
+
+  /* Subtle noise grain, SVG <feTurbulence> rendered to a tile and
+     drawn at low opacity. Same paper-grain feel as the landing
+     page's WebGL plaster, just static and very quiet. */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    background-size: 220px 220px;
+    opacity: 0.06;
+    mix-blend-mode: multiply;
+  }
+  /* On the dark half, multiply would hide the noise, invert the
+     blend by flagging sections that should use a lighter grain. */
+  section[data-tone="dark"] {
+    position: relative;
+  }
+  section[data-tone="dark"]::after {
+    content: '';
+    position: absolute; inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    background-size: 220px 220px;
+    opacity: 0.035;
+    mix-blend-mode: screen;
+  }
+  /* Starfield white pattern, woven into the dark half + hero */
+  section[data-tone="dark"]::before {
+    content: '';
+    position: absolute; inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-image: url("../assets/projects/v5/disney-starfield.webp");
+    background-repeat: repeat;
+    background-size: 360px 360px;
+    opacity: 0.55;
+    mix-blend-mode: screen;
+  }
+  /* Keep section content above the dark-half grain overlay. */
+  section[data-tone="dark"] > * { position: relative; z-index: 1; }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 400;
+    background: var(--light-bg);
+    color: var(--light-ink);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  /* Sections inherit a tone from data-tone. */
+  section[data-tone="light"] {
+    background: var(--light-bg);
+    color: var(--light-ink);
+    --bg: var(--light-bg);
+    --bg-2: var(--light-bg-2);
+    --ink: var(--light-ink);
+    --ink-soft: var(--light-ink-soft);
+    --ink-faint: var(--light-ink-faint);
+    --tile: var(--light-tile);
+  }
+  section[data-tone="dark"] {
+    background: var(--dark-bg);
+    color: var(--dark-ink);
+    --bg: var(--dark-bg);
+    --bg-2: var(--dark-bg-2);
+    --ink: var(--dark-ink);
+    --ink-soft: var(--dark-ink-soft);
+    --ink-faint: var(--dark-ink-faint);
+    --tile: var(--dark-tile);
+  }
+
+  .wrap {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+  }
+
+  /* ─────────────────────────────────────────────────────────────────
+     Fixed top nav, matches the Illusorr chrome. Inverts with theme.
+     ───────────────────────────────────────────────────────────────── */
+  .topnav {
+    position: fixed; left: 0; right: 0; top: 0;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 22px var(--gutter);
+    z-index: 50;
+    pointer-events: none;
+    /* mix-blend-mode removed, was creating compositing artefacts with
+       the custom cursor. Theme inversion is now handled per-section
+       via JS toggling .on-dark on the topnav. */
+  }
+  .topnav > * { pointer-events: auto; }
+  .topnav a, .topnav button {
+    text-decoration: none;
+    background: transparent; border: 0;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase;
+    cursor: pointer;
+    transition: color .35s ease;
+  }
+  .topnav .logo-lockup {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-family: 'Squaresharps', system-ui, sans-serif;
+    font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase;
+    transition: color .35s ease;
+    text-decoration: none;
+  }
+  .topnav .logo-mark {
+    width: 30px; height: 30px; display: inline-flex; align-items: center; justify-content: center;
+  }
+  .topnav .logo-mark img { width: 100%; height: 100%; object-fit: contain; display: block; }
+  
+  .topnav .logo-lockup, .topnav a, .topnav button { color: #0A1033; }
+  .topnav.on-dark .logo-lockup, .topnav.on-dark a, .topnav.on-dark button { color: #eef1f8; }
+  .topnav nav { display: flex; gap: 32px; align-items: center; }
+
+  /* ─────────────────────────────────────────────────────────────────
+     HERO, Dogstudio-style: tiny meta strip, gigantic title, scroll cue
+     ───────────────────────────────────────────────────────────────── */
+  section.hero[data-tone="dark"] {
+    /* 21:9 letterbox panel, with a floor so it never collapses on phones */
+    width: 100%; max-width: 100vw;
+    aspect-ratio: 21 / 9;
+    min-height: 560px;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: clamp(40px, 8vh, 96px) var(--gutter);
+    position: relative;
+    --hg1: #1FA0E5; --hg2: #1746B8; --hg3: #050822;
+    background:
+      radial-gradient(90% 100% at 88% 4%, rgba(120,180,255,0.45), transparent 60%),
+      linear-gradient(135deg, var(--hg1) 0%, var(--hg2) 55%, var(--hg3) 100%);
+  }
+  .hero .hero-inner { max-width: var(--maxw); width: 100%; margin: 0 auto; position: relative; z-index: 2; display: flex; flex-direction: column; flex: 1 1 auto; }
+
+  /* ──────────────────────────────────────────────────────────────────
+     HERO EMBLEM FIELD, small Boyner cloverleaf marks scattered around
+     the hero edges. JS gives each one cursor-repulsion physics: the
+     pointer pushes nearby marks away, they spring back home, and idle-
+     spin slowly. Sits behind the hero text (z-index 1), non-interactive.
+     ────────────────────────────────────────────────────────────────── */
+  .hero-emblems {
+    position: absolute;
+    left: 0;
+    pointer-events: none;
+    overflow: visible;
+    z-index: 30;
+  }
+  .hero-emblem {
+    position: absolute;
+    top: 0; left: 0;
+    will-change: transform;
+  }
+  .hero-emblem svg { display: block; width: 100%; height: 100%; }
+  .hero-emblem svg path { fill: currentColor; }
+  .hero-emblem img { display: block; width: 100%; height: 100%; object-fit: contain; filter: invert(1) brightness(1.7); }
+
+  .eyebrow-row {
+    display: flex; gap: 28px; align-items: center;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 28px;
+  }
+  .eyebrow-row .dotsep {
+    width: 4px; height: 4px; border-radius: 50%;
+    background: var(--ink-faint);
+  }
+
+  .hero-title {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(40px, 5.5vw, 55px);
+    line-height: 0.92;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    margin: 0;
+    color: var(--ink);
+    max-width: 100%;
+    overflow-wrap: break-word;
+  }
+  .hero-title .ln { display: block; max-width: 100%; }
+  /* Italic tagline drops to its own block and is allowed to wrap so it
+     never extends past the viewport / triggers horizontal overflow. */
+  .hero-title .ln-ital {
+    display: block;
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 0.42em;
+    letter-spacing: 0;
+    color: var(--ink-soft);
+    margin-top: 0.28em;
+    max-width: 100%;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    text-transform: none;
+  }
+
+  .hero-foot {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 18px;
+  }
+  .hero-lede {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: clamp(15px, 1.05vw, 17px);
+    line-height: 1.55;
+    color: var(--ink);
+    max-width: 420px;
+    margin: 0;
+  }
+  .hero-lede strong { font-weight: 600; }
+
+  .scroll-cue {
+    justify-self: center;
+    display: inline-flex; flex-direction: column; align-items: center; gap: 10px;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .scroll-cue .line {
+    width: 1px; height: 44px;
+    background: linear-gradient(180deg, transparent 0%, var(--ink) 50%, transparent 100%);
+    background-size: 100% 200%;
+    animation: scrollPulse 1.8s ease-in-out infinite;
+  }
+  @keyframes scrollPulse {
+    0%   { background-position: 0 -100%; }
+    100% { background-position: 0 200%; }
+  }
+
+  .hero-credit {
+    justify-self: end;
+    text-align: right;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--ink-soft);
+    line-height: 1.7;
+  }
+
+  /* ─────────────────────────────────────────────────────────────────
+     PROJECT META, horizontal strip of label/value cells (the
+     "Client / Year / Services" row that anchors every Dogstudio case).
+     ───────────────────────────────────────────────────────────────── */
+  .meta-bar {
+    border-top: 1px solid var(--ink-faint);
+    border-bottom: 1px solid var(--ink-faint);
+    padding: 28px 0;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr 1.4fr 1.4fr 1fr;
+    gap: clamp(20px, 3vw, 48px);
+  }
+  .meta-cell .meta-k {
+    display: block;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 8px;
+  }
+  .meta-cell .meta-v {
+    display: block;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 15px; line-height: 1.5;
+    color: var(--ink);
+  }
+
+  /* ─────────────────────────────────────────────────────────────────
+     COVER, full-bleed featured visual right after the meta bar
+     ───────────────────────────────────────────────────────────────── */
+  .cover {
+    padding: clamp(40px, 6vw, 96px) 0 clamp(90px, 11vw, 170px);
+  }
+  .cover .frame { position: relative; aspect-ratio: 16 / 9; overflow: hidden; }
+  /* The .ph inside .frame must explicitly fill the frame, block
+     children don't inherit the parent's aspect-ratio height. */
+  .cover .frame .ph { position: absolute; inset: 0; }
+
+  /* Placeholder media block, base style for any image/video stand-in.
+     The dotted hatch + corner label tells the user "fill me in". */
+  .ph {
+    position: relative;
+    width: 100%;
+    background: var(--tile);
+    color: var(--ink-soft);
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .ph::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(45deg, var(--ink-faint) 1px, transparent 1px),
+      linear-gradient(-45deg, var(--ink-faint) 1px, transparent 1px);
+    background-size: 14px 14px;
+    opacity: 0.55;
+    pointer-events: none;
+  }
+  .ph::after { content: none; }
+  /* When a .ph holds a real <img> or <video>, drop the dotted hatch +
+     center diamond + label chips so the asset reads cleanly. */
+  .ph.is-filled::before,
+  .ph.is-filled::after { display: none; }
+  .ph > img,
+  .ph > video {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    z-index: 1;
+  }
+  .ph.has-media::before, .ph.has-media::after{ content:none }
+  .ph.has-media{ background:transparent; border:0; isolation:auto }
+  .ph.has-media image-slot{ mix-blend-mode:lighten }
+  .ph .ph-label {
+    position: absolute; left: 20px; top: 16px;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink);
+    background: var(--bg);
+    padding: 6px 10px;
+    border: 1px solid var(--ink-faint);
+    z-index: 2;
+  }
+  .ph .ph-dim {
+    position: absolute; right: 20px; top: 16px;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 12px; letter-spacing: 0.06em;
+    color: var(--ink-soft);
+    z-index: 2;
+  }
+  .ph[data-kind="video"] .play {
+    position: absolute; left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    width: 72px; height: 72px; border-radius: 50%;
+    border: 1px solid var(--ink-faint);
+    background: var(--bg);
+    display: grid; place-items: center;
+    z-index: 3;
+  }
+  .ph[data-kind="video"] .play::after {
+    content: '';
+    width: 0; height: 0;
+    border-left: 14px solid var(--ink);
+    border-top: 9px solid transparent;
+    border-bottom: 9px solid transparent;
+    margin-left: 4px;
+  }
+  .ph[data-kind="video"]::after { display: none; } /* hide diamond; play takes over */
+  .ph .caption {
+    position: absolute; left: 20px; bottom: 14px; right: 20px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase;
+    color: var(--ink-soft);
+    z-index: 2;
+  }
+
+  /* ─────────────────────────────────────────────────────────────────
+     INTRO, left label + right paragraphs, the classic Dogstudio
+     "01, The Brief" two-column module
+     ───────────────────────────────────────────────────────────────── */
+  .module {
+    padding: clamp(120px, 15vw, 240px) 0;
+  }
+  .module-head {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: clamp(24px, 5vw, 80px);
+    align-items: start;
+  }
+  .section-num {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .section-num .num {
+    display: block;
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(36px, 4vw, 64px);
+    line-height: 1;
+    color: var(--ink);
+    margin-bottom: 14px;
+    letter-spacing: -0.02em;
+  }
+  .module-title {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(24px, 2.7vw, 42px);
+    line-height: 1.06;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin: 0 0 32px;
+  }
+  .module-title em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--ink-soft);
+    letter-spacing: 0;
+  }
+
+  .lede {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: clamp(18px, 1.45vw, 25px);
+    line-height: 1.45;
+    color: var(--ink);
+    max-width: 46ch;
+    margin: 0;
+    text-wrap: pretty;
+  }
+  .body-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(24px, 4vw, 64px);
+    margin-top: clamp(40px, 5vw, 64px);
+  }
+  .body-grid p {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .body-grid p + p { margin-top: 18px; }
+
+  /* ─────────────────────────────────────────────────────────────────
+     SIDE-BY-SIDE, uneven two-up gallery with offset rhythm
+     ───────────────────────────────────────────────────────────────── */
+  .duo {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: clamp(20px, 3vw, 48px);
+    align-items: end;
+    padding: 0 0 clamp(90px, 11vw, 170px);
+  }
+  .duo .col { display: flex; flex-direction: column; gap: 14px; }
+  .duo .col-a .ph { aspect-ratio: 4 / 3; }
+  .duo .col-b { padding-bottom: clamp(40px, 6vw, 96px); }
+  .duo .col-b .ph { aspect-ratio: 3 / 4; }
+  .duo .cap {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 13px; letter-spacing: 0.01em;
+    color: var(--ink-soft);
+  }
+
+  /* ─────────────────────────────────────────────────────────────────
+     FULL-BLEED MEDIA, edge-to-edge video / image
+     ───────────────────────────────────────────────────────────────── */
+  .bleed {
+    padding: 0 0 clamp(90px, 11vw, 170px);
+  }
+  .bleed .ph { aspect-ratio: 21 / 9; }
+
+  /* ─────────────────────────────────────────────────────────────────
+     PULL QUOTE, large editorial statement on its own panel
+     ───────────────────────────────────────────────────────────────── */
+  .quote-wrap {
+    padding: clamp(120px, 15vw, 240px) 0;
+  }
+  .quote {
+    max-width: 1100px; margin: 0 auto;
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: clamp(28px, 3.8vw, 60px);
+    line-height: 1.08;
+    letter-spacing: -0.005em;
+    color: var(--ink);
+    text-align: left;
+    text-wrap: balance;
+  }
+  .quote .quote-mark {
+    display: block;
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(80px, 10vw, 160px);
+    line-height: 0.6;
+    color: var(--accent);
+    margin-bottom: 24px;
+  }
+  .quote-attrib {
+    margin-top: 40px;
+    display: flex; align-items: center; gap: 14px;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .quote-attrib .rule { width: 36px; height: 1px; background: var(--ink-faint); }
+
+  /* ─────────────────────────────────────────────────────────────────
+     TRIPTYCH, three-up grid with offset middle (gallery moment)
+     ───────────────────────────────────────────────────────────────── */
+  .trio {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: clamp(16px, 2vw, 32px);
+    padding: 0 0 clamp(90px, 11vw, 170px);
+    align-items: start;
+  }
+  .trio .ph { aspect-ratio: 3 / 4; }
+  .trio .col:nth-child(2) { padding-top: clamp(40px, 6vw, 96px); }
+
+  /* ─────────────────────────────────────────────────────────────────
+     PROCESS, three-up of labeled steps (text only)
+     ───────────────────────────────────────────────────────────────── */
+  .process {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(24px, 3vw, 56px);
+    margin-top: clamp(48px, 6vw, 80px);
+    border-top: 1px solid var(--ink-faint);
+    padding-top: clamp(28px, 3vw, 48px);
+  }
+  .process .step {
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .process .step .step-k {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-soft);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .process .step .step-k::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent);
+  }
+  .process .step h4 {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(20px, 1.6vw, 26px);
+    line-height: 1.1;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin: 0;
+    letter-spacing: -0.005em;
+  }
+  .process .step p {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 15px; line-height: 1.6;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* ─────────────────────────────────────────────────────────────────
+     STATS, large numbers + small captions (results)
+     ───────────────────────────────────────────────────────────────── */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(16px, 2vw, 40px);
+    padding: clamp(90px, 11vw, 170px) 0;
+    border-top: 1px solid var(--ink-faint);
+    border-bottom: 1px solid var(--ink-faint);
+  }
+  .stat .stat-n {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(48px, 6.5vw, 108px);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    display: block;
+  }
+  .stat .stat-n .sm { font-size: 0.45em; vertical-align: top; padding-left: 0.2em; color: var(--accent); }
+  .stat .stat-k {
+    display: block;
+    margin-top: 14px;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink-soft);
+    max-width: 18ch;
+  }
+
+  /* ─────────────────────────────────────────────────────────────────
+     CREDITS, wide grid of role/name pairs
+     ───────────────────────────────────────────────────────────────── */
+  .credits {
+    padding: clamp(90px, 11vw, 170px) 0;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: clamp(24px, 5vw, 80px);
+  }
+  .credits .credit-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px 48px;
+  }
+  .credits .credit-row .role {
+    display: block;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 6px;
+  }
+  .credits .credit-collab .who { display: flex; align-items: center; gap: 14px; }
+  .credits .collab-logo { width: 46px; height: 46px; object-fit: contain; display: block; flex: 0 0 auto; }
+  .credits .collab-txt { display: flex; flex-direction: column; gap: 2px; }
+  .credits .credit-collab .who small { font-size: 13px; color: var(--ink-soft); font-weight: 400; }
+  .credits .credit-row .who {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 15px; line-height: 1.5;
+    color: var(--ink);
+  }
+
+  /* ─────────────────────────────────────────────────────────────────
+     NEXT PROJECT, final full-bleed teaser, hover reveals title
+     ───────────────────────────────────────────────────────────────── */
+  .next {
+    position: relative;
+    min-height: 90vh;
+    display: grid; place-items: center;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .next .next-bg {
+    position: absolute; inset: 0;
+    background: var(--tile);
+    overflow: hidden;
+  }
+  .next .next-bg .ph {
+    position: absolute; inset: 0;
+    transform: scale(1.04);
+    transition: transform 1.2s cubic-bezier(.2,.7,.2,1);
+  }
+  .next:hover .next-bg .ph { transform: scale(1.0); }
+  .next .next-inner {
+    position: relative; z-index: 2;
+    text-align: center;
+    display: flex; flex-direction: column; align-items: center; gap: 22px;
+  }
+  .next .next-k {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .next h3 {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(44px, 7vw, 120px);
+    line-height: 0.95;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+  .next .next-meta {
+    display: flex; gap: 24px;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .next .next-cta {
+    margin-top: 12px;
+    display: inline-flex; align-items: center; gap: 14px;
+    padding: 16px 28px;
+    border: 1px solid var(--ink-faint);
+    border-radius: 999px;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--ink);
+    transition: background .3s ease, color .3s ease, border-color .3s ease;
+  }
+  .next:hover .next-cta {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+  .next-cta svg { width: 14px; height: 14px; }
+
+  /* ─────────────────────────────────────────────────────────────────
+     FOOTER, small chrome strip at the very bottom
+     ───────────────────────────────────────────────────────────────── */
+  footer.foot {
+    padding: 40px var(--gutter);
+    border-top: 1px solid var(--ink-faint);
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  /* ─────────────────────────────────────────────────────────────────
+     Half-marker, the visual stitch between the light and dark halves
+     ───────────────────────────────────────────────────────────────── */
+  .seam {
+    height: 1px;
+    background: transparent;
+    position: relative;
+  }
+  .seam::before {
+    content: 'Beyond the screen';
+    position: absolute; left: 50%; top: -10px; transform: translate(-50%, -100%);
+    background: var(--bg);
+    padding: 6px 14px;
+    border: 1px solid var(--ink-faint);
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink-soft);
+    z-index: 4;
+  }
+
+  /* ─────────────────────────────────────────────────────────────────
+     Side rail, tiny chapter / progress indicator on the right
+     ───────────────────────────────────────────────────────────────── */
+  .rail {
+    position: fixed; right: 18px; top: 50%; transform: translateY(-50%);
+    display: flex; flex-direction: column; gap: 8px;
+    z-index: 40;
+  }
+  .rail .rail-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: #0A1033;
+    opacity: 0.35;
+    transition: opacity .3s ease, transform .3s ease, background .35s ease;
+  }
+  .rail.on-dark .rail-dot { background: #eef1f8; }
+  .rail .rail-dot.is-active { opacity: 1; transform: scale(1.5); }
+
+  /* ──────────────────────────────────────────────────────────────────
+     KOTON cursor, a small black disc badge stamped with the
+     wordmark. Sits over the whole page, uses mix-blend-mode:
+     difference so it inverts cleanly against both the light and
+     the dark halves without any per-section logic.
+     ────────────────────────────────────────────────────────────────── */
+  html, body { cursor: none; }
+  a, button, [role="button"], .next, input, label, .topnav .logo-lockup { cursor: none; }
+
+  .koton-cursor {
+    position: fixed;
+    left: 0; top: 0;
+    width: 54px; height: 54px;
+    margin-left: -27px; margin-top: -27px;
+    background: transparent;
+    color: #0A1033;
+    display: flex; align-items: center; justify-content: center;
+    pointer-events: none;
+    /* Highest possible 32-bit signed int, the cursor must sit above
+     every other stacking context on the page, no exceptions. */
+    z-index: 2147483647;
+    isolation: isolate;
+    transition: width .35s cubic-bezier(.2,.7,.2,1),
+                height .35s cubic-bezier(.2,.7,.2,1),
+                margin .35s cubic-bezier(.2,.7,.2,1),
+                opacity .25s ease,
+                color .35s ease;
+    will-change: transform, width, height;
+    opacity: 0;
+  }
+  .koton-cursor.is-visible { opacity: 1; }
+
+  /* On dark sections, flip the emblem fill so it always contrasts. */
+  .koton-cursor.on-dark { color: #ffffff; }
+
+  /* The Boyner emblem, the 4-petal cloverleaf mark, now the whole
+     cursor with no disc behind it. Filled with currentColor so the
+     tone-detection class swaps it between black (over light bg) and
+     cream (over dark bg). */
+  .koton-cursor .km {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
+    color: inherit;
+    transition: opacity .25s ease, filter .35s ease;
+    animation: none;
+  }
+  .koton-cursor .km path { fill: currentColor; }
+  /* Bottle cursor is black line-art; invert to cream over dark sections. */
+  .koton-cursor.on-dark .km { filter: none; }
+
+  /* On text hover, slow continuous rotation. */
+  .koton-cursor.is-text .km { animation-play-state: running; }
+  /* On link hover, hide the emblem and reveal the action verb pill. */
+  .koton-cursor.is-link .km { opacity: 0; }
+
+  @keyframes kotonSpin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+
+  /* Hovering a link reveals an action verb pill anchored to the cursor */
+  .koton-cursor .label-link {
+    position: absolute; left: 50%; top: 50%;
+    transform: translate(-50%, -50%) scale(0.7);
+    opacity: 0;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: currentColor;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase;
+    transition: opacity .25s ease, transform .35s cubic-bezier(.2,.7,.2,1);
+    white-space: nowrap;
+  }
+  .koton-cursor .label-link::after {
+    /* The verb text itself sits in this pseudo so the pill bg can use
+       currentColor (which flips with tone) and the text stays the
+       opposite. JS writes the verb into a CSS var. */
+    content: attr(data-verb);
+    color: #eef1f8;
+  }
+  .koton-cursor.on-dark .label-link::after { color: #0a0a0c; }
+  .koton-cursor.is-link { width: 0; height: 0; margin-left: 0; margin-top: 0; }
+  .koton-cursor.is-link .label-link { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+
+  /* Press feedback, a small scale-down on the emblem */
+  .koton-cursor.is-down .km { transform: scale(0.78); transition: transform .15s ease; }
+
+  /* Touch devices: no fake cursor */
+  @media (hover: none) {
+    html, body, a, button { cursor: auto; }
+    .koton-cursor { display: none; }
+  }
+  @keyframes hcFill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+  /* Responsive nudges */
+  @media (max-width: 880px) {
+    .meta-bar { grid-template-columns: 1fr 1fr; }
+    .module-head { grid-template-columns: 1fr; }
+    .body-grid { grid-template-columns: 1fr; }
+    .duo { grid-template-columns: 1fr; }
+    .trio { grid-template-columns: 1fr; }
+    .trio .col:nth-child(2) { padding-top: 0; }
+    .process { grid-template-columns: 1fr; }
+    .stats { grid-template-columns: 1fr 1fr; }
+    .credits { grid-template-columns: 1fr; }
+    .credits .credit-list { grid-template-columns: 1fr; }
+    .hero-foot { grid-template-columns: 1fr; gap: 32px; }
+    .hero-credit { justify-self: start; text-align: left; }
+    .rail { display: none; }
+  }
+  .reel-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(12px, 1.6vw, 22px); }
+  .reel-grid .ph { aspect-ratio: 9 / 16; }
+  .reel-play { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); width: 60px; height: 60px; border-radius: 50%; border: 1px solid var(--ink-faint); background: rgba(0,0,0,0.04); z-index: 2; transition: background .3s ease, border-color .3s ease; }
+  .reel-play::after { content: ''; position: absolute; left: 50%; top: 50%; transform: translate(-42%,-50%); width: 0; height: 0; border-left: 15px solid var(--ink-soft); border-top: 9px solid transparent; border-bottom: 9px solid transparent; }
+  .reel-grid .ph:hover .reel-play { background: var(--accent); border-color: var(--accent); }
+  .reel-grid .ph:hover .reel-play::after { border-left-color: #fff; }
+  @media (max-width: 720px) { .reel-grid { grid-template-columns: repeat(2, 1fr); } }
+  .reels-more { margin-top: clamp(28px, 3.5vw, 48px); }
+  .reel-rail { display: flex; gap: clamp(12px, 1.6vw, 22px); overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 12px; scrollbar-width: thin; }
+  .reel-rail .ph { flex: 0 0 auto; height: clamp(460px, 72vh, 820px); width: auto; aspect-ratio: 9 / 16; scroll-snap-align: start; }
+  .reel-rail::-webkit-scrollbar { height: 6px; }
+  .reel-rail::-webkit-scrollbar-track { background: transparent; }
+  .reel-rail::-webkit-scrollbar-thumb { background: var(--ink-faint); border-radius: 999px; }
+  .post-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .post-grid .ph { aspect-ratio: 1 / 1; }
+  .looks-head { font-family: 'Outfit', system-ui, sans-serif; font-size: 13px; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
+  .looks-head::after { content: ''; flex: 1; height: 1px; background: var(--ink-faint); }
+  @media (max-width: 880px) { .post-grid { gap: 5px; } }
+
+  /* Expandable post images, click to enlarge, pointer-away to revert */
+  .post-grid .ph.is-filled img,
+  .lg-grid .ph.is-filled img { transition: transform .6s cubic-bezier(.2,.7,.2,1); }
+  .post-grid .ph.is-filled:hover img { transform: scale(1.03); }
+
+  .lightbox {
+    position: fixed; inset: 0; z-index: 2000;
+    display: grid; place-items: center;
+    padding: 5vh 5vw;
+    background: rgba(8,8,10,0.92);
+    -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+    opacity: 0; visibility: hidden;
+    transition: opacity .4s ease, visibility 0s linear .4s;
+  }
+  .lightbox.open { opacity: 1; visibility: visible; transition: opacity .4s ease; }
+  .lightbox figure { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 18px; }
+  .lightbox img {
+    max-width: min(90vw, 760px); max-height: 84vh;
+    object-fit: contain; display: block;
+    box-shadow: 0 50px 130px rgba(0,0,0,0.6);
+    transform: scale(0.94); opacity: 0;
+    transition: transform .5s cubic-bezier(.2,.7,.2,1), opacity .4s ease;
+  }
+  .lightbox.open img { transform: scale(1); opacity: 1; }
+  .lightbox figcaption {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: rgba(243,236,223,0.7);
+    opacity: 0; transition: opacity .4s ease .1s;
+  }
+  .lightbox.open figcaption { opacity: 1; }
+
+  /* Lookbook split, two labelled groups (Female / Male), aligned cards */
+  .look-split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 4vw, 72px); align-items: start; }
+  .look-group { display: flex; flex-direction: column; gap: 16px; }
+  .look-group .lg-head { font-family: 'Outfit', system-ui, sans-serif; font-size: 13px; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-soft); display: flex; align-items: center; gap: 12px; }
+  .look-group .lg-head::after { content: ''; flex: 1; height: 1px; background: var(--ink-faint); }
+  .look-group .lg-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(12px, 1.4vw, 22px); }
+  .look-group .lg-grid .ph { aspect-ratio: 3 / 4; }
+  .look-group .lg-grid .caption { left: 16px; right: 16px; bottom: 14px; gap: 12px; }
+  .look-group .lg-grid .caption span:first-child { max-width: 60%; }
+  @media (max-width: 880px) { .look-split { grid-template-columns: 1fr; } }
+
+  /* Tweaks panel (host-gated) */
+  .fab-cpanel { position: fixed; right: 20px; bottom: 20px; z-index: 2147483000; font-family: 'Outfit', system-ui, sans-serif; display: none; }
+  .fab-cpanel.open { display: block; }
+  .fab-cpanel .fcp-body { width: 252px; max-height: 82vh; overflow-y: auto; background: #14140f; border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; padding: 14px; box-shadow: 0 24px 60px rgba(0,0,0,0.5); }
+  .fab-cpanel .fcp-title { display: flex; align-items: center; justify-content: space-between; font-family: 'Outfit', system-ui, sans-serif; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: #fff; margin: 0 2px 14px; }
+  .fab-cpanel .fcp-h { font-family: 'Outfit', system-ui, sans-serif; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin: 4px 2px 10px; }
+  .fab-cpanel .fcp-h:not(:first-of-type) { margin-top: 18px; }
+  .fab-cpanel .fcp-x { cursor: pointer; background: none; border: 0; color: rgba(255,255,255,0.6); font-size: 18px; line-height: 1; padding: 0; }
+  .fab-cpanel .fcp-x:hover { color: #fff; }
+  .fab-cpanel .fcp-grp { display: flex; flex-direction: column; gap: 9px; }
+  .fab-cpanel .fcp-row { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+  .fab-cpanel .fcp-row input[type=color] { width: 26px; height: 26px; padding: 0; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; background: none; cursor: pointer; flex: 0 0 auto; }
+  .fab-cpanel .fcp-row input[type=color]::-webkit-color-swatch-wrapper { padding: 2px; }
+  .fab-cpanel .fcp-row input[type=color]::-webkit-color-swatch { border: none; border-radius: 4px; }
+  .fab-cpanel .fcp-nm { flex: 1; font-size: 13px; color: rgba(255,255,255,0.85); }
+  .fab-cpanel .fcp-val { font-size: 12px; letter-spacing: 0.06em; color: rgba(255,255,255,0.45); font-variant-numeric: tabular-nums; }
+  .fab-cpanel .fcp-srow { flex-direction: column; align-items: stretch; gap: 6px; }
+  .fab-cpanel .fcp-srow-top { display: flex; align-items: center; justify-content: space-between; }
+  .fab-cpanel .fcp-range { -webkit-appearance: none; appearance: none; width: 100%; height: 3px; border-radius: 3px; background: rgba(255,255,255,0.18); outline: none; }
+  .fab-cpanel .fcp-range::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 14px; height: 14px; border-radius: 50%; background: var(--accent, #EE403D); cursor: pointer; }
+  .fab-cpanel .fcp-range::-moz-range-thumb { width: 14px; height: 14px; border: none; border-radius: 50%; background: var(--accent, #EE403D); cursor: pointer; }
+  .fab-cpanel .fcp-select { flex: 0 0 auto; background: #211b18; color: #fff; border: 1px solid rgba(255,255,255,0.18); border-radius: 6px; font-size: 13px; padding: 5px 8px; font-family: inherit; cursor: pointer; }
+  .fab-cpanel .fcp-reset { margin-top: 16px; width: 100%; cursor: pointer; border: 1px solid rgba(255,255,255,0.18); background: transparent; color: rgba(255,255,255,0.7); font-size: 12px; letter-spacing: 0.04em; padding: 8px; border-radius: 8px; }
+  .fab-cpanel .fcp-reset:hover { background: rgba(255,255,255,0.06); color: #fff; }
+  /* No grain on the hero, keep the gradient smooth */
+  section.hero[data-tone="dark"]::after { display: none; }
+</style>
+
+<link rel="stylesheet" href="../assets/css/case/proj-tags.css">
+
+
+<link rel="stylesheet" href="../assets/css/case/hero-refine-b.css">
+<style id="rhythm-refine">
+  /* Minimal section numbering: a single quiet line, number inline with the
+     label instead of an oversized display figure. */
+  .section-num{
+    display:flex; align-items:baseline; gap:10px;
+    font-family:'Outfit',system-ui,sans-serif;
+    font-size: 12px; letter-spacing:0.2em;
+    text-transform:uppercase; color:var(--ink-soft); font-weight:400;
+  }
+  .section-num .num{
+    display:inline;
+    font-family:'Outfit',system-ui,sans-serif;
+    font-size: 12px; font-weight:400;
+    letter-spacing:0.2em; line-height:1;
+    color:var(--ink-faint); opacity:1; margin:0;
+    -webkit-text-fill-color:currentColor;
+  }
+  /* Visual band between sections, edge to edge. */
+  .vband{ padding:0 0 clamp(90px,11vw,170px); }
+  .vband .vb-frame{ position:relative; width:100%; height:clamp(420px,74vh,900px); overflow:hidden; background:color-mix(in srgb, var(--ink) 6%, transparent); }
+  .vband .vb-cap{
+    display:flex; justify-content:space-between; gap:10px 30px;
+    max-width:var(--maxw); margin:14px auto 0; padding:0 var(--gutter);
+    font-family:'Outfit',system-ui,sans-serif;
+    font-size: 12px; letter-spacing:0.2em; text-transform:uppercase; color:var(--ink-soft);
+  }
+  @media (max-width:760px){ .vband .vb-frame{ height:clamp(340px,56vh,620px); } }
+  .vband-full .vb-frame{ height:100vh; }
+  @media (max-width:760px){ .vband-full .vb-frame{ height:72vh; } }
+  /* The hero was pinned by aspect-ratio:21/9, so its height derived from its
+     WIDTH and content could never grow it — that is what pushed the footer and
+     scroll cue down onto the cover band. Drop the ratio, let content set the
+     height, and use justify-content (the real axis on a column flexbox). */
+  section.hero[data-tone]{
+    aspect-ratio:auto;
+    height:auto;
+    min-height:100svh;
+    justify-content:flex-start;
+    padding-block:clamp(48px,6vh,96px) clamp(40px,5vh,80px);
+  }
+  section.hero[data-tone] .hero-inner{ flex:0 0 auto; }
+  /* Push the footer to the bottom only when there is genuine room to spare. */
+  section.hero[data-tone] .hero-foot{ margin-top:auto; }
+  /* On short viewports the 120px tag gutter is the first thing to give. */
+  @media (max-height:820px){
+    .proj-tags{ padding-top:clamp(40px,7vh,120px); }
+  }
+</style>
+<style id="immersive-css">
+  /* ── Castle stage: sticky point-cloud canvas + scrolling chapters ── */
+  .castle-stage{ position:relative; background:#03060f; }
+  section.castle-stage > .castle-sticky{ position:sticky !important; top:0; height:100svh; overflow:hidden; z-index:1; }
+  #castleCanvas{ position:absolute; inset:0; width:100%; height:100%; display:block; }
+  .castle-vig{ position:absolute; inset:0; pointer-events:none; background:radial-gradient(76% 62% at 50% 44%, transparent 0%, rgba(3,6,15,.55) 62%, rgba(3,6,15,.94) 100%); }
+  .castle-chapters{ position:relative; z-index:2; margin-top:-100svh; }
+  .chapter{ min-height:100svh; display:flex; align-items:center; padding:clamp(56px,8vh,110px) var(--gutter); }
+  .chapter-inner{ width:100%; max-width:var(--maxw); margin:0 auto; }
+  .chapter-hero{ align-items:flex-start; }
+  .chapter-hero .chapter-inner{ display:flex; flex-direction:column; min-height:calc(100svh - clamp(96px,16vh,220px)); }
+  .ch-copy{ max-width:50ch; }
+  .ch-k{ font-family:'Outfit',system-ui,sans-serif; font-size: 12px; letter-spacing:.26em; text-transform:uppercase; color:var(--dark-ink-soft); display:flex; align-items:baseline; gap:10px; margin-bottom:clamp(18px,2vw,26px); }
+  .ch-k .n{ color:var(--dark-ink-faint); }
+  .ch-h{ font-family:'Outfit',system-ui,sans-serif; font-weight:300; font-size:clamp(28px,3.6vw,54px); line-height:1.12; letter-spacing:-0.005em; color:var(--dark-ink); margin:0 0 clamp(20px,2.4vw,32px); text-wrap:pretty; }
+  .ch-h em{ font-style:italic; color:var(--dark-ink-soft); }
+  .ch-p{ font-size:clamp(15px,1.05vw,17px); line-height:1.7; color:var(--dark-ink-soft); margin:0; max-width:46ch; }
+  .chapter.align-r{ justify-content:flex-end; }
+  .chapter.align-r .chapter-inner{ display:flex; justify-content:flex-end; }
+  .castle-stage .proj-tags{ padding-top:clamp(96px,13vh,150px) !important; }
+  .castle-stage .hero-foot{ margin-top:auto; display:flex; flex-direction:row; justify-content:space-between; align-items:flex-end; gap:24px; width:100%; }
+  @media (max-width:880px){ .castle-stage .hero-foot{ flex-direction:column; align-items:flex-start; } }
+
+  /* ── The virtual cinema lounge ──────────────────────────────────── */
+  .lounge{ position:relative; margin-top:clamp(52px,7vw,104px); height:clamp(640px,90vh,1000px); overflow:hidden; background:radial-gradient(130% 96% at 50% -6%, #12205a 0%, #050822 46%, #03060f 78%); isolation:isolate; }
+  .lg-scene{ position:absolute; inset:0; transform-style:preserve-3d; transform:perspective(1500px); will-change:transform; }
+  .lg-floor{ position:absolute; left:-30%; right:-30%; top:52%; height:120%; transform:rotateX(74deg); transform-origin:top center; background:
+      repeating-linear-gradient(90deg, rgba(31,160,229,.16) 0 1px, transparent 1px 92px),
+      repeating-linear-gradient(0deg, rgba(31,160,229,.13) 0 1px, transparent 1px 92px),
+      linear-gradient(180deg, rgba(31,160,229,.14), transparent 62%);
+    mask-image:linear-gradient(180deg, rgba(0,0,0,.95), transparent 68%); -webkit-mask-image:linear-gradient(180deg, rgba(0,0,0,.95), transparent 68%); }
+  .lg-wall{ position:absolute; left:50%; top:6%; width:min(60%,880px); transform:translateX(-50%) translateZ(-300px); }
+  .lg-screen{ position:relative; aspect-ratio:2.39/1; overflow:hidden; background:#050a1e; border:1px solid rgba(238,241,251,.16);
+    box-shadow:0 0 140px rgba(31,160,229,.30), 0 46px 130px rgba(0,0,0,.65); }
+  .lg-screen::after{ content:''; position:absolute; inset:0; pointer-events:none; background:linear-gradient(115deg, rgba(255,255,255,.08), transparent 42%); }
+  .lg-marquee{ margin-top:16px; text-align:center; font-family:'Outfit',system-ui,sans-serif; font-size: 12px; letter-spacing:.3em; text-transform:uppercase; color:rgba(238,241,251,.5); }
+  .lg-dash{ position:absolute; width:clamp(180px,17vw,240px); padding:16px 18px; background:rgba(10,16,51,.62); border:1px solid rgba(238,241,251,.14); }
+  .lg-dash-l{ left:clamp(16px,5vw,84px); top:15%; transform:translateZ(-120px) rotateY(16deg); }
+  .lg-dash-r{ right:clamp(16px,5vw,84px); top:22%; transform:translateZ(-120px) rotateY(-16deg); }
+  .dash-k{ font-family:'Outfit',system-ui,sans-serif; font-size: 12px; letter-spacing:.28em; text-transform:uppercase; color:rgba(238,241,251,.55); margin-bottom:14px; }
+  .dash-row{ display:flex; flex-direction:column; gap:7px; padding:8px 0; border-top:1px solid rgba(238,241,251,.09); opacity:.55; transition:opacity .5s ease; }
+  .dash-row.is-cur{ opacity:1; }
+  .dash-bar{ display:block; height:2px; background:rgba(238,241,251,.16); }
+  .dash-bar i{ display:block; height:100%; background:var(--accent); transition:width .8s ease; }
+  .dash-t{ font-family:'Outfit',system-ui,sans-serif; font-size: 12px; letter-spacing:.06em; color:rgba(238,241,251,.72); }
+  .lg-dash-r{ display:flex; flex-direction:column; align-items:flex-start; gap:8px; }
+  .dash-chip{ font-family:'Outfit',system-ui,sans-serif; font-size: 12px; letter-spacing:.12em; text-transform:uppercase; color:rgba(238,241,251,.75); border:1px solid rgba(238,241,251,.2); padding:6px 10px; }
+
+  .pods{ position:absolute; left:0; right:0; bottom:clamp(20px,3.4vh,46px); z-index:3; display:flex; justify-content:center; align-items:flex-end; gap:clamp(12px,1.8vw,30px); padding:0 var(--gutter); }
+  .pod{ position:relative; flex:0 1 clamp(102px,11vw,160px); opacity:0; transform:translateY(34px); transition:opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); }
+  .pod.is-in{ opacity:1; transform:translateY(0); }
+  .pod-inner{ transform:translate(var(--pdx,0), var(--pdy,0)); transition:transform .25s linear; }
+  .pod-obj{ position:relative; aspect-ratio:3/4; overflow:hidden; background:#0a1033; border:1px solid rgba(238,241,251,.16); transition:border-color .4s ease, box-shadow .4s ease, transform .5s cubic-bezier(.2,.7,.2,1); }
+  .pod:hover .pod-obj{ border-color:rgba(31,160,229,.85); box-shadow:0 0 46px rgba(31,160,229,.42); transform:translateY(-10px); }
+  .pod-glow{ position:absolute; left:50%; bottom:-13px; width:76%; height:16px; transform:translateX(-50%); background:radial-gradient(closest-side, rgba(31,160,229,.55), transparent); opacity:.5; transition:opacity .4s ease; }
+  .pod:hover .pod-glow{ opacity:1; }
+  .pod-k{ margin-top:20px; font-family:'Outfit',system-ui,sans-serif; font-size: 12px; letter-spacing:.26em; text-transform:uppercase; color:rgba(238,241,251,.5); }
+  .pod-t{ margin-top:6px; font-family:'Outfit',system-ui,sans-serif; font-size:clamp(13px,1.05vw,16px); letter-spacing:.02em; color:#eef1f8; }
+  .lounge-hint{ position:absolute; left:50%; top:clamp(14px,3vh,28px); transform:translateX(-50%); z-index:4; font-family:'Outfit',system-ui,sans-serif; font-size: 12px; letter-spacing:.26em; text-transform:uppercase; color:rgba(238,241,251,.55); }
+  @media (max-width:880px){ .lg-dash{ display:none; } .lg-wall{ width:82%; transform:translateX(-50%) translateZ(-180px); } .pods{ flex-wrap:wrap; gap:12px; } .pod{ flex:0 1 30%; } }
+
+  /* ── Realm portal ───────────────────────────────────────────────── */
+  .realm-scrim{ position:fixed; inset:0; z-index:2090; background:rgba(3,6,15,.72); opacity:0; visibility:hidden; transition:opacity .5s ease, visibility 0s linear .5s; }
+  .realm-scrim.is-on{ opacity:1; visibility:visible; transition:opacity .5s ease; }
+  .realm:not(.is-live){ display:none; }
+  .realm{ position:fixed; inset:0; z-index:2100; display:grid; grid-template-columns:1.4fr .6fr; background:#03060f; color:#eef1f8;
+    clip-path:circle(0px at var(--ox,50%) var(--oy,50%)); transition:clip-path 1s cubic-bezier(.66,0,.24,1); }
+  .realm.is-open{ clip-path:circle(150% at var(--ox,50%) var(--oy,50%)); }
+  .realm-media{ position:relative; overflow:hidden; background:#050822; }
+  .realm-copy{ position:relative; display:flex; flex-direction:column; justify-content:center; gap:18px; padding:clamp(28px,4vw,64px); border-left:1px solid rgba(238,241,251,.12); }
+  .realm-k{ font-family:'Outfit',system-ui,sans-serif; font-size: 12px; letter-spacing:.28em; text-transform:uppercase; color:rgba(238,241,251,.55); }
+  .realm-t{ font-family:'Outfit',system-ui,sans-serif; font-weight:300; font-size:clamp(28px,3.2vw,48px); line-height:1.08; margin:0; }
+  .realm-copy p{ font-family:'Outfit',system-ui,sans-serif; font-size: 15px; line-height:1.7; color:rgba(238,241,251,.7); margin:0; max-width:38ch; }
+  .realm-exit{ align-self:flex-start; margin-top:12px; background:transparent; border:1px solid rgba(238,241,251,.28); color:#eef1f8; font-family:'Outfit',system-ui,sans-serif; font-size: 12px; letter-spacing:.22em; text-transform:uppercase; padding:14px 22px; cursor:none; transition:background .3s ease, border-color .3s ease; }
+  .realm-exit:hover{ background:var(--accent); border-color:var(--accent); }
+  @media (max-width:880px){ .realm{ grid-template-columns:1fr; grid-template-rows:1fr auto; } .realm-copy{ border-left:0; border-top:1px solid rgba(238,241,251,.12); } }
+
+  /* ── 360 panorama realm ─────────────────────────────────────────── */
+  .realm.is-pano{ grid-template-columns:1fr; }
+  .realm.is-pano .realm-media{ grid-area:1/1; }
+  .realm.is-pano .realm-copy{ grid-area:1/1; border-left:0; align-self:end; justify-self:start; max-width:min(560px,50vw); padding:clamp(28px,4vw,72px);
+    background:linear-gradient(90deg,rgba(3,6,15,.86) 0%,rgba(3,6,15,.62) 62%,rgba(3,6,15,0) 100%); pointer-events:none; }
+  .realm.is-pano .realm-copy .realm-exit{ pointer-events:auto; }
+  .pano-canvas{ position:absolute; inset:0; width:100%; height:100%; display:block; cursor:grab; touch-action:none; opacity:0; transition:opacity 1.2s ease; }
+  .pano-canvas:active{ cursor:grabbing; }
+  .is-pano-live .pano-canvas{ opacity:1; }
+  .is-pano-live image-slot{ opacity:0; pointer-events:none; }
+  .pano-hint{ position:absolute; right:clamp(18px,2.4vw,34px); bottom:clamp(18px,2.4vw,34px); z-index:2; font-family:'Outfit',system-ui,sans-serif; font-size: 12px;
+    letter-spacing:.24em; text-transform:uppercase; color:rgba(238,241,251,.62); padding:9px 14px; border:1px solid rgba(238,241,251,.18); border-radius:999px;
+    background:rgba(3,6,15,.42); backdrop-filter:blur(6px); pointer-events:none; opacity:0; transition:opacity .7s ease; }
+  .is-pano-live .pano-hint{ opacity:1; }
+  .is-pano-live .pano-hint.is-faded{ opacity:.28; }
+  .pano-sound{ position:absolute; right:clamp(18px,2.4vw,34px); bottom:calc(clamp(18px,2.4vw,34px) + 46px); z-index:3; display:flex; align-items:center; gap:9px; cursor:pointer;
+    font-family:'Outfit',system-ui,sans-serif; font-size: 12px; letter-spacing:.24em; text-transform:uppercase; color:rgba(238,241,251,.7); padding:9px 15px;
+    border:1px solid rgba(238,241,251,.18); border-radius:999px; background:rgba(3,6,15,.42); backdrop-filter:blur(6px); opacity:0; transition:opacity .7s ease, color .3s ease, border-color .3s ease; }
+  .is-pano-live .pano-sound{ opacity:1; }
+  .pano-sound:hover{ color:#eef1f8; border-color:rgba(238,241,251,.42); }
+  .pano-eq{ display:flex; align-items:flex-end; gap:2px; height:11px; }
+  .pano-eq i{ width:2px; background:currentColor; border-radius:1px; animation:panoEq 1.1s ease-in-out infinite; }
+  .pano-eq i:nth-child(1){ height:5px; animation-delay:0s } .pano-eq i:nth-child(2){ height:11px; animation-delay:.18s }
+  .pano-eq i:nth-child(3){ height:7px; animation-delay:.36s } .pano-eq i:nth-child(4){ height:9px; animation-delay:.54s }
+  @keyframes panoEq{ 0%,100%{ transform:scaleY(.35) } 50%{ transform:scaleY(1) } }
+  .pano-sound.is-off{ color:rgba(238,241,251,.4) }
+  .pano-sound.is-off .pano-eq i{ animation:none; height:2px }
+  /* ── page ambience toggle ───────────────────────────────────── */
+  .amb-toggle{ position:fixed; left:22px; bottom:22px; z-index:2080; display:flex; align-items:center; gap:9px; cursor:pointer;
+    font-family:'Outfit',system-ui,sans-serif; font-size: 12px; letter-spacing:.24em; text-transform:uppercase; color:rgba(238,241,251,.62); padding:9px 15px;
+    border:1px solid rgba(238,241,251,.16); border-radius:999px; background:rgba(3,6,15,.5); backdrop-filter:blur(8px);
+    transition:color .3s ease, border-color .3s ease, opacity .4s ease; }
+  .amb-toggle:hover{ color:#eef1f8; border-color:rgba(238,241,251,.4) }
+  .amb-eq{ display:flex; align-items:flex-end; gap:2px; height:11px }
+  .amb-eq i{ width:2px; background:currentColor; border-radius:1px; animation:panoEq 1.4s ease-in-out infinite }
+  .amb-eq i:nth-child(1){ height:5px; animation-delay:0s } .amb-eq i:nth-child(2){ height:11px; animation-delay:.2s }
+  .amb-eq i:nth-child(3){ height:7px; animation-delay:.4s } .amb-eq i:nth-child(4){ height:9px; animation-delay:.6s }
+  .amb-toggle.is-quiet .amb-eq i{ animation:none; height:2px }
+  .amb-toggle.is-off{ color:rgba(238,241,251,.34) }
+  .realm-open .amb-toggle{ opacity:0; pointer-events:none }
+  /* ── youtube facade ─────────────────────────────────────────────── */
+  .yt{ position:absolute; inset:0; cursor:pointer; overflow:hidden; background:#03060f; }
+  .yt-poster{ width:100%; height:100%; object-fit:cover; display:block; transition:transform 1.1s cubic-bezier(.2,.7,.2,1), opacity .5s ease; }
+  .yt:hover .yt-poster{ transform:scale(1.03); opacity:.86 }
+  .yt-play{ position:absolute; left:50%; top:50%; width:clamp(56px,5.4vw,86px); aspect-ratio:1; transform:translate(-50%,-50%);
+    border:1px solid rgba(238,241,251,.5); border-radius:50%; background:rgba(3,6,15,.34); backdrop-filter:blur(6px); transition:background .35s ease, border-color .35s ease, transform .35s ease; }
+  .yt-play::after{ content:''; position:absolute; left:54%; top:50%; transform:translate(-50%,-50%);
+    border-left:clamp(13px,1.2vw,19px) solid #eef1f8; border-top:clamp(9px,.85vw,13px) solid transparent; border-bottom:clamp(9px,.85vw,13px) solid transparent; }
+  .yt:hover .yt-play{ background:var(--accent); border-color:var(--accent); transform:translate(-50%,-50%) scale(1.06) }
+  .yt-label{ position:absolute; left:clamp(18px,2vw,32px); bottom:clamp(16px,1.8vw,28px); font-family:'Outfit',system-ui,sans-serif; font-size: 12px;
+    letter-spacing:.24em; text-transform:uppercase; color:rgba(238,241,251,.72) }
+  .yt{ --yt-scale:1.02 }
+  .yt iframe{ position:absolute; left:50%; top:50%; transform:translate(-50%,-50%) scale(var(--yt-scale)); width:max(100%,177.78vh); height:max(100%,56.25vw); border:0 }
+  @media (max-width:880px){ .realm.is-pano .realm-copy{ max-width:none; background:linear-gradient(0deg,rgba(3,6,15,.92) 0%,rgba(3,6,15,.55) 70%,rgba(3,6,15,0) 100%); border-top:0; } }
+
+  /* keep offscreen case-study sections out of layout + paint until needed */
+  .module,.vband,.bleed,.hero-media,.next{ content-visibility:auto; contain-intrinsic-size:auto 900px; }
+  .lounge,.castle-stage{ content-visibility:visible; }
+  a{ color:var(--accent); text-decoration:none; }
+  a:hover{ color:#7CC8F2; }
+</style>
+<link rel="stylesheet" href="../assets/css/case/disney-pitch.css?v=12">
+<link rel="preload" href="../assets/projects/v5/disney-castle-points.bin" as="fetch" crossorigin>
+<link rel="modulepreload" href="https://unpkg.com/three@0.160.0/build/three.module.min.js">
+<script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.min.js"}}</script>
+
+<meta name="description" content="Disney+ immersive pitch: spatial concepts, castle point-cloud and virtual theatre environments.">
+<link rel="canonical" href="https://illusorr.com/projects/disney-plus.html">
+<meta name="theme-color" content="#05060a">
+<meta property="og:site_name" content="ILLUSORR">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ILLUSORR × Disney+ · Immersive World">
+<meta property="og:description" content="Disney+ immersive pitch: spatial concepts, castle point-cloud and virtual theatre environments.">
+<meta property="og:url" content="https://illusorr.com/projects/disney-plus.html">
+<meta property="og:image" content="https://illusorr.com/assets/img/og/og-default.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CreativeWork","name":"ILLUSORR × Disney+ · Immersive World","url":"https://illusorr.com/projects/disney-plus.html","creator":{"@type":"Organization","name":"ILLUSORR","url":"https://illusorr.com/"}}</script>
+<!-- phone + tablet: shared touch layer, then the shared case layout -->
+<link rel="stylesheet" href="../assets/css/mobile.css">
+<link rel="stylesheet" href="../assets/css/case/case-mobile.css">
+<link rel="stylesheet" href="../assets/css/case/disney-mobile.css">
+<script src="../assets/js/mobile.js"></script>
+</head>
+
+
+
+<body>
+<header class="il-topbar" id="ilTopbar">
+  <a class="il-brand" href="../index.html" aria-label="ILLUSORR home"><span class="il-logo" role="img" aria-label="ILLUSORR"></span></a>
+  <div class="il-right">
+    <a class="il-talk" href="../contact.html">Let's talk</a>
+    <button class="il-burger" id="ilMenuOpen" aria-label="Open menu"><i></i><i></i></button>
+  </div>
+</header>
+<div class="il-overlay" id="ilOverlay">
+  <div class="il-ohead"><span class="il-logo" role="img" aria-label="ILLUSORR"></span><button class="il-oclose" id="ilMenuClose">Close ✕</button></div>
+  <nav>
+    <a href="../index.html">Home <span>01</span></a>
+    <a href="../about.html">About <span>02</span></a>
+    <a href="../sectors.html">Sectors <span>03</span></a>
+    <a href="../work.html">Work <span>04</span></a>
+    <a href="../lab.html">Lab <span>05</span></a>
+    <a href="../collective.html">Collective <span>06</span></a>
+    <a href="../contact.html">Contact <span>07</span></a>
+  </nav>
+  <div class="il-ofoot"><span>Abu Dhabi · Yas Creative Hub</span><span>hello@illusorr.com</span></div>
+</div>
+
+
+  <!-- ─── Fixed chrome ─────────────────────────────────────────────── -->
+  <!-- topnav removed, menu bar to be added separately -->
+
+  <!-- Sparkle badge cursor, emblem follows pointer with smooth lerp -->
+  <div class="koton-cursor" id="kCursor" aria-hidden="true">
+    <svg class="km" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M50 3 C54 31 69 46 97 50 C69 54 54 69 50 97 C46 69 31 54 3 50 C31 46 46 31 50 3 Z"></path></svg>
+    <span class="label-link" data-verb="Click"></span>
+  </div>
+
+  <aside class="rail" aria-hidden="true">
+    <span class="rail-dot is-active" data-i="0"></span>
+    <span class="rail-dot" data-i="1"></span>
+    <span class="rail-dot" data-i="2"></span>
+    <span class="rail-dot" data-i="3"></span>
+    <span class="rail-dot" data-i="4"></span>
+    <span class="rail-dot" data-i="5"></span>
+    <span class="rail-dot" data-i="6"></span>
+    <span class="rail-dot" data-i="7"></span>
+  </aside>
+
+  <!-- ═══════════════ CASTLE STAGE · scroll-driven point cloud ═══════════════ -->
+  <section class="castle-stage" data-tone="dark" data-rail="0" data-screen-label="01 Castle Stage">
+    <div class="castle-sticky">
+      <canvas id="castleCanvas" aria-hidden="true"></canvas>
+      <div class="castle-vig"></div>
+    </div>
+    <div class="castle-chapters">
+
+      <div class="chapter chapter-hero" data-screen-label="01 Hero">
+        <div class="chapter-inner">
+          <div class="proj-tags hero-meta">
+            <div class="ptg ptg-client">
+              <div class="ptg-k">Client</div>
+              <div class="ptg-c"><img class="cm-logo-img" src="../assets/projects/v5/disney-plus-logo.webp" alt="Disney+" width="180" height="60" decoding="async"></div>
+            </div>
+            <div class="ptg" style="margin-left:auto">
+              <div class="ptg-k">Category</div>
+              <div class="ptg-c"><span class="ptag">3D Environment</span><span class="ptag">Real-Time Web</span><span class="ptag">Interaction</span></div>
+            </div>
+            <div class="ptg">
+              <div class="ptg-k">Sector</div>
+              <div class="ptg-c"><span class="ptag sector">Immersive Worlds</span></div>
+            </div>
+          </div>
+
+          <h1 class="hero-title">
+            <span class="ln">Disney+<span class="ln-ital">a cinema in the virtual world.</span></span>
+          </h1>
+
+          <p class="hero-lede">
+            <strong>Immerse yourself in a world made for wonder.</strong> A cinema at full
+            scale, a skyline visible from anywhere inside it, and everything you could watch
+            standing around you.
+          </p>
+
+          <div class="hero-foot">
+            <div class="hero-credit">
+              <div>Disney+ / Immersive World · 2025</div>
+              <div>Built by ILLUSORR</div>
+            </div>
+            <div class="scroll-cue">
+              <span>Scroll to enter</span>
+              <span class="line"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chapter" data-screen-label="01b Chapter One World">
+        <div class="chapter-inner">
+          <div class="ch-copy">
+            <div class="ch-k"><span class="n">01</span> The World</div>
+            <h2 class="ch-h">A whole new world. <em>A new spatial experience.</em></h2>
+            <p class="ch-p">One continuous space rather than a set of pages. Every room has its own scale and its own light, and you move between them the way you move through a place. Learn it once and you always know where you are.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="chapter align-r" data-screen-label="01c Chapter Theatre">
+        <div class="chapter-inner">
+          <div class="ch-copy">
+            <div class="ch-k"><span class="n">02</span> The Theatre</div>
+            <h2 class="ch-h">At the heart of it all, a theatre. <em>Where the lights go down and the story begins.</em></h2>
+            <p class="ch-p">You already know this place. The screen, the hush before it starts, the lounge where everyone decides together. Step inside, choose your story, and let the room do the rest.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- COVER MEDIA -->
+  <section class="hero-media" data-tone="dark" data-screen-label="02 Cover Media">
+    <div class="hm-inner">
+      <div class="hm-frame">
+        <image-slot id="disney-plus-cover" src="../assets/img/slots/disney-plus-cover.webp" shape="rect" placeholder="Drop the Disney+ cover image or in-world film still"></image-slot>
+      </div>
+      <div class="hm-cap"><span>Disney+ · Immersive World</span><span>Cover</span></div>
+    </div>
+  </section>
+
+  <!-- PROJECT META BAR -->
+  <section data-tone="dark" data-rail="1" data-screen-label="03 Meta">
+    <div class="wrap">
+      <div class="meta-bar">
+        <div class="meta-cell">
+          <span class="meta-k">Client</span>
+          <span class="meta-v">Disney+<br>Streaming &amp; Entertainment</span>
+        </div>
+        <div class="meta-cell">
+          <span class="meta-k">Year</span>
+          <span class="meta-v">2025</span>
+        </div>
+        <div class="meta-cell">
+          <span class="meta-k">Services</span>
+          <span class="meta-v">3D Environment, Real-time Build, Interaction Design, Web</span>
+        </div>
+        <div class="meta-cell">
+          <span class="meta-k">Method</span>
+          <span class="meta-v">Concept, World-build, Interaction, Optimisation</span>
+        </div>
+        <div class="meta-cell">
+          <span class="meta-k">Output</span>
+          <span class="meta-v">One explorable world · Virtual cinema · Web build</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 01 · THE OPPORTUNITY -->
+  <section class="pitch pmod" data-tone="dark" data-rail="2" data-screen-label="04 Opportunity">
+    <div class="wrap">
+      <div class="phead">
+        <div>
+          <div class="pnum"><b>01</b> The Opportunity</div>
+          <h2 class="ptitle">Streaming will move <em>into the room.</em></h2>
+        </div>
+        <div>          <p class="pbody">The project had to reflect the totality of the brand, and there was a first-mover opening: no streaming service had entered the metaverse. The industry is heading toward avatars roaming a cinema-like space, exploring titles with friends before settling on one to watch.</p>
+          <p class="pbody" style="margin-top:18px">People are opting out of physical cinemas, but they are still social. The synchronised-playback services that try to serve that instinct are undone by latency, lag and access. A metacinema solves all three at once. Disney had the legacy to be first.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- visual band -->
+  <section class="vband vband-full" data-tone="dark" data-screen-label="Visual 01">
+    <div class="vb-frame">
+      <div class="yt" data-yt="Y0ipIfDRMsY" role="button" tabindex="0" aria-label="Play the in-world walkthrough">
+        <img class="yt-poster" src="https://i.ytimg.com/vi/Y0ipIfDRMsY/maxresdefault.jpg" onerror="this.src='https://i.ytimg.com/vi/Y0ipIfDRMsY/hqdefault.jpg'" alt="" loading="lazy" decoding="async">
+        <span class="yt-play" aria-hidden="true"></span>
+        <span class="yt-label">Watch the walkthrough</span>
+      </div>
+    </div>
+    <div class="vb-cap"><span>Inside the world</span><span>01</span></div>
+  </section>
+
+  <!-- 03 · TYPOLOGY -->
+  <section class="pitch pmod pmod-tight" data-tone="dark" data-rail="3" data-screen-label="05 Typology">
+    <div class="wrap">
+      <div class="phead">
+        <div>
+          <div class="pnum"><b>02</b> Select Typology</div>
+          <h2 class="ptitle">Six families <em>from one ethos.</em></h2>
+        </div>
+        <div>          <p class="pbody">Nature runs one algorithm and gets endless variety. We design the same way, so a client is not shown a single proposal but a family of typologies that share an ethos and differ in behaviour. Each was scored on what actually matters later: can it scale, can it adapt, can it carry the brand.</p></div>
+      </div>
+      <div class="typo-grid dg" id="typoGrid"></div>
+    </div>
+  </section>
+
+  <!-- 04 · GENERATION / 3D MAP -->
+  <section class="pitch pmod pmod-tight" data-tone="dark" data-rail="3" data-screen-label="06 Generation">
+    <div class="wrap">
+      <div class="phead">
+        <div>
+          <div class="pnum"><b>03</b> Initializing Sequence</div>
+          <h2 class="ptitle">No site, no climate, <em>no context. Build one.</em></h2>
+        </div>
+        <div>          <p class="pbody">An architect in the physical world reads site, topography, climate, landscape. None of that exists here. So the context is manufactured from the mood board, the brief and the brand, and then evolved: cellular mutation for variety, and function and navigability acting as natural selection.</p></div>
+      </div>
+      <div class="map-board dg">
+        <div class="map-top"><span>3D Map · Space01</span><span>Initializing Sequence</span></div>
+        <div class="map-canvas" id="mapCanvas"></div>
+        <div class="map-foot">
+          <div class="map-ruler"><span>0</span><span>100</span><span>200</span><span>300</span><span>400</span></div>
+          <p class="map-note">The map stays intuitive because the urban fabric does the work: users locate and navigate by the grid, not by a menu.</p>
+        </div>
+        <div class="map-gens">
+          <button class="gen-btn" type="button">Gen 01</button>
+          <button class="gen-btn" type="button">Gen 02</button>
+          <button class="gen-btn" type="button">Gen 03</button>
+          <button class="gen-btn is-on" type="button">Gen 04</button>
+          <button class="gen-btn" type="button">Gen 05</button>
+          <button class="gen-btn" type="button">Gen 06</button>
+        </div>
+        <div class="map-params">
+          <div class="map-param"><span class="mp-k">Spacing</span>
+            <button type="button" data-gap="1.42">Sparse</button>
+            <button type="button" data-gap="1.26" class="is-on">Even</button>
+            <button type="button" data-gap="1.08">Dense</button>
+          </div>
+          <div class="map-param"><span class="mp-k">Growth</span>
+            <button type="button" data-deg="1">Branching</button>
+            <button type="button" data-deg="2" class="is-on">Organic</button>
+            <button type="button" data-deg="4">Packed</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 · SCALABILITY -->
+  <section class="pitch pmod pmod-tight" data-tone="dark" data-rail="3" data-screen-label="07 Scalability">
+    <div class="wrap">
+      <div class="phead">
+        <div>
+          <div class="pnum"><b>04</b> Scalability</div>
+          <h2 class="ptitle">A square deforms twice. <em>A hexagon deforms forever.</em></h2>
+        </div>
+        <div>          <p class="pbody">Squares can only become parallelograms and trapeziums. A hexagon can become an unlimited number of shapes, which makes the cellular grid exponentially scalable, flexible and adaptable. Cell shape, size, position and proliferation are then decided by function and navigability.</p></div>
+      </div>
+      <div class="scale-plate dg">
+        <div class="scale-img">
+          <div class="scale-rows"><span>Iteration001 · cellular</span><span>Iteration002 · deformed</span></div>
+          <img src="../assets/projects/v5/disney-scalability.webp" srcset="../assets/projects/v5/disney-scalability.m.webp 820w, ../assets/projects/v5/disney-scalability.webp 2000w" sizes="(max-width: 640px) 55vw, (max-width: 1024px) 60vw, 50vw" alt="Cellular grid growing from four to nine cells across two iterations" decoding="async"></div>
+        <div class="scale-cols">
+          <div>04 Cells<b>Generation 02</b></div>
+          <div>06 Cells<b>Generation 03</b></div>
+          <div>09 Cells<b>Generation 04</b></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 · SPATIAL PLANNING -->
+  <section class="pitch pmod pmod-tight" data-tone="dark" data-rail="4" data-screen-label="08 Spatial Planning">
+    <div class="wrap">
+      <div class="phead">
+        <div>
+          <div class="pnum"><b>05</b> Spatial Planning</div>
+          <h2 class="ptitle">Every function <em>gets the shape it needs.</em></h2>
+        </div>
+        <div>          <p class="pbody">Because the structure is malleable, no room has to compromise to fit a uniform form. Spatial coordination came out of design studies, performance analysis and costing. Ten spaces are configured: spawn point, gallery, info booth, screen, display unit, lounge, seating and three auditoriums.</p></div>
+      </div>
+      <div class="plan-wrap dg">
+        <div class="plan-canvas" id="planCanvas"></div>
+        <div class="plan-legend">
+          <button type="button" data-room="Spawn Point"><i></i>Spawn Point</button>
+          <button type="button" data-room="Gallery"><i></i>Gallery</button>
+          <button type="button" data-room="Info Booth"><i></i>Info Booth</button>
+          <button type="button" data-room="Screen 1"><i></i>Screen 1</button>
+          <button type="button" data-room="Product Display Unit"><i></i>Display Unit</button>
+          <button type="button" data-room="Lounge"><i></i>Lounge</button>
+          <button type="button" data-room="Seating"><i></i>Seating</button>
+          <button type="button" data-room="Auditorium 01"><i></i>Auditorium 01</button>
+          <button type="button" data-room="Auditorium 02"><i></i>Auditorium 02</button>
+          <button type="button" data-room="Auditorium 03"><i></i>Auditorium 03</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 · SPAWN POINT -->
+  <section class="pitch pmod pmod-tight" data-tone="dark" data-rail="4" data-screen-label="09 Spawn Point">
+    <div class="wrap">
+      <div class="phead">
+        <div>
+          <div class="pnum"><b>06</b> Spawn Point</div>
+          <h2 class="ptitle">The first second <em>of the whole world.</em></h2>
+        </div>
+        <div>          <p class="pbody">Spawn points are birth canals: the first thing anyone experiences, so their location and angle matter more than almost anything else. In the physical world you walk from A to B. Here you do not have to, so teleportation becomes the default and arrival becomes designed. It is also the highest-traffic surface in the world, which makes it the most valuable place to put a brand.</p></div>
+      </div>
+      <div class="spawn-grid dg">
+        <div class="spawn-panel">
+          <div class="transit"><span>Desktop</span><span class="tr-line"></span><span>Transition to VR</span><span class="tr-line"></span><span>VR</span></div>
+          <div id="spawnCanvas"></div>
+          <div class="spawn-caps"><span>Avatar · arrival</span><span>Brand integration</span></div>
+          <div class="wasd"><span class="w">W</span><span>A</span><span>S</span><span>D</span></div>
+        </div>
+        <div class="spawn-panel">
+          <div class="plabel">Arrival sequence</div>
+          <div class="ladder">
+            <div><span>01</span>Recalibrate</div>
+            <div><span>02</span>Navigate</div>
+            <div><span>03</span>Visualize</div>
+            <div><span>04</span>Explore</div>
+            <div><span>05</span>Experience</div>
+            <div><span>06</span>Immerse</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE LOUNGE, interactive -->
+  <section class="module cinema" data-tone="dark" data-rail="3" data-screen-label="11 The Lounge" style="padding-bottom:clamp(90px,11vw,170px);">
+    <div class="wrap">
+      <div class="module-head">
+        <div class="section-num">
+          <span class="num">07</span>
+          The Lounge
+        </div>
+        <div>
+          <h2 class="module-title">The metacinema, <em>live.</em></h2>
+          <p class="lede">This is the room, live. Move your pointer to look around it, then pick something up and go through.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="lounge" id="lounge">
+      <div class="lg-scene">
+        <div class="lg-floor" aria-hidden="true"></div>
+        <div class="lg-wall">
+          <div class="lg-screen"><image-slot id="disney-cinema-screen" shape="rect" src="../assets/projects/v5/now-showing.webp" placeholder="Drop the cinema screen still or loop"></image-slot></div>
+          <div class="lg-marquee">Now showing · in world</div>
+        </div>
+        <div class="lg-dash lg-dash-l" aria-hidden="true">
+          <div class="dash-k">Continue</div>
+          <div class="dash-row is-cur"><span class="dash-bar"><i style="width:64%"></i></span><span class="dash-t">Episode 04</span></div>
+          <div class="dash-row"><span class="dash-bar"><i style="width:26%"></i></span><span class="dash-t">Episode 05</span></div>
+          <div class="dash-row"><span class="dash-bar"><i style="width:88%"></i></span><span class="dash-t">Feature</span></div>
+        </div>
+        <div class="lg-dash lg-dash-r" aria-hidden="true">
+          <div class="dash-k">In the room</div>
+          <div class="dash-chip">Watchlist</div>
+          <div class="dash-chip">Live</div>
+          <div class="dash-chip">Trailer</div>
+        </div>
+      </div>
+      <div class="lounge-hint">Click a title to enter its realm</div>
+      <div class="pods">
+        <div class="pod" data-realm="r1" tabindex="0" role="button" aria-label="Enter the Fantasy realm">
+          <div class="pod-inner">
+            <div class="pod-obj"><image-slot id="disney-pod-1" src="../assets/img/slots/disney-pod-1.webp" shape="rect" placeholder="3D content object · Fantasy"></image-slot></div>
+            <div class="pod-glow"></div>
+            <div class="pod-k">Realm 01</div>
+            <div class="pod-t">Fantasy</div>
+          </div>
+          <div class="realm is-pano" data-realm="r1">
+            <div class="realm-media" data-pano data-pano-image="../assets/projects/v5/fantasy-360.webp"><image-slot id="disney-realm-1" src="../assets/projects/v5/fantasy-360.webp" shape="rect" placeholder="Drop the Fantasy realm visual"></image-slot></div>
+            <div class="realm-copy">
+              <div class="realm-k">Realm 01 · Entered</div>
+              <h3 class="realm-t">Fantasy</h3>
+              <p>A kingdom realm. Spires, mist and a score that rises as you walk in.</p>
+              <p>You are inside it, not looking at it. Drag to turn your head, scroll to move closer. The lounge stays behind you, one gesture away.</p>
+              <button class="realm-exit" type="button">Back to the lounge</button>
+            </div>
+          </div>
+        </div>
+        <div class="pod" data-realm="r2" tabindex="0" role="button" aria-label="Enter the Adventure realm">
+          <div class="pod-inner">
+            <div class="pod-obj"><image-slot id="disney-pod-2" src="../assets/img/slots/disney-pod-2.webp" shape="rect" placeholder="3D content object · Adventure"></image-slot></div>
+            <div class="pod-glow"></div>
+            <div class="pod-k">Realm 02</div>
+            <div class="pod-t">Adventure</div>
+          </div>
+          <div class="realm is-pano" data-realm="r2">
+            <div class="realm-media" data-pano data-pano-image="../assets/projects/v5/adventure-360.webp"><image-slot id="disney-realm-2" src="../assets/projects/v5/adventure-360.webp" shape="rect" placeholder="Drop the Adventure realm visual"></image-slot></div>
+            <div class="realm-copy">
+              <div class="realm-k">Realm 02 · Entered</div>
+              <h3 class="realm-t">Adventure</h3>
+              <p>Open water and open map. The lounge dissolves into a horizon.</p>
+              <p>You are inside it, not looking at it. Drag to turn your head, scroll to move closer. The lounge stays behind you, one gesture away.</p>
+              <button class="realm-exit" type="button">Back to the lounge</button>
+            </div>
+          </div>
+        </div>
+        <div class="pod" data-realm="r3" tabindex="0" role="button" aria-label="Enter the Galaxy realm">
+          <div class="pod-inner">
+            <div class="pod-obj"><image-slot id="disney-pod-3" src="../assets/img/slots/disney-pod-3.webp" shape="rect" placeholder="3D content object · Galaxy"></image-slot></div>
+            <div class="pod-glow"></div>
+            <div class="pod-k">Realm 03</div>
+            <div class="pod-t">Galaxy</div>
+          </div>
+          <div class="realm is-pano" data-realm="r3">
+            <div class="realm-media" data-pano data-pano-video="../assets/projects/v5/galaxy-360.mp4?v=3" data-pano-audio="../assets/projects/v5/galaxy-ambience.mp3"><image-slot id="disney-realm-3" src="../assets/img/slots/disney-realm-3.webp" shape="rect" placeholder="Drop the 360° Galaxy panorama (equirectangular)"></image-slot></div>
+            <div class="realm-copy">
+              <div class="realm-k">Realm 03 · Entered</div>
+              <h3 class="realm-t">Galaxy</h3>
+              <p>Hard light, deep black. A hangar deck instead of a floor.</p>
+              <p>You are inside it, not looking at it. Drag to turn your head, scroll to move closer. The lounge stays behind you, one gesture away.</p>
+              <button class="realm-exit" type="button">Back to the lounge</button>
+            </div>
+          </div>
+        </div>
+        <div class="pod" data-realm="r4" tabindex="0" role="button" aria-label="Enter the Animation realm">
+          <div class="pod-inner">
+            <div class="pod-obj"><image-slot id="disney-pod-4" src="../assets/img/slots/disney-pod-4.webp" shape="rect" placeholder="3D content object · Animation"></image-slot></div>
+            <div class="pod-glow"></div>
+            <div class="pod-k">Realm 04</div>
+            <div class="pod-t">Animation</div>
+          </div>
+          <div class="realm is-pano" data-realm="r4">
+            <div class="realm-media" data-pano data-pano-image="../assets/projects/v5/animation-360.webp"><image-slot id="disney-realm-4" src="../assets/projects/v5/animation-360.webp" shape="rect" placeholder="Drop the Animation realm visual"></image-slot></div>
+            <div class="realm-copy">
+              <div class="realm-k">Realm 04 · Entered</div>
+              <h3 class="realm-t">Animation</h3>
+              <p>Hand-drawn logic in three dimensions. Colour first, physics second.</p>
+              <p>You are inside it, not looking at it. Drag to turn your head, scroll to move closer. The lounge stays behind you, one gesture away.</p>
+              <button class="realm-exit" type="button">Back to the lounge</button>
+            </div>
+          </div>
+        </div>
+        <div class="pod" data-realm="r5" tabindex="0" role="button" aria-label="Enter the Wildlife realm">
+          <div class="pod-inner">
+            <div class="pod-obj"><image-slot id="disney-pod-5" src="../assets/img/slots/disney-pod-5.webp" shape="rect" placeholder="3D content object · Wildlife"></image-slot></div>
+            <div class="pod-glow"></div>
+            <div class="pod-k">Realm 05</div>
+            <div class="pod-t">Wildlife</div>
+          </div>
+          <div class="realm is-pano" data-realm="r5">
+            <div class="realm-media" data-pano data-pano-image="../assets/projects/v5/wildlife-360.webp"><image-slot id="disney-realm-5" src="../assets/projects/v5/wildlife-360.webp" shape="rect" placeholder="Drop the Wildlife realm visual"></image-slot></div>
+            <div class="realm-copy">
+              <div class="realm-k">Realm 05 · Entered</div>
+              <h3 class="realm-t">Wildlife</h3>
+              <p>A living realm, ambient and slow. Sound leads, geometry follows.</p>
+              <p>You are inside it, not looking at it. Drag to turn your head, scroll to move closer. The lounge stays behind you, one gesture away.</p>
+              <button class="realm-exit" type="button">Back to the lounge</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- 09 · PROPOSED SPACES -->
+  <section class="pitch pmod pmod-tight" data-tone="dark" data-rail="5" data-screen-label="12 Proposed Spaces">
+    <div class="wrap">
+      <div class="phead">
+        <div>
+          <div class="pnum"><b>08</b> Proposed Spaces</div>
+          <h2 class="ptitle">Four rooms, <em>four sets of rules.</em></h2>
+        </div>
+        <div>          <p class="pbody">Each room was drawn before it was modelled: what is fixed, what is shareable, who can lock the door, how many it holds. Switch between them.</p></div>
+      </div>
+      <div class="spaces dg">
+        <div class="sp-tabs">
+          <button type="button" data-space="theatre" class="is-on">Theatre</button>
+          <button type="button" data-space="lounge">Lounge</button>
+          <button type="button" data-space="meeting">Meeting Room</button>
+          <button type="button" data-space="office">Office</button>
+        </div>
+        <div class="sp-stage" id="spaceStage"></div>
+        <div class="sp-cap" id="spaceCap"></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- 10 · BRAND INTEGRATION -->
+  <section class="pitch pmod pmod-tight" data-tone="dark" data-rail="6" data-screen-label="15 Brand Integration">
+    <div class="wrap">
+      <div class="phead">
+        <div>
+          <div class="pnum"><b>09</b> Brand Integration</div>
+          <h2 class="ptitle">Brandable <em>down to the geometry.</em></h2>
+        </div>
+        <div>          <p class="pbody">Branding integrates into the design of the space and into the media inside it: pictures, posters, 3D models, animations, text, links. Everything customisable, so the world reads as the brand rather than as a venue the brand rented.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 13 · INTERACTIONS -->
+  <section class="pitch pmod pmod-tight" data-tone="dark" data-rail="6" data-screen-label="16 Interactions">
+    <div class="wrap">
+      <div class="phead">
+        <div>
+          <div class="pnum"><b>10</b> Interactions</div>
+          <h2 class="ptitle">Twelve things <em>you can actually do.</em></h2>
+        </div>
+        <div>          <p class="pbody">Avatars interact with each other through movement, gesture, audio and chat, and with the world through everything else: clicking links, selecting options, playing with objects, changing colours and textures.</p></div>
+      </div>
+      <div class="ix-grid dg" id="ixGrid"></div>
+    </div>
+  </section>
+
+  <!-- 14 · ENVIRONMENT -->
+  <section class="pitch pmod pmod-tight" data-tone="dark" data-rail="7" data-screen-label="17 Environment">
+    <div class="wrap">
+      <div class="phead">
+        <div>
+          <div class="pnum"><b>11</b> Environment</div>
+          <h2 class="ptitle">Synthetic worlds <em>need biology.</em></h2>
+        </div>
+        <div>          <p class="pbody">A metaverse environment is entirely synthetic, which makes biomimetics essential. We study genetic algorithms in nature and replicate the process, then push it with parameters. The result is psychologically settling in a place that would otherwise be overwhelming.</p></div>
+      </div>
+      <div class="pipe dg">
+        <div class="pipe-step"><span class="pp-n">001 //</span><h5>Procedural Creation</h5><p>Environment generated, not drawn.</p><div data-pipe="gen"></div></div>
+        <div class="pipe-step"><span class="pp-n">002 //</span><h5>Data Extraction</h5><p>Geometry read back as data to steer the next pass.</p><div data-pipe="data"></div></div>
+        <div class="pipe-step"><span class="pp-n">003 //</span><h5>Texture Mapping</h5><p>Surfaces assigned across the whole cellular field.</p><div data-pipe="tex"></div></div>
+        <div class="pipe-step"><span class="pp-n">004 //</span><h5>Optimisation</h5><p>Cut down until it holds frame rate in a browser.</p><div data-pipe="opt"></div></div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="quote-wrap" data-tone="dark" data-rail="7" data-screen-label="18 Quote">
+    <div class="wrap">
+      <blockquote class="quote">
+        <span class="quote-mark">&ldquo;</span>
+        Streaming asks you what you want to watch. We wanted the world to ask you
+        where you want to go.
+      </blockquote>
+      <div class="quote-by reveal">ILLUSORR · Disney+ Metaworld Proposal</div>
+    </div>
+  </section>
+
+  <!-- 16 · FULL BLEED KEY VISUAL -->
+  <section class="bleed" data-tone="dark" data-rail="7" data-screen-label="19 Key Visual">
+    <div class="wrap">
+      <div class="ph has-media" style="aspect-ratio: 21 / 9;overflow:hidden">
+        <image-slot id="disney-key-visual" shape="rect" src="../assets/projects/v5/key-visual.png?v=2" placeholder="Drop the key visual"></image-slot>
+        <span class="caption"><span>The metacinema at full scale</span><span>Key Visual</span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULTS / STATS + CREDITS -->
+  <section class="module" data-tone="dark" data-rail="7" data-screen-label="13 Results">
+    <div class="wrap">
+      <div class="module-head">
+        <div class="section-num">
+          <span class="num">12</span>
+          The Outcome
+        </div>
+        <div>
+          <h2 class="module-title">A catalogue <em>with an address.</em></h2>
+        </div>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <span class="stat-n">01</span>
+          <span class="stat-k">World, continuous, no loading between realms</span>
+        </div>
+        <div class="stat">
+          <span class="stat-n">3D</span>
+          <span class="stat-k">Lit and rendered in real time, lounge and objects included</span>
+        </div>
+        <div class="stat">
+          <span class="stat-n">Web</span>
+          <span class="stat-k">Runs in a browser tab, nothing to install</span>
+        </div>
+        <div class="stat">
+          <span class="stat-n">06</span>
+          <span class="stat-k">Titles standing in the lounge, each opening its own realm</span>
+        </div>
+      </div>
+
+      <div class="credits">
+        <div>
+          <span class="section-num">
+            <span class="num">13</span>
+            Credits
+          </span>
+        </div>
+        <div class="credit-list">
+          <div class="credit-row"><span class="role">Creative Direction</span><span class="who">ILLUSORR Labs</span></div>
+          <div class="credit-row"><span class="role">3D Environment</span><span class="who">ILLUSORR Studio</span></div>
+          <div class="credit-row"><span class="role">Interaction Design</span><span class="who">ILLUSORR Studio</span></div>
+          <div class="credit-row"><span class="role">Real-time Optimisation</span><span class="who">ILLUSORR · Engineering</span></div>
+          <div class="credit-row"><span class="role">Web Build</span><span class="who">ILLUSORR · Engineering</span></div>
+          <div class="credit-row"><span class="role">Technology Consultancy</span><span class="who">ILLUSORR Labs</span></div>
+          <div class="credit-row credit-collab"><span class="role">In collaboration with</span><span class="who"><img class="collab-logo" src="../assets/projects/shared/me-logo.webp" alt="ME Creative Technology Agency"><span class="collab-txt">ME Creative Technology Agency<small>Istanbul, Türkiye</small></span></span></div>
+          <div class="credit-row"><span class="role">Client</span><span class="who">Disney+ · Entertainment</span></div>
+          <div class="credit-row"><span class="role">Year</span><span class="who">2025</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 14. NEXT PROJECT TEASER -->
+  <section class="next" data-tone="dark" data-rail="7" data-screen-label="14 Next">
+    <div class="next-bg">
+      <div class="ph is-filled" style="overflow:hidden"><img src="../assets/img/projects/echoes-of-light/illusorr-echoes-of-light-immersive-light-installation-cover.webp" srcset="../assets/img/projects/echoes-of-light/illusorr-echoes-of-light-immersive-light-installation-cover.m.webp 820w, ../assets/img/projects/echoes-of-light/illusorr-echoes-of-light-immersive-light-installation-cover.webp 2000w" sizes="(max-width: 640px) 55vw, (max-width: 1024px) 60vw, 50vw" alt="Echoes of Light, next project" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+    </div>
+    <div class="next-inner">
+      <span class="next-k">Featured Project · 014</span>
+      <h3>
+        <span style="display:block">Echoes of Light</span>
+        <span style="display:block; font-weight:400; font-style:italic; color: var(--ink-soft); letter-spacing: 0;">light, as an instrument.</span>
+      </h3>
+      <div class="next-meta">
+        <span>2024</span>
+        <span>·</span>
+        <span>Installation</span>
+        <span>·</span>
+        <span>Immersive</span>
+      </div>
+      <a class="next-cta" href="echoes-of-light.html">
+        <span>View Case Study</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 19 L19 5"></path><polyline points="9 5 19 5 19 15"></polyline>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <footer class="foot" data-tone="dark">
+    <div>© ILLUSORR Labs · MMXXV</div>
+    <div>Disney+ · Immersive World</div>
+  </footer>
+
+
+<script src="../assets/js/case/cursor-scroll.js"></script>
+
+<!-- ──────────────────────────────────────────────────────────────────────
+     Hero carousel, Zara-style horizontal image scroll. translateX track,
+     autoplay with progress bars, arrows, drag/swipe, keyboard. Pauses on
+     hover and when off-screen.
+     ────────────────────────────────────────────────────────────────────── -->
+
+
+<!-- ──────────────────────────────────────────────────────────────────────
+     Hero emblem pile, black Boyner cloverleaf marks with gravity. They
+     fall into the blank pocket on the right of the hero and stack on top
+     of each other (circle collision + floor). The cursor knocks the pile
+     around; gravity re-settles it. Pure DOM + transform, no canvas.
+     ────────────────────────────────────────────────────────────────────── -->
+
+
+
+
+
+
+  <!-- Lightbox, click a post image to expand; move the pointer off it to revert -->
+  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true">
+    <figure>
+      <img id="lightboxImg" alt="">
+      <figcaption id="lightboxCap">Click anywhere · Esc to close</figcaption>
+    </figure>
+  </div>
+
+
+<script src="../assets/js/case/lightbox.js"></script>
+
+<style>
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity .85s cubic-bezier(.2,.7,.2,1), transform .85s cubic-bezier(.2,.7,.2,1); }
+    .reveal.is-in { opacity: 1; transform: none; }
+    .reel-rail .ph { transition: transform .35s cubic-bezier(.2,.7,.2,1), opacity .35s ease; will-change: transform; }
+  }
+</style>
+<script>
+  /* Scroll effects: (1) fade-up reveal as blocks enter the viewport,
+     (2) center-focus on the reel rail — the card nearest the rail's
+     centre grows while the others recede as you swipe. */
+  (function() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    /* (1) Reveal on enter */
+    const revealSel = '.quote-by, .ch-copy, .module-head, .body-grid > div, .process .step, .stats .stat, .credits, .lg-grid .ph, .post-grid .ph, .bleed .ph, figure.ph, .quote, .next-inner, .meta-cell';
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -7% 0px' });
+    document.querySelectorAll(revealSel).forEach(el => {
+      if (el.closest('.reel-rail')) return;
+      el.classList.add('reveal');
+      io.observe(el);
+    });
+
+    /* (2) Reel rail center-focus */
+    const rail = document.querySelector('.reel-rail');
+    if (rail) {
+      const cards = [...rail.querySelectorAll('.ph')];
+      let raf = 0;
+      function update() {
+        const mid = rail.scrollLeft + rail.clientWidth / 2;
+        const span = rail.clientWidth / 1.5;
+        for (const c of cards) {
+          const cc = c.offsetLeft + c.offsetWidth / 2;
+          const d = Math.min(Math.abs(cc - mid) / span, 1);
+          c.style.transform = 'scale(' + (1 - 0.16 * d).toFixed(3) + ')';
+          c.style.opacity = (1 - 0.5 * d).toFixed(3);
+        }
+        raf = 0;
+      }
+      const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
+      rail.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll);
+      new IntersectionObserver(() => onScroll(), { threshold: 0.05 }).observe(rail);
+      window.addEventListener('load', onScroll);
+      setTimeout(onScroll, 400);
+      requestAnimationFrame(update);
+    }
+  })();
+</script>
+
+
+
+  <script src="../assets/js/case/image-slot.js"></script>
+  <script>setTimeout(() => { document.querySelectorAll(".reveal:not(.is-in)").forEach(e => { const r = e.getBoundingClientRect(); if (r.top < innerHeight * 1.2) e.classList.add("is-in"); }); }, 2600);</script>
+  <script src="../assets/js/case/disney-lounge.js?v=6"></script>
+  <script src="../assets/js/case/disney-pitch.js?v=22"></script>
+  <script src="../assets/js/case/disney-ambience.js?v=2"></script>
+  <script>document.addEventListener('click',(e)=>{const y=e.target.closest('.yt[data-yt]');if(!y)return;const f=document.createElement('iframe');f.src='https://www.youtube.com/embed/'+y.dataset.yt+'?si=n4vMu-ntxuSHeonA&autoplay=1&controls=0&rel=0&modestbranding=1&playsinline=1';f.referrerPolicy='strict-origin-when-cross-origin';f.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';f.allowFullscreen=true;f.title='In-world walkthrough';y.replaceChildren(f);y.removeAttribute('data-yt');});
+  document.addEventListener('keydown',(e)=>{if((e.key==='Enter'||e.key===' ')&&e.target.classList&&e.target.classList.contains('yt')){e.preventDefault();e.target.click();}});</script>
+  <script type="module" src="../assets/js/case/disney-castle.js?v=14"></script>
+  <script type="module" src="../assets/js/case/disney-pano.js?v=14"></script>
+<script src="../assets/js/nav.js" defer></script>
+<script src="../assets/js/site-footer.js" defer></script>
+<script src="../assets/js/to-top.js" defer></script>
+</body></html>

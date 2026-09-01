@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="preload" as="font" type="font/woff" crossorigin href="../assets/fonts/outfit-variable.woff">
+<link rel="stylesheet" href="../assets/css/case/fonts.css">
+<!-- phone + tablet: shared touch layer, then the shared case layout -->
+<link rel="stylesheet" href="../assets/css/mobile.css">
+<link rel="stylesheet" href="../assets/css/case/case-mobile.css">
+<script src="../assets/js/mobile.js"></script>
+<title>ILLUSORR Spaces · Breakpoints</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+  @font-face { font-family:'Outfit'; font-weight:100 900; font-display:swap;
+    src:url('../assets/fonts/outfit-variable.woff') format('woff'); }
+  html,body { margin:0; background:#05080c; color:#eaf2f1;
+    font-family:'Outfit',system-ui,sans-serif; }
+  a { color:#00B2FF; } a:hover { color:#eaf2f1; }
+  .wrap { padding:32px; }
+  h1 { margin:0 0 4px; font-size: 13px; letter-spacing:.24em; text-transform:uppercase; font-weight:500; }
+  .sub { margin:0 0 30px; font-size: 13px; color:rgba(220,234,241,.55); }
+  .row { display:flex; gap:26px; align-items:flex-start; flex-wrap:wrap; }
+  .col { display:flex; flex-direction:column; gap:9px; }
+  .cap { display:flex; justify-content:space-between; gap:12px;
+    font-size: 12px; letter-spacing:.18em; text-transform:uppercase; color:rgba(220,234,241,.4); }
+  .cap b { font-weight:400; color:#00B2FF; }
+  .dev { border:1px solid rgba(255,255,255,.14); border-radius:12px; overflow:hidden;
+    background:#020B11; box-shadow:0 20px 60px rgba(0,0,0,.5); }
+  iframe { display:block; border:0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>ILLUSORR Spaces · Breakpoints</h1>
+  <p class="sub">Each frame is a real viewport, so the media queries resolve exactly as they would on the device. <a href="illusorr-spaces.html">Open full size →</a></p>
+  <div class="row">
+    <div class="col">
+      <div class="cap"><span>Mobile</span><b>390 × 780</b></div>
+      <div class="dev"><iframe src="illusorr-spaces.html" width="390" height="780" title="Mobile"></iframe></div>
+    </div>
+    <div class="col">
+      <div class="cap"><span>Tablet</span><b>834 × 1000</b></div>
+      <div class="dev"><iframe src="illusorr-spaces.html" width="834" height="1000" title="Tablet"></iframe></div>
+    </div>
+    <div class="col">
+      <div class="cap"><span>Phone landscape</span><b>780 × 400</b></div>
+      <div class="dev"><iframe src="illusorr-spaces.html" width="780" height="400" title="Phone landscape"></iframe></div>
+    </div>
+  </div>
+</div>
+<script src="../assets/js/site-footer.js" defer></script>
+<script src="../assets/js/to-top.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+/* ─────────────────────────────────────────────────────────────────────
+   ILLUSORR — base tokens.
+
+   NOT YET LOADED BY ANY PAGE. This file exists so the palette has one
+   home; adopting it is a per-page decision (see tools/tokens-review.dc.html).
+
+   Values are lifted verbatim from main.css, which is the authoritative
+   palette. Nothing here is new and nothing here changes rendering.
+
+   Scoped overrides are NOT conflicts: main.css intentionally re-declares some
+   of these inside #aboutRoot and #workGrid so the embedded About section and
+   work grid sit a fraction lighter than the rest of the page (--bg #05060c,
+   and lighter greys --dim #9aa3b5 / --faint #565d70 in the grid). Those belong
+   to those sections. This file holds the site-wide values only.
+   ───────────────────────────────────────────────────────────────────── */
+
+:root{
+  /* ── dark ground ─────────────────────────────────────────────────── */
+  --bg:#05060a;
+  --ink:#eef1f8;
+  --dim:#8b96ad;
+  --faint:#4a5268;
+  --line:#1b2231;
+
+  /* ── accent ──────────────────────────────────────────────────────── */
+  --indigo:#4c63ff;
+  --cold:#8ea2ff;
+  --glow:rgba(76,99,255,.32);
+  --own:#8affc4;
+
+  /* ── light ground ────────────────────────────────────────────────── */
+  --cream:#ffffff;
+  --cream-ink:#0b0d12;
+  --cream-dim:#565d6b;
+  --cream-line:#e4e7ec;
+
+  /* ── type ────────────────────────────────────────────────────────── */
+  --disp:'Outfit',sans-serif;
+  --head:'PP Monument Extended',sans-serif;
+  --track:.2em;
+}

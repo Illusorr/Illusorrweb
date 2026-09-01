@@ -1,0 +1,24 @@
+/* Case-study typefaces, all served from this origin. Cormorant Garamond and
+   Space Mono are the OFL variable/static files under assets/fonts (licences in
+   assets/fonts/licences); PP Monument Extended is commercially licensed.
+   @font-face costs nothing until a family is actually used, so every case page
+   can link this one file. */
+@font-face { font-family:'Outfit'; font-style:normal; font-weight:100 900; font-display:swap;
+  src:url("../../fonts/outfit-variable.woff") format("woff"); }
+@font-face { font-family:'PP Monument Extended'; font-weight:900; font-style:normal; font-display:swap;
+  src:url("../../projects/shared/fonts/PPMonumentExtended-Black.otf") format("opentype"); }
+@font-face { font-family:'Squaresharps'; font-weight:400; font-style:normal; font-display:swap;
+  src:url("../../fonts/squaresharps-400.woff") format("woff"),
+      url("../../projects/shared/fonts/Squaresharps-v2.ttf") format("truetype"); }
+
+/* Cormorant Garamond — variable wght, covers the 500/600 the pages ask for */
+@font-face { font-family:'Cormorant Garamond'; font-style:normal; font-weight:300 700; font-display:swap;
+  src:url("../../fonts/CormorantGaramond-Variable.ttf") format("truetype-variations"); }
+@font-face { font-family:'Cormorant Garamond'; font-style:italic; font-weight:300 700; font-display:swap;
+  src:url("../../fonts/CormorantGaramond-Italic-Variable.ttf") format("truetype-variations"); }
+
+/* Space Mono — metagenus only */
+@font-face { font-family:'Space Mono'; font-style:normal; font-weight:400; font-display:swap;
+  src:url("../../fonts/SpaceMono-Regular.ttf") format("truetype"); }
+@font-face { font-family:'Space Mono'; font-style:normal; font-weight:700; font-display:swap;
+  src:url("../../fonts/SpaceMono-Bold.ttf") format("truetype"); }

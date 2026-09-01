@@ -1,0 +1,6 @@
+  .hero-title .ln-ital, .module-title em, .quote { font-family:'Outfit', system-ui, sans-serif; }
+  .cm-lockup { display:flex; flex-direction:column; line-height:1; }
+  .cm-lockup .cm-name { font-family:'Cormorant Garamond', Georgia, serif; font-weight:600;
+    font-size:clamp(21px,1.7vw,27px); letter-spacing:0.015em; color:var(--ink); white-space:nowrap; }
+  .cm-lockup .cm-sub { font-family:'Outfit', system-ui, sans-serif; font-size: 12px; letter-spacing:0.4em;
+    text-transform:uppercase; color:var(--ink-soft); margin-top:7px; padding-left:2px; }

@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<link rel="preload" as="font" type="font/woff" crossorigin href="../assets/fonts/outfit-variable.woff">
+<link rel="stylesheet" href="../assets/css/nav.css">
+<link rel="stylesheet" href="../assets/css/case/fonts.css">
+
+
+<title>Morphellum · Digital Couture for DressX · ILLUSORR</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+
+
+
+
+
+<link rel="stylesheet" href="../assets/css/case/disney-pitch.css?v=12">
+<link rel="stylesheet" href="../assets/css/case/morphellum.css?v=2">
+<meta name="description" content="Morphellum by ILLUSORR for DressX: a three-piece digital couture collection. Helium, Opulence and Machimatch, sculpted, simulated and dropped as wearable 3D collectibles.">
+<link rel="canonical" href="https://illusorr.com/projects/morphellum.html">
+<meta name="theme-color" content="#05060a">
+<meta property="og:site_name" content="ILLUSORR">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Morphellum · Digital Couture for DressX · ILLUSORR">
+<meta property="og:description" content="A three-piece digital couture collection for DressX: Helium, Opulence and Machimatch.">
+<meta property="og:url" content="https://illusorr.com/projects/morphellum.html">
+<meta property="og:image" content="https://illusorr.com/assets/img/projects/morphellum/illusorr-morphellum-osseous-runway-look.webp">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CreativeWork","name":"Morphellum · Digital Couture for DressX","url":"https://illusorr.com/projects/morphellum.html","creator":{"@type":"Organization","name":"ILLUSORR","url":"https://illusorr.com/"},"about":"Digital Fashion","keywords":"3D Garments, Digital Couture, DressX, Wearables"}</script>
+<!-- phone + tablet: shared touch layer, then the shared case layout -->
+<link rel="stylesheet" href="../assets/css/mobile.css">
+<link rel="stylesheet" href="../assets/css/case/case-mobile.css">
+<script src="../assets/js/mobile.js"></script>
+
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.184.0/build/three.module.min.js",
+    "three/addons/controls/OrbitControls.js": "https://unpkg.com/three@0.184.0/examples/jsm/controls/OrbitControls.js",
+    "three/addons/loaders/GLTFLoader.js": "https://unpkg.com/three@0.184.0/examples/jsm/loaders/GLTFLoader.js",
+    "three/addons/loaders/DRACOLoader.js": "https://unpkg.com/three@0.184.0/examples/jsm/loaders/DRACOLoader.js"
+  }
+}
+</script>
+
+</head>
+
+
+
+<body>
+<header class="il-topbar" id="ilTopbar">
+  <a class="il-brand" href="../index.html" aria-label="ILLUSORR home"><span class="il-logo" role="img" aria-label="ILLUSORR"></span></a>
+  <div class="il-right">
+    <a class="il-talk" href="../contact.html">Let's talk</a>
+    <button class="il-burger" id="ilMenuOpen" aria-label="Open menu"><i></i><i></i></button>
+  </div>
+</header>
+<div class="il-overlay" id="ilOverlay" style="background-color:#000000">
+  <div class="il-ohead"><span class="il-logo" role="img" aria-label="ILLUSORR"></span><button class="il-oclose" id="ilMenuClose">Close ✕</button></div>
+  <nav>
+    <a href="../index.html">Home <span>01</span></a>
+    <a href="../about.html">About <span>02</span></a>
+    <a href="../sectors.html">Sectors <span>03</span></a>
+    <a href="../work.html">Work <span>04</span></a>
+    <a href="../lab.html">Lab <span>05</span></a>
+    <a href="../collective.html">Collective <span>06</span></a>
+    <a href="../contact.html">Contact <span>07</span></a>
+  </nav>
+  <div class="il-ofoot"><span>Abu Dhabi · Yas Creative Hub</span><span>hello@illusorr.com</span></div>
+</div>
+
+
+  <!-- ─── Fixed chrome ─────────────────────────────────────────────── -->
+  <!-- topnav removed, menu bar to be added separately -->
+
+  <!-- Sparkle badge cursor, emblem follows pointer with smooth lerp -->
+  <div class="koton-cursor" id="kCursor" aria-hidden="true">
+    <svg class="km" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M50 3 C54 31 69 46 97 50 C69 54 54 69 50 97 C46 69 31 54 3 50 C31 46 46 31 50 3 Z"></path></svg>
+    <span class="label-link" data-verb="Click" style="background-color:#cccccc"></span>
+  </div>
+
+  <aside class="rail" aria-hidden="true">
+    <span class="rail-dot is-active" data-i="0"></span>
+    <span class="rail-dot" data-i="1"></span>
+    <span class="rail-dot" data-i="2"></span>
+    <span class="rail-dot" data-i="3"></span>
+    <span class="rail-dot" data-i="4"></span>
+    <span class="rail-dot" data-i="5"></span>
+  </aside>
+
+  <!-- ═══════════════ CASTLE STAGE · scroll-driven point cloud ═══════════════ -->
+  <div class="mor-env">
+  <div class="mor-env-bg" aria-hidden="true"></div>
+  <section class="mor-hero" data-tone="dark" data-rail="0" data-screen-label="01 Hero">
+    <div class="chapter-inner" style="padding:0 clamp(20px,4vw,56px)">
+      <div class="proj-tags hero-meta">
+        <div class="ptg ptg-client">
+          <div class="ptg-k">Client</div>
+          <div class="ptg-c"><span class="ptag">DressX</span></div>
+        </div>
+        <div class="ptg" style="margin-left:auto">
+          <div class="ptg-k">Category</div>
+          <div class="ptg-c"><span class="ptag">Digital Fashion</span><span class="ptag">3D Garments</span><span class="ptag">Wearables</span></div>
+        </div>
+        <div class="ptg">
+          <div class="ptg-k">Sector</div>
+          <div class="ptg-c"><span class="ptag sector">Fashion &amp; Retail</span></div>
+        </div>
+      </div>
+      <h1 class="hero-title">
+        <span class="ln">Morphellum<span class="ln-ital">couture without fabric.</span></span>
+      </h1>
+      <p class="hero-lede">
+        <strong>Garments that could never be sewn.</strong> Sculpted in 3D, simulated like cloth and dropped on DressX as wearable collectibles.
+      </p>
+      <div class="hero-foot" style="margin-top:clamp(30px,4vw,56px)">
+        <div class="hero-credit">
+          <div>DressX / Digital Couture · 2023</div>
+          <div>Built by ILLUSORR</div>
+        </div>
+        <div class="scroll-cue">
+          <span>Scroll to enter</span>
+          <span class="line"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mor-stage" id="morStage" data-tone="dark" data-rail="0" data-screen-label="02 Reveal">
+    <div class="mor-pin">
+      
+      <div class="mor-track" id="morTrack">
+        <div class="mor-item"><img src="../assets/img/projects/morphellum/illusorr-morphellum-silver-digital-garment-detail.webp" alt="Morphellum, a silver sculpted dress with a gold ruffle collar" fetchpriority="high" decoding="async"><div class="nm">Silver Ruffle</div></div>
+        <div class="mor-item"><img src="../assets/img/projects/morphellum/illusorr-morphellum-rainbow-digital-garment-detail.webp" alt="Morphellum, a rainbow gradient quilted puffer set" fetchpriority="high" decoding="async"><div class="nm">Rainbow Puffer</div></div>
+        <div class="mor-item"><img src="../assets/img/projects/morphellum/illusorr-morphellum-op-art-digital-garment-detail.webp" alt="Morphellum, an op-art layered bodysuit" loading="lazy" decoding="async"><div class="nm">Op-Art Suit</div></div>
+        <div class="mor-item"><img src="../assets/img/projects/morphellum/illusorr-morphellum-iridescent-digital-garment-detail.webp" alt="Morphellum, an iridescent lilac two-piece" loading="lazy" decoding="async"><div class="nm">Iridescent Set</div></div>
+        <div class="mor-item"><img src="../assets/img/projects/morphellum/illusorr-morphellum-pink-digital-garment-detail.webp" alt="Morphellum, a rose quilted puffer with hood" loading="lazy" decoding="async"><div class="nm">Rose Puffer</div></div>
+        <div class="mor-item"><img src="../assets/img/projects/morphellum/illusorr-morphellum-sticker-digital-garment-detail.webp" alt="Morphellum, a sticker-print hoodie with blue trousers" loading="lazy" decoding="async"><div class="nm">Sticker Hoodie</div></div>
+        <div class="mor-item"><img src="../assets/img/projects/morphellum/illusorr-morphellum-blue-digital-garment-detail.webp" alt="Morphellum, a blue ruffled tartan dress" loading="lazy" decoding="async"><div class="nm">Ruffle Tartan</div></div>
+        <div class="mor-item"><img src="../assets/img/projects/morphellum/illusorr-morphellum-kimono-digital-garment-detail.webp" alt="Morphellum, a purple marbled kimono coat" loading="lazy" decoding="async"><div class="nm">Marble Kimono</div></div>
+      </div>
+    </div>
+  </section>
+  </div>
+
+  <section data-tone="dark" data-rail="1" data-screen-label="03 Meta" style="background:#000">
+    <div class="wrap">
+      <div class="meta-bar">
+        <div class="meta-cell"><span class="meta-k">Client</span><span class="meta-v">DressX<br>Digital Fashion Platform</span></div>
+        <div class="meta-cell"><span class="meta-k">Year</span><span class="meta-v">2023</span></div>
+        <div class="meta-cell"><span class="meta-k">Services</span><span class="meta-v">Garment Design, 3D Sculpt, Cloth Simulation, Rendering</span></div>
+        <div class="meta-cell"><span class="meta-k">Method</span><span class="meta-v">Concept, Sculpt, Simulate, Publish</span></div>
+        <div class="meta-cell"><span class="meta-k">Output</span><span class="meta-v">3 garments · Turntable films · Platform drop</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pitch pmod" data-tone="dark" data-rail="2" data-screen-label="04 Brief" style="background-color:#000000">
+    <div class="wrap">
+      <div class="phead">
+        <div>
+          <div class="pnum"><b>01</b> The Brief</div>
+          <h2 class="ptitle">Fashion is leaving <em>the fabric behind.</em></h2>
+        </div>
+        <div>
+          <p class="pbody">A generation dresses its photos before it dresses itself. DressX asked for a capsule that could only exist digitally: silhouettes no pattern-cutter could produce, materials no mill could weave, physics tuned for the camera instead of the street.</p>
+          <p class="pbody" style="margin-top:18px">The answer was Morphellum, a three-piece collection where each garment takes one impossible idea and wears it: inflated air, carved stone, quilted colour.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pitch pmod pmod-tight" data-tone="dark" data-rail="3" data-screen-label="05 Collection" style="background-color:#000000">
+    <div class="wrap">
+      <div class="phead">
+        <div>
+          <div class="pnum"><b>02</b> The Collection</div>
+          <h2 class="ptitle">Three garments, <em>three impossibilities.</em></h2>
+        </div>
+        <div>
+          <p class="pbody">Helium is a gown that behaves like it is inflated. Opulence is carved like sandstone and moves like silk. Machimatch is a quilted coat whose colour field never repeats. Each is shown the way DressX sells them: in the round.</p>
+        </div>
+      </div>
+      <div class="mor-videos">
+        <figure style="margin:0">
+          <video loop muted playsinline preload="none" poster="../assets/img/projects/morphellum/posters-video/helium-turntable.webp"><source src="../assets/video/morphellum/helium-turntable.webm" type="video/webm"></video>
+          <figcaption><span>Helium, in and out</span><span>Turntable</span></figcaption>
+        </figure>
+        <figure style="margin:0">
+          <video loop muted playsinline preload="none" poster="../assets/img/projects/morphellum/posters-video/opulence-turntable.webp"><source src="../assets/video/morphellum/opulence-turntable.webm" type="video/webm"></video>
+          <figcaption><span>Opulence, in and out</span><span>Turntable</span></figcaption>
+        </figure>
+        <figure style="margin:0">
+          <video loop muted playsinline preload="none" poster="../assets/img/projects/morphellum/posters-video/machimatch-turntable.webp"><source src="../assets/video/morphellum/machimatch-turntable.webm" type="video/webm"></video>
+          <figcaption><span>Machimatch, in and out</span><span>Turntable</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="pitch pmod pmod-tight" data-tone="dark" data-rail="3" data-screen-label="06 Inspect" style="background-color:#000000">
+    <div class="wrap">
+      <div class="phead">
+        <div>
+          <div class="pnum"><b>03</b> Inspect</div>
+          <h2 class="ptitle">Turn it <em>in your hands.</em></h2>
+        </div>
+        <div>
+          <p class="pbody">The garment as it ships: a real mesh you can orbit, zoom and inspect from any angle.</p>
+        </div>
+      </div>
+      <div class="mor-3d">
+        <three-d-stage id="morStage3D" name="morphellum" background="#08090d" autorotate></three-d-stage>
+      </div>
+    </div>
+  </section>
+
+  <section class="pitch pmod pmod-tight" data-tone="dark" data-rail="3" data-screen-label="07 Cards" style="background-color:#000000">
+    <div class="wrap">
+      <div class="phead">
+        <div>
+          <div class="pnum"><b>04</b> The Cards</div>
+          <h2 class="ptitle">Twenty drops, <em>one language.</em></h2>
+        </div>
+        <div>
+          <p class="pbody">Every garment shipped with its own card: name, description and render, built on one template so the collection reads as a single release.</p>
+        </div>
+      </div>
+      <div class="mor-grid">
+        <figure class="mg-cell">
+          <img src="../assets/img/projects/morphellum/posters/helium-editorial.webp" alt="Morphellum, Helium campaign card" loading="lazy" decoding="async" width="1000" height="1000">
+          <figcaption><span>Helium</span><span>Editorial</span></figcaption>
+        </figure>
+        <figure class="mg-cell">
+          <img src="../assets/img/projects/morphellum/posters/machimatch-editorial.webp" alt="Morphellum, Machimatch campaign card" loading="lazy" decoding="async" width="1000" height="1000">
+          <figcaption><span>Machimatch</span><span>Editorial</span></figcaption>
+        </figure>
+        <figure class="mg-cell">
+          <img src="../assets/img/projects/morphellum/posters/opulence-face.webp" alt="Morphellum, Opulence campaign card" loading="lazy" decoding="async" width="1000" height="1000">
+          <figcaption><span>Opulence</span><span>Editorial</span></figcaption>
+        </figure>
+        <figure class="mg-cell">
+          <img src="../assets/img/projects/morphellum/posters/opulence-swirl.webp" alt="Morphellum, Opulence campaign card" loading="lazy" decoding="async" width="1000" height="1000">
+          <figcaption><span>Opulence</span><span>Beauty</span></figcaption>
+        </figure>
+        <figure class="mg-cell">
+          <img src="../assets/img/projects/morphellum/posters/kito-mask.webp" alt="Morphellum, Kito campaign card" loading="lazy" decoding="async" width="1000" height="1000">
+          <figcaption><span>Kito</span><span>Beauty</span></figcaption>
+        </figure>
+        <figure class="mg-cell">
+          <img src="../assets/img/projects/morphellum/posters/osseous-mask.webp" alt="Morphellum, Osseous campaign card" loading="lazy" decoding="async" width="1000" height="1000">
+          <figcaption><span>Osseous</span><span>Beauty</span></figcaption>
+        </figure>
+        <figure class="mg-cell">
+          <img src="../assets/img/projects/morphellum/posters/kito-blue.webp" alt="Morphellum, Kito campaign card" loading="lazy" decoding="async" width="1000" height="1000">
+          <figcaption><span>Kito</span><span>Lookbook</span></figcaption>
+        </figure>
+        <figure class="mg-cell">
+          <img src="../assets/img/projects/morphellum/posters/euphoria.webp" alt="Morphellum, Euphoria campaign card" loading="lazy" decoding="async" width="1000" height="1000">
+          <figcaption><span>Euphoria</span><span>Lookbook</span></figcaption>
+        </figure>
+        <figure class="mg-cell">
+          <img src="../assets/img/projects/morphellum/posters/osseous.webp" alt="Morphellum, Osseous campaign card" loading="lazy" decoding="async" width="1000" height="1000">
+          <figcaption><span>Osseous</span><span>Lookbook</span></figcaption>
+        </figure>
+        <figure class="mg-cell">
+          <img src="../assets/img/projects/morphellum/posters/exuberance.webp" alt="Morphellum, Exuberance campaign card" loading="lazy" decoding="async" width="1000" height="1000">
+          <figcaption><span>Exuberance</span><span>Drop</span></figcaption>
+        </figure>
+        <figure class="mg-cell">
+          <img src="../assets/img/projects/morphellum/posters/hysteria.webp" alt="Morphellum, Hysteria campaign card" loading="lazy" decoding="async" width="1000" height="1000">
+          <figcaption><span>Hysteria</span><span>Drop</span></figcaption>
+        </figure>
+        <figure class="mg-cell">
+          <img src="../assets/img/projects/morphellum/posters/opulence-poster.webp" alt="Morphellum, Opulence campaign card" loading="lazy" decoding="async" width="1000" height="1000">
+          <figcaption><span>Opulence</span><span>Drop</span></figcaption>
+        </figure>
+        <figure class="mg-cell">
+          <img src="../assets/img/projects/morphellum/posters/kito-suit.webp" alt="Morphellum, Kito campaign card" loading="lazy" decoding="async" width="1000" height="1000">
+          <figcaption><span>Kito</span><span>Drop</span></figcaption>
+        </figure>
+        <figure class="mg-cell">
+          <img src="../assets/img/projects/morphellum/posters/eos.webp" alt="Morphellum, Eos campaign card" loading="lazy" decoding="async" width="1000" height="1000">
+          <figcaption><span>Eos</span><span>Drop</span></figcaption>
+        </figure>
+        <figure class="mg-cell">
+          <img src="../assets/img/projects/morphellum/posters/ione.webp" alt="Morphellum, Ione campaign card" loading="lazy" decoding="async" width="1000" height="1000">
+          <figcaption><span>Ione</span><span>Drop</span></figcaption>
+        </figure>
+        <figure class="mg-cell">
+          <img src="../assets/img/projects/morphellum/posters/eon.webp" alt="Morphellum, Eon campaign card" loading="lazy" decoding="async" width="1000" height="1000">
+          <figcaption><span>Eon</span><span>Sportswear</span></figcaption>
+        </figure>
+        <figure class="mg-cell">
+          <img src="../assets/img/projects/morphellum/posters/nyx.webp" alt="Morphellum, Nyx campaign card" loading="lazy" decoding="async" width="1000" height="1000">
+          <figcaption><span>Nyx</span><span>Sportswear</span></figcaption>
+        </figure>
+        <figure class="mg-cell">
+          <img src="../assets/img/projects/morphellum/posters/lumi.webp" alt="Morphellum, Lumi campaign card" loading="lazy" decoding="async" width="1000" height="1000">
+          <figcaption><span>Lumi</span><span>Sportswear</span></figcaption>
+        </figure>
+        <figure class="mg-cell">
+          <img src="../assets/img/projects/morphellum/posters/elia.webp" alt="Morphellum, Elia campaign card" loading="lazy" decoding="async" width="1000" height="1000">
+          <figcaption><span>Elia</span><span>Sportswear</span></figcaption>
+        </figure>
+        <figure class="mg-cell">
+          <img src="../assets/img/projects/morphellum/posters/kyo.webp" alt="Morphellum, Kyo campaign card" loading="lazy" decoding="async" width="1000" height="1000">
+          <figcaption><span>Kyo</span><span>Sportswear</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  
+
+  <section class="pitch pmod pmod-tight" data-tone="dark" data-rail="4" data-screen-label="08 Direction" style="background-color:#000000">
+    <div class="wrap">
+      <div class="phead">
+        <div>
+          <div class="pnum"><b>05</b> The Direction</div>
+          <h2 class="ptitle">Sculpture first, <em>garment second.</em></h2>
+        </div>
+        <div>
+          <p class="pbody">The visual language came from parametric masks: layered splines and soft transitions studied before a single garment was cut. The masks set the rules, the wardrobe obeyed them.</p>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(14px,1.8vw,26px);margin-top:clamp(40px,5vw,64px)">
+        <div class="ph has-media" style="aspect-ratio:4/3;overflow:hidden">
+          <img src="../assets/img/projects/morphellum/illusorr-morphellum-masked-art-direction-frame-01.webp" alt="Morphellum concept, a parametric mask in soft transitions" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+          <span class="caption"><span>Form study, the parametric mask</span><span>Direction</span></span>
+        </div>
+        <div class="ph has-media" style="aspect-ratio:4/3;overflow:hidden">
+          <img src="../assets/img/projects/morphellum/illusorr-morphellum-masked-art-direction-frame-02.webp" alt="Morphellum concept, a layered spline mask study" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+          <span class="caption"><span>Surface study, the layered splines</span><span>Direction</span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pitch pmod pmod-tight" data-tone="dark" data-rail="4" data-screen-label="09 Runway" style="background-color:#000000">
+    <div class="wrap">
+      <div class="mor-proof">
+        <div class="ph has-media" style="aspect-ratio:1368/2056;overflow:hidden">
+          <img src="../assets/img/projects/morphellum/illusorr-morphellum-osseous-runway-look.webp" alt="Morphellum, a sculpted white gown of layered ribs worn on the runway" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+          <span class="caption"><span>Osseous, walked</span><span>Runway</span></span>
+        </div>
+        <div>
+          <div class="pnum"><b>06</b> The Proof</div>
+          <h2 class="ptitle" style="margin-top:14px">Impossible to cut, <em>simple to wear.</em></h2>
+          <p class="pbody" style="margin-top:22px">Every rib is a single continuous spline, offset and swept until the garment holds its own shape without a seam, a dart or a stitch. Nothing here could be patterned flat.</p>
+          <p class="pbody" style="margin-top:18px">Rendered on a runway rather than a turntable, because that is the test: the collection had to read as clothing in motion, not as a sculpture that happens to be worn.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="quote-wrap" data-tone="dark" data-rail="5" data-screen-label="10 Quote">
+    <div class="wrap">
+      <blockquote class="quote">
+        <span class="quote-mark">&ldquo;</span>
+        Clothes that never touch a body still have to move like they remember one.
+      </blockquote>
+      <div class="quote-by reveal">ILLUSORR · Morphellum for DressX</div>
+    </div>
+  </section>
+
+  <section class="bleed" data-tone="dark" data-rail="5" data-screen-label="11 Key Visual">
+    <div class="wrap">
+      <div class="ph has-media" style="aspect-ratio:21/9;overflow:hidden">
+        <img src="../assets/img/projects/morphellum/illusorr-morphellum-helium-digital-garment-artwork.webp" alt="Morphellum, the Helium gown worn with a gold mask" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+        <span class="caption"><span>Helium, worn</span><span>Key Visual</span></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="module" data-tone="dark" data-rail="5" data-screen-label="12 Results">
+    <div class="wrap">
+      <div class="module-head">
+        <div class="section-num"><span class="num">06</span> The Outcome</div>
+        <div><h2 class="module-title">A collection <em>with no inventory.</em></h2></div>
+      </div>
+      <div class="stats">
+        <div class="stat"><span class="stat-n">03</span><span class="stat-k">Hero garments sculpted, simulated and dropped</span></div>
+        <div class="stat"><span class="stat-n">360°</span><span class="stat-k">Turntable films for every piece, lit for the platform</span></div>
+        <div class="stat"><span class="stat-n">AR</span><span class="stat-k">Wearable on DressX, photographed on the buyer</span></div>
+        <div class="stat"><span class="stat-n">0</span><span class="stat-k">Metres of fabric cut, shipped or wasted</span></div>
+      </div>
+      <div class="credits">
+        <div><span class="section-num"><span class="num">07</span> Credits</span></div>
+        <div class="credit-list">
+          <div class="credit-row"><span class="role">Project Lead</span><span class="who">Zeynep Topal</span></div>
+          <div class="credit-row"><span class="role">CCP Creators</span><span class="who">Natalija Boljsakov · Denisa Durica · Kristine Abalos · Rowan El Selmy · Danica Tomic</span></div>
+          <div class="credit-row"><span class="role">Creative Direction</span><span class="who">ILLUSORR Labs</span></div>
+          <div class="credit-row"><span class="role">Method</span><span class="who">Procedurally generated garments, sculpted and simulated in 3D</span></div>
+          <div class="credit-row"><span class="role">Platform</span><span class="who">DressX</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="next" data-tone="dark" data-rail="5" data-screen-label="13 Next">
+    <div class="next-bg">
+      <div class="ph is-filled" style="overflow:hidden"><img src="../assets/img/projects/pera/illusorr-pera-concrete-editorial-campaign-cover.webp" alt="Pera, next project" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+    </div>
+    <div class="next-inner">
+      <span class="next-k">Featured Project</span>
+      <h3>
+        <span style="display:block">Pera</span>
+        <span style="display:block; font-weight:400; font-style:italic; color: var(--ink-soft); letter-spacing: 0;">concrete, and a collection.</span>
+      </h3>
+      <div class="next-meta">
+        <span>2025</span>
+        <span>·</span>
+        <span>AI Content</span>
+        <span>·</span>
+        <span>Campaign</span>
+      </div>
+      <a class="next-cta" href="pera.html">
+        <span>View Case Study</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 19 L19 5"></path><polyline points="9 5 19 5 19 15"></polyline>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <footer class="foot" data-tone="dark">
+    <div>© ILLUSORR Labs · MMXXVI</div>
+    <div>Morphellum · Digital Couture</div>
+  </footer>
+
+
+<script src="../assets/js/case/cursor-scroll.js"></script>
+
+<script src="../assets/js/case/lightbox.js"></script>
+<script>
+  /* Scroll effects: (1) fade-up reveal as blocks enter the viewport,
+     (2) center-focus on the reel rail — the card nearest the rail's
+     centre grows while the others recede as you swipe. */
+  (function() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    /* (1) Reveal on enter */
+    const revealSel = '.quote-by, .ch-copy, .module-head, .body-grid > div, .process .step, .stats .stat, .credits, .lg-grid .ph, .post-grid .ph, .bleed .ph, figure.ph, .quote, .next-inner, .meta-cell';
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -7% 0px' });
+    document.querySelectorAll(revealSel).forEach(el => {
+      if (el.closest('.reel-rail')) return;
+      el.classList.add('reveal');
+      io.observe(el);
+    });
+
+    /* (2) Reel rail center-focus */
+    const rail = document.querySelector('.reel-rail');
+    if (rail) {
+      const cards = [...rail.querySelectorAll('.ph')];
+      let raf = 0;
+      function update() {
+        const mid = rail.scrollLeft + rail.clientWidth / 2;
+        const span = rail.clientWidth / 1.5;
+        for (const c of cards) {
+          const cc = c.offsetLeft + c.offsetWidth / 2;
+          const d = Math.min(Math.abs(cc - mid) / span, 1);
+          c.style.transform = 'scale(' + (1 - 0.16 * d).toFixed(3) + ')';
+          c.style.opacity = (1 - 0.5 * d).toFixed(3);
+        }
+        raf = 0;
+      }
+      const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
+      rail.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll);
+      new IntersectionObserver(() => onScroll(), { threshold: 0.05 }).observe(rail);
+      window.addEventListener('load', onScroll);
+      setTimeout(onScroll, 400);
+      requestAnimationFrame(update);
+    }
+  })();
+</script>
+<script>setTimeout(() => { document.querySelectorAll(".reveal:not(.is-in)").forEach(e => { const r = e.getBoundingClientRect(); if (r.top < innerHeight * 1.2) e.classList.add("is-in"); }); }, 2600);</script>
+<script>
+(()=>{ // reveal: scroll-linked drift applied synchronously; rAF only adds idle belt motion
+  const st=document.getElementById('morStage'), tr=document.getElementById('morTrack');
+  if(!st||!tr) return;
+  tr.innerHTML+=tr.innerHTML;
+  const items=[...tr.querySelectorAll('.mor-item')];
+  items.forEach((el,i)=>el.style.setProperty('--ph',(i*0.9)+'s'));
+  const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let geo=[], half=0, vw=0, vh=0, drift=0;
+  function measure(){
+    vw=innerWidth; vh=innerHeight;
+    half=tr.scrollWidth/2;
+    geo=items.map(el=>({el,c:el.offsetLeft+el.offsetWidth/2}));
+  }
+  function apply(){ // one rect read for progress; item geometry stays cached
+    if(!half) return;
+    const r=st.getBoundingClientRect();
+    const p=Math.min(1,Math.max(0,-r.top/Math.max(1,r.height-vh)));
+    let x=(vw*0.3)-p*half-drift;
+    x=((x%half)+half)%half-half;
+    tr.style.transform='translate3d('+x+'px,0,0)';
+    const cx=vw/2; let best=null,bd=1e9;
+    for(const g of geo){
+      const d=Math.abs(g.c+x-cx);
+      const n=Math.min(1,d/(vw*0.55));
+      if(!reduced) g.el.style.transform='scale('+(1.42-0.52*n).toFixed(3)+')';
+      g.el.style.opacity=(1-0.35*n).toFixed(3);
+      if(d<bd){bd=d;best=g.el;}
+    }
+    for(const g of geo) g.el.classList.toggle('is-center',g.el===best);
+  }
+  // the page's scroll container may be <body>, and element scroll events do not
+  // bubble — capture on document catches every scroller, window covers the rest
+  document.addEventListener('scroll',apply,{passive:true,capture:true});
+  addEventListener('scroll',apply,{passive:true});
+  addEventListener('resize',()=>{measure();apply();},{passive:true});
+  measure(); apply();
+  // Watchdog: some embeddings suppress scroll events and rAF entirely. Four rect
+  // reads a second keep the reveal alive there at negligible cost.
+  let lastTop=null;
+  setInterval(()=>{
+    const top=Math.round(st.getBoundingClientRect().top);
+    if(top!==lastTop){ lastTop=top; apply(); }
+  },250);
+  if(!reduced){ // idle belt drift, paused when the stage is off screen
+    let visible=true, last=performance.now();
+    if('IntersectionObserver' in window)
+      new IntersectionObserver(es=>{visible=es[0].isIntersecting},{rootMargin:'200px'}).observe(st);
+    (function loop(now){
+      const dt=Math.min(64,now-last); last=now;
+      if(visible){ drift+=dt*0.018; apply(); }
+      requestAnimationFrame(loop);
+    })(performance.now());
+  }
+})();
+</script>
+<script>
+(()=>{ // videos: load and loop only while on screen
+  const vids=[...document.querySelectorAll('.mor-videos video')];
+  if(!vids.length) return;
+  const io=new IntersectionObserver(es=>es.forEach(e=>{
+    const v=e.target;
+    if(e.isIntersecting){
+      if(v.preload!=='auto'){v.preload='auto';v.load();}
+      v.play().catch(()=>{ v.controls=true; }); // autoplay refused (iOS Low Power, data saver): give the user a way to play
+    }
+    else v.pause();
+  }),{threshold:0.25});
+  vids.forEach(v=>io.observe(v));
+})();
+</script>
+<script src="../assets/js/three-d-stage.js"></script>
+<script type="module">
+  const stage=document.getElementById('morStage3D');
+  if(stage){
+    await new Promise(res=>{
+      const io=new IntersectionObserver(es=>{ if(es[0].isIntersecting){io.disconnect();res();} },{rootMargin:'400px'});
+      io.observe(stage);
+    });
+    const {THREE}=await stage.ready;
+    const hide=document.createElement('style');
+    hide.textContent='.toolbar{display:none !important}';
+    stage.shadowRoot.appendChild(hide);
+    const {GLTFLoader}=await import('three/addons/loaders/GLTFLoader.js');
+    const {DRACOLoader}=await import('three/addons/loaders/DRACOLoader.js');
+    const draco=new DRACOLoader();
+    draco.setDecoderPath('https://unpkg.com/three@0.184.0/examples/jsm/libs/draco/');
+    const loader=new GLTFLoader();
+    loader.setDRACOLoader(draco);
+    loader.load('../assets/models/morphellum.glb',g=>{
+      const m=g.scene;
+      m.traverse(o=>{ if(o.isMesh&&o.material){ const mt=o.material;
+        if('metalness' in mt) mt.metalness=Math.min(mt.metalness??0,0.35);
+        if('roughness' in mt) mt.roughness=Math.max(mt.roughness??0.5,0.28); }});
+      stage.setObject(m);
+    },undefined,e=>console.warn('GLB load failed',e));
+  }
+</script>
+<script src="../assets/js/nav.js"></script>
+<script src="../assets/js/site-footer.js" defer></script>
+<script src="../assets/js/to-top.js" defer></script>
+</body>
+</html>
