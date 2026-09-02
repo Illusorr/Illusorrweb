@@ -78,10 +78,11 @@
     text-transform: uppercase; color: rgba(255,255,255,.45); }
   .stage-live { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--gold-ant); }
   .stage-view { position: relative; overflow: hidden; background: #fff; }
-  .stage-view iframe { position: absolute; top: 0; left: 0; border: 0; transform-origin: top left; }
+  .stage-view .stage-shot { position: absolute; inset: 0; display: block; }
+  .stage-view img { width: 100%; height: 100%; display: block; border: 0;
+    object-fit: cover; object-position: top center; }
   .stage, .dev-tab { contain: paint; }
   .stage-view { contain: strict; }
-  .stage-view.is-locked iframe { pointer-events: none; }
   .stage-hint { position: absolute; inset: auto 0 0 0; padding: 10px 12px; z-index: 3;
     display: flex; justify-content: space-between; align-items: center; gap: 12px; cursor: pointer;
     font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: #fff;
@@ -228,8 +229,8 @@
           <a class="stage-live" href="https://www.alberwazinsurance.com/" target="_blank" rel="noopener" style="text-decoration:none">Visit live site →</a>
         </div>
         <div class="stage-view is-locked" data-frame data-w="1440" data-h="900" style="aspect-ratio:1440/900">
-          <iframe data-src="https://www.alberwazinsurance.com/" title="Al Berwaz Insurance website, live" loading="lazy" referrerpolicy="no-referrer"></iframe>
-          <div class="stage-hint"><span>Click to use the live site</span><span>Home</span></div>
+          <a class="stage-shot" href="https://www.alberwazinsurance.com/" target="_blank" rel="noopener" aria-label="Al Berwaz Insurance homepage — opens alberwazinsurance.com in a new tab"><img src="../assets/img/projects/al-berwaz/alberwaz-site-home.webp" srcset="../assets/img/projects/al-berwaz/alberwaz-site-home-768.webp 768w, ../assets/img/projects/al-berwaz/alberwaz-site-home.webp 2880w" sizes="(max-width:880px) 100vw, 1100px" alt="Al Berwaz Insurance homepage" loading="lazy" decoding="async"></a>
+          <div class="stage-hint"><span>Open the live site</span><span>Home</span></div>
         </div>
       </div>
       <div class="hm-cap"><span>Al Berwaz Insurance Brokers</span><span>Home · Live</span></div>
@@ -481,8 +482,8 @@
               <div class="stage-live">1440 px</div>
             </div>
             <div class="stage-view is-locked" data-frame data-w="1440" data-h="880" style="aspect-ratio:1440/880">
-              <iframe data-src="https://www.alberwazinsurance.com/products" title="Al Berwaz products page" loading="lazy" referrerpolicy="no-referrer"></iframe>
-              <div class="stage-hint"><span>Click to use</span><span>Products</span></div>
+              <a class="stage-shot" href="https://www.alberwazinsurance.com/products" target="_blank" rel="noopener" aria-label="Al Berwaz products page — opens alberwazinsurance.com in a new tab"><img src="../assets/img/projects/al-berwaz/alberwaz-site-products.webp" srcset="../assets/img/projects/al-berwaz/alberwaz-site-products-768.webp 768w, ../assets/img/projects/al-berwaz/alberwaz-site-products.webp 2880w" sizes="(max-width:880px) 100vw, 720px" alt="Al Berwaz products page" loading="lazy" decoding="async"></a>
+              <div class="stage-hint"><span>Open the live site</span><span>Products</span></div>
             </div>
           </div>
           <div class="dev-cap"><span>Desktop · Catalogue page</span><span>Three families</span></div>
@@ -490,8 +491,8 @@
         <div>
           <div class="dev-tab">
             <div class="stage-view is-locked" data-frame data-w="420" data-h="880" style="aspect-ratio:420/880">
-              <iframe data-src="https://www.alberwazinsurance.com/about" title="Al Berwaz about page on mobile" loading="lazy" referrerpolicy="no-referrer"></iframe>
-              <div class="stage-hint"><span>Click to use</span><span>390</span></div>
+              <a class="stage-shot" href="https://www.alberwazinsurance.com/about" target="_blank" rel="noopener" aria-label="Al Berwaz about page on mobile — opens alberwazinsurance.com in a new tab"><img src="../assets/img/projects/al-berwaz/alberwaz-site-about-mobile.webp" srcset="../assets/img/projects/al-berwaz/alberwaz-site-about-mobile-768.webp 768w, ../assets/img/projects/al-berwaz/alberwaz-site-about-mobile.webp 2880w" sizes="(max-width:880px) 60vw, 320px" alt="Al Berwaz about page on mobile" loading="lazy" decoding="async"></a>
+              <div class="stage-hint"><span>Open the live site</span><span>390</span></div>
             </div>
           </div>
           <div class="dev-cap"><span>Mobile</span><span>420 px</span></div>
@@ -591,58 +592,9 @@
   </footer>
 
 <script>
-  (function () {
-    const frames = Array.from(document.querySelectorAll('[data-frame]'));
-    function fit() {
-      frames.forEach(function (v) {
-        const f = v.querySelector('iframe');
-        if (!f.getAttribute('src')) return;
-        const w = +v.dataset.w;
-        const s = v.clientWidth / w;
-        f.style.width = w + 'px';
-        f.style.height = (+v.dataset.h) + 'px';
-        f.style.transform = 'scale(' + s + ')';
-      });
-    }
-    fit();
-    window.addEventListener('resize', fit);
-    if (window.ResizeObserver) {
-      const ro = new ResizeObserver(fit);
-      frames.forEach(function (v) { ro.observe(v); });
-    }
-    /* Third-party site in three frames: mount on approach, tear down on exit. */
-    if (window.IntersectionObserver) {
-      const mio = new IntersectionObserver(function (es) {
-        es.forEach(function (e) {
-          const f = e.target.querySelector('iframe');
-          if (!f || !f.dataset.src) return;
-          if (e.isIntersecting) {
-            if (!f.getAttribute('src')) { f.src = f.dataset.src; fit(); }
-          } else if (f.getAttribute('src')) {
-            f.removeAttribute('src');
-            e.target.classList.add('is-locked');
-          }
-        });
-      }, { rootMargin: '600px 0px' });
-      frames.forEach(function (v) { mio.observe(v); });
-    } else {
-      frames.forEach(function (v) {
-        const f = v.querySelector('iframe');
-        if (f.dataset.src) f.src = f.dataset.src;
-      });
-    }
-    frames.forEach(function (v) {
-      const f = v.querySelector('iframe');
-      f.addEventListener('load', fit);
-      const hint = v.querySelector('.stage-hint');
-      if (hint) {
-        hint.addEventListener('click', function () {
-          const locked = v.classList.toggle('is-locked');
-          hint.firstElementChild.textContent = locked ? 'Click to use the live site' : 'Live — click here to release';
-        });
-      }
-    });
-  })();
+  /* The three live iframes of alberwazinsurance.com were replaced with stills.
+     They pulled 5.19MB of third-party video and dominated this page's weight.
+     Each still links out to the real page instead. */
 
   (function () {
     if (window.matchMedia('(hover: none)').matches) return;
