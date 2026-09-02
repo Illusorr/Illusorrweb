@@ -22,6 +22,23 @@
     if(p.length>3&&p[3]===0) return null;
     return (0.2126*p[0]+0.7152*p[1]+0.0722*p[2])/255;
   }
+  /* average luminance of an image, computed once per src */
+  var toneCache={};
+  function imgTone(img){
+    var key=img.currentSrc||img.src; if(!key) return null;
+    if(key in toneCache) return toneCache[key];
+    if(!img.complete||!img.naturalWidth) return null;
+    try{
+      var c=document.createElement('canvas'); c.width=8; c.height=8;
+      var g=c.getContext('2d',{willReadFrequently:true});
+      g.drawImage(img,0,0,8,8);
+      var d=g.getImageData(0,0,8,8).data, t=0, n=0;
+      for(var i=0;i<d.length;i+=4){ if(d[i+3]<8) continue;
+        t+=0.2126*d[i]+0.7152*d[i+1]+0.0722*d[i+2]; n++; }
+      toneCache[key] = n ? (t/n)/255 > 0.55 : null;
+    }catch(e){ toneCache[key]=null; }   /* tainted canvas: give up quietly */
+    return toneCache[key];
+  }
   function sample(){
     if(ov&&ov.classList.contains('open')) return;
     function probe(x){
@@ -30,12 +47,25 @@
         var n=stack[i];
         if(tb.contains(n)||(ov&&ov.contains(n))||(n.closest&&n.closest('.il-overlay'))) continue;
         if(n.closest){
+          /* Most specific hint wins. data-media-tone marks a light image or
+             video sitting inside an otherwise dark section, which is exactly
+             the case the section-level hint gets wrong. */
+          var mh=n.closest('[data-media-tone]');
+          if(mh) return mh.getAttribute('data-media-tone')==='light';
           var toned=n.closest('[data-tone],[data-bg-theme]');
           if(toned) return (toned.getAttribute('data-tone')||toned.getAttribute('data-bg-theme'))==='light';
           if(n.closest(LIGHT_SECTIONS)) return true;
         }
-        /* an <img>/<video>/<canvas> under this point means dark imagery */
-        if(n.tagName==='IMG'||n.tagName==='VIDEO'||n.tagName==='CANVAS') return false;
+        /* Media used to be assumed dark, which hid the logo whenever a light
+           image sat under the bar (a white site screenshot, a pale hero).
+           A media element, or any ancestor, can now declare its own tone.
+           The blanket assumption stays as the fallback. */
+        /* Media used to be assumed dark, which hid the logo under any light
+           image. An <img> is now sampled once and cached: same-origin, drawn
+           to an 8x8 canvas, averaged. Video and canvas keep the old
+           assumption since they cannot be read cheaply or safely. */
+        if(n.tagName==='IMG') { var iv=imgTone(n); if(iv!==null) return iv; return false; }
+        if(n.tagName==='VIDEO'||n.tagName==='CANVAS') return false;
         var v=lum(getComputedStyle(n).backgroundColor);
         if(v!==null) return v>0.55;
       }
