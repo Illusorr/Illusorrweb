@@ -57,7 +57,16 @@
   .hud { position:fixed; inset:0; z-index:5; pointer-events:none; }
   .ui { pointer-events:auto; }
   .corner { position:fixed; }
-  .tl{top:26px;left:30px} .tr{top:26px;right:30px}
+  /* The HUD corners sat at top:26px while #ilTopbar is fixed and 78-89px tall,
+     so the page title and readout ran straight through the nav. --hud-top
+     clears the bar at each breakpoint; the bar's own height is the only thing
+     that should ever change this. */
+  :root { --hud-top: 105px; }
+  @media (max-width: 1024px) { :root { --hud-top: 105px; } }
+  @media (max-width: 880px)  { :root { --hud-top: 94px; } }
+  @media (max-width: 720px)  { :root { --hud-top: 104px; } }
+  @media (max-width: 640px) { :root { --hud-top: 104px; } }
+  .tl{top:var(--hud-top);left:30px} .tr{top:var(--hud-top);right:30px}
   .tr { display:flex; flex-direction:column; align-items:flex-end; gap:14px; }
   .hints { position:fixed; left:50%; bottom:26px; transform:translateX(-50%);
     display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:8px 18px;
@@ -117,7 +126,7 @@
      right menu panel x=1960 w=488, cyan account button at 2505,56, and a
      bottom-right pair. Circles are r=30.224 on #4a4a4e at 0.8. */
   .tl { display:flex; flex-direction:column; align-items:flex-start; gap:20px;
-    max-height:calc(100vh - 52px); overflow-y:auto; overscroll-behavior:contain;
+    max-height:calc(100vh - var(--hud-top) - 26px); overflow-y:auto; overscroll-behavior:contain;
     scrollbar-width:none; }
   .tl::-webkit-scrollbar { display:none; }
   .tl .readout { margin-top:0; }
@@ -459,8 +468,8 @@
      Panels become bottom sheets, since a centred dialog on a held device
      puts content under the hands. */
   @media (min-width:721px) and (max-width:1024px) {
-    .tl { top:22px; left:22px; gap:16px; }
-    .tr { top:22px; right:22px; }
+    .tl { left:22px; gap:16px; }
+    .tr { top:var(--hud-top); right:22px; }
     .brand { font-size: 10px; letter-spacing:.28em; }
 
     .readout { grid-template-columns:auto auto; gap:5px 14px; }
@@ -510,7 +519,7 @@
        Split by role instead: identity and place on the left as a two-line
        stack, controls on the right as two equal circles, and the diagnostics
        move into the menu where they belong. */
-    .tl { top:0; left:0; right:0; flex-direction:column; align-items:flex-start; gap:3px;
+    .tl { top:var(--hud-top); left:0; right:0; flex-direction:column; align-items:flex-start; gap:3px;
       padding:13px 108px 16px 16px; max-height:none; overflow:visible; pointer-events:none;
       background:linear-gradient(to bottom, rgba(2,11,17,.8), transparent); }
     .brand { font-size: 10px; letter-spacing:.22em; }
@@ -522,7 +531,7 @@
     .readout .line:nth-child(1) .k { display:none; }
     .readout .line:nth-child(1) .v { font-size: 13px; letter-spacing:.06em; color:var(--cyan); }
 
-    .tr { top:12px; right:12px; flex-direction:row; align-items:center; gap:8px; }
+    .tr { top:var(--hud-top); right:12px; flex-direction:row; align-items:center; gap:8px; }
     .account { width:40px; height:40px; flex:0 0 40px; }
     .account svg { width:17px; height:17px; }
     #clock { display:none; }
