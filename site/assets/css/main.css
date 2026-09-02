@@ -2331,7 +2331,11 @@ p, li, dd, dt, .meta-v { text-wrap: pretty; }
      ::after   z2  grain
      label     z3  text */
 .ccard{
-  border-color: transparent;
+  /* border:0, not a transparent border. background-clip defaults to border-box,
+     so a 1px transparent border still painted the card's base colour under it,
+     while .cmedia and ::before start at inset:0 (inside the border). That left
+     a 1px ring of raw --g3 reading as a black stroke around every card. */
+  border: 0;
   background: var(--g3);            /* shows only until the cover decodes */
 }
 .ccard .cmedia{
