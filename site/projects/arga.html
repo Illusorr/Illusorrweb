@@ -78,10 +78,11 @@
     text-transform: uppercase; color: rgba(255,255,255,.45); }
   .stage-live { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--gold-ant); }
   .stage-view { position: relative; overflow: hidden; background: #fff; }
-  .stage-view iframe { position: absolute; top: 0; left: 0; border: 0; transform-origin: top left; }
+  .stage-view .stage-shot { position: absolute; inset: 0; display: block; }
+  .stage-view img { width: 100%; height: 100%; display: block; border: 0;
+    object-fit: cover; object-position: top center; }
   .stage, .dev-tab { contain: paint; }
   .stage-view { contain: strict; }
-  .stage-view.is-locked iframe { pointer-events: none; }
   .stage-hint { position: absolute; inset: auto 0 0 0; padding: 10px 12px; z-index: 3;
     display: flex; justify-content: space-between; align-items: center; gap: 12px; cursor: pointer;
     font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: #fff;
@@ -219,9 +220,9 @@
           <div class="stage-url">arga.com</div>
           <div class="stage-live">Live site</div>
         </div>
-        <div class="stage-view is-locked" data-frame data-w="1440" data-h="900" style="aspect-ratio:1440/900">
-          <iframe data-src="https://www.arga.com/" title="ARGA website, live" loading="lazy" referrerpolicy="no-referrer"></iframe>
-          <div class="stage-hint"><span>Click to use the live site</span><span>Home</span></div>
+        <div class="stage-view is-locked" data-media-tone="light" data-frame data-w="1440" data-h="900" style="aspect-ratio:1440/900">
+          <a class="stage-shot" href="https://www.arga.com/" target="_blank" rel="noopener" aria-label="ARGA homepage — opens in a new tab"><img src="../assets/img/projects/arga/arga-site-home.webp" srcset="../assets/img/projects/arga/arga-site-home-768.webp 768w, ../assets/img/projects/arga/arga-site-home.webp 2880w" sizes="(max-width:880px) 100vw, 1100px" alt="ARGA homepage" loading="lazy" decoding="async"></a>
+          <div class="stage-hint"><span>Open the live site</span><span>Home</span></div>
         </div>
       </div>
       <div class="hm-cap"><span>ARGA</span><span>Home · Live</span></div>
@@ -426,18 +427,18 @@
               <div class="stage-url">arga.com / projects</div>
               <div class="stage-live">1440 px</div>
             </div>
-            <div class="stage-view is-locked" data-frame data-w="1440" data-h="880" style="aspect-ratio:1440/880">
-              <iframe data-src="https://www.arga.com/projects" title="ARGA projects index" loading="lazy" referrerpolicy="no-referrer"></iframe>
-              <div class="stage-hint"><span>Click to use</span><span>Projects index</span></div>
+            <div class="stage-view is-locked" data-media-tone="light" data-frame data-w="1440" data-h="880" style="aspect-ratio:1440/880">
+              <a class="stage-shot" href="https://www.arga.com/projects" target="_blank" rel="noopener" aria-label="ARGA projects index — opens in a new tab"><img src="../assets/img/projects/arga/arga-site-projects.webp" srcset="../assets/img/projects/arga/arga-site-projects-768.webp 768w, ../assets/img/projects/arga/arga-site-projects.webp 2880w" sizes="(max-width:880px) 100vw, 720px" alt="ARGA projects index" loading="lazy" decoding="async"></a>
+              <div class="stage-hint"><span>Open the live site</span><span>Projects index</span></div>
             </div>
           </div>
           <div class="dev-cap"><span>Desktop · Projects template</span><span>CMS driven</span></div>
         </div>
         <div>
           <div class="dev-tab">
-            <div class="stage-view is-locked" data-frame data-w="420" data-h="880" style="aspect-ratio:420/880">
-              <iframe data-src="https://www.arga.com/services" title="ARGA services on mobile" loading="lazy" referrerpolicy="no-referrer"></iframe>
-              <div class="stage-hint"><span>Click to use</span><span>390</span></div>
+            <div class="stage-view is-locked" data-media-tone="light" data-frame data-w="420" data-h="880" style="aspect-ratio:420/880">
+              <a class="stage-shot" href="https://www.arga.com/services" target="_blank" rel="noopener" aria-label="ARGA services on mobile — opens in a new tab"><img src="../assets/img/projects/arga/arga-site-services-mobile.webp" srcset="../assets/img/projects/arga/arga-site-services-mobile-768.webp 768w, ../assets/img/projects/arga/arga-site-services-mobile.webp 2880w" sizes="(max-width:880px) 60vw, 320px" alt="ARGA services on mobile" loading="lazy" decoding="async"></a>
+              <div class="stage-hint"><span>Open the live site</span><span>390</span></div>
             </div>
           </div>
           <div class="dev-cap"><span>Mobile · Services</span><span>420 px</span></div>
@@ -550,81 +551,8 @@
   /* Live frames: scale each embedded site to its container, deep-link it via
      the site's own goTo(), and keep it click-to-activate so page scroll is
      never captured until the visitor asks for it. */
-  (function () {
-    const frames = Array.from(document.querySelectorAll('[data-frame]'));
-    function fit() {
-      frames.forEach(function (v) {
-        const f = v.querySelector('iframe');
-        if (!f.getAttribute('src')) return;
-        const w = +v.dataset.w, h = +v.dataset.h;
-        const s = v.clientWidth / w;
-        f.style.width = w + 'px';
-        f.style.height = h + 'px';
-        f.style.transform = 'scale(' + s + ')';
-      });
-    }
-    fit();
-    window.addEventListener('resize', fit);
-    if (window.ResizeObserver) {
-      const ro = new ResizeObserver(fit);
-      frames.forEach(function (v) { ro.observe(v); });
-    }
-    /* Five full ANT builds at once starve the page's own images, so every
-       frame below the cover mounts only when it scrolls into view. */
-    if (window.IntersectionObserver) {
-      const mio = new IntersectionObserver(function (es) {
-        es.forEach(function (e) {
-          const f = e.target.querySelector('iframe');
-          if (!f || !f.dataset.src) return;
-          if (e.isIntersecting) {
-            if (!f.getAttribute('src')) { f.src = f.dataset.src; fit(); }
-          } else if (f.getAttribute('src')) {
-            f.removeAttribute('src');
-            e.target.classList.add('is-locked');
-          }
-        });
-      }, { rootMargin: '600px 0px' });
-      frames.forEach(function (v) { if (v.querySelector('iframe[data-src]')) mio.observe(v); });
-    } else {
-      frames.forEach(function (v) {
-        const f = v.querySelector('iframe');
-        if (f && f.dataset.src) f.src = f.dataset.src;
-      });
-    }
-
-    frames.forEach(function (v) {
-      const f = v.querySelector('iframe');
-      const target = v.dataset.goto;
-      f.addEventListener('load', function () {
-        fit();
-        if (!target) return;
-        try { f.contentWindow.goTo(target); } catch (e) {}
-      });
-      /* Webflow can refuse embedding; if a frame never paints, show the link. */
-      let painted = false;
-      f.addEventListener('load', function () { painted = true; });
-      setTimeout(function () {
-        if (painted || !f.getAttribute('src')) return;
-        const url = f.dataset.src;
-        const fb = document.createElement('a');
-        fb.href = url; fb.target = '_blank'; fb.rel = 'noopener';
-        fb.style.cssText = 'position:absolute;inset:0;display:flex;flex-direction:column;' +
-          'align-items:center;justify-content:center;gap:8px;background:#0a0d14;color:#5B8CFF;' +
-          'font-size:12px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;z-index:4';
-        fb.innerHTML = '<span>This page cannot be embedded</span><span style="color:rgba(255,255,255,.5)">Open ' +
-          url.replace('https://www.', '') + ' \u2197</span>';
-        v.appendChild(fb);
-      }, 6000);
-
-      const hint = v.querySelector('.stage-hint');
-      if (hint) {
-        hint.addEventListener('click', function () {
-          const locked = v.classList.toggle('is-locked');
-          hint.firstElementChild.textContent = locked ? 'Click to use the real site' : 'Live — click here to release';
-        });
-      }
-    });
-  })();
+  /* The live iframes were replaced with stills; each links out instead.
+     The mount/scale/lock script went with them. */
 
   /* Cursor: small ring that lerps toward the pointer. */
   (function () {

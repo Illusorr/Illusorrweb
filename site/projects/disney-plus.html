@@ -1925,7 +1925,7 @@
   <script src="../assets/js/case/disney-lounge.js?v=6"></script>
   <script src="../assets/js/case/disney-pitch.js?v=22"></script>
   <script src="../assets/js/case/disney-ambience.js?v=2"></script>
-  <script>document.addEventListener('click',(e)=>{const y=e.target.closest('.yt[data-yt]');if(!y)return;const f=document.createElement('iframe');f.src='https://www.youtube.com/embed/'+y.dataset.yt+'?si=n4vMu-ntxuSHeonA&autoplay=1&controls=0&rel=0&modestbranding=1&playsinline=1';f.referrerPolicy='strict-origin-when-cross-origin';f.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';f.allowFullscreen=true;f.title='In-world walkthrough';y.replaceChildren(f);y.removeAttribute('data-yt');});
+  <script>document.addEventListener('click',(e)=>{const y=e.target.closest('.yt[data-yt]');if(!y)return;const f=document.createElement('iframe');f.src='https://www.youtube-nocookie.com/embed/'+y.dataset.yt+'?si=n4vMu-ntxuSHeonA&autoplay=1&controls=0&rel=0&modestbranding=1&playsinline=1';f.referrerPolicy='strict-origin-when-cross-origin';f.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';f.allowFullscreen=true;f.title='In-world walkthrough';y.replaceChildren(f);y.removeAttribute('data-yt');});
   document.addEventListener('keydown',(e)=>{if((e.key==='Enter'||e.key===' ')&&e.target.classList&&e.target.classList.contains('yt')){e.preventDefault();e.target.click();}});</script>
   <script type="module" src="../assets/js/case/disney-castle.js?v=14"></script>
   <script type="module" src="../assets/js/case/disney-pano.js?v=14"></script>

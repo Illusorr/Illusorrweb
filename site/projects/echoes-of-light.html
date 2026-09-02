@@ -1438,7 +1438,7 @@
 
       <div class="tech-film">
         <div class="tf-frame">
-          <iframe id="techFilm" src="https://www.youtube.com/embed/aC5CP5jufrw?autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=aC5CP5jufrw&amp;controls=0&amp;modestbranding=1&amp;rel=0&amp;playsinline=1&amp;disablekb=1&amp;enablejsapi=1" title="Procedural design process" allow="autoplay; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" frameborder="0"></iframe>
+          <iframe id="techFilm" src="https://www.youtube-nocookie.com/embed/aC5CP5jufrw?autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=aC5CP5jufrw&amp;controls=0&amp;modestbranding=1&amp;rel=0&amp;playsinline=1&amp;disablekb=1&amp;enablejsapi=1" title="Procedural design process" allow="autoplay; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" frameborder="0"></iframe>
         </div>
         <span class="media-k">The generative model, running</span>
       </div>
@@ -1650,7 +1650,7 @@
     const y = e.target.closest('.yt[data-yt]');
     if (!y) return;
     const f = document.createElement('iframe');
-    f.src = 'https://www.youtube.com/embed/' + y.dataset.yt + '?autoplay=1&rel=0&modestbranding=1&playsinline=1';
+    f.src = 'https://www.youtube-nocookie.com/embed/' + y.dataset.yt + '?autoplay=1&rel=0&modestbranding=1&playsinline=1';
     f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
     f.referrerPolicy = 'strict-origin-when-cross-origin';
     f.allowFullscreen = true;

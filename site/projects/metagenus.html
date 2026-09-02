@@ -2535,7 +2535,7 @@
       btn.addEventListener('click', function () {
         const id = fig.dataset.yt;
         const f = document.createElement('iframe');
-        f.src = 'https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0&modestbranding=1';
+        f.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0&modestbranding=1';
         f.title = 'Metagenus film';
         f.allow = 'autoplay; encrypted-media; picture-in-picture; web-share';
         f.referrerPolicy = 'strict-origin-when-cross-origin';
@@ -2958,7 +2958,7 @@
       film.__on = 1;
       const slot = film.querySelector('.hf-embed');
       const f = document.createElement('iframe');
-      f.src = 'https://www.youtube.com/embed/' + film.dataset.yt +
+      f.src = 'https://www.youtube-nocookie.com/embed/' + film.dataset.yt +
         '?autoplay=1&mute=1&playsinline=1&rel=0&modestbranding=1&controls=1';
       f.title = 'Metagenus · The New Era';
       f.allow = 'autoplay; encrypted-media; picture-in-picture; web-share';

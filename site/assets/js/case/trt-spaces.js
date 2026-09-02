@@ -61,7 +61,7 @@
     const y = e.target.closest('.yt[data-yt]');
     if (!y) return;
     const f = document.createElement('iframe');
-    f.src = 'https://www.youtube.com/embed/' + y.dataset.yt + '?autoplay=1&rel=0&modestbranding=1&playsinline=1';
+    f.src = 'https://www.youtube-nocookie.com/embed/' + y.dataset.yt + '?autoplay=1&rel=0&modestbranding=1&playsinline=1';
     f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
     f.referrerPolicy = 'strict-origin-when-cross-origin';
     f.allowFullscreen = true;
