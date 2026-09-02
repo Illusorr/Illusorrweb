@@ -2388,3 +2388,20 @@ p, li, dd, dt, .meta-v { text-wrap: pretty; }
 .ccard.active .cmedia{ animation:kb 8s ease-out forwards; }
 .ccard.active .csector{ color: var(--g2); }
 .ccard.active .ctag span{ border-color: color-mix(in srgb, var(--g2) 34%, transparent); }
+
+/* ── Reel facade ─────────────────────────────────────────────────────
+   The reel iframe used to carry a live src with autoplay=1, so YouTube's
+   player shipped on every page load whether or not anyone scrolled to it:
+   932 KB on desktop and 1432 KB on phone, where base.js arrived twice. That
+   was 28% and 40% of the page.
+
+   A self-hosted still stands in, and js/reel-mount.js swaps in the real
+   iframe when the reel comes near the viewport, so autoplay-on-view still
+   works and nothing third-party loads before that. */
+.reel-media .reel-poster{
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; display:block; z-index:0;
+  transition:opacity .6s;
+}
+.reel-media.is-live .reel-poster{ opacity:0; pointer-events:none; }
+.reel-media .reel-embed{ position:absolute; inset:0; width:100%; height:100%; border:0; }
