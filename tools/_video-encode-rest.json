@@ -1,0 +1,92 @@
+[
+ {
+  "src": "site/assets/projects/optiverse/asset-generator.mp4",
+  "out": "site/assets/projects/optiverse/asset-generator.webm",
+  "before": 1098125,
+  "after": 509595,
+  "ok": true
+ },
+ {
+  "src": "site/assets/projects/optiverse/capsule.mp4",
+  "out": "site/assets/projects/optiverse/capsule.webm",
+  "before": 11970525,
+  "after": 834630,
+  "ok": true
+ },
+ {
+  "src": "site/assets/projects/optiverse/deal-meeting-room.mp4",
+  "out": "site/assets/projects/optiverse/deal-meeting-room.webm",
+  "before": 11325740,
+  "after": 956410,
+  "ok": true
+ },
+ {
+  "src": "site/assets/projects/optiverse/map.mp4",
+  "out": "site/assets/projects/optiverse/map.webm",
+  "before": 6232402,
+  "after": 950257,
+  "ok": true,
+  "capped": true
+ },
+ {
+  "src": "site/assets/projects/optiverse/meeting-room-generator.mp4",
+  "out": "site/assets/projects/optiverse/meeting-room-generator.webm",
+  "before": 6236853,
+  "after": 878859,
+  "ok": true,
+  "capped": true
+ },
+ {
+  "src": "site/assets/projects/optiverse/meeting-room.mp4",
+  "out": "site/assets/projects/optiverse/meeting-room.webm",
+  "before": 11793291,
+  "after": 2281434,
+  "ok": true
+ },
+ {
+  "src": "site/assets/projects/optiverse/pdu.mp4",
+  "out": "site/assets/projects/optiverse/pdu.webm",
+  "before": 11450669,
+  "after": 771498,
+  "ok": true
+ },
+ {
+  "src": "site/assets/projects/optiverse/salon-dashboard.mp4",
+  "out": "site/assets/projects/optiverse/salon-dashboard.webm",
+  "before": 6238699,
+  "after": 958664,
+  "ok": true,
+  "capped": true
+ },
+ {
+  "src": "site/assets/projects/optiverse/sensory-dashboard.mp4",
+  "out": "site/assets/projects/optiverse/sensory-dashboard.webm",
+  "before": 6241112,
+  "after": 1040008,
+  "ok": true,
+  "capped": true
+ },
+ {
+  "src": "site/assets/projects/optiverse/syndicate-dashboard.mp4",
+  "out": "site/assets/projects/optiverse/syndicate-dashboard.webm",
+  "before": 6234766,
+  "after": 1030239,
+  "ok": true,
+  "capped": true
+ },
+ {
+  "src": "site/assets/projects/optiverse/teleport.mp4",
+  "out": "site/assets/projects/optiverse/teleport.webm",
+  "before": 6233844,
+  "after": 873075,
+  "ok": true,
+  "capped": true
+ },
+ {
+  "src": "site/assets/projects/v5/galaxy-360.mp4",
+  "out": "site/assets/projects/v5/galaxy-360.webm",
+  "before": 10871904,
+  "after": 1587036,
+  "ok": true
+ }
+]

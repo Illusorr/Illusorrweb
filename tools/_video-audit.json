@@ -1,0 +1,1052 @@
+[
+ {
+  "path": "site/assets/projects/metaculture/video/post-01.webm",
+  "ext": "webm",
+  "bytes": 844497,
+  "w": 1080,
+  "h": 1920,
+  "codec": "vp9",
+  "dur": 10.077,
+  "kbps": 670
+ },
+ {
+  "path": "site/assets/projects/metaculture/video/post-02.webm",
+  "ext": "webm",
+  "bytes": 844497,
+  "w": 1080,
+  "h": 1920,
+  "codec": "vp9",
+  "dur": 10.077,
+  "kbps": 670
+ },
+ {
+  "path": "site/assets/projects/metaculture/video/post-03.webm",
+  "ext": "webm",
+  "bytes": 803189,
+  "w": 1080,
+  "h": 1920,
+  "codec": "vp9",
+  "dur": 10.077,
+  "kbps": 638
+ },
+ {
+  "path": "site/assets/projects/metaculture/video/post-04.webm",
+  "ext": "webm",
+  "bytes": 5881094,
+  "w": 1080,
+  "h": 1080,
+  "codec": "vp9",
+  "dur": 52.317,
+  "kbps": 899
+ },
+ {
+  "path": "site/assets/projects/metaculture/video/post-05.webm",
+  "ext": "webm",
+  "bytes": 1098297,
+  "w": 1080,
+  "h": 1080,
+  "codec": "vp9",
+  "dur": 8.008,
+  "kbps": 1097
+ },
+ {
+  "path": "site/assets/projects/metaculture/video/post-06.webm",
+  "ext": "webm",
+  "bytes": 3145728,
+  "w": 1080,
+  "h": 1920,
+  "codec": "vp9",
+  "dur": 0.0,
+  "kbps": 0
+ },
+ {
+  "path": "site/assets/projects/metaculture/video/reel-a.mp4",
+  "ext": "mp4",
+  "bytes": 5621136,
+  "w": 1080,
+  "h": 1920,
+  "codec": "h264",
+  "dur": 4.066667,
+  "kbps": 11058
+ },
+ {
+  "path": "site/assets/projects/metaculture/video/reel-b.mp4",
+  "ext": "mp4",
+  "bytes": 9701087,
+  "w": 1080,
+  "h": 1080,
+  "codec": "h264",
+  "dur": 10.0,
+  "kbps": 7761
+ },
+ {
+  "path": "site/assets/projects/metagenus/clips/C1.webm",
+  "ext": "webm",
+  "bytes": 7758033,
+  "w": 3220,
+  "h": 3956,
+  "codec": "vp9",
+  "dur": 23.366,
+  "kbps": 2656
+ },
+ {
+  "path": "site/assets/projects/metagenus/clips/C2.webm",
+  "ext": "webm",
+  "bytes": 7977686,
+  "w": 3220,
+  "h": 3956,
+  "codec": "vp9",
+  "dur": 23.366,
+  "kbps": 2731
+ },
+ {
+  "path": "site/assets/projects/metagenus/clips/C3.webm",
+  "ext": "webm",
+  "bytes": 6504194,
+  "w": 3220,
+  "h": 3956,
+  "codec": "vp9",
+  "dur": 23.366,
+  "kbps": 2227
+ },
+ {
+  "path": "site/assets/projects/metagenus/clips/C4.webm",
+  "ext": "webm",
+  "bytes": 7382259,
+  "w": 3220,
+  "h": 3956,
+  "codec": "vp9",
+  "dur": 23.366,
+  "kbps": 2528
+ },
+ {
+  "path": "site/assets/projects/metagenus/clips/E1.webm",
+  "ext": "webm",
+  "bytes": 7505441,
+  "w": 3220,
+  "h": 3956,
+  "codec": "vp9",
+  "dur": 23.366,
+  "kbps": 2570
+ },
+ {
+  "path": "site/assets/projects/metagenus/clips/E2.webm",
+  "ext": "webm",
+  "bytes": 5920114,
+  "w": 3220,
+  "h": 3956,
+  "codec": "vp9",
+  "dur": 23.366,
+  "kbps": 2027
+ },
+ {
+  "path": "site/assets/projects/metagenus/clips/E3.webm",
+  "ext": "webm",
+  "bytes": 6898183,
+  "w": 3220,
+  "h": 3956,
+  "codec": "vp9",
+  "dur": 23.366,
+  "kbps": 2362
+ },
+ {
+  "path": "site/assets/projects/metagenus/clips/L1.webm",
+  "ext": "webm",
+  "bytes": 13049344,
+  "w": 3220,
+  "h": 3956,
+  "codec": "vp9",
+  "dur": 33.033,
+  "kbps": 3160
+ },
+ {
+  "path": "site/assets/projects/metagenus/clips/L2.webm",
+  "ext": "webm",
+  "bytes": 7145813,
+  "w": 3220,
+  "h": 3956,
+  "codec": "vp9",
+  "dur": 23.366,
+  "kbps": 2447
+ },
+ {
+  "path": "site/assets/projects/metagenus/holo/butterfly.webm",
+  "ext": "webm",
+  "bytes": 922127,
+  "w": 640,
+  "h": 640,
+  "codec": "vp9",
+  "dur": 8.333,
+  "kbps": 885
+ },
+ {
+  "path": "site/assets/projects/metagenus/holo/cat.webm",
+  "ext": "webm",
+  "bytes": 1244581,
+  "w": 640,
+  "h": 640,
+  "codec": "vp9",
+  "dur": 8.333,
+  "kbps": 1195
+ },
+ {
+  "path": "site/assets/projects/metagenus/holo/choker.webm",
+  "ext": "webm",
+  "bytes": 413476,
+  "w": 640,
+  "h": 640,
+  "codec": "vp9",
+  "dur": 8.333,
+  "kbps": 397
+ },
+ {
+  "path": "site/assets/projects/metagenus/holo/crown-celestial.webm",
+  "ext": "webm",
+  "bytes": 2987100,
+  "w": 640,
+  "h": 640,
+  "codec": "vp9",
+  "dur": 8.333,
+  "kbps": 2868
+ },
+ {
+  "path": "site/assets/projects/metagenus/holo/crown-vortex.webm",
+  "ext": "webm",
+  "bytes": 1171446,
+  "w": 640,
+  "h": 640,
+  "codec": "vp9",
+  "dur": 8.333,
+  "kbps": 1125
+ },
+ {
+  "path": "site/assets/projects/metagenus/holo/faceguard.webm",
+  "ext": "webm",
+  "bytes": 880352,
+  "w": 640,
+  "h": 640,
+  "codec": "vp9",
+  "dur": 8.333,
+  "kbps": 845
+ },
+ {
+  "path": "site/assets/projects/metagenus/holo/frog.webm",
+  "ext": "webm",
+  "bytes": 2240089,
+  "w": 640,
+  "h": 640,
+  "codec": "vp9",
+  "dur": 8.333,
+  "kbps": 2151
+ },
+ {
+  "path": "site/assets/projects/metagenus/holo/headset.webm",
+  "ext": "webm",
+  "bytes": 716088,
+  "w": 640,
+  "h": 640,
+  "codec": "vp9",
+  "dur": 8.333,
+  "kbps": 687
+ },
+ {
+  "path": "site/assets/projects/metagenus/holo/jetpack.webm",
+  "ext": "webm",
+  "bytes": 952883,
+  "w": 640,
+  "h": 640,
+  "codec": "vp9",
+  "dur": 8.333,
+  "kbps": 915
+ },
+ {
+  "path": "site/assets/projects/metagenus/holo/loop.webm",
+  "ext": "webm",
+  "bytes": 1764032,
+  "w": 640,
+  "h": 640,
+  "codec": "vp9",
+  "dur": 8.333,
+  "kbps": 1694
+ },
+ {
+  "path": "site/assets/projects/metagenus/holo/mask.webm",
+  "ext": "webm",
+  "bytes": 719183,
+  "w": 640,
+  "h": 640,
+  "codec": "vp9",
+  "dur": 8.333,
+  "kbps": 690
+ },
+ {
+  "path": "site/assets/projects/metagenus/holo/orb.webm",
+  "ext": "webm",
+  "bytes": 806608,
+  "w": 640,
+  "h": 640,
+  "codec": "vp9",
+  "dur": 8.333,
+  "kbps": 774
+ },
+ {
+  "path": "site/assets/projects/metagenus/holo/parrot.webm",
+  "ext": "webm",
+  "bytes": 1199980,
+  "w": 640,
+  "h": 640,
+  "codec": "vp9",
+  "dur": 8.333,
+  "kbps": 1152
+ },
+ {
+  "path": "site/assets/projects/metagenus/holo/portal.webm",
+  "ext": "webm",
+  "bytes": 1190765,
+  "w": 640,
+  "h": 640,
+  "codec": "vp9",
+  "dur": 8.333,
+  "kbps": 1143
+ },
+ {
+  "path": "site/assets/projects/metagenus/holo/props.webm",
+  "ext": "webm",
+  "bytes": 415873,
+  "w": 640,
+  "h": 640,
+  "codec": "vp9",
+  "dur": 8.333,
+  "kbps": 399
+ },
+ {
+  "path": "site/assets/projects/metagenus/holo/scepter-celestial.webm",
+  "ext": "webm",
+  "bytes": 854882,
+  "w": 640,
+  "h": 640,
+  "codec": "vp9",
+  "dur": 8.333,
+  "kbps": 821
+ },
+ {
+  "path": "site/assets/projects/metagenus/holo/seeker.webm",
+  "ext": "webm",
+  "bytes": 2694326,
+  "w": 640,
+  "h": 640,
+  "codec": "vp9",
+  "dur": 8.333,
+  "kbps": 2587
+ },
+ {
+  "path": "site/assets/projects/metagenus/holo/snail.webm",
+  "ext": "webm",
+  "bytes": 1918496,
+  "w": 640,
+  "h": 640,
+  "codec": "vp9",
+  "dur": 8.333,
+  "kbps": 1842
+ },
+ {
+  "path": "site/assets/projects/metagenus/holo/snake.webm",
+  "ext": "webm",
+  "bytes": 1696730,
+  "w": 640,
+  "h": 640,
+  "codec": "vp9",
+  "dur": 8.333,
+  "kbps": 1629
+ },
+ {
+  "path": "site/assets/projects/metagenus/holo/spider.webm",
+  "ext": "webm",
+  "bytes": 918277,
+  "w": 640,
+  "h": 640,
+  "codec": "vp9",
+  "dur": 8.333,
+  "kbps": 882
+ },
+ {
+  "path": "site/assets/projects/metagenus/holo/torque.webm",
+  "ext": "webm",
+  "bytes": 594364,
+  "w": 640,
+  "h": 640,
+  "codec": "vp9",
+  "dur": 8.333,
+  "kbps": 571
+ },
+ {
+  "path": "site/assets/projects/metagenus/holo/veil.webm",
+  "ext": "webm",
+  "bytes": 1767713,
+  "w": 640,
+  "h": 640,
+  "codec": "vp9",
+  "dur": 8.333,
+  "kbps": 1697
+ },
+ {
+  "path": "site/assets/projects/metagenus/holo/wings-celestial.webm",
+  "ext": "webm",
+  "bytes": 314026,
+  "w": 640,
+  "h": 640,
+  "codec": "vp9",
+  "dur": 8.333,
+  "kbps": 301
+ },
+ {
+  "path": "site/assets/projects/metagenus/holo/wings.webm",
+  "ext": "webm",
+  "bytes": 868738,
+  "w": 640,
+  "h": 640,
+  "codec": "vp9",
+  "dur": 8.333,
+  "kbps": 834
+ },
+ {
+  "path": "site/assets/projects/metagenus/shuffle/nft-shuffle.webm",
+  "ext": "webm",
+  "bytes": 611889,
+  "w": 720,
+  "h": 720,
+  "codec": "vp9",
+  "dur": 7.808,
+  "kbps": 627
+ },
+ {
+  "path": "site/assets/projects/metagenus/video/avatar-dancing.mp4",
+  "ext": "mp4",
+  "bytes": 9109573,
+  "w": 800,
+  "h": 1440,
+  "codec": "h264",
+  "dur": 13.666633,
+  "kbps": 5332
+ },
+ {
+  "path": "site/assets/projects/metagenus/video/face-filter.mp4",
+  "ext": "mp4",
+  "bytes": 12872063,
+  "w": 800,
+  "h": 1440,
+  "codec": "h264",
+  "dur": 19.766633,
+  "kbps": 5210
+ },
+ {
+  "path": "site/assets/projects/metagenus/video/filter-dance.mp4",
+  "ext": "mp4",
+  "bytes": 9109573,
+  "w": 800,
+  "h": 1440,
+  "codec": "h264",
+  "dur": 13.666633,
+  "kbps": 5332
+ },
+ {
+  "path": "site/assets/projects/metagenus/video/filter-dance.webm",
+  "ext": "webm",
+  "bytes": 1710568,
+  "w": 400,
+  "h": 720,
+  "codec": "vp9",
+  "dur": 13.666,
+  "kbps": 1001
+ },
+ {
+  "path": "site/assets/projects/metagenus/video/filter-face.mp4",
+  "ext": "mp4",
+  "bytes": 12872063,
+  "w": 800,
+  "h": 1440,
+  "codec": "h264",
+  "dur": 19.766633,
+  "kbps": 5210
+ },
+ {
+  "path": "site/assets/projects/metagenus/video/filter-face.webm",
+  "ext": "webm",
+  "bytes": 2945547,
+  "w": 400,
+  "h": 720,
+  "codec": "vp9",
+  "dur": 19.766,
+  "kbps": 1192
+ },
+ {
+  "path": "site/assets/projects/metagenus/video/pfp-grid.mp4",
+  "ext": "mp4",
+  "bytes": 12236401,
+  "w": 3840,
+  "h": 2160,
+  "codec": "h264",
+  "dur": 9.884875,
+  "kbps": 9903
+ },
+ {
+  "path": "site/assets/projects/optiverse/asset-generator.mp4",
+  "ext": "mp4",
+  "bytes": 1098125,
+  "w": 1920,
+  "h": 1920,
+  "codec": "h264",
+  "dur": 4.183333,
+  "kbps": 2100
+ },
+ {
+  "path": "site/assets/projects/optiverse/capsule.mp4",
+  "ext": "mp4",
+  "bytes": 11970525,
+  "w": 1920,
+  "h": 1920,
+  "codec": "h264",
+  "dur": 8.333333,
+  "kbps": 11492
+ },
+ {
+  "path": "site/assets/projects/optiverse/deal-meeting-room.mp4",
+  "ext": "mp4",
+  "bytes": 11325740,
+  "w": 1920,
+  "h": 1920,
+  "codec": "h264",
+  "dur": 8.333333,
+  "kbps": 10873
+ },
+ {
+  "path": "site/assets/projects/optiverse/map.mp4",
+  "ext": "mp4",
+  "bytes": 6232402,
+  "w": 1920,
+  "h": 1920,
+  "codec": "h264",
+  "dur": 4.183333,
+  "kbps": 11919
+ },
+ {
+  "path": "site/assets/projects/optiverse/meeting-room-generator.mp4",
+  "ext": "mp4",
+  "bytes": 6236853,
+  "w": 1920,
+  "h": 1920,
+  "codec": "h264",
+  "dur": 4.183333,
+  "kbps": 11927
+ },
+ {
+  "path": "site/assets/projects/optiverse/meeting-room.mp4",
+  "ext": "mp4",
+  "bytes": 11793291,
+  "w": 1920,
+  "h": 1920,
+  "codec": "h264",
+  "dur": 8.333333,
+  "kbps": 11322
+ },
+ {
+  "path": "site/assets/projects/optiverse/pdu.mp4",
+  "ext": "mp4",
+  "bytes": 11450669,
+  "w": 1920,
+  "h": 1920,
+  "codec": "h264",
+  "dur": 8.333333,
+  "kbps": 10993
+ },
+ {
+  "path": "site/assets/projects/optiverse/salon-dashboard.mp4",
+  "ext": "mp4",
+  "bytes": 6238699,
+  "w": 1920,
+  "h": 1920,
+  "codec": "h264",
+  "dur": 4.183333,
+  "kbps": 11931
+ },
+ {
+  "path": "site/assets/projects/optiverse/sensory-dashboard.mp4",
+  "ext": "mp4",
+  "bytes": 6241112,
+  "w": 1920,
+  "h": 1920,
+  "codec": "h264",
+  "dur": 4.183333,
+  "kbps": 11935
+ },
+ {
+  "path": "site/assets/projects/optiverse/syndicate-dashboard.mp4",
+  "ext": "mp4",
+  "bytes": 6234766,
+  "w": 1920,
+  "h": 1920,
+  "codec": "h264",
+  "dur": 4.183333,
+  "kbps": 11923
+ },
+ {
+  "path": "site/assets/projects/optiverse/teleport.mp4",
+  "ext": "mp4",
+  "bytes": 6233844,
+  "w": 1920,
+  "h": 1920,
+  "codec": "h264",
+  "dur": 4.183333,
+  "kbps": 11921
+ },
+ {
+  "path": "site/assets/projects/v5/galaxy-360.mp4",
+  "ext": "mp4",
+  "bytes": 10871904,
+  "w": 3200,
+  "h": 1600,
+  "codec": "h264",
+  "dur": 8.033333,
+  "kbps": 10827
+ },
+ {
+  "path": "site/assets/video/anfasic/film-01.mp4",
+  "ext": "mp4",
+  "bytes": 11363733,
+  "w": 1440,
+  "h": 2560,
+  "codec": "h264",
+  "dur": 8.0,
+  "kbps": 11364
+ },
+ {
+  "path": "site/assets/video/anfasic/film-02.mp4",
+  "ext": "mp4",
+  "bytes": 10029627,
+  "w": 1440,
+  "h": 2560,
+  "codec": "h264",
+  "dur": 8.0,
+  "kbps": 10030
+ },
+ {
+  "path": "site/assets/video/anfasic/film-03.mp4",
+  "ext": "mp4",
+  "bytes": 9933770,
+  "w": 1440,
+  "h": 2560,
+  "codec": "h264",
+  "dur": 8.0,
+  "kbps": 9934
+ },
+ {
+  "path": "site/assets/video/anfasic/film-04.mp4",
+  "ext": "mp4",
+  "bytes": 8203737,
+  "w": 1080,
+  "h": 1920,
+  "codec": "h264",
+  "dur": 8.0,
+  "kbps": 8204
+ },
+ {
+  "path": "site/assets/video/anfasic/film-05.mp4",
+  "ext": "mp4",
+  "bytes": 7078663,
+  "w": 1080,
+  "h": 1920,
+  "codec": "h264",
+  "dur": 8.0,
+  "kbps": 7079
+ },
+ {
+  "path": "site/assets/video/art-post-office/apo-july-r3.mp4",
+  "ext": "mp4",
+  "bytes": 12316060,
+  "w": 1080,
+  "h": 1920,
+  "codec": "h264",
+  "dur": 6.082993,
+  "kbps": 16197
+ },
+ {
+  "path": "site/assets/video/art-post-office/apo-june-r1.mp4",
+  "ext": "mp4",
+  "bytes": 14062901,
+  "w": 1080,
+  "h": 1920,
+  "codec": "h264",
+  "dur": 9.0,
+  "kbps": 12500
+ },
+ {
+  "path": "site/assets/video/coffee-merchant/tcm-r2.mp4",
+  "ext": "mp4",
+  "bytes": 17529226,
+  "w": 1080,
+  "h": 1920,
+  "codec": "h264",
+  "dur": 12.050998,
+  "kbps": 11637
+ },
+ {
+  "path": "site/assets/video/coffee-merchant/tcm-r3.mp4",
+  "ext": "mp4",
+  "bytes": 19474114,
+  "w": 1080,
+  "h": 1934,
+  "codec": "h264",
+  "dur": 10.053991,
+  "kbps": 15496
+ },
+ {
+  "path": "site/assets/video/hind-al-oud/hao-june-reel.mp4",
+  "ext": "mp4",
+  "bytes": 15407786,
+  "w": 1728,
+  "h": 3072,
+  "codec": "h264",
+  "dur": 11.933333,
+  "kbps": 10329
+ },
+ {
+  "path": "site/assets/video/hind-al-oud/hou-01.webm",
+  "ext": "webm",
+  "bytes": 2412619,
+  "w": 1080,
+  "h": 1920,
+  "codec": "vp9",
+  "dur": 15.346,
+  "kbps": 1258
+ },
+ {
+  "path": "site/assets/video/hind-al-oud/hou-02.webm",
+  "ext": "webm",
+  "bytes": 2110730,
+  "w": 1080,
+  "h": 1920,
+  "codec": "vp9",
+  "dur": 10.269,
+  "kbps": 1644
+ },
+ {
+  "path": "site/assets/video/hind-al-oud/july-01.webm",
+  "ext": "webm",
+  "bytes": 4862895,
+  "w": 1080,
+  "h": 1920,
+  "codec": "vp9",
+  "dur": 10.973,
+  "kbps": 3545
+ },
+ {
+  "path": "site/assets/video/hind-al-oud/july-03.webm",
+  "ext": "webm",
+  "bytes": 5734785,
+  "w": 1080,
+  "h": 1920,
+  "codec": "vp9",
+  "dur": 16.05,
+  "kbps": 2858
+ },
+ {
+  "path": "site/assets/video/hind-al-oud/july-04.webm",
+  "ext": "webm",
+  "bytes": 4517434,
+  "w": 1080,
+  "h": 1920,
+  "codec": "vp9",
+  "dur": 13.64,
+  "kbps": 2650
+ },
+ {
+  "path": "site/assets/video/hind-al-oud/mb.webm",
+  "ext": "webm",
+  "bytes": 6142115,
+  "w": 1080,
+  "h": 1920,
+  "codec": "vp9",
+  "dur": 15.494,
+  "kbps": 3171
+ },
+ {
+  "path": "site/assets/video/hind-al-oud/musk-al-shiok-02.webm",
+  "ext": "webm",
+  "bytes": 3132925,
+  "w": 1080,
+  "h": 1920,
+  "codec": "vp9",
+  "dur": 12.986,
+  "kbps": 1930
+ },
+ {
+  "path": "site/assets/video/hind-al-oud/musk-al-shiok-03.webm",
+  "ext": "webm",
+  "bytes": 2719887,
+  "w": 1080,
+  "h": 1920,
+  "codec": "vp9",
+  "dur": 7.218,
+  "kbps": 3015
+ },
+ {
+  "path": "site/assets/video/hind-al-oud/oil.webm",
+  "ext": "webm",
+  "bytes": 3823610,
+  "w": 1080,
+  "h": 1920,
+  "codec": "vp9",
+  "dur": 17.693,
+  "kbps": 1729
+ },
+ {
+  "path": "site/assets/video/hind-al-oud/perfume.webm",
+  "ext": "webm",
+  "bytes": 2417070,
+  "w": 1080,
+  "h": 1920,
+  "codec": "vp9",
+  "dur": 12.402,
+  "kbps": 1559
+ },
+ {
+  "path": "site/assets/video/hind-al-oud/pink-musk-01.webm",
+  "ext": "webm",
+  "bytes": 6724587,
+  "w": 1080,
+  "h": 1920,
+  "codec": "vp9",
+  "dur": 14.983,
+  "kbps": 3591
+ },
+ {
+  "path": "site/assets/video/hind-al-oud/pink-musk-02.webm",
+  "ext": "webm",
+  "bytes": 4573151,
+  "w": 1080,
+  "h": 1920,
+  "codec": "vp9",
+  "dur": 12.406,
+  "kbps": 2949
+ },
+ {
+  "path": "site/assets/video/hind-al-oud/sequence-01.webm",
+  "ext": "webm",
+  "bytes": 3607705,
+  "w": 1080,
+  "h": 1920,
+  "codec": "vp9",
+  "dur": 11.954,
+  "kbps": 2414
+ },
+ {
+  "path": "site/assets/video/hind-al-oud/sequence-02.webm",
+  "ext": "webm",
+  "bytes": 3531259,
+  "w": 1080,
+  "h": 1920,
+  "codec": "vp9",
+  "dur": 12.146,
+  "kbps": 2326
+ },
+ {
+  "path": "site/assets/video/khaltat/khaltat-july-reel.mp4",
+  "ext": "mp4",
+  "bytes": 13229399,
+  "w": 1080,
+  "h": 1920,
+  "codec": "h264",
+  "dur": 14.506667,
+  "kbps": 7296
+ },
+ {
+  "path": "site/assets/video/marlia-swimwear/concept-magic-colors.mp4",
+  "ext": "mp4",
+  "bytes": 11922329,
+  "w": 1280,
+  "h": 720,
+  "codec": "h264",
+  "dur": 20.366009,
+  "kbps": 4683
+ },
+ {
+  "path": "site/assets/video/marlia-swimwear/gift-card.mp4",
+  "ext": "mp4",
+  "bytes": 13250670,
+  "w": 1920,
+  "h": 1480,
+  "codec": "h264",
+  "dur": 10.01,
+  "kbps": 10590
+ },
+ {
+  "path": "site/assets/video/moodie-kiosk/eyes-animation.mp4",
+  "ext": "mp4",
+  "bytes": 389946,
+  "w": 1920,
+  "h": 1080,
+  "codec": "h264",
+  "dur": 2.8028,
+  "kbps": 1113
+ },
+ {
+  "path": "site/assets/video/morphellum/helium-turntable.webm",
+  "ext": "webm",
+  "bytes": 550139,
+  "w": 720,
+  "h": 960,
+  "codec": "vp9",
+  "dur": 0.0,
+  "kbps": 0
+ },
+ {
+  "path": "site/assets/video/morphellum/machimatch-turntable.webm",
+  "ext": "webm",
+  "bytes": 611987,
+  "w": 720,
+  "h": 960,
+  "codec": "vp9",
+  "dur": 0.0,
+  "kbps": 0
+ },
+ {
+  "path": "site/assets/video/morphellum/opulence-turntable.webm",
+  "ext": "webm",
+  "bytes": 687867,
+  "w": 720,
+  "h": 960,
+  "codec": "vp9",
+  "dur": 0.0,
+  "kbps": 0
+ },
+ {
+  "path": "site/assets/video/real-estate-tower.webm",
+  "ext": "webm",
+  "bytes": 3737676,
+  "w": 810,
+  "h": 1080,
+  "codec": "vp9",
+  "dur": 15.042,
+  "kbps": 1988
+ },
+ {
+  "path": "site/projects/aa/uploads/aa-mobile-project.mp4",
+  "ext": "mp4",
+  "bytes": 3314533,
+  "w": 500,
+  "h": 1098,
+  "codec": "h264",
+  "dur": 13.759979,
+  "kbps": 1927
+ },
+ {
+  "path": "site/projects/aa/uploads/aa-mobile-projects.mp4",
+  "ext": "mp4",
+  "bytes": 2870599,
+  "w": 500,
+  "h": 1092,
+  "codec": "h264",
+  "dur": 9.706646,
+  "kbps": 2366
+ },
+ {
+  "path": "site/projects/aa/uploads/aa-story-beat1.mp4",
+  "ext": "mp4",
+  "bytes": 11894298,
+  "w": 2496,
+  "h": 1218,
+  "codec": "h264",
+  "dur": 7.722646,
+  "kbps": 12321
+ },
+ {
+  "path": "site/projects/aa/uploads/aa-story-beat2.mp4",
+  "ext": "mp4",
+  "bytes": 1786903,
+  "w": 2514,
+  "h": 1228,
+  "codec": "h264",
+  "dur": 5.4,
+  "kbps": 2647
+ },
+ {
+  "path": "site/projects/aa/uploads/Screen Recording 2026-06-24 114508.mp4",
+  "ext": "mp4",
+  "bytes": 2870599,
+  "w": 500,
+  "h": 1092,
+  "codec": "h264",
+  "dur": 9.706646,
+  "kbps": 2366
+ },
+ {
+  "path": "site/projects/aa/uploads/Screen Recording 2026-06-24 114635.mp4",
+  "ext": "mp4",
+  "bytes": 3314533,
+  "w": 500,
+  "h": 1098,
+  "codec": "h264",
+  "dur": 13.759979,
+  "kbps": 1927
+ },
+ {
+  "path": "site/projects/aa/uploads/Screen Recording 2026-06-24 124202.mp4",
+  "ext": "mp4",
+  "bytes": 11894298,
+  "w": 2496,
+  "h": 1218,
+  "codec": "h264",
+  "dur": 7.722646,
+  "kbps": 12321
+ },
+ {
+  "path": "site/projects/aa/uploads/Screen Recording 2026-06-24 124921.mp4",
+  "ext": "mp4",
+  "bytes": 1786903,
+  "w": 2514,
+  "h": 1228,
+  "codec": "h264",
+  "dur": 5.4,
+  "kbps": 2647
+ },
+ {
+  "path": "site/projects/lap/assets/m-recording.mp4",
+  "ext": "mp4",
+  "bytes": 2310459,
+  "w": 502,
+  "h": 1096,
+  "codec": "h264",
+  "dur": 7.743979,
+  "kbps": 2387
+ },
+ {
+  "path": "site/projects/lap/assets/story-video.mp4",
+  "ext": "mp4",
+  "bytes": 18413984,
+  "w": 1080,
+  "h": 1920,
+  "codec": "h264",
+  "dur": 16.3,
+  "kbps": 9038
+ },
+ {
+  "path": "site/projects/lap/uploads/0629.mp4",
+  "ext": "mp4",
+  "bytes": 18413984,
+  "w": 1080,
+  "h": 1920,
+  "codec": "h264",
+  "dur": 16.3,
+  "kbps": 9038
+ },
+ {
+  "path": "site/projects/lap/uploads/Screen Recording 2026-06-29 112040.mp4",
+  "ext": "mp4",
+  "bytes": 2310459,
+  "w": 502,
+  "h": 1096,
+  "codec": "h264",
+  "dur": 7.743979,
+  "kbps": 2387
+ }
+]

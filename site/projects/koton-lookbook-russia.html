@@ -344,7 +344,7 @@
     pointer-events: none;
   }
   .ph::after { content: none; }
-  /* When a .ph holds a real <img> or <video>, drop the dotted hatch +
+  /* When a .ph holds a real <img> or <video preload="none">, drop the dotted hatch +
      center diamond + label chips so the asset reads cleanly. */
   .ph.is-filled::before,
   .ph.is-filled::after { display: none; }
@@ -1208,7 +1208,7 @@
   <section class="hero-media" data-tone="light" data-screen-label="01b Cover Media">
     <div class="hm-inner">
       <div class="hm-frame" style="height:auto;overflow:visible;background:none">
-        <div class="plate-mid"><img src="../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-campaign-cover.webp" alt="Koton Russia FW25, cover plate" loading="eager" fetchpriority="high" style="width:100%;height:auto;display:block"></div>
+        <div class="plate-mid"><img src="../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-campaign-cover.webp" alt="Koton Russia FW25, cover plate" loading="eager" fetchpriority="high" style="width:100%;height:auto;display:block" srcset="../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-campaign-cover-768.webp 768w, ../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-campaign-cover.webp 1200w" sizes="(max-width:390px) 359px, (max-width:640px) 598px, (max-width:768px) 799px, (max-width:1024px) 1065px, (max-width:1440px) 1498px, 1997px"></div>
       </div>
       <div class="hm-cap"><span>Koton Russia</span><span>Cover</span></div>
     </div>
@@ -1295,7 +1295,7 @@
   <!-- visual band -->
   <section class="vband" data-tone="light" data-screen-label="Visual 01">
     <div class="vb-frame" style="height:auto;overflow:visible;background:none">
-      <div class="plate-mid"><img src="../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-look-06.webp" alt="Koton Russia FW25, the brief plate" loading="lazy" style="width:100%;height:auto;display:block"></div>
+      <div class="plate-mid"><img src="../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-look-06.webp" alt="Koton Russia FW25, the brief plate" loading="lazy" style="width:100%;height:auto;display:block" srcset="../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-look-06-768.webp 768w, ../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-look-06-1200.webp 1200w, ../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-look-06.webp 1300w" sizes="(max-width:390px) 359px, (max-width:640px) 589px, (max-width:768px) 707px, (max-width:1024px) 720px, 720px"></div>
     </div>
     <div class="vb-cap"><span>The Brief</span><span>01</span></div>
   </section>
@@ -1336,7 +1336,7 @@
       <div class="duo">
         <div class="col col-a">
           <div class="ph is-filled nat">
-            <img src="../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-look-11.webp" alt="Koton Russia FW25, the brown wool suit standing in soft light" loading="lazy" decoding="async">
+            <img src="../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-look-11.webp" alt="Koton Russia FW25, the brown wool suit standing in soft light" loading="lazy" decoding="async" srcset="../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-look-11-768.webp 768w, ../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-look-11-1200.webp 1200w, ../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-look-11.webp 1300w" sizes="(max-width:390px) 350px, (max-width:640px) 600px, (max-width:768px) 707px, (max-width:1024px) 547px, (max-width:1440px) 769px, 758px">
             <span class="ph-label">Plate 01</span>
             <span class="ph-dim">Koton FW25 · Tailoring</span>
             <span class="caption">
@@ -1348,7 +1348,7 @@
         </div>
         <div class="col col-b">
           <div class="ph is-filled nat">
-            <img src="../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-look-12.webp" alt="Koton Russia FW25, the check blazer worn with dark denim" loading="lazy" decoding="async">
+            <img src="../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-look-12.webp" alt="Koton Russia FW25, the check blazer worn with dark denim" loading="lazy" decoding="async" srcset="../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-look-12-768.webp 768w, ../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-look-12-1200.webp 1200w, ../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-look-12.webp 1300w" sizes="(max-width:390px) 350px, (max-width:640px) 600px, (max-width:768px) 707px, (max-width:1024px) 365px, (max-width:1440px) 513px, 506px">
             <span class="ph-label">Plate 02</span>
             <span class="ph-dim">Koton FW25 · Knitwear</span>
             <span class="caption">
@@ -1366,7 +1366,7 @@
   <section class="bleed" data-tone="light" data-rail="4" data-screen-label="05 Editorial">
     <div class="wrap">
       <div class="ph is-filled nat plate-mid">
-        <img src="../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-editorial-frame-01.webp" alt="Koton Russia FW25, the dark brown suit seated in the studio" loading="lazy" decoding="async">
+        <img src="../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-editorial-frame-01.webp" alt="Koton Russia FW25, the dark brown suit seated in the studio" loading="lazy" decoding="async" srcset="../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-editorial-frame-01-768.webp 768w, ../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-editorial-frame-01-1200.webp 1200w, ../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-editorial-frame-01.webp 1300w" sizes="(max-width:390px) 350px, (max-width:640px) 589px, (max-width:768px) 707px, (max-width:1024px) 720px, 720px">
         <span class="ph-label">Editorial Plate</span>
         <span class="ph-dim">Koton FW25 · Tailoring</span>
         <span class="caption">
@@ -1430,7 +1430,7 @@
       <div class="trio">
         <div class="col">
           <div class="ph is-filled nat">
-            <img src="../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-look-04.webp" alt="Koton Russia FW25, the taupe suit full length against steel" loading="lazy" decoding="async">
+            <img src="../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-look-04.webp" alt="Koton Russia FW25, the taupe suit full length against steel" loading="lazy" decoding="async" srcset="../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-look-04-640.webp 640w, ../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-look-04-768.webp 768w, ../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-look-04-960.webp 960w, ../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-look-04-1200.webp 1200w, ../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-look-04.webp 1300w" sizes="(max-width:390px) 350px, (max-width:640px) 600px, (max-width:768px) 707px, (max-width:1024px) 300px, (max-width:1440px) 422px, 416px">
             <span class="ph-label">Look 03</span>
             <span class="ph-dim">Koton FW25 · Tailoring</span>
             <span class="caption"><span>FW25: taupe suit, brushed steel</span><span>Plate 0142</span></span>
@@ -1438,7 +1438,7 @@
         </div>
         <div class="col">
           <div class="ph is-filled nat">
-            <img src="../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-look-01.webp" alt="Koton Russia FW25, the check blazer seated on a studio stool" loading="lazy" decoding="async">
+            <img src="../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-look-01.webp" alt="Koton Russia FW25, the check blazer seated on a studio stool" loading="lazy" decoding="async" srcset="../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-look-01-640.webp 640w, ../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-look-01-768.webp 768w, ../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-look-01-960.webp 960w, ../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-look-01-1200.webp 1200w, ../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-look-01.webp 1300w" sizes="(max-width:390px) 350px, (max-width:640px) 600px, (max-width:768px) 707px, (max-width:1024px) 300px, (max-width:1440px) 422px, 416px">
             <span class="ph-label">Look 07</span>
             <span class="ph-dim">Koton FW25 · Tailoring</span>
             <span class="caption"><span>FW25: check blazer, studio stool</span><span>Plate 0388</span></span>
@@ -1446,7 +1446,7 @@
         </div>
         <div class="col">
           <div class="ph is-filled nat">
-            <img src="../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-look-13.webp" alt="Koton Russia FW25, the check blazer with burgundy roll-neck and denim" loading="lazy" decoding="async">
+            <img src="../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-look-13.webp" alt="Koton Russia FW25, the check blazer with burgundy roll-neck and denim" loading="lazy" decoding="async" srcset="../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-look-13-640.webp 640w, ../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-look-13-768.webp 768w, ../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-look-13-960.webp 960w, ../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-look-13-1200.webp 1200w, ../assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-look-13.webp 1300w" sizes="(max-width:390px) 350px, (max-width:640px) 600px, (max-width:768px) 707px, (max-width:1024px) 300px, (max-width:1440px) 422px, 416px">
             <span class="ph-label">Look 11</span>
             <span class="ph-dim">Koton FW25 · Outerwear</span>
             <span class="caption"><span>FW25: houndstooth blazer & roll-neck</span><span>Plate 0571</span></span>
@@ -1527,7 +1527,7 @@
   <!-- 11. NEXT PROJECT TEASER -->
   <section class="next" data-tone="dark" data-rail="7" data-screen-label="11 Next">
     <div class="next-bg">
-      <div class="ph is-filled" style="overflow:hidden"><img src="../assets/img/projects/morphellum/illusorr-morphellum-machimatch-digital-garment-artwork.webp" alt="Morphellum, next project" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+      <div class="ph is-filled" style="overflow:hidden"><img src="../assets/img/projects/morphellum/illusorr-morphellum-machimatch-digital-garment-artwork.webp" alt="Morphellum, next project" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block" srcset="../assets/img/projects/morphellum/illusorr-morphellum-machimatch-digital-garment-artwork-768.webp 768w, ../assets/img/projects/morphellum/illusorr-morphellum-machimatch-digital-garment-artwork-1200.webp 1200w, ../assets/img/projects/morphellum/illusorr-morphellum-machimatch-digital-garment-artwork.webp 1300w" sizes="(max-width:390px) 348px, (max-width:640px) 598px, (max-width:768px) 799px, (max-width:1024px) 1065px, (max-width:1440px) 1498px, 1997px"></div>
     </div>
     <div class="next-inner">
       <span class="next-k">Next Project · 010</span>

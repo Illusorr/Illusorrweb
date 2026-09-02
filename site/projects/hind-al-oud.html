@@ -347,7 +347,7 @@
     pointer-events: none;
   }
   .ph::after { content: none; }
-  /* When a .ph holds a real <img> or <video>, drop the dotted hatch +
+  /* When a .ph holds a real <img> or <video preload="none">, drop the dotted hatch +
      center diamond + label chips so the asset reads cleanly. */
   .ph.is-filled::before,
   .ph.is-filled::after { display: none; }
@@ -1385,11 +1385,11 @@
   <section data-tone="light" data-rail="1" data-screen-label="02 Campaign">
     <div style="padding-bottom: clamp(70px, 9vw, 140px)">
       <div class="ho-banner" data-hocar>
-        <img src="../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-outdoor-billboard-visual.webp" alt="Hind Al Oud campaign, frame 1" class="is-on" loading="eager" fetchpriority="high">
-        <img src="../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-fragrance-social-content-cover.webp" alt="Hind Al Oud campaign, frame 2" class="" loading="lazy" decoding="async">
-        <img src="../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-additional-content-frame-01.webp" alt="Hind Al Oud campaign, frame 3" class="" loading="lazy" decoding="async">
-        <img src="../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-additional-content-frame-02.webp" alt="Hind Al Oud campaign, frame 4" class="" loading="lazy" decoding="async">
-        <img src="../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-additional-content-frame-03.webp" alt="Hind Al Oud campaign, frame 5" class="" loading="lazy" decoding="async">
+        <img src="../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-outdoor-billboard-visual.webp" alt="Hind Al Oud campaign, frame 1" class="is-on" loading="eager" fetchpriority="high" srcset="../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-outdoor-billboard-visual-960.webp 960w, ../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-outdoor-billboard-visual.webp 1200w" sizes="(max-width:390px) 390px, (max-width:640px) 640px, (max-width:768px) 799px, (max-width:1024px) 1065px, (max-width:1440px) 1498px, 1997px">
+        <img src="../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-fragrance-social-content-cover.webp" alt="Hind Al Oud campaign, frame 2" class="" loading="lazy" decoding="async" srcset="../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-fragrance-social-content-cover-960.webp 960w, ../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-fragrance-social-content-cover.webp 1200w" sizes="(max-width:390px) 413px, (max-width:640px) 678px, (max-width:768px) 814px, (max-width:1024px) 1085px, (max-width:1440px) 1526px, 2035px">
+        <img src="../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-additional-content-frame-01.webp" alt="Hind Al Oud campaign, frame 3" class="" loading="lazy" decoding="async" srcset="../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-additional-content-frame-01-960.webp 960w, ../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-additional-content-frame-01.webp 1100w" sizes="(max-width:390px) 413px, (max-width:640px) 678px, (max-width:768px) 814px, (max-width:1024px) 1085px, (max-width:1440px) 1526px, 2035px">
+        <img src="../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-additional-content-frame-02.webp" alt="Hind Al Oud campaign, frame 4" class="" loading="lazy" decoding="async" srcset="../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-additional-content-frame-02-960.webp 960w, ../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-additional-content-frame-02.webp 1100w" sizes="(max-width:390px) 413px, (max-width:640px) 678px, (max-width:768px) 814px, (max-width:1024px) 1085px, (max-width:1440px) 1526px, 2035px">
+        <img src="../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-additional-content-frame-03.webp" alt="Hind Al Oud campaign, frame 5" class="" loading="lazy" decoding="async" srcset="../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-additional-content-frame-03-960.webp 960w, ../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-additional-content-frame-03.webp 1100w" sizes="(max-width:390px) 413px, (max-width:640px) 678px, (max-width:768px) 814px, (max-width:1024px) 1085px, (max-width:1440px) 1526px, 2035px">
         <button class="ho-arrow ho-p" aria-label="Previous frame"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 5 8 12 15 19"/></svg></button>
         <button class="ho-arrow ho-n" aria-label="Next frame"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 5 16 12 9 19"/></svg></button>
         <div class="ho-dots"><button class="ho-dot is-on" aria-label="Frame 1"></button><button class="ho-dot" aria-label="Frame 2"></button><button class="ho-dot" aria-label="Frame 3"></button><button class="ho-dot" aria-label="Frame 4"></button><button class="ho-dot" aria-label="Frame 5"></button></div>
@@ -1483,17 +1483,17 @@
       </div>
       <div class="ho-panel is-active" id="ho-feb" role="tabpanel" aria-label="February grid">
         <div class="ho-grid">
-          <figure class="ho-cell"><img src="../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-01.webp" alt="Hind Al Oud February social post 1" loading="lazy" decoding="async"><figcaption>February · 01</figcaption></figure>
-          <figure class="ho-cell"><img src="../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-02.webp" alt="Hind Al Oud February social post 2" loading="lazy" decoding="async"><figcaption>February · 02</figcaption></figure>
-          <figure class="ho-cell"><img src="../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-03.webp" alt="Hind Al Oud February social post 3" loading="lazy" decoding="async"><figcaption>February · 03</figcaption></figure>
-          <figure class="ho-cell"><img src="../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-04.webp" alt="Hind Al Oud February social post 4" loading="lazy" decoding="async"><figcaption>February · 04</figcaption></figure>
-          <figure class="ho-cell"><img src="../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-05.webp" alt="Hind Al Oud February social post 5" loading="lazy" decoding="async"><figcaption>February · 05</figcaption></figure>
-          <figure class="ho-cell"><img src="../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-06.webp" alt="Hind Al Oud February social post 6" loading="lazy" decoding="async"><figcaption>February · 06</figcaption></figure>
-          <figure class="ho-cell"><img src="../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-07.webp" alt="Hind Al Oud February social post 7" loading="lazy" decoding="async"><figcaption>February · 07</figcaption></figure>
-          <figure class="ho-cell"><img src="../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-08.webp" alt="Hind Al Oud February social post 8" loading="lazy" decoding="async"><figcaption>February · 08</figcaption></figure>
-          <figure class="ho-cell"><img src="../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-09.webp" alt="Hind Al Oud February social post 9" loading="lazy" decoding="async"><figcaption>February · 09</figcaption></figure>
-          <figure class="ho-cell"><img src="../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-10.webp" alt="Hind Al Oud February social post 10" loading="lazy" decoding="async"><figcaption>February · 10</figcaption></figure>
-          <figure class="ho-cell"><img src="../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-11.webp" alt="Hind Al Oud February social post 11" loading="lazy" decoding="async"><figcaption>February · 11</figcaption></figure>
+          <figure class="ho-cell"><img src="../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-01.webp" alt="Hind Al Oud February social post 1" loading="lazy" decoding="async" srcset="../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-01-360.webp 360w, ../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-01-480.webp 480w, ../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-01-640.webp 640w, ../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-01.webp 896w" sizes="(max-width:390px) 113px, (max-width:640px) 196px, (max-width:768px) 230px, (max-width:1024px) 307px, (max-width:1440px) 432px, 425px"><figcaption>February · 01</figcaption></figure>
+          <figure class="ho-cell"><img src="../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-02.webp" alt="Hind Al Oud February social post 2" loading="lazy" decoding="async" srcset="../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-02-360.webp 360w, ../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-02-480.webp 480w, ../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-02-640.webp 640w, ../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-02.webp 960w" sizes="(max-width:390px) 113px, (max-width:640px) 196px, (max-width:768px) 230px, (max-width:1024px) 307px, (max-width:1440px) 432px, 425px"><figcaption>February · 02</figcaption></figure>
+          <figure class="ho-cell"><img src="../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-03.webp" alt="Hind Al Oud February social post 3" loading="lazy" decoding="async" srcset="../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-03-360.webp 360w, ../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-03-480.webp 480w, ../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-03-640.webp 640w, ../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-03.webp 896w" sizes="(max-width:390px) 113px, (max-width:640px) 196px, (max-width:768px) 230px, (max-width:1024px) 307px, (max-width:1440px) 432px, 425px"><figcaption>February · 03</figcaption></figure>
+          <figure class="ho-cell"><img src="../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-04.webp" alt="Hind Al Oud February social post 4" loading="lazy" decoding="async" srcset="../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-04-360.webp 360w, ../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-04-480.webp 480w, ../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-04-640.webp 640w, ../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-04.webp 896w" sizes="(max-width:390px) 113px, (max-width:640px) 196px, (max-width:768px) 230px, (max-width:1024px) 307px, (max-width:1440px) 432px, 425px"><figcaption>February · 04</figcaption></figure>
+          <figure class="ho-cell"><img src="../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-05.webp" alt="Hind Al Oud February social post 5" loading="lazy" decoding="async" srcset="../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-05-360.webp 360w, ../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-05-480.webp 480w, ../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-05-640.webp 640w, ../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-05.webp 960w" sizes="(max-width:390px) 113px, (max-width:640px) 196px, (max-width:768px) 230px, (max-width:1024px) 307px, (max-width:1440px) 432px, 425px"><figcaption>February · 05</figcaption></figure>
+          <figure class="ho-cell"><img src="../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-06.webp" alt="Hind Al Oud February social post 6" loading="lazy" decoding="async" srcset="../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-06-360.webp 360w, ../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-06-480.webp 480w, ../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-06-640.webp 640w, ../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-06.webp 896w" sizes="(max-width:390px) 113px, (max-width:640px) 196px, (max-width:768px) 230px, (max-width:1024px) 307px, (max-width:1440px) 432px, 425px"><figcaption>February · 06</figcaption></figure>
+          <figure class="ho-cell"><img src="../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-07.webp" alt="Hind Al Oud February social post 7" loading="lazy" decoding="async" srcset="../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-07-360.webp 360w, ../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-07-480.webp 480w, ../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-07-640.webp 640w, ../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-07.webp 960w" sizes="(max-width:390px) 113px, (max-width:640px) 196px, (max-width:768px) 230px, (max-width:1024px) 307px, (max-width:1440px) 432px, 425px"><figcaption>February · 07</figcaption></figure>
+          <figure class="ho-cell"><img src="../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-08.webp" alt="Hind Al Oud February social post 8" loading="lazy" decoding="async" srcset="../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-08-360.webp 360w, ../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-08-480.webp 480w, ../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-08-640.webp 640w, ../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-08.webp 960w" sizes="(max-width:390px) 113px, (max-width:640px) 196px, (max-width:768px) 230px, (max-width:1024px) 307px, (max-width:1440px) 432px, 425px"><figcaption>February · 08</figcaption></figure>
+          <figure class="ho-cell"><img src="../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-09.webp" alt="Hind Al Oud February social post 9" loading="lazy" decoding="async" srcset="../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-09-360.webp 360w, ../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-09-480.webp 480w, ../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-09-640.webp 640w, ../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-09.webp 896w" sizes="(max-width:390px) 113px, (max-width:640px) 196px, (max-width:768px) 230px, (max-width:1024px) 307px, (max-width:1440px) 432px, 425px"><figcaption>February · 09</figcaption></figure>
+          <figure class="ho-cell"><img src="../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-10.webp" alt="Hind Al Oud February social post 10" loading="lazy" decoding="async" srcset="../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-10-360.webp 360w, ../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-10-480.webp 480w, ../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-10-640.webp 640w, ../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-10.webp 896w" sizes="(max-width:390px) 113px, (max-width:640px) 196px, (max-width:768px) 230px, (max-width:1024px) 307px, (max-width:1440px) 432px, 425px"><figcaption>February · 10</figcaption></figure>
+          <figure class="ho-cell"><img src="../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-11.webp" alt="Hind Al Oud February social post 11" loading="lazy" decoding="async" srcset="../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-11-360.webp 360w, ../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-11-480.webp 480w, ../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-11-640.webp 640w, ../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-social-post-february-11.webp 960w" sizes="(max-width:390px) 113px, (max-width:640px) 196px, (max-width:768px) 230px, (max-width:1024px) 307px, (max-width:1440px) 432px, 425px"><figcaption>February · 11</figcaption></figure>
         </div>
         <p class="ho-note">February · 11 posts</p>
       </div>
@@ -1601,59 +1601,59 @@
       </div>
       <div class="ho-reels">
         <figure class="ho-reel">
-          <div class="ho-rframe"><video data-src="../assets/video/hind-al-oud/july-01.webm" muted loop playsinline preload="metadata" controls></video></div>
+          <div class="ho-rframe"><video data-src="../assets/video/hind-al-oud/july-01.webm" muted loop playsinline preload="metadata" controls poster="../assets/video/hind-al-oud/july-01-poster.webp"></video></div>
           <div class="ho-rfoot"><span>Reel 01</span><span>July · Campaign</span></div>
         </figure>
         <figure class="ho-reel">
-          <div class="ho-rframe"><video data-src="../assets/video/hind-al-oud/july-03.webm" muted loop playsinline preload="metadata" controls></video></div>
+          <div class="ho-rframe"><video data-src="../assets/video/hind-al-oud/july-03.webm" muted loop playsinline preload="metadata" controls poster="../assets/video/hind-al-oud/july-03-poster.webp"></video></div>
           <div class="ho-rfoot"><span>Reel 02</span><span>July · Campaign</span></div>
         </figure>
         <figure class="ho-reel">
-          <div class="ho-rframe"><video data-src="../assets/video/hind-al-oud/july-04.webm" muted loop playsinline preload="metadata" controls></video></div>
+          <div class="ho-rframe"><video data-src="../assets/video/hind-al-oud/july-04.webm" muted loop playsinline preload="metadata" controls poster="../assets/video/hind-al-oud/july-04-poster.webp"></video></div>
           <div class="ho-rfoot"><span>Reel 03</span><span>July · Campaign</span></div>
         </figure>
         <figure class="ho-reel">
-          <div class="ho-rframe"><video data-src="../assets/video/hind-al-oud/pink-musk-01.webm" muted loop playsinline preload="metadata" controls></video></div>
+          <div class="ho-rframe"><video data-src="../assets/video/hind-al-oud/pink-musk-01.webm" muted loop playsinline preload="metadata" controls poster="../assets/video/hind-al-oud/pink-musk-01-poster.webp"></video></div>
           <div class="ho-rfoot"><span>Reel 04</span><span>Pink Musk</span></div>
         </figure>
         <figure class="ho-reel">
-          <div class="ho-rframe"><video data-src="../assets/video/hind-al-oud/pink-musk-02.webm" muted loop playsinline preload="metadata" controls></video></div>
+          <div class="ho-rframe"><video data-src="../assets/video/hind-al-oud/pink-musk-02.webm" muted loop playsinline preload="metadata" controls poster="../assets/video/hind-al-oud/pink-musk-02-poster.webp"></video></div>
           <div class="ho-rfoot"><span>Reel 05</span><span>Pink Musk</span></div>
         </figure>
         <figure class="ho-reel">
-          <div class="ho-rframe"><video data-src="../assets/video/hind-al-oud/musk-al-shiok-02.webm" muted loop playsinline preload="metadata" controls></video></div>
+          <div class="ho-rframe"><video data-src="../assets/video/hind-al-oud/musk-al-shiok-02.webm" muted loop playsinline preload="metadata" controls poster="../assets/video/hind-al-oud/musk-al-shiok-02-poster.webp"></video></div>
           <div class="ho-rfoot"><span>Reel 06</span><span>Musk Al Shiok</span></div>
         </figure>
         <figure class="ho-reel">
-          <div class="ho-rframe"><video data-src="../assets/video/hind-al-oud/musk-al-shiok-03.webm" muted loop playsinline preload="metadata" controls></video></div>
+          <div class="ho-rframe"><video data-src="../assets/video/hind-al-oud/musk-al-shiok-03.webm" muted loop playsinline preload="metadata" controls poster="../assets/video/hind-al-oud/musk-al-shiok-03-poster.webp"></video></div>
           <div class="ho-rfoot"><span>Reel 07</span><span>Musk Al Shiok</span></div>
         </figure>
         <figure class="ho-reel">
-          <div class="ho-rframe"><video data-src="../assets/video/hind-al-oud/hou-01.webm" muted loop playsinline preload="metadata" controls></video></div>
+          <div class="ho-rframe"><video data-src="../assets/video/hind-al-oud/hou-01.webm" muted loop playsinline preload="metadata" controls poster="../assets/video/hind-al-oud/hou-01-poster.webp"></video></div>
           <div class="ho-rfoot"><span>Reel 08</span><span>Hind Al Oud</span></div>
         </figure>
         <figure class="ho-reel">
-          <div class="ho-rframe"><video data-src="../assets/video/hind-al-oud/hou-02.webm" muted loop playsinline preload="metadata" controls></video></div>
+          <div class="ho-rframe"><video data-src="../assets/video/hind-al-oud/hou-02.webm" muted loop playsinline preload="metadata" controls poster="../assets/video/hind-al-oud/hou-02-poster.webp"></video></div>
           <div class="ho-rfoot"><span>Reel 09</span><span>Hind Al Oud</span></div>
         </figure>
         <figure class="ho-reel">
-          <div class="ho-rframe"><video data-src="../assets/video/hind-al-oud/perfume.webm" muted loop playsinline preload="metadata" controls></video></div>
+          <div class="ho-rframe"><video data-src="../assets/video/hind-al-oud/perfume.webm" muted loop playsinline preload="metadata" controls poster="../assets/video/hind-al-oud/perfume-poster.webp"></video></div>
           <div class="ho-rfoot"><span>Reel 10</span><span>Perfume</span></div>
         </figure>
         <figure class="ho-reel">
-          <div class="ho-rframe"><video data-src="../assets/video/hind-al-oud/oil.webm" muted loop playsinline preload="metadata" controls></video></div>
+          <div class="ho-rframe"><video data-src="../assets/video/hind-al-oud/oil.webm" muted loop playsinline preload="metadata" controls poster="../assets/video/hind-al-oud/oil-poster.webp"></video></div>
           <div class="ho-rfoot"><span>Reel 11</span><span>Oil</span></div>
         </figure>
         <figure class="ho-reel">
-          <div class="ho-rframe"><video data-src="../assets/video/hind-al-oud/mb.webm" muted loop playsinline preload="metadata" controls></video></div>
+          <div class="ho-rframe"><video data-src="../assets/video/hind-al-oud/mb.webm" muted loop playsinline preload="metadata" controls poster="../assets/video/hind-al-oud/mb-poster.webp"></video></div>
           <div class="ho-rfoot"><span>Reel 12</span><span>Body Mist</span></div>
         </figure>
         <figure class="ho-reel">
-          <div class="ho-rframe"><video data-src="../assets/video/hind-al-oud/sequence-01.webm" muted loop playsinline preload="metadata" controls></video></div>
+          <div class="ho-rframe"><video data-src="../assets/video/hind-al-oud/sequence-01.webm" muted loop playsinline preload="metadata" controls poster="../assets/video/hind-al-oud/sequence-01-poster.webp"></video></div>
           <div class="ho-rfoot"><span>Reel 13</span><span>Sequence</span></div>
         </figure>
         <figure class="ho-reel">
-          <div class="ho-rframe"><video data-src="../assets/video/hind-al-oud/sequence-02.webm" muted loop playsinline preload="metadata" controls></video></div>
+          <div class="ho-rframe"><video data-src="../assets/video/hind-al-oud/sequence-02.webm" muted loop playsinline preload="metadata" controls poster="../assets/video/hind-al-oud/sequence-02-poster.webp"></video></div>
           <div class="ho-rfoot"><span>Reel 14</span><span>Sequence</span></div>
         </figure>
       </div>
@@ -1725,7 +1725,7 @@
   <!-- 9. FULL BLEED IMAGE -->
   <section class="bleed" data-tone="dark" data-rail="7" data-screen-label="09 Hero Still">
     <div class="wrap">
-      <div class="ph" style="overflow:hidden"><img src="../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-outdoor-billboard-visual.webp" alt="Hind Al Oud" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+      <div class="ph" style="overflow:hidden"><img src="../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-outdoor-billboard-visual.webp" alt="Hind Al Oud" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block" srcset="../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-outdoor-billboard-visual-960.webp 960w, ../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-outdoor-billboard-visual.webp 1200w" sizes="(max-width:390px) 390px, (max-width:640px) 640px, (max-width:768px) 799px, (max-width:1024px) 1065px, (max-width:1440px) 1498px, 1997px"></div>
     </div>
   </section>
 
@@ -1786,7 +1786,7 @@
   <!-- 11. NEXT PROJECT TEASER -->
   <section class="next" data-tone="dark" data-rail="7" data-screen-label="11 Next">
     <div class="next-bg">
-      <div class="ph is-filled" style="overflow:hidden"><img src="../assets/img/projects/khaltat/illusorr-khaltat-fragrance-ecommerce-content-cover.webp" alt="Khaltat, next project" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+      <div class="ph is-filled" style="overflow:hidden"><img src="../assets/img/projects/khaltat/illusorr-khaltat-fragrance-ecommerce-content-cover.webp" alt="Khaltat, next project" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block" srcset="../assets/img/projects/khaltat/illusorr-khaltat-fragrance-ecommerce-content-cover-768.webp 768w, ../assets/img/projects/khaltat/illusorr-khaltat-fragrance-ecommerce-content-cover.webp 1200w" sizes="(max-width:390px) 348px, (max-width:640px) 598px, (max-width:768px) 799px, (max-width:1024px) 1065px, (max-width:1440px) 1498px, 1997px"></div>
     </div>
     <div class="next-inner">
       <span class="next-k">Next Project · 012</span>

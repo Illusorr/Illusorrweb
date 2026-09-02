@@ -354,7 +354,7 @@
     pointer-events: none;
   }
   .ph::after { content: none; }
-  /* When a .ph holds a real <img> or <video>, drop the dotted hatch +
+  /* When a .ph holds a real <img> or <video preload="none">, drop the dotted hatch +
      center diamond + label chips so the asset reads cleanly. */
   .ph.is-filled::before,
   .ph.is-filled::after { display: none; }
@@ -1602,7 +1602,7 @@
             <div class="pod-t">Galaxy</div>
           </div>
           <div class="realm is-pano" data-realm="r3">
-            <div class="realm-media" data-pano data-pano-video="../assets/projects/v5/galaxy-360.mp4?v=3" data-pano-audio="../assets/projects/v5/galaxy-ambience.mp3"><image-slot id="disney-realm-3" src="../assets/img/slots/disney-realm-3.webp" shape="rect" placeholder="Drop the 360° Galaxy panorama (equirectangular)"></image-slot></div>
+            <div class="realm-media" data-pano data-pano-video="../assets/projects/v5/galaxy-360.webm?v=3" data-pano-audio="../assets/projects/v5/galaxy-ambience.mp3"><image-slot id="disney-realm-3" src="../assets/img/slots/disney-realm-3.webp" shape="rect" placeholder="Drop the 360° Galaxy panorama (equirectangular)"></image-slot></div>
             <div class="realm-copy">
               <div class="realm-k">Realm 03 · Entered</div>
               <h3 class="realm-t">Galaxy</h3>

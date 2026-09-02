@@ -346,7 +346,7 @@
     pointer-events: none;
   }
   .ph::after { content: none; }
-  /* When a .ph holds a real <img> or <video>, drop the dotted hatch +
+  /* When a .ph holds a real <img> or <video preload="none">, drop the dotted hatch +
      center diamond + label chips so the asset reads cleanly. */
   .ph.is-filled::before,
   .ph.is-filled::after { display: none; }
@@ -1420,11 +1420,11 @@
         </div>
       </div>
       <div style="display:flex;gap:clamp(10px,1.2vw,20px);align-items:flex-start;margin-top:clamp(40px,5vw,64px)">
-        <figure style="position:relative;aspect-ratio:auto;flex:1 1 0;min-width:0;margin:0;overflow:hidden"><video data-src="../assets/video/anfasic/film-01.mp4" muted loop playsinline preload="metadata" controls style="width:100%;height:auto;display:block"></video><figcaption style="margin-top:10px;display:flex;justify-content:space-between;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)"><span>Film 01</span><span>Anfasic</span></figcaption></figure>
-        <figure style="position:relative;aspect-ratio:auto;flex:1 1 0;min-width:0;margin:0;overflow:hidden"><video data-src="../assets/video/anfasic/film-02.mp4" muted loop playsinline preload="metadata" controls style="width:100%;height:auto;display:block"></video><figcaption style="margin-top:10px;display:flex;justify-content:space-between;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)"><span>Film 02</span><span>Anfasic</span></figcaption></figure>
-        <figure style="position:relative;aspect-ratio:auto;flex:1 1 0;min-width:0;margin:0;overflow:hidden"><video data-src="../assets/video/anfasic/film-03.mp4" muted loop playsinline preload="metadata" controls style="width:100%;height:auto;display:block"></video><figcaption style="margin-top:10px;display:flex;justify-content:space-between;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)"><span>Film 03</span><span>Anfasic</span></figcaption></figure>
-        <figure style="position:relative;aspect-ratio:auto;flex:1 1 0;min-width:0;margin:0;overflow:hidden"><video data-src="../assets/video/anfasic/film-04.mp4" muted loop playsinline preload="metadata" controls style="width:100%;height:auto;display:block"></video><figcaption style="margin-top:10px;display:flex;justify-content:space-between;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)"><span>Film 04</span><span>Anfasic</span></figcaption></figure>
-        <figure style="position:relative;aspect-ratio:auto;flex:1 1 0;min-width:0;margin:0;overflow:hidden"><video data-src="../assets/video/anfasic/film-05.mp4" muted loop playsinline preload="metadata" controls style="width:100%;height:auto;display:block"></video><figcaption style="margin-top:10px;display:flex;justify-content:space-between;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)"><span>Film 05</span><span>Anfasic</span></figcaption></figure>
+        <figure style="position:relative;aspect-ratio:auto;flex:1 1 0;min-width:0;margin:0;overflow:hidden"><video data-src="../assets/video/anfasic/film-01.webm" muted loop playsinline preload="metadata" controls style="width:100%;height:auto;display:block" poster="../assets/video/anfasic/film-01-poster.webp"></video><figcaption style="margin-top:10px;display:flex;justify-content:space-between;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)"><span>Film 01</span><span>Anfasic</span></figcaption></figure>
+        <figure style="position:relative;aspect-ratio:auto;flex:1 1 0;min-width:0;margin:0;overflow:hidden"><video data-src="../assets/video/anfasic/film-02.webm" muted loop playsinline preload="metadata" controls style="width:100%;height:auto;display:block" poster="../assets/video/anfasic/film-02-poster.webp"></video><figcaption style="margin-top:10px;display:flex;justify-content:space-between;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)"><span>Film 02</span><span>Anfasic</span></figcaption></figure>
+        <figure style="position:relative;aspect-ratio:auto;flex:1 1 0;min-width:0;margin:0;overflow:hidden"><video data-src="../assets/video/anfasic/film-03.webm" muted loop playsinline preload="metadata" controls style="width:100%;height:auto;display:block" poster="../assets/video/anfasic/film-03-poster.webp"></video><figcaption style="margin-top:10px;display:flex;justify-content:space-between;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)"><span>Film 03</span><span>Anfasic</span></figcaption></figure>
+        <figure style="position:relative;aspect-ratio:auto;flex:1 1 0;min-width:0;margin:0;overflow:hidden"><video data-src="../assets/video/anfasic/film-04.webm" muted loop playsinline preload="metadata" controls style="width:100%;height:auto;display:block" poster="../assets/video/anfasic/film-04-poster.webp"></video><figcaption style="margin-top:10px;display:flex;justify-content:space-between;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)"><span>Film 04</span><span>Anfasic</span></figcaption></figure>
+        <figure style="position:relative;aspect-ratio:auto;flex:1 1 0;min-width:0;margin:0;overflow:hidden"><video data-src="../assets/video/anfasic/film-05.webm" muted loop playsinline preload="metadata" controls style="width:100%;height:auto;display:block" poster="../assets/video/anfasic/film-05-poster.webp"></video><figcaption style="margin-top:10px;display:flex;justify-content:space-between;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)"><span>Film 05</span><span>Anfasic</span></figcaption></figure>
       </div>
     </div>
   </section>
@@ -1559,7 +1559,7 @@
   <!-- 11. NEXT PROJECT TEASER -->
   <section class="next" data-tone="dark" data-rail="7" data-screen-label="11 Next">
     <div class="next-bg">
-      <div class="ph is-filled" style="overflow:hidden"><img src="../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-outdoor-billboard-visual.webp" alt="Hind Al Oud, next project" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+      <div class="ph is-filled" style="overflow:hidden"><img src="../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-outdoor-billboard-visual.webp" alt="Hind Al Oud, next project" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block" srcset="../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-outdoor-billboard-visual-960.webp 960w, ../assets/img/projects/hind-al-oud/illusorr-hind-al-oud-outdoor-billboard-visual.webp 1200w" sizes="(max-width:390px) 390px, (max-width:640px) 640px, (max-width:768px) 799px, (max-width:1024px) 1065px, (max-width:1440px) 1498px, 1997px"></div>
     </div>
     <div class="next-inner">
       <span class="next-k">Next Project · 013</span>
