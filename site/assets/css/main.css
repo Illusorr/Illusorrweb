@@ -2320,34 +2320,67 @@ p, li, dd, dt, .meta-v { text-wrap: pretty; }
 .ccard[data-proj="aquatic-architects"]{ --g1:#3fa07a; --g2:#1c6b4e; --g3:#05130d; --num:rgba(11,13,18,.72); }
 .ccard[data-proj="riyadhverse"]       { --g1:#ded0b6; --g2:#8a7a5e; --g3:#100e0b; --num:rgba(11,13,18,.72); }
 
-/* Collapsed: the card IS the palette, so the rail reads as a spectrum.
-   Active: the cover image takes over and the palette retreats to the edge.
-   The grain is the same fractalNoise tile case-base.css uses, low opacity on
-   soft-light, so it reads as texture rather than dirt. */
+/* Collapsed: the project's own cover shows through, with its palette laid
+   over as a low tint so the rail still reads as a spectrum at a glance but
+   you can see what each project actually is. Active: the tint lifts almost
+   away and the image takes over.
+
+   Layering, low to high:
+     .cmedia   z0  the cover image
+     ::before  z1  the palette tint + a foot scrim to protect the title
+     ::after   z2  grain
+     label     z3  text */
 .ccard{
   border-color: transparent;
+  background: var(--g3);            /* shows only until the cover decodes */
+}
+.ccard .cmedia{
+  opacity: 1;                        /* was 0 until active: the cards were blank */
+  transform: none;
+  animation: none;
+}
+.ccard::before{
+  content:'';
+  position:absolute; inset:0; z-index:1; pointer-events:none;
+  /* Two jobs, deliberately at full layer opacity so they can be tuned apart:
+     the FOOT SCRIM has to be strong enough to carry white text over a pale
+     cover (Hind Al Oud's gold, Khaltat's peach), while the TINT stays light
+     so the photograph still reads. Baking the alpha into the colour stops
+     rather than dimming the whole layer is what lets those differ. */
   background:
-    radial-gradient(132% 92% at 22% 6%, rgba(255,255,255,.30) 0%, transparent 58%),
-    linear-gradient(163deg, var(--g1) 0%, var(--g2) 46%, var(--g3) 100%);
+    linear-gradient(to top,
+      var(--g3) 0%,
+      color-mix(in srgb, var(--g3) 92%, transparent) 22%,
+      color-mix(in srgb, var(--g3) 74%, transparent) 42%,
+      color-mix(in srgb, var(--g3) 34%, transparent) 62%,
+      transparent 80%),
+    linear-gradient(163deg,
+      color-mix(in srgb, var(--g1) 34%, transparent) 0%,
+      color-mix(in srgb, var(--g2) 32%, transparent) 46%,
+      color-mix(in srgb, var(--g3) 40%, transparent) 100%);
+  opacity:1;
+  transition:opacity .55s;
 }
 .ccard::after{
   content:'';
   position:absolute; inset:0; z-index:2; pointer-events:none;
   background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
   background-size:200px 200px;
-  opacity:.14;
+  opacity:.10;
   mix-blend-mode:soft-light;
   transition:opacity .5s;
 }
 .ccard .cvlabel{ color:#fff; font-size:19px; letter-spacing:-.01em;
-                 text-shadow:0 1px 12px rgba(0,0,0,.28); }
-.ccard .cvnum{ color:var(--num); }
+                 text-shadow:0 1px 14px rgba(0,0,0,.55); }
+.ccard .cvnum{ color:#fff; text-shadow:0 1px 10px rgba(0,0,0,.6); }
 
 .ccard.active{
   background:#fff;
   box-shadow:0 30px 70px -30px rgba(40,55,120,.28),
              inset 4px 0 0 0 var(--g2);
 }
-.ccard.active::after{ opacity:.06; }
+.ccard.active::before{ opacity:.16; }   /* let the photograph carry the card */
+.ccard.active::after{ opacity:.05; }
+.ccard.active .cmedia{ animation:kb 8s ease-out forwards; }
 .ccard.active .csector{ color: var(--g2); }
 .ccard.active .ctag span{ border-color: color-mix(in srgb, var(--g2) 34%, transparent); }

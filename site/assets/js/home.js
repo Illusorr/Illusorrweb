@@ -18,7 +18,7 @@
     const cnEl=document.getElementById('cn');
     convEl.innerHTML=convProjects.map((p,i)=>`
       <a class="ccard" data-i="${i}" data-proj="${(p.href||'').split('/').pop().replace(/\.html$/,'')}" href="${p.href}">
-        <div class="cmedia" style="background-image:${p.cover?`url(${p.cover}),`:p.img?`url(assets/img/projects/${p.img}/cover.webp),`:``}linear-gradient(${p.g});background-size:cover;background-position:center"></div>
+        <div class="cmedia" data-full="${p.cover||(p.img?`assets/img/projects/${p.img}/cover.webp`:'')}" style="background-image:${p.cover?`url(${p.cover.replace(/\.webp$/,'-480.webp')}),`:p.img?`url(assets/img/projects/${p.img}/cover-480.webp),`:``}linear-gradient(${p.g});background-size:cover;background-position:center"></div>
         <span class="cvnum mono">${String(i+1).padStart(2,'0')}</span>
         <span class="cvlabel">${p.title}</span>
         <span class="csector mono">${p.sector}</span>
@@ -35,7 +35,19 @@
     let cci=0,ctimer;
     function cset(i){
       cci=i;
-      ccards.forEach((c,x)=>c.classList.toggle('active',x===i));
+      ccards.forEach((c,x)=>{
+        c.classList.toggle('active',x===i);
+        /* The rail shows a 480px rung; only the expanded card is wide enough
+           to need the full cover, so it is fetched on expand and then kept. */
+        if(x===i){
+          const m=c.querySelector('.cmedia');
+          if(m && m.dataset.full && !m.dataset.loaded){
+            const img=new Image();
+            img.onload=()=>{ m.style.backgroundImage=`url(${m.dataset.full})`; m.dataset.loaded='1'; };
+            img.src=m.dataset.full;
+          }
+        }
+      });
       cdots.forEach((d,x)=>{
         d.classList.toggle('on',x===i);d.classList.toggle('done',x<i);
         if(x===i){const f=d.querySelector('.fill');f.style.animation='none';void f.offsetWidth;f.style.animation=''}
