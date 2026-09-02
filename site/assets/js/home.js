@@ -1,5 +1,28 @@
 /* ILLUSORR — home page behaviours */
 (function(){
+/* ── Scroll scheduling ───────────────────────────────────────────────
+   Four handlers on this page each read layout (getBoundingClientRect) and
+   then write transforms and opacity, straight out of a scroll event. Scroll
+   fires many times per frame, so every extra call forced a synchronous
+   layout and the writes landed out of step with the compositor's scroll
+   position. That is what made the sections appear to bleed into each other
+   on a fast scroll.
+
+   onScroll() queues a handler to run at most once per frame, and all queued
+   handlers run together in one batch, so reads and writes stop interleaving. */
+var __scrollQueue = [], __scrollRaf = 0;
+function __flushScroll(){
+  __scrollRaf = 0;
+  var q = __scrollQueue; __scrollQueue = [];
+  for (var i = 0; i < q.length; i++) { try { q[i](); } catch (e) {} }
+}
+function onScroll(fn){
+  return function(){
+    if (__scrollQueue.indexOf(fn) === -1) __scrollQueue.push(fn);
+    if (!__scrollRaf) __scrollRaf = requestAnimationFrame(__flushScroll);
+  };
+}
+
 // SELECTED WORK — conveyor snap
   const convProjects=[
     {title:"PixelPaint", cover:"assets/img/projects/pixelpaint/illusorr-pixelpaint-painted-car-hero.webp", href:"projects/pixelpaint.html", client:"ABB Robotics", sector:"Technology", tag:"Procedural art · Robotics", desc:"A robotic arm printing generative art onto a car surface. Computational design meeting industrial automation.", g:"140deg,#b9c4ec,#e7eaf6"},
@@ -94,7 +117,7 @@
     if(window.IntersectionObserver){
       new IntersectionObserver(syncSpaces,{threshold:[0,.2,.6],rootMargin:'300px 0px'}).observe(sband);
     }
-    addEventListener('scroll',syncSpaces,{passive:true});
+    addEventListener('scroll',onScroll(syncSpaces),{passive:true});
     addEventListener('resize',()=>{syncSpaces();fitSpaces()});
     syncSpaces();
   }
@@ -188,7 +211,7 @@
       wfTag.innerHTML=wfRows[idx].querySelector('.sr-name').innerHTML;
       wfCn.textContent=String(idx+1).padStart(2,'0');
     }
-    window.addEventListener('scroll',updateWhofor,{passive:true});
+    window.addEventListener('scroll',onScroll(updateWhofor),{passive:true});
     updateWhofor();
 
     wfRows.forEach((row,i)=>row.addEventListener('click',()=>{
@@ -229,7 +252,7 @@
     const shown=Math.max(1,Math.ceil(prog*lines.length));
     lines.forEach((l,i)=>l.classList.toggle('on',i<shown));
   }
-  if(wwa){window.addEventListener('scroll',updateWWA,{passive:true});updateWWA();}
+  if(wwa){window.addEventListener('scroll',onScroll(updateWWA),{passive:true});updateWWA();}
 
   // REEL → WHAT WE DO — recede & emerge + sequential slide reveal
   const reelwwd=document.getElementById('reelwwd');
@@ -254,7 +277,7 @@
     slides.forEach((sl,i)=>sl.classList.toggle('on',i===idx));
     dots.forEach((d,i)=>d.classList.toggle('on',i<=idx));
   }
-  if(reelwwd){window.addEventListener('scroll',updateReelWwd,{passive:true});updateReelWwd();}
+  if(reelwwd){window.addEventListener('scroll',onScroll(updateReelWwd),{passive:true});updateReelWwd();}
 
   setTimeout(()=>{const h=document.getElementById('hint');if(h){h.style.transition='opacity 1s';h.style.opacity='0'}},6500);
 
