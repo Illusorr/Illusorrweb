@@ -1006,9 +1006,9 @@ three-d-stage:not(:defined){visibility:hidden}
 
 /* was inline #cm-fonts */
 @font-face { font-family:'PP Monument Extended'; font-weight:900; font-style:normal; font-display:swap;
-    src:url("../../projects/shared/fonts/PPMonumentExtended-Black.otf") format("opentype"); }
+    src:url("../../projects/shared/fonts/PPMonumentExtended-Black.woff2") format("woff2"), url("../../projects/shared/fonts/PPMonumentExtended-Black.otf") format("opentype"); }
   @font-face { font-family:'Squaresharps'; font-weight:400; font-style:normal; font-display:swap;
-    src:url("../../projects/shared/fonts/Squaresharps-v2.ttf") format("truetype"); }
+    src:url("../../projects/shared/fonts/Squaresharps-v2.woff2") format("woff2"), url("../../projects/shared/fonts/Squaresharps-v2.ttf") format("truetype"); }
 
 /* was inline #cm-type */
 /* Italic / light display accents stay in Outfit (Monument file is Black weight only) */

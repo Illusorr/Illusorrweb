@@ -2,7 +2,7 @@
    The upstream Google URL requested opsz 9..144 at weights 400/500; the variable
    font carries opsz so browsers keep applying optical sizing automatically. */
 @font-face{font-family:'Fraunces';font-style:normal;font-weight:100 900;font-display:swap;
-  src:url("../fonts/Fraunces-Variable.ttf") format("truetype-variations")}
+  src:url("../fonts/Fraunces-Variable.woff2") format("woff2"), url("../fonts/Fraunces-Variable.ttf") format("truetype")}
 :root{--sec1:url(../img/sectors/beauty.webp);--sec2:url(../img/sectors/fashion.webp);--sec3:url(../img/sectors/real-estate.webp);--sec4:url(../img/sectors/gaming.webp);--sec5:url(../img/sectors/culture.webp);--sec6:url(../img/sectors/business.webp);}
     :root{
     --bg:#05060a;--ink:#eef1f8;--dim:#8b96ad;--faint:#4a5268;--line:#1b2231;
