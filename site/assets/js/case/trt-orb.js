@@ -91,7 +91,7 @@
     el.setAttribute('aria-label', ch + ', ' + sp);
     el.dataset.f = file; el.dataset.c = ch; el.dataset.s = sp;
     const img = document.createElement('img');
-    img.src = '../assets/projects/trt/thumb/' + file + '.jpg';
+    img.src = '../assets/projects/trt/thumb/' + file + '.webp';
     img.alt = '';
     img.loading = 'lazy';
     img.decoding = 'async';
@@ -226,7 +226,7 @@
     const t = e.target.closest('.orb-tile');
     if (!t || moved) return;
     e.stopPropagation();
-    bImg.src = '../assets/projects/trt/' + t.dataset.f + '.jpg';
+    bImg.src = '../assets/projects/trt/' + t.dataset.f + '.webp';
     box.querySelector('.ob-ch').textContent = t.dataset.c;
     box.querySelector('.ob-sp').textContent = t.dataset.s;
     box.classList.add('is-on');

@@ -1,0 +1,616 @@
+{
+ "filename-not-kebab": [
+  {
+   "path": "assets/projects/barbie/Barbie-04.2.webp",
+   "detail": "Barbie-04.2.webp"
+  },
+  {
+   "path": "assets/projects/fabrika/ComfyUI_04237_.webp",
+   "detail": "ComfyUI_04237_.webp"
+  },
+  {
+   "path": "assets/projects/fabrika/ComfyUI_04245_.webp",
+   "detail": "ComfyUI_04245_.webp"
+  },
+  {
+   "path": "assets/projects/fabrika/ComfyUI_04272_.webp",
+   "detail": "ComfyUI_04272_.webp"
+  },
+  {
+   "path": "assets/projects/fabrika/ComfyUI_04279_.webp",
+   "detail": "ComfyUI_04279_.webp"
+  },
+  {
+   "path": "assets/projects/hindaloud/ComfyUI_00819_.webp",
+   "detail": "ComfyUI_00819_.webp"
+  },
+  {
+   "path": "assets/projects/khaltat/ComfyUI_00820_.webp",
+   "detail": "ComfyUI_00820_.webp"
+  },
+  {
+   "path": "assets/projects/koton-pera/ComfyUI_00613_.webp",
+   "detail": "ComfyUI_00613_.webp"
+  },
+  {
+   "path": "assets/projects/koton-pera/ComfyUI_00614_.webp",
+   "detail": "ComfyUI_00614_.webp"
+  },
+  {
+   "path": "assets/projects/koton-pera/ComfyUI_00619_.webp",
+   "detail": "ComfyUI_00619_.webp"
+  },
+  {
+   "path": "assets/projects/koton-pera/ComfyUI_00626_-3fc2f7bf.webp",
+   "detail": "ComfyUI_00626_-3fc2f7bf.webp"
+  },
+  {
+   "path": "assets/projects/koton-pera/ComfyUI_00637_.webp",
+   "detail": "ComfyUI_00637_.webp"
+  },
+  {
+   "path": "assets/projects/koton-pera/ComfyUI_00641_.webp",
+   "detail": "ComfyUI_00641_.webp"
+  },
+  {
+   "path": "assets/projects/koton-pera/ComfyUI_00674_.webp",
+   "detail": "ComfyUI_00674_.webp"
+  },
+  {
+   "path": "assets/projects/koton-pera/ComfyUI_00794_.webp",
+   "detail": "ComfyUI_00794_.webp"
+  },
+  {
+   "path": "assets/projects/koton-pera/ComfyUI_00796_.webp",
+   "detail": "ComfyUI_00796_.webp"
+  },
+  {
+   "path": "assets/projects/koton-pera/ComfyUI_00797_.webp",
+   "detail": "ComfyUI_00797_.webp"
+  },
+  {
+   "path": "assets/projects/koton-pera/ComfyUI_00800_.webp",
+   "detail": "ComfyUI_00800_.webp"
+  },
+  {
+   "path": "assets/projects/koton-pera/ComfyUI_00801_.webp",
+   "detail": "ComfyUI_00801_.webp"
+  },
+  {
+   "path": "assets/projects/koton-pera/ComfyUI_00807_-604b791f.webp",
+   "detail": "ComfyUI_00807_-604b791f.webp"
+  },
+  {
+   "path": "assets/projects/koton-pera/ComfyUI_00810_.webp",
+   "detail": "ComfyUI_00810_.webp"
+  },
+  {
+   "path": "projects/aa/uploads/AA-case-montage.m.webp",
+   "detail": "AA-case-montage.m.webp"
+  }
+ ],
+ "filename-has-spaces": [
+  {
+   "path": "assets/projects/fabrika/img_Vt1485DPAB 2-480.webp",
+   "detail": "img_Vt1485DPAB 2-480.webp"
+  },
+  {
+   "path": "assets/projects/fabrika/img_Vt1485DPAB 2-768.webp",
+   "detail": "img_Vt1485DPAB 2-768.webp"
+  },
+  {
+   "path": "assets/projects/fabrika/img_Vt1485DPAB 2.webp",
+   "detail": "img_Vt1485DPAB 2.webp"
+  },
+  {
+   "path": "assets/projects/fabrika/img_Vt1485DPAB 3-480.webp",
+   "detail": "img_Vt1485DPAB 3-480.webp"
+  },
+  {
+   "path": "assets/projects/fabrika/img_Vt1485DPAB 3-768.webp",
+   "detail": "img_Vt1485DPAB 3-768.webp"
+  },
+  {
+   "path": "assets/projects/fabrika/img_Vt1485DPAB 3.webp",
+   "detail": "img_Vt1485DPAB 3.webp"
+  }
+ ],
+ "legacy-raster-shipping": [
+  {
+   "path": "assets/img/og/og-default.jpg",
+   "detail": ".jpg in site/ (804 KB)"
+  },
+  {
+   "path": "assets/img/projects/ant-systems/illusorr-ant-systems-shot-3d.png",
+   "detail": ".png in site/ (206 KB)"
+  },
+  {
+   "path": "assets/img/projects/ant-systems/illusorr-ant-systems-shot-landing.png",
+   "detail": ".png in site/ (14 KB)"
+  },
+  {
+   "path": "assets/img/projects/ant-systems/illusorr-ant-systems-shot-mission.png",
+   "detail": ".png in site/ (14 KB)"
+  },
+  {
+   "path": "assets/img/projects/ant-systems/illusorr-ant-systems-shot-mobile.png",
+   "detail": ".png in site/ (21 KB)"
+  },
+  {
+   "path": "assets/img/projects/ant-systems/illusorr-ant-systems-shot-venn.png",
+   "detail": ".png in site/ (16 KB)"
+  },
+  {
+   "path": "assets/img/projects/ant-systems/illusorr-ant-systems-website-3d-product-section.png",
+   "detail": ".png in site/ (206 KB)"
+  },
+  {
+   "path": "assets/img/projects/ant-systems/illusorr-ant-systems-website-landing-screen.png",
+   "detail": ".png in site/ (14 KB)"
+  },
+  {
+   "path": "assets/img/projects/ant-systems/illusorr-ant-systems-website-mission-screen.png",
+   "detail": ".png in site/ (14 KB)"
+  },
+  {
+   "path": "assets/img/projects/ant-systems/illusorr-ant-systems-website-mobile-screens.png",
+   "detail": ".png in site/ (21 KB)"
+  },
+  {
+   "path": "assets/img/projects/ant-systems/illusorr-ant-systems-website-technology-diagram.png",
+   "detail": ".png in site/ (16 KB)"
+  },
+  {
+   "path": "assets/img/projects/ant-systems/shot-3d.png",
+   "detail": ".png in site/ (206 KB)"
+  },
+  {
+   "path": "assets/img/projects/ant-systems/shot-landing.png",
+   "detail": ".png in site/ (14 KB)"
+  },
+  {
+   "path": "assets/img/projects/ant-systems/shot-mission.png",
+   "detail": ".png in site/ (14 KB)"
+  },
+  {
+   "path": "assets/img/projects/ant-systems/shot-mobile.png",
+   "detail": ".png in site/ (21 KB)"
+  },
+  {
+   "path": "assets/img/projects/ant-systems/shot-venn.png",
+   "detail": ".png in site/ (16 KB)"
+  },
+  {
+   "path": "assets/img/sectors/beauty.jpg",
+   "detail": ".jpg in site/ (153 KB)"
+  },
+  {
+   "path": "assets/img/sectors/business.jpg",
+   "detail": ".jpg in site/ (125 KB)"
+  },
+  {
+   "path": "assets/img/sectors/culture.jpg",
+   "detail": ".jpg in site/ (242 KB)"
+  },
+  {
+   "path": "assets/img/sectors/fashion.jpg",
+   "detail": ".jpg in site/ (279 KB)"
+  },
+  {
+   "path": "assets/img/sectors/gaming.jpg",
+   "detail": ".jpg in site/ (321 KB)"
+  },
+  {
+   "path": "assets/img/sectors/real-estate.jpg",
+   "detail": ".jpg in site/ (202 KB)"
+  },
+  {
+   "path": "assets/projects/echoes/stage/ph-03.jpg",
+   "detail": ".jpg in site/ (55 KB)"
+  },
+  {
+   "path": "assets/projects/echoes/stage/ph-05.jpg",
+   "detail": ".jpg in site/ (37 KB)"
+  },
+  {
+   "path": "assets/projects/echoes/stage/ph-07.jpg",
+   "detail": ".jpg in site/ (38 KB)"
+  },
+  {
+   "path": "assets/projects/shared/illusorr-logo.png",
+   "detail": ".png in site/ (14 KB)"
+  },
+  {
+   "path": "assets/projects/trt/globe.png",
+   "detail": ".png in site/ (21 KB)"
+  },
+  {
+   "path": "assets/projects/trt/thumb/avatar-a.jpg",
+   "detail": ".jpg in site/ (7 KB)"
+  },
+  {
+   "path": "assets/projects/trt/thumb/avatar-b.jpg",
+   "detail": ".jpg in site/ (6 KB)"
+  },
+  {
+   "path": "assets/projects/trt/thumb/broadcast-01.jpg",
+   "detail": ".jpg in site/ (11 KB)"
+  },
+  {
+   "path": "assets/projects/trt/thumb/broadcast-02.jpg",
+   "detail": ".jpg in site/ (10 KB)"
+  },
+  {
+   "path": "assets/projects/trt/thumb/broadcast-03.jpg",
+   "detail": ".jpg in site/ (10 KB)"
+  },
+  {
+   "path": "assets/projects/trt/thumb/interior-01.jpg",
+   "detail": ".jpg in site/ (8 KB)"
+  },
+  {
+   "path": "assets/projects/trt/thumb/interior-02.jpg",
+   "detail": ".jpg in site/ (9 KB)"
+  },
+  {
+   "path": "assets/projects/trt/thumb/interior-03.jpg",
+   "detail": ".jpg in site/ (9 KB)"
+  },
+  {
+   "path": "assets/projects/trt/thumb/interior-04.jpg",
+   "detail": ".jpg in site/ (9 KB)"
+  },
+  {
+   "path": "assets/projects/trt/thumb/main-01.jpg",
+   "detail": ".jpg in site/ (9 KB)"
+  },
+  {
+   "path": "assets/projects/trt/thumb/main-02.jpg",
+   "detail": ".jpg in site/ (9 KB)"
+  },
+  {
+   "path": "assets/projects/trt/thumb/main-03.jpg",
+   "detail": ".jpg in site/ (11 KB)"
+  },
+  {
+   "path": "assets/projects/trt/thumb/main-04.jpg",
+   "detail": ".jpg in site/ (9 KB)"
+  },
+  {
+   "path": "assets/projects/trt/thumb/main-05.jpg",
+   "detail": ".jpg in site/ (9 KB)"
+  },
+  {
+   "path": "assets/projects/trt/thumb/side-01.jpg",
+   "detail": ".jpg in site/ (7 KB)"
+  },
+  {
+   "path": "assets/projects/trt/thumb/side-02.jpg",
+   "detail": ".jpg in site/ (8 KB)"
+  },
+  {
+   "path": "assets/projects/trt/thumb/side-03.jpg",
+   "detail": ".jpg in site/ (10 KB)"
+  },
+  {
+   "path": "assets/projects/trt/thumb/side-04.jpg",
+   "detail": ".jpg in site/ (11 KB)"
+  },
+  {
+   "path": "assets/projects/trt/thumb/store-01.jpg",
+   "detail": ".jpg in site/ (8 KB)"
+  },
+  {
+   "path": "assets/projects/trt/thumb/store-02.jpg",
+   "detail": ".jpg in site/ (8 KB)"
+  },
+  {
+   "path": "assets/projects/trt/thumb/top-01.jpg",
+   "detail": ".jpg in site/ (5 KB)"
+  },
+  {
+   "path": "assets/projects/trt/thumb/top-02.jpg",
+   "detail": ".jpg in site/ (8 KB)"
+  },
+  {
+   "path": "assets/projects/trt/thumb/top-03.jpg",
+   "detail": ".jpg in site/ (11 KB)"
+  },
+  {
+   "path": "assets/projects/trt/thumb/top-04.jpg",
+   "detail": ".jpg in site/ (8 KB)"
+  },
+  {
+   "path": "assets/projects/trt/thumb/x-01.jpg",
+   "detail": ".jpg in site/ (6 KB)"
+  },
+  {
+   "path": "assets/projects/trt/thumb/x-02.jpg",
+   "detail": ".jpg in site/ (13 KB)"
+  },
+  {
+   "path": "assets/projects/trt/thumb/x-03.jpg",
+   "detail": ".jpg in site/ (13 KB)"
+  },
+  {
+   "path": "assets/projects/trt/thumb/x-04.jpg",
+   "detail": ".jpg in site/ (4 KB)"
+  },
+  {
+   "path": "assets/projects/trt/thumb/x-05.jpg",
+   "detail": ".jpg in site/ (12 KB)"
+  },
+  {
+   "path": "assets/projects/trt/thumb/x-06.jpg",
+   "detail": ".jpg in site/ (12 KB)"
+  },
+  {
+   "path": "assets/projects/trt/thumb/x-07.jpg",
+   "detail": ".jpg in site/ (14 KB)"
+  },
+  {
+   "path": "assets/projects/trt/thumb/x-08.jpg",
+   "detail": ".jpg in site/ (11 KB)"
+  },
+  {
+   "path": "assets/projects/trt/thumb/x-09.jpg",
+   "detail": ".jpg in site/ (14 KB)"
+  },
+  {
+   "path": "assets/projects/trt/thumb/x-10.jpg",
+   "detail": ".jpg in site/ (10 KB)"
+  },
+  {
+   "path": "assets/projects/trt/thumb/x-11.jpg",
+   "detail": ".jpg in site/ (12 KB)"
+  },
+  {
+   "path": "assets/projects/trt/thumb/x-12.jpg",
+   "detail": ".jpg in site/ (9 KB)"
+  },
+  {
+   "path": "assets/projects/trt/thumb/x-13.jpg",
+   "detail": ".jpg in site/ (3 KB)"
+  },
+  {
+   "path": "assets/projects/trt/thumb/x-14.jpg",
+   "detail": ".jpg in site/ (3 KB)"
+  },
+  {
+   "path": "assets/projects/trt/thumb/x-15.jpg",
+   "detail": ".jpg in site/ (8 KB)"
+  },
+  {
+   "path": "assets/projects/trt/thumb/x-16.jpg",
+   "detail": ".jpg in site/ (9 KB)"
+  },
+  {
+   "path": "assets/projects/trt/thumb/x-17.jpg",
+   "detail": ".jpg in site/ (8 KB)"
+  },
+  {
+   "path": "assets/projects/v5/disney-spatial-plan.png",
+   "detail": ".png in site/ (411 KB)"
+  },
+  {
+   "path": "assets/projects/v5/disney-spawn-point.png",
+   "detail": ".png in site/ (513 KB)"
+  },
+  {
+   "path": "assets/projects/v5/key-visual.png",
+   "detail": ".png in site/ (1434 KB)"
+  },
+  {
+   "path": "assets/projects/v5/logo.png",
+   "detail": ".png in site/ (71 KB)"
+  },
+  {
+   "path": "assets/projects/v5/space-lounge.png",
+   "detail": ".png in site/ (245 KB)"
+  },
+  {
+   "path": "assets/projects/v5/space-meeting.png",
+   "detail": ".png in site/ (153 KB)"
+  },
+  {
+   "path": "assets/projects/v5/space-office.png",
+   "detail": ".png in site/ (227 KB)"
+  },
+  {
+   "path": "assets/projects/v5/space-theatre.png",
+   "detail": ".png in site/ (166 KB)"
+  },
+  {
+   "path": "projects/aa/assets/illusorr-logo.png",
+   "detail": ".png in site/ (14 KB)"
+  },
+  {
+   "path": "projects/aa/uploads/logo.png",
+   "detail": ".png in site/ (94 KB)"
+  },
+  {
+   "path": "projects/ant-live/antimic-logo.png",
+   "detail": ".png in site/ (4 KB)"
+  },
+  {
+   "path": "projects/ant-live/assets/logo-mark.png",
+   "detail": ".png in site/ (11 KB)"
+  },
+  {
+   "path": "projects/ant-live/insease-logo.png",
+   "detail": ".png in site/ (5 KB)"
+  },
+  {
+   "path": "projects/ant-live/nanotern-logo-white.png",
+   "detail": ".png in site/ (4 KB)"
+  },
+  {
+   "path": "projects/lap/assets/illusorr-logo.png",
+   "detail": ".png in site/ (14 KB)"
+  }
+ ],
+ "video-missing-poster": [
+  {
+   "path": "assets/projects/metagenus/clips/C2.webm",
+   "detail": "expected C2-poster.webp"
+  },
+  {
+   "path": "assets/projects/metagenus/clips/C3.webm",
+   "detail": "expected C3-poster.webp"
+  },
+  {
+   "path": "assets/projects/metagenus/clips/C4.webm",
+   "detail": "expected C4-poster.webp"
+  },
+  {
+   "path": "assets/projects/metagenus/clips/E1.webm",
+   "detail": "expected E1-poster.webp"
+  },
+  {
+   "path": "assets/projects/metagenus/clips/E2.webm",
+   "detail": "expected E2-poster.webp"
+  },
+  {
+   "path": "assets/projects/metagenus/clips/E3.webm",
+   "detail": "expected E3-poster.webp"
+  },
+  {
+   "path": "assets/projects/metagenus/clips/L1.webm",
+   "detail": "expected L1-poster.webp"
+  },
+  {
+   "path": "assets/projects/metagenus/clips/L2.webm",
+   "detail": "expected L2-poster.webp"
+  },
+  {
+   "path": "assets/projects/metagenus/holo/butterfly.webm",
+   "detail": "expected butterfly-poster.webp"
+  },
+  {
+   "path": "assets/projects/metagenus/holo/cat.webm",
+   "detail": "expected cat-poster.webp"
+  },
+  {
+   "path": "assets/projects/metagenus/holo/choker.webm",
+   "detail": "expected choker-poster.webp"
+  },
+  {
+   "path": "assets/projects/metagenus/holo/crown-celestial.webm",
+   "detail": "expected crown-celestial-poster.webp"
+  },
+  {
+   "path": "assets/projects/metagenus/holo/crown-vortex.webm",
+   "detail": "expected crown-vortex-poster.webp"
+  },
+  {
+   "path": "assets/projects/metagenus/holo/faceguard.webm",
+   "detail": "expected faceguard-poster.webp"
+  },
+  {
+   "path": "assets/projects/metagenus/holo/frog.webm",
+   "detail": "expected frog-poster.webp"
+  },
+  {
+   "path": "assets/projects/metagenus/holo/headset.webm",
+   "detail": "expected headset-poster.webp"
+  },
+  {
+   "path": "assets/projects/metagenus/holo/jetpack.webm",
+   "detail": "expected jetpack-poster.webp"
+  },
+  {
+   "path": "assets/projects/metagenus/holo/loop.webm",
+   "detail": "expected loop-poster.webp"
+  },
+  {
+   "path": "assets/projects/metagenus/holo/mask.webm",
+   "detail": "expected mask-poster.webp"
+  },
+  {
+   "path": "assets/projects/metagenus/holo/orb.webm",
+   "detail": "expected orb-poster.webp"
+  },
+  {
+   "path": "assets/projects/metagenus/holo/parrot.webm",
+   "detail": "expected parrot-poster.webp"
+  },
+  {
+   "path": "assets/projects/metagenus/holo/portal.webm",
+   "detail": "expected portal-poster.webp"
+  },
+  {
+   "path": "assets/projects/metagenus/holo/props.webm",
+   "detail": "expected props-poster.webp"
+  },
+  {
+   "path": "assets/projects/metagenus/holo/scepter-celestial.webm",
+   "detail": "expected scepter-celestial-poster.webp"
+  },
+  {
+   "path": "assets/projects/metagenus/holo/seeker.webm",
+   "detail": "expected seeker-poster.webp"
+  },
+  {
+   "path": "assets/projects/metagenus/holo/snail.webm",
+   "detail": "expected snail-poster.webp"
+  },
+  {
+   "path": "assets/projects/metagenus/holo/snake.webm",
+   "detail": "expected snake-poster.webp"
+  },
+  {
+   "path": "assets/projects/metagenus/holo/spider.webm",
+   "detail": "expected spider-poster.webp"
+  },
+  {
+   "path": "assets/projects/metagenus/holo/torque.webm",
+   "detail": "expected torque-poster.webp"
+  },
+  {
+   "path": "assets/projects/metagenus/holo/veil.webm",
+   "detail": "expected veil-poster.webp"
+  },
+  {
+   "path": "assets/projects/metagenus/holo/wings-celestial.webm",
+   "detail": "expected wings-celestial-poster.webp"
+  },
+  {
+   "path": "assets/projects/metagenus/shuffle/nft-shuffle.webm",
+   "detail": "expected nft-shuffle-poster.webp"
+  }
+ ],
+ "project-has-no-cover": [
+  {
+   "path": "assets/img/projects/anfasic/",
+   "detail": "no file with 'cover' in its name"
+  },
+  {
+   "path": "assets/img/projects/denim/",
+   "detail": "no file with 'cover' in its name"
+  },
+  {
+   "path": "assets/img/projects/lapillus/",
+   "detail": "no file with 'cover' in its name"
+  },
+  {
+   "path": "assets/img/projects/marlia-swimwear/",
+   "detail": "no file with 'cover' in its name"
+  },
+  {
+   "path": "assets/img/projects/michael-cinco/",
+   "detail": "no file with 'cover' in its name"
+  },
+  {
+   "path": "assets/img/projects/moodie-kiosk/",
+   "detail": "no file with 'cover' in its name"
+  },
+  {
+   "path": "assets/img/projects/morphellum/",
+   "detail": "no file with 'cover' in its name"
+  },
+  {
+   "path": "assets/img/projects/pixelpaint/",
+   "detail": "no file with 'cover' in its name"
+  }
+ ]
+}

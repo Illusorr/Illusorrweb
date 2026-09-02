@@ -189,8 +189,8 @@ if (planHost) {
   const VW = 1560, VH = 1000, IW = 700, IH = 694, IX = 430, IY = 150;
   const s = svgIn(planHost, `0 0 ${VW} ${VH}`);
   const img = el('image', { x: IX, y: IY, width: IW, height: IH, preserveAspectRatio: 'xMidYMid meet' });
-  img.setAttribute('href', '../assets/projects/v5/disney-spatial-plan.png');
-  img.setAttributeNS('http://www.w3.org/1999/xlink', 'href', '../assets/projects/v5/disney-spatial-plan.png');
+  img.setAttribute('href', '../assets/projects/v5/disney-spatial-plan.webp');
+  img.setAttributeNS('http://www.w3.org/1999/xlink', 'href', '../assets/projects/v5/disney-spatial-plan.webp');
   s.appendChild(img);
   const nodes = {};
   PLAN.forEach(([name, fx, fy, side]) => {
@@ -216,17 +216,17 @@ const spawnHost = document.getElementById('spawnCanvas');
 if (spawnHost) {
   const s = svgIn(spawnHost, '0 0 1668 1316');
   const img = el('image', { x: 0, y: 0, width: 1668, height: 1316, preserveAspectRatio: 'xMidYMid meet' });
-  img.setAttribute('href', '../assets/projects/v5/disney-spawn-point.png');
-  img.setAttributeNS('http://www.w3.org/1999/xlink', 'href', '../assets/projects/v5/disney-spawn-point.png');
+  img.setAttribute('href', '../assets/projects/v5/disney-spawn-point.webp');
+  img.setAttributeNS('http://www.w3.org/1999/xlink', 'href', '../assets/projects/v5/disney-spawn-point.webp');
   s.appendChild(img);
 }
 
 /* ── 6 · proposed spaces · the proposal's axonometric drawings ───── */
 const SPACES = {
-  theatre: { title: 'Theatre', cap: 'Large gatherings', access: 'Public · login required', img: 'space-office.png', ar: '1490/1238' },
-  lounge:  { title: 'Lounge',  cap: 'Up to 50 people',  access: 'Public · members',        img: 'space-lounge.png',  ar: '1347/909' },
-  meeting: { title: 'Meeting Room', cap: 'Up to 10 people', access: 'Private · lockable',  img: 'space-meeting.png', ar: '1316/947' },
-  office:  { title: 'Office',  cap: 'Up to 20 people',  access: 'Private · lockable',      img: 'space-theatre.png', ar: '1514/816' }
+  theatre: { title: 'Theatre', cap: 'Large gatherings', access: 'Public · login required', img: 'space-office.webp', ar: '1490/1238' },
+  lounge:  { title: 'Lounge',  cap: 'Up to 50 people',  access: 'Public · members',        img: 'space-lounge.webp',  ar: '1347/909' },
+  meeting: { title: 'Meeting Room', cap: 'Up to 10 people', access: 'Private · lockable',  img: 'space-meeting.webp', ar: '1316/947' },
+  office:  { title: 'Office',  cap: 'Up to 20 people',  access: 'Private · lockable',      img: 'space-theatre.webp', ar: '1514/816' }
 };
 function drawSpace(key) {
   const spec = SPACES[key], host = document.getElementById('spaceStage');
