@@ -3084,7 +3084,12 @@
     if (!window.THREE) {
       var prevInit = window.MG_INIT_3D;
       window.MG_INIT_3D = function () { if (prevInit) prevInit(); playBoot(); };
-      if (!window.MG_3D_STARTED && typeof window.MG_START_3D === 'function') window.MG_START_3D();
+      /* Respect the touch gate. This path used to call MG_START_3D
+         unconditionally, which defeated the tap-to-load placeholder and made
+         phones fetch three.js plus the 5.7MB glb anyway. On touch, wait for
+         the user to actually ask for the scene. */
+      if (!document.documentElement.hasAttribute('data-touch')
+          && !window.MG_3D_STARTED && typeof window.MG_START_3D === 'function') window.MG_START_3D();
       return;
     }
     const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -3543,7 +3548,11 @@
     if (!window.THREE) {
       var prevInit = window.MG_INIT_3D;
       window.MG_INIT_3D = function () { if (prevInit) prevInit(); playBoot(); };
-      if (!window.MG_3D_STARTED && typeof window.MG_START_3D === 'function') window.MG_START_3D();
+      /* Respect the touch gate. This path used to call MG_START_3D
+         unconditionally, which defeated the tap-to-load placeholder and made
+         phones fetch three.js plus the 5.7MB glb anyway. */
+      if (!document.documentElement.hasAttribute('data-touch')
+          && !window.MG_3D_STARTED && typeof window.MG_START_3D === 'function') window.MG_START_3D();
       return;
     }
     const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
