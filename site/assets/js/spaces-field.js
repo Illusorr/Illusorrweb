@@ -320,7 +320,7 @@ if (THREE.GLTFLoader) {
   const gltfLoader = new THREE.GLTFLoader();
   if (THREE.DRACOLoader) {                     // the guest model ships Draco-compressed
     const draco = new THREE.DRACOLoader();
-    draco.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.5.6/');
+    draco.setDecoderPath('/assets/js/draco/gltf/');
     gltfLoader.setDRACOLoader(draco);
   }
   gltfLoader.load('../assets/models/spheres.glb', (gltf) => {

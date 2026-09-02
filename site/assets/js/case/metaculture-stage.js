@@ -75,7 +75,7 @@
   const loader = new THREE.GLTFLoader();
   try {
     const draco = new THREE.DRACOLoader();
-    draco.setDecoderPath('https://www.gstatic.com/draco/v1/decoders/');
+    draco.setDecoderPath('/assets/js/draco/gltf/');
     loader.setDRACOLoader(draco);
   } catch (e) { /* uncompressed glb */ }
 

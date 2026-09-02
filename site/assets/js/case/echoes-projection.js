@@ -239,7 +239,7 @@ renderer.setPixelRatio(1);
 
   // Draco-aware: reads both the plain GLB and a Draco-compressed re-export.
   const draco = new DRACOLoader();
-  draco.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.5.7/');
+  draco.setDecoderPath('/assets/js/draco/gltf/');
   draco.setDecoderConfig({ type: 'js' });
   const loader = new GLTFLoader();
   loader.setDRACOLoader(draco);

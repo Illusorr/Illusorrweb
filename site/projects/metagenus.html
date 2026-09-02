@@ -3189,7 +3189,7 @@
     const bones = {};
     let mixer = null, usingClip = false, skel = null;
     const loader = new THREE.GLTFLoader();
-    try { const draco = new THREE.DRACOLoader(); draco.setDecoderPath('https://www.gstatic.com/draco/v1/decoders/'); loader.setDRACOLoader(draco); } catch (e) {}
+    try { const draco = new THREE.DRACOLoader(); draco.setDecoderPath('/assets/js/draco/gltf/'); loader.setDRACOLoader(draco); } catch (e) {}
 
     loader.load('../assets/projects/metagenus/models/MG_animation_scaled.glb', (gltf) => {
       const model = gltf.scene;
@@ -3265,7 +3265,7 @@
     function loadWalkClip(model) {
       function tryGlb() {
         const l2 = new THREE.GLTFLoader();
-        try { const d2 = new THREE.DRACOLoader(); d2.setDecoderPath('https://www.gstatic.com/draco/v1/decoders/'); l2.setDRACOLoader(d2); } catch (e) {}
+        try { const d2 = new THREE.DRACOLoader(); d2.setDecoderPath('/assets/js/draco/gltf/'); l2.setDRACOLoader(d2); } catch (e) {}
         l2.load('../assets/projects/metagenus/models/walk.glb', (cg) => applyWalkClip(model, cg.animations), undefined, () => {});
       }
       if (window.THREE && THREE.FBXLoader) {
@@ -3685,7 +3685,7 @@
     function findClip() { const want = ['walk','running','idle','jump']; want.forEach(()=>{}); return; }
 
     const loader = new T.GLTFLoader();
-    try { const d = new T.DRACOLoader(); d.setDecoderPath('https://www.gstatic.com/draco/v1/decoders/'); loader.setDRACOLoader(d); } catch (e) {}
+    try { const d = new T.DRACOLoader(); d.setDecoderPath('/assets/js/draco/gltf/'); loader.setDRACOLoader(d); } catch (e) {}
     loader.load('../assets/projects/metagenus/models/MG_animation_scaled.glb', (gltf) => {
       model = gltf.scene;
       let pb = new T.Box3().setFromObject(model), ps = pb.getSize(new T.Vector3());
