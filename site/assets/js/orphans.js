@@ -22,6 +22,16 @@
   var SEL = 'p, li, dd, dt, figcaption, blockquote, h1, h2, h3, h4, ' +
             '.lede, .sub, .module-title, .st, .ct, .meta-v';
   var NBSP = ' ';
+  var MIN_TAIL = 0.34;   /* last line must reach this share of the line above */
+  var MAX_JOIN = 6;      /* never drag more than this many words down */
+
+  function lines(el) {
+    var r = document.createRange();
+    r.selectNodeContents(el);
+    var rects = Array.prototype.filter.call(r.getClientRects(), function (x) { return x.width > 1; });
+    if (rects.length < 2) return null;
+    return { last: rects[rects.length - 1].width, prev: rects[rects.length - 2].width, n: rects.length };
+  }
 
   function bind(el) {
     /* plain text blocks only: anything with inline structure is left alone
@@ -30,24 +40,30 @@
 
     var orig = el.getAttribute('data-orphan-src');
     if (orig === null) { orig = el.textContent; el.setAttribute('data-orphan-src', orig); }
+    if (el.textContent !== orig) el.textContent = orig;      /* re-solve from clean text */
 
     var words = orig.trim().split(/\s+/);
-    if (words.length < 3) return;               /* nothing to strand */
+    if (words.length < 3) return;
 
-    var tail = words[words.length - 2] + NBSP + words[words.length - 1];
+    var m = lines(el);
+    if (!m) return;                                          /* single line: nothing to strand */
+    if (m.last >= m.prev * MIN_TAIL) return;                 /* already substantial */
 
-    /* If the bound pair is wider than the container it would force an
-       overflow, which is worse than the orphan. Leave those alone. */
-    var probe = document.createElement('span');
-    probe.style.cssText = 'position:absolute;visibility:hidden;white-space:pre';
-    probe.textContent = tail.replace(/ /g, ' ');
-    el.appendChild(probe);
-    var tooWide = probe.offsetWidth > el.clientWidth * 0.9;
-    el.removeChild(probe);
-    if (tooWide) { if (el.textContent !== orig) el.textContent = orig; return; }
-
-    var next = words.slice(0, words.length - 2).join(' ') + ' ' + tail;
-    if (el.textContent !== next) el.textContent = next;
+    /* Bind progressively. Two words satisfies the letter of the rule but a
+       short tail still reads as stranded, so keep pulling words down until the
+       last line looks deliberate, or until doing so would cost a whole extra
+       line. */
+    var best = null;
+    for (var join = 2; join <= MAX_JOIN && join < words.length; join++) {
+      var tail = words.slice(words.length - join).join(NBSP);
+      el.textContent = words.slice(0, words.length - join).join(' ') + ' ' + tail;
+      var n = lines(el);
+      if (!n) { el.textContent = orig; return; }             /* collapsed to one line */
+      if (n.n > m.n) break;                                  /* cost an extra line: too far */
+      best = el.textContent;
+      if (n.last >= n.prev * MIN_TAIL) return;               /* good enough, stop */
+    }
+    el.textContent = best !== null ? best : orig;
   }
 
   function run() {
