@@ -1,11 +1,11 @@
 /* ─────────────────────────────────────────────────────────────────────
    ILLUSORR — mobile behaviour.
 
-   ADDITIVE ONLY. Everything is behind one capability check, so on a
-   desktop this file does nothing at all beyond a single matchMedia call.
+   ADDITIVE ONLY. Everything is behind one viewport-width check, so on a
+   wide desktop this file does nothing at all beyond reading innerWidth.
    Remove the <script> and the page is exactly as it was.
 
-   It does three things on touch devices:
+   It does three things at 1024px and below (and on ?mobile=1):
      1. stops autoplay video downloading; poster + tap to play
      2. stops three.js downloading; still frame + tap to load the scene
      3. kills pointer-follower loops that can never be seen
@@ -22,8 +22,11 @@
      device they hydrate immediately; on touch the defer logic below owns
      them. This runs BEFORE the touch gate on purpose. */
   (function hydrateVideos() {
-    var touch = window.matchMedia('(hover: none), (pointer: coarse)').matches;
-    if (touch) return;
+    /* Must agree with the main gate below, which is width-based. If this used
+       pointer type instead, a desktop window at 390px would hydrate every
+       video and the mobile layer would then try to defer the same elements. */
+    var mobile = /[?&]mobile=1/.test(location.search) || window.innerWidth <= 1024;
+    if (mobile) return;
 
     var hydrate = function (v) {
       if (!v || v.getAttribute('src')) return;
@@ -74,10 +77,18 @@
              sessionStorage.getItem('il-force-mobile') === '1') FORCED = true;
   } catch (e) {}
 
-  var TOUCH = window.matchMedia('(hover: none), (pointer: coarse)').matches
-    /* ?mobile=1 forces this layer on so the mobile build can be reviewed
-       from a desktop browser. Nothing else reads it. */
-    || FORCED;
+  /* The gate is viewport width, not pointer type.
+     It used to be pointer alone, which broke both ends:
+       - a desktop window dragged to 390px never got the mobile design, so
+         resizing showed the desktop layout squeezed rather than the real
+         thing (measured: 64% of elements rendered differently)
+       - a touch tablet in landscape at 1366px DID get the phone design,
+         because nothing capped it by width
+     MOBILE_MAX matches the widest breakpoint the mobile layer is written
+     for, so an iPad in portrait (768) still gets it and the same iPad in
+     landscape (1366) does not. ?mobile=1 still forces it at any width. */
+  var MOBILE_MAX = 1024;
+  var TOUCH = FORCED || window.innerWidth <= MOBILE_MAX;
   if (!TOUCH) return;
 
   if (FORCED) {
