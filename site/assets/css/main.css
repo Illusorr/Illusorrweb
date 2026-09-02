@@ -2295,3 +2295,42 @@ h1, h2, h3, h4, h5, h6,
   text-wrap: balance;
 }
 p, li, dd, dt, .meta-v { text-wrap: pretty; }
+
+/* ── Sector accents ──────────────────────────────────────────────────
+   A deliberate exception to "never invent a colour": the Selected Work
+   cards were nine near-identical pale lavenders (#b9c4ec ... #cbc2ec), so a
+   collapsed card told you nothing about what it was. Colour is keyed to
+   SECTOR, not to the card, so it carries meaning and repeats consistently
+   wherever a sector appears.
+
+   All are pitched to carry white text at 4.5:1 or better, since the collapsed
+   card shows a white vertical label. Anchored on --indigo and spread by hue
+   from there. Change them here and every use follows. */
+:root{
+  --sec-technology:   #3f51d8;
+  --sec-entertainment:#8b46d6;
+  --sec-ip:           #0f7f7a;
+  --sec-gaming:       #c2306b;
+  --sec-beauty:       #b4523a;
+  --sec-fashion:      #5b46c9;
+  --sec-realestate:   #1c6fae;
+  --sec-default:      #565d6b;
+}
+.ccard[data-sec="technology"]   { --sec: var(--sec-technology); }
+.ccard[data-sec="entertainment"]{ --sec: var(--sec-entertainment); }
+.ccard[data-sec="ip"]           { --sec: var(--sec-ip); }
+.ccard[data-sec="gaming"]       { --sec: var(--sec-gaming); }
+.ccard[data-sec="beauty"]       { --sec: var(--sec-beauty); }
+.ccard[data-sec="fashion"]      { --sec: var(--sec-fashion); }
+.ccard[data-sec="realestate"]   { --sec: var(--sec-realestate); }
+.ccard                          { --sec: var(--sec-default); }
+
+/* Collapsed: the card IS the colour, so the rail reads as a spectrum.
+   Active: the cover image takes over and the colour retreats to the edge. */
+.ccard{ background: var(--sec); border-color: transparent; }
+.ccard .cvlabel{ color:#fff; }
+.ccard .cvnum{ color:rgba(255,255,255,.72); }
+.ccard.active{ background:#fff; box-shadow:0 30px 70px -30px rgba(40,55,120,.28),
+               inset 4px 0 0 0 var(--sec); }
+.ccard.active .csector{ color: var(--sec); }
+.ccard.active .ctag span{ border-color: color-mix(in srgb, var(--sec) 34%, transparent); }

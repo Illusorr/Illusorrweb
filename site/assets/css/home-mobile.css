@@ -707,3 +707,24 @@ html[data-touch] .wwd-slide p { color: #fff !important; }
   }
   html[data-touch] .wwd-method { margin-top: 40px !important; }
 }
+
+/* The rotated vertical title is a rule for the 80px collapsed desktop card.
+   On touch the card is ~287px wide, so set it horizontally where there is
+   room to read it. The sector colour now carries the identification, so the
+   number can sit quietly in the corner. */
+html[data-touch] .ccard .cvlabel{
+  writing-mode: horizontal-tb;
+  transform: none;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  font-size: 19px;
+  line-height: 1.15;
+  white-space: normal;
+  text-align: left;
+}
+html[data-touch] .ccard .cvnum{
+  left: 20px;
+  transform: none;
+  top: 18px;
+}
