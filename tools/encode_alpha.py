@@ -18,7 +18,11 @@ import shutil, subprocess, sys, time
 from pathlib import Path
 from PIL import Image
 
-FF = shutil.which("ffmpeg")
+_WINGET = (Path.home() / "AppData/Local/Microsoft/WinGet/Packages"
+           / "Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe"
+           / "ffmpeg-9.0.1-full_build/bin")
+FF = shutil.which("ffmpeg") or str(_WINGET / "ffmpeg.exe")
+FP = shutil.which("ffprobe") or str(_WINGET / "ffprobe.exe")
 TARGET_W = 1400
 CRF = 32
 CHECK = Path("screenshots/verify/_alphachk"); CHECK.mkdir(parents=True, exist_ok=True)
@@ -33,7 +37,7 @@ def transparency(path, tag):
     return sum(1 for v in a if v < 16) / max(len(a), 1)
 
 def has_alpha(path):
-    o = subprocess.run([FF.replace("ffmpeg", "ffprobe"), "-v", "error", "-show_streams", str(path)],
+    o = subprocess.run([FP, "-v", "error", "-show_streams", str(path)],
                        capture_output=True, text=True).stdout
     return "ALPHA_MODE=1" in o
 
@@ -46,7 +50,7 @@ t0 = time.time(); b0 = b1 = 0; kept = rejected = 0
 for i, f in enumerate(targets, 1):
     if not has_alpha(f):
         continue
-    probe = subprocess.run([FF.replace("ffmpeg","ffprobe"), "-v", "error", "-select_streams", "v:0",
+    probe = subprocess.run([FP, "-v", "error", "-select_streams", "v:0",
                             "-show_entries", "stream=width,height", "-of", "csv=p=0", str(f)],
                            capture_output=True, text=True).stdout.strip().split(",")
     try: w, h = int(probe[0]), int(probe[1])
