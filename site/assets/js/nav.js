@@ -79,15 +79,21 @@
   /* Scroll fires many times per frame and this queued a fresh rAF for each,
      so sample() ran repeatedly per frame doing three elementsFromPoint walks
      every time. Coalesce to one run per frame. */
-  var pending=false, lastY=-1e9;
+  var pending=false, lastY=-1e9, settle=0;
   window.addEventListener('scroll',function(){
+    /* Always take a final reading once scrolling stops. Without this the
+       delta guard below can skip the last few pixels of a scroll and leave
+       the bar showing the previous section's tone, which is exactly how the
+       logo ended up light-on-light. */
+    clearTimeout(settle);
+    settle=setTimeout(function(){ lastY=-1e9; sample(); },90);
+
     if(pending) return;
     pending=true;
     requestAnimationFrame(function(){
       pending=false;
-      /* The tone only changes at section boundaries, and each sample costs
-         three elementsFromPoint walks. Skip small deltas; a 20px move cannot
-         cross a band. */
+      /* Each sample costs three elementsFromPoint walks and the tone only
+         changes at a section boundary, so skip small intermediate moves. */
       var y=window.pageYOffset||document.documentElement.scrollTop||0;
       if(Math.abs(y-lastY)<20) return;
       lastY=y;
