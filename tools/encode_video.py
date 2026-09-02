@@ -37,8 +37,14 @@ for i, v in enumerate(vids, 1):
 
     # Alpha: VP9 carries transparency as yuva420p. Detect it on the source and
     # preserve it. auto-alt-ref must be off or libvpx drops the alpha plane.
+    # VP9 alpha in WebM is signalled by the container tag ALPHA_MODE=1, NOT by
+    # pix_fmt, which reports plain yuv420p for alpha files. Reading pix_fmt here
+    # silently flattened C1.webm and wings.webm to opaque black boxes.
     meta_pix = (alpha_by_path.get(v["path"], {}) or {}).get("pix", "yuv420p")
-    has_alpha = meta_pix.startswith("yuva") or "rgba" in meta_pix or "argb" in meta_pix
+    probe = subprocess.run([FFMPEG.replace("ffmpeg","ffprobe"), "-v", "error",
+                            "-show_streams", str(src)], capture_output=True, text=True).stdout
+    has_alpha = ("ALPHA_MODE=1" in probe or meta_pix.startswith("yuva")
+                 or "rgba" in meta_pix or "argb" in meta_pix)
     # Audio: 55 clips carry an audio track. Keep it as Opus rather than dropping it.
     has_audio = (alpha_by_path.get(v["path"], {}) or {}).get("audio", False)
 
