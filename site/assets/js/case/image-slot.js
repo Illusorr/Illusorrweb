@@ -171,6 +171,16 @@
 
   function load() {
     if (loadP) return loadP;
+    /* The sidecar only exists inside the authoring runtime. On the deployed
+       site it is never there, so this fetch 404s on every case study page:
+       one wasted request and a console error per load, on 29 pages. Slots
+       still render whatever src the markup already carries, which is what a
+       visitor sees either way. Resolve empty unless the host is present. */
+    if (!(window.omelette && window.omelette.writeFile)) {
+      loaded = true;
+      loadP = Promise.resolve(null);
+      return loadP;
+    }
     loadP = fetch(STATE_FILE)
       .then((r) => (r.ok ? r.json() : null))
       .then((j) => {
