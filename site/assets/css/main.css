@@ -2261,3 +2261,18 @@
 }
 .hero .center > *{position:relative;z-index:1}
 .wwd-slide p{color:#fff}
+
+/* ── Orphan control ──────────────────────────────────────────────────
+   House rule: no word is left alone on the last line.
+
+   text-wrap:balance evens the line lengths and genuinely fixes it, but the
+   browser only applies it to short blocks (Chrome caps around six lines), so
+   it covers headings and short copy. Longer paragraphs are handled at runtime
+   by js/orphans.js, which binds the last two words with a non-breaking space.
+   pretty is deliberately NOT used here: measured on about.html it left a 47px
+   last line untouched, identical to normal. */
+h1, h2, h3, h4, h5, h6,
+.module-title, .st, .ct, .lede, .sub, figcaption, blockquote, summary {
+  text-wrap: balance;
+}
+p, li, dd, dt, .meta-v { text-wrap: pretty; }

@@ -13,6 +13,15 @@
   const clamp=(v,a,b)=>Math.min(b,Math.max(a,v));
   const nf=document.getElementById('nf');
   function onScroll(){
+    /* The horizontal crossing is a desktop-only idea: on touch/narrow the CSS
+       unpins .hwrap and stacks the panels vertically. This driver used to run
+       regardless and wrote an INLINE transform, which outranks that CSS, so a
+       phone still got the track shoved sideways. Bail out and clear anything
+       left over from a previous width. */
+    if (document.documentElement.hasAttribute('data-touch')) {
+      if (htrack.style.transform) htrack.style.transform='';
+      return;
+    }
     const r=hwrap.getBoundingClientRect();const total=hwrap.offsetHeight-window.innerHeight;
     const raw=clamp((-r.top)/total,0,1);
     // panels finish arriving at 88% of scroll; last 12% holds the brands panel so it dwells, then hands straight to team

@@ -22,3 +22,18 @@
   src:url("../../fonts/SpaceMono-Regular.woff2") format("woff2"), url("../../fonts/SpaceMono-Regular.ttf") format("truetype"); }
 @font-face { font-family:'Space Mono'; font-style:normal; font-weight:700; font-display:swap;
   src:url("../../fonts/SpaceMono-Bold.woff2") format("woff2"), url("../../fonts/SpaceMono-Bold.ttf") format("truetype"); }
+
+/* ── Orphan control ──────────────────────────────────────────────────
+   House rule: no word is left alone on the last line.
+
+   text-wrap:balance evens the line lengths and genuinely fixes it, but the
+   browser only applies it to short blocks (Chrome caps around six lines), so
+   it covers headings and short copy. Longer paragraphs are handled at runtime
+   by js/orphans.js, which binds the last two words with a non-breaking space.
+   pretty is deliberately NOT used here: measured on about.html it left a 47px
+   last line untouched, identical to normal. */
+h1, h2, h3, h4, h5, h6,
+.module-title, .st, .ct, .lede, .sub, figcaption, blockquote, summary {
+  text-wrap: balance;
+}
+p, li, dd, dt, .meta-v { text-wrap: pretty; }

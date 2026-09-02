@@ -89,6 +89,27 @@
      landscape (1366) does not. ?mobile=1 still forces it at any width. */
   var MOBILE_MAX = 1024;
   var TOUCH = FORCED || window.innerWidth <= MOBILE_MAX;
+  /* Keep the CSS layer honest while the window is being resized.
+     The attribute toggles live so the layout switches as you drag. The DOM
+     surgery below (deferring video, replacing 3D canvases) runs once and is
+     deliberately NOT undone on widening: it is one-way, and re-hydrating it
+     mid-resize would fight the page's own scripts. Widening therefore returns
+     the desktop layout immediately; deferred media returns on reload. */
+  (function watchWidth(){
+    var t;
+    window.addEventListener('resize', function(){
+      clearTimeout(t);
+      t = setTimeout(function(){
+        var want = FORCED || window.innerWidth <= MOBILE_MAX;
+        var has  = document.documentElement.hasAttribute('data-touch');
+        if (want === has) return;
+        if (want) document.documentElement.setAttribute('data-touch','');
+        else document.documentElement.removeAttribute('data-touch');
+        window.dispatchEvent(new Event('scroll'));   // let pinned/scroll drivers re-solve
+      }, 120);
+    }, {passive:true});
+  })();
+
   if (!TOUCH) return;
 
   if (FORCED) {
@@ -107,6 +128,7 @@
   }
 
   document.documentElement.setAttribute('data-touch', '');
+
 
   /* ── helpers ─────────────────────────────────────────────────────── */
   function defer(el, label, note, kind, onActivate) {

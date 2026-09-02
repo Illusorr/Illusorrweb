@@ -1,0 +1,3842 @@
+{
+ "/about.html": {
+  "1920": {
+   "overflowX": 0,
+   "escapes": [
+    {
+     "el": "section.panel.p-statement",
+     "parent": "div#htrack.htrack",
+     "by": 1920
+    },
+    {
+     "el": "section.panel.p-team",
+     "parent": "div#htrack.htrack",
+     "by": 3840
+    },
+    {
+     "el": "section.panel.p-virtual",
+     "parent": "div#htrack.htrack",
+     "by": 5760
+    },
+    {
+     "el": "section.panel.p-clients",
+     "parent": "div#htrack.htrack",
+     "by": 7680
+    }
+   ],
+   "orphans": [
+    {
+     "el": "p",
+     "lastWidth": 47,
+     "lineWidth": 266,
+     "tail": "a one-off."
+    },
+    {
+     "el": "p",
+     "lastWidth": 46,
+     "lineWidth": 267,
+     "tail": "in them."
+    },
+    {
+     "el": "p.sf-say",
+     "lastWidth": 75,
+     "lineWidth": 315,
+     "tail": "work lands."
+    }
+   ],
+   "edgeDrift": [],
+   "overlaps": [
+    {
+     "a": "li",
+     "b": "li",
+     "x": 273,
+     "y": 14
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 261,
+     "y": 13
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 273,
+     "y": 14
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 261,
+     "y": 14
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 273,
+     "y": 14
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 261,
+     "y": 14
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 273,
+     "y": 13
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 261,
+     "y": 14
+    },
+    {
+     "a": "p.gc-desc",
+     "b": "p.gc-desc",
+     "x": 285,
+     "y": 30
+    },
+    {
+     "a": "p.gc-desc",
+     "b": "p.gc-desc",
+     "x": 274,
+     "y": 16
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 273,
+     "y": 13
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 273,
+     "y": 13
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 261,
+     "y": 19
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 273,
+     "y": 14
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 261,
+     "y": 19
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 273,
+     "y": 14
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 261,
+     "y": 19
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 273,
+     "y": 15
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 261,
+     "y": 19
+    },
+    {
+     "a": "p.gc-desc",
+     "b": "p.gc-desc",
+     "x": 271,
+     "y": 33
+    },
+    {
+     "a": "p.gc-desc",
+     "b": "p.gc-desc",
+     "x": 262,
+     "y": 19
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 261,
+     "y": 17
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 261,
+     "y": 18
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 261,
+     "y": 17
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 261,
+     "y": 17
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 261,
+     "y": 18
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 261,
+     "y": 16
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 261,
+     "y": 19
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 260,
+     "y": 16
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 259,
+     "y": 20
+    },
+    {
+     "a": "p.gc-desc",
+     "b": "p.gc-desc",
+     "x": 255,
+     "y": 37
+    }
+   ],
+   "tinyTaps": [
+    {
+     "el": "a.il-talk",
+     "w": 108,
+     "h": 34
+    },
+    {
+     "el": "button#ilMenuClose.il-oclose",
+     "w": 99,
+     "h": 36
+    },
+    {
+     "el": "button#flowPrev.flow-arrow.mono",
+     "w": 40,
+     "h": 40
+    },
+    {
+     "el": "button#flowNext.flow-arrow.mono",
+     "w": 40,
+     "h": 40
+    },
+    {
+     "el": "a.sf-top",
+     "w": 111,
+     "h": 15
+    }
+   ]
+  },
+  "1440": {
+   "overflowX": 0,
+   "escapes": [
+    {
+     "el": "section.panel.p-statement",
+     "parent": "div#htrack.htrack",
+     "by": 1440
+    },
+    {
+     "el": "section.panel.p-team",
+     "parent": "div#htrack.htrack",
+     "by": 2880
+    },
+    {
+     "el": "section.panel.p-virtual",
+     "parent": "div#htrack.htrack",
+     "by": 4320
+    },
+    {
+     "el": "section.panel.p-clients",
+     "parent": "div#htrack.htrack",
+     "by": 5760
+    }
+   ],
+   "orphans": [
+    {
+     "el": "p",
+     "lastWidth": 47,
+     "lineWidth": 266,
+     "tail": "a one-off."
+    },
+    {
+     "el": "p",
+     "lastWidth": 46,
+     "lineWidth": 267,
+     "tail": "in them."
+    },
+    {
+     "el": "p.sf-say",
+     "lastWidth": 75,
+     "lineWidth": 315,
+     "tail": "work lands."
+    }
+   ],
+   "edgeDrift": [],
+   "overlaps": [
+    {
+     "a": "li",
+     "b": "li",
+     "x": 273,
+     "y": 14
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 261,
+     "y": 13
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 273,
+     "y": 14
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 261,
+     "y": 14
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 273,
+     "y": 14
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 261,
+     "y": 14
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 273,
+     "y": 13
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 261,
+     "y": 14
+    },
+    {
+     "a": "p.gc-desc",
+     "b": "p.gc-desc",
+     "x": 285,
+     "y": 30
+    },
+    {
+     "a": "p.gc-desc",
+     "b": "p.gc-desc",
+     "x": 274,
+     "y": 16
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 273,
+     "y": 13
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 273,
+     "y": 13
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 261,
+     "y": 19
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 273,
+     "y": 14
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 261,
+     "y": 19
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 273,
+     "y": 14
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 261,
+     "y": 19
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 273,
+     "y": 15
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 261,
+     "y": 19
+    },
+    {
+     "a": "p.gc-desc",
+     "b": "p.gc-desc",
+     "x": 271,
+     "y": 33
+    },
+    {
+     "a": "p.gc-desc",
+     "b": "p.gc-desc",
+     "x": 262,
+     "y": 19
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 261,
+     "y": 17
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 261,
+     "y": 18
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 261,
+     "y": 17
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 261,
+     "y": 17
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 261,
+     "y": 18
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 261,
+     "y": 16
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 261,
+     "y": 19
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 260,
+     "y": 16
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 259,
+     "y": 20
+    },
+    {
+     "a": "p.gc-desc",
+     "b": "p.gc-desc",
+     "x": 255,
+     "y": 37
+    }
+   ],
+   "tinyTaps": [
+    {
+     "el": "a.il-talk",
+     "w": 108,
+     "h": 34
+    },
+    {
+     "el": "button#ilMenuClose.il-oclose",
+     "w": 99,
+     "h": 36
+    },
+    {
+     "el": "button#flowPrev.flow-arrow.mono",
+     "w": 40,
+     "h": 40
+    },
+    {
+     "el": "button#flowNext.flow-arrow.mono",
+     "w": 40,
+     "h": 40
+    },
+    {
+     "el": "a.sf-top",
+     "w": 111,
+     "h": 15
+    }
+   ]
+  },
+  "1024": {
+   "overflowX": 0,
+   "escapes": [],
+   "orphans": [
+    {
+     "el": "p",
+     "lastWidth": 174,
+     "lineWidth": 637,
+     "tail": "a one-off."
+    },
+    {
+     "el": "p.sf-say",
+     "lastWidth": 75,
+     "lineWidth": 315,
+     "tail": "work lands."
+    }
+   ],
+   "edgeDrift": [
+    {
+     "sec": "section.panel.p-intro",
+     "spread": 52,
+     "lefts": [
+      269,
+      321
+     ]
+    }
+   ],
+   "overlaps": [
+    {
+     "a": "li",
+     "b": "li",
+     "x": 273,
+     "y": 14
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 261,
+     "y": 13
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 273,
+     "y": 14
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 261,
+     "y": 14
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 273,
+     "y": 14
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 261,
+     "y": 14
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 273,
+     "y": 13
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 261,
+     "y": 14
+    },
+    {
+     "a": "p.gc-desc",
+     "b": "p.gc-desc",
+     "x": 286,
+     "y": 77
+    },
+    {
+     "a": "p.gc-desc",
+     "b": "p.gc-desc",
+     "x": 276,
+     "y": 63
+    },
+    {
+     "a": "p.gc-desc",
+     "b": "p.gc-desc",
+     "x": 265,
+     "y": 49
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 273,
+     "y": 13
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 273,
+     "y": 13
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 261,
+     "y": 19
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 273,
+     "y": 14
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 261,
+     "y": 19
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 273,
+     "y": 14
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 261,
+     "y": 19
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 273,
+     "y": 15
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 261,
+     "y": 19
+    },
+    {
+     "a": "p.gc-desc",
+     "b": "p.gc-desc",
+     "x": 274,
+     "y": 78
+    },
+    {
+     "a": "p.gc-desc",
+     "b": "p.gc-desc",
+     "x": 265,
+     "y": 64
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 261,
+     "y": 17
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 261,
+     "y": 18
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 261,
+     "y": 17
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 261,
+     "y": 17
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 261,
+     "y": 18
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 261,
+     "y": 16
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 261,
+     "y": 19
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 260,
+     "y": 16
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 259,
+     "y": 20
+    },
+    {
+     "a": "p.gc-desc",
+     "b": "p.gc-desc",
+     "x": 259,
+     "y": 80
+    }
+   ],
+   "tinyTaps": [
+    {
+     "el": "a.sf-mail",
+     "w": 180,
+     "h": 34
+    },
+    {
+     "el": "a.sf-top",
+     "w": 111,
+     "h": 15
+    }
+   ]
+  },
+  "768": {
+   "overflowX": 0,
+   "escapes": [],
+   "orphans": [
+    {
+     "el": "p",
+     "lastWidth": 174,
+     "lineWidth": 637,
+     "tail": "a one-off."
+    },
+    {
+     "el": "p",
+     "lastWidth": 156,
+     "lineWidth": 654,
+     "tail": "in them."
+    },
+    {
+     "el": "p.sf-say",
+     "lastWidth": 75,
+     "lineWidth": 315,
+     "tail": "work lands."
+    }
+   ],
+   "edgeDrift": [],
+   "overlaps": [],
+   "tinyTaps": [
+    {
+     "el": "a.sf-mail",
+     "w": 160,
+     "h": 30
+    },
+    {
+     "el": "a.sf-top",
+     "w": 111,
+     "h": 15
+    }
+   ]
+  },
+  "640": {
+   "overflowX": 0,
+   "escapes": [],
+   "orphans": [
+    {
+     "el": "p",
+     "lastWidth": 100,
+     "lineWidth": 576,
+     "tail": "a one-off."
+    },
+    {
+     "el": "p",
+     "lastWidth": 130,
+     "lineWidth": 545,
+     "tail": "in them."
+    },
+    {
+     "el": "p.sf-say",
+     "lastWidth": 75,
+     "lineWidth": 315,
+     "tail": "work lands."
+    },
+    {
+     "el": "p.sf-partner",
+     "lastWidth": 56,
+     "lineWidth": 300,
+     "tail": "Abu Dhabi"
+    }
+   ],
+   "edgeDrift": [],
+   "overlaps": [],
+   "tinyTaps": [
+    {
+     "el": "a.sf-mail",
+     "w": 160,
+     "h": 30
+    },
+    {
+     "el": "a.sf-top",
+     "w": 111,
+     "h": 15
+    }
+   ]
+  },
+  "390": {
+   "overflowX": 0,
+   "escapes": [],
+   "orphans": [
+    {
+     "el": "p",
+     "lastWidth": 54,
+     "lineWidth": 307,
+     "tail": "a one-off."
+    },
+    {
+     "el": "p",
+     "lastWidth": 53,
+     "lineWidth": 308,
+     "tail": "in them."
+    },
+    {
+     "el": "p.sf-say",
+     "lastWidth": 75,
+     "lineWidth": 315,
+     "tail": "work lands."
+    },
+    {
+     "el": "p.sf-partner",
+     "lastWidth": 56,
+     "lineWidth": 300,
+     "tail": "Abu Dhabi"
+    }
+   ],
+   "edgeDrift": [],
+   "overlaps": [],
+   "tinyTaps": [
+    {
+     "el": "a.sf-mail",
+     "w": 160,
+     "h": 30
+    },
+    {
+     "el": "a.sf-top",
+     "w": 111,
+     "h": 15
+    }
+   ]
+  }
+ },
+ "/index.html": {
+  "1920": {
+   "overflowX": 0,
+   "escapes": [
+    {
+     "el": "div.reel-tag.mono",
+     "parent": "div.reel-frame",
+     "by": 69
+    },
+    {
+     "el": "div.wf-img.on",
+     "parent": "div.wf-stage",
+     "by": 109
+    },
+    {
+     "el": "div.wf-sheen",
+     "parent": "div.wf-stage",
+     "by": 206
+    }
+   ],
+   "orphans": [
+    {
+     "el": "p.sf-say",
+     "lastWidth": 75,
+     "lineWidth": 315,
+     "tail": "work lands."
+    }
+   ],
+   "edgeDrift": [],
+   "overlaps": [
+    {
+     "a": "h3.disp",
+     "b": "h3.disp",
+     "x": 436,
+     "y": 31
+    },
+    {
+     "a": "h3.disp",
+     "b": "h3.disp",
+     "x": 437,
+     "y": 46
+    },
+    {
+     "a": "h3.disp",
+     "b": "h3.disp",
+     "x": 431,
+     "y": 31
+    },
+    {
+     "a": "p",
+     "b": "h3.disp",
+     "x": 436,
+     "y": 39
+    },
+    {
+     "a": "p",
+     "b": "p",
+     "x": 436,
+     "y": 36
+    },
+    {
+     "a": "p",
+     "b": "h3.disp",
+     "x": 437,
+     "y": 24
+    },
+    {
+     "a": "p",
+     "b": "p",
+     "x": 437,
+     "y": 52
+    },
+    {
+     "a": "p",
+     "b": "h3.disp",
+     "x": 431,
+     "y": 39
+    },
+    {
+     "a": "p",
+     "b": "p",
+     "x": 431,
+     "y": 36
+    },
+    {
+     "a": "h3.disp",
+     "b": "h3.disp",
+     "x": 459,
+     "y": 71
+    },
+    {
+     "a": "h3.disp",
+     "b": "h3.disp",
+     "x": 535,
+     "y": 86
+    },
+    {
+     "a": "p",
+     "b": "p",
+     "x": 459,
+     "y": 61
+    },
+    {
+     "a": "p",
+     "b": "p",
+     "x": 455,
+     "y": 61
+    },
+    {
+     "a": "h3.disp",
+     "b": "h3.disp",
+     "x": 454,
+     "y": 71
+    },
+    {
+     "a": "p",
+     "b": "p",
+     "x": 454,
+     "y": 61
+    }
+   ],
+   "tinyTaps": [
+    {
+     "el": "a.il-talk",
+     "w": 108,
+     "h": 34
+    },
+    {
+     "el": "button#ilMenuClose.il-oclose",
+     "w": 99,
+     "h": 36
+    },
+    {
+     "el": "a.seeall",
+     "w": 165,
+     "h": 14
+    },
+    {
+     "el": "a.fakebtn.mono",
+     "w": 169,
+     "h": 40
+    },
+    {
+     "el": "a.fakebtn.mono",
+     "w": 157,
+     "h": 40
+    },
+    {
+     "el": "a.fakebtn.mono",
+     "w": 141,
+     "h": 40
+    },
+    {
+     "el": "a.sf-top",
+     "w": 111,
+     "h": 15
+    }
+   ]
+  },
+  "1440": {
+   "overflowX": 0,
+   "escapes": [
+    {
+     "el": "div.reel-tag.mono",
+     "parent": "div.reel-frame",
+     "by": 69
+    },
+    {
+     "el": "div.wf-img.on",
+     "parent": "div.wf-stage",
+     "by": 80
+    },
+    {
+     "el": "div.wf-sheen",
+     "parent": "div.wf-stage",
+     "by": 151
+    },
+    {
+     "el": "a.ccard",
+     "parent": "div#conv.conv",
+     "by": 24
+    }
+   ],
+   "orphans": [
+    {
+     "el": "p.sf-say",
+     "lastWidth": 75,
+     "lineWidth": 315,
+     "tail": "work lands."
+    }
+   ],
+   "edgeDrift": [],
+   "overlaps": [
+    {
+     "a": "h3.disp",
+     "b": "h3.disp",
+     "x": 439,
+     "y": 31
+    },
+    {
+     "a": "h3.disp",
+     "b": "h3.disp",
+     "x": 439,
+     "y": 46
+    },
+    {
+     "a": "h3.disp",
+     "b": "h3.disp",
+     "x": 434,
+     "y": 31
+    },
+    {
+     "a": "p",
+     "b": "h3.disp",
+     "x": 439,
+     "y": 39
+    },
+    {
+     "a": "p",
+     "b": "p",
+     "x": 439,
+     "y": 36
+    },
+    {
+     "a": "p",
+     "b": "h3.disp",
+     "x": 439,
+     "y": 24
+    },
+    {
+     "a": "p",
+     "b": "p",
+     "x": 439,
+     "y": 52
+    },
+    {
+     "a": "p",
+     "b": "h3.disp",
+     "x": 434,
+     "y": 39
+    },
+    {
+     "a": "p",
+     "b": "p",
+     "x": 434,
+     "y": 36
+    },
+    {
+     "a": "h3.disp",
+     "b": "h3.disp",
+     "x": 459,
+     "y": 71
+    },
+    {
+     "a": "h3.disp",
+     "b": "h3.disp",
+     "x": 535,
+     "y": 86
+    },
+    {
+     "a": "p",
+     "b": "p",
+     "x": 459,
+     "y": 61
+    },
+    {
+     "a": "p",
+     "b": "p",
+     "x": 456,
+     "y": 61
+    },
+    {
+     "a": "h3.disp",
+     "b": "h3.disp",
+     "x": 455,
+     "y": 71
+    },
+    {
+     "a": "p",
+     "b": "p",
+     "x": 455,
+     "y": 61
+    }
+   ],
+   "tinyTaps": [
+    {
+     "el": "a.il-talk",
+     "w": 108,
+     "h": 34
+    },
+    {
+     "el": "button#ilMenuClose.il-oclose",
+     "w": 99,
+     "h": 36
+    },
+    {
+     "el": "a.seeall",
+     "w": 165,
+     "h": 14
+    },
+    {
+     "el": "a.fakebtn.mono",
+     "w": 169,
+     "h": 40
+    },
+    {
+     "el": "a.fakebtn.mono",
+     "w": 157,
+     "h": 40
+    },
+    {
+     "el": "a.fakebtn.mono",
+     "w": 141,
+     "h": 40
+    },
+    {
+     "el": "a.sf-top",
+     "w": 111,
+     "h": 15
+    }
+   ]
+  },
+  "1024": {
+   "overflowX": 0,
+   "escapes": [
+    {
+     "el": "div.reel-tag.mono",
+     "parent": "div.reel-frame",
+     "by": 69
+    },
+    {
+     "el": "div.wf-img.on",
+     "parent": "div.wf-stage",
+     "by": 124
+    },
+    {
+     "el": "div.wf-sheen",
+     "parent": "div.wf-stage",
+     "by": 234
+    },
+    {
+     "el": "div#conv.conv",
+     "parent": "div.conv-vp",
+     "by": 40
+    },
+    {
+     "el": "a.ccard",
+     "parent": "div#conv.conv",
+     "by": 318
+    },
+    {
+     "el": "a.ccard",
+     "parent": "div#conv.conv",
+     "by": 761
+    },
+    {
+     "el": "a.ccard",
+     "parent": "div#conv.conv",
+     "by": 1205
+    },
+    {
+     "el": "a.ccard",
+     "parent": "div#conv.conv",
+     "by": 1648
+    },
+    {
+     "el": "a.ccard",
+     "parent": "div#conv.conv",
+     "by": 2092
+    },
+    {
+     "el": "a.ccard",
+     "parent": "div#conv.conv",
+     "by": 2535
+    },
+    {
+     "el": "a.ccard",
+     "parent": "div#conv.conv",
+     "by": 2978
+    }
+   ],
+   "orphans": [
+    {
+     "el": "p",
+     "lastWidth": 162,
+     "lineWidth": 691,
+     "tail": "be entered."
+    },
+    {
+     "el": "p",
+     "lastWidth": 157,
+     "lineWidth": 628,
+     "tail": "generative method."
+    },
+    {
+     "el": "p",
+     "lastWidth": 190,
+     "lineWidth": 772,
+     "tail": "this page."
+    },
+    {
+     "el": "p.sf-say",
+     "lastWidth": 75,
+     "lineWidth": 315,
+     "tail": "work lands."
+    }
+   ],
+   "edgeDrift": [],
+   "overlaps": [
+    {
+     "a": "p",
+     "b": "h3.disp",
+     "x": 710,
+     "y": 24
+    },
+    {
+     "a": "p",
+     "b": "p",
+     "x": 710,
+     "y": 20
+    },
+    {
+     "a": "p",
+     "b": "h3.disp",
+     "x": 710,
+     "y": 24
+    },
+    {
+     "a": "p",
+     "b": "p",
+     "x": 710,
+     "y": 20
+    },
+    {
+     "a": "p",
+     "b": "h3.disp",
+     "x": 707,
+     "y": 24
+    },
+    {
+     "a": "p",
+     "b": "p",
+     "x": 707,
+     "y": 20
+    },
+    {
+     "a": "h3.disp",
+     "b": "h3.disp",
+     "x": 710,
+     "y": 28
+    },
+    {
+     "a": "h3.disp",
+     "b": "h3.disp",
+     "x": 707,
+     "y": 28
+    },
+    {
+     "a": "p",
+     "b": "p",
+     "x": 710,
+     "y": 60
+    },
+    {
+     "a": "p",
+     "b": "p",
+     "x": 707,
+     "y": 60
+    },
+    {
+     "a": "h3.disp",
+     "b": "h3.disp",
+     "x": 707,
+     "y": 28
+    },
+    {
+     "a": "p",
+     "b": "p",
+     "x": 707,
+     "y": 60
+    }
+   ],
+   "tinyTaps": [
+    {
+     "el": "a.seeall",
+     "w": 165,
+     "h": 14
+    },
+    {
+     "el": "a.sf-mail",
+     "w": 180,
+     "h": 34
+    },
+    {
+     "el": "a.sf-top",
+     "w": 111,
+     "h": 15
+    }
+   ]
+  },
+  "768": {
+   "overflowX": 0,
+   "escapes": [
+    {
+     "el": "div#conv.conv",
+     "parent": "div.conv-vp",
+     "by": 40
+    }
+   ],
+   "orphans": [
+    {
+     "el": "p",
+     "lastWidth": 73,
+     "lineWidth": 615,
+     "tail": "you here."
+    },
+    {
+     "el": "p.sf-say",
+     "lastWidth": 75,
+     "lineWidth": 315,
+     "tail": "work lands."
+    }
+   ],
+   "edgeDrift": [],
+   "overlaps": [],
+   "tinyTaps": [
+    {
+     "el": "a.sf-mail",
+     "w": 160,
+     "h": 30
+    },
+    {
+     "el": "a.sf-top",
+     "w": 111,
+     "h": 15
+    }
+   ]
+  },
+  "640": {
+   "overflowX": 0,
+   "escapes": [
+    {
+     "el": "div#conv.conv",
+     "parent": "div.conv-vp",
+     "by": 20
+    }
+   ],
+   "orphans": [
+    {
+     "el": "p.body",
+     "lastWidth": 113,
+     "lineWidth": 541,
+     "tail": "one language."
+    },
+    {
+     "el": "p",
+     "lastWidth": 110,
+     "lineWidth": 467,
+     "tail": "higher frame."
+    },
+    {
+     "el": "p",
+     "lastWidth": 78,
+     "lineWidth": 588,
+     "tail": "this page."
+    },
+    {
+     "el": "p.sf-say",
+     "lastWidth": 75,
+     "lineWidth": 315,
+     "tail": "work lands."
+    },
+    {
+     "el": "p.sf-partner",
+     "lastWidth": 56,
+     "lineWidth": 300,
+     "tail": "Abu Dhabi"
+    }
+   ],
+   "edgeDrift": [],
+   "overlaps": [],
+   "tinyTaps": [
+    {
+     "el": "a.sf-mail",
+     "w": 160,
+     "h": 30
+    },
+    {
+     "el": "a.sf-top",
+     "w": 111,
+     "h": 15
+    }
+   ]
+  },
+  "390": {
+   "overflowX": 0,
+   "escapes": [
+    {
+     "el": "div#conv.conv",
+     "parent": "div.conv-vp",
+     "by": 20
+    }
+   ],
+   "orphans": [
+    {
+     "el": "p",
+     "lastWidth": 78,
+     "lineWidth": 342,
+     "tail": "this page."
+    },
+    {
+     "el": "p",
+     "lastWidth": 73,
+     "lineWidth": 299,
+     "tail": "you here."
+    },
+    {
+     "el": "p.sf-say",
+     "lastWidth": 75,
+     "lineWidth": 315,
+     "tail": "work lands."
+    },
+    {
+     "el": "p.sf-partner",
+     "lastWidth": 56,
+     "lineWidth": 300,
+     "tail": "Abu Dhabi"
+    }
+   ],
+   "edgeDrift": [],
+   "overlaps": [],
+   "tinyTaps": [
+    {
+     "el": "a.sf-mail",
+     "w": 160,
+     "h": 30
+    },
+    {
+     "el": "a.sf-top",
+     "w": 111,
+     "h": 15
+    }
+   ]
+  }
+ },
+ "/projects/ant-live/index.html": {
+  "1920": {
+   "overflowX": 0,
+   "escapes": [
+    {
+     "el": "span",
+     "parent": "div.ticker-track",
+     "by": 67
+    },
+    {
+     "el": "span",
+     "parent": "div.ticker-track",
+     "by": 670
+    },
+    {
+     "el": "span",
+     "parent": "div.ticker-track",
+     "by": 1395
+    },
+    {
+     "el": "span",
+     "parent": "div.ticker-track",
+     "by": 1922
+    },
+    {
+     "el": "span",
+     "parent": "div.ticker-track",
+     "by": 2388
+    }
+   ],
+   "orphans": [
+    {
+     "el": "p.sp-desc",
+     "lastWidth": 62,
+     "lineWidth": 541,
+     "tail": "soil types."
+    },
+    {
+     "el": "li",
+     "lastWidth": 60,
+     "lineWidth": 286,
+     "tail": "occurring nanotubes"
+    },
+    {
+     "el": "li",
+     "lastWidth": 74,
+     "lineWidth": 321,
+     "tail": "completely water-based"
+    },
+    {
+     "el": "p",
+     "lastWidth": 53,
+     "lineWidth": 324,
+     "tail": "per year."
+    },
+    {
+     "el": "p.mh-intro",
+     "lastWidth": 84,
+     "lineWidth": 437,
+     "tail": "global leaders."
+    }
+   ],
+   "edgeDrift": [],
+   "overlaps": [
+    {
+     "a": "li",
+     "b": "li",
+     "x": 238,
+     "y": 30
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 238,
+     "y": 30
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 194,
+     "y": 30
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 194,
+     "y": 30
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 194,
+     "y": 37
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 194,
+     "y": 37
+    }
+   ],
+   "tinyTaps": [
+    {
+     "el": "a.nav-cta",
+     "w": 110,
+     "h": 40
+    },
+    {
+     "el": "a.link-arrow",
+     "w": 131,
+     "h": 20
+    },
+    {
+     "el": "a.link-arrow",
+     "w": 80,
+     "h": 20
+    },
+    {
+     "el": "a.link-arrow",
+     "w": 80,
+     "h": 20
+    },
+    {
+     "el": "a.link-arrow",
+     "w": 80,
+     "h": 20
+    },
+    {
+     "el": "a.link-arrow",
+     "w": 200,
+     "h": 20
+    },
+    {
+     "el": "a.link-arrow",
+     "w": 80,
+     "h": 20
+    },
+    {
+     "el": "a.link-arrow",
+     "w": 144,
+     "h": 20
+    },
+    {
+     "el": "a",
+     "w": 171,
+     "h": 31
+    },
+    {
+     "el": "a",
+     "w": 171,
+     "h": 31
+    },
+    {
+     "el": "a",
+     "w": 171,
+     "h": 31
+    },
+    {
+     "el": "a",
+     "w": 171,
+     "h": 31
+    },
+    {
+     "el": "a",
+     "w": 171,
+     "h": 31
+    },
+    {
+     "el": "a",
+     "w": 171,
+     "h": 31
+    },
+    {
+     "el": "a",
+     "w": 171,
+     "h": 31
+    },
+    {
+     "el": "a",
+     "w": 171,
+     "h": 31
+    },
+    {
+     "el": "a",
+     "w": 171,
+     "h": 31
+    },
+    {
+     "el": "a",
+     "w": 171,
+     "h": 31
+    },
+    {
+     "el": "a",
+     "w": 171,
+     "h": 31
+    },
+    {
+     "el": "a",
+     "w": 171,
+     "h": 31
+    },
+    {
+     "el": "a",
+     "w": 171,
+     "h": 31
+    },
+    {
+     "el": "a",
+     "w": 171,
+     "h": 31
+    },
+    {
+     "el": "a",
+     "w": 171,
+     "h": 31
+    },
+    {
+     "el": "a",
+     "w": 69,
+     "h": 18
+    },
+    {
+     "el": "a",
+     "w": 96,
+     "h": 18
+    },
+    {
+     "el": "a",
+     "w": 42,
+     "h": 18
+    }
+   ]
+  },
+  "1440": {
+   "overflowX": 0,
+   "escapes": [
+    {
+     "el": "span",
+     "parent": "div.ticker-track",
+     "by": 67
+    },
+    {
+     "el": "span",
+     "parent": "div.ticker-track",
+     "by": 670
+    },
+    {
+     "el": "span",
+     "parent": "div.ticker-track",
+     "by": 1395
+    },
+    {
+     "el": "span",
+     "parent": "div.ticker-track",
+     "by": 1922
+    },
+    {
+     "el": "span",
+     "parent": "div.ticker-track",
+     "by": 2388
+    }
+   ],
+   "orphans": [
+    {
+     "el": "p.sp-desc",
+     "lastWidth": 62,
+     "lineWidth": 541,
+     "tail": "soil types."
+    },
+    {
+     "el": "li",
+     "lastWidth": 60,
+     "lineWidth": 286,
+     "tail": "occurring nanotubes"
+    },
+    {
+     "el": "li",
+     "lastWidth": 74,
+     "lineWidth": 321,
+     "tail": "completely water-based"
+    },
+    {
+     "el": "p",
+     "lastWidth": 53,
+     "lineWidth": 324,
+     "tail": "per year."
+    },
+    {
+     "el": "p.mh-intro",
+     "lastWidth": 84,
+     "lineWidth": 437,
+     "tail": "global leaders."
+    }
+   ],
+   "edgeDrift": [
+    {
+     "sec": "section.section",
+     "spread": 20,
+     "lefts": [
+      20,
+      0
+     ]
+    }
+   ],
+   "overlaps": [
+    {
+     "a": "li",
+     "b": "li",
+     "x": 222,
+     "y": 28
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 222,
+     "y": 28
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 180,
+     "y": 28
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 180,
+     "y": 28
+    },
+    {
+     "a": "li",
+     "b": "p#missionText.mission-text",
+     "x": 155,
+     "y": 69
+    },
+    {
+     "a": "li",
+     "b": "p#missionText.mission-text",
+     "x": 89,
+     "y": 35
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 180,
+     "y": 35
+    },
+    {
+     "a": "li",
+     "b": "p#missionText.mission-text",
+     "x": 89,
+     "y": 35
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 180,
+     "y": 35
+    },
+    {
+     "a": "li",
+     "b": "p#missionText.mission-text",
+     "x": 89,
+     "y": 35
+    },
+    {
+     "a": "li",
+     "b": "p#missionText.mission-text",
+     "x": 89,
+     "y": 35
+    },
+    {
+     "a": "li",
+     "b": "p#missionText.mission-text",
+     "x": 47,
+     "y": 35
+    },
+    {
+     "a": "li",
+     "b": "p#missionText.mission-text",
+     "x": 47,
+     "y": 35
+    }
+   ],
+   "tinyTaps": [
+    {
+     "el": "a.nav-cta",
+     "w": 110,
+     "h": 40
+    },
+    {
+     "el": "a.link-arrow",
+     "w": 131,
+     "h": 20
+    },
+    {
+     "el": "a.link-arrow",
+     "w": 80,
+     "h": 20
+    },
+    {
+     "el": "a.link-arrow",
+     "w": 80,
+     "h": 20
+    },
+    {
+     "el": "a.link-arrow",
+     "w": 80,
+     "h": 20
+    },
+    {
+     "el": "a.link-arrow",
+     "w": 200,
+     "h": 20
+    },
+    {
+     "el": "a.link-arrow",
+     "w": 80,
+     "h": 20
+    },
+    {
+     "el": "a.link-arrow",
+     "w": 144,
+     "h": 20
+    },
+    {
+     "el": "a",
+     "w": 171,
+     "h": 31
+    },
+    {
+     "el": "a",
+     "w": 171,
+     "h": 31
+    },
+    {
+     "el": "a",
+     "w": 171,
+     "h": 31
+    },
+    {
+     "el": "a",
+     "w": 171,
+     "h": 31
+    },
+    {
+     "el": "a",
+     "w": 171,
+     "h": 31
+    },
+    {
+     "el": "a",
+     "w": 171,
+     "h": 31
+    },
+    {
+     "el": "a",
+     "w": 171,
+     "h": 31
+    },
+    {
+     "el": "a",
+     "w": 171,
+     "h": 31
+    },
+    {
+     "el": "a",
+     "w": 171,
+     "h": 31
+    },
+    {
+     "el": "a",
+     "w": 171,
+     "h": 31
+    },
+    {
+     "el": "a",
+     "w": 171,
+     "h": 31
+    },
+    {
+     "el": "a",
+     "w": 171,
+     "h": 31
+    },
+    {
+     "el": "a",
+     "w": 171,
+     "h": 31
+    },
+    {
+     "el": "a",
+     "w": 171,
+     "h": 31
+    },
+    {
+     "el": "a",
+     "w": 171,
+     "h": 31
+    },
+    {
+     "el": "a",
+     "w": 69,
+     "h": 18
+    },
+    {
+     "el": "a",
+     "w": 96,
+     "h": 18
+    },
+    {
+     "el": "a",
+     "w": 42,
+     "h": 18
+    }
+   ]
+  },
+  "1024": {
+   "overflowX": 0,
+   "escapes": [
+    {
+     "el": "span",
+     "parent": "div.ticker-track",
+     "by": 443
+    },
+    {
+     "el": "span",
+     "parent": "div.ticker-track",
+     "by": 1046
+    },
+    {
+     "el": "span",
+     "parent": "div.ticker-track",
+     "by": 1771
+    },
+    {
+     "el": "span",
+     "parent": "div.ticker-track",
+     "by": 2298
+    },
+    {
+     "el": "span",
+     "parent": "div.ticker-track",
+     "by": 2764
+    }
+   ],
+   "orphans": [
+    {
+     "el": "p.sp-desc",
+     "lastWidth": 98,
+     "lineWidth": 950,
+     "tail": "or reproducing."
+    },
+    {
+     "el": "li",
+     "lastWidth": 39,
+     "lineWidth": 259,
+     "tail": "need it"
+    },
+    {
+     "el": "p.mh-intro",
+     "lastWidth": 84,
+     "lineWidth": 437,
+     "tail": "global leaders."
+    },
+    {
+     "el": "p",
+     "lastWidth": 137,
+     "lineWidth": 896,
+     "tail": "Sabanc\u0131 Foundation."
+    }
+   ],
+   "edgeDrift": [],
+   "overlaps": [
+    {
+     "a": "li",
+     "b": "li",
+     "x": 164,
+     "y": 19
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 164,
+     "y": 19
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 134,
+     "y": 19
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 134,
+     "y": 19
+    },
+    {
+     "a": "li",
+     "b": "p#missionText.mission-text",
+     "x": 174,
+     "y": 51
+    },
+    {
+     "a": "li",
+     "b": "p#missionText.mission-text",
+     "x": 134,
+     "y": 26
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 134,
+     "y": 26
+    },
+    {
+     "a": "li",
+     "b": "p#missionText.mission-text",
+     "x": 134,
+     "y": 26
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 134,
+     "y": 26
+    },
+    {
+     "a": "li",
+     "b": "p#missionText.mission-text",
+     "x": 134,
+     "y": 26
+    },
+    {
+     "a": "li",
+     "b": "p#missionText.mission-text",
+     "x": 134,
+     "y": 26
+    },
+    {
+     "a": "li",
+     "b": "p#missionText.mission-text",
+     "x": 103,
+     "y": 26
+    },
+    {
+     "a": "li",
+     "b": "p#missionText.mission-text",
+     "x": 103,
+     "y": 26
+    }
+   ],
+   "tinyTaps": [
+    {
+     "el": "a.link-arrow",
+     "w": 131,
+     "h": 20
+    },
+    {
+     "el": "a.link-arrow",
+     "w": 80,
+     "h": 20
+    },
+    {
+     "el": "a.link-arrow",
+     "w": 80,
+     "h": 20
+    },
+    {
+     "el": "a.link-arrow",
+     "w": 80,
+     "h": 20
+    },
+    {
+     "el": "a.link-arrow",
+     "w": 200,
+     "h": 20
+    },
+    {
+     "el": "a.link-arrow",
+     "w": 80,
+     "h": 20
+    },
+    {
+     "el": "a.link-arrow",
+     "w": 144,
+     "h": 20
+    },
+    {
+     "el": "a",
+     "w": 69,
+     "h": 18
+    },
+    {
+     "el": "a",
+     "w": 96,
+     "h": 18
+    },
+    {
+     "el": "a",
+     "w": 42,
+     "h": 18
+    }
+   ]
+  },
+  "768": {
+   "overflowX": 0,
+   "escapes": [
+    {
+     "el": "span",
+     "parent": "div.ticker-track",
+     "by": 29
+    },
+    {
+     "el": "span",
+     "parent": "div.ticker-track",
+     "by": 617
+    },
+    {
+     "el": "span",
+     "parent": "div.ticker-track",
+     "by": 1186
+    },
+    {
+     "el": "span",
+     "parent": "div.ticker-track",
+     "by": 1869
+    },
+    {
+     "el": "span",
+     "parent": "div.ticker-track",
+     "by": 2368
+    },
+    {
+     "el": "span",
+     "parent": "div.ticker-track",
+     "by": 2808
+    }
+   ],
+   "orphans": [
+    {
+     "el": "p",
+     "lastWidth": 60,
+     "lineWidth": 263,
+     "tail": "soil health."
+    },
+    {
+     "el": "p",
+     "lastWidth": 60,
+     "lineWidth": 263,
+     "tail": "soil health."
+    }
+   ],
+   "edgeDrift": [],
+   "overlaps": [
+    {
+     "a": "li",
+     "b": "li",
+     "x": 720,
+     "y": 24
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 720,
+     "y": 24
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 720,
+     "y": 24
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 720,
+     "y": 24
+    },
+    {
+     "a": "li",
+     "b": "p",
+     "x": 422,
+     "y": 34
+    },
+    {
+     "a": "li",
+     "b": "p",
+     "x": 422,
+     "y": 17
+    }
+   ],
+   "tinyTaps": [
+    {
+     "el": "a.link-arrow",
+     "w": 123,
+     "h": 19
+    },
+    {
+     "el": "a.link-arrow",
+     "w": 75,
+     "h": 19
+    },
+    {
+     "el": "a.link-arrow",
+     "w": 75,
+     "h": 19
+    },
+    {
+     "el": "a.link-arrow",
+     "w": 75,
+     "h": 19
+    },
+    {
+     "el": "a.link-arrow",
+     "w": 187,
+     "h": 19
+    },
+    {
+     "el": "a.link-arrow",
+     "w": 75,
+     "h": 19
+    },
+    {
+     "el": "a.link-arrow",
+     "w": 135,
+     "h": 19
+    },
+    {
+     "el": "a",
+     "w": 65,
+     "h": 17
+    },
+    {
+     "el": "a",
+     "w": 90,
+     "h": 17
+    },
+    {
+     "el": "a",
+     "w": 39,
+     "h": 17
+    }
+   ]
+  },
+  "640": {
+   "overflowX": 0,
+   "escapes": [
+    {
+     "el": "span",
+     "parent": "div.ticker-track",
+     "by": 157
+    },
+    {
+     "el": "span",
+     "parent": "div.ticker-track",
+     "by": 745
+    },
+    {
+     "el": "span",
+     "parent": "div.ticker-track",
+     "by": 1314
+    },
+    {
+     "el": "span",
+     "parent": "div.ticker-track",
+     "by": 1997
+    },
+    {
+     "el": "span",
+     "parent": "div.ticker-track",
+     "by": 2496
+    },
+    {
+     "el": "span",
+     "parent": "div.ticker-track",
+     "by": 2936
+    }
+   ],
+   "orphans": [
+    {
+     "el": "p.sp-desc",
+     "lastWidth": 148,
+     "lineWidth": 567,
+     "tail": "or reproducing."
+    },
+    {
+     "el": "p",
+     "lastWidth": 60,
+     "lineWidth": 263,
+     "tail": "soil health."
+    },
+    {
+     "el": "p",
+     "lastWidth": 60,
+     "lineWidth": 263,
+     "tail": "soil health."
+    },
+    {
+     "el": "p",
+     "lastWidth": 128,
+     "lineWidth": 570,
+     "tail": "Sabanc\u0131 Foundation."
+    }
+   ],
+   "edgeDrift": [],
+   "overlaps": [
+    {
+     "a": "li",
+     "b": "li",
+     "x": 592,
+     "y": 24
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 592,
+     "y": 24
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 592,
+     "y": 24
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 592,
+     "y": 24
+    },
+    {
+     "a": "li",
+     "b": "p",
+     "x": 422,
+     "y": 34
+    },
+    {
+     "a": "li",
+     "b": "p",
+     "x": 422,
+     "y": 17
+    }
+   ],
+   "tinyTaps": [
+    {
+     "el": "a.link-arrow",
+     "w": 123,
+     "h": 19
+    },
+    {
+     "el": "a.link-arrow",
+     "w": 75,
+     "h": 19
+    },
+    {
+     "el": "a.link-arrow",
+     "w": 75,
+     "h": 19
+    },
+    {
+     "el": "a.link-arrow",
+     "w": 75,
+     "h": 19
+    },
+    {
+     "el": "a.link-arrow",
+     "w": 187,
+     "h": 19
+    },
+    {
+     "el": "a.link-arrow",
+     "w": 75,
+     "h": 19
+    },
+    {
+     "el": "a.link-arrow",
+     "w": 135,
+     "h": 19
+    },
+    {
+     "el": "a",
+     "w": 65,
+     "h": 17
+    },
+    {
+     "el": "a",
+     "w": 90,
+     "h": 17
+    },
+    {
+     "el": "a",
+     "w": 39,
+     "h": 17
+    }
+   ]
+  },
+  "390": {
+   "overflowX": 51,
+   "escapes": [
+    {
+     "el": "span",
+     "parent": "div.ticker-track",
+     "by": 407
+    },
+    {
+     "el": "span",
+     "parent": "div.ticker-track",
+     "by": 995
+    },
+    {
+     "el": "span",
+     "parent": "div.ticker-track",
+     "by": 1564
+    },
+    {
+     "el": "span",
+     "parent": "div.ticker-track",
+     "by": 2247
+    },
+    {
+     "el": "span",
+     "parent": "div.ticker-track",
+     "by": 2746
+    },
+    {
+     "el": "span",
+     "parent": "div.ticker-track",
+     "by": 3186
+    },
+    {
+     "el": "div.cl-label",
+     "parent": "div.container",
+     "by": 51
+    },
+    {
+     "el": "div.cl-logos",
+     "parent": "div.container",
+     "by": 51
+    },
+    {
+     "el": "div.mh-stats",
+     "parent": "div.mh-strip",
+     "by": 21
+    }
+   ],
+   "orphans": [
+    {
+     "el": "p.sp-desc",
+     "lastWidth": 58,
+     "lineWidth": 314,
+     "tail": "soil types."
+    },
+    {
+     "el": "li",
+     "lastWidth": 65,
+     "lineWidth": 323,
+     "tail": "crop productivity"
+    },
+    {
+     "el": "li",
+     "lastWidth": 57,
+     "lineWidth": 268,
+     "tail": "occurring nanotubes"
+    },
+    {
+     "el": "li",
+     "lastWidth": 68,
+     "lineWidth": 311,
+     "tail": "the environment"
+    },
+    {
+     "el": "li",
+     "lastWidth": 84,
+     "lineWidth": 313,
+     "tail": "shelf life"
+    },
+    {
+     "el": "li",
+     "lastWidth": 70,
+     "lineWidth": 301,
+     "tail": "completely water-based"
+    },
+    {
+     "el": "li",
+     "lastWidth": 79,
+     "lineWidth": 321,
+     "tail": "nature friendly"
+    },
+    {
+     "el": "p.mh-intro",
+     "lastWidth": 79,
+     "lineWidth": 320,
+     "tail": "global leaders."
+    },
+    {
+     "el": "p",
+     "lastWidth": 60,
+     "lineWidth": 263,
+     "tail": "soil health."
+    },
+    {
+     "el": "p",
+     "lastWidth": 60,
+     "lineWidth": 263,
+     "tail": "soil health."
+    }
+   ],
+   "edgeDrift": [],
+   "overlaps": [
+    {
+     "a": "li",
+     "b": "li",
+     "x": 342,
+     "y": 24
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 342,
+     "y": 24
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 342,
+     "y": 24
+    },
+    {
+     "a": "li",
+     "b": "li",
+     "x": 342,
+     "y": 24
+    },
+    {
+     "a": "li",
+     "b": "p",
+     "x": 284,
+     "y": 53
+    },
+    {
+     "a": "li",
+     "b": "p",
+     "x": 284,
+     "y": 14
+    },
+    {
+     "a": "li",
+     "b": "h4",
+     "x": 284,
+     "y": 24
+    },
+    {
+     "a": "li",
+     "b": "p",
+     "x": 284,
+     "y": 53
+    }
+   ],
+   "tinyTaps": [
+    {
+     "el": "a.link-arrow",
+     "w": 123,
+     "h": 19
+    },
+    {
+     "el": "a.link-arrow",
+     "w": 75,
+     "h": 19
+    },
+    {
+     "el": "a.link-arrow",
+     "w": 75,
+     "h": 19
+    },
+    {
+     "el": "a.link-arrow",
+     "w": 75,
+     "h": 19
+    },
+    {
+     "el": "a.link-arrow",
+     "w": 187,
+     "h": 19
+    },
+    {
+     "el": "a.link-arrow",
+     "w": 75,
+     "h": 19
+    },
+    {
+     "el": "a.link-arrow",
+     "w": 135,
+     "h": 19
+    },
+    {
+     "el": "a",
+     "w": 65,
+     "h": 17
+    },
+    {
+     "el": "a",
+     "w": 90,
+     "h": 17
+    },
+    {
+     "el": "a",
+     "w": 39,
+     "h": 17
+    }
+   ]
+  }
+ },
+ "/projects/khaltat.html": {
+  "1920": {
+   "overflowX": 0,
+   "escapes": [],
+   "orphans": [
+    {
+     "el": "p.hero-lede",
+     "lastWidth": 105,
+     "lineWidth": 538,
+     "tail": "by ILLUSORR."
+    },
+    {
+     "el": "p",
+     "lastWidth": 97,
+     "lineWidth": 362,
+     "tail": "fragrance line."
+    },
+    {
+     "el": "p.lede",
+     "lastWidth": 152,
+     "lineWidth": 695,
+     "tail": "second shoot."
+    },
+    {
+     "el": "p",
+     "lastWidth": 81,
+     "lineWidth": 353,
+     "tail": "is produced."
+    },
+    {
+     "el": "p.sf-say",
+     "lastWidth": 75,
+     "lineWidth": 315,
+     "tail": "work lands."
+    }
+   ],
+   "edgeDrift": [],
+   "overlaps": [],
+   "tinyTaps": [
+    {
+     "el": "a.il-talk",
+     "w": 108,
+     "h": 34
+    },
+    {
+     "el": "button#ilMenuClose.il-oclose",
+     "w": 99,
+     "h": 36
+    },
+    {
+     "el": "button.kt-tab.is-active",
+     "w": 115,
+     "h": 34
+    },
+    {
+     "el": "button.kt-tab",
+     "w": 93,
+     "h": 34
+    },
+    {
+     "el": "button.kt-tab",
+     "w": 83,
+     "h": 34
+    },
+    {
+     "el": "button.kt-tab",
+     "w": 72,
+     "h": 34
+    },
+    {
+     "el": "button.kt-tab",
+     "w": 79,
+     "h": 34
+    },
+    {
+     "el": "button.kt-tab",
+     "w": 76,
+     "h": 34
+    },
+    {
+     "el": "a.sf-top",
+     "w": 111,
+     "h": 15
+    }
+   ]
+  },
+  "1440": {
+   "overflowX": 0,
+   "escapes": [],
+   "orphans": [
+    {
+     "el": "p.hero-lede",
+     "lastWidth": 93,
+     "lineWidth": 475,
+     "tail": "by ILLUSORR."
+    },
+    {
+     "el": "p.lede",
+     "lastWidth": 127,
+     "lineWidth": 580,
+     "tail": "second shoot."
+    },
+    {
+     "el": "p.sf-say",
+     "lastWidth": 75,
+     "lineWidth": 315,
+     "tail": "work lands."
+    }
+   ],
+   "edgeDrift": [],
+   "overlaps": [],
+   "tinyTaps": [
+    {
+     "el": "a.il-talk",
+     "w": 108,
+     "h": 34
+    },
+    {
+     "el": "button#ilMenuClose.il-oclose",
+     "w": 99,
+     "h": 36
+    },
+    {
+     "el": "button.kt-tab.is-active",
+     "w": 115,
+     "h": 34
+    },
+    {
+     "el": "button.kt-tab",
+     "w": 93,
+     "h": 34
+    },
+    {
+     "el": "button.kt-tab",
+     "w": 83,
+     "h": 34
+    },
+    {
+     "el": "button.kt-tab",
+     "w": 72,
+     "h": 34
+    },
+    {
+     "el": "button.kt-tab",
+     "w": 79,
+     "h": 34
+    },
+    {
+     "el": "button.kt-tab",
+     "w": 76,
+     "h": 34
+    },
+    {
+     "el": "a.sf-top",
+     "w": 111,
+     "h": 15
+    }
+   ]
+  },
+  "1024": {
+   "overflowX": 0,
+   "escapes": [],
+   "orphans": [
+    {
+     "el": "p",
+     "lastWidth": 117,
+     "lineWidth": 434,
+     "tail": "fragrance line."
+    },
+    {
+     "el": "blockquote.quote.reveal",
+     "lastWidth": 67,
+     "lineWidth": 944,
+     "tail": "brand. ILLUSORR"
+    },
+    {
+     "el": "p.sf-say",
+     "lastWidth": 75,
+     "lineWidth": 315,
+     "tail": "work lands."
+    }
+   ],
+   "edgeDrift": [],
+   "overlaps": [],
+   "tinyTaps": [
+    {
+     "el": "a.sf-mail",
+     "w": 180,
+     "h": 34
+    },
+    {
+     "el": "a.sf-top",
+     "w": 111,
+     "h": 15
+    }
+   ]
+  },
+  "768": {
+   "overflowX": 0,
+   "escapes": [],
+   "orphans": [
+    {
+     "el": "p.kt-note",
+     "lastWidth": 80,
+     "lineWidth": 679,
+     "tail": "each grid."
+    },
+    {
+     "el": "blockquote.quote.reveal",
+     "lastWidth": 67,
+     "lineWidth": 688,
+     "tail": "brand. ILLUSORR"
+    },
+    {
+     "el": "p.sf-say",
+     "lastWidth": 75,
+     "lineWidth": 315,
+     "tail": "work lands."
+    }
+   ],
+   "edgeDrift": [],
+   "overlaps": [],
+   "tinyTaps": [
+    {
+     "el": "a.sf-mail",
+     "w": 160,
+     "h": 30
+    },
+    {
+     "el": "a.sf-top",
+     "w": 111,
+     "h": 15
+    }
+   ]
+  },
+  "640": {
+   "overflowX": 0,
+   "escapes": [],
+   "orphans": [
+    {
+     "el": "p.kt-note",
+     "lastWidth": 143,
+     "lineWidth": 532,
+     "tail": "each grid."
+    },
+    {
+     "el": "blockquote.quote.reveal",
+     "lastWidth": 67,
+     "lineWidth": 600,
+     "tail": "brand. ILLUSORR"
+    },
+    {
+     "el": "p.sf-say",
+     "lastWidth": 75,
+     "lineWidth": 315,
+     "tail": "work lands."
+    },
+    {
+     "el": "p.sf-partner",
+     "lastWidth": 56,
+     "lineWidth": 300,
+     "tail": "Abu Dhabi"
+    }
+   ],
+   "edgeDrift": [],
+   "overlaps": [],
+   "tinyTaps": [
+    {
+     "el": "a.sf-mail",
+     "w": 160,
+     "h": 30
+    },
+    {
+     "el": "a.sf-top",
+     "w": 111,
+     "h": 15
+    }
+   ]
+  },
+  "390": {
+   "overflowX": 0,
+   "escapes": [],
+   "orphans": [
+    {
+     "el": "p",
+     "lastWidth": 86,
+     "lineWidth": 321,
+     "tail": "is produced."
+    },
+    {
+     "el": "p.kt-note",
+     "lastWidth": 71,
+     "lineWidth": 309,
+     "tail": "each grid."
+    },
+    {
+     "el": "blockquote.quote.reveal",
+     "lastWidth": 67,
+     "lineWidth": 350,
+     "tail": "brand. ILLUSORR"
+    },
+    {
+     "el": "p.sf-say",
+     "lastWidth": 75,
+     "lineWidth": 315,
+     "tail": "work lands."
+    },
+    {
+     "el": "p.sf-partner",
+     "lastWidth": 56,
+     "lineWidth": 300,
+     "tail": "Abu Dhabi"
+    }
+   ],
+   "edgeDrift": [],
+   "overlaps": [],
+   "tinyTaps": [
+    {
+     "el": "a.sf-mail",
+     "w": 160,
+     "h": 30
+    },
+    {
+     "el": "a.sf-top",
+     "w": 111,
+     "h": 15
+    }
+   ]
+  }
+ },
+ "/sectors/real-estate.html": {
+  "1920": {
+   "overflowX": 0,
+   "escapes": [
+    {
+     "el": "div#reel.reel",
+     "parent": "div.pnl",
+     "by": 56
+    }
+   ],
+   "orphans": [
+    {
+     "el": "p.sf-say",
+     "lastWidth": 75,
+     "lineWidth": 315,
+     "tail": "work lands."
+    }
+   ],
+   "edgeDrift": [],
+   "overlaps": [],
+   "tinyTaps": [
+    {
+     "el": "a.il-talk",
+     "w": 108,
+     "h": 34
+    },
+    {
+     "el": "button#ilMenuClose.il-oclose",
+     "w": 99,
+     "h": 36
+    },
+    {
+     "el": "a.sx-back",
+     "w": 98,
+     "h": 15
+    },
+    {
+     "el": "button.rail-btn",
+     "w": 38,
+     "h": 38
+    },
+    {
+     "el": "button.rail-btn",
+     "w": 38,
+     "h": 38
+    },
+    {
+     "el": "a.fakebtn",
+     "w": 179,
+     "h": 40
+    },
+    {
+     "el": "a.end-back",
+     "w": 98,
+     "h": 15
+    },
+    {
+     "el": "a.sf-top",
+     "w": 111,
+     "h": 15
+    }
+   ]
+  },
+  "1440": {
+   "overflowX": 0,
+   "escapes": [
+    {
+     "el": "div#reel.reel",
+     "parent": "div.pnl",
+     "by": 56
+    }
+   ],
+   "orphans": [
+    {
+     "el": "p",
+     "lastWidth": 75,
+     "lineWidth": 394,
+     "tail": "it costs."
+    },
+    {
+     "el": "p.sf-say",
+     "lastWidth": 75,
+     "lineWidth": 315,
+     "tail": "work lands."
+    }
+   ],
+   "edgeDrift": [],
+   "overlaps": [],
+   "tinyTaps": [
+    {
+     "el": "a.il-talk",
+     "w": 108,
+     "h": 34
+    },
+    {
+     "el": "button#ilMenuClose.il-oclose",
+     "w": 99,
+     "h": 36
+    },
+    {
+     "el": "a.sx-back",
+     "w": 98,
+     "h": 15
+    },
+    {
+     "el": "button.rail-btn",
+     "w": 38,
+     "h": 38
+    },
+    {
+     "el": "button.rail-btn",
+     "w": 38,
+     "h": 38
+    },
+    {
+     "el": "a.fakebtn",
+     "w": 179,
+     "h": 40
+    },
+    {
+     "el": "a.end-back",
+     "w": 98,
+     "h": 15
+    },
+    {
+     "el": "a.sf-top",
+     "w": 111,
+     "h": 15
+    }
+   ]
+  },
+  "1024": {
+   "overflowX": 0,
+   "escapes": [
+    {
+     "el": "div#reel.reel",
+     "parent": "div.pnl",
+     "by": 56
+    }
+   ],
+   "orphans": [
+    {
+     "el": "p",
+     "lastWidth": 99,
+     "lineWidth": 395,
+     "tail": "per channel."
+    },
+    {
+     "el": "p.sf-say",
+     "lastWidth": 75,
+     "lineWidth": 315,
+     "tail": "work lands."
+    }
+   ],
+   "edgeDrift": [],
+   "overlaps": [
+    {
+     "a": "p",
+     "b": "p",
+     "x": 455,
+     "y": 38
+    }
+   ],
+   "tinyTaps": [
+    {
+     "el": "a.sx-back",
+     "w": 98,
+     "h": 15
+    },
+    {
+     "el": "a.end-back",
+     "w": 98,
+     "h": 15
+    },
+    {
+     "el": "a.sf-mail",
+     "w": 180,
+     "h": 34
+    },
+    {
+     "el": "a.sf-top",
+     "w": 111,
+     "h": 15
+    }
+   ]
+  },
+  "768": {
+   "overflowX": 0,
+   "escapes": [
+    {
+     "el": "div#reel.reel",
+     "parent": "div.pnl",
+     "by": 56
+    }
+   ],
+   "orphans": [
+    {
+     "el": "p.sd-big.disp",
+     "lastWidth": 163,
+     "lineWidth": 686,
+     "tail": "finished building."
+    },
+    {
+     "el": "p.reveal",
+     "lastWidth": 110,
+     "lineWidth": 578,
+     "tail": "working days."
+    },
+    {
+     "el": "p.sf-say",
+     "lastWidth": 75,
+     "lineWidth": 315,
+     "tail": "work lands."
+    }
+   ],
+   "edgeDrift": [],
+   "overlaps": [
+    {
+     "a": "p",
+     "b": "h4.off-tag.t-vir",
+     "x": 688,
+     "y": 28
+    }
+   ],
+   "tinyTaps": [
+    {
+     "el": "a.sf-mail",
+     "w": 160,
+     "h": 30
+    },
+    {
+     "el": "a.sf-top",
+     "w": 111,
+     "h": 15
+    }
+   ]
+  },
+  "640": {
+   "overflowX": 0,
+   "escapes": [
+    {
+     "el": "div#reel.reel",
+     "parent": "div.pnl",
+     "by": 56
+    }
+   ],
+   "orphans": [
+    {
+     "el": "p.reveal",
+     "lastWidth": 97,
+     "lineWidth": 514,
+     "tail": "working days."
+    },
+    {
+     "el": "p.sf-say",
+     "lastWidth": 75,
+     "lineWidth": 315,
+     "tail": "work lands."
+    },
+    {
+     "el": "p.sf-partner",
+     "lastWidth": 56,
+     "lineWidth": 300,
+     "tail": "Abu Dhabi"
+    }
+   ],
+   "edgeDrift": [],
+   "overlaps": [
+    {
+     "a": "p",
+     "b": "h4.off-tag.t-vir",
+     "x": 600,
+     "y": 28
+    }
+   ],
+   "tinyTaps": [
+    {
+     "el": "a.sf-mail",
+     "w": 160,
+     "h": 30
+    },
+    {
+     "el": "a.sf-top",
+     "w": 111,
+     "h": 15
+    }
+   ]
+  },
+  "390": {
+   "overflowX": 0,
+   "escapes": [
+    {
+     "el": "div#reel.reel",
+     "parent": "div.pnl",
+     "by": 56
+    }
+   ],
+   "orphans": [
+    {
+     "el": "p.sf-say",
+     "lastWidth": 75,
+     "lineWidth": 315,
+     "tail": "work lands."
+    },
+    {
+     "el": "p.sf-partner",
+     "lastWidth": 56,
+     "lineWidth": 300,
+     "tail": "Abu Dhabi"
+    }
+   ],
+   "edgeDrift": [],
+   "overlaps": [
+    {
+     "a": "p",
+     "b": "p",
+     "x": 350,
+     "y": 18
+    },
+    {
+     "a": "p",
+     "b": "p",
+     "x": 350,
+     "y": 18
+    },
+    {
+     "a": "p",
+     "b": "h4.off-tag.t-vir",
+     "x": 350,
+     "y": 29
+    }
+   ],
+   "tinyTaps": [
+    {
+     "el": "a.sf-mail",
+     "w": 160,
+     "h": 30
+    },
+    {
+     "el": "a.sf-top",
+     "w": 111,
+     "h": 15
+    }
+   ]
+  }
+ },
+ "/work.html": {
+  "1920": {
+   "overflowX": 0,
+   "escapes": [],
+   "orphans": [
+    {
+     "el": "p.sf-say",
+     "lastWidth": 75,
+     "lineWidth": 315,
+     "tail": "work lands."
+    }
+   ],
+   "edgeDrift": [],
+   "overlaps": [],
+   "tinyTaps": [
+    {
+     "el": "a.il-talk",
+     "w": 108,
+     "h": 34
+    },
+    {
+     "el": "button#ilMenuClose.il-oclose",
+     "w": 99,
+     "h": 36
+    },
+    {
+     "el": "button#tagPrev.tag-nav.prev",
+     "w": 26,
+     "h": 34
+    },
+    {
+     "el": "button#tagNext.tag-nav.next",
+     "w": 26,
+     "h": 34
+    },
+    {
+     "el": "button#secBtn.secdrop-btn",
+     "w": 144,
+     "h": 37
+    },
+    {
+     "el": "button.sf.on",
+     "w": 188,
+     "h": 39
+    },
+    {
+     "el": "button.sf",
+     "w": 188,
+     "h": 39
+    },
+    {
+     "el": "button.sf",
+     "w": 188,
+     "h": 39
+    },
+    {
+     "el": "button.sf",
+     "w": 188,
+     "h": 39
+    },
+    {
+     "el": "button.sf",
+     "w": 188,
+     "h": 39
+    },
+    {
+     "el": "button.sf",
+     "w": 188,
+     "h": 39
+    },
+    {
+     "el": "button.sf",
+     "w": 188,
+     "h": 39
+    },
+    {
+     "el": "a.sf-top",
+     "w": 111,
+     "h": 15
+    }
+   ]
+  },
+  "1440": {
+   "overflowX": 0,
+   "escapes": [],
+   "orphans": [
+    {
+     "el": "p.sf-say",
+     "lastWidth": 75,
+     "lineWidth": 315,
+     "tail": "work lands."
+    }
+   ],
+   "edgeDrift": [],
+   "overlaps": [],
+   "tinyTaps": [
+    {
+     "el": "a.il-talk",
+     "w": 108,
+     "h": 34
+    },
+    {
+     "el": "button#ilMenuClose.il-oclose",
+     "w": 99,
+     "h": 36
+    },
+    {
+     "el": "button#tagPrev.tag-nav.prev",
+     "w": 26,
+     "h": 34
+    },
+    {
+     "el": "button#tagNext.tag-nav.next",
+     "w": 26,
+     "h": 34
+    },
+    {
+     "el": "button#secBtn.secdrop-btn",
+     "w": 144,
+     "h": 37
+    },
+    {
+     "el": "button.sf.on",
+     "w": 188,
+     "h": 39
+    },
+    {
+     "el": "button.sf",
+     "w": 188,
+     "h": 39
+    },
+    {
+     "el": "button.sf",
+     "w": 188,
+     "h": 39
+    },
+    {
+     "el": "button.sf",
+     "w": 188,
+     "h": 39
+    },
+    {
+     "el": "button.sf",
+     "w": 188,
+     "h": 39
+    },
+    {
+     "el": "button.sf",
+     "w": 188,
+     "h": 39
+    },
+    {
+     "el": "button.sf",
+     "w": 188,
+     "h": 39
+    },
+    {
+     "el": "a.sf-top",
+     "w": 111,
+     "h": 15
+    }
+   ]
+  },
+  "1024": {
+   "overflowX": 0,
+   "escapes": [],
+   "orphans": [
+    {
+     "el": "p.sf-say",
+     "lastWidth": 75,
+     "lineWidth": 315,
+     "tail": "work lands."
+    }
+   ],
+   "edgeDrift": [],
+   "overlaps": [],
+   "tinyTaps": [
+    {
+     "el": "button.sf.on",
+     "w": 188,
+     "h": 43
+    },
+    {
+     "el": "button.sf",
+     "w": 188,
+     "h": 43
+    },
+    {
+     "el": "button.sf",
+     "w": 188,
+     "h": 43
+    },
+    {
+     "el": "button.sf",
+     "w": 188,
+     "h": 43
+    },
+    {
+     "el": "button.sf",
+     "w": 188,
+     "h": 43
+    },
+    {
+     "el": "button.sf",
+     "w": 188,
+     "h": 43
+    },
+    {
+     "el": "button.sf",
+     "w": 188,
+     "h": 43
+    },
+    {
+     "el": "a.sf-mail",
+     "w": 180,
+     "h": 34
+    },
+    {
+     "el": "a.sf-top",
+     "w": 111,
+     "h": 15
+    }
+   ]
+  },
+  "768": {
+   "overflowX": 0,
+   "escapes": [],
+   "orphans": [
+    {
+     "el": "p.sf-say",
+     "lastWidth": 75,
+     "lineWidth": 315,
+     "tail": "work lands."
+    }
+   ],
+   "edgeDrift": [],
+   "overlaps": [],
+   "tinyTaps": [
+    {
+     "el": "button.sf.on",
+     "w": 188,
+     "h": 43
+    },
+    {
+     "el": "button.sf",
+     "w": 188,
+     "h": 43
+    },
+    {
+     "el": "button.sf",
+     "w": 188,
+     "h": 43
+    },
+    {
+     "el": "button.sf",
+     "w": 188,
+     "h": 43
+    },
+    {
+     "el": "button.sf",
+     "w": 188,
+     "h": 43
+    },
+    {
+     "el": "button.sf",
+     "w": 188,
+     "h": 43
+    },
+    {
+     "el": "button.sf",
+     "w": 188,
+     "h": 43
+    },
+    {
+     "el": "a.sf-mail",
+     "w": 160,
+     "h": 30
+    },
+    {
+     "el": "a.sf-top",
+     "w": 111,
+     "h": 15
+    }
+   ]
+  },
+  "640": {
+   "overflowX": 0,
+   "escapes": [],
+   "orphans": [
+    {
+     "el": "p.sf-say",
+     "lastWidth": 75,
+     "lineWidth": 315,
+     "tail": "work lands."
+    },
+    {
+     "el": "p.sf-partner",
+     "lastWidth": 56,
+     "lineWidth": 300,
+     "tail": "Abu Dhabi"
+    }
+   ],
+   "edgeDrift": [],
+   "overlaps": [],
+   "tinyTaps": [
+    {
+     "el": "button.sf.on",
+     "w": 188,
+     "h": 43
+    },
+    {
+     "el": "button.sf",
+     "w": 188,
+     "h": 43
+    },
+    {
+     "el": "button.sf",
+     "w": 188,
+     "h": 43
+    },
+    {
+     "el": "button.sf",
+     "w": 188,
+     "h": 43
+    },
+    {
+     "el": "button.sf",
+     "w": 188,
+     "h": 43
+    },
+    {
+     "el": "button.sf",
+     "w": 188,
+     "h": 43
+    },
+    {
+     "el": "button.sf",
+     "w": 188,
+     "h": 43
+    },
+    {
+     "el": "a.sf-mail",
+     "w": 160,
+     "h": 30
+    },
+    {
+     "el": "a.sf-top",
+     "w": 111,
+     "h": 15
+    }
+   ]
+  },
+  "390": {
+   "overflowX": 0,
+   "escapes": [],
+   "orphans": [
+    {
+     "el": "p.sf-say",
+     "lastWidth": 75,
+     "lineWidth": 315,
+     "tail": "work lands."
+    },
+    {
+     "el": "p.sf-partner",
+     "lastWidth": 56,
+     "lineWidth": 300,
+     "tail": "Abu Dhabi"
+    }
+   ],
+   "edgeDrift": [],
+   "overlaps": [],
+   "tinyTaps": [
+    {
+     "el": "button.sf.on",
+     "w": 188,
+     "h": 43
+    },
+    {
+     "el": "button.sf",
+     "w": 188,
+     "h": 43
+    },
+    {
+     "el": "button.sf",
+     "w": 188,
+     "h": 43
+    },
+    {
+     "el": "button.sf",
+     "w": 188,
+     "h": 43
+    },
+    {
+     "el": "button.sf",
+     "w": 188,
+     "h": 43
+    },
+    {
+     "el": "button.sf",
+     "w": 188,
+     "h": 43
+    },
+    {
+     "el": "button.sf",
+     "w": 188,
+     "h": 43
+    },
+    {
+     "el": "a.sf-mail",
+     "w": 160,
+     "h": 30
+    },
+    {
+     "el": "a.sf-top",
+     "w": 111,
+     "h": 15
+    }
+   ]
+  }
+ }
+}
