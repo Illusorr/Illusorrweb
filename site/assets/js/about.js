@@ -58,10 +58,20 @@
   const cv=document.getElementById('fieldCanvas');const ctx=cv.getContext('2d');
   function sz(){cv.width=cv.offsetWidth;cv.height=cv.offsetHeight}sz();addEventListener('resize',sz);
   const bl=[];for(let i=0;i<8;i++)bl.push({sp:.1+Math.random()*.25,rad:.2+Math.random()*.34,size:160+Math.random()*160,ph:Math.random()*10});
-  let t=0;(function d(){t+=.006;ctx.clearRect(0,0,cv.width,cv.height);ctx.globalCompositeOperation='lighter';
+  /* This ran forever, every frame, on screen or not. It now idles when the
+     canvas is scrolled away, when the tab is hidden, and when the visitor
+     asks for reduced motion — the same gating components.js already uses. */
+  const fieldReduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let fieldRaf=0, fieldVisible=false;
+  function fieldKick(){ if(fieldVisible && !document.hidden && !fieldRaf && !fieldReduced) fieldRaf=requestAnimationFrame(d); }
+  let t=0;(function init(){ if(fieldReduced){ d(); return; }
+    new IntersectionObserver(function(es){ fieldVisible=es[0].isIntersecting; fieldKick(); },{threshold:0}).observe(cv);
+    document.addEventListener('visibilitychange',fieldKick,{passive:true});
+  })();
+  function d(){fieldRaf=0;t+=.006;ctx.clearRect(0,0,cv.width,cv.height);ctx.globalCompositeOperation='lighter';
     bl.forEach((b,i)=>{const cx=cv.width*(.5+Math.cos(t*b.sp+b.ph)*b.rad),cy=cv.height*(.46+Math.sin(t*b.sp*1.2+b.ph)*b.rad*.9),r=Math.max(1,b.size*(.8+.3*Math.sin(t*2+i)));
       const g=ctx.createRadialGradient(cx,cy,0,cx,cy,r);const h=i%3===0?'120,140,255':(i%3===1?'76,99,255':'150,120,255');g.addColorStop(0,`rgba(${h},.07)`);g.addColorStop(1,`rgba(${h},0)`);ctx.fillStyle=g;ctx.beginPath();ctx.arc(cx,cy,r,0,7);ctx.fill();});
-    ctx.globalCompositeOperation='source-over';requestAnimationFrame(d);})();
+    ctx.globalCompositeOperation='source-over';if(fieldVisible&&!document.hidden&&!fieldReduced)fieldRaf=requestAnimationFrame(d);}
   const io=new IntersectionObserver((es)=>{es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}})},{threshold:.18});
   document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 
@@ -264,8 +274,18 @@
         ctx.fillStyle=`rgba(120,150,255,${(hot?0.4:0.2)*al})`;ctx.beginPath();ctx.arc(p.x,p.y,hot?11:7,0,7);ctx.fill();
         ctx.fillStyle=`rgba(210,222,255,${0.95*al})`;ctx.beginPath();ctx.arc(p.x,p.y,hot?5:3.2,0,7);ctx.fill();
         if(p.lv||hot){ctx.textAlign='center';ctx.textBaseline='top';ctx.fillStyle=`rgba(238,241,248,${(hot?1:0.92)*al})`;ctx.font='600 12.5px Outfit, sans-serif';ctx.fillText(p.n.name,p.x,p.y+7);if(p.n.disc){ctx.fillStyle=`rgba(142,162,255,${(hot?1:0.8)*al})`;ctx.font='500 9px JetBrains Mono, monospace';ctx.fillText(p.n.disc.toUpperCase(),p.x,p.y+22);}}});
-      requestAnimationFrame(frame);}
-    frame();
+      if(netVisible && !document.hidden && !netReduced) netRaf=requestAnimationFrame(frame);}
+    /* Same gating as the field above: idle when off screen, hidden or when
+       reduced motion is requested. */
+    var netReduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var netRaf=0, netVisible=false;
+    function netKick(){ if(netVisible && !document.hidden && !netRaf && !netReduced) netRaf=requestAnimationFrame(frame); }
+    if(netReduced){ frame(); }
+    else {
+      var netCv=document.getElementById('collnet');
+      if(netCv){ new IntersectionObserver(function(es){ netVisible=es[0].isIntersecting; netKick(); },{threshold:0}).observe(netCv); }
+      document.addEventListener('visibilitychange',netKick,{passive:true});
+    }
   })();
 
 

@@ -101,11 +101,12 @@
  {
   "page": "/collective.html",
   "vw": 390,
-  "total": 453715,
+  "total": 492541,
   "by": {
    "text": 348909,
    "font": 92472,
-   "image": 12334
+   "image": 12334,
+   "application": 38826
   },
   "errors": [],
   "failed": [],
@@ -143,12 +144,12 @@
  {
   "page": "/index.html",
   "vw": 1440,
-  "total": 4171677,
+  "total": 4153010,
   "by": {
    "text": 1445078,
    "font": 132600,
-   "image": 2578856,
-   "application": 15143,
+   "image": 2560214,
+   "application": 15118,
    "": 0
   },
   "errors": [],
@@ -159,12 +160,12 @@
  {
   "page": "/index.html",
   "vw": 390,
-  "total": 4104018,
+  "total": 4862101,
   "by": {
-   "text": 1445078,
+   "text": 2203237,
    "font": 132600,
    "image": 2511327,
-   "application": 15013,
+   "application": 14937,
    "": 0
   },
   "errors": [],
@@ -279,73 +280,15 @@
   "n_failed": 0
  },
  {
-  "page": "/projects/aa/uploads/Aquatic Architects Showcase.html",
-  "vw": 1440,
-  "total": 13520151,
-  "by": {
-   "text": 13052421,
-   "application": 64826,
-   "image": 336460,
-   "font": 66444
-  },
-  "errors": [],
-  "failed": [],
-  "n_err": 0,
-  "n_failed": 0
- },
- {
-  "page": "/projects/aa/uploads/Aquatic Architects Showcase.html",
-  "vw": 390,
-  "total": 13520151,
-  "by": {
-   "text": 13052421,
-   "application": 64826,
-   "image": 336460,
-   "font": 66444
-  },
-  "errors": [],
-  "failed": [],
-  "n_err": 0,
-  "n_failed": 0
- },
- {
-  "page": "/projects/aa/uploads/template-1782202713478.html",
-  "vw": 1440,
-  "total": 454416,
-  "by": {
-   "text": 454416
-  },
-  "errors": [
-   "Bundle unpack error: SyntaxError: Expected ',' or '}' after property value in JSON at position 14113 (line 2 column 1411"
-  ],
-  "failed": [],
-  "n_err": 1,
-  "n_failed": 0
- },
- {
-  "page": "/projects/aa/uploads/template-1782202713478.html",
-  "vw": 390,
-  "total": 454416,
-  "by": {
-   "text": 454416
-  },
-  "errors": [
-   "Bundle unpack error: SyntaxError: Expected ',' or '}' after property value in JSON at position 14113 (line 2 column 1411"
-  ],
-  "failed": [],
-  "n_err": 1,
-  "n_failed": 0
- },
- {
   "page": "/projects/al-berwaz.html",
   "vw": 1440,
-  "total": 6824391,
+  "total": 13033559,
   "by": {
-   "text": 267034,
-   "font": 345788,
-   "image": 131367,
-   "application": 48912,
-   "video": 6031290
+   "text": 277283,
+   "font": 415012,
+   "image": 180860,
+   "application": 97824,
+   "video": 12062580
   },
   "errors": [],
   "failed": [],
@@ -355,13 +298,13 @@
  {
   "page": "/projects/al-berwaz.html",
   "vw": 390,
-  "total": 6765672,
+  "total": 12957929,
   "by": {
-   "text": 267034,
-   "font": 345788,
-   "image": 72648,
-   "application": 48912,
-   "video": 6031290
+   "text": 277283,
+   "font": 415012,
+   "image": 105230,
+   "application": 97824,
+   "video": 12062580
   },
   "errors": [],
   "failed": [],
@@ -374,8 +317,8 @@
   "total": 4034156,
   "by": {
    "text": 367504,
-   "font": 115564,
    "image": 1413175,
+   "font": 115564,
    "video": 2137913
   },
   "errors": [
@@ -393,8 +336,8 @@
   "total": 1869593,
   "by": {
    "text": 367504,
-   "font": 115564,
-   "image": 1386525
+   "image": 1386525,
+   "font": 115564
   },
   "errors": [
    "Failed to load resource: the server responded with a status of 404 (File not found)"
@@ -408,12 +351,12 @@
  {
   "page": "/projects/ant-live/index.html",
   "vw": 1440,
-  "total": 5735950,
+  "total": 4050039,
   "by": {
-   "text": 1925732,
-   "image": 3521506,
-   "application": 175056,
+   "text": 1925767,
+   "image": 1835609,
    "font": 113656,
+   "application": 175007,
    "": 0
   },
   "errors": [
@@ -428,12 +371,12 @@
  {
   "page": "/projects/ant-live/index.html",
   "vw": 390,
-  "total": 5682863,
+  "total": 3996898,
   "by": {
-   "text": 1925732,
-   "image": 3468374,
-   "application": 175101,
+   "text": 1925767,
+   "image": 1782477,
    "font": 113656,
+   "application": 174998,
    "": 0
   },
   "errors": [
@@ -448,12 +391,12 @@
  {
   "page": "/projects/ant-systems.html",
   "vw": 1440,
-  "total": 22802005,
+  "total": 15610050,
   "by": {
-   "text": 6392546,
+   "text": 6392756,
    "font": 437340,
-   "image": 15076240,
-   "application": 895879,
+   "image": 7884612,
+   "application": 895342,
    "": 0
   },
   "errors": [
@@ -470,11 +413,11 @@
  {
   "page": "/projects/ant-systems.html",
   "vw": 390,
-  "total": 10611338,
+  "total": 8309533,
   "by": {
-   "text": 3022902,
-   "font": 248940,
-   "image": 7004912,
+   "text": 4026335,
+   "font": 315496,
+   "image": 3633118,
    "application": 334584,
    "": 0
   },
@@ -508,12 +451,12 @@
  {
   "page": "/projects/aquatic-architects.html",
   "vw": 390,
-  "total": 1909404,
+  "total": 10183075,
   "by": {
-   "text": 394842,
+   "text": 6892619,
    "font": 117012,
    "image": 820890,
-   "video": 576660
+   "video": 2352554
   },
   "errors": [],
   "failed": [],
@@ -523,47 +466,49 @@
  {
   "page": "/projects/arga.html",
   "vw": 1440,
-  "total": 1636190,
+  "total": 2867572,
   "by": {
-   "text": 266209,
-   "font": 157408,
-   "image": 947011,
-   "application": 265562,
+   "text": 286631,
+   "font": 226632,
+   "image": 1650996,
+   "application": 703313,
    "": 0
   },
   "errors": [
+   "Failed to execute 'getComputedStyle' on 'Window': parameter 1 is not of type 'Element'.",
    "Failed to execute 'getComputedStyle' on 'Window': parameter 1 is not of type 'Element'."
   ],
   "failed": [],
-  "n_err": 1,
+  "n_err": 2,
   "n_failed": 0
  },
  {
   "page": "/projects/arga.html",
   "vw": 390,
-  "total": 766967,
+  "total": 1111964,
   "by": {
-   "text": 266209,
-   "font": 157408,
+   "text": 276420,
+   "font": 226632,
    "image": 77788,
-   "application": 265562,
+   "application": 531124,
    "": 0
   },
   "errors": [
+   "Failed to execute 'getComputedStyle' on 'Window': parameter 1 is not of type 'Element'.",
    "Failed to execute 'getComputedStyle' on 'Window': parameter 1 is not of type 'Element'."
   ],
   "failed": [],
-  "n_err": 1,
+  "n_err": 2,
   "n_failed": 0
  },
  {
   "page": "/projects/art-post-office.html",
   "vw": 1440,
-  "total": 2666742,
+  "total": 2922210,
   "by": {
    "text": 375922,
    "font": 88184,
-   "image": 2202636
+   "image": 2458104
   },
   "errors": [
    "Failed to load resource: the server responded with a status of 404 (File not found)"
@@ -634,8 +579,8 @@
   "total": 961717,
   "by": {
    "text": 386577,
-   "font": 115564,
-   "image": 459576
+   "image": 459576,
+   "font": 115564
   },
   "errors": [],
   "failed": [],
@@ -645,11 +590,11 @@
  {
   "page": "/projects/barbie.html",
   "vw": 390,
-  "total": 932149,
+  "total": 946233,
   "by": {
    "text": 386577,
-   "font": 115564,
-   "image": 430008
+   "image": 444092,
+   "font": 115564
   },
   "errors": [],
   "failed": [],
@@ -677,11 +622,11 @@
  {
   "page": "/projects/coffee-merchant.html",
   "vw": 390,
-  "total": 2012582,
+  "total": 2286370,
   "by": {
    "text": 374716,
    "font": 88184,
-   "image": 1549682
+   "image": 1823470
   },
   "errors": [
    "Failed to load resource: the server responded with a status of 404 (File not found)"
@@ -698,8 +643,8 @@
   "total": 1209993,
   "by": {
    "text": 357616,
-   "font": 115564,
-   "image": 736813
+   "image": 736813,
+   "font": 115564
   },
   "errors": [],
   "failed": [],
@@ -709,11 +654,11 @@
  {
   "page": "/projects/denim.html",
   "vw": 390,
-  "total": 967325,
+  "total": 1020287,
   "by": {
    "text": 357616,
    "font": 115564,
-   "image": 494145
+   "image": 547107
   },
   "errors": [],
   "failed": [],
@@ -742,12 +687,12 @@
  {
   "page": "/projects/disney-plus.html",
   "vw": 390,
-  "total": 6314145,
+  "total": 6414146,
   "by": {
    "text": 426650,
    "font": 88184,
    "application": 624000,
-   "image": 5175311
+   "image": 5275312
   },
   "errors": [
    "Failed to load resource: the server responded with a status of 404 (File not found)"
@@ -761,14 +706,14 @@
  {
   "page": "/projects/echoes-of-light.html",
   "vw": 1440,
-  "total": 5939493,
+  "total": 5938440,
   "by": {
    "text": 1476518,
-   "font": 262400,
    "image": 885745,
-   "model": 403440,
-   "application": 9726,
-   "": 2901664
+   "font": 262400,
+   "application": 8673,
+   "": 2901664,
+   "model": 403440
   },
   "errors": [],
   "failed": [],
@@ -778,14 +723,14 @@
  {
   "page": "/projects/echoes-of-light.html",
   "vw": 390,
-  "total": 5807775,
+  "total": 6932964,
   "by": {
-   "text": 1476489,
-   "font": 262400,
-   "image": 756433,
-   "model": 403440,
+   "text": 2523633,
+   "image": 785675,
+   "font": 302528,
+   "application": 16024,
    "": 2901664,
-   "application": 7349
+   "model": 403440
   },
   "errors": [],
   "failed": [],
@@ -845,11 +790,11 @@
  {
   "page": "/projects/fabrika.html",
   "vw": 390,
-  "total": 1122898,
+  "total": 1159746,
   "by": {
    "text": 364609,
    "font": 115564,
-   "image": 642725
+   "image": 679573
   },
   "errors": [],
   "failed": [],
@@ -874,11 +819,12 @@
  {
   "page": "/projects/hind-al-oud.html",
   "vw": 390,
-  "total": 1708758,
+  "total": 6465989,
   "by": {
    "text": 383005,
    "font": 115564,
-   "image": 1210189
+   "image": 1140325,
+   "video": 4827095
   },
   "errors": [],
   "failed": [],
@@ -916,14 +862,15 @@
  {
   "page": "/projects/illusorr-spaces.html",
   "vw": 1440,
-  "total": 1690991,
+  "total": 1855934,
   "by": {
-   "text": 308238,
+   "text": 320086,
    "font": 115788,
    "image": 175743,
-   "application": 147710,
+   "application": 236531,
    "model": 36648,
-   "audio": 906864
+   "audio": 906864,
+   "": 64274
   },
   "errors": [],
   "failed": [],
@@ -933,14 +880,15 @@
  {
   "page": "/projects/illusorr-spaces.html",
   "vw": 390,
-  "total": 1690991,
+  "total": 1855934,
   "by": {
-   "text": 308238,
+   "text": 320086,
    "font": 115788,
    "image": 175743,
-   "application": 147710,
+   "application": 236531,
    "model": 36648,
-   "audio": 906864
+   "audio": 906864,
+   "": 64274
   },
   "errors": [],
   "failed": [],
@@ -950,11 +898,11 @@
  {
   "page": "/projects/khaltat.html",
   "vw": 1440,
-  "total": 1386432,
+  "total": 1315774,
   "by": {
    "text": 397544,
    "font": 115564,
-   "image": 873324
+   "image": 802666
   },
   "errors": [],
   "failed": [],
@@ -964,7 +912,7 @@
  {
   "page": "/projects/khaltat.html",
   "vw": 390,
-  "total": 998084,
+  "total": 1027216,
   "by": {
    "text": 397544,
    "font": 115564,
@@ -1032,43 +980,16 @@
   "n_failed": 0
  },
  {
-  "page": "/projects/lap/uploads/Lapillus Showcase.html",
-  "vw": 1440,
-  "total": 1306347,
-  "by": {
-   "text": 1159673,
-   "application": 43198,
-   "font": 103476
-  },
-  "errors": [],
-  "failed": [],
-  "n_err": 0,
-  "n_failed": 0
- },
- {
-  "page": "/projects/lap/uploads/Lapillus Showcase.html",
-  "vw": 390,
-  "total": 1306347,
-  "by": {
-   "text": 1159673,
-   "application": 43198,
-   "font": 103476
-  },
-  "errors": [],
-  "failed": [],
-  "n_err": 0,
-  "n_failed": 0
- },
- {
   "page": "/projects/lapillus.html",
   "vw": 1440,
-  "total": 7922725,
+  "total": 8402393,
   "by": {
    "text": 1550202,
    "font": 235656,
    "image": 632812,
-   "video": 5460834,
-   "application": 43221
+   "video": 5940486,
+   "application": 43237,
+   "": 0
   },
   "errors": [],
   "failed": [],
@@ -1078,13 +999,14 @@
  {
   "page": "/projects/lapillus.html",
   "vw": 390,
-  "total": 1525922,
+  "total": 3782136,
   "by": {
    "text": 390529,
    "font": 132180,
-   "image": 523524,
-   "video": 479652,
-   "application": 37
+   "image": 528971,
+   "application": 39,
+   "video": 2730417,
+   "": 0
   },
   "errors": [],
   "failed": [],
@@ -1130,11 +1052,11 @@
  {
   "page": "/projects/marlia-swimwear.html",
   "vw": 1440,
-  "total": 1966632,
+  "total": 1971718,
   "by": {
    "text": 382004,
    "font": 222272,
-   "image": 1362356
+   "image": 1367442
   },
   "errors": [
    "Failed to load resource: the server responded with a status of 404 (File not found)"
@@ -1208,34 +1130,36 @@
  {
   "page": "/projects/metaculture.html",
   "vw": 390,
-  "total": 927786,
+  "total": 928246,
   "by": {
-   "text": 215306,
+   "text": 215766,
    "font": 176616,
    "image": 535864
   },
   "errors": [
    "Failed to load resource: the server responded with a status of 404 (File not found)",
+   "Failed to load resource: the server responded with a status of 404 (File not found)",
    "Failed to load resource: the server responded with a status of 404 (File not found)"
   ],
   "failed": [
    "404 undefined",
+   "404 undefined",
    "404 undefined"
   ],
-  "n_err": 2,
-  "n_failed": 2
+  "n_err": 3,
+  "n_failed": 3
  },
  {
   "page": "/projects/metagenus.html",
   "vw": 1440,
-  "total": 16594278,
+  "total": 14186836,
   "by": {
-   "text": 1277244,
-   "image": 1333572,
-   "font": 181908,
-   "video": 7252647,
+   "text": 1577131,
+   "image": 1512153,
+   "font": 222036,
+   "video": 4312943,
    "model": 5945856,
-   "application": 88859,
+   "application": 102525,
    "": 514192
   },
   "errors": [],
@@ -1246,15 +1170,12 @@
  {
   "page": "/projects/metagenus.html",
   "vw": 390,
-  "total": 12392823,
+  "total": 5948587,
   "by": {
-   "text": 519085,
+   "text": 507860,
    "font": 146648,
-   "image": 865240,
-   "video": 4312943,
-   "model": 5945856,
-   "application": 88859,
-   "": 514192
+   "image": 981136,
+   "video": 4312943
   },
   "errors": [],
   "failed": [],
@@ -1264,10 +1185,10 @@
  {
   "page": "/projects/michael-cinco.html",
   "vw": 1440,
-  "total": 1508466,
+  "total": 1486320,
   "by": {
    "text": 393436,
-   "image": 999466,
+   "image": 977320,
    "font": 115564
   },
   "errors": [],
@@ -1323,8 +1244,8 @@
   "total": 1117684,
   "by": {
    "text": 304373,
-   "font": 276564,
    "image": 490282,
+   "font": 276564,
    "video": 46465
   },
   "errors": [
@@ -1358,11 +1279,11 @@
  {
   "page": "/projects/morphellum.html",
   "vw": 1440,
-  "total": 1121130,
+  "total": 1153572,
   "by": {
    "text": 304700,
    "font": 84548,
-   "image": 731882
+   "image": 764324
   },
   "errors": [],
   "failed": [],
@@ -1372,11 +1293,12 @@
  {
   "page": "/projects/morphellum.html",
   "vw": 390,
-  "total": 1154242,
+  "total": 1802495,
   "by": {
    "text": 304700,
    "font": 84548,
-   "image": 764994
+   "image": 863108,
+   "video": 550139
   },
   "errors": [],
   "failed": [],
@@ -1386,11 +1308,11 @@
  {
   "page": "/projects/optiverse.html",
   "vw": 1440,
-  "total": 2194973,
+  "total": 2387869,
   "by": {
-   "text": 1373146,
+   "text": 1397660,
    "font": 130760,
-   "image": 691046,
+   "image": 859428,
    "application": 21
   },
   "errors": [
@@ -1405,11 +1327,11 @@
  {
   "page": "/projects/optiverse.html",
   "vw": 390,
-  "total": 2488365,
+  "total": 2551031,
   "by": {
-   "text": 1391924,
+   "text": 1416438,
    "font": 130760,
-   "image": 965656,
+   "image": 1003808,
    "application": 25,
    "": 0
   },
@@ -1469,9 +1391,9 @@
  {
   "page": "/projects/pixelpaint.html",
   "vw": 390,
-  "total": 3720392,
+  "total": 4420369,
   "by": {
-   "text": 1415805,
+   "text": 2115782,
    "font": 262400,
    "image": 2042065,
    "": 0,
@@ -1489,12 +1411,12 @@
  {
   "page": "/projects/pylon.html",
   "vw": 1440,
-  "total": 6438356,
+  "total": 6264794,
   "by": {
-   "text": 3551544,
-   "font": 317548,
-   "image": 2529574,
-   "application": 39690,
+   "text": 3521627,
+   "image": 2451674,
+   "font": 277420,
+   "application": 14073,
    "": 0
   },
   "errors": [
@@ -1508,21 +1430,21 @@
    "404 pl-14.jpg",
    "404 pl-07.jpg",
    "404 pl-08.jpg",
-   "404 pl-15.jpg",
-   "404 pl-13.jpg"
+   "404 pl-13.jpg",
+   "404 pl-15.jpg"
   ],
-  "n_err": 9,
-  "n_failed": 9
+  "n_err": 11,
+  "n_failed": 11
  },
  {
   "page": "/projects/pylon.html",
   "vw": 390,
-  "total": 5833196,
+  "total": 5806280,
   "by": {
    "text": 3550077,
-   "image": 1928779,
+   "image": 1901968,
    "font": 317548,
-   "application": 36792,
+   "application": 36687,
    "": 0
   },
   "errors": [
@@ -1545,13 +1467,13 @@
  {
   "page": "/projects/riyadhverse.html",
   "vw": 1440,
-  "total": 1600599,
+  "total": 1610220,
   "by": {
-   "text": 1333890,
+   "text": 1343511,
    "font": 128312,
    "image": 138155,
-   "": 0,
-   "application": 242
+   "application": 242,
+   "": 0
   },
   "errors": [],
   "failed": [],
@@ -1561,12 +1483,13 @@
  {
   "page": "/projects/riyadhverse.html",
   "vw": 390,
-  "total": 2128765,
+  "total": 2138508,
   "by": {
-   "text": 1913004,
+   "text": 1922625,
    "font": 128312,
    "image": 87449,
-   "": 0
+   "": 0,
+   "application": 122
   },
   "errors": [],
   "failed": [],
@@ -1612,11 +1535,11 @@
  {
   "page": "/projects/trt-metaverse.html",
   "vw": 1440,
-  "total": 2961355,
+  "total": 2962907,
   "by": {
    "text": 286933,
    "font": 222272,
-   "image": 2452150
+   "image": 2453702
   },
   "errors": [],
   "failed": [],
@@ -1626,11 +1549,11 @@
  {
   "page": "/projects/trt-metaverse.html",
   "vw": 390,
-  "total": 2862364,
+  "total": 2893790,
   "by": {
    "text": 286933,
    "font": 222272,
-   "image": 2353159
+   "image": 2384585
   },
   "errors": [],
   "failed": [],
@@ -1640,10 +1563,10 @@
  {
   "page": "/projects/u-hub-metaverse.html",
   "vw": 1440,
-  "total": 1489104,
+  "total": 1500442,
   "by": {
    "text": 346280,
-   "image": 920552,
+   "image": 957422,
    "font": 222272
   },
   "errors": [],
@@ -1657,7 +1580,7 @@
   "total": 1432566,
   "by": {
    "text": 346280,
-   "image": 864014,
+   "image": 929906,
    "font": 222272
   },
   "errors": [],
