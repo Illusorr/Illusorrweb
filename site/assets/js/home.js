@@ -17,7 +17,7 @@
     const dotsWrap=document.getElementById('dots');
     const cnEl=document.getElementById('cn');
     convEl.innerHTML=convProjects.map((p,i)=>`
-      <a class="ccard" data-i="${i}" data-sec="${(p.sector||'').toLowerCase().replace(/[^a-z]/g,'')}" href="${p.href}">
+      <a class="ccard" data-i="${i}" data-proj="${(p.href||'').split('/').pop().replace(/\.html$/,'')}" href="${p.href}">
         <div class="cmedia" style="background-image:${p.cover?`url(${p.cover}),`:p.img?`url(assets/img/projects/${p.img}/cover.webp),`:``}linear-gradient(${p.g});background-size:cover;background-position:center"></div>
         <span class="cvnum mono">${String(i+1).padStart(2,'0')}</span>
         <span class="cvlabel">${p.title}</span>

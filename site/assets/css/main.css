@@ -2296,41 +2296,58 @@ h1, h2, h3, h4, h5, h6,
 }
 p, li, dd, dt, .meta-v { text-wrap: pretty; }
 
-/* ── Sector accents ──────────────────────────────────────────────────
-   A deliberate exception to "never invent a colour": the Selected Work
-   cards were nine near-identical pale lavenders (#b9c4ec ... #cbc2ec), so a
-   collapsed card told you nothing about what it was. Colour is keyed to
-   SECTOR, not to the card, so it carries meaning and repeats consistently
-   wherever a sector appears.
+/* ── Selected Work card palettes ─────────────────────────────────────
+   One palette per project, matching the work rather than an abstract
+   scheme: the cards used to be nine near-identical pale lavenders, so a
+   collapsed card told you nothing.
 
-   All are pitched to carry white text at 4.5:1 or better, since the collapsed
-   card shows a white vertical label. Anchored on --indigo and spread by hue
-   from there. Change them here and every use follows. */
-:root{
-  --sec-technology:   #3f51d8;
-  --sec-entertainment:#8b46d6;
-  --sec-ip:           #0f7f7a;
-  --sec-gaming:       #c2306b;
-  --sec-beauty:       #b4523a;
-  --sec-fashion:      #5b46c9;
-  --sec-realestate:   #1c6fae;
-  --sec-default:      #565d6b;
+   Each is three stops running light at the head to dark at the foot. That
+   ordering is deliberate: the title sits at the foot, so it always lands on
+   the dark stop and stays legible. Measured white-on-foot: 8.75:1 to 19.43:1.
+   --num is the head number, dark by default; PixelPaint's red head measures
+   4.38:1 against dark, so that one takes white instead.
+
+   A deliberate exception to "never invent a colour": no per-project palette
+   existed. Kept as tokens so all nine are changeable in one place. */
+.ccard{ --g1:#8b96ad; --g2:#6c7689; --g3:#0b0d12; --num:rgba(255,255,255,.7); }
+.ccard[data-proj="pixelpaint"]        { --g1:#e0343f; --g2:#2b4de0; --g3:#0a0d18; --num:rgba(255,255,255,.86); }
+.ccard[data-proj="optiverse"]         { --g1:#7c8698; --g2:#3a4150; --g3:#0b0d12; --num:rgba(11,13,18,.72); }
+.ccard[data-proj="pylon"]             { --g1:#5ab0ff; --g2:#1f5fc4; --g3:#0d2551; --num:rgba(11,13,18,.72); }
+.ccard[data-proj="metagenus"]         { --g1:#ff5ea8; --g2:#8b46d6; --g3:#2c3bb5; --num:rgba(11,13,18,.72); }
+.ccard[data-proj="hind-al-oud"]       { --g1:#e2b869; --g2:#a9793c; --g3:#4a3418; --num:rgba(11,13,18,.72); }
+.ccard[data-proj="khaltat"]           { --g1:#e8621f; --g2:#b02226; --g3:#111f3d; --num:rgba(11,13,18,.72); }
+.ccard[data-proj="koton-lookbook-russia"]{ --g1:#e9e9ea; --g2:#6e7076; --g3:#0b0d12; --num:rgba(11,13,18,.72); }
+.ccard[data-proj="aquatic-architects"]{ --g1:#3fa07a; --g2:#1c6b4e; --g3:#05130d; --num:rgba(11,13,18,.72); }
+.ccard[data-proj="riyadhverse"]       { --g1:#ded0b6; --g2:#8a7a5e; --g3:#100e0b; --num:rgba(11,13,18,.72); }
+
+/* Collapsed: the card IS the palette, so the rail reads as a spectrum.
+   Active: the cover image takes over and the palette retreats to the edge.
+   The grain is the same fractalNoise tile case-base.css uses, low opacity on
+   soft-light, so it reads as texture rather than dirt. */
+.ccard{
+  border-color: transparent;
+  background:
+    radial-gradient(132% 92% at 22% 6%, rgba(255,255,255,.30) 0%, transparent 58%),
+    linear-gradient(163deg, var(--g1) 0%, var(--g2) 46%, var(--g3) 100%);
 }
-.ccard[data-sec="technology"]   { --sec: var(--sec-technology); }
-.ccard[data-sec="entertainment"]{ --sec: var(--sec-entertainment); }
-.ccard[data-sec="ip"]           { --sec: var(--sec-ip); }
-.ccard[data-sec="gaming"]       { --sec: var(--sec-gaming); }
-.ccard[data-sec="beauty"]       { --sec: var(--sec-beauty); }
-.ccard[data-sec="fashion"]      { --sec: var(--sec-fashion); }
-.ccard[data-sec="realestate"]   { --sec: var(--sec-realestate); }
-.ccard                          { --sec: var(--sec-default); }
+.ccard::after{
+  content:'';
+  position:absolute; inset:0; z-index:2; pointer-events:none;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  background-size:200px 200px;
+  opacity:.14;
+  mix-blend-mode:soft-light;
+  transition:opacity .5s;
+}
+.ccard .cvlabel{ color:#fff; font-size:19px; letter-spacing:-.01em;
+                 text-shadow:0 1px 12px rgba(0,0,0,.28); }
+.ccard .cvnum{ color:var(--num); }
 
-/* Collapsed: the card IS the colour, so the rail reads as a spectrum.
-   Active: the cover image takes over and the colour retreats to the edge. */
-.ccard{ background: var(--sec); border-color: transparent; }
-.ccard .cvlabel{ color:#fff; }
-.ccard .cvnum{ color:rgba(255,255,255,.72); }
-.ccard.active{ background:#fff; box-shadow:0 30px 70px -30px rgba(40,55,120,.28),
-               inset 4px 0 0 0 var(--sec); }
-.ccard.active .csector{ color: var(--sec); }
-.ccard.active .ctag span{ border-color: color-mix(in srgb, var(--sec) 34%, transparent); }
+.ccard.active{
+  background:#fff;
+  box-shadow:0 30px 70px -30px rgba(40,55,120,.28),
+             inset 4px 0 0 0 var(--g2);
+}
+.ccard.active::after{ opacity:.06; }
+.ccard.active .csector{ color: var(--g2); }
+.ccard.active .ctag span{ border-color: color-mix(in srgb, var(--g2) 34%, transparent); }
