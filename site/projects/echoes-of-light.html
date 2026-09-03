@@ -21,6 +21,11 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
 
 <link rel="stylesheet" href="../assets/css/case/cm-type-b.css">
 <title>ILLUSORR × Hybrid Xperience · Echoes of Light</title>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <style>
   :root {
@@ -228,12 +233,12 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
     display: flex; flex-direction: column; gap: 10px;
     padding-top: 8px;
   }
-  .section-num .num {
+  .section-num .num{
     font-family: 'PP Monument Extended', system-ui, sans-serif;
     font-size: clamp(44px, 5vw, 72px);
-    font-weight: 900;
+    font-weight:600;
     letter-spacing: -0.02em;
-    color: var(--ink-faint);
+    color: var(--accent, var(--ink-soft));
     line-height: 1;
   }
   .module-title {
@@ -1103,7 +1108,7 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
   <section class="echo-stage" data-tone="dark" data-rail="0" data-screen-label="01 Intro Stage">
     <div class="echo-sticky">
       <div class="echo-3d" id="echoStage3d" aria-hidden="true"></div>
-      <div class="echo-fallback" aria-hidden="true"><img src="../assets/projects/echoes/stage/ph-11.webp" alt="" fetchpriority="high" decoding="async" srcset="../assets/projects/echoes/stage/ph-11-960.webp 960w, ../assets/projects/echoes/stage/ph-11.webp 1000w" sizes="(max-width:390px) 413px, (max-width:640px) 678px, (max-width:768px) 814px, (max-width:1024px) 1085px, (max-width:1440px) 1526px, 2035px"></div>
+      <div class="echo-fallback" aria-hidden="true"><img src="../assets/projects/echoes/stage/ph-11.webp" alt="Echoes of Light, the installation lit for visitors" fetchpriority="high" decoding="async" srcset="../assets/projects/echoes/stage/ph-11-960.webp 960w, ../assets/projects/echoes/stage/ph-11.webp 1000w" sizes="(max-width:390px) 413px, (max-width:640px) 678px, (max-width:768px) 814px, (max-width:1024px) 1085px, (max-width:1440px) 1526px, 2035px"></div>
       <div class="echo-grain" aria-hidden="true"></div>
       <div class="echo-vig" aria-hidden="true"></div>
     </div>

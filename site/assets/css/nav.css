@@ -1,3 +1,8 @@
+/* The nav must not depend on the host page having a border-box reset.
+   lapillus does not, so .il-talk's min-height:44px applied to the CONTENT
+   box and the 9px padding plus 1px border pushed the pill to 64px there
+   while every other page rendered it at 44px. */
+.il-topbar, .il-topbar *, .il-overlay, .il-overlay * { box-sizing: border-box; }
 /* ILLUSORR — the site navigation. One header for every page: site shell,
    sector pages and case studies. Namespaced (il-) so per-page case CSS cannot
    collide with it. Proportions are the shell header's; the frosted glass band
@@ -49,8 +54,8 @@
 .il-overlay nav{margin:auto 0;display:flex;flex-direction:column;gap:6px}
 .il-overlay nav a{font-family:'PP Monument Extended','Outfit',sans-serif;font-weight:400;font-size:clamp(22px,4.1vw,54px);color:#8b96ad;text-transform:uppercase;letter-spacing:0;cursor:pointer;transition:.25s;line-height:1.02;display:flex;align-items:baseline;gap:18px;text-decoration:none}
 .il-overlay nav a:hover{color:#fff;padding-left:14px}
-.il-overlay nav a span{font-family:'Outfit',sans-serif;font-weight:400;font-size:12px;letter-spacing:.2em;color:#4a5268}
-.il-overlay .il-ofoot{display:flex;justify-content:space-between;color:#4a5268;font-family:'Outfit',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+.il-overlay nav a span{font-family:'Outfit',sans-serif;font-weight:400;font-size:12px;letter-spacing:.2em;color:#8b96ad}
+.il-overlay .il-ofoot{display:flex;justify-content:space-between;color:#8b96ad;font-family:'Outfit',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase}
 
 /* Breakpoints match the shell header they replace: 3vw gutters on 2K+ so the
    bar lines up with the 96px content padding, touch padding on tablets, and

@@ -17,20 +17,25 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
 <link rel="stylesheet" href="../assets/css/nav.css">
 <link rel="stylesheet" href="../assets/css/case/fonts.css">
 <title>ILLUSORR · Metaculture</title>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/projects/shared/fonts/PPMonumentExtended-Black.woff2">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/projects/shared/fonts/Squaresharps-v2.woff2">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="preload" href="../assets/projects/metaculture/img/space-render.webp" as="image">
 <style>
-  @font-face { font-family:'Outfit'; font-weight:300; font-display:swap; src:url('../assets/projects/shared/fonts/Outfit-Light.woff2') format("woff2"), url('../assets/projects/shared/fonts/Outfit-Light.ttf') format("truetype"); }
-  @font-face { font-family:'Outfit'; font-weight:400; font-display:swap; src:url('../assets/projects/shared/fonts/Outfit-Regular.woff2') format("woff2"), url('../assets/projects/shared/fonts/Outfit-Regular.ttf') format("truetype"); }
-  @font-face { font-family:'Outfit'; font-weight:500; font-display:swap; src:url('../assets/projects/shared/fonts/Outfit-Medium.woff2') format("woff2"), url('../assets/projects/shared/fonts/Outfit-Medium.ttf') format("truetype"); }
-  @font-face { font-family:'Outfit'; font-weight:600; font-display:swap; src:url('../assets/projects/shared/fonts/Outfit-SemiBold.woff2') format("woff2"), url('../assets/projects/shared/fonts/Outfit-SemiBold.ttf') format("truetype"); }
-  @font-face { font-family:'Outfit'; font-weight:100 900; font-display:swap;
-    src:url('../assets/fonts/outfit-variable.woff') format('woff'); }
-  @font-face { font-family:'PP Monument Extended'; font-weight:400; font-display:swap; src:url('../assets/projects/shared/fonts/PPMonumentExtended-Regular.woff2') format("woff2"), url('../assets/projects/shared/fonts/PPMonumentExtended-Regular.otf') format("opentype"); }
-  @font-face { font-family:'PP Monument Extended'; font-weight:900; font-display:swap; src:url('../assets/projects/shared/fonts/PPMonumentExtended-Black.woff2') format("woff2"), url('../assets/projects/shared/fonts/PPMonumentExtended-Black.otf') format("opentype"); }
-  @font-face { font-family:'Squaresharps'; font-weight:400; font-display:swap; src:url('../assets/projects/shared/fonts/Squaresharps-v2.woff2') format("woff2"), url('../assets/projects/shared/fonts/Squaresharps-v2.ttf') format("truetype"); }
+  @font-face{ font-family:'Outfit'; font-weight:300; font-display:swap; src: url('../assets/projects/shared/fonts/Outfit-Light.woff2') format("woff2"); }
+  @font-face{ font-family:'Outfit'; font-weight:400; font-display:swap; src: url('../assets/projects/shared/fonts/Outfit-Regular.woff2') format("woff2"); }
+  @font-face{ font-family:'Outfit'; font-weight:500; font-display:swap; src: url('../assets/projects/shared/fonts/Outfit-Medium.woff2') format("woff2"); }
+  @font-face{ font-family:'Outfit'; font-weight:600; font-display:swap; src: url('../assets/projects/shared/fonts/Outfit-SemiBold.woff2') format("woff2"); }
+  @font-face{ font-family:'Outfit'; font-weight:100 900; font-display:swap;
+    src: url('../assets/fonts/outfit-variable.woff2') format("woff2"); }
+  @font-face{ font-family:'PP Monument Extended'; font-weight:400; font-display:swap; src: url('../assets/projects/shared/fonts/PPMonumentExtended-Regular.woff2') format("woff2"); }
+  @font-face{ font-family:'PP Monument Extended'; font-weight:900; font-display:swap; src: url('../assets/projects/shared/fonts/PPMonumentExtended-Black.woff2') format("woff2"); }
+  @font-face{ font-family:'Squaresharps'; font-weight:400; font-display:swap; src: url('../assets/projects/shared/fonts/Squaresharps-v2.woff2') format("woff2"); }
 
   /* ─────────────────────────────────────────────────────────────────
      WARM HERITAGE THEME. Desert stone ground, single gold accent.
@@ -281,6 +286,13 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
     color: var(--ink-soft); opacity: 0; transition: opacity .3s ease;
   }
   .stage.is-loading .mc-status { opacity: 1; }
+  /* On the touch layer mobile.js swaps the canvas for a tap-to-load
+     placeholder, but .stage keeps is-loading because the real scene never
+     starts - so "Streaming" sat directly on top of the "Load 3D scene"
+     button. Hide it while the placeholder is present; tapping removes
+     .m-defer and the label comes back for the actual load. */
+  .stage:has(> .m-defer) .mc-status { opacity: 0; }
+  .stage:has(> .m-defer) .mc-bar { display: none; }
   .mc-bar { position: absolute; left: 0; right: 0; bottom: 0; height: 2px; z-index: 4; background: var(--ink-hair); }
   .mc-bar span { display: block; height: 100%; width: 0; background: var(--accent); transition: width .25s ease; }
   .stage-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 26px; margin-top: 18px; }
@@ -669,8 +681,17 @@ document.querySelectorAll('.rv').forEach((el) => {
 /* ── Clips: source attached only when the frame is near. ──────── */
 document.querySelectorAll('video[data-src]').forEach((v) => {
   window.__mcVis.add(v, (on) => {
-    if (on) { if (!v.src) v.src = v.dataset.src; v.play().catch(() => {}); }
-    else if (v.src) v.pause();
+    // The NodeList is captured once, but on the touch layer mobile.js takes
+    // the clip over and REMOVES data-src, so this callback later read
+    // undefined and set src="undefined" - eight real requests to
+    // /projects/undefined at 768px. Read the attribute at call time and bail
+    // if the mobile layer owns the element.
+    if (on) {
+      const s = v.dataset.src;
+      if (!s || v.closest('.m-defer')) return;
+      if (!v.src) v.src = s;
+      v.play().catch(() => {});
+    } else if (v.src) v.pause();
   }, 200);
 });
 </script>

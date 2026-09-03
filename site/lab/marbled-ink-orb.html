@@ -4,6 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Marbled Ink Orb — generative flow field</title>
+<meta name="robots" content="noindex, follow"><!-- unreferenced lab study -->
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#05060c">
 <style>
   html, body { margin: 0; height: 100%; background: #FFFFFF; overflow: hidden; }
   canvas { display: block; width: 100vw; height: 100vh; }
@@ -36,8 +43,42 @@
   }
   #ui button:hover { background: #f3f5fa; color: #111; }
 </style>
+<link rel="stylesheet" href="../assets/css/nav.css">
+<link rel="stylesheet" href="../assets/css/mobile.css">
+
+<style>
+  /* The lab studies are standalone full-screen experiments and shipped with no
+     navigation at all, so there was no way back out of them. The site header
+     is fixed, so the body only needs clearance under it. */
+  /* the fixed bar measures 88-89px, so clearance is that plus the page gutter */
+  body{ padding-top: calc(clamp(14px,2.4vw,40px) + 92px) !important; }
+</style>
 </head>
 <body>
+<header class="il-topbar" id="ilTopbar">
+  <div class="il-brand"><span class="il-logo" role="img" aria-label="ILLUSORR"></span></div>
+  <div class="il-right">
+    <a class="il-talk" href="../contact.html">Let's talk</a>
+    <button class="il-burger" id="ilMenuOpen" aria-label="Open menu"><i></i><i></i></button>
+  </div>
+</header>
+<div class="il-overlay" id="ilOverlay">
+  <div class="il-ohead">
+    <div class="il-brand"><span class="il-logo" role="img" aria-label="ILLUSORR"></span></div>
+    <button class="il-oclose" id="ilMenuClose">Close ✕</button>
+  </div>
+  <nav>
+    <a href="../index.html">Home <span>01</span></a>
+    <a href="../about.html">About <span>02</span></a>
+    <a href="../sectors.html">Sectors <span>03</span></a>
+    <a href="../work.html">Work <span>04</span></a>
+    <a href="../lab.html">Lab <span>05</span></a>
+    <a href="../collective.html">Collective <span>06</span></a>
+    <a href="../contact.html">Contact <span>07</span></a>
+  </nav>
+  <div class="il-ofoot"><span>Abu Dhabi · Yas Creative Hub</span><span>hello@illusorr.com</span></div>
+</div>
+
 <canvas id="c"></canvas>
 
 <details id="ui" open>
@@ -275,5 +316,7 @@ if (reduced) {
   setTimeout(() => { if (ticks === 0) setInterval(draw, 16); }, 600);
 }
 </script>
+<script src="../assets/js/mobile.js" defer></script>
+<script src="../assets/js/nav.js" defer></script>
 </body>
 </html>

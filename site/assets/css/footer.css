@@ -3,9 +3,11 @@
    footer needs is declared here (tokens, wordmark font, logo art). */
 
 @font-face{font-family:'Squaresharps';font-style:normal;font-weight:400;font-display:swap;
-  src:url(../fonts/squaresharps-400.woff) format('woff')}
+  src:url(../fonts/squaresharps-400.woff2) format('woff2')}
 
-.sfoot{--sf-bg:#05060a;--sf-ink:#eef1f8;--sf-dim:#8b96ad;--sf-faint:#4a5268;
+/* #4a5268 measured 2.53:1 on the page background, far under 4.5:1;
+   raised to the --faint value the tokens already carry. */
+.sfoot{--sf-bg:#05060a;--sf-ink:#eef1f8;--sf-dim:#8b96ad;--sf-faint:#8b96ad;
   --sf-line:#1b2231;--sf-indigo:#4c63ff;--sf-cold:#8ea2ff;
   box-sizing:border-box;position:relative;background:var(--sf-bg);color:var(--sf-ink);
   font-family:'Outfit',system-ui,sans-serif;-webkit-font-smoothing:antialiased;

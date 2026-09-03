@@ -17,6 +17,11 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
 <link rel="stylesheet" href="../assets/css/nav.css">
 <link rel="stylesheet" href="../assets/css/case/fonts.css">
 <title>ILLUSORR × Boyner · Denim, AI Banner Campaign</title>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/projects/shared/fonts/PPMonumentExtended-Black.woff2">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/projects/shared/fonts/Squaresharps-v2.woff2">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -27,14 +32,14 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
      PP Monument  → display headlines
      Squaresharps → small caps labels, eyebrows, UI chrome
      ───────────────────────────────────────────────────────────────── */
-  @font-face { font-family:'Outfit'; font-weight:100 900; font-display:swap;
-    src:url('../assets/fonts/outfit-variable.woff') format('woff'); }
-  @font-face { font-family:'PP Monument Extended'; font-weight:400; font-display:swap;
-    src:url('../assets/projects/shared/fonts/PPMonumentExtended-Regular.woff2') format("woff2"), url('../assets/projects/shared/fonts/PPMonumentExtended-Regular.otf') format("opentype"); }
-  @font-face { font-family:'PP Monument Extended'; font-weight:900; font-display:swap;
-    src:url('../assets/projects/shared/fonts/PPMonumentExtended-Black.woff2') format("woff2"), url('../assets/projects/shared/fonts/PPMonumentExtended-Black.otf') format("opentype"); }
-  @font-face { font-family:'Squaresharps'; font-weight:400; font-display:swap;
-    src:url('../assets/projects/shared/fonts/Squaresharps-v2.woff2') format("woff2"), url('../assets/projects/shared/fonts/Squaresharps-v2.ttf') format("truetype"); }
+  @font-face{ font-family:'Outfit'; font-weight:100 900; font-display:swap;
+    src: url('../assets/fonts/outfit-variable.woff2') format("woff2"); }
+  @font-face{ font-family:'PP Monument Extended'; font-weight:400; font-display:swap;
+    src: url('../assets/projects/shared/fonts/PPMonumentExtended-Regular.woff2') format("woff2"); }
+  @font-face{ font-family:'PP Monument Extended'; font-weight:900; font-display:swap;
+    src: url('../assets/projects/shared/fonts/PPMonumentExtended-Black.woff2') format("woff2"); }
+  @font-face{ font-family:'Squaresharps'; font-weight:400; font-display:swap;
+    src: url('../assets/projects/shared/fonts/Squaresharps-v2.woff2') format("woff2"); }
 
   /* ─────────────────────────────────────────────────────────────────
      Theme tokens, light + dark halves both defined up-front.
@@ -1366,7 +1371,6 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
       <div class="dm-carousel" data-carousel style="position:relative;margin-top:clamp(30px,3.6vw,52px)">
         <div class="dm-track" data-track style="display:flex;gap:clamp(14px,1.6vw,26px);overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none">
           <figure class="dm-slide" style="margin:0;position:relative;flex:0 0 clamp(240px,38%,420px);scroll-snap-align:center"><img width="1600" height="1600" src="../assets/img/projects/denim/illusorr-denim-camera-angle-test-01.webp" alt="Boyner Denim production test 1: camera angle and cast positioning study" style="width:100%;height:auto;display:block" srcset="../assets/img/projects/denim/illusorr-denim-camera-angle-test-01-640.webp 640w, ../assets/img/projects/denim/illusorr-denim-camera-angle-test-01-768.webp 768w, ../assets/img/projects/denim/illusorr-denim-camera-angle-test-01.webp 960w" sizes="(max-width:390px) 273px, (max-width:640px) 468px, (max-width:768px) 268px, (max-width:1024px) 358px, (max-width:1440px) 420px, 420px"><figcaption style="margin-top:12px;display:flex;justify-content:space-between;gap:16px;font-family:'Outfit',system-ui,sans-serif;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft)"><span>Wide · Three-up</span><span>Test 01</span></figcaption></figure>
-          <figure class="dm-slide" style="margin:0;position:relative;flex:0 0 clamp(240px,38%,420px);scroll-snap-align:center"><img width="1600" height="1600" src="../assets/img/projects/denim/illusorr-denim-camera-angle-test-02.webp" alt="Boyner Denim production test 2: camera angle and cast positioning study" style="width:100%;height:auto;display:block" srcset="../assets/img/projects/denim/illusorr-denim-camera-angle-test-02-640.webp 640w, ../assets/img/projects/denim/illusorr-denim-camera-angle-test-02-768.webp 768w, ../assets/img/projects/denim/illusorr-denim-camera-angle-test-02.webp 960w" sizes="(max-width:390px) 273px, (max-width:640px) 468px, (max-width:768px) 268px, (max-width:1024px) 358px, (max-width:1440px) 420px, 420px"><figcaption style="margin-top:12px;display:flex;justify-content:space-between;gap:16px;font-family:'Outfit',system-ui,sans-serif;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft)"><span>Wide · Alt frame</span><span>Test 02</span></figcaption></figure>
           <figure class="dm-slide" style="margin:0;position:relative;flex:0 0 clamp(240px,38%,420px);scroll-snap-align:center"><img width="1600" height="1600" src="../assets/img/projects/denim/illusorr-denim-camera-angle-test-03.webp" alt="Boyner Denim production test 3: camera angle and cast positioning study" style="width:100%;height:auto;display:block" srcset="../assets/img/projects/denim/illusorr-denim-camera-angle-test-03-640.webp 640w, ../assets/img/projects/denim/illusorr-denim-camera-angle-test-03-768.webp 768w, ../assets/img/projects/denim/illusorr-denim-camera-angle-test-03.webp 960w" sizes="(max-width:390px) 273px, (max-width:640px) 468px, (max-width:768px) 268px, (max-width:1024px) 358px, (max-width:1440px) 420px, 420px"><figcaption style="margin-top:12px;display:flex;justify-content:space-between;gap:16px;font-family:'Outfit',system-ui,sans-serif;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft)"><span>Eye level · Profile turn</span><span>Test 03</span></figcaption></figure>
           <figure class="dm-slide" style="margin:0;position:relative;flex:0 0 clamp(240px,38%,420px);scroll-snap-align:center"><img width="1600" height="1600" src="../assets/img/projects/denim/illusorr-denim-camera-angle-test-04.webp" alt="Boyner Denim production test 4: camera angle and cast positioning study" style="width:100%;height:auto;display:block" srcset="../assets/img/projects/denim/illusorr-denim-camera-angle-test-04-640.webp 640w, ../assets/img/projects/denim/illusorr-denim-camera-angle-test-04-768.webp 768w, ../assets/img/projects/denim/illusorr-denim-camera-angle-test-04.webp 960w" sizes="(max-width:390px) 273px, (max-width:640px) 468px, (max-width:768px) 268px, (max-width:1024px) 358px, (max-width:1440px) 420px, 420px"><figcaption style="margin-top:12px;display:flex;justify-content:space-between;gap:16px;font-family:'Outfit',system-ui,sans-serif;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft)"><span>Low angle · Full length</span><span>Test 04</span></figcaption></figure>
           <figure class="dm-slide" style="margin:0;position:relative;flex:0 0 clamp(240px,38%,420px);scroll-snap-align:center"><img width="1600" height="1600" src="../assets/img/projects/denim/illusorr-denim-camera-angle-test-05.webp" alt="Boyner Denim production test 5: camera angle and cast positioning study" style="width:100%;height:auto;display:block" srcset="../assets/img/projects/denim/illusorr-denim-camera-angle-test-05-640.webp 640w, ../assets/img/projects/denim/illusorr-denim-camera-angle-test-05-768.webp 768w, ../assets/img/projects/denim/illusorr-denim-camera-angle-test-05.webp 960w" sizes="(max-width:390px) 273px, (max-width:640px) 468px, (max-width:768px) 268px, (max-width:1024px) 358px, (max-width:1440px) 420px, 420px"><figcaption style="margin-top:12px;display:flex;justify-content:space-between;gap:16px;font-family:'Outfit',system-ui,sans-serif;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft)"><span>Straight on · Group</span><span>Test 05</span></figcaption></figure>
@@ -1934,7 +1938,6 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
 <script src="../assets/js/case/lightbox.js"></script>
 
 
-  <script src="../assets/js/case/image-slot.js"></script>
 <script src="../assets/js/nav.js" defer></script>
 <script src="../assets/js/orphans.js" defer></script>
 <script>

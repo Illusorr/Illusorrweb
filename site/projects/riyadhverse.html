@@ -21,6 +21,11 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
 
 <link rel="stylesheet" href="../assets/css/case/cm-type-b.css">
 <title>ILLUSORR × Bawtaqah · RiyadhVerse</title>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <style>
   :root {
@@ -233,12 +238,12 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
     display: flex; flex-direction: column; gap: 10px;
     padding-top: 8px;
   }
-  .section-num .num {
+  .section-num .num{
     font-family: 'PP Monument Extended', system-ui, sans-serif;
     font-size: clamp(44px, 5vw, 72px);
-    font-weight: 900;
+    font-weight:600;
     letter-spacing: -0.02em;
-    color: var(--ink-faint);
+    color: var(--accent, var(--ink-soft));
     line-height: 1;
   }
   .module-title {
@@ -856,9 +861,9 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
   .section-num .num{
     display:inline;
     font-family:'Outfit',system-ui,sans-serif;
-    font-size: 12px; font-weight:400;
+    font-size: 12px; font-weight:600;
     letter-spacing:0.2em; line-height:1;
-    color:var(--ink-faint); opacity:1; margin:0;
+    color:var(--accent, var(--ink-soft)); opacity:1; margin:0;
     -webkit-text-fill-color:currentColor;
   }
   /* Visual band between sections, edge to edge. */
@@ -1054,7 +1059,7 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
           </div>
           <div class="credit-row">
             <span class="credit-k">Architecture &amp; Real Estate</span>
-            <span class="who">ILLUSORR</span>
+            <span class="who">Bawtaqah</span>
           </div>
           <div class="credit-row">
             <span class="credit-k">3D Animation</span>
@@ -1373,7 +1378,6 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
 })();
 </script>
 
-  <script src="../assets/js/case/image-slot.js"></script>
 <script src="../assets/js/nav.js" defer></script>
 <script src="../assets/js/orphans.js" defer></script>
 <script src="../assets/js/site-footer.js" defer></script>

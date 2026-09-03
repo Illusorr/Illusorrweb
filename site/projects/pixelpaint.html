@@ -21,6 +21,11 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
 
 <link rel="stylesheet" href="../assets/css/case/cm-type-b.css">
 <title>ILLUSORR × ABB Robotics · PixelPaint Technology</title>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <style>
   :root {
@@ -233,12 +238,12 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
     display: flex; flex-direction: column; gap: 10px;
     padding-top: 8px;
   }
-  .section-num .num {
+  .section-num .num{
     font-family: 'PP Monument Extended', system-ui, sans-serif;
     font-size: clamp(44px, 5vw, 72px);
-    font-weight: 900;
+    font-weight:600;
     letter-spacing: -0.02em;
-    color: var(--ink-faint);
+    color: var(--accent, var(--ink-soft));
     line-height: 1;
   }
   .module-title {
@@ -875,9 +880,9 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
   .section-num .num{
     display:inline;
     font-family:'Outfit',system-ui,sans-serif;
-    font-size: 12px; font-weight:400;
+    font-size: 12px; font-weight:600;
     letter-spacing:0.2em; line-height:1;
-    color:var(--ink-faint); opacity:1; margin:0;
+    color:var(--accent, var(--ink-soft)); opacity:1; margin:0;
     -webkit-text-fill-color:currentColor;
   }
   /* Visual band between sections, edge to edge. */
@@ -946,6 +951,11 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
   .hc-slide .ph{position:absolute;inset:0;}
   /* figure carries a UA default margin: 1em 40px, which breaks the track maths */
   .hc-slide{ margin:0; }
+  /* .hc-slide .ph is absolutely positioned, so the slide had no in-flow
+     content and collapsed to height:0 - the carousel's overflow:hidden
+     then clipped the whole hero away on desktop. The frame takes the same
+     ratio the .ph already declares, so it has a height of its own. */
+  .hc-slide{ aspect-ratio: 3 / 4; }
   /* slide gutter (was supplied by the figure default margin before the margin:0 fix) */
   .hc-track{ gap:12px; }
 </style>

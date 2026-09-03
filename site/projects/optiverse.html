@@ -17,6 +17,11 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
 <link rel="stylesheet" href="../assets/css/nav.css">
 <link rel="stylesheet" href="../assets/css/case/fonts.css">
 <title>ILLUSORR × Optima · Optiverse</title>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/projects/shared/fonts/PPMonumentExtended-Black.woff2">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/projects/shared/fonts/Squaresharps-v2.woff2">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -27,14 +32,14 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
      PP Monument  → display headlines
      Squaresharps → small caps labels, eyebrows, UI chrome
      ───────────────────────────────────────────────────────────────── */
-  @font-face { font-family:'Outfit'; font-weight:100 900; font-display:swap;
-    src:url('../assets/fonts/outfit-variable.woff') format('woff'); }
-  @font-face { font-family:'PP Monument Extended'; font-weight:400; font-display:swap;
-    src:url('../assets/projects/shared/fonts/PPMonumentExtended-Regular.woff2') format("woff2"), url('../assets/projects/shared/fonts/PPMonumentExtended-Regular.otf') format("opentype"); }
-  @font-face { font-family:'PP Monument Extended'; font-weight:900; font-display:swap;
-    src:url('../assets/projects/shared/fonts/PPMonumentExtended-Black.woff2') format("woff2"), url('../assets/projects/shared/fonts/PPMonumentExtended-Black.otf') format("opentype"); }
-  @font-face { font-family:'Squaresharps'; font-weight:400; font-display:swap;
-    src:url('../assets/projects/shared/fonts/Squaresharps-v2.woff2') format("woff2"), url('../assets/projects/shared/fonts/Squaresharps-v2.ttf') format("truetype"); }
+  @font-face{ font-family:'Outfit'; font-weight:100 900; font-display:swap;
+    src: url('../assets/fonts/outfit-variable.woff2') format("woff2"); }
+  @font-face{ font-family:'PP Monument Extended'; font-weight:400; font-display:swap;
+    src: url('../assets/projects/shared/fonts/PPMonumentExtended-Regular.woff2') format("woff2"); }
+  @font-face{ font-family:'PP Monument Extended'; font-weight:900; font-display:swap;
+    src: url('../assets/projects/shared/fonts/PPMonumentExtended-Black.woff2') format("woff2"); }
+  @font-face{ font-family:'Squaresharps'; font-weight:400; font-display:swap;
+    src: url('../assets/projects/shared/fonts/Squaresharps-v2.woff2') format("woff2"); }
 
   /* ─────────────────────────────────────────────────────────────────
      COOL SCI-FI THEME. Single dark tone throughout, ink in #B8BCCC.
@@ -718,8 +723,12 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
   .as-tab.is-active .as-x { transform: rotate(45deg); color: var(--accent); }
 
   .as-stage { display: flex; flex-direction: column; gap: clamp(18px, 2vw, 28px); }
+  /* Every asset clip is 1080x1080. The frame was 4/3, so a square video sat
+     inside it letterboxed with empty bars either side (measured 852x589 for a
+     1:1 source). The media area is now square and the frame sizes to the HUD
+     bar plus that square, so the frame matches the footage exactly. */
   .as-frame {
-    position: relative; width: 100%; aspect-ratio: 4 / 3;
+    position: relative; width: 100%;
     background: #04050a; border: 1px solid var(--ink-faint);
     box-shadow: inset 0 0 120px rgba(184,188,204,0.05);
     overflow: hidden; isolation: isolate;
@@ -752,7 +761,13 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
   .as-frame .bracket.br { right: 16px; bottom: 16px; border-right-width: 2px; border-bottom-width: 2px; }
   .as-frame .scan { position: absolute; left: 0; right: 0; top: 50px; height: 1px; z-index: 5; pointer-events: none; background: linear-gradient(90deg, transparent, var(--glow), transparent); opacity: 0.45; animation: scanY 7s linear infinite; }
 
-  .as-vis { position: absolute; inset: 50px 0 0; z-index: 2; display: grid; place-items: center; }
+  .as-vis { position: relative; inset: auto; aspect-ratio: 1 / 1; width: 100%;
+           z-index: 2; display: grid; place-items: center; }
+  /* Everything in the media area shares ONE cell. mobile.js inserts a
+     tap-to-load placeholder as a sibling of the canvas, and an implicit grid
+     put it in a second ROW - 200px of extra height that pushed the square
+     media area to 0.92 on tablets. */
+  .as-vis > * { grid-area: 1 / 1; }
   /* The clips are square. As a grid item with no definite parent height,
      height:100% never resolved and the video fell back to its 1920x1920
      intrinsic size and overflowed. Size it explicitly off the frame height. */
@@ -1185,9 +1200,9 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
   .section-num .num{
     display:inline;
     font-family:'Outfit',system-ui,sans-serif;
-    font-size: 12px; font-weight:400;
+    font-size: 12px; font-weight:600;
     letter-spacing:0.2em; line-height:1;
-    color:var(--ink-faint); opacity:1; margin:0;
+    color:var(--accent, var(--ink-soft)); opacity:1; margin:0;
     -webkit-text-fill-color:currentColor;
   }
   /* Visual band between sections, edge to edge. */
@@ -1372,6 +1387,9 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
     <div class="opti-sticky">
       <canvas class="hero-field" id="heroField" aria-hidden="true"></canvas>
       <div class="opti-viewer is-knockout" id="optiViewer">
+        <!-- cross-origin viewer: it cannot be sampled, and it is dark at one
+     scroll position and light at another, so no single declaration is
+     right. It keeps the dark default, which matches the viewer chrome. -->
         <div class="sketchfab-embed-wrapper">
           <iframe id="optiFrame" title="OPTIVERSE" frameborder="0" allowtransparency="true" style="background:transparent" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share data-src="https://sketchfab.com/models/c898ee908ed74cae8d5d79b5c8cb70c5/embed?autostart=1&annotations_visible=1&annotation_cycle=3&transparent=1&ui_loading=0&ui_theme=dark&ui_infos=0&ui_controls=0&ui_watermark=0&ui_watermark_link=0&ui_hint=0&ui_help=0&ui_settings=0&ui_inspector=0&ui_stop=0&ui_ar=0&ui_vr=0&ui_fullscreen=0&dnt=1"></iframe>
           <span class="sf-mask sf-mask-bl" aria-hidden="true"></span>
@@ -1520,7 +1538,7 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
   </section>
 
   <!-- visual band -->
-  <section class="vband" data-tone="light" data-screen-label="Visual 06">
+  <section class="vband" data-tone="dark" data-screen-label="Visual 06">
     <div class="vb-frame is-video">
       <iframe src="https://www.youtube-nocookie.com/embed/jUwQDIohlOU?rel=0" title="Optiverse" loading="lazy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </div>
@@ -1592,7 +1610,7 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
   </section>
 
   <!-- visual band -->
-  <section class="vband" data-tone="light" data-screen-label="Visual 02">
+  <section class="vband" data-tone="dark" data-screen-label="Visual 02">
     <div class="vb-frame">
       <img src="../assets/projects/optiverse/w-topview.webp" alt="The Optiverse from above" loading="lazy" decoding="async" srcset="../assets/projects/optiverse/w-topview-960.webp 960w, ../assets/projects/optiverse/w-topview-1440.webp 1440w, ../assets/projects/optiverse/w-topview.webp 1600w" sizes="(max-width:390px) 390px, (max-width:640px) 640px, (max-width:768px) 768px, (max-width:1024px) 1024px, (max-width:1440px) 1440px, 1920px">
     </div>
@@ -1856,7 +1874,7 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
         <span>·</span>
         <span>3D</span>
       </div>
-      <a class="next-cta" href="../work.html">
+      <a class="next-cta" href="trt-metaverse.html">
         <span>View Case Study</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
           <path d="M5 19 L19 5"/><polyline points="9 5 19 5 19 15"/>
@@ -1882,24 +1900,24 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
     const IMG = '../assets/projects/optiverse/worlds/';
     const VID = '../assets/projects/optiverse/';
     const SPACES = [
-      { w:'optima', tag:'Arrival', name:'The Hall', img:'optima-hall', desc:'The arrival concourse. Every visitor lands here before choosing a world, with the interactive map and teleport thresholds built into the floor.', v:[['Interactive Map','map.webm','poster-map.webp'],['Teleport','teleport.webm','poster-teleport.webp']] },
-      { w:'optima', tag:'Trade', name:'Trade Center', img:'optima-tradecenter', desc:'The trading floor, ringed with product display units that lift any product into the round.', v:[['Product Display Unit','pdu.webm','poster-pdu.webp']] },
+      { w:'optima', tag:'Arrival', name:'The Hall', img:'optima-hall', desc:'The arrival concourse. Every visitor lands here before choosing a world, with the interactive map and teleport thresholds built into the floor.', v:[['Interactive Map','map.webm','map-poster.webp'],['Teleport','teleport.webm','teleport-poster.webp']] },
+      { w:'optima', tag:'Trade', name:'Trade Center', img:'optima-tradecenter', desc:'The trading floor, ringed with product display units that lift any product into the round.', v:[['Product Display Unit','pdu.webm','pdu-poster.webp']] },
       { w:'optima', tag:'Exhibition', name:'Exhibition Hall', img:'optima-exhibition', desc:'Open floors for products, prototypes and interactive displays.', v:[] },
-      { w:'optima', tag:'Council', name:'The Chambers', img:'optima-chambers', desc:'A council ring for panels, closed sessions and announcements.', v:[['Meeting Room','meeting-room.webm','poster-meeting-room.webp']] },
+      { w:'optima', tag:'Council', name:'The Chambers', img:'optima-chambers', desc:'A council ring for panels, closed sessions and announcements.', v:[['Meeting Room','meeting-room.webm','meeting-room-poster.webp']] },
       { w:'optima', tag:'Gallery', name:'The Gallery', img:'optima-gallery', desc:'A luminous hall built around suspended works and projections.', v:[] },
-      { w:'syndicate', tag:'Deal', name:'Deal', img:'syndicate-deal', desc:'The deal room. Private tables sit directly above the floor they serve.', v:[['Deal Meeting Room','deal-meeting-room.webm','poster-deal-meeting-room.webp'],['Syndicate Dashboard','syndicate-dashboard.webm','poster-syndicate-dashboard.webp']] },
-      { w:'syndicate', tag:'Venture', name:'Venture', img:'syndicate-venture', desc:'A landscape lounge for founders, funds and first meetings.', v:[['Meeting Room Generator','meeting-room-generator.webm','poster-meeting-room-generator.webp']] },
+      { w:'syndicate', tag:'Deal', name:'Deal', img:'syndicate-deal', desc:'The deal room. Private tables sit directly above the floor they serve.', v:[['Deal Meeting Room','deal-meeting-room.webm','deal-meeting-room-poster.webp'],['Syndicate Dashboard','syndicate-dashboard.webm','syndicate-dashboard-poster.webp']] },
+      { w:'syndicate', tag:'Venture', name:'Venture', img:'syndicate-venture', desc:'A landscape lounge for founders, funds and first meetings.', v:[['Meeting Room Generator','meeting-room-generator.webm','meeting-room-generator-poster.webp']] },
       { w:'syndicate', tag:'Capital', name:'Capital', img:'syndicate-capital', desc:'The capital floor, where positions and portfolios are read live off the walls.', v:[] },
-      { w:'salon', tag:'Stage', name:'Auditorium', img:'salon-auditorium', desc:'A monumental stage for keynotes, launches and live talks.', v:[['Salon Dashboard','salon-dashboard.webm','poster-salon-dashboard.webp']] },
+      { w:'salon', tag:'Stage', name:'Auditorium', img:'salon-auditorium', desc:'A monumental stage for keynotes, launches and live talks.', v:[['Salon Dashboard','salon-dashboard.webm','salon-dashboard-poster.webp']] },
       { w:'salon', tag:'Knowledge', name:'Library', img:'salon-library', desc:'A quiet archive of references, documents and recorded sessions.', v:[] },
       { w:'salon', tag:'Culture', name:'Virtue', img:'salon-virtue', desc:'A pavilion for the work that carries the ideas rather than the products.', v:[] },
       { w:'salon', tag:'Assembly', name:'The Circle', img:'salon-circle', desc:'A ring of tables where the room talks to itself instead of to a stage.', v:[] },
       { w:'salon', tag:'Social', name:'Lounge', img:'salon-lounge', desc:'Intimate pockets tuned for conversation and one-to-ones.', v:[] },
       { w:'salon', tag:'Faculty', name:'Faculty', img:'salon-faculty', desc:'The teaching floor: sessions, cohorts and guided programmes.', v:[] },
-      { w:'sensory', tag:'Making', name:'Atelier', img:'sensory-atelier', desc:'A workshop world for demos, reveals and hands-on experiments.', v:[['Asset Generator','asset-generator.webm','poster-asset-generator.webp']] },
+      { w:'sensory', tag:'Making', name:'Atelier', img:'sensory-atelier', desc:'A workshop world for demos, reveals and hands-on experiments.', v:[['Asset Generator','asset-generator.webm','asset-generator-poster.webp']] },
       { w:'sensory', tag:'Growth', name:'Farm', img:'sensory-farm', desc:'A cultivated field, built to be walked through rather than watched.', v:[] },
-      { w:'sensory', tag:'Production', name:'Studio', img:'sensory-studio', desc:'A recording and capture stage for sound, light and performance.', v:[['Sensory Dashboard','sensory-dashboard.webm','poster-sensory-dashboard.webp']] },
-      { w:'sensory', tag:'Rest', name:'Sensory Lounge', img:'sensory-lounge', desc:'The decompression floor, tuned by light and sound instead of content.', v:[['Capsule','capsule.webm','poster-capsule.webp']] }
+      { w:'sensory', tag:'Production', name:'Studio', img:'sensory-studio', desc:'A recording and capture stage for sound, light and performance.', v:[['Sensory Dashboard','sensory-dashboard.webm','sensory-dashboard-poster.webp']] },
+      { w:'sensory', tag:'Rest', name:'Sensory Lounge', img:'sensory-lounge', desc:'The decompression floor, tuned by light and sound instead of content.', v:[['Capsule','capsule.webm','capsule-poster.webp']] }
     ];
     const arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19 L19 5"/><polyline points="9 5 19 5 19 15"/></svg>';
     const root = document.getElementById('spaces');
@@ -1971,7 +1989,7 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
       el.dataset.w = s.w;
       el.style.setProperty('--wc', d.wc);
       el.innerHTML =
-        '<div class="sp-visual"><img src="' + IMG + s.img + '-sm.webp" alt="' + s.name + '" loading="lazy" decoding="async">' +
+        '<div class="sp-visual" data-media-tone="dark"><img src="' + IMG + s.img + '-sm.webp" alt="' + s.name + '" loading="lazy" decoding="async">' +
           '<span class="sp-tag">' + s.tag + '</span><span class="sp-w"><i></i>' + d.name + '</span></div>' +
         '<div class="sp-body">' +
           '<span class="sp-num">Space ' + String(i + 1).padStart(2, '0') + ' / 18</span>' +
@@ -2141,16 +2159,38 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
     // The clips are rendered on a near-black plate. MP4 carries no alpha, so
     // the plate is keyed out per frame: the video plays off-document into a
     // canvas and dark pixels are written back with zero alpha.
+    // Keying costs a GPU readback plus a per-pixel JS pass on EVERY frame:
+    // getImageData over 560x560 is 313,600 pixels and 1.25M array writes,
+    // measured at 1.38ms per frame on a desktop - 8% of the 60fps budget
+    // before the page does anything else, and a phone multiplies that several
+    // times over. The clips are already rendered on a near-black plate and the
+    // frame behind them is #04050a, so on touch the video is shown as-is and
+    // the key is skipped entirely. Desktop keeps the cut-out.
+    const KEYED = !document.documentElement.hasAttribute('data-touch');
+
     const av = document.createElement('video');
     av.muted = true; av.loop = true; av.playsInline = true; av.preload = 'none';
     av.setAttribute('muted', ''); av.setAttribute('playsinline', '');
-    av.style.display = 'none';
+    if (KEYED) av.style.display = 'none';
+    else {
+      av.className = 'av-clip';
+      /* This clip IS the interface - it is the asset the tabs are selecting -
+         so it takes mobile.js's documented opt-out rather than being buried
+         under a Play button that leaves the viewer showing a poster. */
+      av.setAttribute('data-m-autoplay', '');
+      av.setAttribute('autoplay', '');
+      av.loop = true;
+    }
     vis.appendChild(av);
-    const cv = document.createElement('canvas');
-    cv.className = 'av-clip';
-    cv.width = cv.height = 560;
-    vis.appendChild(cv);
-    const cx = cv.getContext('2d', { willReadFrequently: true });
+
+    let cv = null, cx = null;
+    if (KEYED) {
+      cv = document.createElement('canvas');
+      cv.className = 'av-clip';
+      cv.width = cv.height = 560;
+      vis.appendChild(cv);
+      cx = cv.getContext('2d', { willReadFrequently: true });
+    }
     const LO = 26, HI = 64; // luma ramp: below LO fully clear, above HI fully opaque
     let raf = null, onScreen = true;
     function frame() {
@@ -2166,7 +2206,7 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
       cx.putImageData(d, 0, 0);
       raf = requestAnimationFrame(frame);
     }
-    frame();
+    if (KEYED) frame();
     if ('IntersectionObserver' in window) {
       new IntersectionObserver((es) => {
         onScreen = es[0].isIntersecting;
@@ -2175,8 +2215,8 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
     }
     let swapT = null;
     function load(a) {
-      av.poster = '../assets/projects/optiverse/poster-' + a.file + '.webp';
-      av.src = '../assets/projects/optiverse/' + a.file + '.mp4';
+      av.poster = '../assets/projects/optiverse/' + a.file + '-poster.webp';
+      av.src = '../assets/projects/optiverse/' + a.file + '.webm';
       // play() during load is aborted by the load itself; wait for the frame
       av.addEventListener('canplay', () => av.play().catch(() => {}), { once: true });
       av.load();
@@ -2398,8 +2438,7 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
   })();
 </script>
 
-  <script src="../assets/js/case/image-slot.js"></script>
-  <script>
+<script>
   (() => {
     const stage = document.querySelector('.opti-stage');
     if (!stage) return;

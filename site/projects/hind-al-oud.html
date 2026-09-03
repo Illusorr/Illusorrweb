@@ -17,6 +17,11 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
 <link rel="stylesheet" href="../assets/css/nav.css">
 <link rel="stylesheet" href="../assets/css/case/fonts.css">
 <title>ILLUSORR × Hind Al Oud · Social Content</title>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/projects/shared/fonts/PPMonumentExtended-Black.woff2">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/projects/shared/fonts/Squaresharps-v2.woff2">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -27,14 +32,14 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
      PP Monument  → display headlines
      Squaresharps → small caps labels, eyebrows, UI chrome
      ───────────────────────────────────────────────────────────────── */
-  @font-face { font-family:'Outfit'; font-weight:100 900; font-display:swap;
-    src:url('../assets/fonts/outfit-variable.woff') format('woff'); }
-  @font-face { font-family:'PP Monument Extended'; font-weight:400; font-display:swap;
-    src:url('../assets/projects/shared/fonts/PPMonumentExtended-Regular.woff2') format("woff2"), url('../assets/projects/shared/fonts/PPMonumentExtended-Regular.otf') format("opentype"); }
-  @font-face { font-family:'PP Monument Extended'; font-weight:900; font-display:swap;
-    src:url('../assets/projects/shared/fonts/PPMonumentExtended-Black.woff2') format("woff2"), url('../assets/projects/shared/fonts/PPMonumentExtended-Black.otf') format("opentype"); }
-  @font-face { font-family:'Squaresharps'; font-weight:400; font-display:swap;
-    src:url('../assets/projects/shared/fonts/Squaresharps-v2.woff2') format("woff2"), url('../assets/projects/shared/fonts/Squaresharps-v2.ttf') format("truetype"); }
+  @font-face{ font-family:'Outfit'; font-weight:100 900; font-display:swap;
+    src: url('../assets/fonts/outfit-variable.woff2') format("woff2"); }
+  @font-face{ font-family:'PP Monument Extended'; font-weight:400; font-display:swap;
+    src: url('../assets/projects/shared/fonts/PPMonumentExtended-Regular.woff2') format("woff2"); }
+  @font-face{ font-family:'PP Monument Extended'; font-weight:900; font-display:swap;
+    src: url('../assets/projects/shared/fonts/PPMonumentExtended-Black.woff2') format("woff2"); }
+  @font-face{ font-family:'Squaresharps'; font-weight:400; font-display:swap;
+    src: url('../assets/projects/shared/fonts/Squaresharps-v2.woff2') format("woff2"); }
 
   /* ─────────────────────────────────────────────────────────────────
      Theme tokens, light + dark halves both defined up-front.
@@ -1160,9 +1165,9 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
   .section-num .num{
     display:inline;
     font-family:'Outfit',system-ui,sans-serif;
-    font-size: 12px; font-weight:400;
+    font-size: 12px; font-weight:600;
     letter-spacing:0.2em; line-height:1;
-    color:var(--ink-faint); opacity:1; margin:0;
+    color:var(--accent, var(--ink-soft)); opacity:1; margin:0;
     -webkit-text-fill-color:currentColor;
   }
   /* Visual band between sections, edge to edge. */
@@ -1294,7 +1299,7 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
   .ho-rhint { font-family:'Outfit',system-ui,sans-serif; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-soft); opacity: .7; margin-top: 14px; }
 </style>
 </head>
-<meta name="ext-resource-dependency" content="../assets/projects/hindaloud/ComfyUI_00819_.webp" data-resource-id="emblemImg" />
+<meta name="ext-resource-dependency" content="../assets/projects/hindaloud/hind-al-oud-frame-01.webp" data-resource-id="emblemImg" />
 <template id="__bundler_thumbnail" data-bg-color="#241B10">
   <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
     <rect width="1200" height="800" fill="#241B10"/>
@@ -1332,7 +1337,7 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
 
   <!-- KOTON badge cursor, emblem follows pointer with smooth lerp -->
   <div class="koton-cursor" id="kCursor" aria-hidden="true">
-    <img class="km" src="../assets/projects/hindaloud/ComfyUI_00819_.webp" alt="" draggable="false">
+    <img class="km" src="../assets/projects/hindaloud/hind-al-oud-frame-01.webp" alt="" draggable="false">
     <span class="label-link" data-verb="Click"></span>
   </div>
 
@@ -2097,7 +2102,7 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
   const hero = document.querySelector('.hero');
   if (!hero) return;
 
-  const EMBLEM = '<img src="' + ((window.__resources && window.__resources.emblemImg) || '../assets/projects/hindaloud/ComfyUI_00819_.webp') + '" alt="" draggable="false">';
+  const EMBLEM = '<img src="' + ((window.__resources && window.__resources.emblemImg) || '../assets/projects/hindaloud/hind-al-oud-frame-01.webp') + '" alt="" draggable="false">';
 
   const BLACK = '#f3ecdf';
   const SIZES = [88, 60, 72, 52, 80, 64, 56, 76, 60, 68, 52, 84, 60];
@@ -2308,7 +2313,6 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
 
 <script src="../assets/js/case/reveal-reel.js"></script>
 
-  <script src="../assets/js/case/image-slot.js"></script>
 <script src="../assets/js/nav.js" defer></script>
 <script src="../assets/js/orphans.js" defer></script>
 <script>

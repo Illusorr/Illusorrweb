@@ -17,6 +17,11 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
 <link rel="stylesheet" href="../assets/css/nav.css">
 <link rel="stylesheet" href="../assets/css/case/fonts.css">
 <title>ILLUSORR × Koton — PERA, the AI Influencer</title>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/projects/shared/fonts/PPMonumentExtended-Black.woff2">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/projects/shared/fonts/Squaresharps-v2.woff2">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -27,14 +32,14 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
      PP Monument  → display headlines
      Squaresharps → small caps labels, eyebrows, UI chrome
      ───────────────────────────────────────────────────────────────── */
-  @font-face { font-family:'Outfit'; font-weight:100 900; font-display:swap;
-    src:url('../assets/fonts/outfit-variable.woff') format('woff'); }
-  @font-face { font-family:'PP Monument Extended'; font-weight:400; font-display:swap;
-    src:url('../assets/projects/shared/fonts/PPMonumentExtended-Regular.woff2') format("woff2"), url('../assets/projects/shared/fonts/PPMonumentExtended-Regular.otf') format("opentype"); }
-  @font-face { font-family:'PP Monument Extended'; font-weight:900; font-display:swap;
-    src:url('../assets/projects/shared/fonts/PPMonumentExtended-Black.woff2') format("woff2"), url('../assets/projects/shared/fonts/PPMonumentExtended-Black.otf') format("opentype"); }
-  @font-face { font-family:'Squaresharps'; font-weight:400; font-display:swap;
-    src:url('../assets/projects/shared/fonts/Squaresharps-v2.woff2') format("woff2"), url('../assets/projects/shared/fonts/Squaresharps-v2.ttf') format("truetype"); }
+  @font-face{ font-family:'Outfit'; font-weight:100 900; font-display:swap;
+    src: url('../assets/fonts/outfit-variable.woff2') format("woff2"); }
+  @font-face{ font-family:'PP Monument Extended'; font-weight:400; font-display:swap;
+    src: url('../assets/projects/shared/fonts/PPMonumentExtended-Regular.woff2') format("woff2"); }
+  @font-face{ font-family:'PP Monument Extended'; font-weight:900; font-display:swap;
+    src: url('../assets/projects/shared/fonts/PPMonumentExtended-Black.woff2') format("woff2"); }
+  @font-face{ font-family:'Squaresharps'; font-weight:400; font-display:swap;
+    src: url('../assets/projects/shared/fonts/Squaresharps-v2.woff2') format("woff2"); }
 
   /* ─────────────────────────────────────────────────────────────────
      Theme tokens — light + dark halves both defined up-front.
@@ -1052,9 +1057,9 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
   .section-num .num{
     display:inline;
     font-family:'Outfit',system-ui,sans-serif;
-    font-size: 12px; font-weight:400;
+    font-size: 12px; font-weight:600;
     letter-spacing:0.2em; line-height:1;
-    color:var(--ink-faint); opacity:1; margin:0;
+    color:var(--ink-soft); opacity:1; margin:0;
     -webkit-text-fill-color:currentColor;
   }
   /* Visual band between sections, edge to edge. */
@@ -1225,25 +1230,25 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
       <div class="hero-carousel" id="heroCarousel" aria-roledescription="carousel" aria-label="Pera for Koton, campaign looks">
         <div class="hc-track" id="hcTrack">
           <figure class="hc-slide is-active" data-look="Look 01" data-title="Mint Linen Co-ord" data-sub="SS25 · Roman piazza, vintage Fiat 500">
-            <img src="../assets/projects/koton-pera/ComfyUI_00641_.webp" alt="Pera in mint linen co-ord leaning on a vintage Fiat 500 in a Roman piazza" loading="eager" decoding="async" srcset="../assets/projects/koton-pera/ComfyUI_00641_-768.webp 768w, ../assets/projects/koton-pera/ComfyUI_00641_-1200.webp 1200w, ../assets/projects/koton-pera/ComfyUI_00641_-1600.webp 1600w, ../assets/projects/koton-pera/ComfyUI_00641_.webp 1920w" sizes="(max-width:390px) 348px, (max-width:640px) 598px, (max-width:768px) 768px, (max-width:1024px) 1024px, (max-width:1440px) 1440px, 1920px">
+            <img src="../assets/projects/koton-pera/pera-frame-06.webp" alt="Pera in mint linen co-ord leaning on a vintage Fiat 500 in a Roman piazza" loading="eager" decoding="async" srcset="../assets/projects/koton-pera/pera-frame-06-768.webp 768w, ../assets/projects/koton-pera/pera-frame-06-1200.webp 1200w, ../assets/projects/koton-pera/pera-frame-06-1600.webp 1600w, ../assets/projects/koton-pera/pera-frame-06.webp 1920w" sizes="(max-width:390px) 348px, (max-width:640px) 598px, (max-width:768px) 768px, (max-width:1024px) 1024px, (max-width:1440px) 1440px, 1920px">
           </figure>
           <figure class="hc-slide" data-look="Look 02" data-title="Logo Tee & Tiered Denim" data-sub="SS25 · Adriatic coast, lemon terraces">
-            <img src="../assets/projects/koton-pera/ComfyUI_00800_.webp" alt="Pera in a cream logo tee and tiered denim skirt walking a coastal lane" loading="lazy" decoding="async" srcset="../assets/projects/koton-pera/ComfyUI_00800_-768.webp 768w, ../assets/projects/koton-pera/ComfyUI_00800_-1440.webp 1440w, ../assets/projects/koton-pera/ComfyUI_00800_.webp 1774w" sizes="(max-width:390px) 376px, (max-width:640px) 646px, (max-width:768px) 829px, (max-width:1024px) 1106px, (max-width:1440px) 1555px, 2074px">
+            <img src="../assets/projects/koton-pera/pera-frame-11.webp" alt="Pera in a cream logo tee and tiered denim skirt walking a coastal lane" loading="lazy" decoding="async" srcset="../assets/projects/koton-pera/pera-frame-11-768.webp 768w, ../assets/projects/koton-pera/pera-frame-11-1440.webp 1440w, ../assets/projects/koton-pera/pera-frame-11.webp 1774w" sizes="(max-width:390px) 376px, (max-width:640px) 646px, (max-width:768px) 829px, (max-width:1024px) 1106px, (max-width:1440px) 1555px, 2074px">
           </figure>
           <figure class="hc-slide" data-look="Look 03" data-title="Satin Halter & Trouser" data-sub="SS25 · Brushed-steel gallery floor">
-            <img src="../assets/projects/koton-pera/ComfyUI_00674_.webp" alt="Pera in a black satin halter top and wide trouser against a steel wall" loading="lazy" decoding="async" srcset="../assets/projects/koton-pera/ComfyUI_00674_-768.webp 768w, ../assets/projects/koton-pera/ComfyUI_00674_-1440.webp 1440w, ../assets/projects/koton-pera/ComfyUI_00674_.webp 1920w" sizes="(max-width:390px) 376px, (max-width:640px) 646px, (max-width:768px) 829px, (max-width:1024px) 1106px, (max-width:1440px) 1555px, 2074px">
+            <img src="../assets/projects/koton-pera/pera-frame-07.webp" alt="Pera in a black satin halter top and wide trouser against a steel wall" loading="lazy" decoding="async" srcset="../assets/projects/koton-pera/pera-frame-07-768.webp 768w, ../assets/projects/koton-pera/pera-frame-07-1440.webp 1440w, ../assets/projects/koton-pera/pera-frame-07.webp 1920w" sizes="(max-width:390px) 376px, (max-width:640px) 646px, (max-width:768px) 829px, (max-width:1024px) 1106px, (max-width:1440px) 1555px, 2074px">
           </figure>
           <figure class="hc-slide" data-look="Look 04" data-title="Tailored Blazer & Mini" data-sub="SS25 · Avenue Montaigne, golden hour">
-            <img src="../assets/projects/koton-pera/ComfyUI_00801_.webp" alt="Pera in a black tailored blazer and mini skirt walking past a Paris storefront" loading="lazy" decoding="async" srcset="../assets/projects/koton-pera/ComfyUI_00801_-768.webp 768w, ../assets/projects/koton-pera/ComfyUI_00801_-1440.webp 1440w, ../assets/projects/koton-pera/ComfyUI_00801_.webp 1774w" sizes="(max-width:390px) 376px, (max-width:640px) 646px, (max-width:768px) 829px, (max-width:1024px) 1106px, (max-width:1440px) 1555px, 2074px">
+            <img src="../assets/projects/koton-pera/pera-frame-12.webp" alt="Pera in a black tailored blazer and mini skirt walking past a Paris storefront" loading="lazy" decoding="async" srcset="../assets/projects/koton-pera/pera-frame-12-768.webp 768w, ../assets/projects/koton-pera/pera-frame-12-1440.webp 1440w, ../assets/projects/koton-pera/pera-frame-12.webp 1774w" sizes="(max-width:390px) 376px, (max-width:640px) 646px, (max-width:768px) 829px, (max-width:1024px) 1106px, (max-width:1440px) 1555px, 2074px">
           </figure>
           <figure class="hc-slide" data-look="Look 05" data-title="Linen Shirting Set" data-sub="SS25 · Marrakech rooftop, terracotta">
-            <img src="../assets/projects/koton-pera/ComfyUI_00619_.webp" alt="Pera in a cream linen shirt and trouser on a terracotta rooftop" loading="lazy" decoding="async" srcset="../assets/projects/koton-pera/ComfyUI_00619_-768.webp 768w, ../assets/projects/koton-pera/ComfyUI_00619_-1440.webp 1440w, ../assets/projects/koton-pera/ComfyUI_00619_.webp 1920w" sizes="(max-width:390px) 376px, (max-width:640px) 646px, (max-width:768px) 829px, (max-width:1024px) 1106px, (max-width:1440px) 1555px, 2074px">
+            <img src="../assets/projects/koton-pera/pera-frame-03.webp" alt="Pera in a cream linen shirt and trouser on a terracotta rooftop" loading="lazy" decoding="async" srcset="../assets/projects/koton-pera/pera-frame-03-768.webp 768w, ../assets/projects/koton-pera/pera-frame-03-1440.webp 1440w, ../assets/projects/koton-pera/pera-frame-03.webp 1920w" sizes="(max-width:390px) 376px, (max-width:640px) 646px, (max-width:768px) 829px, (max-width:1024px) 1106px, (max-width:1440px) 1555px, 2074px">
           </figure>
           <figure class="hc-slide" data-look="Look 06" data-title="Olive Halter Mini" data-sub="SS25 · Villa garden, reflecting pool">
-            <img src="../assets/projects/koton-pera/ComfyUI_00796_.webp" alt="Pera laughing in an olive halter mini dress beside a villa reflecting pool" loading="lazy" decoding="async" srcset="../assets/projects/koton-pera/ComfyUI_00796_-768.webp 768w, ../assets/projects/koton-pera/ComfyUI_00796_-1440.webp 1440w, ../assets/projects/koton-pera/ComfyUI_00796_.webp 1774w" sizes="(max-width:390px) 376px, (max-width:640px) 646px, (max-width:768px) 829px, (max-width:1024px) 1106px, (max-width:1440px) 1555px, 2074px">
+            <img src="../assets/projects/koton-pera/pera-frame-09.webp" alt="Pera laughing in an olive halter mini dress beside a villa reflecting pool" loading="lazy" decoding="async" srcset="../assets/projects/koton-pera/pera-frame-09-768.webp 768w, ../assets/projects/koton-pera/pera-frame-09-1440.webp 1440w, ../assets/projects/koton-pera/pera-frame-09.webp 1774w" sizes="(max-width:390px) 376px, (max-width:640px) 646px, (max-width:768px) 829px, (max-width:1024px) 1106px, (max-width:1440px) 1555px, 2074px">
           </figure>
           <figure class="hc-slide" data-look="Look 07" data-title="Bow-Rib Tank & Pink Denim" data-sub="SS25 · Koton storefront, matcha in hand">
-            <img src="../assets/projects/koton-pera/ComfyUI_00807_-604b791f.webp" alt="Pera in a pink bow-rib tank and pink wide-leg denim outside a Koton storefront" loading="lazy" decoding="async" srcset="../assets/projects/koton-pera/ComfyUI_00807_-604b791f-768.webp 768w, ../assets/projects/koton-pera/ComfyUI_00807_-604b791f-1440.webp 1440w, ../assets/projects/koton-pera/ComfyUI_00807_-604b791f.webp 1772w" sizes="(max-width:390px) 376px, (max-width:640px) 646px, (max-width:768px) 829px, (max-width:1024px) 1106px, (max-width:1440px) 1555px, 2074px">
+            <img src="../assets/projects/koton-pera/pera-frame-13.webp" alt="Pera in a pink bow-rib tank and pink wide-leg denim outside a Koton storefront" loading="lazy" decoding="async" srcset="../assets/projects/koton-pera/pera-frame-13-768.webp 768w, ../assets/projects/koton-pera/pera-frame-13-1440.webp 1440w, ../assets/projects/koton-pera/pera-frame-13.webp 1772w" sizes="(max-width:390px) 376px, (max-width:640px) 646px, (max-width:768px) 829px, (max-width:1024px) 1106px, (max-width:1440px) 1555px, 2074px">
           </figure>
         </div>
 
@@ -1334,7 +1339,7 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
       <div class="duo">
         <div class="col col-a">
           <div class="ph is-filled" style="aspect-ratio: 4 / 5;background: #ffffff;overflow:hidden">
-            <img src="../assets/projects/koton-pera/ComfyUI_00626_-3fc2f7bf.webp" alt="Pera, 3D face topology, wireframe over diffuse pass" loading="lazy" decoding="async" style="object-fit: contain; object-position: center bottom;" srcset="../assets/projects/koton-pera/ComfyUI_00626_-3fc2f7bf-768.webp 768w, ../assets/projects/koton-pera/ComfyUI_00626_-3fc2f7bf-1200.webp 1200w, ../assets/projects/koton-pera/ComfyUI_00626_-3fc2f7bf-1440.webp 1440w, ../assets/projects/koton-pera/ComfyUI_00626_-3fc2f7bf.webp 1508w" sizes="(max-width:390px) 350px, (max-width:640px) 600px, (max-width:768px) 707px, (max-width:1024px) 547px, (max-width:1440px) 769px, 758px">
+            <img src="../assets/projects/koton-pera/pera-frame-04.webp" alt="Pera, 3D face topology, wireframe over diffuse pass" loading="lazy" decoding="async" style="object-fit: contain; object-position: center bottom;" srcset="../assets/projects/koton-pera/pera-frame-04-768.webp 768w, ../assets/projects/koton-pera/pera-frame-04-1200.webp 1200w, ../assets/projects/koton-pera/pera-frame-04-1440.webp 1440w, ../assets/projects/koton-pera/pera-frame-04.webp 1508w" sizes="(max-width:390px) 350px, (max-width:640px) 600px, (max-width:768px) 707px, (max-width:1024px) 547px, (max-width:1440px) 769px, 758px">
             <span class="ph-label">Topology · 3D Scan</span>
             <span class="ph-dim">1508 × 1814 · Wireframe + Diffuse</span>
             <span class="caption">
@@ -1346,7 +1351,7 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
         </div>
         <div class="col col-b">
           <div class="ph is-filled" style="aspect-ratio: 4 / 5;overflow:hidden">
-            <img src="../assets/projects/koton-pera/ComfyUI_00637_.webp" alt="Pera expression sheet, eight resting expressions in a 4×2 grid" loading="lazy" decoding="async" srcset="../assets/projects/koton-pera/ComfyUI_00637_-768.webp 768w, ../assets/projects/koton-pera/ComfyUI_00637_-1200.webp 1200w, ../assets/projects/koton-pera/ComfyUI_00637_.webp 1440w" sizes="(max-width:390px) 350px, (max-width:640px) 600px, (max-width:768px) 707px, (max-width:1024px) 365px, (max-width:1440px) 513px, 506px">
+            <img src="../assets/projects/koton-pera/pera-frame-05.webp" alt="Pera expression sheet, eight resting expressions in a 4×2 grid" loading="lazy" decoding="async" srcset="../assets/projects/koton-pera/pera-frame-05-768.webp 768w, ../assets/projects/koton-pera/pera-frame-05-1200.webp 1200w, ../assets/projects/koton-pera/pera-frame-05.webp 1440w" sizes="(max-width:390px) 350px, (max-width:640px) 600px, (max-width:768px) 707px, (max-width:1024px) 365px, (max-width:1440px) 513px, 506px">
             <span class="ph-label">Expression Sheet</span>
             <span class="ph-dim">1856 × 2304 · 8 expressions · 4×2 grid</span>
             <span class="caption">
@@ -1364,7 +1369,7 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
   <section class="bleed" data-tone="light" data-rail="4" data-screen-label="05 Editorial">
     <div class="wrap">
       <div class="ph is-filled" style="aspect-ratio: 16 / 9;overflow:hidden">
-        <img src="../assets/projects/koton-pera/ComfyUI_00613_.webp" alt="Pera editorial diptych, full-body and tight portrait against concrete" loading="lazy" decoding="async" srcset="../assets/projects/koton-pera/ComfyUI_00613_-768.webp 768w, ../assets/projects/koton-pera/ComfyUI_00613_-1200.webp 1200w, ../assets/projects/koton-pera/ComfyUI_00613_-1440.webp 1440w, ../assets/projects/koton-pera/ComfyUI_00613_.webp 1920w" sizes="(max-width:390px) 350px, (max-width:640px) 600px, (max-width:768px) 707px, (max-width:1024px) 942px, (max-width:1440px) 1325px, 1312px">
+        <img src="../assets/projects/koton-pera/pera-frame-01.webp" alt="Pera editorial diptych, full-body and tight portrait against concrete" loading="lazy" decoding="async" srcset="../assets/projects/koton-pera/pera-frame-01-768.webp 768w, ../assets/projects/koton-pera/pera-frame-01-1200.webp 1200w, ../assets/projects/koton-pera/pera-frame-01-1440.webp 1440w, ../assets/projects/koton-pera/pera-frame-01.webp 1920w" sizes="(max-width:390px) 350px, (max-width:640px) 600px, (max-width:768px) 707px, (max-width:1024px) 942px, (max-width:1440px) 1325px, 1312px">
         <span class="ph-label">Editorial Diptych</span>
         <span class="ph-dim">2752 × 1536 · Pera LoRA v3 · FLUX</span>
         <span class="caption">
@@ -1426,7 +1431,7 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
       <div class="trio" style="grid-template-columns: 1fr 1fr; max-width: 1060px; margin: 0 auto;">
         <div class="col">
           <div class="ph is-filled">
-            <img src="../assets/projects/koton-pera/ComfyUI_00794_.webp" alt="Pera in a bow-rib pink tank and pink wide-leg denim outside a Koton storefront" loading="lazy" decoding="async" srcset="../assets/projects/koton-pera/ComfyUI_00794_-768.webp 768w, ../assets/projects/koton-pera/ComfyUI_00794_-960.webp 960w, ../assets/projects/koton-pera/ComfyUI_00794_-1200.webp 1200w" sizes="(max-width:390px) 350px, (max-width:640px) 600px, (max-width:768px) 345px, (max-width:1024px) 461px, (max-width:1440px) 516px, 514px">
+            <img src="../assets/projects/koton-pera/pera-frame-08.webp" alt="Pera in a bow-rib pink tank and pink wide-leg denim outside a Koton storefront" loading="lazy" decoding="async" srcset="../assets/projects/koton-pera/pera-frame-08-768.webp 768w, ../assets/projects/koton-pera/pera-frame-08-960.webp 960w, ../assets/projects/koton-pera/pera-frame-08-1200.webp 1200w" sizes="(max-width:390px) 350px, (max-width:640px) 600px, (max-width:768px) 345px, (max-width:1024px) 461px, (max-width:1440px) 516px, 514px">
             <span class="ph-label">Look 03</span>
             <span class="ph-dim">Pera LoRA v3 · FLUX</span>
             <span class="caption"><span>SS25, bow-rib tank, pink wide denim</span><span>Plate 0142</span></span>
@@ -1434,7 +1439,7 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
         </div>
         <div class="col">
           <div class="ph is-filled">
-            <img src="../assets/projects/koton-pera/ComfyUI_00797_.webp" alt="Pera from behind in the pink Koton tank and wide denim entering a boutique" loading="lazy" decoding="async" srcset="../assets/projects/koton-pera/ComfyUI_00797_-768.webp 768w, ../assets/projects/koton-pera/ComfyUI_00797_-960.webp 960w, ../assets/projects/koton-pera/ComfyUI_00797_-1200.webp 1200w" sizes="(max-width:390px) 350px, (max-width:640px) 600px, (max-width:768px) 345px, (max-width:1024px) 461px, (max-width:1440px) 516px, 514px">
+            <img src="../assets/projects/koton-pera/pera-frame-10.webp" alt="Pera from behind in the pink Koton tank and wide denim entering a boutique" loading="lazy" decoding="async" srcset="../assets/projects/koton-pera/pera-frame-10-768.webp 768w, ../assets/projects/koton-pera/pera-frame-10-960.webp 960w, ../assets/projects/koton-pera/pera-frame-10-1200.webp 1200w" sizes="(max-width:390px) 350px, (max-width:640px) 600px, (max-width:768px) 345px, (max-width:1024px) 461px, (max-width:1440px) 516px, 514px">
             <span class="ph-label">Look 05</span>
             <span class="ph-dim">Pera LoRA v3 · FLUX</span>
             <span class="caption"><span>SS25, back view, wide pink denim</span><span>Plate 0231</span></span>
@@ -1445,7 +1450,7 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
       <div class="trio">
         <div class="col">
           <div class="ph is-filled">
-            <img src="../assets/projects/koton-pera/ComfyUI_00801_.webp" alt="Pera in a black tailored blazer and mini, mid-stride with motion blur on a Paris avenue" loading="lazy" decoding="async" srcset="../assets/projects/koton-pera/ComfyUI_00801_-768.webp 768w, ../assets/projects/koton-pera/ComfyUI_00801_-1440.webp 1440w, ../assets/projects/koton-pera/ComfyUI_00801_.webp 1774w" sizes="(max-width:390px) 376px, (max-width:640px) 646px, (max-width:768px) 829px, (max-width:1024px) 1106px, (max-width:1440px) 1555px, 2074px">
+            <img src="../assets/projects/koton-pera/pera-frame-12.webp" alt="Pera in a black tailored blazer and mini, mid-stride with motion blur on a Paris avenue" loading="lazy" decoding="async" srcset="../assets/projects/koton-pera/pera-frame-12-768.webp 768w, ../assets/projects/koton-pera/pera-frame-12-1440.webp 1440w, ../assets/projects/koton-pera/pera-frame-12.webp 1774w" sizes="(max-width:390px) 376px, (max-width:640px) 646px, (max-width:768px) 829px, (max-width:1024px) 1106px, (max-width:1440px) 1555px, 2074px">
             <span class="ph-label">Look 06</span>
             <span class="ph-dim">Pera LoRA v3 · FLUX</span>
             <span class="caption"><span>SS25, tailored blazer & mini, in motion</span><span>Plate 0388</span></span>
@@ -1453,7 +1458,7 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
         </div>
         <div class="col">
           <div class="ph is-filled">
-            <img src="../assets/projects/koton-pera/ComfyUI_00810_.webp" alt="Pera in an olive halter mini dress by a villa reflecting pool" loading="lazy" decoding="async" srcset="../assets/projects/koton-pera/ComfyUI_00810_-640.webp 640w, ../assets/projects/koton-pera/ComfyUI_00810_-768.webp 768w, ../assets/projects/koton-pera/ComfyUI_00810_-960.webp 960w, ../assets/projects/koton-pera/ComfyUI_00810_-1200.webp 1200w, ../assets/projects/koton-pera/ComfyUI_00810_.webp 1440w" sizes="(max-width:390px) 350px, (max-width:640px) 600px, (max-width:768px) 707px, (max-width:1024px) 300px, (max-width:1440px) 422px, 416px">
+            <img src="../assets/projects/koton-pera/pera-frame-14.webp" alt="Pera in an olive halter mini dress by a villa reflecting pool" loading="lazy" decoding="async" srcset="../assets/projects/koton-pera/pera-frame-14-640.webp 640w, ../assets/projects/koton-pera/pera-frame-14-768.webp 768w, ../assets/projects/koton-pera/pera-frame-14-960.webp 960w, ../assets/projects/koton-pera/pera-frame-14-1200.webp 1200w, ../assets/projects/koton-pera/pera-frame-14.webp 1440w" sizes="(max-width:390px) 350px, (max-width:640px) 600px, (max-width:768px) 707px, (max-width:1024px) 300px, (max-width:1440px) 422px, 416px">
             <span class="ph-label">Look 07</span>
             <span class="ph-dim">Pera LoRA v3 · FLUX</span>
             <span class="caption"><span>SS25, olive halter mini, villa garden</span><span>Plate 0512</span></span>
@@ -1490,7 +1495,7 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
   <section class="bleed" data-tone="dark" data-rail="7" data-screen-label="09 Hero Still">
     <div class="wrap">
       <div class="ph is-filled" style="aspect-ratio: 21 / 9;overflow:hidden">
-        <img src="../assets/projects/koton-pera/ComfyUI_00614_.webp" alt="Pera hero plate, wide editorial against concrete column" loading="lazy" decoding="async" style="object-position: center 22%;" srcset="../assets/projects/koton-pera/ComfyUI_00614_-768.webp 768w, ../assets/projects/koton-pera/ComfyUI_00614_-1200.webp 1200w, ../assets/projects/koton-pera/ComfyUI_00614_-1440.webp 1440w, ../assets/projects/koton-pera/ComfyUI_00614_.webp 1920w" sizes="(max-width:390px) 350px, (max-width:640px) 600px, (max-width:768px) 707px, (max-width:1024px) 942px, (max-width:1440px) 1325px, 1312px">
+        <img src="../assets/projects/koton-pera/pera-frame-02.webp" alt="Pera hero plate, wide editorial against concrete column" loading="lazy" decoding="async" style="object-position: center 22%;" srcset="../assets/projects/koton-pera/pera-frame-02-768.webp 768w, ../assets/projects/koton-pera/pera-frame-02-1200.webp 1200w, ../assets/projects/koton-pera/pera-frame-02-1440.webp 1440w, ../assets/projects/koton-pera/pera-frame-02.webp 1920w" sizes="(max-width:390px) 350px, (max-width:640px) 600px, (max-width:768px) 707px, (max-width:1024px) 942px, (max-width:1440px) 1325px, 1312px">
         <span class="ph-label">Campaign Hero · Final</span>
         <span class="ph-dim">5760 × 2466 · Print-grade upres</span>
         <span class="caption">
@@ -1572,7 +1577,7 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
         <span>·</span>
         <span>3D</span>
       </div>
-      <a class="next-cta" href="#">
+      <a class="next-cta" href="aquatic-architects.html">
         <span>View Case Study</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
           <path d="M5 19 L19 5"/><polyline points="9 5 19 5 19 15"/>
@@ -1768,8 +1773,24 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
 
   let idx = 0, timer = null, paused = false;
 
+  /* The track carries overflow:hidden on the phone and tablet layers, so
+     translating the TRACK moved its own clip box and the slide scrolled to was
+     clipped away, leaving an empty frame with only the arrows and counter on
+     it. Move the slides instead. offsetLeft is used rather than idx*100%
+     because the track has a 12px gap that the percentage maths ignored. */
+  (function () {
+    const st = document.createElement('style');
+    st.textContent =
+      '#hcTrack{transform:none !important;transition:none !important}' +
+      '#hcTrack > .hc-slide{transform:translateX(var(--hc-x,0px));' +
+      'transition:transform .9s cubic-bezier(.72,0,.18,1)}' +
+      '#hcTrack.no-anim > .hc-slide{transition:none}' +
+      '@media (prefers-reduced-motion:reduce){#hcTrack > .hc-slide{transition:none}}';
+    document.head.appendChild(st);
+  })();
+
   function render() {
-    track.style.transform = `translateX(${-idx * 100}%)`;
+    track.style.setProperty('--hc-x', (-slides[idx].offsetLeft) + 'px');
     slides.forEach((s, i) => s.classList.toggle('is-active', i === idx));
     const s = slides[idx];
     nowEl.textContent = String(idx + 1).padStart(2, '0');
@@ -1815,7 +1836,7 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
   track.addEventListener('pointermove', (e) => {
     if (!down) return;
     dx = e.clientX - sx;
-    track.style.transform = `translateX(calc(${-idx * 100}% + ${dx}px))`;
+    track.style.setProperty('--hc-x', (-slides[idx].offsetLeft + dx) + 'px');
   });
   function endDrag() {
     if (!down) return;
@@ -2062,7 +2083,6 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
 </script>
 
 
-  <script src="../assets/js/case/image-slot.js"></script>
 <script src="../assets/js/nav.js" defer></script>
 <script src="../assets/js/orphans.js" defer></script>
 <script src="../assets/js/site-footer.js" defer></script>

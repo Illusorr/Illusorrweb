@@ -21,6 +21,11 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
 
 <link rel="stylesheet" href="../assets/css/case/cm-type.css">
 <title>ILLUSORR × Disney+ · Immersive World</title>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <style>
   /* ─────────────────────────────────────────────────────────────────
@@ -1017,9 +1022,9 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
   .section-num .num{
     display:inline;
     font-family:'Outfit',system-ui,sans-serif;
-    font-size: 12px; font-weight:400;
+    font-size: 12px; font-weight:600;
     letter-spacing:0.2em; line-height:1;
-    color:var(--ink-faint); opacity:1; margin:0;
+    color:var(--accent, var(--ink-soft)); opacity:1; margin:0;
     -webkit-text-fill-color:currentColor;
   }
   /* Visual band between sections, edge to edge. */
@@ -1128,7 +1133,20 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
   .realm-copy p{ font-family:'Outfit',system-ui,sans-serif; font-size: 15px; line-height:1.7; color:rgba(238,241,251,.7); margin:0; max-width:38ch; }
   .realm-exit{ align-self:flex-start; margin-top:12px; background:transparent; border:1px solid rgba(238,241,251,.28); color:#eef1f8; font-family:'Outfit',system-ui,sans-serif; font-size: 12px; letter-spacing:.22em; text-transform:uppercase; padding:14px 22px; cursor:none; transition:background .3s ease, border-color .3s ease; }
   .realm-exit:hover{ background:var(--accent); border-color:var(--accent); }
-  @media (max-width:880px){ .realm{ grid-template-columns:1fr; grid-template-rows:1fr auto; } .realm-copy{ border-left:0; border-top:1px solid rgba(238,241,251,.12); } }
+  @media (max-width:880px){
+    .realm{ grid-template-columns:1fr; grid-template-rows:1fr auto; }
+    /* Below 880 the copy stacks under the panorama and reads straight off a
+       busy 360 frame - hard light, starfield, spacecraft. A backing plate and
+       a shorter measure give the words their own surface instead of competing
+       with the picture. */
+    .realm-copy{
+      border-left:0; border-top:1px solid rgba(238,241,251,.12);
+      background:linear-gradient(to top, rgba(5,8,34,.96) 0%, rgba(5,8,34,.90) 62%, rgba(5,8,34,.74) 100%);
+      -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
+      gap:12px;
+    }
+    .realm-copy p{ max-width:34ch; }
+  }
 
   /* ── 360 panorama realm ─────────────────────────────────────────── */
   .realm.is-pano{ grid-template-columns:1fr; }
@@ -1154,6 +1172,21 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
   .pano-eq i{ width:2px; background:currentColor; border-radius:1px; animation:panoEq 1.1s ease-in-out infinite; }
   .pano-eq i:nth-child(1){ height:5px; animation-delay:0s } .pano-eq i:nth-child(2){ height:11px; animation-delay:.18s }
   .pano-eq i:nth-child(3){ height:7px; animation-delay:.36s } .pano-eq i:nth-child(4){ height:9px; animation-delay:.54s }
+  /* The sound toggle and the drag hint stacked 11px apart in the same bottom
+     right corner. Below 880 the hint takes the opposite corner so neither
+     crowds the other, and both clear the copy plate. This block sits AFTER the
+     base .pano-* rules on purpose: an earlier one lost to them and stretched
+     the hint the full width of the frame. */
+  /* "Back to the lounge", the drag hint and the sound toggle all crowded the
+     same bottom strip. The hint is guidance, not a control, so it moves to the
+     TOP of the frame, clear of the fixed header, and the bottom keeps just the
+     two things you actually press - exit on the left, sound on the right. */
+  .pano-hint{ top:calc(88px + clamp(14px,1.8vw,24px)); bottom:auto; }
+  .pano-sound{ bottom:clamp(18px,2.4vw,34px); }
+  @media (max-width:880px){
+    .pano-hint{ top:calc(88px + 14px); }
+    .pano-sound{ bottom:clamp(18px,2.4vw,34px); }
+  }
   @keyframes panoEq{ 0%,100%{ transform:scaleY(.35) } 50%{ transform:scaleY(1) } }
   .pano-sound.is-off{ color:rgba(238,241,251,.4) }
   .pano-sound.is-off .pano-eq i{ animation:none; height:2px }

@@ -21,6 +21,11 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
 
 <link rel="stylesheet" href="../assets/css/case/cm-type.css">
 <title>ILLUSORR × Art Post Office · Social Content</title>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <style>
   /* ─────────────────────────────────────────────────────────────────
@@ -188,7 +193,12 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
     display: flex; flex-direction: column; justify-content: center;
     padding: clamp(40px, 8vh, 96px) var(--gutter);
     position: relative;
-    --hg1: #FAB622; --hg2: #FAB622; --hg3: #FAB622;
+    /* These are the values the script sets at runtime (TWEAKS.heroStop1-3).
+       They used to default to #FAB622, a gold, so the hero painted YELLOW
+       on first paint and only turned red once the script ran - the colour
+       flash on load. Defaulting to the final colours removes it; the
+       script still sets the same values, so nothing else changes. */
+    --hg1: #680808; --hg2: #fb2323; --hg3: #3b1c07;
     background:
       linear-gradient(135deg, var(--hg1) 0%, var(--hg2) 55%, var(--hg3) 100%);
   }

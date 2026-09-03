@@ -3,6 +3,11 @@
 <head>
 <meta charset="utf-8">
 <title>ILLUSORR · Metagenus</title>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/projects/shared/fonts/PPMonumentExtended-Black.woff2">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/outfit-variable.woff2">
@@ -26,14 +31,14 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
      PP Monument  → display headlines
      Squaresharps → small caps labels, eyebrows, UI chrome
      ───────────────────────────────────────────────────────────────── */
-  @font-face { font-family:'Outfit'; font-weight:100 900; font-display:swap;
-    src:url('../assets/fonts/outfit-variable.woff') format('woff'); }
-  @font-face { font-family:'PP Monument Extended'; font-weight:400; font-display:swap;
-    src:url('../assets/projects/shared/fonts/PPMonumentExtended-Regular.woff2') format("woff2"), url('../assets/projects/shared/fonts/PPMonumentExtended-Regular.otf') format("opentype"); }
-  @font-face { font-family:'PP Monument Extended'; font-weight:900; font-display:swap;
-    src:url('../assets/projects/shared/fonts/PPMonumentExtended-Black.woff2') format("woff2"), url('../assets/projects/shared/fonts/PPMonumentExtended-Black.otf') format("opentype"); }
-  @font-face { font-family:'Squaresharps'; font-weight:400; font-display:swap;
-    src:url('../assets/projects/shared/fonts/Squaresharps-v2.woff2') format("woff2"), url('../assets/projects/shared/fonts/Squaresharps-v2.ttf') format("truetype"); }
+  @font-face{ font-family:'Outfit'; font-weight:100 900; font-display:swap;
+    src: url('../assets/fonts/outfit-variable.woff2') format("woff2"); }
+  @font-face{ font-family:'PP Monument Extended'; font-weight:400; font-display:swap;
+    src: url('../assets/projects/shared/fonts/PPMonumentExtended-Regular.woff2') format("woff2"); }
+  @font-face{ font-family:'PP Monument Extended'; font-weight:900; font-display:swap;
+    src: url('../assets/projects/shared/fonts/PPMonumentExtended-Black.woff2') format("woff2"); }
+  @font-face{ font-family:'Squaresharps'; font-weight:400; font-display:swap;
+    src: url('../assets/projects/shared/fonts/Squaresharps-v2.woff2') format("woff2"); }
 
   /* ─────────────────────────────────────────────────────────────────
      COOL SCI-FI THEME. Single dark tone throughout, ink in #B8BCCC.
@@ -1468,9 +1473,9 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
   .section-num .num{
     display:inline;
     font-family:'Outfit',system-ui,sans-serif;
-    font-size: 12px; font-weight:400;
+    font-size: 12px; font-weight:600;
     letter-spacing:0.2em; line-height:1;
-    color:var(--ink-faint); opacity:1; margin:0;
+    color:var(--accent, var(--ink-soft)); opacity:1; margin:0;
     -webkit-text-fill-color:currentColor;
   }
   /* Visual band between sections, edge to edge. */
@@ -2029,9 +2034,9 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
   <!-- 1. HERO -->
   <div class="hero-scroll" id="heroScroll">
   <section class="hero" data-rail="0" data-screen-label="01 Hero">
-    <img class="hero-figure" src="../assets/projects/metagenus/metagenus-hero-figure.webp" srcset="../assets/projects/metagenus/metagenus-hero-figure.m.webp 820w, ../assets/projects/metagenus/metagenus-hero-figure.webp 2000w" sizes="(max-width: 640px) 55vw, (max-width: 1024px) 60vw, 50vw" fetchpriority="high" decoding="async" alt="" aria-hidden="true">
+    <img class="hero-figure" src="../assets/projects/metagenus/metagenus-hero-figure.webp" srcset="../assets/projects/metagenus/metagenus-hero-figure.m.webp 820w, ../assets/projects/metagenus/metagenus-hero-figure.webp 2000w" sizes="(max-width: 640px) 55vw, (max-width: 1024px) 60vw, 50vw" fetchpriority="high" decoding="async" alt="A Metagenus character, one of the thousand" aria-hidden="true">
     <div class="hero-scrim" aria-hidden="true"></div>
-    <img class="hero-cast" src="../assets/projects/metagenus/cast-group.webp" srcset="../assets/projects/metagenus/cast-group.m.webp 820w, ../assets/projects/metagenus/cast-group.webp 2000w" sizes="(max-width: 640px) 55vw, (max-width: 1024px) 60vw, 50vw" alt="" aria-hidden="true" decoding="async">
+    <img class="hero-cast" src="../assets/projects/metagenus/cast-group.webp" srcset="../assets/projects/metagenus/cast-group.m.webp 820w, ../assets/projects/metagenus/cast-group.webp 2000w" sizes="(max-width: 640px) 55vw, (max-width: 1024px) 60vw, 50vw" alt="The Metagenus cast gathered as a group" aria-hidden="true" decoding="async">
     <div class="hero-inner" style="margin: 100px 0px 0px">
       <div class="proj-tags">
         <div class="ptg">
@@ -2207,7 +2212,7 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
   <!-- 04b · DYNAMIC EVOLUTION -->
   <section class="scene evo" data-rail="3" data-screen-label="04b Evolution">
     <div class="sm plain evo-fog">
-      <img src="../assets/projects/metagenus/art/fog-transition.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" srcset="../assets/projects/metagenus/art/fog-transition-1600.webp 1600w, ../assets/projects/metagenus/art/fog-transition.webp 1900w" sizes="(max-width:768px) 768px, (max-width:1024px) 1024px, (max-width:1440px) 1440px, 1920px">
+      <img src="../assets/projects/metagenus/art/fog-transition.webp" alt="Fog carrying the transition between Metagenus scenes" aria-hidden="true" loading="lazy" decoding="async" srcset="../assets/projects/metagenus/art/fog-transition-1600.webp 1600w, ../assets/projects/metagenus/art/fog-transition.webp 1900w" sizes="(max-width:768px) 768px, (max-width:1024px) 1024px, (max-width:1440px) 1440px, 1920px">
     </div>
     <div class="col">
       <div class="mk"><span class="n">03b</span><span class="ln"></span><span>Dynamic Evolution</span></div>
@@ -2267,7 +2272,7 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
             <button class="adv-cell" type="button" data-k="jetpack" aria-label="The Gladiator's Jetpack"><img src="../assets/projects/metagenus/addons/icons/jetpack.webp" alt="" loading="lazy" decoding="async"><span class="cl">Jetpack</span></button>
             <button class="adv-cell" type="button" data-k="props" aria-label="The Entertainer's Props"><img src="../assets/projects/metagenus/addons/icons/props.webp" alt="" loading="lazy" decoding="async"><span class="cl">Props</span></button>
             <button class="adv-cell" type="button" data-k="portal" aria-label="The Lord's Portal"><img src="../assets/projects/metagenus/addons/icons/portal.webp" alt="" loading="lazy" decoding="async"><span class="cl">Portal</span></button>
-            <button class="adv-cell" type="button" data-k="wings-alien" aria-label="The Alien's Wings"><img src="../assets/projects/metagenus/addons/icons/wings-alien.webp" alt="" loading="lazy" decoding="async"><span class="cl">Wings</span></button>
+            <button class="adv-cell" type="button" data-k="wings-alien" aria-label="The Alien's Wings"><img src="../assets/projects/metagenus/addons/icons/wings-alien.webp" alt="Alien wings, a trait carried by 3.5% of the thousand characters" loading="lazy" decoding="async"><span class="cl">Wings</span></button>
             <button class="adv-cell" type="button" data-k="wings-celestial" aria-label="The Celestial Wings"><img src="../assets/projects/metagenus/addons/icons/wings-celestial.webp" alt="" loading="lazy" decoding="async"><span class="cl">Wings</span></button>
           </div>
         </div>
@@ -2282,7 +2287,7 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
 
       <div class="adv-stage">
         <video id="advVid" data-m-autoplay muted loop playsinline preload="none" aria-label="Selected add-on"></video>
-        <div class="adv-spec" id="advSpec"><img id="advSpecImg" src="../assets/projects/metagenus/addons/wings-alien.webp" alt="" loading="lazy" decoding="async"><span class="sp-n"></span><span class="sp-r"></span></div>
+        <div class="adv-spec" id="advSpec"><img id="advSpecImg" src="../assets/projects/metagenus/addons/wings-alien.webp" alt="Alien wings, a trait carried by 3.5% of the thousand characters" loading="lazy" decoding="async"><span class="sp-n"></span><span class="sp-r"></span></div>
         <span class="adv-tag" id="advTag">Hologram loop</span>
       </div>
 
@@ -2461,12 +2466,12 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
   <section style="height:200svh" class="pin scene" data-rail="7" data-screen-label="14 Close">
     <div class="pinner">
     <div class="sm">
-      <img src="../assets/projects/metagenus/art/footer-band.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" srcset="../assets/projects/metagenus/art/footer-band-768.webp 768w, ../assets/projects/metagenus/art/footer-band-1200.webp 1200w, ../assets/projects/metagenus/art/footer-band-1600.webp 1600w, ../assets/projects/metagenus/art/footer-band.webp 1900w" sizes="(max-width:390px) 350px, (max-width:640px) 600px, (max-width:768px) 768px, (max-width:1024px) 1024px, (max-width:1440px) 1440px, 1920px">
+      <img src="../assets/projects/metagenus/art/footer-band.webp" alt="A band of Metagenus characters across the page foot" aria-hidden="true" loading="lazy" decoding="async" srcset="../assets/projects/metagenus/art/footer-band-768.webp 768w, ../assets/projects/metagenus/art/footer-band-1200.webp 1200w, ../assets/projects/metagenus/art/footer-band-1600.webp 1600w, ../assets/projects/metagenus/art/footer-band.webp 1900w" sizes="(max-width:390px) 350px, (max-width:640px) 600px, (max-width:768px) 768px, (max-width:1024px) 1024px, (max-width:1440px) 1440px, 1920px">
     </div>
     <div class="col">
       <div class="mk"><span class="n">11</span><span class="ln"></span><span>Enquiries</span></div>
       <h2 class="close-t">Take the<br>civilization.</h2>
-      <a class="close-cta" href="mailto:studio@illusorr.com?subject=Metagenus%20licensing">
+      <a class="close-cta" href="mailto:hello@illusorr.com?subject=Metagenus%20licensing">
         <span>License Metagenus</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19 L19 5"/><polyline points="9 5 19 5 19 15"/></svg>
       </a>
@@ -2518,8 +2523,10 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
   (function () {
     const vids = document.querySelectorAll('video[data-src]');
     if (!vids.length) return;
-    if (!('IntersectionObserver' in window)) { vids.forEach((v) => { v.src = v.dataset.src; v.play().catch(() => {}); }); return; }
-    const load = (v) => { if (!v.src) { v.src = v.dataset.src; } v.play().catch(() => {}); };
+    // same guard as metaculture: mobile.js may have taken the clip over and
+    // removed data-src, and assigning undefined requests a literal "undefined"
+    if (!('IntersectionObserver' in window)) { vids.forEach((v) => { if (v.dataset.src) { v.src = v.dataset.src; v.play().catch(() => {}); } }); return; }
+    const load = (v) => { const s = v.dataset.src; if (!s || v.closest('.m-defer')) return; if (!v.src) { v.src = s; } v.play().catch(() => {}); };
     vids.forEach((v) => {
       const host = v.closest('figure') || v;
       host.addEventListener('pointerenter', () => load(v), { once: true });
@@ -2546,7 +2553,13 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
       btn.addEventListener('click', function () {
         const id = fig.dataset.yt;
         const f = document.createElement('iframe');
-        f.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0&modestbranding=1';
+        /* controls=0 matters here: with YouTube's own controls on, a click
+           pauses the film and the player answers with its "More videos"
+           grid and branding over the frame. Chromeless, like every other
+           embed on the site. iv_load_policy=3 drops annotation cards. */
+        f.src = 'https://www.youtube-nocookie.com/embed/' + id +
+          '?autoplay=1&rel=0&modestbranding=1&controls=0&disablekb=1&fs=0' +
+          '&iv_load_policy=3&playsinline=1';
         f.title = 'Metagenus film';
         f.allow = 'autoplay; encrypted-media; picture-in-picture; web-share';
         f.referrerPolicy = 'strict-origin-when-cross-origin';
@@ -2970,7 +2983,8 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
       const slot = film.querySelector('.hf-embed');
       const f = document.createElement('iframe');
       f.src = 'https://www.youtube-nocookie.com/embed/' + film.dataset.yt +
-        '?autoplay=1&mute=1&playsinline=1&rel=0&modestbranding=1&controls=1';
+        '?autoplay=1&mute=1&playsinline=1&rel=0&modestbranding=1&controls=0' +
+        '&disablekb=1&fs=0&iv_load_policy=3';
       f.title = 'Metagenus · The New Era';
       f.allow = 'autoplay; encrypted-media; picture-in-picture; web-share';
       f.referrerPolicy = 'strict-origin-when-cross-origin';
@@ -3939,7 +3953,6 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
   })();
 </script>
 
-  <script src="../assets/js/case/image-slot.js"></script>
 <script src="../assets/js/nav.js" defer></script>
 <script src="../assets/js/orphans.js" defer></script>
 <script src="../assets/js/site-footer.js" defer></script>
