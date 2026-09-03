@@ -1,0 +1,10 @@
+-- Notifications without an Edge Function.
+--
+-- 003 called a deployed Edge Function, which needs the Supabase CLI and an
+-- access token to ship. pg_net can reach Resend and ClickUp directly from the
+-- trigger, so the deploy step disappears and the only setup left is storing
+-- two or three keys.
+--
+-- Keys live in Supabase Vault (encrypted at rest), never in this repo.
+-- Anything not stored is skipped, so email and ClickUp are independent.
+-- See cms/README.md for the two statements that turn each on.

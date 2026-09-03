@@ -40,40 +40,38 @@ POST   /rest/v1/projects           401   anon cannot write CMS content
 
 Never put the **service role** key in `forms.js` or anywhere under `site/`.
 
-## Still to do: notifications
+## Notifications
 
-`web.notify_submission()` and its trigger are applied and currently a no-op.
-Two steps remain, both needing credentials I should not handle.
+The trigger on `web.form_submissions` posts straight to Resend and ClickUp
+using pg_net. There is no Edge Function to deploy and nothing to install: the
+only step left is storing your keys.
 
-**1. Deploy the Edge Function.** The MCP client here stringifies array
-arguments, so `deploy_edge_function` fails. Deploy from your machine:
+Keys live in Supabase Vault, encrypted at rest. Anything you do not store is
+skipped, so email and ClickUp are independent and either works alone.
 
-```bash
-supabase functions deploy notify-submission --project-ref mivkvqibkceaayktqtds
-```
-
-Source is in `cms/functions/notify-submission/`. It sends an email via Resend
-and creates a ClickUp task, independently: either can be left unconfigured and
-the other still fires. It always returns 200, because the lead is already saved
-and a retry would only duplicate it.
-
-**2. Set the secrets**, then point the trigger at the function:
-
-```bash
-supabase secrets set RESEND_API_KEY=... NOTIFY_TO=hello@illusorr.com \
-  NOTIFY_FROM='ILLUSORR <noreply@illusorr.com>' \
-  CLICKUP_TOKEN=... CLICKUP_LIST_ID=... --project-ref mivkvqibkceaayktqtds
-```
-
-Then in the SQL editor, using your **service role** key:
+**Email.** In the SQL editor:
 
 ```sql
-alter database postgres set app.notify_url =
-  'https://mivkvqibkceaayktqtds.functions.supabase.co/notify-submission';
-alter database postgres set app.notify_key = '<service role key>';
+select vault.create_secret('re_your_resend_key', 'RESEND_API_KEY');
+select vault.create_secret('hello@illusorr.com', 'NOTIFY_TO');
+-- until illusorr.com is verified in Resend, leave NOTIFY_FROM unset and it
+-- falls back to Resend's shared onboarding@resend.dev sender
+select vault.create_secret('ILLUSORR <noreply@illusorr.com>', 'NOTIFY_FROM');
 ```
 
-Until both are set the trigger returns immediately and submissions still save.
+**ClickUp.** The token is a personal API token (ClickUp: Settings, Apps,
+Generate). The list id is the number in the URL when that list is open.
+
+```sql
+select vault.create_secret('pk_your_clickup_token', 'CLICKUP_TOKEN');
+select vault.create_secret('901234567890',          'CLICKUP_LIST_ID');
+```
+
+To change one later, `select vault.update_secret(id, new_value)`.
+
+Every outbound call is wrapped so a failure is swallowed: a rejected API key,
+a ClickUp outage or a slow mail provider can never make a visitor's
+submission hang, fail, or be lost. The row is committed either way.
 
 ## Migrations
 
