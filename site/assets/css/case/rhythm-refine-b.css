@@ -6,12 +6,17 @@
     font-size: 12px; letter-spacing:0.2em;
     text-transform:uppercase; color:var(--ink-soft); font-weight:400;
   }
+  /* The index number was var(--ink-faint) - 14% opacity, measured 1.14:1
+     against the page, effectively invisible at every breakpoint. It now takes
+     the page's own accent (fabrika #EE403D, denim #3B5BDB, barbie #FF1493...)
+     and a heavier weight. --ink-soft is the fallback for the handful of pages
+     that declare no accent. */
   .section-num .num{
     display:inline;
     font-family:'Outfit',system-ui,sans-serif;
     font-size: 12px; font-weight:400;
     letter-spacing:0.2em; line-height:1;
-    color:var(--ink-faint); opacity:1; margin:0;
+    color:var(--accent, var(--ink-soft)); opacity:1; margin:0; font-weight:600;
     -webkit-text-fill-color:currentColor;
   }
   /* Visual band between sections, edge to edge. */

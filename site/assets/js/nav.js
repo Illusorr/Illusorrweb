@@ -22,27 +22,51 @@
     if(p.length>3&&p[3]===0) return null;
     return (0.2126*p[0]+0.7152*p[1]+0.0722*p[2])/255;
   }
+  /* [r,g,b,a] with alpha kept. lum() above throws alpha away, which is what
+     made a 97%-transparent white pill read as pure white. */
+  function rgba(c){
+    var m=/rgba?\(([^)]+)\)/.exec(c); if(!m) return null;
+    var p=m[1].split(',').map(parseFloat);
+    if(p.length<3||isNaN(p[0])) return null;
+    return [p[0],p[1],p[2],p.length>3?(isNaN(p[3])?1:p[3]):1];
+  }
   /* average luminance of an image, computed once per src */
   var toneCache={};
+  /* Sample the STRIP OF THE IMAGE THAT IS ACTUALLY UNDER THE BAR, not the whole
+     picture. Averaging the entire image called a photo dark because most of it
+     is dark, while the band beneath the header was bright sky - the logo then
+     painted white on white. The result is cached per src and per tenth of the
+     image's height, so scrolling past one picture costs a handful of 8x8 reads
+     rather than one per frame. */
   function imgTone(img){
     var key=img.currentSrc||img.src; if(!key) return null;
-    if(key in toneCache) return toneCache[key];
     if(!img.complete||!img.naturalWidth) return null;
+    var r=img.getBoundingClientRect();
+    if(!r.height) return null;
+    /* the bar occupies roughly 0..88px of the viewport */
+    var top=Math.max(0,(0-r.top)/r.height), bot=Math.min(1,(88-r.top)/r.height);
+    if(bot<=top){ top=0; bot=1; }
+    var band=Math.round(top*10)/10;
+    var ck=key+'@'+band;
+    if(ck in toneCache) return toneCache[ck];
     try{
+      var sh=Math.max(1,Math.round((bot-top)*img.naturalHeight));
+      var sy=Math.min(img.naturalHeight-sh,Math.round(top*img.naturalHeight));
       var c=document.createElement('canvas'); c.width=8; c.height=8;
       var g=c.getContext('2d',{willReadFrequently:true});
-      g.drawImage(img,0,0,8,8);
+      g.drawImage(img,0,Math.max(0,sy),img.naturalWidth,sh,0,0,8,8);
       var d=g.getImageData(0,0,8,8).data, t=0, n=0;
       for(var i=0;i<d.length;i+=4){ if(d[i+3]<8) continue;
         t+=0.2126*d[i]+0.7152*d[i+1]+0.0722*d[i+2]; n++; }
-      toneCache[key] = n ? (t/n)/255 > 0.55 : null;
-    }catch(e){ toneCache[key]=null; }   /* tainted canvas: give up quietly */
-    return toneCache[key];
+      toneCache[ck] = n ? (t/n)/255 > 0.55 : null;
+    }catch(e){ toneCache[ck]=null; }   /* tainted canvas: give up quietly */
+    return toneCache[ck];
   }
   function sample(){
     if(ov&&ov.classList.contains('open')) return;
     function probe(x){
       var stack=document.elementsFromPoint(x,70);
+      var acc=[0,0,0,0];                  /* premultiplied composite, front to back */
       for(var i=0;i<stack.length;i++){
         var n=stack[i];
         if(tb.contains(n)||(ov&&ov.contains(n))||(n.closest&&n.closest('.il-overlay'))) continue;
@@ -52,6 +76,17 @@
              the case the section-level hint gets wrong. */
           var mh=n.closest('[data-media-tone]');
           if(mh) return mh.getAttribute('data-media-tone')==='light';
+        }
+        /* A MEASURED image outranks a section-level declaration.
+           data-tone describes a section's design theme, but the bar passes
+           over a section at every scroll position, and a media band can be
+           dark at its top edge and bright in its middle. Trusting the section
+           label over a readable image is how the header ended up painting a
+           white scrim with a dark logo over a dark band on optiverse. If the
+           image cannot be read (cross-origin, not yet decoded) this falls
+           through to the declaration, which is still the right default. */
+        if(n.tagName==='IMG'){ var iv0=imgTone(n); if(iv0!==null) return iv0; }
+        if(n.closest){
           var toned=n.closest('[data-tone],[data-bg-theme]');
           if(toned) return (toned.getAttribute('data-tone')||toned.getAttribute('data-bg-theme'))==='light';
           if(n.closest(LIGHT_SECTIONS)) return true;
@@ -66,11 +101,30 @@
            assumption since they cannot be read cheaply or safely. */
         if(n.tagName==='IMG') { var iv=imgTone(n); if(iv!==null) return iv; return false; }
         if(n.tagName==='VIDEO'||n.tagName==='CANVAS') return false;
-        var v=lum(getComputedStyle(n).backgroundColor);
-        if(v!==null) return v>0.55;
+        /* Alpha decides nothing on its own. The first element with ANY
+           background used to win outright, so .bf-opt's
+           background:rgba(255,255,255,.03) - 97% transparent over a near
+           black page - was read as pure white and turned the whole bar into
+           a white scrim with a dark logo. Composite front to back instead:
+           each layer contributes only the transparency the layers above it
+           left behind, and the tone is judged on the result. */
+        var c=rgba(getComputedStyle(n).backgroundColor);
+        if(!c||c[3]<=0) continue;
+        var rem=1-acc[3];
+        acc[0]+=c[0]*c[3]*rem; acc[1]+=c[1]*c[3]*rem; acc[2]+=c[2]*c[3]*rem;
+        acc[3]+=c[3]*rem;
+        if(acc[3]>=0.98) break;
       }
-      var b=lum(getComputedStyle(document.body).backgroundColor);
-      return b!==null&&b>0.55;
+      if(acc[3]<0.98){
+        var bd=rgba(getComputedStyle(document.body).backgroundColor);
+        if(bd&&bd[3]>0){
+          var r2=1-acc[3];
+          acc[0]+=bd[0]*bd[3]*r2; acc[1]+=bd[1]*bd[3]*r2; acc[2]+=bd[2]*bd[3]*r2;
+          acc[3]+=bd[3]*r2;
+        }
+      }
+      if(acc[3]<=0.02) return false;      /* nothing opaque found: treat as dark */
+      return (0.2126*acc[0]+0.7152*acc[1]+0.0722*acc[2])/255>0.55;
     }
     tb.classList.toggle('brand-on-light',probe(80));
     tb.classList.toggle('ctl-on-light',probe(window.innerWidth-90));

@@ -209,15 +209,32 @@ html[data-touch] .hero .rr,
 html[data-touch] .hero .topdot,
 html[data-touch] .hero .botdot { display: none !important; }
 
-/* the one link worth keeping goes into the flow under the claim */
+/* .hero is a flex ROW, so position:static made this link a second COLUMN
+   beside .center instead of a line under the claim: it was pushed to the right
+   edge, under the fixed ambience pill (85x26px of overlap at 700/768/834) and
+   at 390 it sat at x=390, entirely off screen. Absolute positioning fixed that
+   but then sat the link ON the headline once the hero bottom-aligns its
+   content. The hero stacks as a COLUMN instead, so the link is genuinely a
+   line under the claim, and the whole block is given enough bottom padding to
+   clear the fixed ambience pill (44px tall, 18px from the edge). */
+html[data-touch] .hero {
+  flex-direction: column !important;
+  justify-content: flex-end !important;
+  align-items: stretch !important;
+  padding-bottom: 78px !important;
+}
 html[data-touch] .hero .seeall {
   position: static !important;
   display: inline-flex !important;
+  align-self: flex-start !important;
   align-items: center;
   min-height: 44px;
-  margin-top: 24px !important;
+  margin: 18px 20px 0 !important;
   font-size: 11px !important;
   letter-spacing: .2em !important;
+}
+@media (min-width: 641px) {
+  html[data-touch] .hero .seeall { margin-inline: 40px !important; }
 }
 
 /* ═══════════════════════════════════════════════════════════════════════
@@ -578,7 +595,24 @@ html[data-touch] .scroll-cue { display: none !important; }
   html[data-touch] .hero .center { padding: 120px 40px 64px !important; }
   html[data-touch] .close-center { padding: 120px 40px 88px !important; }
 
-  html[data-touch] .hero h1 { font-size: 62px !important; }
+  /* A flat 62px across the whole 641-1024 band, with no fluidity: at 768
+     "Across every reality." measured 1073px against a 768px viewport and
+     ran off the right edge. Fluid, and allowed to wrap. */
+  html[data-touch] .hero h1 {
+    font-size: clamp(34px, 6.2vw, 62px) !important;
+    white-space: normal !important;
+    max-width: 100% !important;
+  }
+  /* .center is a flex item with flex:0 0 auto - shrink factor ZERO - so it
+     sized to the min-content width of an uppercase headline and measured 904px
+     inside a 768px hero, running the text off the right edge. It has to be
+     allowed to shrink, and min-width:auto has to be cleared for shrinking to
+     reach below min-content. */
+  html[data-touch] .hero .center {
+    flex: 0 1 auto !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
   html[data-touch] .hero .center .kick { font-size: 16px !important; }
   html[data-touch] .wwa-line { font-size: 42px !important; }
   html[data-touch] .wwa-stage h2,
@@ -727,4 +761,49 @@ html[data-touch] .ccard .cvnum{
   left: 20px;
   transform: none;
   top: 18px;
+}
+
+/* ═════════════════════════════════════════════════════════════════════
+   WHO WE DO IT FOR — every sector open on touch
+
+   The descriptions reveal one at a time, driven by scroll position through
+   a tall sticky section, so on a phone the line you want is either still
+   off screen or already gone. All six are open here, and every row reads at
+   full strength instead of dimming the five that are not "current".
+   ═════════════════════════════════════════════════════════════════════ */
+html[data-touch] .wf-sectors .sr-desc{
+  max-height: none !important;
+  opacity: 1 !important;
+  margin-top: 6px !important;
+  overflow: visible !important;
+}
+html[data-touch] .wf-sectors .sr-name{ color: var(--cream-ink) !important; }
+html[data-touch] .wf-sectors .sr-num{ color: var(--indigo) !important; }
+html[data-touch] .wf-sectors .srow{ padding: 14px 0 !important; }
+html[data-touch] .wf-all{ margin-top: 18px !important; font-size: 14px !important; }
+
+/* ═════════════════════════════════════════════════════════════════════
+   SELECTED WORK RAIL — the 861 to 1024 gap
+
+   The rail is 4002px wide. Desktop clips it with .conv-vp{overflow:hidden};
+   the phone tier lets .conv scroll itself, but that rule sits inside
+   (max-width: 860px). Between 861 and 1024 the touch layer had already
+   cleared the desktop clip while the phone rule did not yet apply, so
+   NOTHING contained the rail and it dragged the whole document sideways:
+   measured 2611px of horizontal page scroll at 900 and 2978px at 1024.
+   The band gets the same self-scrolling treatment as the phone.
+   ═════════════════════════════════════════════════════════════════════ */
+@media (min-width: 861px) and (max-width: 1024px) {
+  html[data-touch] .conv {
+    display: flex !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    column-gap: 16px !important;
+    margin-inline: -40px !important;
+    padding: 0 40px 8px !important;
+  }
+  html[data-touch] .conv::-webkit-scrollbar { display: none; }
+  html[data-touch] .ccard { flex: 0 0 62% !important; width: auto !important; min-width: 0 !important; }
 }

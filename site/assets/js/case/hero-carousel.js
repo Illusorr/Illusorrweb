@@ -6,6 +6,21 @@
   const N = slides.length;
   const DUR = 5200;
 
+  /* The slides carry the movement now (see render). Injected from here so it
+     travels with the script to every page that uses this carousel, whether or
+     not that page's own stylesheet knows about it. The track keeps its
+     transition off; the slides take it, so the timing is unchanged. */
+  (function () {
+    const st = document.createElement('style');
+    st.textContent =
+      '#hcTrack{transform:none !important;transition:none !important}' +
+      '#hcTrack > .hc-slide{transform:translateX(var(--hc-x,0px));' +
+      'transition:transform .9s cubic-bezier(.72,0,.18,1)}' +
+      '#hcTrack.no-anim > .hc-slide{transition:none}' +
+      '@media (prefers-reduced-motion:reduce){#hcTrack > .hc-slide{transition:none}}';
+    document.head.appendChild(st);
+  })();
+
   const nowEl = document.getElementById('hcNow');
   const totEl = document.getElementById('hcTot');
   const lookEl = document.getElementById('hcLook');
@@ -43,7 +58,17 @@
     const firstIdx = Math.min(page * visible, N - 1);
     const maxScroll = Math.max(0, track.scrollWidth - root.clientWidth);
     const x = Math.min(slides[firstIdx].offsetLeft, maxScroll);
-    track.style.transform = `translateX(${-x}px)`;
+    /* Translate the SLIDES, not the track.
+       The track is the element that carries overflow:hidden on the phone and
+       tablet layers, so moving the track moved its own clip box with it: the
+       slide we scrolled to ended up outside its own clipper and simply
+       vanished, leaving an empty frame with only the chrome on it. Measured on
+       pera at 390px: track box at x=-330 width 350, active slide at x=27, i.e.
+       entirely outside the clip. Only slide 0 survived, and only the 20px of
+       it that still overlapped - which is the thin strip visible at the left
+       edge in every report of this. Driving a variable the slides read keeps
+       whichever ancestor clips exactly where it is. */
+    track.style.setProperty('--hc-x', (-x) + 'px');
     slides.forEach((s, i) => s.classList.toggle('is-active', i >= firstIdx && i < firstIdx + visible));
     const s = slides[firstIdx];
     nowEl.textContent = String(page + 1).padStart(2, '0');

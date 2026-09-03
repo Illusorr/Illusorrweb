@@ -14,11 +14,18 @@
   var ref = document.querySelector('link[href*="assets/"], script[src*="assets/"]');
   var attr = ref ? (ref.getAttribute('href') || ref.getAttribute('src')) : 'assets/';
   var PREFIX = attr.slice(0, attr.indexOf('assets/'));
-  /* the ogg is the same recording at 0.86MB against the mp3's 3.78MB —
-     it is what Spaces itself plays. Safari gets the mp3. */
+  /* The .ogg is the same recording at 0.86MB; the .mp3 fallback is 1.32MB
+     since it was re-encoded down from 320kbps, which was four times the
+     bitrate of the ogg it stands in for.
+     The probe asks for the codec the file ACTUALLY is: the ogg carries Opus,
+     not Vorbis, so testing for vorbis was answering a different question and
+     only worked by accident. Vorbis is kept as a second question because a
+     browser that plays it will play this file's container either way. */
   var probe = document.createElement('audio');
-  var TRACK = PREFIX + 'assets/audio/at-first.' +
-    (probe.canPlayType && probe.canPlayType('audio/ogg; codecs="vorbis"') ? 'ogg' : 'mp3');
+  var canOgg = probe.canPlayType &&
+    (probe.canPlayType('audio/ogg; codecs="opus"') ||
+     probe.canPlayType('audio/ogg; codecs="vorbis"'));
+  var TRACK = PREFIX + 'assets/audio/at-first.' + (canOgg ? 'ogg' : 'mp3');
   var KEY = 'ambience.' + (location.pathname.split('/').pop() || 'index').replace('.html', '');
   var TARGET = 0.34;
 

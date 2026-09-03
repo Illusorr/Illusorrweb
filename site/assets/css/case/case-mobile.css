@@ -87,12 +87,15 @@ html[data-touch] [class$="-top"] > span {
 /* PP Monument Extended is a very wide face — 28px is the ceiling at 375px,
    and the hero gets 30px because it is the one title card on the page */
 html[data-touch] .hero-title {
-  font-size: 30px !important;
+  font-size: clamp(24px, 7.4vw, 32px) !important;
   line-height: 1.04 !important;
   letter-spacing: 0 !important;
   white-space: normal !important;
 }
 html[data-touch] .hero-title .ln { display: block; }
+/* The italic strapline sits directly under the name. It was flush against it,
+   which is the "no gap" complaint - give it real separation. */
+html[data-touch] .hero-title .ln-ital { display: block; margin-top: .34em; }
 html[data-touch] .module-title,
 html[data-touch] .next-inner h2,
 html[data-touch] .looks-head h2 {
@@ -123,11 +126,20 @@ html[data-touch] .next-meta p {
 /* ═══════════════════════════════════════════════════════════════════════
    HERO — a title card that clears the fixed topbar
    ═════════════════════════════════════════════════════════════════════ */
+/* The hero is a full-height title card, and the card is meant to sit at the
+   BOTTOM of that first screen. align-items:flex-end alone did not do it: these
+   heroes lay out as a column, where align-items controls the horizontal axis
+   and vertical placement falls to justify-content, which was still flex-start.
+   The card therefore sat at the top and left the screen's worth of empty space
+   below it (measured 634px on pera at 751x1228). Direction is now stated, so
+   the intent cannot be undone by a page setting its own flex-direction. */
 html[data-touch] .hero {
   min-height: 100svh !important;
   height: auto !important;
   display: flex !important;
-  align-items: flex-end !important;
+  flex-direction: column !important;
+  justify-content: flex-end !important;
+  align-items: stretch !important;
 }
 html[data-touch] .hero-inner {
   width: 100%;
@@ -136,7 +148,7 @@ html[data-touch] .hero-inner {
   height: auto !important;
   min-height: 0 !important;
   flex: 0 0 auto !important;
-  align-self: flex-end !important;
+  align-self: stretch !important;   /* column axis: stretch is full width */
 }
 html[data-touch] .hero-foot {
   display: flex !important;
@@ -154,7 +166,9 @@ html[data-touch] .hero-credit { text-align: left !important; justify-self: start
 html[data-touch] .chapter-hero {
   min-height: 100svh !important;
   display: flex !important;
-  align-items: flex-end !important;
+  flex-direction: column !important;
+  justify-content: flex-end !important;
+  align-items: stretch !important;
 }
 html[data-touch] .chapter-hero > .chapter-inner { width: 100%; box-sizing: border-box; }
 /* the inner adds vertical clearance only — the gutter belongs to the
@@ -305,7 +319,13 @@ html[data-touch] .stats {
 html[data-touch] .stat-n { font-size: 32px !important; line-height: 1 !important; }
 
 html[data-touch] .credits,
-html[data-touch] .credit-list { grid-template-columns: 1fr !important; gap: 0 !important; }
+html[data-touch] .credit-list { grid-template-columns: 1fr !important; }
+/* The list itself stacks with no gap - its rows carry their own hairlines. The
+   WRAPPER is a different thing: it holds the "08 Credits" heading above that
+   list, and a shared gap:0 left the heading flush against the plate on all 30
+   case studies. */
+html[data-touch] .credit-list { gap: 0 !important; }
+html[data-touch] .credits { gap: clamp(16px, 3.4vw, 26px) !important; }
 /* A 96px role column forced every label to wrap onto two lines ("CREATIVE /
    DIRECTION") while its value sat on one, so each row read as a ragged
    two-column table with a hole in it. Stacked, quieted, and set on its own
@@ -351,7 +371,7 @@ html[data-touch] .hero-carousel { --hc-vis: 1 !important; }
 html[data-touch] .hc-slide { flex: 0 0 100% !important; }
 html[data-touch] .hc-nav {
   width: 44px !important;
-  height: 44px !important;
+  height: 26px !important;
 }
 html[data-touch] .hc-caption {
   left: 20px !important;
@@ -364,7 +384,7 @@ html[data-touch] .hc-top { padding-inline: 20px !important; }
 html[data-touch] .hc-bars { right: 20px !important; bottom: 20px !important; }
 html[data-touch] .hc-bar { width: 22px !important; }
 
-html[data-touch] .film-nav { width: 44px !important; height: 44px !important; }
+html[data-touch] .film-nav { width: 44px !important; height: 26px !important; }
 html[data-touch] .film-play { width: 62px !important; height: 62px !important; }
 html[data-touch] .film-cap { left: 20px !important; right: 20px !important; bottom: 20px !important; }
 html[data-touch] .film-cap .fl-t { font-size: 20px !important; line-height: 1.1 !important; }
@@ -544,10 +564,13 @@ html[data-touch] .proj-tags .ptg-c {
 html[data-touch] .proj-tags .ptg-client .ptg-c { width: 100%; }
 /* the client mark is an image at wildly different intrinsic sizes across
    the 34 pages; cap it so it reads as a credit, not a hero illustration */
+/* Client mark sizing: desktop paints it at 21px. This layer used to force
+   44px on a narrower screen, so the logo came out more than twice its
+   desktop size and dominated the hero. 26px reads as a credit again. */
 html[data-touch] .proj-tags .ptg-client .ptg-c img {
-  height: 44px !important;
+  height: 26px !important;
   width: auto !important;
-  max-width: 60vw !important;
+  max-width: 52vw !important;
   object-fit: contain;
   object-position: left center;
 }
@@ -573,7 +596,7 @@ html[data-touch] .lightbox .fcp-x {
   top: 12px !important;
   right: 12px !important;
   width: 44px !important;
-  height: 44px !important;
+  height: 26px !important;
 }
 
 }
@@ -590,7 +613,10 @@ html[data-touch] .lightbox .fcp-x {
   html[data-touch] .hero-inner { padding: 120px 40px 64px !important; }
   html[data-touch] .next-inner { padding: 56px 40px !important; }
 
-  html[data-touch] .hero-title { font-size: 56px !important; }
+  /* 56px here was LARGER than the 44px desktop uses, on a narrower column,
+     so the project name broke across lines: "Echoes / of Light / 2024" instead
+     of one line. Fluid, and never bigger than desktop. */
+  html[data-touch] .hero-title { font-size: clamp(32px, 4.9vw, 44px) !important; }
   html[data-touch] .module-title,
   html[data-touch] .next-inner h2 { font-size: 44px !important; }
   html[data-touch] .quote { font-size: 34px !important; }
@@ -743,9 +769,9 @@ html[data-touch] .hero-film .hf-embed {
     margin-bottom: 4px;
   }
   html[data-touch] .proj-tags.proj-tags .ptg-client .ptg-c img {
-    height: 44px !important;
+    height: 26px !important;
     width: auto !important;
-    max-width: 60vw !important;
+    max-width: 52vw !important;
     object-fit: contain;
     object-position: left center;
   }
@@ -758,8 +784,11 @@ html[data-touch] .hero-film .hf-embed {
     align-items: center;
   }
 
+  /* A flat 30px could not fit the longer project names in a 298px column -
+     "Echoes of Light" broke into "Echoes of / Light", leaving a word alone on
+     its own line. Fluid, so long names shrink to fit instead of breaking. */
   html[data-touch] .hero-title.hero-title {
-    font-size: 30px !important;
+    font-size: clamp(23px, 6.4vw, 30px) !important;
     line-height: 1.04 !important;
     letter-spacing: -.01em !important;
     margin: 0 0 12px !important;
@@ -869,7 +898,7 @@ html[data-touch] .hero-film .hf-embed {
     top: auto !important; left: auto !important; right: auto !important;
     transform: none !important;
     align-self: center;
-    width: 44px !important; height: 44px !important;
+    width: 44px !important; height: 26px !important;
     background: rgba(10, 10, 12, .45) !important;
     border-color: rgba(243, 236, 223, .5) !important;
     color: #f3ecdf !important;
@@ -1009,9 +1038,9 @@ html[data-touch] .hero-film .hf-embed {
   html[data-touch] .hero-meta .hm-client > div { flex-direction: row !important; align-items: center !important; gap: 10px !important; }
   html[data-touch] .hero-meta .hm-client img,
   html[data-touch] .hero-client-mark {
-    height: 44px !important;
+    height: 26px !important;
     width: auto !important;
-    max-width: 60vw !important;
+    max-width: 52vw !important;
     object-fit: contain;
     object-position: left center;
   }
@@ -1050,11 +1079,13 @@ html[data-touch] .hero-film .hf-embed {
     height: auto !important;
     min-height: 100svh !important;
     display: flex !important;
-    align-items: flex-end !important;
+    flex-direction: column !important;
+    justify-content: flex-end !important;
+    align-items: stretch !important;
   }
   html[data-touch] .aa-root .hero > .hero-inner {
     height: auto !important;
-    align-self: flex-end !important;
+    align-self: stretch !important;
   }
 
   /* 3 · the scaled prototype fills its slide */
@@ -1066,7 +1097,9 @@ html[data-touch] .hero-film .hf-embed {
   }
 
   /* 4 · the key visual gives the wordmark room */
-  html[data-touch] .bleed .ph { aspect-ratio: 4 / 3 !important; }
+  /* same exception: a plate that authored its own ratio inline keeps it,
+     otherwise a 16/9 video frame inside a .bleed came out 4/3 on phones */
+  html[data-touch] .bleed .ph:not([style*="aspect"]) { aspect-ratio: 4 / 3 !important; }
   html[data-touch] .brandmark {
     display: flex !important;
     flex-direction: column;
@@ -1291,9 +1324,12 @@ html[data-touch] .hero-film .hf-embed {
   }
   html[data-touch] .as-tab .as-x { justify-self: end; font-size: 16px !important; }
   html[data-touch] .as-stage { display: block !important; }
-  html[data-touch] .as-frame { aspect-ratio: 4 / 3 !important; height: auto !important; }
+  /* the frame now sizes to its square media plus the HUD bar; forcing 4/3
+     here would letterbox the 1:1 clips again */
+  html[data-touch] .as-frame { aspect-ratio: auto !important; height: auto !important; }
   html[data-touch] .as-info { padding-top: 14px !important; }
-  html[data-touch] .as-vis { width: 100% !important; height: 100% !important; object-fit: contain; }
+  /* height:100% fought the square ratio the frame now carries */
+  html[data-touch] .as-vis { width: 100% !important; object-fit: contain; }
 }
 
 
@@ -1570,6 +1606,11 @@ html[data-touch] .devrow > * {
     flex-wrap: nowrap !important;
     gap: 10px !important;
   }
+  /* This used to ellipsize, which on a phone deletes the words rather than
+     tidying them: "TRT International Metaverse & Broadcasting" lost 221px of
+     itself at 390px wide and read as "TRT Internation...". The row still
+     shares its width (flex + min-width:0), but the text wraps instead of
+     being cut, so nothing is lost. */
   html[data-touch] .stage-hint > *,
   html[data-touch] .hm-cap > *,
   html[data-touch] .dev-cap > *,
@@ -1577,9 +1618,10 @@ html[data-touch] .devrow > * {
     flex: 1 1 0 !important;
     min-width: 0 !important;
     max-width: none !important;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    overflow: visible;
+    text-overflow: clip;
+    white-space: normal;
+    overflow-wrap: anywhere;
   }
   html[data-touch] .stage-hint > *:last-child,
   html[data-touch] .hm-cap > *:last-child,
@@ -1639,16 +1681,28 @@ html[data-touch] .stage-hint > *:last-child {
    than whatever ratio was authored for a wide desktop composition.
    ═════════════════════════════════════════════════════════════════════ */
 @media (max-width: 1024px) {
-  html[data-touch] .ph:has(.ph-label),
-  html[data-touch] .ph:has(.caption) {
+  /* :not([style*="aspect"]) matters here. A plate that authors its own ratio
+     inline - the lapillus YouTube figures carry aspect-ratio:16/9 - also
+     contains a .ph-label, so this rule's `aspect-ratio: auto !important`
+     beat the inline value and collapsed a 16/9 video frame to the label's
+     own height: 627x58, a 10.8:1 strip. The sibling rule above already makes
+     this exception; this one did not. */
+  html[data-touch] .ph:has(.ph-label):not([style*="aspect"]),
+  html[data-touch] .ph:has(.caption):not([style*="aspect"]) {
     aspect-ratio: auto !important;
     height: auto !important;
     overflow: visible !important;
     display: flex !important;
     flex-direction: column !important;
+    /* .ph carries the placeholder TILE colour, which is right while the image
+       fills the box. Once the caption is lifted out and set below the picture,
+       that tile shows as a grey strip behind the caption - measured 48px of
+       rgb(228,223,213) under every post on art-post-office. The caption belongs
+       on the page, so the box stops painting its own background. */
+    background: transparent !important;
   }
-  html[data-touch] .ph:has(.ph-label) > img,
-  html[data-touch] .ph:has(.caption) > img {
+  html[data-touch] .ph:has(.ph-label):not([style*="aspect"]) > img,
+  html[data-touch] .ph:has(.caption):not([style*="aspect"]) > img {
     position: static !important;
     aspect-ratio: 4 / 5 !important;
     height: auto !important;
@@ -1898,3 +1952,18 @@ html[data-touch] .ph-meta { display: none !important; }
    why it measures a few px wider than the column — the frame clips it and
    the page does not pan. Forcing width:100% here would trade the overscan
    for black bars, so it is left alone on purpose. */
+
+/* ── Three-up figure captions on a phone ──────────────────────────────
+   anfasic, denim and fabrika caption their grid figures with an inline
+   display:flex + justify-content:space-between pair: a label and an index
+   number. At 360px those figures sit in a ~100px column, and a flex item
+   will not shrink below its min-content width, so the label overflowed the
+   column while space-between parked the number on the far right - directly
+   on top of the label, and over the neighbouring caption. Measured on
+   fabrika at 360x640: the number's box and the label's box crossed by 8x19px.
+   Wrapping lets the number drop to its own line instead of overprinting. */
+html[data-touch] figure > figcaption[style*="space-between"] {
+  flex-wrap: wrap;
+  row-gap: 2px;
+}
+html[data-touch] figure > figcaption[style*="space-between"] > span { min-width: 0; }

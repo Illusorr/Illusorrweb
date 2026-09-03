@@ -2,7 +2,7 @@
    The upstream Google URL requested opsz 9..144 at weights 400/500; the variable
    font carries opsz so browsers keep applying optical sizing automatically. */
 @font-face{font-family:'Fraunces';font-style:normal;font-weight:100 900;font-display:swap;
-  src:url("../fonts/Fraunces-Variable.woff2") format("woff2"), url("../fonts/Fraunces-Variable.ttf") format("truetype")}
+  src:url("../fonts/Fraunces-Variable.woff2") format("woff2"), url("../fonts/Fraunces-Variable.woff2") format("woff2")}
 :root{--sec1:url(../img/sectors/beauty.webp);--sec2:url(../img/sectors/fashion.webp);--sec3:url(../img/sectors/real-estate.webp);--sec4:url(../img/sectors/gaming.webp);--sec5:url(../img/sectors/culture.webp);--sec6:url(../img/sectors/business.webp);}
     :root{
     /* Secondary text was --dim #8b96ad and tertiary --faint #4a5268.
@@ -316,6 +316,21 @@
   .srow:hover .sr-name{color:var(--indigo)}
   .srow.on .sr-name{color:var(--cream-ink)}
   .srow.on .sr-num{color:var(--indigo)}
+    /* Each sector row is now a way into that sector's page, and the block ends
+     with a route to all of them. The anchor wraps the row's existing content
+     wrapper, so the grid and the scroll-through behaviour are unchanged. */
+  .sr-go{display:block;text-decoration:none;color:inherit}
+  .srow:hover .sr-go .sr-name{color:var(--indigo)}
+  .sr-go:focus-visible{outline:2px solid var(--indigo);outline-offset:4px;border-radius:2px}
+  .wf-all{display:inline-flex;align-items:center;gap:9px;margin-top:22px;
+    font-family:'Outfit',sans-serif;font-size:13px;letter-spacing:.06em;
+    color:var(--indigo);text-decoration:none;border-bottom:1px solid transparent;
+    transition:border-color .3s,gap .3s}
+  /* a global a:hover sets --ink, which is the DARK theme's near-white; on
+     this cream section that made the link vanish under the cursor. State
+     the hover colour explicitly. */
+  .wf-all:hover{color:var(--cream-ink);border-bottom-color:var(--cream-ink);gap:13px}
+  .wf-all:focus-visible{outline:2px solid var(--indigo);outline-offset:4px}
   .sr-desc{grid-column:2;font-size:13px;color:var(--cream-dim);font-weight:300;line-height:1.6;max-height:0;opacity:0;overflow:hidden;transition:.5s cubic-bezier(.16,1,.3,1)}
   .srow.on .sr-desc{max-height:60px;opacity:1;margin-top:8px}
   @media(max-height:840px){.wf-body{padding:48px 56px}.wf-body h2{font-size:clamp(26px,2.5vw,38px)}
@@ -328,9 +343,14 @@
   .wf-clients:hover .wf-ribbon{animation-play-state:paused}
   .wf-ribbon span{font-size:20px;font-weight:700;color:var(--cream-dim);letter-spacing:-.01em;white-space:nowrap;transition:color .35s}
   .wf-ribbon span:hover{color:var(--indigo)}
-  .wf-ribbon img{height:22px;width:auto;display:block;object-fit:contain;
-    filter:grayscale(1) opacity(.55);transition:filter .3s}
-  .wf-ribbon img:hover{filter:grayscale(0) opacity(1)}
+  /* The marks in assets/img/clients/fit are one white-on-transparent set, cut
+     for the dark about page. On this cream panel grayscale() would leave them
+     white on white, so brightness(0) flips each one to a solid ink silhouette
+     instead. Height is set on the 360x120 canvas, which carries its own
+     padding, so the glyph reads about 23px. */
+  .wf-ribbon img{height:26px;width:auto;display:block;object-fit:contain;flex:none;
+    filter:brightness(0) opacity(.5);transition:filter .3s,opacity .3s}
+  .wf-ribbon img:hover{filter:brightness(0) opacity(.85)}
   @keyframes slide{to{transform:translateX(-50%)}}
   .wf-ribbon span{font-size:18px;font-weight:600;color:var(--cream-dim);letter-spacing:.04em;white-space:nowrap;transition:color .3s}
   .wf-ribbon span:hover{color:var(--cream-ink)}
@@ -379,10 +399,10 @@
   .conv-dark .conv-head h2,.conv-dark .conv-count b{color:#eef1f8}
   .conv-dark .conv-eyebrow{color:var(--cold)}
   .conv-dark .conv-eyebrow::before{background:var(--cold)}
-  .conv-dark .conv-count{color:#4a5268}
+  .conv-dark .conv-count{color:var(--faint)}
   .conv-dark .ccard{border-color:rgba(142,162,255,.16);background:#0c1828}
   .conv-dark .ccard.active{border-color:rgba(142,162,255,.35);box-shadow:0 30px 70px -30px rgba(0,0,0,.8)}
-  .conv-dark .cvlabel,.conv-dark .cvnum{color:#4a5268}
+  .conv-dark .cvlabel,.conv-dark .cvnum{color:var(--faint)}
   .conv-dark .ccard h3,.conv-dark .cclient{color:#eef1f8}
   .conv-dark .csector,.conv-dark .cdesc{color:#8b96ad}
   .conv-dark .ctag{color:var(--cold);border-color:rgba(142,162,255,.35)}
@@ -1125,11 +1145,11 @@
      Outfit is variable (100-900). Monument Extended ships Light + Regular only —
      no bold — so the header tier never asks for a weight above 400. */
   @font-face{font-family:'Outfit';font-style:normal;font-weight:100 900;font-display:swap;
-    src:url(../fonts/outfit-variable.woff) format('woff')}
+    src:url(../fonts/outfit-variable.woff2) format('woff2')}
   @font-face{font-family:'PP Monument Extended';font-style:normal;font-weight:400;font-display:swap;
-    src:url(../fonts/monument-extended-400.woff) format('woff')}
+    src:url(../fonts/monument-extended-400.woff2) format('woff2')}
   @font-face{font-family:'PP Monument Extended';font-style:normal;font-weight:300;font-display:swap;
-    src:url(../fonts/monument-extended-300.woff) format('woff')}
+    src:url(../fonts/monument-extended-300.woff2) format('woff2')}
   :root{--head:'PP Monument Extended',sans-serif}
   /* the big-header tier — nothing else gets Monument */
   .mnt,.hero h1,.lead,.sx-title,.sd-hero h1,.sx-name,.railcard h3{
@@ -1459,7 +1479,7 @@
   }
   /* ===== brand wordmark face + markup render ===== */
   @font-face{font-family:'Squaresharps';font-style:normal;font-weight:400;font-display:swap;
-    src:url(../fonts/squaresharps-400.woff) format('woff')}
+    src:url(../fonts/squaresharps-400.woff2) format('woff2')}
   :root{--wordmark:'Squaresharps',sans-serif;
     --markup:url(../img/brand/markup.webp)}
   /* ===== LAB ===== */
@@ -1765,6 +1785,9 @@
   .brief-prog span{display:block;height:100%;width:0;background:var(--cold);
     transition:width .8s cubic-bezier(.16,1,.3,1)}
   .brief-stage{min-height:clamp(260px,40vh,340px);padding-top:38px;max-width:640px}
+  /* the receipt is short; the anti-jump floor above would strand the
+     "start again" button at the bottom of a 340px void */
+  .brief-stage.bf-done{min-height:0}
   .bf-q{font-family:var(--head);font-weight:400;font-size:clamp(24px,3.6vw,50px);line-height:1.05;
     color:#eef1f8;letter-spacing:0;min-height:1.1em;text-shadow:0 2px 30px rgba(0,0,0,.6)}
   .bf-q .car{display:inline-block;width:.5ch;background:var(--cold);margin-left:.08em;
@@ -1791,7 +1814,7 @@
   .brief-back{background:none;border:0;cursor:pointer;font-family:'Outfit',sans-serif;font-size:12px;
     letter-spacing:.08em;text-transform:uppercase;color:rgba(238,242,255,.45);padding:0;transition:.25s}
   .brief-back:hover{color:var(--cold)}
-  .brief-sum{list-style:none;margin-top:34px;display:flex;flex-wrap:wrap;gap:10px;max-width:640px}
+  .brief-sum{list-style:none;margin-top:26px;display:flex;flex-wrap:wrap;gap:10px;max-width:640px}
   .brief-sum li{font-family:'Outfit',sans-serif;font-size:11px;letter-spacing:.05em;
     border:1px solid rgba(142,162,255,.4);border-radius:100px;padding:6px 13px;color:rgba(238,242,255,.8);
     animation:ctIn .5s cubic-bezier(.16,1,.3,1) both}
@@ -1805,14 +1828,27 @@
     .bf-q .car{animation:none} .brief-sum li{animation:none} .brief-prog span{transition:none}
   }
   /* ===== GUIDED BRIEF — centred + minimal ===== */
+  /* The exit pill is absolutely positioned while the intake block is centred,
+     so on a short window the centred content rose INTO the pill: measured
+     overlapping at 390x700, 390x560, 360x640, 1024x600 and 1440x540, and
+     clear only on tall viewports. Deriving the top padding from the pill's own
+     position and height means the two cannot drift apart again. */
   .brief-sec{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;
-    overflow:hidden;background:#04050a;padding:0}
+    overflow:hidden;background:#04050a;padding:0;
+    --head-clear:104px}
   .brief-ui{position:relative;z-index:2;width:100%;max-width:720px;margin:0 auto;
-    padding:100px clamp(22px,4vw,40px) 46px;text-align:center;
+    padding:var(--head-clear) clamp(22px,4vw,40px) 108px;
+    text-align:center;
     display:flex;flex-direction:column;align-items:center;min-height:100vh;justify-content:center}
-  /* Sat under the fixed header, which swallowed the click: moved clear of it
-     and given a real pill so it reads as an alternative to the intake flow. */
-  .brief-exit{position:absolute;top:104px;left:clamp(22px,4vw,40px);z-index:130;
+  /* The column is question, answers-so-far, then the escape hatch. The DOM
+     order puts the pill first because it used to be pinned top-left, so the
+     order property reseats it without moving the markup. */
+  .brief-core{order:1} .brief-sum{order:2} .brief-exit{order:3}
+  /* Sat under the fixed header, which swallowed the click. It was then pinned
+     clear of it at the top left, where it read as a header control competing
+     with the question. It now closes the column, centred: an escape hatch you
+     meet after the intake rather than before it. */
+  .brief-exit{position:static;z-index:130;margin:30px auto 0;
     display:inline-flex;align-items:center;gap:10px;padding:11px 18px;border-radius:100px;
     font-family:'Outfit',sans-serif;font-size:12px;letter-spacing:.1em;text-transform:uppercase;
     color:#eef1f8;text-decoration:none;cursor:pointer;
@@ -1822,8 +1858,13 @@
   .brief-exit .be-m{color:var(--cold);letter-spacing:.04em;text-transform:none;opacity:.78}
   .brief-exit:hover{background:rgba(142,162,255,.16);border-color:var(--cold);transform:translateY(-1px)}
   .brief-exit:focus-visible{outline:2px solid var(--cold);outline-offset:3px}
-  @media(max-width:640px){.brief-exit{top:92px;padding:10px 14px;font-size:11px}
-    .brief-exit .be-m{display:none}}
+  @media(max-width:640px){.brief-sec{--head-clear:92px}
+    .brief-exit{padding:10px 14px;font-size:11px;margin-top:24px}
+    /* the address used to be hidden here, so the button read only
+       "JUST EMAIL US" and never showed where it goes. It wraps under the
+       label instead of being dropped. */
+    .brief-exit{flex-wrap:wrap;max-width:calc(100vw - 44px)}
+    .brief-exit .be-m{font-size:10px}}
   .brief-core{width:100%}
   .brief-speaker{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:26px}
   .sp-orb{width:7px;height:7px;border-radius:50%;background:var(--cold);
@@ -1869,12 +1910,19 @@
   .brief-back{background:none;border:0;cursor:pointer;font-family:'Outfit',sans-serif;font-size:11px;
     letter-spacing:.08em;text-transform:uppercase;color:rgba(238,242,255,.4);padding:0;transition:.25s}
   .brief-back:hover{color:var(--cold)}
-  .brief-sum{position:absolute;left:0;right:0;bottom:66px;list-style:none;display:flex;flex-wrap:wrap;
-    justify-content:center;gap:7px;padding:0 clamp(22px,4vw,40px)}
+  /* The running summary was absolutely positioned at bottom:66px, so it
+     reserved no space. Once the option list grew past four or five pills the
+     centred stage ran straight through it and the answers-so-far chips landed
+     on top of the live options (visible from step 06 onward). It sits in the
+     flow under the stage now, so the two can never occupy the same band. */
+  .brief-sum{position:static;margin:26px auto 0;list-style:none;display:flex;flex-wrap:wrap;
+    justify-content:center;gap:7px;padding:0;max-width:640px;width:100%}
   .brief-sum li{font-family:'Outfit',sans-serif;font-size:10px;letter-spacing:.05em;
     border:1px solid rgba(142,162,255,.3);border-radius:100px;padding:4px 11px;
     color:rgba(238,242,255,.55);animation:ctIn .5s cubic-bezier(.16,1,.3,1) both}
-  @media(max-width:980px){.brief-ui{padding:90px 22px 90px}.bf-opts{gap:7px}}
+  /* keeps the exit-pill clearance; a flat top value here re-created the
+     overlap the calc above exists to prevent */
+  @media(max-width:980px){.brief-ui{padding:var(--head-clear) 22px 104px}.bf-opts{gap:7px}}
   @media (prefers-reduced-motion:reduce){
     .sp-orb,.bf-dots i,.bf-q .car,.brief-sum li{animation:none}
     .brief-prog span{transition:none}
@@ -1948,7 +1996,7 @@
   /* ---------- tablet portrait and below ---------- */
   @media(max-width:900px){
     .conv-foot{flex-wrap:wrap;gap:14px}
-    .wf-ribbon{gap:26px}
+    .wf-ribbon{gap:26px}.wf-ribbon img{height:22px}
     /* tap targets: these are 22px links today */
     .ct-socials a,.cf-socials a,.cf-nav a,.ct-link,
     .brief-exit,.sx-back,.end-back,.brief-back,.ct-mail{
@@ -1971,9 +2019,9 @@
     .vband-2{grid-template-columns:1fr}
     .sd-panel .vshot{height:auto;max-height:40vh}
     .railcard{flex:0 0 84vw}
-    .brief-ui{padding:88px 18px 96px}
+    .brief-ui{padding:var(--head-clear) 18px 110px}
     .brief-foot{bottom:26px;padding:0 18px}
-    .brief-sum{bottom:58px;padding:0 18px}
+    .brief-sum{padding:0}
     .ct-sec{padding:88px 18px 48px}
     .accred{gap:14px}
     .acc-real .adg{height:28px}
@@ -2086,18 +2134,22 @@
     display:inline-flex;align-items:baseline;gap:6px;
     padding:14px 17px 15px;border:0;background:none;cursor:pointer;
     font-family:'Outfit',sans-serif;font-size:14px;font-weight:300;letter-spacing:0;
-    text-transform:none;color:var(--cream-dim);transition:color .28s cubic-bezier(.16,1,.3,1)}
+    /* These used the CREAM tokens - ink #0b0d12 on the grid's #05060c - so the
+       selected filter measured 1.04:1 and simply could not be seen, and the
+       unselected ones sat at 3.06:1. #workGrid declares its own dark-theme
+       tokens; use those. */
+    text-transform:none;color:var(--faint);transition:color .28s cubic-bezier(.16,1,.3,1)}
   #workGrid .disc-row .tf .tf-n{font-size:10px;font-weight:400;color:#b8bccc;
     transition:color .28s;font-variant-numeric:tabular-nums}
   /* the rule under the row is the track; the active tag lights its own segment */
   #workGrid .disc-row .tf::after{content:"";position:absolute;left:12px;right:12px;bottom:0;
     height:1px;background:var(--indigo);transform:scaleX(0);transform-origin:center;
     transition:transform .4s cubic-bezier(.16,1,.3,1)}
-  #workGrid .disc-row .tf:hover{color:var(--cream-ink)}
+  #workGrid .disc-row .tf:hover{color:var(--ink)}
   #workGrid .disc-row .tf:hover .tf-n{color:var(--indigo)}
   #workGrid .disc-row .tf:hover::after{transform:scaleX(.4)}
-  #workGrid .disc-row .tf.on{color:var(--cream-ink);font-weight:500}
-  #workGrid .disc-row .tf.on .tf-n{color:var(--indigo)}
+  #workGrid .disc-row .tf.on{color:var(--cold);font-weight:500}
+  #workGrid .disc-row .tf.on .tf-n{color:var(--cold)}
   #workGrid .disc-row .tf.on::after{transform:scaleX(1)}
   #workGrid .disc-row .tf:focus-visible{outline:2px solid var(--indigo);outline-offset:-4px}
   #workGrid .tag-nav{flex:none;width:26px;border:0;background:none;color:var(--cream-dim);
@@ -2413,3 +2465,56 @@ p, li, dd, dt, .meta-v { text-wrap: pretty; }
 }
 .reel-media.is-live .reel-poster{ opacity:0; pointer-events:none; }
 .reel-media .reel-embed{ position:absolute; inset:0; width:100%; height:100%; border:0; }
+
+/* ---------- human check (assets/js/forms.js) ---------- */
+/* Shared by the contact form, the brief intake and the collective
+   application. Deliberately plain text rather than a warped image so a
+   screen reader can read the question out. */
+.il-cap{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin-top:4px}
+.il-cap-hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none}
+.il-cap-lab{display:flex!important;flex-direction:row!important;align-items:center;gap:10px;
+  font-family:'Outfit',sans-serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+  color:rgba(238,242,255,.44);margin:0}
+.il-cap-q{white-space:nowrap}
+.il-cap-in{width:74px;min-height:44px;font-family:'Outfit',sans-serif;font-size:15px;font-weight:300;
+  color:#eef1f8;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.15);
+  padding:10px 12px;outline:none;text-align:center;transition:.25s}
+.il-cap-in:focus{border-color:var(--cold);background:rgba(142,162,255,.1)}
+.il-cap-new{background:none;border:0;padding:6px 0;cursor:pointer;font-family:'Outfit',sans-serif;
+  font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(238,242,255,.34);
+  transition:color .25s}
+.il-cap-new:hover,.il-cap-new:focus-visible{color:var(--cold)}
+/* on the cream panels the dark-on-light palette applies instead */
+.light .il-cap-lab,.cream .il-cap-lab{color:var(--cream-dim)}
+.light .il-cap-in,.cream .il-cap-in{color:var(--cream-ink);background:rgba(11,13,18,.04);
+  border-color:var(--cream-line)}
+.light .il-cap-new,.cream .il-cap-new{color:var(--cream-dim)}
+@media(max-width:520px){.il-cap-lab{flex-wrap:wrap}.il-cap-q{white-space:normal}}
+
+/* ---------- Collective application (panel 09) ---------- */
+/* Mirrors .ct-direct so the two forms on the site read as one system. */
+.cl-apply{margin:34px auto 0;display:flex;flex-direction:column;gap:14px;max-width:640px;text-align:left}
+.cl-row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.cl-apply label{display:flex;flex-direction:column;gap:7px;font-family:'Outfit',sans-serif;
+  font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint)}
+.cl-apply input,.cl-apply textarea,.cl-apply select{font-family:'Outfit',sans-serif;font-size:15px;
+  font-weight:300;color:var(--ink);background:rgba(255,255,255,.03);border:1px solid var(--line);
+  padding:12px 14px;outline:none;transition:.25s;text-transform:none;letter-spacing:0;
+  border-radius:0;-webkit-appearance:none;appearance:none;min-height:48px}
+/* the native arrow disappears with appearance:none, so it is drawn back in */
+.cl-apply select{background-image:linear-gradient(45deg,transparent 50%,rgba(238,242,255,.45) 50%),
+  linear-gradient(135deg,rgba(238,242,255,.45) 50%,transparent 50%);
+  background-position:calc(100% - 19px) 21px,calc(100% - 13px) 21px;
+  background-size:6px 6px,6px 6px;background-repeat:no-repeat;padding-right:38px;cursor:pointer}
+.cl-apply select option{background:#0b0d12;color:#eef1f8}
+.cl-apply textarea{resize:vertical;min-height:88px;line-height:1.55}
+.cl-apply input:focus,.cl-apply textarea:focus,.cl-apply select:focus{
+  border-color:var(--cold);background:rgba(142,162,255,.06)}
+.cl-actions{margin-top:6px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.cl-send{border:0;cursor:pointer;font-family:'Outfit',sans-serif;min-height:48px}
+.cl-hint{font-size:12px;font-weight:300;color:var(--faint);max-width:300px;line-height:1.5}
+.cl-done{margin:34px auto 0;max-width:560px;text-align:left}
+.cl-done p{margin-top:12px;font-size:15px;font-weight:300;line-height:1.7;color:var(--dim)}
+/* the intake link and the back link stay a row of quiet text under the form */
+.sd-end .end-cta{margin-top:34px}
+@media(max-width:760px){.cl-row2{grid-template-columns:1fr}}

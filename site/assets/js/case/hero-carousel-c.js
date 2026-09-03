@@ -25,12 +25,30 @@
     return b;
   });
 
+  /* Same fix as hero-carousel.js: the track carries overflow:hidden on the
+     phone and tablet layers, so translating the track carried its own clip box
+     away and the slide scrolled to was clipped out of existence. Move the
+     slides instead and the clipper stays where it is. */
+  (function () {
+    const st = document.createElement('style');
+    st.textContent =
+      '#hcTrack{transform:none !important;transition:none !important}' +
+      '#hcTrack > .hc-slide{transform:translateX(var(--hc-x,0px));' +
+      'transition:transform .9s cubic-bezier(.72,0,.18,1)}' +
+      '#hcTrack.no-anim > .hc-slide{transition:none}' +
+      '@media (prefers-reduced-motion:reduce){#hcTrack > .hc-slide{transition:none}}';
+    document.head.appendChild(st);
+  })();
+
   function go(n) {
     cur = ((n % N) + N) % N;
     const vis = VIS();
     const max = Math.max(0, N - vis);
     const shift = Math.min(cur, max);
-    track.style.transform = `translateX(calc(-${shift} * (100% / ${vis})))`;
+    /* was translateX(calc(-shift * (100% / vis))) on the track, where 100%
+       resolved against the track's own width. The same distance in pixels,
+       applied to the slides. */
+    track.style.setProperty('--hc-x', (-shift * (track.clientWidth / vis)) + 'px');
     slides.forEach((s, i) => s.classList.toggle('is-active', i === cur));
     nowEl.textContent = String(cur + 1).padStart(2, '0');
     const d = slides[cur].dataset;

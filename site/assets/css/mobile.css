@@ -215,7 +215,14 @@ html[data-touch] .il-burger { min-height: 44px; min-width: 44px; justify-content
 /* Round controls need BOTH floors. A 34px arrow with min-height:44px alone
    becomes a 34×44 oval — the "stretched icon" on the case carousels. */
 html[data-touch] [class*="arrow"],
-html[data-touch] [class*="-nav"]:not(nav):not([class*="rail"]),
+/* This matched ANY element whose class contains "-nav", so aspect-ratio:1/1
+   was landing on layout rows as well as round buttons: .brief-nav (a
+   full-width button row) was forced to 500x500, which is what stranded
+   "start again" at the bottom of an empty band on the brief receipt, and
+   the decorative .scr-nav inside the business-sector mockup was blown up
+   from 79x3 to 86x86. The floor is for controls, so it now asks for one. */
+html[data-touch] a[class*="-nav"]:not([class*="rail"]),
+html[data-touch] button[class*="-nav"]:not([class*="rail"]),
 html[data-touch] .hc-nav,
 html[data-touch] .fplay,
 html[data-touch] [class*="round"] {

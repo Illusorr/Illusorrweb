@@ -181,8 +181,14 @@
       loadP = Promise.resolve(null);
       return loadP;
     }
-    loadP = fetch(STATE_FILE)
-      .then((r) => (r.ok ? r.json() : null))
+    // The sidecar is written through the authoring bridge (window.omelette)
+    // and is never deployed, so on the live site this fetch could only ever
+    // 404 - which it did, once per page, on all 29 pages that load this
+    // file. Skip the request entirely when the bridge is absent: the
+    // resolved state is identical to the 404 path it replaces.
+    const authoring = !!(window.omelette && window.omelette.writeFile);
+    loadP = (authoring ? fetch(STATE_FILE) : Promise.resolve(null))
+      .then((r) => (r && r.ok ? r.json() : null))
       .then((j) => {
         // Merge: sidecar loses to any in-memory change that raced ahead of
         // the fetch (drop or clear) so neither is clobbered by hydration.

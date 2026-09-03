@@ -3,25 +3,25 @@
    assets/fonts/licences); PP Monument Extended is commercially licensed.
    @font-face costs nothing until a family is actually used, so every case page
    can link this one file. */
-@font-face { font-family:'Outfit'; font-style:normal; font-weight:100 900; font-display:swap;
-  src:url("../../fonts/outfit-variable.woff") format("woff"); }
-@font-face { font-family:'PP Monument Extended'; font-weight:900; font-style:normal; font-display:swap;
-  src:url("../../projects/shared/fonts/PPMonumentExtended-Black.woff2") format("woff2"), url("../../projects/shared/fonts/PPMonumentExtended-Black.otf") format("opentype"); }
-@font-face { font-family:'Squaresharps'; font-weight:400; font-style:normal; font-display:swap;
-  src:url("../../fonts/squaresharps-400.woff") format("woff"),
-      url("../../projects/shared/fonts/Squaresharps-v2.woff2") format("woff2"), url("../../projects/shared/fonts/Squaresharps-v2.ttf") format("truetype"); }
+@font-face{ font-family:'Outfit'; font-style:normal; font-weight:100 900; font-display:swap;
+  src: url("../../fonts/outfit-variable.woff2") format("woff2"); }
+@font-face{ font-family:'PP Monument Extended'; font-weight:900; font-style:normal; font-display:swap;
+  src: url("../../projects/shared/fonts/PPMonumentExtended-Black.woff2") format("woff2"); }
+@font-face{ font-family:'Squaresharps'; font-weight:400; font-style:normal; font-display:swap;
+  src: url("../../fonts/squaresharps-400.woff2") format("woff2"),
+       url("../../projects/shared/fonts/Squaresharps-v2.woff2") format("woff2"); }
 
 /* Cormorant Garamond — variable wght, covers the 500/600 the pages ask for */
-@font-face { font-family:'Cormorant Garamond'; font-style:normal; font-weight:300 700; font-display:swap;
-  src:url("../../fonts/CormorantGaramond-Variable.woff2") format("woff2"), url("../../fonts/CormorantGaramond-Variable.ttf") format("truetype"); }
-@font-face { font-family:'Cormorant Garamond'; font-style:italic; font-weight:300 700; font-display:swap;
-  src:url("../../fonts/CormorantGaramond-Italic-Variable.woff2") format("woff2"), url("../../fonts/CormorantGaramond-Italic-Variable.ttf") format("truetype"); }
+@font-face{ font-family:'Cormorant Garamond'; font-style:normal; font-weight:300 700; font-display:swap;
+  src: url("../../fonts/CormorantGaramond-Variable.woff2") format("woff2"); }
+@font-face{ font-family:'Cormorant Garamond'; font-style:italic; font-weight:300 700; font-display:swap;
+  src: url("../../fonts/CormorantGaramond-Italic-Variable.woff2") format("woff2"); }
 
 /* Space Mono — metagenus only */
-@font-face { font-family:'Space Mono'; font-style:normal; font-weight:400; font-display:swap;
-  src:url("../../fonts/SpaceMono-Regular.woff2") format("woff2"), url("../../fonts/SpaceMono-Regular.ttf") format("truetype"); }
-@font-face { font-family:'Space Mono'; font-style:normal; font-weight:700; font-display:swap;
-  src:url("../../fonts/SpaceMono-Bold.woff2") format("woff2"), url("../../fonts/SpaceMono-Bold.ttf") format("truetype"); }
+@font-face{ font-family:'Space Mono'; font-style:normal; font-weight:400; font-display:swap;
+  src: url("../../fonts/SpaceMono-Regular.woff2") format("woff2"); }
+@font-face{ font-family:'Space Mono'; font-style:normal; font-weight:700; font-display:swap;
+  src: url("../../fonts/SpaceMono-Bold.woff2") format("woff2"); }
 
 /* ── Orphan control ──────────────────────────────────────────────────
    House rule: no word is left alone on the last line.
@@ -37,3 +37,26 @@ h1, h2, h3, h4, h5, h6,
   text-wrap: balance;
 }
 p, li, dd, dt, .meta-v { text-wrap: pretty; }
+
+/* ── Straplines need air ──────────────────────────────────────────────────
+   A display heading that stacks a name over an italic strapline had them
+   flush: measured 0px between "Koton Lookbook Russia" and "a lookbook, shot
+   without a set." in every next-project teaser, at 390, 791 and 1440 alike.
+   The two lines read as one run. Any block sibling inside these headings now
+   carries its own separation, expressed in em so it tracks the type size. */
+.next-inner h3 > span + span,
+.looks-head h2 > span + span,
+.module-title > span + span,
+.hero-title .ln-ital,
+.hero-title > span + span,
+.hero-title > .ln > span + span {
+  display: block;
+  margin-top: .28em;
+}
+
+/* ── Credits block ────────────────────────────────────────────────────────
+   The credits grid shipped with gap:0 on all 30 case studies, so the "08
+   Credits" heading sat flush against the top edge of the credit list at every
+   width. The pages set display:grid but never a gap, so one declaration here
+   gives every case study the same separation. */
+.credits { gap: clamp(16px, 2.2vw, 30px); }

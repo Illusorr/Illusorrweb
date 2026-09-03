@@ -565,11 +565,13 @@ html[data-touch] .hero-title .ln {
   font-size: 30px !important;
   line-height: 1.04 !important;
 }
-html[data-touch] .hero-sub {
+html[data-touch] .hero .hero-sub {
   display: block;
   font-size: 17px !important;
   line-height: 1.24 !important;
   color: rgba(255, 255, 255, .78) !important;
+  /* the strapline sat flush against the name above it */
+  margin-top: .34em !important;
 }
 html[data-touch] .hero-lede {
   font-size: 16px !important;
@@ -697,7 +699,7 @@ html[data-touch]:not([data-3d-live]) .ah-tag { display: none !important; }
 
   /* type scales with the measure, not with the device */
   html[data-touch] .hero-title .ln { font-size: 54px !important; }
-  html[data-touch] .hero-sub { font-size: 24px !important; }
+  html[data-touch] .hero .hero-sub { font-size: 24px !important; margin-top: .34em !important; }
   html[data-touch] .st,
   html[data-touch] .close-t { font-size: 44px !important; margin-bottom: 22px !important; }
   html[data-touch] .hero-lede { font-size: 18px !important; max-width: 46ch !important; }

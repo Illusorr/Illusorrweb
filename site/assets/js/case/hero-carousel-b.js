@@ -33,11 +33,26 @@
     page = Math.min(page, pages - 1);
   }
 
+  /* Same fix as hero-carousel.js: the track carries overflow:hidden on the
+     phone and tablet layers, so translating the track carried its own clip box
+     away and the slide scrolled to was clipped out of existence. Move the
+     slides instead and the clipper stays where it is. */
+  (function () {
+    const st = document.createElement('style');
+    st.textContent =
+      '#hcTrack{transform:none !important;transition:none !important}' +
+      '#hcTrack > .hc-slide{transform:translateX(var(--hc-x,0px));' +
+      'transition:transform .9s cubic-bezier(.72,0,.18,1)}' +
+      '#hcTrack.no-anim > .hc-slide{transition:none}' +
+      '@media (prefers-reduced-motion:reduce){#hcTrack > .hc-slide{transition:none}}';
+    document.head.appendChild(st);
+  })();
+
   function render() {
     const firstIdx = Math.min(page * visible, N - 1);
     const maxScroll = Math.max(0, track.scrollWidth - root.clientWidth);
     const x = Math.min(slides[firstIdx].offsetLeft, maxScroll);
-    track.style.transform = `translateX(${-x}px)`;
+    track.style.setProperty('--hc-x', (-x) + 'px');
     slides.forEach((s, i) => s.classList.toggle('is-active', i >= firstIdx && i < firstIdx + visible));
     const s = slides[firstIdx];
     nowEl.textContent = String(page + 1).padStart(2, '0');
@@ -60,7 +75,7 @@
 
   let down = false, sx = 0, dx = 0, baseX = 0;
   track.addEventListener('pointerdown', (e) => { down = true; sx = e.clientX; dx = 0; const firstIdx = Math.min(page * visible, N - 1); baseX = Math.min(slides[firstIdx].offsetLeft, Math.max(0, track.scrollWidth - root.clientWidth)); track.classList.add('no-anim'); track.setPointerCapture?.(e.pointerId); });
-  track.addEventListener('pointermove', (e) => { if (!down) return; dx = e.clientX - sx; track.style.transform = `translateX(${-(baseX - dx)}px)`; });
+  track.addEventListener('pointermove', (e) => { if (!down) return; dx = e.clientX - sx; track.style.setProperty('--hc-x', (-(baseX - dx)) + 'px'); });
   function endDrag() { if (!down) return; down = false; track.classList.remove('no-anim'); const th = root.clientWidth * 0.12; if (dx < -th) go(page + 1, true); else if (dx > th) go(page - 1, true); else render(); }
   track.addEventListener('pointerup', endDrag);
   track.addEventListener('pointercancel', endDrag);

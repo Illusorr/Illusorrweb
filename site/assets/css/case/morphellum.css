@@ -1005,10 +1005,10 @@ three-d-stage:not(:defined){visibility:hidden}
 
 
 /* was inline #cm-fonts */
-@font-face { font-family:'PP Monument Extended'; font-weight:900; font-style:normal; font-display:swap;
-    src:url("../../projects/shared/fonts/PPMonumentExtended-Black.woff2") format("woff2"), url("../../projects/shared/fonts/PPMonumentExtended-Black.otf") format("opentype"); }
-  @font-face { font-family:'Squaresharps'; font-weight:400; font-style:normal; font-display:swap;
-    src:url("../../projects/shared/fonts/Squaresharps-v2.woff2") format("woff2"), url("../../projects/shared/fonts/Squaresharps-v2.ttf") format("truetype"); }
+@font-face{ font-family:'PP Monument Extended'; font-weight:900; font-style:normal; font-display:swap;
+    src: url("../../projects/shared/fonts/PPMonumentExtended-Black.woff2") format("woff2"); }
+  @font-face{ font-family:'Squaresharps'; font-weight:400; font-style:normal; font-display:swap;
+    src: url("../../projects/shared/fonts/Squaresharps-v2.woff2") format("woff2"); }
 
 /* was inline #cm-type */
 /* Italic / light display accents stay in Outfit (Monument file is Black weight only) */
@@ -1083,12 +1083,17 @@ three-d-stage:not(:defined){visibility:hidden}
     font-size:11px !important; letter-spacing:0.2em !important;
     text-transform:uppercase; color:var(--ink-soft); font-weight:400 !important;
   }
+  /* The index number was var(--ink-faint) - 14% opacity, measured 1.14:1
+     against the page, effectively invisible at every breakpoint. It now takes
+     the page's own accent (fabrika #EE403D, denim #3B5BDB, barbie #FF1493...)
+     and a heavier weight. --ink-soft is the fallback for the handful of pages
+     that declare no accent. */
   .section-num .num{
     display:inline !important;
     font-family:'Outfit',system-ui,sans-serif !important;
     font-size:11px !important; font-weight:400 !important;
     letter-spacing:0.2em !important; line-height:1 !important;
-    color:var(--ink-faint); opacity:1; margin:0 !important;
+    color:var(--accent, var(--ink-soft)) !important; opacity:1; margin:0 !important; font-weight:600 !important;
     -webkit-text-fill-color:currentColor;
   }
   /* Visual band between sections, edge to edge. */
