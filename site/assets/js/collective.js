@@ -33,7 +33,7 @@ const TERRITORIES = [
 ];
 
 const DISCIPLINES = [
-  { name: '3D artists',          tools: 'Maya · ZBrush · Substance',        note: 'Asset build, look development and the shading that has to survive engine import.' },
+  { name: '3D artists',          tools: 'Blender · Houdini · AI',           note: 'Asset build, look development and the shading that has to survive engine import.' },
   { name: 'Environment artists', tools: 'Unreal · Houdini · Megascans',     note: 'Worlds at scale, built procedurally so a set can be re-dressed rather than remade.' },
   { name: 'Character artists',   tools: 'ZBrush · Marvelous · Blender',     note: 'Anatomy, garment simulation and the rigs that let a character be reused across a run.' },
   { name: 'Game developers',     tools: 'Unreal · Unity · C++',             note: 'Playable builds, gameplay systems and the performance budget that keeps them shipping.' },
@@ -797,3 +797,55 @@ function buildBoard() {
 function boot() { buildMap(); buildConstellation(); buildBoard(); }
 if (document.readyState === 'loading') addEventListener('DOMContentLoaded', boot);
 else boot();
+
+/* ---------- application form (panel 09) ----------
+   The Collective used to end on a link out to the brief intake, so there was
+   no way to apply from the page. Delivery, honeypot and the human check all
+   come from assets/js/forms.js. */
+(function () {
+  var f = document.getElementById('clApply'); if (!f) return;
+  var err = document.getElementById('clErr'),
+      done = document.getElementById('clDone'),
+      msg = document.getElementById('clMsg'),
+      btn = f.querySelector('button[type=submit]');
+
+  var cap = window.ILForm ? new window.ILForm.Challenge() : null;
+  if (cap) f.insertBefore(cap.el(), f.querySelector('.cl-actions'));
+
+  function fail(t) { err.textContent = t; err.hidden = false; }
+
+  f.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var d = new FormData(f);
+    var name = (d.get('name') || '').trim(),
+        mail = (d.get('email') || '').trim(),
+        disc = (d.get('discipline') || '').trim(),
+        links = (d.get('links') || '').trim();
+
+    if (!name) return fail('Please add your name.');
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail))
+      return fail('That email address does not look right.');
+    if (!disc) return fail('Please pick the discipline closest to your work.');
+    /* the portfolio is the application - we look at craft, not credentials */
+    if (!links) return fail('Please add a link to your work: portfolio, reel or profile.');
+    if (cap) { var bad = cap.check(); if (bad) return fail(bad); }
+    err.hidden = true;
+
+    btn.disabled = true; btn.textContent = 'Sending…';
+    function received() {
+      f.hidden = true; done.hidden = false;
+      msg.textContent = name.split(' ')[0] + ', that is with the studio. We read every ' +
+        'application and reply within two working days. If there is an open commission ' +
+        'in ' + disc.toLowerCase() + ', we will say so.';
+    }
+    if (!window.ILForm) { received(); return; }
+    window.ILForm.send('collective', {
+      name: name, email: mail, discipline: disc,
+      location: (d.get('location') || '').trim(), links: links,
+      level: (d.get('level') || '').trim(), msg: (d.get('msg') || '').trim()
+    }).then(received).catch(function () {
+      btn.disabled = false; btn.textContent = 'Send application ↗';
+      fail('That did not go through. Please email hello@illusorr.com directly.');
+    });
+  });
+})();

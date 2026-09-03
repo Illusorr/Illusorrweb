@@ -4,6 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Start a Brief · ILLUSORR</title>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Start a Brief","url":"https://illusorr.com/brief.html","isPartOf":{"@type":"WebSite","name":"ILLUSORR","url":"https://illusorr.com/"},"publisher":{"@type":"Organization","name":"ILLUSORR","url":"https://illusorr.com/"},"description":"A guided brief: tell the studio what you need. New project, sector pricing, licensing from the Lab, or joining the Collective."}</script>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 <meta name="description" content="A guided brief: tell the studio what you need. New project, sector pricing, licensing from the Lab, or joining the Collective.">
 <link rel="canonical" href="https://illusorr.com/brief.html">
 <meta name="theme-color" content="#05060a">
@@ -94,6 +100,18 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
 
 <script src="assets/js/nav.js" defer></script>
 <script src="assets/js/orphans.js" defer></script>
+<!-- field declaration for Netlify Forms; the intake posts through
+     assets/js/forms.js, so nothing here is ever shown -->
+<form name="brief" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input type="text" name="intent"><input type="text" name="detail">
+  <input type="text" name="where"><input type="text" name="scale">
+  <input type="text" name="timeline"><input type="text" name="budget">
+  <input type="text" name="level"><input type="text" name="links">
+  <input type="text" name="name"><input type="email" name="email">
+  <input type="text" name="org"><textarea name="msg"></textarea>
+  <input type="text" name="page"><input type="text" name="bot-field">
+</form>
+<script src="assets/js/forms.js" defer></script>
 <script src="assets/js/brief.js" defer></script>
 <script src="assets/js/site-footer.js" defer></script>
 <script src="assets/js/to-top.js" defer></script>

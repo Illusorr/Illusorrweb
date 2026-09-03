@@ -168,7 +168,7 @@
       el.addEventListener('input',function(){ data[key]=el.value; drawSum(); });
       l.appendChild(el); return l;
     }
-    var lastAnswer='';
+    var lastAnswer='', cap=null;
     function render(){
       var S=flow(), k=S[step]; err.hidden=true; back.hidden=step===0;
       cohT=Math.min(1,step/(S.length-1)); tintT=TINT[data.intent]||TINT.other; pulse=1;
@@ -176,8 +176,12 @@
       stepNo.textContent=String(step+1).padStart(2,'0')+' / '+String(S.length).padStart(2,'0');
       stage.innerHTML=''; nav.style.display='none';
       var q=document.createElement('div'); q.className='bf-q'; stage.appendChild(q);
-      var ack=lastAnswer?lastAnswer+'. ':'';
-      function body(fn){ ask(q,ack+fn.q,function(){ stage.appendChild(fn.el()); measure(); }); }
+      /* The previous answer used to be prefixed to the next question, so the
+         screen read "Content production. Where does the work live?" - it
+         looked like the form was repeating your answer back at you. The
+         question now stands on its own; the running summary below already
+         shows what has been picked. */
+      function body(fn){ ask(q,fn.q,function(){ stage.appendChild(fn.el()); measure(); }); }
 
       if(k==='intent'){ lastAnswer='';
         body({q:'What do you need?',el:function(){ return opts(INTENTS.map(function(x){return x[1]}),function(v){
@@ -205,6 +209,10 @@
         body({q:'Anything we should know?',el:function(){
           var f=document.createElement('div'); f.className='bf-fields';
           f.appendChild(fld('Message (optional)','msg','area','What are you making, and by when?'));
+          /* the human check sits on the last step only, so the flow is not
+             interrupted while someone is still choosing options */
+          cap = window.ILForm ? new window.ILForm.Challenge() : null;
+          if(cap) f.appendChild(cap.el());
           nav.style.display=''; next.textContent='Send brief ↗'; hint.textContent=PROMISE[data.intent]||'';
           return f; }});
       }
@@ -219,15 +227,39 @@
         lastAnswer='Thank you, '+data.name.split(' ')[0];
       } else if(k==='links'){ lastAnswer=''; }
       if(step<S.length-1){ step++; render(); return; }
-      gen++; cohT=1; pulse=1.7; bar.style.width='100%'; stepNo.textContent='Sent';
-      nav.style.display='none'; back.hidden=true; err.hidden=true; orb.classList.remove('think');
-      stage.innerHTML='<div class="bf-q">Brief received.</div>'+
-        '<p class="ct-hint" style="margin:16px auto 0;max-width:460px;font-size:15px;color:rgba(238,242,255,.7)">'+
-        data.name.split(' ')[0]+', that is with the studio. '+(PROMISE[data.intent]||'')+'</p>'+
-        '<p class="ct-hint" style="margin:12px auto 0;max-width:460px">This is a wireframe, so nothing was sent.</p>'+
-        '<div class="brief-nav"><button type="button" class="brief-back" id="bfAgain">Start again →</button></div>';
-      measure();
-      document.getElementById('bfAgain').addEventListener('click',function(){ reset(); lastAnswer=''; render(); });
+
+      /* last step: human check, then a real POST. This used to stop here and
+         say "this is a wireframe, so nothing was sent". */
+      if(cap){ var bad=cap.check(); if(bad){ err.textContent=bad; err.hidden=false; return; } }
+      err.hidden=true;
+      next.disabled=true; next.textContent='Sending…';
+
+      function receipt(){
+        gen++; cohT=1; pulse=1.7; bar.style.width='100%'; stepNo.textContent='Sent';
+        nav.style.display='none'; back.hidden=true; err.hidden=true; orb.classList.remove('think');
+        /* the stage carries a min-height so the layout does not jump between
+           questions. The receipt is much shorter than any question, so that
+           floor left a dead band above "Start again" - it is dropped here. */
+        stage.classList.add('bf-done');
+        stage.innerHTML='<div class="bf-q">Brief received.</div>'+
+          '<p class="ct-hint" style="margin:16px auto 0;max-width:460px;font-size:15px;color:rgba(238,242,255,.7)">'+
+          data.name.split(' ')[0]+', that is with the studio. '+(PROMISE[data.intent]||'')+'</p>'+
+          '<div class="brief-nav"><button type="button" class="brief-back" id="bfAgain">Start again →</button></div>';
+        measure();
+        document.getElementById('bfAgain').addEventListener('click',function(){
+          stage.classList.remove('bf-done');
+          next.disabled=false; cap=null; reset(); lastAnswer=''; render(); });
+      }
+      if(!window.ILForm){ receipt(); return; }
+      window.ILForm.send('brief',{
+        intent:LBL[data.intent]||data.intent, detail:data.detail, where:data.where,
+        scale:data.scale, timeline:data.timeline, budget:data.budget, level:data.level,
+        links:data.links, name:data.name, email:data.email, org:data.org, msg:data.msg
+      }).then(receipt).catch(function(){
+        next.disabled=false; next.textContent='Send brief ↗';
+        err.textContent='That did not go through. Please email hello@illusorr.com directly.';
+        err.hidden=false;
+      });
     }
     next.addEventListener('click',advance);
     back.addEventListener('click',function(){ if(step>0){ step--; lastAnswer=''; render(); } });

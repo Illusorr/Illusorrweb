@@ -4,6 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contact · Start a Project · ILLUSORR</title>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ContactPage","name":"Contact","url":"https://illusorr.com/contact.html","isPartOf":{"@type":"WebSite","name":"ILLUSORR","url":"https://illusorr.com/"},"publisher":{"@type":"Organization","name":"ILLUSORR","url":"https://illusorr.com/"},"description":"Start a project with ILLUSORR. Direct enquiries answered within two working days. Yas Creative Hub, Abu Dhabi. hello@illusorr.com","mainEntity":{"@type":"Organization","name":"ILLUSORR","url":"https://illusorr.com/","logo":"https://illusorr.com/icon-512.png","email":"hello@illusorr.com","address":{"@type":"PostalAddress","streetAddress":"Yas Creative Hub","addressLocality":"Abu Dhabi","addressCountry":"AE"},"contactPoint":{"@type":"ContactPoint","contactType":"customer support","email":"hello@illusorr.com","areaServed":"Worldwide","availableLanguage":["en"]},"sameAs":["https://www.instagram.com/illusorr/","https://www.linkedin.com/company/illusorr/","https://www.youtube.com/illusorr"]}}</script>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 <meta name="description" content="Start a project with ILLUSORR. Direct enquiries answered within two working days. Yas Creative Hub, Abu Dhabi. hello@illusorr.com">
 <link rel="canonical" href="https://illusorr.com/contact.html">
 <meta name="theme-color" content="#05060a">
@@ -103,7 +109,7 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
           <span class="ct-v">Applications open and rolling.<br><a class="ct-link" href="collective.html">How it works →</a></span></div>
         <div class="accred ct-accred"><span class="acc-lbl">In partnership with</span><span class="acc-mark acc-real"><svg class="adg" preserveAspectRatio="xMidYMid meet" viewBox="0 0 168 40" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#adgPath"></use></svg></span>
           <div class="acc-txt"><b>Abu Dhabi Gaming</b><span>Department of Culture and Tourism, Abu Dhabi</span></div></div>
-        <div class="ct-socials"><a>Instagram</a><a>LinkedIn</a><a>Behance</a><a>Vimeo</a></div>
+        <div class="ct-socials"><a href="https://www.instagram.com/illusorr/" target="_blank" rel="noopener me">Instagram</a><a href="https://www.linkedin.com/company/illusorr/" target="_blank" rel="noopener me">LinkedIn</a><a href="https://www.youtube.com/illusorr" target="_blank" rel="noopener me">YouTube</a></div>
       </div>
     </div>
   </section>
@@ -113,6 +119,15 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
 
 <script src="assets/js/nav.js" defer></script>
 <script src="assets/js/orphans.js" defer></script>
+<!-- Netlify Forms detects forms in the static HTML at deploy time, so the
+     JS-driven enquiry above needs this declaration of its field names.
+     It is never shown; assets/js/forms.js does the actual POST. -->
+<form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input type="text" name="name"><input type="email" name="email">
+  <textarea name="msg"></textarea>
+  <input type="text" name="page"><input type="text" name="bot-field">
+</form>
+<script src="assets/js/forms.js" defer></script>
 <script src="assets/js/contact.js" defer></script>
 <script src="assets/js/components.js" defer></script>
 <script src="assets/js/site-footer.js" defer></script>

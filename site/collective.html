@@ -4,6 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Collective · Build With Us · ILLUSORR</title>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"The Collective","url":"https://illusorr.com/collective.html","isPartOf":{"@type":"WebSite","name":"ILLUSORR","url":"https://illusorr.com/"},"publisher":{"@type":"Organization","name":"ILLUSORR","url":"https://illusorr.com/"},"description":"The ILLUSORR Collective is an open talent pipeline: train in our tools, join the network, and ship real client work credited alongside the studio."}</script>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 <meta name="description" content="The ILLUSORR Collective is an open talent pipeline: train in our tools, join the network, and ship real client work credited alongside the studio.">
 <link rel="canonical" href="https://illusorr.com/collective.html">
 <meta name="theme-color" content="#05060a">
@@ -122,7 +128,55 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
       <div class="dk-lbl reveal">Join</div>
       <h2 class="mnt reveal">Apply to the Collective.</h2>
       <p class="reveal">Applications are open and rolling. Send work, tell us what you want to get good at, and we will tell you where you would fit.</p>
-      <div class="end-cta reveal"><a class="fakebtn" href="brief.html?intent=collective">Apply to the Collective ↗</a>
+
+      <!-- The page ended on a link out to the brief intake, so there was no way
+           to apply from the Collective itself. The application now lives here;
+           the longer intake is still offered underneath for anyone who wants
+           to talk about a project rather than join. -->
+      <form class="cl-apply reveal" id="clApply" novalidate>
+        <div class="cl-row2">
+          <label>Name<input type="text" name="name" autocomplete="name"></label>
+          <label>Email<input type="email" name="email" autocomplete="email"></label>
+        </div>
+        <div class="cl-row2">
+          <label>Discipline
+            <select name="discipline">
+              <option value="">Select one</option>
+              <option>3D artists</option>
+              <option>Environment artists</option>
+              <option>Character artists</option>
+              <option>Game developers</option>
+              <option>AI content creators</option>
+              <option>Motion designers</option>
+              <option>Technical artists</option>
+              <option>Web developers</option>
+              <option>Producers</option>
+              <option>Something else</option>
+            </select></label>
+          <label>Where are you based<input type="text" name="location" autocomplete="country-name" placeholder="City, country"></label>
+        </div>
+        <div class="cl-row2">
+          <label>Portfolio, reel or profile<input type="url" name="links" placeholder="https://"></label>
+          <label>Stage
+            <select name="level">
+              <option value="">Select one</option>
+              <option>Studying</option>
+              <option>Early career</option>
+              <option>Working professional</option>
+              <option>Senior or lead</option>
+            </select></label>
+        </div>
+        <label>What do you want to get good at?<textarea name="msg" rows="3" placeholder="The tools you use now, and where you want to be."></textarea></label>
+        <div class="cl-actions">
+          <button type="submit" class="fakebtn cl-send">Send application ↗</button>
+          <span class="cl-hint">We read every application and reply within two working days.</span>
+        </div>
+        <p class="ct-err" id="clErr" hidden></p>
+      </form>
+      <div class="cl-done" id="clDone" hidden><span class="dk-lbl">Application received</span>
+        <p id="clMsg"></p></div>
+
+      <div class="end-cta reveal"><a class="end-back" href="brief.html?intent=collective">Rather talk it through? Use the intake ↗</a>
       <a class="end-back" href="work.html">← See the work</a></div>
     </div>
     <span class="pnl-tag">09 / 09 &nbsp;·&nbsp; Collective</span>
@@ -130,7 +184,17 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
 </div></div>
 
 
-<script src="assets/js/collective.js?v=5" defer></script>
+<!-- field declaration for Netlify Forms; the POST is made by
+     assets/js/forms.js, so this block is never shown -->
+<form name="collective" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input type="text" name="name"><input type="email" name="email">
+  <input type="text" name="discipline"><input type="text" name="location">
+  <input type="url" name="links"><input type="text" name="level">
+  <textarea name="msg"></textarea>
+  <input type="text" name="page"><input type="text" name="bot-field">
+</form>
+<script src="assets/js/forms.js" defer></script>
+<script src="assets/js/collective.js?v=6" defer></script>
 <script src="assets/js/nav.js" defer></script>
 <script src="assets/js/orphans.js" defer></script>
 <script src="assets/js/components.js" defer></script>
