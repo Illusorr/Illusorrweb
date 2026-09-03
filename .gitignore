@@ -17,3 +17,8 @@ desktop.ini
 ~$*
 *.swp
 *.tmp
+
+# Review captures generated during audits. The originals are cheap to
+# regenerate and they add tens of MB per session to a repo that is already
+# large. screenshots/ itself stays tracked.
+screenshots/verify/
