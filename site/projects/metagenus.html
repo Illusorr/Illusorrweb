@@ -2188,7 +2188,7 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
         </div>
 
         <div class="av-figure" style="width: 716px; height: 846px; font-size: 200px; margin: -100px; padding: 0px">
-          <video id="avVid" src="../assets/projects/metagenus/clips/C1.webm" poster="../assets/projects/metagenus/avatars/BT-C1.webp" data-m-autoplay loop muted playsinline preload="metadata" aria-label="Selected Metagenus avatar"></video>
+          <video id="avVid" poster="../assets/projects/metagenus/avatars/BT-C1.webp" data-m-autoplay loop muted playsinline preload="metadata" aria-label="Selected Metagenus avatar"></video>
         </div>
 
         <div class="av-right">
@@ -2808,7 +2808,12 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
       ];
       // 9 avatars: C1-C4 common, E1-E3 epic, L1-L2 legendary.
       const CODES = ['C1','C2','C3','C4','E1','E2','E3','L1','L2'];
-      AVATARS.forEach((a, k) => { a.code = CODES[k]; a.bt = '../assets/projects/metagenus/avatars/BT-' + CODES[k] + '.webp'; a.vid = '../assets/projects/metagenus/clips/' + CODES[k] + '.webm'; });
+      /* The avatar clip autoplays on phones, so it is paid for before the
+         visitor does anything. At 1400x1720 into a 350x438 frame that is
+         nine times the pixels needed. Half-size alpha encodes live in
+         clips/m/ and are chosen on touch. */
+      const M3 = document.documentElement.hasAttribute('data-touch') ? 'm/' : '';
+      AVATARS.forEach((a, k) => { a.code = CODES[k]; a.bt = '../assets/projects/metagenus/avatars/BT-' + CODES[k] + '.webp'; a.vid = '../assets/projects/metagenus/clips/' + M3 + CODES[k] + '.webm'; });
       const CLASSNAME = { common:'Common Class', epic:'Epic Class', legendary:'Legendary Class' };
       const ICON_POS = { head:'50% 4%', torso:'50% 44%', limbs:'50% 92%', apparel:'50% 66%' };
       const $ = (id) => document.getElementById(id);
@@ -3020,12 +3025,12 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
      before it knows whether this visitor wants the scene. The gate below
      loads them in order: immediately on desktop, on tap on a phone. -->
 <template id="mgThreeLibs">
-  <script src="https://unpkg.com/three@0.128.0/build/three.min.js" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
-  <script src="https://unpkg.com/three@0.128.0/examples/js/loaders/DRACOLoader.js"></script>
-  <script src="https://unpkg.com/three@0.128.0/examples/js/environments/RoomEnvironment.js"></script>
-  <script src="https://unpkg.com/three@0.128.0/examples/js/libs/fflate.min.js"></script>
-  <script src="https://unpkg.com/three@0.128.0/examples/js/loaders/FBXLoader.js"></script>
+  <script src="../assets/vendor/three-0.128.0/three.min.js"></script>
+  <script src="../assets/vendor/three-0.128.0/GLTFLoader.js"></script>
+  <script src="../assets/vendor/three-0.128.0/DRACOLoader.js"></script>
+  <script src="../assets/vendor/three-0.128.0/RoomEnvironment.js"></script>
+  <script src="../assets/vendor/three-0.128.0/fflate.min.js"></script>
+  <script src="../assets/vendor/three-0.128.0/FBXLoader.js"></script>
 </template>
 <script>
   /* ─── 3D gate ───────────────────────────────────────────────────────
@@ -3304,7 +3309,7 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
     // Mixamo walk from the three.js Soldier model (CORS via jsDelivr),
     // applied rotation-only so it retargets onto this rig without shatter.
     function loadMixamoWalk(model, embedded) {
-      const url = 'https://cdn.jsdelivr.net/gh/mrdoob/three.js@r128/examples/models/gltf/Soldier.glb';
+      const url = '../assets/projects/metagenus/models/soldier.glb';
       function fallback() {
         if (embedded && embedded.length) {
           let best = embedded[0];

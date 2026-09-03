@@ -385,7 +385,7 @@ function buildMap() {
     gLbl.selectAll('g.swm-w').each(function () { this.classList.add('in'); });
   }
 
-  d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json')
+  d3.json('assets/vendor/data/world-atlas-countries-110m.json')
     .then(topo => {
       land = topojson.feature(topo, topo.objects.countries);
       drawn = true;

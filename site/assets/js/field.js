@@ -690,8 +690,17 @@ resize(); setMode(mode);
     draw(0);
   } else {
     const t0=performance.now(); let prev=0;
+    /* The field ran at 30fps for the whole length of the page and kept running
+       in a background tab: measured 18 draw calls a second whether or not the
+       canvas was anywhere near the viewport. It is the hero, so it only needs
+       to draw while it is actually on screen. */
+    let onScreen=true;
+    if('IntersectionObserver' in window)
+      new IntersectionObserver(function(es){ onScreen=es[0].isIntersecting; },
+        {rootMargin:'100px'}).observe(cv);
     (function loop(){
       requestAnimationFrame(loop);
+      if(!onScreen || document.hidden) return;
       const now=performance.now();
       if(now-prev<1000/30) return;
       prev=now; draw((now-t0)/1000);

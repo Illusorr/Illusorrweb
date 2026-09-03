@@ -301,6 +301,26 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
     font-family: 'Outfit', system-ui, sans-serif; font-weight: 400; font-size: clamp(18px, 1.45vw, 25px);
     line-height: 1.45; color: var(--ink); max-width: 46ch; margin: 0; text-wrap: pretty;
   }
+
+  /* Live-site brief. The desktop carousel used to embed a full working copy of
+     the client's homepage, 6.2 MB that the bundle then downloaded a second
+     time. A still plus a short brief and a link out says the same thing for
+     36 KB, and sends anyone who wants the real thing to the real thing. */
+  .aa-root .live-brief { display:grid; grid-template-columns:1fr auto; gap:clamp(20px,3vw,48px);
+    align-items:end; margin-top:clamp(28px,3.4vw,44px); padding:clamp(22px,2.6vw,32px) clamp(20px,4.6vw,64px) 0;
+    /* the carousel's .cover is deliberately full bleed, so this block has to
+       carry the page gutter itself or the copy runs into the window edge */
+    border-top:1px solid var(--ink-hair,rgba(255,255,255,.14)); }
+  .aa-root .live-brief p { font-family:'Outfit',system-ui,sans-serif; font-weight:400;
+    font-size:clamp(15px,1.15vw,18px); line-height:1.65; color:var(--ink-soft);
+    max-width:58ch; margin:0; text-wrap:pretty; }
+  .aa-root .live-brief .visit { display:inline-flex; align-items:center; gap:10px; white-space:nowrap;
+    font-family:'Outfit',system-ui,sans-serif; font-size:12px; letter-spacing:.14em;
+    text-transform:uppercase; text-decoration:none; color:var(--accent);
+    border:1px solid currentColor; border-radius:100px; padding:13px 22px; min-height:44px;
+    transition:background .25s,color .25s,gap .25s; }
+  .aa-root .live-brief .visit:hover { background:var(--accent); color:#04110c; gap:14px; }
+  @media(max-width:760px){ .aa-root .live-brief{ grid-template-columns:1fr; align-items:start } }
   .aa-root .body-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 4vw, 64px); margin-top: clamp(40px, 5vw, 64px); }
   .aa-root .body-grid p { font-family: 'Outfit', system-ui, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.7; color: var(--ink-soft); margin: 0; }
   .aa-root .body-grid p + p { margin-top: 18px; }
@@ -623,7 +643,7 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
     <div class="cover" style="padding: 0 0 clamp(60px, 8vw, 120px);">
       <div class="hero-carousel" data-m-shots="lap/assets/m-home.webp,lap/assets/m-about.webp,lap/assets/m-explore.webp,lap/assets/m-reserve.webp" id="heroCarousel" aria-roledescription="carousel" aria-label="Aquatic Architects desktop screens">
         <div class="hc-track" id="hcTrack">
-          <figure class="hc-slide is-active"><div class="hc-embed"><iframe src="lap/embeds/lapillus-home-live.html" title="Lapillus homepage, live" loading="lazy" scrolling="no"></iframe></div></figure>
+          <figure class="hc-slide is-active"><img src="../assets/img/projects/lapillus/illusorr-lapillus-website-homepage.webp" alt="Lapillus homepage, the live site we designed and built" width="1600" height="849" loading="lazy" decoding="async" srcset="../assets/img/projects/lapillus/illusorr-lapillus-website-homepage-480.webp 480w, ../assets/img/projects/lapillus/illusorr-lapillus-website-homepage-768.webp 768w, ../assets/img/projects/lapillus/illusorr-lapillus-website-homepage-1200.webp 1200w, ../assets/img/projects/lapillus/illusorr-lapillus-website-homepage.webp 1600w" sizes="(max-width:768px) 100vw, 1200px"></figure>
           <figure class="hc-slide"><img src="lap/assets/lapillus-explore-3d.webp" alt="Lapillus desktop, Explore 3D" srcset="lap/assets/lapillus-explore-3d-768.webp 768w, lap/assets/lapillus-explore-3d-1440.webp 1440w, lap/assets/lapillus-explore-3d.webp 1600w" sizes="(max-width:390px) 376px, (max-width:640px) 646px, (max-width:768px) 829px, (max-width:1024px) 1106px, (max-width:1440px) 1555px, 2074px"></figure>
         </div>
         <div class="hc-top">
@@ -633,6 +653,10 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
         <button class="hc-nav hc-prev" id="hcPrev" aria-label="Previous screen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 5 8 12 15 19"/></svg></button>
         <button class="hc-nav hc-next" id="hcNext" aria-label="Next screen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 5 16 12 9 19"/></svg></button>
         <div class="hc-bars" id="hcBars" aria-hidden="true"></div>
+      </div>
+      <div class="live-brief">
+        <p>We designed and built the site, then made what fills it: the architectural visualisation, the cinematic film, and the social content and calendar that carry the same world outward. Design, content and planning from one team, so every surface reads as one place.</p>
+        <a class="visit" href="https://lapillusfsr.com/" target="_blank" rel="noopener">Visit lapillusfsr.com <span aria-hidden="true">&#8599;</span></a>
       </div>
     </div>
   </section>

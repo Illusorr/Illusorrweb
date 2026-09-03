@@ -1,0 +1,4950 @@
+{
+ "/404.html": {
+  "desktop": {
+   "onload": 163098,
+   "full": 163098,
+   "by_type": {
+    "font": 72300,
+    "stylesheet": 55338,
+    "script": 20151,
+    "image": 12334,
+    "document": 2975
+   },
+   "top": [
+    {
+     "bytes": 44764,
+     "type": "font",
+     "file": "outfit-variable.woff2",
+     "host": ""
+    },
+    {
+     "bytes": 41428,
+     "type": "stylesheet",
+     "file": "main.css",
+     "host": ""
+    },
+    {
+     "bytes": 27536,
+     "type": "font",
+     "file": "monument-extended-400.woff2",
+     "host": ""
+    },
+    {
+     "bytes": 12334,
+     "type": "image",
+     "file": "logo-on-dark.webp",
+     "host": ""
+    },
+    {
+     "bytes": 10341,
+     "type": "script",
+     "file": "mobile.js",
+     "host": ""
+    },
+    {
+     "bytes": 7375,
+     "type": "stylesheet",
+     "file": "mobile.css",
+     "host": ""
+    }
+   ]
+  },
+  "phone": {
+   "onload": 163098,
+   "full": 163098,
+   "by_type": {
+    "font": 72300,
+    "stylesheet": 55338,
+    "script": 20151,
+    "image": 12334,
+    "document": 2975
+   },
+   "top": [
+    {
+     "bytes": 44764,
+     "type": "font",
+     "file": "outfit-variable.woff2",
+     "host": ""
+    },
+    {
+     "bytes": 41428,
+     "type": "stylesheet",
+     "file": "main.css",
+     "host": ""
+    },
+    {
+     "bytes": 27536,
+     "type": "font",
+     "file": "monument-extended-400.woff2",
+     "host": ""
+    },
+    {
+     "bytes": 12334,
+     "type": "image",
+     "file": "logo-on-dark.webp",
+     "host": ""
+    },
+    {
+     "bytes": 10341,
+     "type": "script",
+     "file": "mobile.js",
+     "host": ""
+    },
+    {
+     "bytes": 7375,
+     "type": "stylesheet",
+     "file": "mobile.css",
+     "host": ""
+    }
+   ]
+  }
+ },
+ "/about.html": {
+  "desktop": {
+   "onload": 465072,
+   "full": 465072,
+   "by_type": {
+    "image": 271650,
+    "font": 81564,
+    "stylesheet": 56823,
+    "script": 46064,
+    "document": 8971
+   },
+   "top": [
+    {
+     "bytes": 44764,
+     "type": "font",
+     "file": "outfit-variable.woff2",
+     "host": ""
+    },
+    {
+     "bytes": 41428,
+     "type": "stylesheet",
+     "file": "main.css",
+     "host": ""
+    },
+    {
+     "bytes": 38430,
+     "type": "image",
+     "file": "team-yellow.webp",
+     "host": ""
+    },
+    {
+     "bytes": 27536,
+     "type": "font",
+     "file": "monument-extended-400.woff2",
+     "host": ""
+    },
+    {
+     "bytes": 24308,
+     "type": "image",
+     "file": "team-bluepurple.webp",
+     "host": ""
+    },
+    {
+     "bytes": 23788,
+     "type": "image",
+     "file": "markup.webp",
+     "host": ""
+    }
+   ]
+  },
+  "phone": {
+   "onload": 465072,
+   "full": 481126,
+   "by_type": {
+    "image": 287704,
+    "font": 81564,
+    "stylesheet": 56823,
+    "script": 46064,
+    "document": 8971
+   },
+   "top": [
+    {
+     "bytes": 44764,
+     "type": "font",
+     "file": "outfit-variable.woff2",
+     "host": ""
+    },
+    {
+     "bytes": 41428,
+     "type": "stylesheet",
+     "file": "main.css",
+     "host": ""
+    },
+    {
+     "bytes": 38430,
+     "type": "image",
+     "file": "team-yellow.webp",
+     "host": ""
+    },
+    {
+     "bytes": 27536,
+     "type": "font",
+     "file": "monument-extended-400.woff2",
+     "host": ""
+    },
+    {
+     "bytes": 24308,
+     "type": "image",
+     "file": "team-bluepurple.webp",
+     "host": ""
+    },
+    {
+     "bytes": 23788,
+     "type": "image",
+     "file": "markup.webp",
+     "host": ""
+    }
+   ]
+  }
+ },
+ "/brief.html": {
+  "desktop": {
+   "onload": 178952,
+   "full": 178952,
+   "by_type": {
+    "font": 75932,
+    "stylesheet": 55338,
+    "script": 30797,
+    "image": 12334,
+    "document": 4551
+   },
+   "top": [
+    {
+     "bytes": 44764,
+     "type": "font",
+     "file": "outfit-variable.woff2",
+     "host": ""
+    },
+    {
+     "bytes": 41428,
+     "type": "stylesheet",
+     "file": "main.css",
+     "host": ""
+    },
+    {
+     "bytes": 27536,
+     "type": "font",
+     "file": "monument-extended-400.woff2",
+     "host": ""
+    },
+    {
+     "bytes": 12334,
+     "type": "image",
+     "file": "logo-on-dark.webp",
+     "host": ""
+    },
+    {
+     "bytes": 10341,
+     "type": "script",
+     "file": "mobile.js",
+     "host": ""
+    },
+    {
+     "bytes": 7375,
+     "type": "stylesheet",
+     "file": "mobile.css",
+     "host": ""
+    }
+   ]
+  },
+  "phone": {
+   "onload": 178952,
+   "full": 178952,
+   "by_type": {
+    "font": 75932,
+    "stylesheet": 55338,
+    "script": 30797,
+    "image": 12334,
+    "document": 4551
+   },
+   "top": [
+    {
+     "bytes": 44764,
+     "type": "font",
+     "file": "outfit-variable.woff2",
+     "host": ""
+    },
+    {
+     "bytes": 41428,
+     "type": "stylesheet",
+     "file": "main.css",
+     "host": ""
+    },
+    {
+     "bytes": 27536,
+     "type": "font",
+     "file": "monument-extended-400.woff2",
+     "host": ""
+    },
+    {
+     "bytes": 12334,
+     "type": "image",
+     "file": "logo-on-dark.webp",
+     "host": ""
+    },
+    {
+     "bytes": 10341,
+     "type": "script",
+     "file": "mobile.js",
+     "host": ""
+    },
+    {
+     "bytes": 7375,
+     "type": "stylesheet",
+     "file": "mobile.css",
+     "host": ""
+    }
+   ]
+  }
+ },
+ "/collective.html": {
+  "desktop": {
+   "onload": 331655,
+   "full": 347709,
+   "by_type": {
+    "script": 140738,
+    "font": 75932,
+    "stylesheet": 55338,
+    "fetch": 39506,
+    "image": 28388,
+    "document": 7807
+   },
+   "top": [
+    {
+     "bytes": 94222,
+     "type": "script",
+     "file": "d3-7.9.0.min.js",
+     "host": ""
+    },
+    {
+     "bytes": 44764,
+     "type": "font",
+     "file": "outfit-variable.woff2",
+     "host": ""
+    },
+    {
+     "bytes": 41428,
+     "type": "stylesheet",
+     "file": "main.css",
+     "host": ""
+    },
+    {
+     "bytes": 39506,
+     "type": "fetch",
+     "file": "world-atlas-countries-110m.json",
+     "host": ""
+    },
+    {
+     "bytes": 27536,
+     "type": "font",
+     "file": "monument-extended-400.woff2",
+     "host": ""
+    },
+    {
+     "bytes": 16054,
+     "type": "image",
+     "file": "logo-on-light.webp",
+     "host": ""
+    }
+   ]
+  },
+  "phone": {
+   "onload": 331655,
+   "full": 347709,
+   "by_type": {
+    "script": 140738,
+    "font": 75932,
+    "stylesheet": 55338,
+    "fetch": 39506,
+    "image": 28388,
+    "document": 7807
+   },
+   "top": [
+    {
+     "bytes": 94222,
+     "type": "script",
+     "file": "d3-7.9.0.min.js",
+     "host": ""
+    },
+    {
+     "bytes": 44764,
+     "type": "font",
+     "file": "outfit-variable.woff2",
+     "host": ""
+    },
+    {
+     "bytes": 41428,
+     "type": "stylesheet",
+     "file": "main.css",
+     "host": ""
+    },
+    {
+     "bytes": 39506,
+     "type": "fetch",
+     "file": "world-atlas-countries-110m.json",
+     "host": ""
+    },
+    {
+     "bytes": 27536,
+     "type": "font",
+     "file": "monument-extended-400.woff2",
+     "host": ""
+    },
+    {
+     "bytes": 16054,
+     "type": "image",
+     "file": "logo-on-light.webp",
+     "host": ""
+    }
+   ]
+  }
+ },
+ "/contact.html": {
+  "desktop": {
+   "onload": 179997,
+   "full": 179997,
+   "by_type": {
+    "font": 75932,
+    "stylesheet": 55338,
+    "script": 30899,
+    "image": 12334,
+    "document": 5494
+   },
+   "top": [
+    {
+     "bytes": 44764,
+     "type": "font",
+     "file": "outfit-variable.woff2",
+     "host": ""
+    },
+    {
+     "bytes": 41428,
+     "type": "stylesheet",
+     "file": "main.css",
+     "host": ""
+    },
+    {
+     "bytes": 27536,
+     "type": "font",
+     "file": "monument-extended-400.woff2",
+     "host": ""
+    },
+    {
+     "bytes": 12334,
+     "type": "image",
+     "file": "logo-on-dark.webp",
+     "host": ""
+    },
+    {
+     "bytes": 10341,
+     "type": "script",
+     "file": "mobile.js",
+     "host": ""
+    },
+    {
+     "bytes": 7375,
+     "type": "stylesheet",
+     "file": "mobile.css",
+     "host": ""
+    }
+   ]
+  },
+  "phone": {
+   "onload": 179997,
+   "full": 179997,
+   "by_type": {
+    "font": 75932,
+    "stylesheet": 55338,
+    "script": 30899,
+    "image": 12334,
+    "document": 5494
+   },
+   "top": [
+    {
+     "bytes": 44764,
+     "type": "font",
+     "file": "outfit-variable.woff2",
+     "host": ""
+    },
+    {
+     "bytes": 41428,
+     "type": "stylesheet",
+     "file": "main.css",
+     "host": ""
+    },
+    {
+     "bytes": 27536,
+     "type": "font",
+     "file": "monument-extended-400.woff2",
+     "host": ""
+    },
+    {
+     "bytes": 12334,
+     "type": "image",
+     "file": "logo-on-dark.webp",
+     "host": ""
+    },
+    {
+     "bytes": 10341,
+     "type": "script",
+     "file": "mobile.js",
+     "host": ""
+    },
+    {
+     "bytes": 7375,
+     "type": "stylesheet",
+     "file": "mobile.css",
+     "host": ""
+    }
+   ]
+  }
+ },
+ "/index.html": {
+  "desktop": {
+   "onload": 2081437,
+   "full": 3825400,
+   "by_type": {
+    "image": 2361270,
+    "script": 1078847,
+    "font": 193992,
+    "stylesheet": 146274,
+    "document": 29850,
+    "fetch": 15014,
+    "xhr": 153
+   },
+   "top": [
+    {
+     "bytes": 537040,
+     "type": "image",
+     "file": "illusorr-pixelpaint-painted-car-hero.webp",
+     "host": ""
+    },
+    {
+     "bytes": 530301,
+     "type": "script",
+     "file": "base.js",
+     "host": "www.youtube-nocookie.com"
+    },
+    {
+     "bytes": 345928,
+     "type": "image",
+     "file": "illusorr-hind-al-oud-fragrance-social-content-cover.",
+     "host": ""
+    },
+    {
+     "bytes": 244269,
+     "type": "script",
+     "file": "m=r78Drb",
+     "host": "www.youtube-nocookie.com"
+    },
+    {
+     "bytes": 224918,
+     "type": "image",
+     "file": "culture.webp",
+     "host": ""
+    },
+    {
+     "bytes": 210812,
+     "type": "image",
+     "file": "gaming.webp",
+     "host": ""
+    }
+   ]
+  },
+  "phone": {
+   "onload": 1935943,
+   "full": 3183384,
+   "by_type": {
+    "image": 1938111,
+    "script": 986866,
+    "font": 116232,
+    "stylesheet": 116192,
+    "xhr": 15569,
+    "document": 10414
+   },
+   "top": [
+    {
+     "bytes": 537040,
+     "type": "image",
+     "file": "illusorr-pixelpaint-painted-car-hero.webp",
+     "host": ""
+    },
+    {
+     "bytes": 483517,
+     "type": "script",
+     "file": "base.js",
+     "host": "www.youtube-nocookie.com"
+    },
+    {
+     "bytes": 224918,
+     "type": "image",
+     "file": "culture.webp",
+     "host": ""
+    },
+    {
+     "bytes": 223460,
+     "type": "script",
+     "file": "m=r78Drb",
+     "host": "www.youtube-nocookie.com"
+    },
+    {
+     "bytes": 210812,
+     "type": "image",
+     "file": "gaming.webp",
+     "host": ""
+    },
+    {
+     "bytes": 176486,
+     "type": "image",
+     "file": "fashion.webp",
+     "host": ""
+    }
+   ]
+  }
+ },
+ "/lab.html": {
+  "desktop": {
+   "onload": 383163,
+   "full": 399217,
+   "by_type": {
+    "image": 200948,
+    "font": 75932,
+    "stylesheet": 64656,
+    "script": 41847,
+    "document": 15834
+   },
+   "top": [
+    {
+     "bytes": 63034,
+     "type": "image",
+     "file": "studio-still.m.webp",
+     "host": ""
+    },
+    {
+     "bytes": 44764,
+     "type": "font",
+     "file": "outfit-variable.woff2",
+     "host": ""
+    },
+    {
+     "bytes": 43574,
+     "type": "image",
+     "file": "illusorr-pylon-owned-launch-world-cover.m.webp",
+     "host": ""
+    },
+    {
+     "bytes": 41428,
+     "type": "stylesheet",
+     "file": "main.css",
+     "host": ""
+    },
+    {
+     "bytes": 41140,
+     "type": "image",
+     "file": "downtown.webp",
+     "host": ""
+    },
+    {
+     "bytes": 27536,
+     "type": "font",
+     "file": "monument-extended-400.woff2",
+     "host": ""
+    }
+   ]
+  },
+  "phone": {
+   "onload": 296793,
+   "full": 399217,
+   "by_type": {
+    "image": 200948,
+    "font": 75932,
+    "stylesheet": 64656,
+    "script": 41847,
+    "document": 15834
+   },
+   "top": [
+    {
+     "bytes": 63034,
+     "type": "image",
+     "file": "studio-still.m.webp",
+     "host": ""
+    },
+    {
+     "bytes": 44764,
+     "type": "font",
+     "file": "outfit-variable.woff2",
+     "host": ""
+    },
+    {
+     "bytes": 43574,
+     "type": "image",
+     "file": "illusorr-pylon-owned-launch-world-cover.m.webp",
+     "host": ""
+    },
+    {
+     "bytes": 41428,
+     "type": "stylesheet",
+     "file": "main.css",
+     "host": ""
+    },
+    {
+     "bytes": 41140,
+     "type": "image",
+     "file": "downtown.webp",
+     "host": ""
+    },
+    {
+     "bytes": 27536,
+     "type": "font",
+     "file": "monument-extended-400.woff2",
+     "host": ""
+    }
+   ]
+  }
+ },
+ "/lab/marbled-ink-orb.html": {
+  "desktop": {
+   "onload": 57456,
+   "full": 57456,
+   "by_type": {
+    "image": 28388,
+    "script": 14401,
+    "stylesheet": 9318,
+    "document": 5349
+   },
+   "top": [
+    {
+     "bytes": 16054,
+     "type": "image",
+     "file": "logo-on-light.webp",
+     "host": ""
+    },
+    {
+     "bytes": 12334,
+     "type": "image",
+     "file": "logo-on-dark.webp",
+     "host": ""
+    },
+    {
+     "bytes": 10341,
+     "type": "script",
+     "file": "mobile.js",
+     "host": ""
+    },
+    {
+     "bytes": 7375,
+     "type": "stylesheet",
+     "file": "mobile.css",
+     "host": ""
+    },
+    {
+     "bytes": 5349,
+     "type": "document",
+     "file": "marbled-ink-orb.html",
+     "host": ""
+    },
+    {
+     "bytes": 4060,
+     "type": "script",
+     "file": "nav.js",
+     "host": ""
+    }
+   ]
+  },
+  "phone": {
+   "onload": 57456,
+   "full": 57456,
+   "by_type": {
+    "image": 28388,
+    "script": 14401,
+    "stylesheet": 9318,
+    "document": 5349
+   },
+   "top": [
+    {
+     "bytes": 16054,
+     "type": "image",
+     "file": "logo-on-light.webp",
+     "host": ""
+    },
+    {
+     "bytes": 12334,
+     "type": "image",
+     "file": "logo-on-dark.webp",
+     "host": ""
+    },
+    {
+     "bytes": 10341,
+     "type": "script",
+     "file": "mobile.js",
+     "host": ""
+    },
+    {
+     "bytes": 7375,
+     "type": "stylesheet",
+     "file": "mobile.css",
+     "host": ""
+    },
+    {
+     "bytes": 5349,
+     "type": "document",
+     "file": "marbled-ink-orb.html?mobile=1",
+     "host": ""
+    },
+    {
+     "bytes": 4060,
+     "type": "script",
+     "file": "nav.js",
+     "host": ""
+    }
+   ]
+  }
+ },
+ "/lab/noise-field.html": {
+  "desktop": {
+   "onload": 45230,
+   "full": 45230,
+   "by_type": {
+    "script": 14401,
+    "image": 12334,
+    "stylesheet": 9318,
+    "document": 9177
+   },
+   "top": [
+    {
+     "bytes": 12334,
+     "type": "image",
+     "file": "logo-on-dark.webp",
+     "host": ""
+    },
+    {
+     "bytes": 10341,
+     "type": "script",
+     "file": "mobile.js",
+     "host": ""
+    },
+    {
+     "bytes": 9177,
+     "type": "document",
+     "file": "noise-field.html",
+     "host": ""
+    },
+    {
+     "bytes": 7375,
+     "type": "stylesheet",
+     "file": "mobile.css",
+     "host": ""
+    },
+    {
+     "bytes": 4060,
+     "type": "script",
+     "file": "nav.js",
+     "host": ""
+    },
+    {
+     "bytes": 1943,
+     "type": "stylesheet",
+     "file": "nav.css",
+     "host": ""
+    }
+   ]
+  },
+  "phone": {
+   "onload": 45230,
+   "full": 45230,
+   "by_type": {
+    "script": 14401,
+    "image": 12334,
+    "stylesheet": 9318,
+    "document": 9177
+   },
+   "top": [
+    {
+     "bytes": 12334,
+     "type": "image",
+     "file": "logo-on-dark.webp",
+     "host": ""
+    },
+    {
+     "bytes": 10341,
+     "type": "script",
+     "file": "mobile.js",
+     "host": ""
+    },
+    {
+     "bytes": 9177,
+     "type": "document",
+     "file": "noise-field.html?mobile=1",
+     "host": ""
+    },
+    {
+     "bytes": 7375,
+     "type": "stylesheet",
+     "file": "mobile.css",
+     "host": ""
+    },
+    {
+     "bytes": 4060,
+     "type": "script",
+     "file": "nav.js",
+     "host": ""
+    },
+    {
+     "bytes": 1943,
+     "type": "stylesheet",
+     "file": "nav.css",
+     "host": ""
+    }
+   ]
+  }
+ },
+ "/projects/aa/embeds/aa-home-live.html": {
+  "desktop": {
+   "onload": 10879349,
+   "full": 12667093,
+   "by_type": {
+    "fetch": 4897589,
+    "document": 4832763,
+    "media": 1551336,
+    "script": 746093,
+    "image": 572868,
+    "font": 66444
+   },
+   "top": [
+    {
+     "bytes": 4832763,
+     "type": "fetch",
+     "file": "aa-home-live.html",
+     "host": ""
+    },
+    {
+     "bytes": 4832763,
+     "type": "document",
+     "file": "aa-home-live.html",
+     "host": ""
+    },
+    {
+     "bytes": 1551336,
+     "type": "media",
+     "file": "afa7421e-f5ea-4823-adec-8cbcab463ce4",
+     "host": ""
+    },
+    {
+     "bytes": 641374,
+     "type": "script",
+     "file": "babel-standalone-7.26.4.min.js",
+     "host": ""
+    },
+    {
+     "bytes": 218202,
+     "type": "image",
+     "file": "34e15611-5d7e-4815-a32c-1c434fa937bb",
+     "host": ""
+    },
+    {
+     "bytes": 119810,
+     "type": "image",
+     "file": "d6742ef9-1af0-4c51-ab0a-f1570f86a840",
+     "host": ""
+    }
+   ]
+  },
+  "phone": {
+   "onload": 10879349,
+   "full": 12667093,
+   "by_type": {
+    "fetch": 4897589,
+    "document": 4832763,
+    "media": 1551336,
+    "script": 746093,
+    "image": 572868,
+    "font": 66444
+   },
+   "top": [
+    {
+     "bytes": 4832763,
+     "type": "fetch",
+     "file": "aa-home-live.html?mobile=1",
+     "host": ""
+    },
+    {
+     "bytes": 4832763,
+     "type": "document",
+     "file": "aa-home-live.html?mobile=1",
+     "host": ""
+    },
+    {
+     "bytes": 1551336,
+     "type": "media",
+     "file": "ead51f23-4955-474a-bf89-af25b9149a3d",
+     "host": ""
+    },
+    {
+     "bytes": 641374,
+     "type": "script",
+     "file": "babel-standalone-7.26.4.min.js",
+     "host": ""
+    },
+    {
+     "bytes": 218202,
+     "type": "image",
+     "file": "1364ca71-b637-4fc2-94b1-1aca8bb73fa4",
+     "host": ""
+    },
+    {
+     "bytes": 119810,
+     "type": "image",
+     "file": "c1a149be-f257-42ee-a9f5-8a1f690f09ae",
+     "host": ""
+    }
+   ]
+  }
+ },
+ "/projects/al-berwaz.html": {
+  "desktop": {
+   "onload": 505183,
+   "full": 574723,
+   "by_type": {
+    "font": 265728,
+    "image": 233528,
+    "stylesheet": 43095,
+    "script": 21926,
+    "document": 10446
+   },
+   "top": [
+    {
+     "bytes": 188380,
+     "type": "font",
+     "file": "CormorantGaramond-Variable.woff2",
+     "host": ""
+    },
+    {
+     "bytes": 151654,
+     "type": "image",
+     "file": "alberwaz-site-home.webp",
+     "host": ""
+    },
+    {
+     "bytes": 69540,
+     "type": "image",
+     "file": "illusorr-arga-global-team-interface-cover.webp",
+     "host": ""
+    },
+    {
+     "bytes": 44764,
+     "type": "font",
+     "file": "outfit-variable.woff2",
+     "host": ""
+    },
+    {
+     "bytes": 28948,
+     "type": "font",
+     "file": "PPMonumentExtended-Black.woff2",
+     "host": ""
+    },
+    {
+     "bytes": 19345,
+     "type": "stylesheet",
+     "file": "case-mobile.css",
+     "host": ""
+    }
+   ]
+  },
+  "phone": {
+   "onload": 368807,
+   "full": 396539,
+   "by_type": {
+    "font": 265728,
+    "image": 55344,
+    "stylesheet": 43095,
+    "script": 21926,
+    "document": 10446
+   },
+   "top": [
+    {
+     "bytes": 188380,
+     "type": "font",
+     "file": "CormorantGaramond-Variable.woff2",
+     "host": ""
+    },
+    {
+     "bytes": 44764,
+     "type": "font",
+     "file": "outfit-variable.woff2",
+     "host": ""
+    },
+    {
+     "bytes": 28948,
+     "type": "font",
+     "file": "PPMonumentExtended-Black.woff2",
+     "host": ""
+    },
+    {
+     "bytes": 27732,
+     "type": "image",
+     "file": "illusorr-arga-global-team-interface-cover-768.webp",
+     "host": ""
+    },
+    {
+     "bytes": 19345,
+     "type": "stylesheet",
+     "file": "case-mobile.css",
+     "host": ""
+    },
+    {
+     "bytes": 15278,
+     "type": "image",
+     "file": "alberwaz-site-home-768.webp",
+     "host": ""
+    }
+   ]
+  }
+ },
+ "/projects/anfasic.html": {
+  "desktop": {
+   "onload": 3421533,
+   "full": 3480753,
+   "by_type": {
+    "media": 2137913,
+    "image": 1129737,
+    "font": 104728,
+    "script": 50911,
+    "stylesheet": 32738,
+    "document": 24726
+   },
+   "top": [
+    {
+     "bytes": 483510,
+     "type": "media",
+     "file": "film-02.webm",
+     "host": ""
+    },
+    {
+     "bytes": 472887,
+     "type": "media",
+     "file": "film-04.webm",
+     "host": ""
+    },
+    {
+     "bytes": 452593,
+     "type": "media",
+     "file": "film-05.webm",
+     "host": ""
+    },
+    {
+     "bytes": 446469,
+     "type": "media",
+     "file": "film-01.webm",
+     "host": ""
+    },
+    {
+     "bytes": 282454,
+     "type": "media",
+     "file": "film-03.webm",
+     "host": ""
+    },
+    {
+     "bytes": 116968,
+     "type": "image",
+     "file": "illusorr-anfasic-dokhoon-product-render-11.m.webp",
+     "host": ""
+    }
+   ]
+  },
+  "phone": {
+   "onload": 1218762,
+   "full": 1251332,
+   "by_type": {
+    "image": 1038229,
+    "font": 104728,
+    "script": 50911,
+    "stylesheet": 32738,
+    "document": 24726
+   },
+   "top": [
+    {
+     "bytes": 116968,
+     "type": "image",
+     "file": "illusorr-anfasic-dokhoon-product-render-11.m.webp",
+     "host": ""
+    },
+    {
+     "bytes": 102280,
+     "type": "image",
+     "file": "illusorr-anfasic-fragrance-lifestyle-frame-05.m.webp",
+     "host": ""
+    },
+    {
+     "bytes": 96114,
+     "type": "image",
+     "file": "illusorr-anfasic-fragrance-lifestyle-frame-03.m.webp",
+     "host": ""
+    },
+    {
+     "bytes": 94230,
+     "type": "image",
+     "file": "illusorr-anfasic-dokhoon-product-render-12.m.webp",
+     "host": ""
+    },
+    {
+     "bytes": 84668,
+     "type": "image",
+     "file": "illusorr-anfasic-dokhoon-product-render-01.m.webp",
+     "host": ""
+    },
+    {
+     "bytes": 77048,
+     "type": "image",
+     "file": "illusorr-anfasic-dokhoon-product-render-14.webp",
+     "host": ""
+    }
+   ]
+  }
+ },
+ "/projects/ant-live/index.html": {
+  "desktop": {
+   "onload": 3627253,
+   "full": 3911674,
+   "by_type": {
+    "image": 2069661,
+    "script": 1526022,
+    "fetch": 91071,
+    "font": 87228,
+    "document": 79076,
+    "stylesheet": 58463,
+    "xhr": 153
+   },
+   "top": [
+    {
+     "bytes": 1461877,
+     "type": "image",
+     "file": "earth-blue-marble.jpg",
+     "host": "cdn.jsdelivr.net"
+    },
+    {
+     "bytes": 530301,
+     "type": "script",
+     "file": "base.js",
+     "host": "www.youtube-nocookie.com"
+    },
+    {
+     "bytes": 244269,
+     "type": "script",
+     "file": "m=r78Drb",
+     "host": "www.youtube-nocookie.com"
+    },
+    {
+     "bytes": 179062,
+     "type": "script",
+     "file": "m=root,base",
+     "host": "www.youtube-nocookie.com"
+    },
+    {
+     "bytes": 151200,
+     "type": "script",
+     "file": "three.min.js",
+     "host": ""
+    },
+    {
+     "bytes": 99170,
+     "type": "image",
+     "file": "factory-960.webp",
+     "host": ""
+    }
+   ]
+  },
+  "phone": {
+   "onload": 3500700,
+   "full": 3941709,
+   "by_type": {
+    "image": 2173071,
+    "script": 1434041,
+    "font": 103096,
+    "fetch": 93770,
+    "document": 79076,
+    "stylesheet": 58463,
+    "xhr": 192
+   },
+   "top": [
+    {
+     "bytes": 1461877,
+     "type": "image",
+     "file": "earth-blue-marble.jpg",
+     "host": "cdn.jsdelivr.net"
+    },
+    {
+     "bytes": 483517,
+     "type": "script",
+     "file": "base.js",
+     "host": "www.youtube-nocookie.com"
+    },
+    {
+     "bytes": 223460,
+     "type": "script",
+     "file": "m=r78Drb",
+     "host": "www.youtube-nocookie.com"
+    },
+    {
+     "bytes": 158702,
+     "type": "script",
+     "file": "m=root,base",
+     "host": "www.youtube-nocookie.com"
+    },
+    {
+     "bytes": 151200,
+     "type": "script",
+     "file": "three.min.js",
+     "host": ""
+    },
+    {
+     "bytes": 144858,
+     "type": "image",
+     "file": "g5-960.webp",
+     "host": ""
+    }
+   ]
+  }
+ },
+ "/projects/ant-systems.html": {
+  "desktop": {
+   "onload": 280063,
+   "full": 303465,
+   "by_type": {
+    "image": 151115,
+    "font": 77348,
+    "stylesheet": 43095,
+    "script": 21926,
+    "document": 9981
+   },
+   "top": [
+    {
+     "bytes": 110302,
+     "type": "image",
+     "file": "ant-site-home.webp",
+     "host": ""
+    },
+    {
+     "bytes": 44764,
+     "type": "font",
+     "file": "outfit-variable.woff2",
+     "host": ""
+    },
+    {
+     "bytes": 28948,
+     "type": "font",
+     "file": "PPMonumentExtended-Black.woff2",
+     "host": ""
+    },
+    {
+     "bytes": 23402,
+     "type": "image",
+     "file": "illusorr-al-berwaz-insurance-web-platform-cover.m.we",
+     "host": ""
+    },
+    {
+     "bytes": 19345,
+     "type": "stylesheet",
+     "file": "case-mobile.css",
+     "host": ""
+    },
+    {
+     "bytes": 12334,
+     "type": "image",
+     "file": "logo-on-dark.webp",
+     "host": ""
+    }
+   ]
+  },
+  "phone": {
+   "onload": 188403,
+   "full": 211805,
+   "by_type": {
+    "font": 77348,
+    "image": 59455,
+    "stylesheet": 43095,
+    "script": 21926,
+    "document": 9981
+   },
+   "top": [
+    {
+     "bytes": 44764,
+     "type": "font",
+     "file": "outfit-variable.woff2",
+     "host": ""
+    },
+    {
+     "bytes": 28948,
+     "type": "font",
+     "file": "PPMonumentExtended-Black.woff2",
+     "host": ""
+    },
+    {
+     "bytes": 23402,
+     "type": "image",
+     "file": "illusorr-al-berwaz-insurance-web-platform-cover.m.we",
+     "host": ""
+    },
+    {
+     "bytes": 19345,
+     "type": "stylesheet",
+     "file": "case-mobile.css",
+     "host": ""
+    },
+    {
+     "bytes": 18642,
+     "type": "image",
+     "file": "ant-site-home-768.webp",
+     "host": ""
+    },
+    {
+     "bytes": 12334,
+     "type": "image",
+     "file": "logo-on-dark.webp",
+     "host": ""
+    }
+   ]
+  }
+ },
+ "/projects/aquatic-architects.html": {
+  "desktop": {
+   "onload": 17285311,
+   "full": 19073055,
+   "by_type": {
+    "media": 6833104,
+    "fetch": 4917697,
+    "document": 4852871,
+    "image": 1361230,
+    "script": 831859,
+    "font": 246212,
+    "stylesheet": 30082
+   },
+   "top": [
+    {
+     "bytes": 4832763,
+     "type": "fetch",
+     "file": "aa-home-live.html",
+     "host": ""
+    },
+    {
+     "bytes": 4832763,
+     "type": "document",
+     "file": "aa-home-live.html",
+     "host": ""
+    },
+    {
+     "bytes": 1551336,
+     "type": "media",
+     "file": "3a1aece8-1c32-40d1-aa87-ded390d58934",
+     "host": ""
+    },
+    {
+     "bytes": 1527632,
+     "type": "media",
+     "file": "aa-story-beat1.webm",
+     "host": ""
+    },
+    {
+     "bytes": 1527632,
+     "type": "media",
+     "file": "aa-story-beat1.webm",
+     "host": ""
+    },
+    {
+     "bytes": 641374,
+     "type": "script",
+     "file": "babel-standalone-7.26.4.min.js",
+     "host": ""
+    }
+   ]
+  },
+  "phone": {
+   "onload": 1052754,
+   "full": 1078950,
+   "by_type": {
+    "image": 743118,
+    "font": 179768,
+    "script": 85766,
+    "stylesheet": 30082,
+    "document": 20108,
+    "fetch": 20108
+   },
+   "top": [
+    {
+     "bytes": 65092,
+     "type": "image",
+     "file": "oshun.m.webp",
+     "host": ""
+    },
+    {
+     "bytes": 53350,
+     "type": "image",
+     "file": "aa-mobile-contact.webp",
+     "host": ""
+    },
+    {
+     "bytes": 49582,
+     "type": "image",
+     "file": "rysh.m.webp",
+     "host": ""
+    },
+    {
+     "bytes": 46534,
+     "type": "image",
+     "file": "aa-mobile-press.webp",
+     "host": ""
+    },
+    {
+     "bytes": 45748,
+     "type": "image",
+     "file": "linara.m.webp",
+     "host": ""
+    },
+    {
+     "bytes": 45264,
+     "type": "image",
+     "file": "aquapods.m.webp",
+     "host": ""
+    }
+   ]
+  }
+ },
+ "/projects/arga.html": {
+  "desktop": {
+   "onload": 622419,
+   "full": 853111,
+   "by_type": {
+    "image": 700746,
+    "font": 77348,
+    "stylesheet": 43095,
+    "script": 21926,
+    "document": 9996
+   },
+   "top": [
+    {
+     "bytes": 457720,
+     "type": "image",
+     "file": "arga-site-home.webp",
+     "host": ""
+    },
+    {
+     "bytes": 230692,
+     "type": "image",
+     "file": "illusorr-coffee-merchant-specialty-coffee-content-co",
+     "host": ""
+    },
+    {
+     "bytes": 44764,
+     "type": "font",
+     "file": "outfit-variable.woff2",
+     "host": ""
+    },
+    {
+     "bytes": 28948,
+     "type": "font",
+     "file": "PPMonumentExtended-Black.woff2",
+     "host": ""
+    },
+    {
+     "bytes": 19345,
+     "type": "stylesheet",
+     "file": "case-mobile.css",
+     "host": ""
+    },
+    {
+     "bytes": 12334,
+     "type": "image",
+     "file": "logo-on-dark.webp",
+     "host": ""
+    }
+   ]
+  },
+  "phone": {
+   "onload": 230065,
+   "full": 295519,
+   "by_type": {
+    "image": 143154,
+    "font": 77348,
+    "stylesheet": 43095,
+    "script": 21926,
+    "document": 9996
+   },
+   "top": [
+    {
+     "bytes": 65454,
+     "type": "image",
+     "file": "illusorr-coffee-merchant-specialty-coffee-content-co",
+     "host": ""
+    },
+    {
+     "bytes": 65366,
+     "type": "image",
+     "file": "arga-site-home-768.webp",
+     "host": ""
+    },
+    {
+     "bytes": 44764,
+     "type": "font",
+     "file": "outfit-variable.woff2",
+     "host": ""
+    },
+    {
+     "bytes": 28948,
+     "type": "font",
+     "file": "PPMonumentExtended-Black.woff2",
+     "host": ""
+    },
+    {
+     "bytes": 19345,
+     "type": "stylesheet",
+     "file": "case-mobile.css",
+     "host": ""
+    },
+    {
+     "bytes": 12334,
+     "type": "image",
+     "file": "logo-on-dark.webp",
+     "host": ""
+    }
+   ]
+  }
+ },
+ "/projects/art-post-office.html": {
+  "desktop": {
+   "onload": 1877297,
+   "full": 1952885,
+   "by_type": {
+    "image": 1765680,
+    "font": 77348,
+    "script": 50911,
+    "stylesheet": 33207,
+    "document": 25739
+   },
+   "top": [
+    {
+     "bytes": 723172,
+     "type": "image",
+     "file": "illusorr-art-post-office-brand-brief-band.webp",
+     "host": ""
+    },
+    {
+     "bytes": 254462,
+     "type": "image",
+     "file": "illusorr-art-post-office-brand-band-cover.webp",
+     "host": ""
+    },
+    {
+     "bytes": 198578,
+     "type": "image",
+     "file": "illusorr-art-post-office-reel-poster-frame.webp",
+     "host": ""
+    },
+    {
+     "bytes": 179902,
+     "type": "image",
+     "file": "illusorr-art-post-office-editorial-frame-01-768.webp",
+     "host": ""
+    },
+    {
+     "bytes": 100452,
+     "type": "image",
+     "file": "sadu-white.webp",
+     "host": ""
+    },
+    {
+     "bytes": 81156,
+     "type": "image",
+     "file": "illusorr-art-post-office-carousel-frame-01-768.webp",
+     "host": ""
+    }
+   ]
+  },
+  "phone": {
+   "onload": 1877297,
+   "full": 1909385,
+   "by_type": {
+    "image": 1722180,
+    "font": 77348,
+    "script": 50911,
+    "stylesheet": 33207,
+    "document": 25739
+   },
+   "top": [
+    {
+     "bytes": 723172,
+     "type": "image",
+     "file": "illusorr-art-post-office-brand-brief-band.webp",
+     "host": ""
+    },
+    {
+     "bytes": 254462,
+     "type": "image",
+     "file": "illusorr-art-post-office-brand-band-cover.webp",
+     "host": ""
+    },
+    {
+     "bytes": 198578,
+     "type": "image",
+     "file": "illusorr-art-post-office-reel-poster-frame.webp",
+     "host": ""
+    },
+    {
+     "bytes": 179902,
+     "type": "image",
+     "file": "illusorr-art-post-office-editorial-frame-01-768.webp",
+     "host": ""
+    },
+    {
+     "bytes": 100452,
+     "type": "image",
+     "file": "sadu-white.webp",
+     "host": ""
+    },
+    {
+     "bytes": 81156,
+     "type": "image",
+     "file": "illusorr-art-post-office-carousel-frame-01-768.webp",
+     "host": ""
+    }
+   ]
+  }
+ },
+ "/projects/barbie.html": {
+  "desktop": {
+   "onload": 440404,
+   "full": 555590,
+   "by_type": {
+    "image": 362760,
+    "font": 104728,
+    "stylesheet": 32833,
+    "script": 27862,
+    "document": 27407
+   },
+   "top": [
+    {
+     "bytes": 115186,
+     "type": "image",
+     "file": "illusorr-denim-boyner-diner-daylight-campaign-1600.w",
+     "host": ""
+    },
+    {
+     "bytes": 53846,
+     "type": "image",
+     "file": "barbie-frame-07-1440.webp",
+     "host": ""
+    },
+    {
+     "bytes": 51742,
+     "type": "image",
+     "file": "barbie-frame-02-1440.webp",
+     "host": ""
+    },
+    {
+     "bytes": 44764,
+     "type": "font",
+     "file": "outfit-variable.woff2",
+     "host": ""
+    },
+    {
+     "bytes": 42494,
+     "type": "image",
+     "file": "barbie-frame-05-1440.webp",
+     "host": ""
+    },
+    {
+     "bytes": 35168,
+     "type": "image",
+     "file": "barbie-frame-01-768.webp",
+     "host": ""
+    }
+   ]
+  },
+  "phone": {
+   "onload": 351002,
+   "full": 385690,
+   "by_type": {
+    "image": 192860,
+    "font": 104728,
+    "stylesheet": 32833,
+    "script": 27862,
+    "document": 27407
+   },
+   "top": [
+    {
+     "bytes": 44764,
+     "type": "font",
+     "file": "outfit-variable.woff2",
+     "host": ""
+    },
+    {
+     "bytes": 35168,
+     "type": "image",
+     "file": "barbie-frame-01-768.webp",
+     "host": ""
+    },
+    {
+     "bytes": 34688,
+     "type": "image",
+     "file": "illusorr-denim-boyner-diner-daylight-campaign-768.we",
+     "host": ""
+    },
+    {
+     "bytes": 28948,
+     "type": "font",
+     "file": "PPMonumentExtended-Black.woff2",
+     "host": ""
+    },
+    {
+     "bytes": 27407,
+     "type": "document",
+     "file": "barbie.html?mobile=1",
+     "host": ""
+    },
+    {
+     "bytes": 27380,
+     "type": "font",
+     "file": "PPMonumentExtended-Regular.woff2",
+     "host": ""
+    }
+   ]
+  }
+ },
+ "/projects/coffee-merchant.html": {
+  "desktop": {
+   "onload": 1322333,
+   "full": 1346113,
+   "by_type": {
+    "image": 1158958,
+    "font": 77348,
+    "script": 50911,
+    "stylesheet": 43095,
+    "document": 15801
+   },
+   "top": [
+    {
+     "bytes": 246338,
+     "type": "image",
+     "file": "illusorr-coffee-merchant-poster-02.webp",
+     "host": ""
+    },
+    {
+     "bytes": 183686,
+     "type": "image",
+     "file": "illusorr-coffee-merchant-brand-band-cover.webp",
+     "host": ""
+    },
+    {
+     "bytes": 178590,
+     "type": "image",
+     "file": "illusorr-coffee-merchant-poster-01.webp",
+     "host": ""
+    },
+    {
+     "bytes": 93174,
+     "type": "image",
+     "file": "illusorr-coffee-merchant-brand-brief-band.webp",
+     "host": ""
+    },
+    {
+     "bytes": 88998,
+     "type": "image",
+     "file": "illusorr-coffee-merchant-selected-output-01.m.webp",
+     "host": ""
+    },
+    {
+     "bytes": 84124,
+     "type": "image",
+     "file": "illusorr-coffee-merchant-selected-output-04.m.webp",
+     "host": ""
+    }
+   ]
+  },
+  "phone": {
+   "onload": 1322333,
+   "full": 1346113,
+   "by_type": {
+    "image": 1158958,
+    "font": 77348,
+    "script": 50911,
+    "stylesheet": 43095,
+    "document": 15801
+   },
+   "top": [
+    {
+     "bytes": 246338,
+     "type": "image",
+     "file": "illusorr-coffee-merchant-poster-02.webp",
+     "host": ""
+    },
+    {
+     "bytes": 183686,
+     "type": "image",
+     "file": "illusorr-coffee-merchant-brand-band-cover.webp",
+     "host": ""
+    },
+    {
+     "bytes": 178590,
+     "type": "image",
+     "file": "illusorr-coffee-merchant-poster-01.webp",
+     "host": ""
+    },
+    {
+     "bytes": 93174,
+     "type": "image",
+     "file": "illusorr-coffee-merchant-brand-brief-band.webp",
+     "host": ""
+    },
+    {
+     "bytes": 88998,
+     "type": "image",
+     "file": "illusorr-coffee-merchant-selected-output-01.m.webp",
+     "host": ""
+    },
+    {
+     "bytes": 84124,
+     "type": "image",
+     "file": "illusorr-coffee-merchant-selected-output-04.m.webp",
+     "host": ""
+    }
+   ]
+  }
+ },
+ "/projects/denim.html": {
+  "desktop": {
+   "onload": 802233,
+   "full": 865081,
+   "by_type": {
+    "image": 675208,
+    "font": 104728,
+    "stylesheet": 32833,
+    "script": 27862,
+    "document": 24450
+   },
+   "top": [
+    {
+     "bytes": 115186,
+     "type": "image",
+     "file": "illusorr-denim-boyner-diner-daylight-campaign-1600.w",
+     "host": ""
+    },
+    {
+     "bytes": 110126,
+     "type": "image",
+     "file": "illusorr-denim-boyner-night-street-campaign-1440.web",
+     "host": ""
+    },
+    {
+     "bytes": 62848,
+     "type": "image",
+     "file": "illusorr-fabrika-boyner-campaign-cover.webp",
+     "host": ""
+    },
+    {
+     "bytes": 50072,
+     "type": "image",
+     "file": "illusorr-denim-night-street-direction-frame-640.webp",
+     "host": ""
+    },
+    {
+     "bytes": 46496,
+     "type": "image",
+     "file": "illusorr-denim-editorial-pass-final-frame-640.webp",
+     "host": ""
+    },
+    {
+     "bytes": 44764,
+     "type": "font",
+     "file": "outfit-variable.woff2",
+     "host": ""
+    }
+   ]
+  },
+  "phone": {
+   "onload": 638467,
+   "full": 675375,
+   "by_type": {
+    "image": 485502,
+    "font": 104728,
+    "stylesheet": 32833,
+    "script": 27862,
+    "document": 24450
+   },
+   "top": [
+    {
+     "bytes": 50072,
+     "type": "image",
+     "file": "illusorr-denim-night-street-direction-frame-640.webp",
+     "host": ""
+    },
+    {
+     "bytes": 46496,
+     "type": "image",
+     "file": "illusorr-denim-editorial-pass-final-frame-640.webp",
+     "host": ""
+    },
+    {
+     "bytes": 44764,
+     "type": "font",
+     "file": "outfit-variable.woff2",
+     "host": ""
+    },
+    {
+     "bytes": 44178,
+     "type": "image",
+     "file": "illusorr-denim-camera-angle-test-01-640.webp",
+     "host": ""
+    },
+    {
+     "bytes": 42764,
+     "type": "image",
+     "file": "illusorr-denim-editorial-pass-daylight-640.webp",
+     "host": ""
+    },
+    {
+     "bytes": 41108,
+     "type": "image",
+     "file": "illusorr-denim-camera-angle-test-03-640.webp",
+     "host": ""
+    }
+   ]
+  }
+ },
+ "/projects/disney-plus.html": {
+  "desktop": {
+   "onload": 4117526,
+   "full": 4146234,
+   "by_type": {
+    "image": 3148492,
+    "other": 624000,
+    "script": 230942,
+    "font": 77348,
+    "stylesheet": 41033,
+    "document": 24419
+   },
+   "top": [
+    {
+     "bytes": 624000,
+     "type": "other",
+     "file": "disney-castle-points.bin",
+     "host": ""
+    },
+    {
+     "bytes": 547632,
+     "type": "image",
+     "file": "wildlife-360.webp",
+     "host": ""
+    },
+    {
+     "bytes": 515248,
+     "type": "image",
+     "file": "fantasy-360.webp",
+     "host": ""
+    },
+    {
+     "bytes": 378146,
+     "type": "image",
+     "file": "now-showing.webp",
+     "host": ""
+    },
+    {
+     "bytes": 265528,
+     "type": "image",
+     "file": "animation-360.webp",
+     "host": ""
+    },
+    {
+     "bytes": 247624,
+     "type": "image",
+     "file": "adventure-360.webp",
+     "host": ""
+    }
+   ]
+  },
+  "phone": {
+   "onload": 4117526,
+   "full": 4146234,
+   "by_type": {
+    "image": 3148492,
+    "other": 624000,
+    "script": 230942,
+    "font": 77348,
+    "stylesheet": 41033,
+    "document": 24419
+   },
+   "top": [
+    {
+     "bytes": 624000,
+     "type": "other",
+     "file": "disney-castle-points.bin",
+     "host": ""
+    },
+    {
+     "bytes": 547632,
+     "type": "image",
+     "file": "wildlife-360.webp",
+     "host": ""
+    },
+    {
+     "bytes": 515248,
+     "type": "image",
+     "file": "fantasy-360.webp",
+     "host": ""
+    },
+    {
+     "bytes": 378146,
+     "type": "image",
+     "file": "now-showing.webp",
+     "host": ""
+    },
+    {
+     "bytes": 265528,
+     "type": "image",
+     "file": "animation-360.webp",
+     "host": ""
+    },
+    {
+     "bytes": 247624,
+     "type": "image",
+     "file": "adventure-360.webp",
+     "host": ""
+    }
+   ]
+  }
+ },
+ "/projects/echoes-of-light.html": {
+  "desktop": {
+   "onload": 4440117,
+   "full": 4840051,
+   "by_type": {
+    "script": 3313428,
+    "image": 646326,
+    "fetch": 512965,
+    "font": 251564,
+    "stylesheet": 92365,
+    "document": 15918,
+    "xhr": 7485
+   },
+   "top": [
+    {
+     "bytes": 530301,
+     "type": "script",
+     "file": "base.js",
+     "host": "www.youtube-nocookie.com"
+    },
+    {
+     "bytes": 517733,
+     "type": "script",
+     "file": "e32b6980-d500-4184-a703-2088047f5e12",
+     "host": ""
+    },
+    {
+     "bytes": 517733,
+     "type": "script",
+     "file": "e32b6980-d500-4184-a703-2088047f5e12",
+     "host": ""
+    },
+    {
+     "bytes": 517733,
+     "type": "script",
+     "file": "e32b6980-d500-4184-a703-2088047f5e12",
+     "host": ""
+    },
+    {
+     "bytes": 517733,
+     "type": "script",
+     "file": "e32b6980-d500-4184-a703-2088047f5e12",
+     "host": ""
+    },
+    {
+     "bytes": 403440,
+     "type": "fetch",
+     "file": "projections.glb?v=4",
+     "host": ""
+    }
+   ]
+  },
+  "phone": {
+   "onload": 5411780,
+   "full": 5665411,
+   "by_type": {
+    "script": 4131383,
+    "image": 558316,
+    "fetch": 512965,
+    "font": 280772,
+    "stylesheet": 150828,
+    "document": 15918,
+    "xhr": 15229
+   },
+   "top": [
+    {
+     "bytes": 517733,
+     "type": "script",
+     "file": "d1a6fe5e-cdd9-43eb-a8a9-f7b436898936",
+     "host": ""
+    },
+    {
+     "bytes": 517733,
+     "type": "script",
+     "file": "d1a6fe5e-cdd9-43eb-a8a9-f7b436898936",
+     "host": ""
+    },
+    {
+     "bytes": 517733,
+     "type": "script",
+     "file": "d1a6fe5e-cdd9-43eb-a8a9-f7b436898936",
+     "host": ""
+    },
+    {
+     "bytes": 517733,
+     "type": "script",
+     "file": "d1a6fe5e-cdd9-43eb-a8a9-f7b436898936",
+     "host": ""
+    },
+    {
+     "bytes": 483517,
+     "type": "script",
+     "file": "base.js",
+     "host": "www.youtube-nocookie.com"
+    },
+    {
+     "bytes": 483517,
+     "type": "script",
+     "file": "base.js",
+     "host": "www.youtube-nocookie.com"
+    }
+   ]
+  }
+ },
+ "/projects/fabrika.html": {
+  "desktop": {
+   "onload": 700478,
+   "full": 756002,
+   "by_type": {
+    "image": 564338,
+    "font": 104728,
+    "stylesheet": 32156,
+    "script": 27862,
+    "document": 26918
+   },
+   "top": [
+    {
+     "bytes": 127696,
+     "type": "image",
+     "file": "e8a293a.webp",
+     "host": ""
+    },
+    {
+     "bytes": 109382,
+     "type": "image",
+     "file": "08bc3e0-768.webp",
+     "host": ""
+    },
+    {
+     "bytes": 79800,
+     "type": "image",
+     "file": "73efdbe-1440.webp",
+     "host": ""
+    },
+    {
+     "bytes": 64100,
+     "type": "image",
+     "file": "afd2882-1440.webp",
+     "host": ""
+    },
+    {
+     "bytes": 55524,
+     "type": "image",
+     "file": "illusorr-koton-lookbook-russia-campaign-cover.webp",
+     "host": ""
+    },
+    {
+     "bytes": 44764,
+     "type": "font",
+     "file": "outfit-variable.woff2",
+     "host": ""
+    }
+   ]
+  },
+  "phone": {
+   "onload": 545214,
+   "full": 564958,
+   "by_type": {
+    "image": 373294,
+    "font": 104728,
+    "stylesheet": 32156,
+    "script": 27862,
+    "document": 26918
+   },
+   "top": [
+    {
+     "bytes": 109382,
+     "type": "image",
+     "file": "08bc3e0-768.webp",
+     "host": ""
+    },
+    {
+     "bytes": 44764,
+     "type": "font",
+     "file": "outfit-variable.woff2",
+     "host": ""
+    },
+    {
+     "bytes": 41150,
+     "type": "image",
+     "file": "e20fcee-768.webp",
+     "host": ""
+    },
+    {
+     "bytes": 39546,
+     "type": "image",
+     "file": "e8a293a-768.webp",
+     "host": ""
+    },
+    {
+     "bytes": 37372,
+     "type": "image",
+     "file": "573c2bf-768.webp",
+     "host": ""
+    },
+    {
+     "bytes": 36130,
+     "type": "image",
+     "file": "b15438c-768.webp",
+     "host": ""
+    }
+   ]
+  }
+ },
+ "/projects/hind-al-oud.html": {
+  "desktop": {
+   "onload": 15629327,
+   "full": 15712545,
+   "by_type": {
+    "media": 13820837,
+    "image": 1699297,
+    "font": 104728,
+    "stylesheet": 31487,
+    "script": 28773,
+    "document": 27423
+   },
+   "top": [
+    {
+     "bytes": 1488075,
+     "type": "media",
+     "file": "july-03.webm",
+     "host": ""
+    },
+    {
+     "bytes": 1209884,
+     "type": "media",
+     "file": "oil.webm",
+     "host": ""
+    },
+    {
+     "bytes": 1163946,
+     "type": "media",
+     "file": "july-01.webm",
+     "host": ""
+    },
+    {
+     "bytes": 1108634,
+     "type": "media",
+     "file": "pink-musk-01.webm",
+     "host": ""
+    },
+    {
+     "bytes": 1066440,
+     "type": "media",
+     "file": "july-04.webm",
+     "host": ""
+    },
+    {
+     "bytes": 1063375,
+     "type": "media",
+     "file": "sequence-02.webm",
+     "host": ""
+    }
+   ]
+  },
+  "phone": {
+   "onload": 1348488,
+   "full": 1386546,
+   "by_type": {
+    "image": 1194135,
+    "font": 104728,
+    "stylesheet": 31487,
+    "script": 28773,
+    "document": 27423
+   },
+   "top": [
+    {
+     "bytes": 181960,
+     "type": "image",
+     "file": "illusorr-hind-al-oud-fragrance-social-content-cover-",
+     "host": ""
+    },
+    {
+     "bytes": 115680,
+     "type": "image",
+     "file": "illusorr-hind-al-oud-additional-content-frame-03-960",
+     "host": ""
+    },
+    {
+     "bytes": 114600,
+     "type": "image",
+     "file": "illusorr-hind-al-oud-additional-content-frame-02-960",
+     "host": ""
+    },
+    {
+     "bytes": 100602,
+     "type": "image",
+     "file": "illusorr-hind-al-oud-additional-content-frame-01-960",
+     "host": ""
+    },
+    {
+     "bytes": 59830,
+     "type": "image",
+     "file": "sequence-01-poster.webp",
+     "host": ""
+    },
+    {
+     "bytes": 53978,
+     "type": "image",
+     "file": "musk-al-shiok-03-poster.webp",
+     "host": ""
+    }
+   ]
+  }
+ },
+ "/projects/illusorr-spaces.html": {
+  "desktop": {
+   "onload": 1804006,
+   "full": 1804006,
+   "by_type": {
+    "fetch": 939885,
+    "script": 285064,
+    "xhr": 240805,
+    "font": 146012,
+    "image": 142722,
+    "stylesheet": 30082,
+    "document": 19436
+   },
+   "top": [
+    {
+     "bytes": 906864,
+     "type": "fetch",
+     "file": "at-first.ogg",
+     "host": ""
+    },
+    {
+     "bytes": 192420,
+     "type": "xhr",
+     "file": "draco_decoder.wasm",
+     "host": ""
+    },
+    {
+     "bytes": 151200,
+     "type": "script",
+     "file": "three.min.js",
+     "host": ""
+    },
+    {
+     "bytes": 63967,
+     "type": "script",
+     "file": "99b1e09c-e89f-4760-80cf-fc650366248f",
+     "host": ""
+    },
+    {
+     "bytes": 61022,
+     "type": "image",
+     "file": "47c3c4b206d2f7c1.webp",
+     "host": ""
+    },
+    {
+     "bytes": 44764,
+     "type": "font",
+     "file": "outfit-variable.woff2",
+     "host": ""
+    }
+   ]
+  },
+  "phone": {
+   "onload": 1804006,
+   "full": 1804006,
+   "by_type": {
+    "fetch": 939885,
+    "script": 285064,
+    "xhr": 240805,
+    "font": 146012,
+    "image": 142722,
+    "stylesheet": 30082,
+    "document": 19436
+   },
+   "top": [
+    {
+     "bytes": 906864,
+     "type": "fetch",
+     "file": "at-first.ogg",
+     "host": ""
+    },
+    {
+     "bytes": 192420,
+     "type": "xhr",
+     "file": "draco_decoder.wasm",
+     "host": ""
+    },
+    {
+     "bytes": 151200,
+     "type": "script",
+     "file": "three.min.js",
+     "host": ""
+    },
+    {
+     "bytes": 63967,
+     "type": "script",
+     "file": "db67d95c-b142-495d-b2fa-fc87d8b58f4f",
+     "host": ""
+    },
+    {
+     "bytes": 61022,
+     "type": "image",
+     "file": "47c3c4b206d2f7c1.webp",
+     "host": ""
+    },
+    {
+     "bytes": 44764,
+     "type": "font",
+     "file": "outfit-variable.woff2",
+     "host": ""
+    }
+   ]
+  }
+ },
+ "/projects/khaltat.html": {
+  "desktop": {
+   "onload": 744965,
+   "full": 904631,
+   "by_type": {
+    "image": 711064,
+    "font": 104728,
+    "stylesheet": 32061,
+    "script": 28773,
+    "document": 28005
+   },
+   "top": [
+    {
+     "bytes": 159666,
+     "type": "image",
+     "file": "illusorr-michael-cinco-campaign-frame-01.webp",
+     "host": ""
+    },
+    {
+     "bytes": 107122,
+     "type": "image",
+     "file": "illusorr-khaltat-campaign-banner-03.webp",
+     "host": ""
+    },
+    {
+     "bytes": 78196,
+     "type": "image",
+     "file": "illusorr-khaltat-campaign-banner-01.webp",
+     "host": ""
+    },
+    {
+     "bytes": 64630,
+     "type": "image",
+     "file": "illusorr-khaltat-campaign-banner-02.webp",
+     "host": ""
+    },
+    {
+     "bytes": 62282,
+     "type": "image",
+     "file": "illusorr-khaltat-social-post-february-04-480.webp",
+     "host": ""
+    },
+    {
+     "bytes": 52040,
+     "type": "image",
+     "file": "illusorr-khaltat-campaign-banner-05.webp",
+     "host": ""
+    }
+   ]
+  },
+  "phone": {
+   "onload": 493013,
+   "full": 543573,
+   "by_type": {
+    "image": 350006,
+    "font": 104728,
+    "stylesheet": 32061,
+    "script": 28773,
+    "document": 28005
+   },
+   "top": [
+    {
+     "bytes": 50560,
+     "type": "image",
+     "file": "illusorr-michael-cinco-campaign-frame-01-768.webp",
+     "host": ""
+    },
+    {
+     "bytes": 44764,
+     "type": "font",
+     "file": "outfit-variable.woff2",
+     "host": ""
+    },
+    {
+     "bytes": 39232,
+     "type": "image",
+     "file": "illusorr-khaltat-social-post-february-04-360.webp",
+     "host": ""
+    },
+    {
+     "bytes": 28948,
+     "type": "font",
+     "file": "PPMonumentExtended-Black.woff2",
+     "host": ""
+    },
+    {
+     "bytes": 28005,
+     "type": "document",
+     "file": "khaltat.html?mobile=1",
+     "host": ""
+    },
+    {
+     "bytes": 27380,
+     "type": "font",
+     "file": "PPMonumentExtended-Regular.woff2",
+     "host": ""
+    }
+   ]
+  }
+ },
+ "/projects/koton-lookbook-russia.html": {
+  "desktop": {
+   "onload": 748962,
+   "full": 829108,
+   "by_type": {
+    "image": 645862,
+    "font": 104728,
+    "stylesheet": 32156,
+    "script": 26589,
+    "document": 19773
+   },
+   "top": [
+    {
+     "bytes": 152752,
+     "type": "image",
+     "file": "illusorr-koton-lookbook-russia-look-08.webp",
+     "host": ""
+    },
+    {
+     "bytes": 80146,
+     "type": "image",
+     "file": "illusorr-morphellum-machimatch-digital-garment-artwo",
+     "host": ""
+    },
+    {
+     "bytes": 55524,
+     "type": "image",
+     "file": "illusorr-koton-lookbook-russia-campaign-cover.webp",
+     "host": ""
+    },
+    {
+     "bytes": 51104,
+     "type": "image",
+     "file": "illusorr-koton-lookbook-russia-look-05.webp",
+     "host": ""
+    },
+    {
+     "bytes": 45136,
+     "type": "image",
+     "file": "illusorr-koton-lookbook-russia-look-07.webp",
+     "host": ""
+    },
+    {
+     "bytes": 44764,
+     "type": "font",
+     "file": "outfit-variable.woff2",
+     "host": ""
+    }
+   ]
+  },
+  "phone": {
+   "onload": 601626,
+   "full": 636790,
+   "by_type": {
+    "image": 453544,
+    "font": 104728,
+    "stylesheet": 32156,
+    "script": 26589,
+    "document": 19773
+   },
+   "top": [
+    {
+     "bytes": 152752,
+     "type": "image",
+     "file": "illusorr-koton-lookbook-russia-look-08.webp",
+     "host": ""
+    },
+    {
+     "bytes": 51104,
+     "type": "image",
+     "file": "illusorr-koton-lookbook-russia-look-05.webp",
+     "host": ""
+    },
+    {
+     "bytes": 45136,
+     "type": "image",
+     "file": "illusorr-koton-lookbook-russia-look-07.webp",
+     "host": ""
+    },
+    {
+     "bytes": 44764,
+     "type": "font",
+     "file": "outfit-variable.woff2",
+     "host": ""
+    },
+    {
+     "bytes": 35164,
+     "type": "image",
+     "file": "illusorr-morphellum-machimatch-digital-garment-artwo",
+     "host": ""
+    },
+    {
+     "bytes": 35084,
+     "type": "image",
+     "file": "illusorr-koton-lookbook-russia-look-06-768.webp",
+     "host": ""
+    }
+   ]
+  }
+ },
+ "/projects/lap/embeds/lapillus-home-live.html": {
+  "desktop": {
+   "onload": 1699797,
+   "full": 1699797,
+   "by_type": {
+    "script": 747273,
+    "fetch": 446123,
+    "document": 402925,
+    "font": 103476
+   },
+   "top": [
+    {
+     "bytes": 641374,
+     "type": "script",
+     "file": "babel-standalone-7.26.4.min.js",
+     "host": ""
+    },
+    {
+     "bytes": 402925,
+     "type": "fetch",
+     "file": "lapillus-home-live.html",
+     "host": ""
+    },
+    {
+     "bytes": 402925,
+     "type": "document",
+     "file": "lapillus-home-live.html",
+     "host": ""
+    },
+    {
+     "bytes": 57951,
+     "type": "script",
+     "file": "21bc781e-7770-4e7e-b022-2e92fd938482",
+     "host": ""
+    },
+    {
+     "bytes": 43666,
+     "type": "script",
+     "file": "react-dom-18.3.1.production.min.js",
+     "host": ""
+    },
+    {
+     "bytes": 43198,
+     "type": "fetch",
+     "file": "d6f49e4a-f381-472e-bc4d-fdc040e1d6e5",
+     "host": ""
+    }
+   ]
+  },
+  "phone": {
+   "onload": 1699797,
+   "full": 1699797,
+   "by_type": {
+    "script": 747273,
+    "fetch": 446123,
+    "document": 402925,
+    "font": 103476
+   },
+   "top": [
+    {
+     "bytes": 641374,
+     "type": "script",
+     "file": "babel-standalone-7.26.4.min.js",
+     "host": ""
+    },
+    {
+     "bytes": 402925,
+     "type": "fetch",
+     "file": "lapillus-home-live.html?mobile=1",
+     "host": ""
+    },
+    {
+     "bytes": 402925,
+     "type": "document",
+     "file": "lapillus-home-live.html?mobile=1",
+     "host": ""
+    },
+    {
+     "bytes": 57951,
+     "type": "script",
+     "file": "e6873aee-4e02-4452-b15a-38d0868db3ee",
+     "host": ""
+    },
+    {
+     "bytes": 43666,
+     "type": "script",
+     "file": "react-dom-18.3.1.production.min.js",
+     "host": ""
+    },
+    {
+     "bytes": 43198,
+     "type": "fetch",
+     "file": "1daed8ea-2404-4b60-887d-ec96b9f6623e",
+     "host": ""
+    }
+   ]
+  }
+ },
+ "/projects/lapillus.html": {
+  "desktop": {
+   "onload": 8406033,
+   "full": 8406033,
+   "by_type": {
+    "media": 5940486,
+    "script": 833102,
+    "fetch": 465641,
+    "document": 422441,
+    "image": 415856,
+    "font": 298388,
+    "stylesheet": 30082,
+    "xhr": 37
+   },
+   "top": [
+    {
+     "bytes": 2250765,
+     "type": "media",
+     "file": "story-video.webm",
+     "host": ""
+    },
+    {
+     "bytes": 2250765,
+     "type": "media",
+     "file": "story-video.webm",
+     "host": ""
+    },
+    {
+     "bytes": 641374,
+     "type": "script",
+     "file": "babel-standalone-7.26.4.min.js",
+     "host": ""
+    },
+    {
+     "bytes": 479652,
+     "type": "media",
+     "file": "m-recording.webm",
+     "host": ""
+    },
+    {
+     "bytes": 479652,
+     "type": "media",
+     "file": "m-recording.webm",
+     "host": ""
+    },
+    {
+     "bytes": 479652,
+     "type": "media",
+     "file": "m-recording.webm",
+     "host": ""
+    }
+   ]
+  },
+  "phone": {
+   "onload": 653999,
+   "full": 674703,
+   "by_type": {
+    "image": 309597,
+    "font": 210108,
+    "script": 85829,
+    "stylesheet": 30082,
+    "fetch": 19520,
+    "document": 19516,
+    "xhr": 51
+   },
+   "top": [
+    {
+     "bytes": 57444,
+     "type": "image",
+     "file": "m-explore.webp",
+     "host": ""
+    },
+    {
+     "bytes": 54950,
+     "type": "image",
+     "file": "m-home.webp",
+     "host": ""
+    },
+    {
+     "bytes": 44764,
+     "type": "font",
+     "file": "outfit-variable.woff2",
+     "host": ""
+    },
+    {
+     "bytes": 44764,
+     "type": "font",
+     "file": "outfit-variable.woff2",
+     "host": ""
+    },
+    {
+     "bytes": 43666,
+     "type": "script",
+     "file": "react-dom-18.3.1.production.min.js",
+     "host": ""
+    },
+    {
+     "bytes": 42732,
+     "type": "image",
+     "file": "m-recording-poster.webp",
+     "host": ""
+    }
+   ]
+  }
+ },
+ "/projects/metaculture.html": {
+  "desktop": {
+   "onload": 983567,
+   "full": 19598680,
+   "by_type": {
+    "media": 10493494,
+    "xhr": 4556497,
+    "fetch": 3070238,
+    "image": 811534,
+    "script": 460082,
+    "font": 165780,
+    "stylesheet": 30082,
+    "document": 10973
+   },
+   "top": [
+    {
+     "bytes": 3145728,
+     "type": "media",
+     "file": "post-06.webm",
+     "host": ""
+    },
+    {
+     "bytes": 2760548,
+     "type": "xhr",
+     "file": "space-details.glb",
+     "host": ""
+    },
+    {
+     "bytes": 1591792,
+     "type": "xhr",
+     "file": "space.glb",
+     "host": ""
+    },
+    {
+     "bytes": 1578067,
+     "type": "media",
+     "file": "reel-a.webm",
+     "host": ""
+    },
+    {
+     "bytes": 1320607,
+     "type": "media",
+     "file": "reel-b.webm",
+     "host": ""
+    },
+    {
+     "bytes": 1098297,
+     "type": "media",
+     "file": "post-05.webm",
+     "host": ""
+    }
+   ]
+  },
+  "phone": {
+   "onload": 946913,
+   "full": 8907724,
+   "by_type": {
+    "xhr": 4556497,
+    "fetch": 3070238,
+    "image": 614072,
+    "script": 460082,
+    "font": 165780,
+    "stylesheet": 30082,
+    "document": 10973
+   },
+   "top": [
+    {
+     "bytes": 2760548,
+     "type": "xhr",
+     "file": "space-details.glb",
+     "host": ""
+    },
+    {
+     "bytes": 1591792,
+     "type": "xhr",
+     "file": "space.glb",
+     "host": ""
+    },
+    {
+     "bytes": 481474,
+     "type": "fetch",
+     "file": "5a66ae68-585d-4571-a4fe-4e8e5c154966",
+     "host": ""
+    },
+    {
+     "bytes": 455892,
+     "type": "fetch",
+     "file": "4d80c72c-ba1d-43e0-90db-5e42bf62cc1e",
+     "host": ""
+    },
+    {
+     "bytes": 374428,
+     "type": "fetch",
+     "file": "ff062060-0106-4d2c-9d98-d491da68f493",
+     "host": ""
+    },
+    {
+     "bytes": 365216,
+     "type": "fetch",
+     "file": "6927c3c2-928c-45b7-9860-6b4e9d94ebf5",
+     "host": ""
+    }
+   ]
+  }
+ },
+ "/projects/metagenus.html": {
+  "desktop": {
+   "onload": 12398225,
+   "full": 13678654,
+   "by_type": {
+    "xhr": 6162664,
+    "media": 4567854,
+    "script": 1753986,
+    "image": 824927,
+    "font": 211200,
+    "stylesheet": 97628,
+    "document": 60395
+   },
+   "top": [
+    {
+     "bytes": 5945856,
+     "type": "xhr",
+     "file": "MG_animation_scaled.glb",
+     "host": ""
+    },
+    {
+     "bytes": 3699116,
+     "type": "media",
+     "file": "C1.webm",
+     "host": ""
+    },
+    {
+     "bytes": 868738,
+     "type": "media",
+     "file": "wings.webm",
+     "host": ""
+    },
+    {
+     "bytes": 530301,
+     "type": "script",
+     "file": "base.js",
+     "host": "www.youtube-nocookie.com"
+    },
+    {
+     "bytes": 244269,
+     "type": "script",
+     "file": "m=r78Drb",
+     "host": "www.youtube-nocookie.com"
+    },
+    {
+     "bytes": 192420,
+     "type": "xhr",
+     "file": "draco_decoder.wasm",
+     "host": ""
+    }
+   ]
+  },
+  "phone": {
+   "onload": 3387636,
+   "full": 3611318,
+   "by_type": {
+    "media": 2443336,
+    "image": 910684,
+    "font": 135812,
+    "document": 60395,
+    "stylesheet": 39165,
+    "script": 21926
+   },
+   "top": [
+    {
+     "bytes": 1574598,
+     "type": "media",
+     "file": "C1.webm",
+     "host": ""
+    },
+    {
+     "bytes": 868738,
+     "type": "media",
+     "file": "wings.webm",
+     "host": ""
+    },
+    {
+     "bytes": 174532,
+     "type": "image",
+     "file": "pfp-grid-poster.webp",
+     "host": ""
+    },
+    {
+     "bytes": 128170,
+     "type": "image",
+     "file": "cast-group.m.webp",
+     "host": ""
+    },
+    {
+     "bytes": 115896,
+     "type": "image",
+     "file": "maxresdefault.jpg",
+     "host": "i.ytimg.com"
+    },
+    {
+     "bytes": 81138,
+     "type": "image",
+     "file": "maxresdefault.jpg",
+     "host": "i.ytimg.com"
+    }
+   ]
+  }
+ },
+ "/projects/michael-cinco.html": {
+  "desktop": {
+   "onload": 645567,
+   "full": 1074875,
+   "by_type": {
+    "image": 806214,
+    "font": 178440,
+    "stylesheet": 32559,
+    "document": 28889,
+    "script": 28773
+   },
+   "top": [
+    {
+     "bytes": 388242,
+     "type": "image",
+     "file": "illusorr-art-post-office-monthly-delivery-frame-01.w",
+     "host": ""
+    },
+    {
+     "bytes": 96086,
+     "type": "image",
+     "file": "illusorr-michael-cinco-social-post-berries-768.webp",
+     "host": ""
+    },
+    {
+     "bytes": 85858,
+     "type": "image",
+     "file": "illusorr-michael-cinco-wide-banner-blue-1440.webp",
+     "host": ""
+    },
+    {
+     "bytes": 70028,
+     "type": "image",
+     "file": "illusorr-michael-cinco-social-post-cotton-768.webp",
+     "host": ""
+    },
+    {
+     "bytes": 57240,
+     "type": "image",
+     "file": "illusorr-michael-cinco-banner-ice-768.webp",
+     "host": ""
+    },
+    {
+     "bytes": 44764,
+     "type": "font",
+     "file": "outfit-variable.woff2",
+     "host": ""
+    }
+   ]
+  },
+  "phone": {
+   "onload": 644791,
+   "full": 748163,
+   "by_type": {
+    "image": 479502,
+    "font": 178440,
+    "stylesheet": 32559,
+    "document": 28889,
+    "script": 28773
+   },
+   "top": [
+    {
+     "bytes": 96086,
+     "type": "image",
+     "file": "illusorr-michael-cinco-social-post-berries-768.webp",
+     "host": ""
+    },
+    {
+     "bytes": 79384,
+     "type": "image",
+     "file": "illusorr-art-post-office-monthly-delivery-frame-01-7",
+     "host": ""
+    },
+    {
+     "bytes": 70028,
+     "type": "image",
+     "file": "illusorr-michael-cinco-social-post-cotton-768.webp",
+     "host": ""
+    },
+    {
+     "bytes": 57240,
+     "type": "image",
+     "file": "illusorr-michael-cinco-banner-ice-768.webp",
+     "host": ""
+    },
+    {
+     "bytes": 47868,
+     "type": "image",
+     "file": "illusorr-michael-cinco-wide-banner-blue-960.webp",
+     "host": ""
+    },
+    {
+     "bytes": 44764,
+     "type": "font",
+     "file": "outfit-variable.woff2",
+     "host": ""
+    }
+   ]
+  }
+ },
+ "/projects/moodie-kiosk.html": {
+  "desktop": {
+   "onload": 872245,
+   "full": 872245,
+   "by_type": {
+    "image": 466436,
+    "font": 265728,
+    "script": 47023,
+    "media": 46465,
+    "stylesheet": 31646,
+    "document": 14947
+   },
+   "top": [
+    {
+     "bytes": 188380,
+     "type": "font",
+     "file": "CormorantGaramond-Variable.woff2",
+     "host": ""
+    },
+    {
+     "bytes": 143478,
+     "type": "image",
+     "file": "illusorr-moodie-kiosk-concept-moodboard-01.webp",
+     "host": ""
+    },
+    {
+     "bytes": 84180,
+     "type": "image",
+     "file": "illusorr-moodie-kiosk-retail-unit-render-02-1440.web",
+     "host": ""
+    },
+    {
+     "bytes": 63510,
+     "type": "image",
+     "file": "illusorr-moodie-kiosk-brand-identity-board-04.webp",
+     "host": ""
+    },
+    {
+     "bytes": 57120,
+     "type": "image",
+     "file": "illusorr-moodie-kiosk-retail-unit-render-03-1200.web",
+     "host": ""
+    },
+    {
+     "bytes": 46465,
+     "type": "media",
+     "file": "eyes-animation.webm",
+     "host": ""
+    }
+   ]
+  },
+  "phone": {
+   "onload": 541670,
+   "full": 544632,
+   "by_type": {
+    "image": 373668,
+    "font": 77348,
+    "script": 47023,
+    "stylesheet": 31646,
+    "document": 14947
+   },
+   "top": [
+    {
+     "bytes": 143478,
+     "type": "image",
+     "file": "illusorr-moodie-kiosk-concept-moodboard-01.webp",
+     "host": ""
+    },
+    {
+     "bytes": 63510,
+     "type": "image",
+     "file": "illusorr-moodie-kiosk-brand-identity-board-04.webp",
+     "host": ""
+    },
+    {
+     "bytes": 44764,
+     "type": "font",
+     "file": "outfit-variable.woff2",
+     "host": ""
+    },
+    {
+     "bytes": 33954,
+     "type": "image",
+     "file": "illusorr-moodie-kiosk-retail-unit-render-04-768.webp",
+     "host": ""
+    },
+    {
+     "bytes": 31596,
+     "type": "image",
+     "file": "illusorr-moodie-kiosk-retail-unit-render-02-768.webp",
+     "host": ""
+    },
+    {
+     "bytes": 28948,
+     "type": "font",
+     "file": "PPMonumentExtended-Black.woff2",
+     "host": ""
+    }
+   ]
+  }
+ },
+ "/projects/morphellum.html": {
+  "desktop": {
+   "onload": 938616,
+   "full": 1090668,
+   "by_type": {
+    "image": 731988,
+    "script": 229463,
+    "font": 73712,
+    "stylesheet": 45594,
+    "document": 9911
+   },
+   "top": [
+    {
+     "bytes": 102535,
+     "type": "script",
+     "file": "three.core.min.js",
+     "host": ""
+    },
+    {
+     "bytes": 99182,
+     "type": "image",
+     "file": "illusorr-morphellum-iridescent-digital-garment-detai",
+     "host": ""
+    },
+    {
+     "bytes": 87644,
+     "type": "script",
+     "file": "three.module.min.js",
+     "host": ""
+    },
+    {
+     "bytes": 77606,
+     "type": "image",
+     "file": "illusorr-pera-concrete-editorial-campaign-cover.webp",
+     "host": ""
+    },
+    {
+     "bytes": 74446,
+     "type": "image",
+     "file": "illusorr-morphellum-helium-digital-garment-artwork.w",
+     "host": ""
+    },
+    {
+     "bytes": 69646,
+     "type": "image",
+     "file": "illusorr-morphellum-op-art-digital-garment-detail-36",
+     "host": ""
+    }
+   ]
+  },
+  "phone": {
+   "onload": 938616,
+   "full": 1002206,
+   "by_type": {
+    "image": 643526,
+    "script": 229463,
+    "font": 73712,
+    "stylesheet": 45594,
+    "document": 9911
+   },
+   "top": [
+    {
+     "bytes": 102535,
+     "type": "script",
+     "file": "three.core.min.js",
+     "host": ""
+    },
+    {
+     "bytes": 99182,
+     "type": "image",
+     "file": "illusorr-morphellum-iridescent-digital-garment-detai",
+     "host": ""
+    },
+    {
+     "bytes": 87644,
+     "type": "script",
+     "file": "three.module.min.js",
+     "host": ""
+    },
+    {
+     "bytes": 69646,
+     "type": "image",
+     "file": "illusorr-morphellum-op-art-digital-garment-detail-36",
+     "host": ""
+    },
+    {
+     "bytes": 55564,
+     "type": "image",
+     "file": "illusorr-morphellum-blue-digital-garment-detail-360.",
+     "host": ""
+    },
+    {
+     "bytes": 53058,
+     "type": "image",
+     "file": "illusorr-morphellum-kimono-digital-garment-detail-36",
+     "host": ""
+    }
+   ]
+  }
+ },
+ "/projects/optiverse.html": {
+  "desktop": {
+   "onload": 1233890,
+   "full": 1760797,
+   "by_type": {
+    "image": 784972,
+    "media": 771498,
+    "font": 119924,
+    "document": 31872,
+    "stylesheet": 30580,
+    "script": 21926,
+    "xhr": 23,
+    "fetch": 2
+   },
+   "top": [
+    {
+     "bytes": 771498,
+     "type": "media",
+     "file": "pdu.webm",
+     "host": ""
+    },
+    {
+     "bytes": 309742,
+     "type": "image",
+     "file": "59a7f42022584430beeb3e7bb3417d02.jpeg",
+     "host": "media.sketchfab.com"
+    },
+    {
+     "bytes": 63298,
+     "type": "image",
+     "file": "illusorr-trt-metaverse-broadcast-virtual-studio-cove",
+     "host": ""
+    },
+    {
+     "bytes": 44764,
+     "type": "font",
+     "file": "outfit-variable.woff2",
+     "host": ""
+    },
+    {
+     "bytes": 40912,
+     "type": "image",
+     "file": "w-gallery-960.webp",
+     "host": ""
+    },
+    {
+     "bytes": 35738,
+     "type": "image",
+     "file": "sensory-1200.webp",
+     "host": ""
+    }
+   ]
+  },
+  "phone": {
+   "onload": 1135996,
+   "full": 1493649,
+   "by_type": {
+    "media": 771498,
+    "image": 517824,
+    "font": 119924,
+    "document": 31872,
+    "stylesheet": 30580,
+    "script": 21926,
+    "xhr": 23,
+    "fetch": 2
+   },
+   "top": [
+    {
+     "bytes": 771498,
+     "type": "media",
+     "file": "pdu.webm",
+     "host": ""
+    },
+    {
+     "bytes": 309742,
+     "type": "image",
+     "file": "59a7f42022584430beeb3e7bb3417d02.jpeg",
+     "host": "media.sketchfab.com"
+    },
+    {
+     "bytes": 44764,
+     "type": "font",
+     "file": "outfit-variable.woff2",
+     "host": ""
+    },
+    {
+     "bytes": 31872,
+     "type": "document",
+     "file": "optiverse.html?mobile=1",
+     "host": ""
+    },
+    {
+     "bytes": 30302,
+     "type": "image",
+     "file": "optima-hall-sm.webp",
+     "host": ""
+    },
+    {
+     "bytes": 28948,
+     "type": "font",
+     "file": "PPMonumentExtended-Black.woff2",
+     "host": ""
+    }
+   ]
+  }
+ },
+ "/projects/pera.html": {
+  "desktop": {
+   "onload": 998067,
+   "full": 1377933,
+   "by_type": {
+    "image": 1195840,
+    "font": 104728,
+    "stylesheet": 30810,
+    "document": 24629,
+    "script": 21926
+   },
+   "top": [
+    {
+     "bytes": 343476,
+     "type": "image",
+     "file": "pera-frame-11.webp",
+     "host": ""
+    },
+    {
+     "bytes": 309876,
+     "type": "image",
+     "file": "illusorr-aquatic-architects-floating-villa-render-co",
+     "host": ""
+    },
+    {
+     "bytes": 150428,
+     "type": "image",
+     "file": "pera-frame-04-1200.webp",
+     "host": ""
+    },
+    {
+     "bytes": 104436,
+     "type": "image",
+     "file": "pera-frame-06-1600.webp",
+     "host": ""
+    },
+    {
+     "bytes": 92134,
+     "type": "image",
+     "file": "pera-frame-01-1440.webp",
+     "host": ""
+    },
+    {
+     "bytes": 69990,
+     "type": "image",
+     "file": "pera-frame-02-1440.webp",
+     "host": ""
+    }
+   ]
+  },
+  "phone": {
+   "onload": 673201,
+   "full": 783069,
+   "by_type": {
+    "image": 600976,
+    "font": 104728,
+    "stylesheet": 30810,
+    "document": 24629,
+    "script": 21926
+   },
+   "top": [
+    {
+     "bytes": 87784,
+     "type": "image",
+     "file": "pera-frame-11-768.webp",
+     "host": ""
+    },
+    {
+     "bytes": 80882,
+     "type": "image",
+     "file": "illusorr-aquatic-architects-floating-villa-render-co",
+     "host": ""
+    },
+    {
+     "bytes": 72678,
+     "type": "image",
+     "file": "pera-frame-04-768.webp",
+     "host": ""
+    },
+    {
+     "bytes": 61928,
+     "type": "image",
+     "file": "pera-frame-13-768.webp",
+     "host": ""
+    },
+    {
+     "bytes": 59198,
+     "type": "image",
+     "file": "pera-frame-12-768.webp",
+     "host": ""
+    },
+    {
+     "bytes": 58004,
+     "type": "image",
+     "file": "pera-frame-05-768.webp",
+     "host": ""
+    }
+   ]
+  }
+ },
+ "/projects/pixelpaint.html": {
+  "desktop": {
+   "onload": 2560061,
+   "full": 3719276,
+   "by_type": {
+    "image": 2315872,
+    "script": 1044060,
+    "font": 251564,
+    "stylesheet": 88910,
+    "document": 18445,
+    "fetch": 272,
+    "xhr": 153
+   },
+   "top": [
+    {
+     "bytes": 537040,
+     "type": "image",
+     "file": "illusorr-pixelpaint-painted-car-hero.webp",
+     "host": ""
+    },
+    {
+     "bytes": 530301,
+     "type": "script",
+     "file": "base.js",
+     "host": "www.youtube-nocookie.com"
+    },
+    {
+     "bytes": 414238,
+     "type": "image",
+     "file": "illusorr-pixelpaint-generative-pattern-top-down.webp",
+     "host": ""
+    },
+    {
+     "bytes": 414238,
+     "type": "image",
+     "file": "illusorr-pixelpaint-finished-car-top-down.webp",
+     "host": ""
+    },
+    {
+     "bytes": 283462,
+     "type": "image",
+     "file": "illusorr-pixelpaint-car-in-paint-booth.webp",
+     "host": ""
+    },
+    {
+     "bytes": 244269,
+     "type": "script",
+     "file": "m=r78Drb",
+     "host": "www.youtube-nocookie.com"
+    }
+   ]
+  },
+  "phone": {
+   "onload": 2958518,
+   "full": 3143041,
+   "by_type": {
+    "script": 1437841,
+    "image": 1293117,
+    "font": 246104,
+    "stylesheet": 147373,
+    "document": 18445,
+    "xhr": 161
+   },
+   "top": [
+    {
+     "bytes": 537040,
+     "type": "image",
+     "file": "illusorr-pixelpaint-painted-car-hero.webp",
+     "host": ""
+    },
+    {
+     "bytes": 483517,
+     "type": "script",
+     "file": "base.js",
+     "host": "www.youtube-nocookie.com"
+    },
+    {
+     "bytes": 483517,
+     "type": "script",
+     "file": "base.js",
+     "host": "www.youtube-nocookie.com"
+    },
+    {
+     "bytes": 283462,
+     "type": "image",
+     "file": "illusorr-pixelpaint-car-in-paint-booth.webp",
+     "host": ""
+    },
+    {
+     "bytes": 223460,
+     "type": "script",
+     "file": "m=r78Drb",
+     "host": "www.youtube-nocookie.com"
+    },
+    {
+     "bytes": 184492,
+     "type": "image",
+     "file": "illusorr-pixelpaint-finished-car-top-down-960.webp",
+     "host": ""
+    }
+   ]
+  }
+ },
+ "/projects/pylon.html": {
+  "desktop": {
+   "onload": 457144,
+   "full": 622324,
+   "by_type": {
+    "image": 349448,
+    "font": 186328,
+    "stylesheet": 33046,
+    "document": 30295,
+    "script": 23207
+   },
+   "top": [
+    {
+     "bytes": 171934,
+     "type": "image",
+     "file": "illusorr-pylon-world-view-01.webp",
+     "host": ""
+    },
+    {
+     "bytes": 89512,
+     "type": "image",
+     "file": "illusorr-pylon-world-view-18.webp",
+     "host": ""
+    },
+    {
+     "bytes": 75668,
+     "type": "image",
+     "file": "illusorr-disney-plus-streaming-brand-campaign-cover.",
+     "host": ""
+    },
+    {
+     "bytes": 44764,
+     "type": "font",
+     "file": "outfit-variable.woff2",
+     "host": ""
+    },
+    {
+     "bytes": 30295,
+     "type": "document",
+     "file": "pylon.html",
+     "host": ""
+    },
+    {
+     "bytes": 28948,
+     "type": "font",
+     "file": "PPMonumentExtended-Black.woff2",
+     "host": ""
+    }
+   ]
+  },
+  "phone": {
+   "onload": 4590517,
+   "full": 4660739,
+   "by_type": {
+    "script": 2774939,
+    "image": 1318584,
+    "font": 290332,
+    "stylesheet": 208435,
+    "document": 30295,
+    "xhr": 25792,
+    "fetch": 12362
+   },
+   "top": [
+    {
+     "bytes": 483517,
+     "type": "script",
+     "file": "base.js",
+     "host": "www.youtube-nocookie.com"
+    },
+    {
+     "bytes": 483517,
+     "type": "script",
+     "file": "base.js",
+     "host": "www.youtube-nocookie.com"
+    },
+    {
+     "bytes": 483517,
+     "type": "script",
+     "file": "base.js",
+     "host": "www.youtube-nocookie.com"
+    },
+    {
+     "bytes": 223460,
+     "type": "script",
+     "file": "m=r78Drb",
+     "host": "www.youtube-nocookie.com"
+    },
+    {
+     "bytes": 223460,
+     "type": "script",
+     "file": "m=r78Drb",
+     "host": "www.youtube-nocookie.com"
+    },
+    {
+     "bytes": 223460,
+     "type": "script",
+     "file": "m=r78Drb",
+     "host": "www.youtube-nocookie.com"
+    }
+   ]
+  }
+ },
+ "/projects/riyadhverse.html": {
+  "desktop": {
+   "onload": 1380844,
+   "full": 1380875,
+   "by_type": {
+    "script": 1021922,
+    "image": 137883,
+    "font": 117476,
+    "stylesheet": 89496,
+    "document": 13673,
+    "fetch": 272,
+    "xhr": 153
+   },
+   "top": [
+    {
+     "bytes": 530301,
+     "type": "script",
+     "file": "base.js",
+     "host": "www.youtube-nocookie.com"
+    },
+    {
+     "bytes": 244269,
+     "type": "script",
+     "file": "m=r78Drb",
+     "host": "www.youtube-nocookie.com"
+    },
+    {
+     "bytes": 179062,
+     "type": "script",
+     "file": "m=root,base",
+     "host": "www.youtube-nocookie.com"
+    },
+    {
+     "bytes": 81295,
+     "type": "image",
+     "file": "maxresdefault.jpg?sqp=-oaymwEmCIAKENAF8quKqQMa8AEB-A",
+     "host": "i.ytimg.com"
+    },
+    {
+     "bytes": 58463,
+     "type": "stylesheet",
+     "file": "www-player-rtl.css",
+     "host": "www.youtube-nocookie.com"
+    },
+    {
+     "bytes": 44764,
+     "type": "font",
+     "file": "outfit-variable.woff2",
+     "host": ""
+    }
+   ]
+  },
+  "phone": {
+   "onload": 1772931,
+   "full": 1772962,
+   "by_type": {
+    "script": 1415703,
+    "stylesheet": 147959,
+    "font": 112016,
+    "image": 83450,
+    "document": 13673,
+    "xhr": 161
+   },
+   "top": [
+    {
+     "bytes": 483517,
+     "type": "script",
+     "file": "base.js",
+     "host": "www.youtube-nocookie.com"
+    },
+    {
+     "bytes": 483517,
+     "type": "script",
+     "file": "base.js",
+     "host": "www.youtube-nocookie.com"
+    },
+    {
+     "bytes": 223460,
+     "type": "script",
+     "file": "m=r78Drb",
+     "host": "www.youtube-nocookie.com"
+    },
+    {
+     "bytes": 158702,
+     "type": "script",
+     "file": "m=root,base",
+     "host": "www.youtube-nocookie.com"
+    },
+    {
+     "bytes": 58463,
+     "type": "stylesheet",
+     "file": "www-player-rtl.css",
+     "host": "www.youtube-nocookie.com"
+    },
+    {
+     "bytes": 58463,
+     "type": "stylesheet",
+     "file": "www-player-rtl.css",
+     "host": "www.youtube-nocookie.com"
+    }
+   ]
+  }
+ },
+ "/projects/trt-metaverse.html": {
+  "desktop": {
+   "onload": 2146778,
+   "full": 2390331,
+   "by_type": {
+    "image": 2094144,
+    "font": 211436,
+    "stylesheet": 38571,
+    "script": 29619,
+    "document": 16561
+   },
+   "top": [
+    {
+     "bytes": 253972,
+     "type": "image",
+     "file": "x-03.webp",
+     "host": ""
+    },
+    {
+     "bytes": 237650,
+     "type": "image",
+     "file": "x-07.webp",
+     "host": ""
+    },
+    {
+     "bytes": 234364,
+     "type": "image",
+     "file": "x-09.webp",
+     "host": ""
+    },
+    {
+     "bytes": 220764,
+     "type": "image",
+     "file": "x-06.webp",
+     "host": ""
+    },
+    {
+     "bytes": 138378,
+     "type": "image",
+     "file": "main-03.webp",
+     "host": ""
+    },
+    {
+     "bytes": 135807,
+     "type": "image",
+     "file": "maxresdefault.jpg",
+     "host": "i.ytimg.com"
+    }
+   ]
+  },
+  "phone": {
+   "onload": 2094545,
+   "full": 2261976,
+   "by_type": {
+    "image": 1965789,
+    "font": 211436,
+    "stylesheet": 38571,
+    "script": 29619,
+    "document": 16561
+   },
+   "top": [
+    {
+     "bytes": 253972,
+     "type": "image",
+     "file": "x-03.webp",
+     "host": ""
+    },
+    {
+     "bytes": 237650,
+     "type": "image",
+     "file": "x-07.webp",
+     "host": ""
+    },
+    {
+     "bytes": 234364,
+     "type": "image",
+     "file": "x-09.webp",
+     "host": ""
+    },
+    {
+     "bytes": 220764,
+     "type": "image",
+     "file": "x-06.webp",
+     "host": ""
+    },
+    {
+     "bytes": 138378,
+     "type": "image",
+     "file": "main-03.webp",
+     "host": ""
+    },
+    {
+     "bytes": 135807,
+     "type": "image",
+     "file": "maxresdefault.jpg",
+     "host": "i.ytimg.com"
+    }
+   ]
+  }
+ },
+ "/projects/u-hub-metaverse.html": {
+  "desktop": {
+   "onload": 1056020,
+   "full": 1269886,
+   "by_type": {
+    "image": 971176,
+    "font": 211436,
+    "stylesheet": 37024,
+    "script": 33775,
+    "document": 16475
+   },
+   "top": [
+    {
+     "bytes": 134318,
+     "type": "image",
+     "file": "g-16.webp",
+     "host": ""
+    },
+    {
+     "bytes": 134088,
+     "type": "font",
+     "file": "CormorantGaramond-Italic-Variable.woff2",
+     "host": ""
+    },
+    {
+     "bytes": 130354,
+     "type": "image",
+     "file": "f-02.webp",
+     "host": ""
+    },
+    {
+     "bytes": 102308,
+     "type": "image",
+     "file": "maxresdefault.jpg",
+     "host": "i.ytimg.com"
+    },
+    {
+     "bytes": 92592,
+     "type": "image",
+     "file": "f-08.webp",
+     "host": ""
+    },
+    {
+     "bytes": 86722,
+     "type": "image",
+     "file": "elidor.webp",
+     "host": ""
+    }
+   ]
+  },
+  "phone": {
+   "onload": 1066750,
+   "full": 1136792,
+   "by_type": {
+    "image": 838082,
+    "font": 211436,
+    "stylesheet": 37024,
+    "script": 33775,
+    "document": 16475
+   },
+   "top": [
+    {
+     "bytes": 134318,
+     "type": "image",
+     "file": "g-16.webp",
+     "host": ""
+    },
+    {
+     "bytes": 134088,
+     "type": "font",
+     "file": "CormorantGaramond-Italic-Variable.woff2",
+     "host": ""
+    },
+    {
+     "bytes": 130354,
+     "type": "image",
+     "file": "f-02.webp",
+     "host": ""
+    },
+    {
+     "bytes": 102308,
+     "type": "image",
+     "file": "maxresdefault.jpg",
+     "host": "i.ytimg.com"
+    },
+    {
+     "bytes": 92592,
+     "type": "image",
+     "file": "f-08.webp",
+     "host": ""
+    },
+    {
+     "bytes": 86722,
+     "type": "image",
+     "file": "elidor.webp",
+     "host": ""
+    }
+   ]
+  }
+ },
+ "/sectors.html": {
+  "desktop": {
+   "onload": 1085116,
+   "full": 1085116,
+   "by_type": {
+    "image": 894128,
+    "font": 103200,
+    "stylesheet": 55576,
+    "script": 27446,
+    "document": 4766
+   },
+   "top": [
+    {
+     "bytes": 224918,
+     "type": "image",
+     "file": "culture.webp",
+     "host": ""
+    },
+    {
+     "bytes": 210812,
+     "type": "image",
+     "file": "gaming.webp",
+     "host": ""
+    },
+    {
+     "bytes": 176486,
+     "type": "image",
+     "file": "fashion.webp",
+     "host": ""
+    },
+    {
+     "bytes": 106354,
+     "type": "image",
+     "file": "real-estate.webp",
+     "host": ""
+    },
+    {
+     "bytes": 90946,
+     "type": "image",
+     "file": "beauty.webp",
+     "host": ""
+    },
+    {
+     "bytes": 72278,
+     "type": "image",
+     "file": "business.webp",
+     "host": ""
+    }
+   ]
+  },
+  "phone": {
+   "onload": 1085116,
+   "full": 1085116,
+   "by_type": {
+    "image": 894128,
+    "font": 103200,
+    "stylesheet": 55576,
+    "script": 27446,
+    "document": 4766
+   },
+   "top": [
+    {
+     "bytes": 224918,
+     "type": "image",
+     "file": "culture.webp",
+     "host": ""
+    },
+    {
+     "bytes": 210812,
+     "type": "image",
+     "file": "gaming.webp",
+     "host": ""
+    },
+    {
+     "bytes": 176486,
+     "type": "image",
+     "file": "fashion.webp",
+     "host": ""
+    },
+    {
+     "bytes": 106354,
+     "type": "image",
+     "file": "real-estate.webp",
+     "host": ""
+    },
+    {
+     "bytes": 90946,
+     "type": "image",
+     "file": "beauty.webp",
+     "host": ""
+    },
+    {
+     "bytes": 72278,
+     "type": "image",
+     "file": "business.webp",
+     "host": ""
+    }
+   ]
+  }
+ },
+ "/sectors/beauty.html": {
+  "desktop": {
+   "onload": 1088277,
+   "full": 1088277,
+   "by_type": {
+    "image": 923026,
+    "font": 75932,
+    "stylesheet": 55576,
+    "script": 27446,
+    "document": 6297
+   },
+   "top": [
+    {
+     "bytes": 345928,
+     "type": "image",
+     "file": "illusorr-hind-al-oud-fragrance-social-content-cover.",
+     "host": ""
+    },
+    {
+     "bytes": 214186,
+     "type": "image",
+     "file": "illusorr-michael-cinco-wide-banner-blue.webp",
+     "host": ""
+    },
+    {
+     "bytes": 90946,
+     "type": "image",
+     "file": "beauty.webp",
+     "host": ""
+    },
+    {
+     "bytes": 83218,
+     "type": "image",
+     "file": "illusorr-khaltat-fragrance-ecommerce-content-cover.w",
+     "host": ""
+    },
+    {
+     "bytes": 77048,
+     "type": "image",
+     "file": "illusorr-anfasic-dokhoon-product-render-14.webp",
+     "host": ""
+    },
+    {
+     "bytes": 49186,
+     "type": "image",
+     "file": "beauty-bottles-768.webp",
+     "host": ""
+    }
+   ]
+  },
+  "phone": {
+   "onload": 1088277,
+   "full": 1104331,
+   "by_type": {
+    "image": 939080,
+    "font": 75932,
+    "stylesheet": 55576,
+    "script": 27446,
+    "document": 6297
+   },
+   "top": [
+    {
+     "bytes": 345928,
+     "type": "image",
+     "file": "illusorr-hind-al-oud-fragrance-social-content-cover.",
+     "host": ""
+    },
+    {
+     "bytes": 214186,
+     "type": "image",
+     "file": "illusorr-michael-cinco-wide-banner-blue.webp",
+     "host": ""
+    },
+    {
+     "bytes": 90946,
+     "type": "image",
+     "file": "beauty.webp",
+     "host": ""
+    },
+    {
+     "bytes": 83218,
+     "type": "image",
+     "file": "illusorr-khaltat-fragrance-ecommerce-content-cover.w",
+     "host": ""
+    },
+    {
+     "bytes": 77048,
+     "type": "image",
+     "file": "illusorr-anfasic-dokhoon-product-render-14.webp",
+     "host": ""
+    },
+    {
+     "bytes": 49186,
+     "type": "image",
+     "file": "beauty-bottles-768.webp",
+     "host": ""
+    }
+   ]
+  }
+ },
+ "/sectors/business.html": {
+  "desktop": {
+   "onload": 1365725,
+   "full": 1365725,
+   "by_type": {
+    "image": 1006166,
+    "font": 270128,
+    "stylesheet": 55576,
+    "script": 27446,
+    "document": 6409
+   },
+   "top": [
+    {
+     "bytes": 387272,
+     "type": "image",
+     "file": "illusorr-pixelpaint-painted-car-top-down.webp",
+     "host": ""
+    },
+    {
+     "bytes": 230692,
+     "type": "image",
+     "file": "illusorr-coffee-merchant-specialty-coffee-content-co",
+     "host": ""
+    },
+    {
+     "bytes": 194196,
+     "type": "font",
+     "file": "Fraunces-Variable.woff2",
+     "host": ""
+    },
+    {
+     "bytes": 158612,
+     "type": "image",
+     "file": "ant-card.webp",
+     "host": ""
+    },
+    {
+     "bytes": 77032,
+     "type": "image",
+     "file": "berwaz-card.webp",
+     "host": ""
+    },
+    {
+     "bytes": 72278,
+     "type": "image",
+     "file": "business.webp",
+     "host": ""
+    }
+   ]
+  },
+  "phone": {
+   "onload": 1365725,
+   "full": 1381779,
+   "by_type": {
+    "image": 1022220,
+    "font": 270128,
+    "stylesheet": 55576,
+    "script": 27446,
+    "document": 6409
+   },
+   "top": [
+    {
+     "bytes": 387272,
+     "type": "image",
+     "file": "illusorr-pixelpaint-painted-car-top-down.webp",
+     "host": ""
+    },
+    {
+     "bytes": 230692,
+     "type": "image",
+     "file": "illusorr-coffee-merchant-specialty-coffee-content-co",
+     "host": ""
+    },
+    {
+     "bytes": 194196,
+     "type": "font",
+     "file": "Fraunces-Variable.woff2",
+     "host": ""
+    },
+    {
+     "bytes": 158612,
+     "type": "image",
+     "file": "ant-card.webp",
+     "host": ""
+    },
+    {
+     "bytes": 77032,
+     "type": "image",
+     "file": "berwaz-card.webp",
+     "host": ""
+    },
+    {
+     "bytes": 72278,
+     "type": "image",
+     "file": "business.webp",
+     "host": ""
+    }
+   ]
+  }
+ },
+ "/sectors/culture.html": {
+  "desktop": {
+   "onload": 998030,
+   "full": 998030,
+   "by_type": {
+    "image": 811044,
+    "font": 75932,
+    "stylesheet": 55576,
+    "script": 49608,
+    "document": 5870
+   },
+   "top": [
+    {
+     "bytes": 254462,
+     "type": "image",
+     "file": "illusorr-art-post-office-brand-band-cover.webp",
+     "host": ""
+    },
+    {
+     "bytes": 224918,
+     "type": "image",
+     "file": "culture.webp",
+     "host": ""
+    },
+    {
+     "bytes": 117146,
+     "type": "image",
+     "file": "illusorr-pylon-owned-launch-world-cover.webp",
+     "host": ""
+    },
+    {
+     "bytes": 86606,
+     "type": "image",
+     "file": "space-render.webp",
+     "host": ""
+    },
+    {
+     "bytes": 59898,
+     "type": "image",
+     "file": "illusorr-echoes-of-light-immersive-light-installatio",
+     "host": ""
+    },
+    {
+     "bytes": 44764,
+     "type": "font",
+     "file": "outfit-variable.woff2",
+     "host": ""
+    }
+   ]
+  },
+  "phone": {
+   "onload": 998030,
+   "full": 1014084,
+   "by_type": {
+    "image": 827098,
+    "font": 75932,
+    "stylesheet": 55576,
+    "script": 49608,
+    "document": 5870
+   },
+   "top": [
+    {
+     "bytes": 254462,
+     "type": "image",
+     "file": "illusorr-art-post-office-brand-band-cover.webp",
+     "host": ""
+    },
+    {
+     "bytes": 224918,
+     "type": "image",
+     "file": "culture.webp",
+     "host": ""
+    },
+    {
+     "bytes": 117146,
+     "type": "image",
+     "file": "illusorr-pylon-owned-launch-world-cover.webp",
+     "host": ""
+    },
+    {
+     "bytes": 86606,
+     "type": "image",
+     "file": "space-render.webp",
+     "host": ""
+    },
+    {
+     "bytes": 59898,
+     "type": "image",
+     "file": "illusorr-echoes-of-light-immersive-light-installatio",
+     "host": ""
+    },
+    {
+     "bytes": 44764,
+     "type": "font",
+     "file": "outfit-variable.woff2",
+     "host": ""
+    }
+   ]
+  }
+ },
+ "/sectors/fashion.html": {
+  "desktop": {
+   "onload": 1479323,
+   "full": 1479323,
+   "by_type": {
+    "image": 1291828,
+    "font": 75932,
+    "stylesheet": 55576,
+    "script": 49608,
+    "document": 6379
+   },
+   "top": [
+    {
+     "bytes": 388242,
+     "type": "image",
+     "file": "illusorr-art-post-office-monthly-delivery-frame-01.w",
+     "host": ""
+    },
+    {
+     "bytes": 176486,
+     "type": "image",
+     "file": "fashion.webp",
+     "host": ""
+    },
+    {
+     "bytes": 134824,
+     "type": "image",
+     "file": "fashion-retail.webp",
+     "host": ""
+    },
+    {
+     "bytes": 101026,
+     "type": "image",
+     "file": "illusorr-morphellum-osseous-runway-look.webp",
+     "host": ""
+    },
+    {
+     "bytes": 89164,
+     "type": "image",
+     "file": "denim-card.webp",
+     "host": ""
+    },
+    {
+     "bytes": 75588,
+     "type": "image",
+     "file": "illusorr-barbie-digital-fashion-doll-cover.webp",
+     "host": ""
+    }
+   ]
+  },
+  "phone": {
+   "onload": 1479323,
+   "full": 1495377,
+   "by_type": {
+    "image": 1307882,
+    "font": 75932,
+    "stylesheet": 55576,
+    "script": 49608,
+    "document": 6379
+   },
+   "top": [
+    {
+     "bytes": 388242,
+     "type": "image",
+     "file": "illusorr-art-post-office-monthly-delivery-frame-01.w",
+     "host": ""
+    },
+    {
+     "bytes": 176486,
+     "type": "image",
+     "file": "fashion.webp",
+     "host": ""
+    },
+    {
+     "bytes": 134824,
+     "type": "image",
+     "file": "fashion-retail.webp",
+     "host": ""
+    },
+    {
+     "bytes": 101026,
+     "type": "image",
+     "file": "illusorr-morphellum-osseous-runway-look.webp",
+     "host": ""
+    },
+    {
+     "bytes": 89164,
+     "type": "image",
+     "file": "denim-card.webp",
+     "host": ""
+    },
+    {
+     "bytes": 75588,
+     "type": "image",
+     "file": "illusorr-barbie-digital-fashion-doll-cover.webp",
+     "host": ""
+    }
+   ]
+  }
+ },
+ "/sectors/gaming.html": {
+  "desktop": {
+   "onload": 1359444,
+   "full": 1359444,
+   "by_type": {
+    "image": 1172120,
+    "font": 75932,
+    "stylesheet": 55576,
+    "script": 49608,
+    "document": 6208
+   },
+   "top": [
+    {
+     "bytes": 358500,
+     "type": "image",
+     "file": "gaming-hero.webp",
+     "host": ""
+    },
+    {
+     "bytes": 210812,
+     "type": "image",
+     "file": "gaming.webp",
+     "host": ""
+    },
+    {
+     "bytes": 171234,
+     "type": "image",
+     "file": "gaming-env.webp",
+     "host": ""
+    },
+    {
+     "bytes": 117146,
+     "type": "image",
+     "file": "illusorr-pylon-owned-launch-world-cover.webp",
+     "host": ""
+    },
+    {
+     "bytes": 75668,
+     "type": "image",
+     "file": "illusorr-disney-plus-streaming-brand-campaign-cover.",
+     "host": ""
+    },
+    {
+     "bytes": 63298,
+     "type": "image",
+     "file": "illusorr-trt-metaverse-broadcast-virtual-studio-cove",
+     "host": ""
+    }
+   ]
+  },
+  "phone": {
+   "onload": 1359444,
+   "full": 1375498,
+   "by_type": {
+    "image": 1188174,
+    "font": 75932,
+    "stylesheet": 55576,
+    "script": 49608,
+    "document": 6208
+   },
+   "top": [
+    {
+     "bytes": 358500,
+     "type": "image",
+     "file": "gaming-hero.webp",
+     "host": ""
+    },
+    {
+     "bytes": 210812,
+     "type": "image",
+     "file": "gaming.webp",
+     "host": ""
+    },
+    {
+     "bytes": 171234,
+     "type": "image",
+     "file": "gaming-env.webp",
+     "host": ""
+    },
+    {
+     "bytes": 117146,
+     "type": "image",
+     "file": "illusorr-pylon-owned-launch-world-cover.webp",
+     "host": ""
+    },
+    {
+     "bytes": 75668,
+     "type": "image",
+     "file": "illusorr-disney-plus-streaming-brand-campaign-cover.",
+     "host": ""
+    },
+    {
+     "bytes": 63298,
+     "type": "image",
+     "file": "illusorr-trt-metaverse-broadcast-virtual-studio-cove",
+     "host": ""
+    }
+   ]
+  }
+ },
+ "/sectors/real-estate.html": {
+  "desktop": {
+   "onload": 1046346,
+   "full": 1046346,
+   "by_type": {
+    "image": 877876,
+    "font": 75932,
+    "stylesheet": 55576,
+    "script": 29159,
+    "document": 7803
+   },
+   "top": [
+    {
+     "bytes": 309876,
+     "type": "image",
+     "file": "illusorr-aquatic-architects-floating-villa-render-co",
+     "host": ""
+    },
+    {
+     "bytes": 111466,
+     "type": "image",
+     "file": "riyadhverse-cover.webp",
+     "host": ""
+    },
+    {
+     "bytes": 106354,
+     "type": "image",
+     "file": "real-estate.webp",
+     "host": ""
+    },
+    {
+     "bytes": 92176,
+     "type": "image",
+     "file": "m00037-640.webp",
+     "host": ""
+    },
+    {
+     "bytes": 59336,
+     "type": "image",
+     "file": "3d-exterior.webp",
+     "host": ""
+    },
+    {
+     "bytes": 51058,
+     "type": "image",
+     "file": "m00019-768.webp",
+     "host": ""
+    }
+   ]
+  },
+  "phone": {
+   "onload": 948406,
+   "full": 964460,
+   "by_type": {
+    "image": 795990,
+    "font": 75932,
+    "stylesheet": 55576,
+    "script": 29159,
+    "document": 7803
+   },
+   "top": [
+    {
+     "bytes": 309876,
+     "type": "image",
+     "file": "illusorr-aquatic-architects-floating-villa-render-co",
+     "host": ""
+    },
+    {
+     "bytes": 111466,
+     "type": "image",
+     "file": "riyadhverse-cover.webp",
+     "host": ""
+    },
+    {
+     "bytes": 106354,
+     "type": "image",
+     "file": "real-estate.webp",
+     "host": ""
+    },
+    {
+     "bytes": 92176,
+     "type": "image",
+     "file": "m00037-640.webp",
+     "host": ""
+    },
+    {
+     "bytes": 59336,
+     "type": "image",
+     "file": "3d-exterior.webp",
+     "host": ""
+    },
+    {
+     "bytes": 51058,
+     "type": "image",
+     "file": "m00019-768.webp",
+     "host": ""
+    }
+   ]
+  }
+ },
+ "/work.html": {
+  "desktop": {
+   "onload": 3566407,
+   "full": 3566407,
+   "by_type": {
+    "image": 3210286,
+    "font": 270128,
+    "stylesheet": 55576,
+    "script": 23374,
+    "document": 7043
+   },
+   "top": [
+    {
+     "bytes": 388242,
+     "type": "image",
+     "file": "illusorr-art-post-office-monthly-delivery-frame-01.w",
+     "host": ""
+    },
+    {
+     "bytes": 380050,
+     "type": "image",
+     "file": "illusorr-pixelpaint-generative-bloom-hero.webp",
+     "host": ""
+    },
+    {
+     "bytes": 309876,
+     "type": "image",
+     "file": "illusorr-aquatic-architects-floating-villa-render-co",
+     "host": ""
+    },
+    {
+     "bytes": 230692,
+     "type": "image",
+     "file": "illusorr-coffee-merchant-specialty-coffee-content-co",
+     "host": ""
+    },
+    {
+     "bytes": 194196,
+     "type": "font",
+     "file": "Fraunces-Variable.woff2",
+     "host": ""
+    },
+    {
+     "bytes": 186702,
+     "type": "image",
+     "file": "illusorr-denim-boyner-diner-daylight-campaign.webp",
+     "host": ""
+    }
+   ]
+  },
+  "phone": {
+   "onload": 3372211,
+   "full": 3372211,
+   "by_type": {
+    "image": 3210286,
+    "font": 75932,
+    "stylesheet": 55576,
+    "script": 23374,
+    "document": 7043
+   },
+   "top": [
+    {
+     "bytes": 388242,
+     "type": "image",
+     "file": "illusorr-art-post-office-monthly-delivery-frame-01.w",
+     "host": ""
+    },
+    {
+     "bytes": 380050,
+     "type": "image",
+     "file": "illusorr-pixelpaint-generative-bloom-hero.webp",
+     "host": ""
+    },
+    {
+     "bytes": 309876,
+     "type": "image",
+     "file": "illusorr-aquatic-architects-floating-villa-render-co",
+     "host": ""
+    },
+    {
+     "bytes": 230692,
+     "type": "image",
+     "file": "illusorr-coffee-merchant-specialty-coffee-content-co",
+     "host": ""
+    },
+    {
+     "bytes": 186702,
+     "type": "image",
+     "file": "illusorr-denim-boyner-diner-daylight-campaign.webp",
+     "host": ""
+    },
+    {
+     "bytes": 159666,
+     "type": "image",
+     "file": "illusorr-michael-cinco-campaign-frame-01.webp",
+     "host": ""
+    }
+   ]
+  }
+ }
+}

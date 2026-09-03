@@ -1191,11 +1191,20 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
   .pano-sound.is-off{ color:rgba(238,241,251,.4) }
   .pano-sound.is-off .pano-eq i{ animation:none; height:2px }
   /* ── page ambience toggle ───────────────────────────────────── */
-  .amb-toggle{ position:fixed; left:22px; bottom:22px; z-index:2080; display:flex; align-items:center; gap:9px; cursor:pointer;
-    font-family:'Outfit',system-ui,sans-serif; font-size: 12px; letter-spacing:.24em; text-transform:uppercase; color:rgba(238,241,251,.62); padding:9px 15px;
-    border:1px solid rgba(238,241,251,.16); border-radius:999px; background:rgba(3,6,15,.5); backdrop-filter:blur(8px);
+  /* Was the odd one out: bottom-LEFT while every other page puts this control
+     bottom-right, 35px tall against a 44px tap-target floor, and its own
+     colour and tracking. Aligned to the shared .il-amb spec in
+     assets/js/ambience.js so the studio's overlay controls read as one system.
+     The back-to-top button moves up to clear it, exactly as it does there. */
+  .amb-toggle{ position:fixed; right:18px; bottom:18px; z-index:2080; display:flex; align-items:center; gap:9px; cursor:pointer;
+    font-family:'Outfit',system-ui,sans-serif; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:rgba(238,241,251,.62);
+    padding:10px 14px; min-height:44px;
+    border:1px solid rgba(238,241,251,.22); border-radius:999px; background:rgba(10,12,20,.62); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
     transition:color .3s ease, border-color .3s ease, opacity .4s ease; }
-  .amb-toggle:hover{ color:#eef1f8; border-color:rgba(238,241,251,.4) }
+  .ill-totop{ right:18px !important; bottom:76px !important }
+  @media(max-width:640px){ .amb-toggle{ right:12px; bottom:74px }
+    .ill-totop{ right:12px !important; bottom:130px !important } }
+  .amb-toggle:hover{ color:#eef1f8; border-color:rgba(142,162,255,.75) }
   .amb-eq{ display:flex; align-items:flex-end; gap:2px; height:11px }
   .amb-eq i{ width:2px; background:currentColor; border-radius:1px; animation:panoEq 1.4s ease-in-out infinite }
   .amb-eq i:nth-child(1){ height:5px; animation-delay:0s } .amb-eq i:nth-child(2){ height:11px; animation-delay:.2s }
@@ -1226,8 +1235,8 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
 </style>
 <link rel="stylesheet" href="../assets/css/case/disney-pitch.css?v=12">
 <link rel="preload" href="../assets/projects/v5/disney-castle-points.bin" as="fetch" crossorigin>
-<link rel="modulepreload" href="https://unpkg.com/three@0.160.0/build/three.module.min.js">
-<script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.min.js"}}</script>
+<link rel="modulepreload" href="../assets/vendor/three-0.160.0/three.module.min.js">
+<script type="importmap">{"imports":{"three":"../assets/vendor/three-0.160.0/three.module.min.js"}}</script>
 
 <meta name="description" content="Disney+ immersive pitch: spatial concepts, castle point-cloud and virtual theatre environments.">
 <link rel="canonical" href="https://illusorr.com/projects/disney-plus.html">
