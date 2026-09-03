@@ -1,0 +1,726 @@
+[
+ {
+  "slug": "al-berwaz",
+  "bytes": 40663,
+  "css": [
+   "case-base.css",
+   "case-mobile.css",
+   "cm-type.css",
+   "fonts.css",
+   "hero-refine.css",
+   "proj-tags.css",
+   "rhythm-refine.css"
+  ],
+  "js": [],
+  "inline_scripts": 5,
+  "blocks": [
+   "credits",
+   "modules",
+   "next-project",
+   "stats"
+  ]
+ },
+ {
+  "slug": "anfasic",
+  "bytes": 120598,
+  "css": [
+   "case-mobile.css",
+   "fonts.css",
+   "hero-refine.css",
+   "proj-tags.css",
+   "rhythm-refine.css"
+  ],
+  "js": [
+   "cursor-scroll.js",
+   "film-carousel.js",
+   "hero-carousel.js",
+   "image-slot.js",
+   "lightbox.js",
+   "reveal-reel.js"
+  ],
+  "inline_scripts": 5,
+  "blocks": [
+   "bleed",
+   "credits",
+   "hero-carousel",
+   "looks",
+   "modules",
+   "next-project",
+   "plate-grid",
+   "reveal-reel",
+   "stats"
+  ]
+ },
+ {
+  "slug": "ant-systems",
+  "bytes": 38477,
+  "css": [
+   "case-base.css",
+   "case-mobile.css",
+   "cm-type.css",
+   "fonts.css",
+   "hero-refine.css",
+   "proj-tags.css",
+   "rhythm-refine.css"
+  ],
+  "js": [],
+  "inline_scripts": 5,
+  "blocks": [
+   "bleed",
+   "credits",
+   "modules",
+   "next-project",
+   "stats"
+  ]
+ },
+ {
+  "slug": "aquatic-architects",
+  "bytes": 91212,
+  "css": [
+   "case-mobile.css",
+   "fonts.css"
+  ],
+  "js": [],
+  "inline_scripts": 4,
+  "blocks": [
+   "bleed",
+   "credits",
+   "hero-carousel",
+   "looks",
+   "modules",
+   "next-project",
+   "plate-grid",
+   "stats"
+  ]
+ },
+ {
+  "slug": "arga",
+  "bytes": 38397,
+  "css": [
+   "case-base.css",
+   "case-mobile.css",
+   "cm-type.css",
+   "fonts.css",
+   "hero-refine.css",
+   "proj-tags.css",
+   "rhythm-refine.css"
+  ],
+  "js": [],
+  "inline_scripts": 5,
+  "blocks": [
+   "bleed",
+   "credits",
+   "modules",
+   "next-project",
+   "stats"
+  ]
+ },
+ {
+  "slug": "art-post-office",
+  "bytes": 128745,
+  "css": [
+   "case-mobile.css",
+   "cm-type.css",
+   "fonts.css",
+   "hero-refine.css",
+   "proj-tags.css",
+   "rhythm-refine.css"
+  ],
+  "js": [
+   "cursor-scroll.js",
+   "film-carousel.js",
+   "hero-carousel.js",
+   "image-slot.js",
+   "lightbox.js",
+   "reveal-reel.js"
+  ],
+  "inline_scripts": 6,
+  "blocks": [
+   "bleed",
+   "credits",
+   "hero-carousel",
+   "looks",
+   "modules",
+   "next-project",
+   "plate-grid",
+   "reveal-reel",
+   "stats"
+  ]
+ },
+ {
+  "slug": "barbie",
+  "bytes": 142097,
+  "css": [
+   "case-mobile.css",
+   "fonts.css",
+   "hero-refine.css",
+   "proj-tags.css",
+   "rhythm-refine-b.css"
+  ],
+  "js": [
+   "cursor-scroll.js",
+   "film-carousel.js",
+   "hero-carousel.js",
+   "lightbox.js"
+  ],
+  "inline_scripts": 5,
+  "blocks": [
+   "bleed",
+   "credits",
+   "hero-carousel",
+   "looks",
+   "modules",
+   "next-project",
+   "plate-grid",
+   "stats"
+  ]
+ },
+ {
+  "slug": "coffee-merchant",
+  "bytes": 76207,
+  "css": [
+   "case-base.css",
+   "case-mobile.css",
+   "cm-type.css",
+   "fonts.css",
+   "hero-refine.css",
+   "proj-tags.css",
+   "rhythm-refine.css"
+  ],
+  "js": [
+   "cursor-scroll.js",
+   "film-carousel.js",
+   "hero-carousel.js",
+   "image-slot.js",
+   "lightbox.js",
+   "reveal-reel.js"
+  ],
+  "inline_scripts": 6,
+  "blocks": [
+   "bleed",
+   "credits",
+   "hero-carousel",
+   "looks",
+   "modules",
+   "next-project",
+   "reveal-reel",
+   "stats"
+  ]
+ },
+ {
+  "slug": "denim",
+  "bytes": 111847,
+  "css": [
+   "case-mobile.css",
+   "fonts.css",
+   "hero-refine.css",
+   "proj-tags.css",
+   "rhythm-refine-b.css"
+  ],
+  "js": [
+   "cursor-scroll.js",
+   "film-carousel.js",
+   "hero-carousel.js",
+   "lightbox.js"
+  ],
+  "inline_scripts": 6,
+  "blocks": [
+   "bleed",
+   "credits",
+   "hero-carousel",
+   "looks",
+   "modules",
+   "next-project",
+   "plate-grid",
+   "stats"
+  ]
+ },
+ {
+  "slug": "disney-plus",
+  "bytes": 109166,
+  "css": [
+   "case-mobile.css",
+   "cm-type.css",
+   "disney-mobile.css",
+   "disney-pitch.css?v=12",
+   "fonts.css",
+   "hero-refine-b.css",
+   "proj-tags.css"
+  ],
+  "js": [
+   "cursor-scroll.js",
+   "disney-ambience.js?v=2",
+   "disney-castle.js?v=14",
+   "disney-lounge.js?v=6",
+   "disney-pano.js?v=14",
+   "disney-pitch.js?v=22",
+   "image-slot.js",
+   "lightbox.js"
+  ],
+  "inline_scripts": 7,
+  "blocks": [
+   "bleed",
+   "credits",
+   "looks",
+   "modules",
+   "next-project",
+   "plate-grid",
+   "stats"
+  ]
+ },
+ {
+  "slug": "echoes-of-light",
+  "bytes": 77519,
+  "css": [
+   "case-mobile.css",
+   "cm-type-b.css",
+   "echoes-stage.css?v=3",
+   "fonts.css",
+   "proj-tags-b.css",
+   "rhythm-refine-c.css"
+  ],
+  "js": [
+   "cursor-dot.js",
+   "echoes-projection.js?v=56",
+   "hero-carousel-c.js",
+   "nav-tone.js"
+  ],
+  "inline_scripts": 8,
+  "blocks": [
+   "bleed",
+   "credits",
+   "hero-carousel",
+   "modules",
+   "plate-grid"
+  ]
+ },
+ {
+  "slug": "fabrika",
+  "bytes": 121715,
+  "css": [
+   "case-mobile.css",
+   "fonts.css",
+   "hero-refine.css",
+   "rhythm-refine-b.css"
+  ],
+  "js": [
+   "cursor-scroll.js",
+   "film-carousel.js",
+   "hero-carousel.js",
+   "lightbox.js"
+  ],
+  "inline_scripts": 5,
+  "blocks": [
+   "bleed",
+   "credits",
+   "hero-carousel",
+   "looks",
+   "modules",
+   "next-project",
+   "plate-grid",
+   "stats"
+  ]
+ },
+ {
+  "slug": "hind-al-oud",
+  "bytes": 138939,
+  "css": [
+   "case-mobile.css",
+   "fonts.css",
+   "hero-refine.css",
+   "proj-tags.css"
+  ],
+  "js": [
+   "cursor-scroll.js",
+   "film-carousel.js",
+   "hero-carousel.js",
+   "lightbox.js",
+   "reveal-reel.js"
+  ],
+  "inline_scripts": 6,
+  "blocks": [
+   "bleed",
+   "credits",
+   "hero-carousel",
+   "looks",
+   "modules",
+   "next-project",
+   "plate-grid",
+   "reveal-reel",
+   "stats"
+  ]
+ },
+ {
+  "slug": "illusorr-spaces",
+  "bytes": 87687,
+  "css": [
+   "case-mobile.css",
+   "fonts.css"
+  ],
+  "js": [],
+  "inline_scripts": 3,
+  "blocks": [
+   "credits"
+  ]
+ },
+ {
+  "slug": "khaltat",
+  "bytes": 152867,
+  "css": [
+   "case-mobile.css",
+   "fonts.css",
+   "hero-refine.css",
+   "rhythm-refine.css"
+  ],
+  "js": [
+   "cursor-scroll.js",
+   "film-carousel.js",
+   "hero-carousel.js",
+   "lightbox.js",
+   "reveal-reel.js"
+  ],
+  "inline_scripts": 6,
+  "blocks": [
+   "bleed",
+   "credits",
+   "hero-carousel",
+   "looks",
+   "modules",
+   "next-project",
+   "plate-grid",
+   "reveal-reel",
+   "stats"
+  ]
+ },
+ {
+  "slug": "koton-lookbook-russia",
+  "bytes": 92140,
+  "css": [
+   "case-mobile.css",
+   "fonts.css",
+   "hero-refine.css",
+   "rhythm-refine-b.css"
+  ],
+  "js": [
+   "cursor-scroll.js",
+   "hero-carousel.js"
+  ],
+  "inline_scripts": 5,
+  "blocks": [
+   "bleed",
+   "credits",
+   "hero-carousel",
+   "modules",
+   "next-project",
+   "plate-grid",
+   "stats"
+  ]
+ },
+ {
+  "slug": "lapillus",
+  "bytes": 88786,
+  "css": [
+   "case-mobile.css",
+   "fonts.css"
+  ],
+  "js": [],
+  "inline_scripts": 4,
+  "blocks": [
+   "bleed",
+   "credits",
+   "hero-carousel",
+   "looks",
+   "modules",
+   "next-project",
+   "plate-grid",
+   "stats"
+  ]
+ },
+ {
+  "slug": "metaculture",
+  "bytes": 44956,
+  "css": [
+   "case-mobile.css",
+   "fonts.css"
+  ],
+  "js": [
+   "metaculture-stage.js?v=10"
+  ],
+  "inline_scripts": 4,
+  "blocks": [
+   "modules",
+   "next-project"
+  ]
+ },
+ {
+  "slug": "metagenus",
+  "bytes": 249147,
+  "css": [
+   "case-mobile.css",
+   "fonts.css",
+   "hero-refine-b.css",
+   "metagenus-mobile.css",
+   "proj-tags-c.css"
+  ],
+  "js": [],
+  "inline_scripts": 11,
+  "blocks": [
+   "asset-frame",
+   "bleed",
+   "credits",
+   "modules",
+   "next-project",
+   "plate-grid",
+   "stats"
+  ]
+ },
+ {
+  "slug": "michael-cinco",
+  "bytes": 147619,
+  "css": [
+   "case-mobile.css",
+   "fonts.css",
+   "hero-refine.css",
+   "proj-tags-c.css",
+   "rhythm-refine.css"
+  ],
+  "js": [
+   "cursor-scroll.js",
+   "film-carousel.js",
+   "hero-carousel.js",
+   "lightbox.js",
+   "reveal-reel.js"
+  ],
+  "inline_scripts": 7,
+  "blocks": [
+   "bleed",
+   "credits",
+   "hero-carousel",
+   "looks",
+   "modules",
+   "next-project",
+   "plate-grid",
+   "reveal-reel",
+   "stats"
+  ]
+ },
+ {
+  "slug": "moodie-kiosk",
+  "bytes": 69644,
+  "css": [
+   "case-mobile.css",
+   "cm-type-c.css",
+   "fonts.css",
+   "hero-refine.css",
+   "proj-tags-d.css"
+  ],
+  "js": [
+   "cursor-legacy.js",
+   "hero-carousel-b.js",
+   "image-slot.js"
+  ],
+  "inline_scripts": 4,
+  "blocks": [
+   "bleed",
+   "credits",
+   "hero-carousel",
+   "modules",
+   "next-project",
+   "plate-grid",
+   "stats"
+  ]
+ },
+ {
+  "slug": "morphellum",
+  "bytes": 47834,
+  "css": [
+   "case-mobile.css",
+   "disney-pitch.css?v=12",
+   "fonts.css",
+   "morphellum.css?v=2"
+  ],
+  "js": [
+   "cursor-scroll.js",
+   "lightbox.js"
+  ],
+  "inline_scripts": 9,
+  "blocks": [
+   "bleed",
+   "credits",
+   "modules",
+   "next-project",
+   "stats"
+  ]
+ },
+ {
+  "slug": "optiverse",
+  "bytes": 146458,
+  "css": [
+   "case-mobile.css",
+   "fonts.css",
+   "proj-tags-c.css"
+  ],
+  "js": [],
+  "inline_scripts": 8,
+  "blocks": [
+   "asset-frame",
+   "bleed",
+   "credits",
+   "modules",
+   "next-project",
+   "plate-grid",
+   "stats"
+  ]
+ },
+ {
+  "slug": "pera",
+  "bytes": 106449,
+  "css": [
+   "case-mobile.css",
+   "fonts.css",
+   "hero-refine.css"
+  ],
+  "js": [],
+  "inline_scripts": 6,
+  "blocks": [
+   "bleed",
+   "credits",
+   "hero-carousel",
+   "modules",
+   "next-project",
+   "plate-grid",
+   "stats"
+  ]
+ },
+ {
+  "slug": "pixelpaint",
+  "bytes": 81231,
+  "css": [
+   "case-mobile.css",
+   "cm-type-b.css",
+   "fonts.css"
+  ],
+  "js": [
+   "cursor-dot.js",
+   "hero-carousel-c.js",
+   "image-slot.js",
+   "nav-tone.js",
+   "rail-drag.js"
+  ],
+  "inline_scripts": 6,
+  "blocks": [
+   "bleed",
+   "credits",
+   "hero-carousel",
+   "looks",
+   "modules",
+   "plate-grid"
+  ]
+ },
+ {
+  "slug": "pylon",
+  "bytes": 139180,
+  "css": [
+   "case-mobile.css",
+   "fonts.css",
+   "hero-refine-b.css",
+   "proj-tags-c.css",
+   "pylon-pavilions.css?v=2"
+  ],
+  "js": [
+   "pylon-pavilions.js?v=3"
+  ],
+  "inline_scripts": 10,
+  "blocks": [
+   "bleed",
+   "credits",
+   "modules",
+   "next-project",
+   "plate-grid",
+   "stats"
+  ]
+ },
+ {
+  "slug": "riyadhverse",
+  "bytes": 55979,
+  "css": [
+   "case-mobile.css",
+   "cm-type-b.css",
+   "fonts.css",
+   "proj-tags-b.css"
+  ],
+  "js": [
+   "cursor-dot.js",
+   "hero-carousel-c.js",
+   "nav-tone.js",
+   "rail-drag.js"
+  ],
+  "inline_scripts": 5,
+  "blocks": [
+   "bleed",
+   "credits",
+   "hero-carousel",
+   "looks",
+   "modules",
+   "plate-grid"
+  ]
+ },
+ {
+  "slug": "trt-metaverse",
+  "bytes": 80055,
+  "css": [
+   "case-mobile.css",
+   "cm-type-b.css",
+   "fonts.css",
+   "hero-refine.css",
+   "proj-tags-b.css",
+   "rhythm-refine-c.css",
+   "trt-spaces.css?v=23"
+  ],
+  "js": [
+   "cursor-dot.js",
+   "hero-carousel-c.js",
+   "nav-tone.js",
+   "rail-drag.js",
+   "trt-orb.js?v=7",
+   "trt-spaces.js?v=1"
+  ],
+  "inline_scripts": 5,
+  "blocks": [
+   "bleed",
+   "credits",
+   "hero-carousel",
+   "modules",
+   "plate-grid"
+  ]
+ },
+ {
+  "slug": "u-hub-metaverse",
+  "bytes": 75682,
+  "css": [
+   "case-mobile.css",
+   "cm-type-b.css",
+   "fonts.css",
+   "hero-refine.css",
+   "proj-tags-b.css",
+   "rhythm-refine-c.css",
+   "uhub-spaces.css?v=15"
+  ],
+  "js": [
+   "hero-carousel-c.js",
+   "nav-tone.js",
+   "rail-drag.js",
+   "uhub-icons.js?v=1",
+   "uhub-spaces.js?v=1"
+  ],
+  "inline_scripts": 7,
+  "blocks": [
+   "bleed",
+   "credits",
+   "hero-carousel",
+   "looks",
+   "modules",
+   "plate-grid"
+  ]
+ }
+]

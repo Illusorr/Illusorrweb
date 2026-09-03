@@ -1,0 +1,7936 @@
+{
+ "/404.html": {
+  "checked": 72,
+  "fails": [
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.58,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   }
+  ]
+ },
+ "/about.html": {
+  "checked": 113,
+  "fails": []
+ },
+ "/brief.html": {
+  "checked": 58,
+  "fails": [
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.56,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.56,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.56,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.56,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   }
+  ]
+ },
+ "/collective.html": {
+  "checked": 136,
+  "fails": [
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "p",
+    "w": 1440,
+    "ratio": 3.16,
+    "need": 4.5,
+    "size": 12,
+    "text": "Asset build, look develo"
+   },
+   {
+    "el": "span.pnl-tag",
+    "w": 1440,
+    "ratio": 3.16,
+    "need": 4.5,
+    "size": 11,
+    "text": "02 / 09 \u00a0\u00b7\u00a0 Collective"
+   },
+   {
+    "el": "span.pnl-tag",
+    "w": 1440,
+    "ratio": 2.8,
+    "need": 4.5,
+    "size": 11,
+    "text": "03 / 09 \u00a0\u00b7\u00a0 Collective"
+   },
+   {
+    "el": "span.pnl-tag",
+    "w": 1440,
+    "ratio": 2.8,
+    "need": 4.5,
+    "size": 11,
+    "text": "05 / 09 \u00a0\u00b7\u00a0 Collective"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 4.36,
+    "need": 4.5,
+    "size": 13,
+    "text": "8 territories"
+   },
+   {
+    "el": "span.pnl-tag",
+    "w": 1440,
+    "ratio": 3.16,
+    "need": 4.5,
+    "size": 11,
+    "text": "06 / 09 \u00a0\u00b7\u00a0 Collective"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 4.36,
+    "need": 4.5,
+    "size": 16,
+    "text": "8 territories"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   }
+  ]
+ },
+ "/contact.html": {
+  "checked": 65,
+  "fails": [
+   {
+    "el": "button.fakebtn",
+    "w": 1440,
+    "ratio": 2.1,
+    "need": 4.5,
+    "size": 11,
+    "text": "Send \u2197"
+   },
+   {
+    "el": "button.fakebtn",
+    "w": 390,
+    "ratio": 2.1,
+    "need": 4.5,
+    "size": 11,
+    "text": "Send \u2197"
+   }
+  ]
+ },
+ "/index.html": {
+  "checked": 152,
+  "fails": [
+   {
+    "el": "a.fakebtn",
+    "w": 1440,
+    "ratio": 2.26,
+    "need": 4.5,
+    "size": 11,
+    "text": "More about us \u2192"
+   },
+   {
+    "el": "span.sr-num",
+    "w": 1440,
+    "ratio": 4.36,
+    "need": 4.5,
+    "size": 11,
+    "text": "01"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.96,
+    "need": 4.5,
+    "size": 18,
+    "text": "Koton"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.52,
+    "need": 4.5,
+    "size": 18,
+    "text": "Hind Al Oud"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 3.16,
+    "need": 4.5,
+    "size": 18,
+    "text": "ABB Robotics"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.86,
+    "need": 4.5,
+    "size": 10,
+    "text": "Procedural art \u00b7 Robotic"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.2,
+    "need": 4.5,
+    "size": 10,
+    "text": "Worlds \u00b7 Metaverse"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.2,
+    "need": 4.5,
+    "size": 10,
+    "text": "Worlds \u00b7 Launch"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.71,
+    "need": 4.5,
+    "size": 10,
+    "text": "IP \u00b7 Characters"
+   },
+   {
+    "el": "span.csector",
+    "w": 1440,
+    "ratio": 3.6,
+    "need": 4.5,
+    "size": 10,
+    "text": "Beauty"
+   },
+   {
+    "el": "h3.disp",
+    "w": 1440,
+    "ratio": 1.49,
+    "need": 3.0,
+    "size": 51.84,
+    "text": "Hind Al Oud"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.76,
+    "need": 4.5,
+    "size": 10,
+    "text": "Web \u00b7 Social"
+   },
+   {
+    "el": "a.fakebtn",
+    "w": 1440,
+    "ratio": 4.36,
+    "need": 4.5,
+    "size": 11,
+    "text": "See all work \u2192"
+   },
+   {
+    "el": "span.sr-num",
+    "w": 390,
+    "ratio": 4.36,
+    "need": 4.5,
+    "size": 11,
+    "text": "01"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.89,
+    "need": 4.5,
+    "size": 10,
+    "text": "Procedural art \u00b7 Robotic"
+   }
+  ]
+ },
+ "/lab.html": {
+  "checked": 146,
+  "fails": [
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span.fst-lead",
+    "w": 1440,
+    "ratio": 4.36,
+    "need": 4.5,
+    "size": 10,
+    "text": "System-led"
+   },
+   {
+    "el": "span.fst-eng",
+    "w": 1440,
+    "ratio": 4.36,
+    "need": 4.5,
+    "size": 10,
+    "text": "Procedural systems"
+   },
+   {
+    "el": "span.fst-eng",
+    "w": 1440,
+    "ratio": 4.36,
+    "need": 4.5,
+    "size": 10,
+    "text": "CLONE Engine"
+   },
+   {
+    "el": "span.fl-pill",
+    "w": 1440,
+    "ratio": 4.36,
+    "need": 4.5,
+    "size": 11,
+    "text": "Asset library"
+   },
+   {
+    "el": "span.pnl-tag",
+    "w": 1440,
+    "ratio": 3.16,
+    "need": 4.5,
+    "size": 11,
+    "text": "03 / 07 \u00a0\u00b7\u00a0 Lab"
+   },
+   {
+    "el": "span.pnl-tag",
+    "w": 1440,
+    "ratio": 3.16,
+    "need": 4.5,
+    "size": 11,
+    "text": "06 / 07 \u00a0\u00b7\u00a0 Lab"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.26,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.04,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span.fst-lead",
+    "w": 390,
+    "ratio": 4.36,
+    "need": 4.5,
+    "size": 10,
+    "text": "System-led"
+   },
+   {
+    "el": "span.fst-eng",
+    "w": 390,
+    "ratio": 4.36,
+    "need": 4.5,
+    "size": 10,
+    "text": "Procedural systems"
+   },
+   {
+    "el": "span.fst-eng",
+    "w": 390,
+    "ratio": 4.36,
+    "need": 4.5,
+    "size": 10,
+    "text": "CLONE Engine"
+   },
+   {
+    "el": "span.fl-pill",
+    "w": 390,
+    "ratio": 4.36,
+    "need": 4.5,
+    "size": 11,
+    "text": "Asset library"
+   },
+   {
+    "el": "span.st",
+    "w": 390,
+    "ratio": 4.36,
+    "need": 4.5,
+    "size": 10,
+    "text": "Research"
+   },
+   {
+    "el": "span.st",
+    "w": 390,
+    "ratio": 4.36,
+    "need": 4.5,
+    "size": 10,
+    "text": "Ongoing"
+   },
+   {
+    "el": "p",
+    "w": 390,
+    "ratio": 3.17,
+    "need": 4.5,
+    "size": 16,
+    "text": "A slow feed of studies, "
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   }
+  ]
+ },
+ "/lab/marbled-ink-orb.html": {
+  "checked": 12,
+  "fails": []
+ },
+ "/lab/noise-field.html": {
+  "checked": 40,
+  "fails": [
+   {
+    "el": "span.sp-kicker",
+    "w": 1440,
+    "ratio": 3.86,
+    "need": 4.5,
+    "size": 10,
+    "text": "ILLUSORR Lab \u00b7 Study 01"
+   },
+   {
+    "el": "span.sp-hint",
+    "w": 1440,
+    "ratio": 2.85,
+    "need": 4.5,
+    "size": 10,
+    "text": "Drag any value"
+   },
+   {
+    "el": "span.sp-kicker",
+    "w": 390,
+    "ratio": 3.86,
+    "need": 4.5,
+    "size": 10,
+    "text": "ILLUSORR Lab \u00b7 Study 01"
+   },
+   {
+    "el": "span.sp-hint",
+    "w": 390,
+    "ratio": 2.85,
+    "need": 4.5,
+    "size": 10,
+    "text": "Drag any value"
+   }
+  ]
+ },
+ "/projects/aa/embeds/aa-home-live.html": {
+  "checked": 2,
+  "fails": []
+ },
+ "/projects/al-berwaz.html": {
+  "checked": 214,
+  "fails": [
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.68,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "a.stage-live",
+    "w": 1440,
+    "ratio": 3.23,
+    "need": 4.5,
+    "size": 12,
+    "text": "Visit live site \u2192"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 3.56,
+    "need": 4.5,
+    "size": 12,
+    "text": "Six lines"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 3.56,
+    "need": 4.5,
+    "size": 12,
+    "text": "Five lines"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 3.56,
+    "need": 4.5,
+    "size": 12,
+    "text": "Two lines"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.17,
+    "need": 4.5,
+    "size": 12,
+    "text": "Products"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span.ui-btn",
+    "w": 390,
+    "ratio": 3.36,
+    "need": 4.5,
+    "size": 13,
+    "text": "Get your quote"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.98,
+    "need": 4.5,
+    "size": 11,
+    "text": "Open the live site"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.61,
+    "need": 4.5,
+    "size": 11,
+    "text": "Products"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   }
+  ]
+ },
+ "/projects/anfasic.html": {
+  "checked": 169,
+  "fails": [
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 3.98,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 3.4,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 3.64,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.27,
+    "need": 4.5,
+    "size": 13,
+    "text": "2025"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.28,
+    "need": 4.5,
+    "size": 13,
+    "text": "AI Content"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 3.31,
+    "need": 4.5,
+    "size": 13,
+    "text": "Campaign"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 3.39,
+    "need": 4.5,
+    "size": 13,
+    "text": "View Case Study"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.26,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.26,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.56,
+    "need": 4.5,
+    "size": 12,
+    "text": "Sunset garden"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.26,
+    "need": 4.5,
+    "size": 12,
+    "text": "Post 03"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.89,
+    "need": 4.5,
+    "size": 12,
+    "text": "Prop set, pink and orang"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.26,
+    "need": 4.5,
+    "size": 12,
+    "text": "Post 04"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.56,
+    "need": 4.5,
+    "size": 12,
+    "text": "Heritage courtyard"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.26,
+    "need": 4.5,
+    "size": 12,
+    "text": "Post 08"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   }
+  ]
+ },
+ "/projects/ant-live/index.html": {
+  "checked": 198,
+  "fails": [
+   {
+    "el": "a.nav-cta",
+    "w": 1440,
+    "ratio": 2.41,
+    "need": 4.5,
+    "size": 12.48,
+    "text": "Contact Us"
+   },
+   {
+    "el": "p.s-sub",
+    "w": 1440,
+    "ratio": 2.28,
+    "need": 4.5,
+    "size": 16,
+    "text": "We are a technology comp"
+   },
+   {
+    "el": "p",
+    "w": 1440,
+    "ratio": 2.27,
+    "need": 4.5,
+    "size": 15.2,
+    "text": "ANT SYSTEMS is pioneerin"
+   },
+   {
+    "el": "p",
+    "w": 1440,
+    "ratio": 2.52,
+    "need": 4.5,
+    "size": 15.2,
+    "text": "In partnership with Saba"
+   },
+   {
+    "el": "a.link-arrow",
+    "w": 1440,
+    "ratio": 3.15,
+    "need": 4.5,
+    "size": 12.8,
+    "text": "Know more about us \u2192"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.01,
+    "need": 4.5,
+    "size": 11.52,
+    "text": "Years Academic Research"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.81,
+    "need": 4.5,
+    "size": 11.52,
+    "text": "Total Investment Receive"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 3.05,
+    "need": 4.5,
+    "size": 9.92,
+    "text": "Water Savings"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 3.05,
+    "need": 4.5,
+    "size": 9.92,
+    "text": "Yield Increase"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 3.05,
+    "need": 4.5,
+    "size": 9.92,
+    "text": "Water Absorption"
+   },
+   {
+    "el": "h2.s-title",
+    "w": 1440,
+    "ratio": 1.65,
+    "need": 3.0,
+    "size": 48.96,
+    "text": "ANT Systems Istanbul Pro"
+   },
+   {
+    "el": "p.fac-lead",
+    "w": 1440,
+    "ratio": 2.82,
+    "need": 4.5,
+    "size": 16.8,
+    "text": "ANT Systems Istanbul pro"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.82,
+    "need": 4.5,
+    "size": 14.08,
+    "text": "$2.5M high tech factory "
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.82,
+    "need": 4.5,
+    "size": 14.08,
+    "text": "Annual production capaci"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 14.08,
+    "text": "Industrial production ca"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.56,
+    "need": 4.5,
+    "size": 14.08,
+    "text": "Now operational at Tuzla"
+   },
+   {
+    "el": "a.link-arrow",
+    "w": 1440,
+    "ratio": 1.6,
+    "need": 4.5,
+    "size": 12.8,
+    "text": "Read the announcement in"
+   },
+   {
+    "el": "li",
+    "w": 390,
+    "ratio": 2.7,
+    "need": 4.5,
+    "size": 12.3,
+    "text": "Biodegradable and heavy "
+   },
+   {
+    "el": "li",
+    "w": 390,
+    "ratio": 2.7,
+    "need": 4.5,
+    "size": 12.3,
+    "text": "Soil friendly, non toxic"
+   },
+   {
+    "el": "li",
+    "w": 390,
+    "ratio": 3.05,
+    "need": 4.5,
+    "size": 12.3,
+    "text": "Patented formula"
+   },
+   {
+    "el": "li",
+    "w": 390,
+    "ratio": 2.7,
+    "need": 4.5,
+    "size": 12.3,
+    "text": "No pesticide residue on "
+   },
+   {
+    "el": "li",
+    "w": 390,
+    "ratio": 2.7,
+    "need": 4.5,
+    "size": 12.3,
+    "text": "Safe for the environment"
+   },
+   {
+    "el": "li",
+    "w": 390,
+    "ratio": 3.05,
+    "need": 4.5,
+    "size": 12.3,
+    "text": "Effective against aphids"
+   },
+   {
+    "el": "li",
+    "w": 390,
+    "ratio": 2.7,
+    "need": 4.5,
+    "size": 12.3,
+    "text": "Water based, non toxic, "
+   },
+   {
+    "el": "li",
+    "w": 390,
+    "ratio": 2.7,
+    "need": 4.5,
+    "size": 12.3,
+    "text": "Long lasting surface pro"
+   },
+   {
+    "el": "li",
+    "w": 390,
+    "ratio": 3.05,
+    "need": 4.5,
+    "size": 12.3,
+    "text": "Broad spectrum antimicro"
+   }
+  ]
+ },
+ "/projects/ant-systems.html": {
+  "checked": 174,
+  "fails": [
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.7,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.7,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.7,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.7,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.7,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.7,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.57,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.42,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.7,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.7,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.7,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.7,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.7,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.7,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.7,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.7,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   }
+  ]
+ },
+ "/projects/aquatic-architects.html": {
+  "checked": 152,
+  "fails": [
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.28,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.44,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.44,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.47,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.47,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.57,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.6,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.6,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.78,
+    "need": 4.5,
+    "size": 13,
+    "text": "2025"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.78,
+    "need": 4.5,
+    "size": 13,
+    "text": "Archi viz"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.78,
+    "need": 4.5,
+    "size": 13,
+    "text": "3D"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.78,
+    "need": 4.5,
+    "size": 13,
+    "text": "Visit aa-ds.com"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.09,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.28,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.28,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.28,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.44,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.44,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.57,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.57,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span.step-k",
+    "w": 390,
+    "ratio": 2.02,
+    "need": 4.5,
+    "size": 11,
+    "text": "Phase 03 \u00b7 Social"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   }
+  ]
+ },
+ "/projects/arga.html": {
+  "checked": 210,
+  "fails": [
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.92,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.17,
+    "need": 4.5,
+    "size": 12,
+    "text": "390"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 3.43,
+    "need": 4.5,
+    "size": 13,
+    "text": "2025"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 3.95,
+    "need": 4.5,
+    "size": 11,
+    "text": "390"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   }
+  ]
+ },
+ "/projects/art-post-office.html": {
+  "checked": 166,
+  "fails": [
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 3.81,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.45,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.33,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.97,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.81,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.57,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.75,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span.ptag",
+    "w": 1440,
+    "ratio": 3.54,
+    "need": 4.5,
+    "size": 15,
+    "text": "AI"
+   },
+   {
+    "el": "span.ptag",
+    "w": 1440,
+    "ratio": 3.73,
+    "need": 4.5,
+    "size": 15,
+    "text": "Production"
+   },
+   {
+    "el": "span.ptag",
+    "w": 1440,
+    "ratio": 4.15,
+    "need": 4.5,
+    "size": 15,
+    "text": "Social"
+   },
+   {
+    "el": "span.ln-ital",
+    "w": 1440,
+    "ratio": 4.09,
+    "need": 4.5,
+    "size": 20.24,
+    "text": "monthly content, deliver"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.91,
+    "need": 4.5,
+    "size": 13,
+    "text": "2025"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.81,
+    "need": 4.5,
+    "size": 13,
+    "text": "AI Content"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.66,
+    "need": 4.5,
+    "size": 13,
+    "text": "Campaign"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.35,
+    "need": 4.5,
+    "size": 13,
+    "text": "View Case Study"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.54,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.72,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.72,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.72,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.45,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.54,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.09,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.33,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span.ptag",
+    "w": 390,
+    "ratio": 4.15,
+    "need": 4.5,
+    "size": 13,
+    "text": "Art"
+   },
+   {
+    "el": "span.ln-ital",
+    "w": 390,
+    "ratio": 3.45,
+    "need": 4.5,
+    "size": 15,
+    "text": "monthly content, deliver"
+   },
+   {
+    "el": "strong",
+    "w": 390,
+    "ratio": 3.35,
+    "need": 4.5,
+    "size": 16,
+    "text": "Monthly social content f"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 3.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Monthly moodboard"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 3.32,
+    "need": 4.5,
+    "size": 12,
+    "text": "June"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.93,
+    "need": 4.5,
+    "size": 12,
+    "text": "Post 04"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.93,
+    "need": 4.5,
+    "size": 12,
+    "text": "Post 05"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.93,
+    "need": 4.5,
+    "size": 12,
+    "text": "Post 09"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 3.32,
+    "need": 4.5,
+    "size": 12,
+    "text": "At rest, the campaign ca"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.93,
+    "need": 4.5,
+    "size": 12,
+    "text": "Lifestyle"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   }
+  ]
+ },
+ "/projects/asir-bank.html": {
+  "checked": 172,
+  "fails": [
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.93,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.93,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.9,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.9,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.9,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.36,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.36,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   }
+  ]
+ },
+ "/projects/barbie.html": {
+  "checked": 115,
+  "fails": [
+   {
+    "el": "a.il-talk",
+    "w": 1440,
+    "ratio": 2.65,
+    "need": 4.5,
+    "size": 11,
+    "text": "Let's talk"
+   },
+   {
+    "el": "button.il-oclose",
+    "w": 1440,
+    "ratio": 2.65,
+    "need": 4.5,
+    "size": 12,
+    "text": "Close \u2715"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.91,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.55,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.07,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.71,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.07,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 3.11,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span.ptag",
+    "w": 1440,
+    "ratio": 1.99,
+    "need": 4.5,
+    "size": 15,
+    "text": "AI"
+   },
+   {
+    "el": "span.ptag",
+    "w": 1440,
+    "ratio": 1.99,
+    "need": 4.5,
+    "size": 15,
+    "text": "3D"
+   },
+   {
+    "el": "span.ptag",
+    "w": 1440,
+    "ratio": 1.99,
+    "need": 4.5,
+    "size": 15,
+    "text": "Production"
+   },
+   {
+    "el": "span.ptag",
+    "w": 1440,
+    "ratio": 2.17,
+    "need": 4.5,
+    "size": 15,
+    "text": "Branding"
+   },
+   {
+    "el": "span.ptag",
+    "w": 1440,
+    "ratio": 2.49,
+    "need": 4.5,
+    "size": 15,
+    "text": "Fashion"
+   },
+   {
+    "el": "span.ptag",
+    "w": 1440,
+    "ratio": 2.49,
+    "need": 4.5,
+    "size": 15,
+    "text": "Culture"
+   },
+   {
+    "el": "span.ln-ital",
+    "w": 1440,
+    "ratio": 2.12,
+    "need": 4.5,
+    "size": 20.24,
+    "text": "a kids campaign, generat"
+   },
+   {
+    "el": "strong",
+    "w": 1440,
+    "ratio": 2.51,
+    "need": 4.5,
+    "size": 15,
+    "text": "Two young characters, on"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 3.52,
+    "need": 4.5,
+    "size": 12,
+    "text": "Scroll"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.81,
+    "need": 4.5,
+    "size": 13,
+    "text": "Barbie for Boyner \u00b7 2025"
+   },
+   {
+    "el": "span.now",
+    "w": 1440,
+    "ratio": 2.33,
+    "need": 4.5,
+    "size": 13,
+    "text": "01"
+   },
+   {
+    "el": "span.tot",
+    "w": 1440,
+    "ratio": 1.98,
+    "need": 4.5,
+    "size": 13,
+    "text": "/ 03"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 3.43,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 3.43,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 3.43,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.81,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 3.12,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.84,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.69,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.0,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span.ptag",
+    "w": 390,
+    "ratio": 1.87,
+    "need": 4.5,
+    "size": 13,
+    "text": "AI"
+   },
+   {
+    "el": "span.ptag",
+    "w": 390,
+    "ratio": 1.93,
+    "need": 4.5,
+    "size": 13,
+    "text": "3D"
+   },
+   {
+    "el": "span.ptag",
+    "w": 390,
+    "ratio": 1.93,
+    "need": 4.5,
+    "size": 13,
+    "text": "Production"
+   },
+   {
+    "el": "span.ptag",
+    "w": 390,
+    "ratio": 1.93,
+    "need": 4.5,
+    "size": 13,
+    "text": "Branding"
+   },
+   {
+    "el": "span.ptag",
+    "w": 390,
+    "ratio": 1.93,
+    "need": 4.5,
+    "size": 13,
+    "text": "Fashion"
+   },
+   {
+    "el": "span.ptag",
+    "w": 390,
+    "ratio": 1.93,
+    "need": 4.5,
+    "size": 13,
+    "text": "Culture"
+   },
+   {
+    "el": "span.ln-ital",
+    "w": 390,
+    "ratio": 1.88,
+    "need": 4.5,
+    "size": 15,
+    "text": "a kids campaign, generat"
+   },
+   {
+    "el": "strong",
+    "w": 390,
+    "ratio": 2.12,
+    "need": 4.5,
+    "size": 16,
+    "text": "Two young characters, on"
+   },
+   {
+    "el": "span.ph-label",
+    "w": 390,
+    "ratio": 4.05,
+    "need": 4.5,
+    "size": 11,
+    "text": "Blonde \u00b7 Portrait"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 4.05,
+    "need": 4.5,
+    "size": 12,
+    "text": "Hero portrait"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 3.95,
+    "need": 4.5,
+    "size": 12,
+    "text": "Final select"
+   },
+   {
+    "el": "span.ph-label",
+    "w": 390,
+    "ratio": 4.05,
+    "need": 4.5,
+    "size": 11,
+    "text": "Blonde \u00b7 Detail"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 4.05,
+    "need": 4.5,
+    "size": 12,
+    "text": "Styling & scale detail"
+   },
+   {
+    "el": "span.ph-label",
+    "w": 390,
+    "ratio": 4.05,
+    "need": 4.5,
+    "size": 11,
+    "text": "Brunette \u00b7 Portrait"
+   },
+   {
+    "el": "span.ph-label",
+    "w": 390,
+    "ratio": 4.05,
+    "need": 4.5,
+    "size": 11,
+    "text": "Brunette \u00b7 Detail"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   }
+  ]
+ },
+ "/projects/coffee-merchant.html": {
+  "checked": 153,
+  "fails": [
+   {
+    "el": "a.il-talk",
+    "w": 1440,
+    "ratio": 4.46,
+    "need": 4.5,
+    "size": 11,
+    "text": "Let's talk"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.06,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.85,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.57,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.39,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.61,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span.ptag",
+    "w": 1440,
+    "ratio": 3.29,
+    "need": 4.5,
+    "size": 15,
+    "text": "AI"
+   },
+   {
+    "el": "span.ptag",
+    "w": 1440,
+    "ratio": 3.78,
+    "need": 4.5,
+    "size": 15,
+    "text": "Production"
+   },
+   {
+    "el": "span.ptag",
+    "w": 1440,
+    "ratio": 4.22,
+    "need": 4.5,
+    "size": 15,
+    "text": "Social"
+   },
+   {
+    "el": "span.ln-ital",
+    "w": 1440,
+    "ratio": 2.89,
+    "need": 4.5,
+    "size": 20.24,
+    "text": "monthly content, brewed."
+   },
+   {
+    "el": "strong",
+    "w": 1440,
+    "ratio": 3.12,
+    "need": 4.5,
+    "size": 15,
+    "text": "Monthly social content f"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 3.95,
+    "need": 4.5,
+    "size": 12,
+    "text": "Editorial"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.9,
+    "need": 4.5,
+    "size": 13,
+    "text": "2025"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.59,
+    "need": 4.5,
+    "size": 13,
+    "text": "View Case Study"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.4,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.4,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.02,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.57,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.57,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span.ptag",
+    "w": 390,
+    "ratio": 1.94,
+    "need": 4.5,
+    "size": 13,
+    "text": "AI"
+   },
+   {
+    "el": "span.ptag",
+    "w": 390,
+    "ratio": 2.14,
+    "need": 4.5,
+    "size": 13,
+    "text": "Production"
+   },
+   {
+    "el": "span.ptag",
+    "w": 390,
+    "ratio": 2.3,
+    "need": 4.5,
+    "size": 13,
+    "text": "Social"
+   },
+   {
+    "el": "span.ptag",
+    "w": 390,
+    "ratio": 2.55,
+    "need": 4.5,
+    "size": 13,
+    "text": "Coffee"
+   },
+   {
+    "el": "span.ln-ital",
+    "w": 390,
+    "ratio": 2.25,
+    "need": 4.5,
+    "size": 15,
+    "text": "monthly content, brewed."
+   },
+   {
+    "el": "strong",
+    "w": 390,
+    "ratio": 2.75,
+    "need": 4.5,
+    "size": 16,
+    "text": "Monthly social content f"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 3.97,
+    "need": 4.5,
+    "size": 12,
+    "text": "June moodboard"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 3.09,
+    "need": 4.5,
+    "size": 12,
+    "text": "Monthly moodboard"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 3.97,
+    "need": 4.5,
+    "size": 12,
+    "text": "July moodboard"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.81,
+    "need": 4.5,
+    "size": 12,
+    "text": "June"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.49,
+    "need": 4.5,
+    "size": 12,
+    "text": "Post 04"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.49,
+    "need": 4.5,
+    "size": 12,
+    "text": "Post 09"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   }
+  ]
+ },
+ "/projects/denim.html": {
+  "checked": 180,
+  "fails": [
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.03,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   }
+  ]
+ },
+ "/projects/disney-plus.html": {
+  "checked": 127,
+  "fails": [
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.51,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.42,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.53,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.53,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.53,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.53,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.68,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.68,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 3.52,
+    "need": 4.5,
+    "size": 13,
+    "text": "Immersive"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 4.2,
+    "need": 4.5,
+    "size": 13,
+    "text": "View Case Study"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.39,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.39,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.39,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.08,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.32,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.27,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.68,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.68,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   }
+  ]
+ },
+ "/projects/echoes-of-light.html": {
+  "checked": 148,
+  "fails": [
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.14,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.14,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.96,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.57,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.56,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span.ptag",
+    "w": 1440,
+    "ratio": 2.92,
+    "need": 4.5,
+    "size": 15,
+    "text": "Procedural Design"
+   },
+   {
+    "el": "span.ptag",
+    "w": 1440,
+    "ratio": 4.02,
+    "need": 4.5,
+    "size": 15,
+    "text": "Architecture"
+   },
+   {
+    "el": "span.ln-ital",
+    "w": 1440,
+    "ratio": 1.91,
+    "need": 4.5,
+    "size": 20.24,
+    "text": "light as a memory, intan"
+   },
+   {
+    "el": "span.ch-slash",
+    "w": 1440,
+    "ratio": 3.09,
+    "need": 4.5,
+    "size": 15,
+    "text": "/02"
+   },
+   {
+    "el": "span.stop-k",
+    "w": 1440,
+    "ratio": 3.09,
+    "need": 4.5,
+    "size": 12,
+    "text": "The Approach"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 3.3,
+    "need": 4.5,
+    "size": 12,
+    "text": "Installation view, illum"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.62,
+    "need": 4.5,
+    "size": 12,
+    "text": "Dubai Design Week \u00b7 2024"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.75,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 3.51,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.56,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.56,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.56,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.56,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span.ch-slash",
+    "w": 390,
+    "ratio": 3.09,
+    "need": 4.5,
+    "size": 15,
+    "text": "/02"
+   },
+   {
+    "el": "span.stop-k",
+    "w": 390,
+    "ratio": 3.09,
+    "need": 4.5,
+    "size": 12,
+    "text": "The Approach"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   }
+  ]
+ },
+ "/projects/egro-coffee.html": {
+  "checked": 186,
+  "fails": [
+   {
+    "el": "strong",
+    "w": 1440,
+    "ratio": 2.64,
+    "need": 4.5,
+    "size": 15,
+    "text": "A modern and minimal bra"
+   },
+   {
+    "el": "span.step-k",
+    "w": 1440,
+    "ratio": 3.96,
+    "need": 4.5,
+    "size": 12,
+    "text": "Phase 01 \u00b7 Research"
+   },
+   {
+    "el": "span.step-k",
+    "w": 1440,
+    "ratio": 3.96,
+    "need": 4.5,
+    "size": 12,
+    "text": "Phase 02 \u00b7 Design"
+   },
+   {
+    "el": "span.step-k",
+    "w": 1440,
+    "ratio": 3.96,
+    "need": 4.5,
+    "size": 12,
+    "text": "Phase 03 \u00b7 Delivery"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   },
+   {
+    "el": "strong",
+    "w": 390,
+    "ratio": 2.62,
+    "need": 4.5,
+    "size": 16,
+    "text": "A modern and minimal bra"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   }
+  ]
+ },
+ "/projects/fabrika.html": {
+  "checked": 152,
+  "fails": [
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.45,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.29,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.18,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.05,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.05,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.05,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.62,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.62,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.45,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.37,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.37,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.25,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.25,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.25,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.05,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.01,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span.ptag",
+    "w": 390,
+    "ratio": 4.15,
+    "need": 4.5,
+    "size": 13,
+    "text": "AI"
+   },
+   {
+    "el": "span.ptag",
+    "w": 390,
+    "ratio": 4.38,
+    "need": 4.5,
+    "size": 13,
+    "text": "Production"
+   },
+   {
+    "el": "span.ptag",
+    "w": 390,
+    "ratio": 4.38,
+    "need": 4.5,
+    "size": 13,
+    "text": "Branding"
+   },
+   {
+    "el": "span.ptag",
+    "w": 390,
+    "ratio": 4.38,
+    "need": 4.5,
+    "size": 13,
+    "text": "Product Development"
+   },
+   {
+    "el": "span.ptag",
+    "w": 390,
+    "ratio": 4.38,
+    "need": 4.5,
+    "size": 13,
+    "text": "Fashion"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   }
+  ]
+ },
+ "/projects/hind-al-oud.html": {
+  "checked": 161,
+  "fails": [
+   {
+    "el": "a.il-talk",
+    "w": 1440,
+    "ratio": 3.46,
+    "need": 4.5,
+    "size": 11,
+    "text": "Let's talk"
+   },
+   {
+    "el": "button.il-oclose",
+    "w": 1440,
+    "ratio": 3.46,
+    "need": 4.5,
+    "size": 12,
+    "text": "Close \u2715"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.16,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.41,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.74,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.58,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span.ptag",
+    "w": 1440,
+    "ratio": 3.25,
+    "need": 4.5,
+    "size": 15,
+    "text": "AI"
+   },
+   {
+    "el": "span.ptag",
+    "w": 1440,
+    "ratio": 3.05,
+    "need": 4.5,
+    "size": 15,
+    "text": "Production"
+   },
+   {
+    "el": "span.ptag",
+    "w": 1440,
+    "ratio": 2.93,
+    "need": 4.5,
+    "size": 15,
+    "text": "Branding"
+   },
+   {
+    "el": "span.ptag",
+    "w": 1440,
+    "ratio": 2.74,
+    "need": 4.5,
+    "size": 15,
+    "text": "Beauty"
+   },
+   {
+    "el": "span.ln-ital",
+    "w": 1440,
+    "ratio": 2.95,
+    "need": 4.5,
+    "size": 20.24,
+    "text": "monthly content, generat"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.33,
+    "need": 4.5,
+    "size": 12,
+    "text": "Scroll"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.36,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.58,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.58,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.58,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.25,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.25,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.3,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.74,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span.ptag",
+    "w": 390,
+    "ratio": 4.36,
+    "need": 4.5,
+    "size": 13,
+    "text": "Beauty"
+   },
+   {
+    "el": "span.ln-ital",
+    "w": 390,
+    "ratio": 3.18,
+    "need": 4.5,
+    "size": 15,
+    "text": "monthly content, generat"
+   },
+   {
+    "el": "strong",
+    "w": 390,
+    "ratio": 4.19,
+    "need": 4.5,
+    "size": 16,
+    "text": "Monthly social content f"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   }
+  ]
+ },
+ "/projects/hob.html": {
+  "checked": 80,
+  "fails": [
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.55,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.55,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.55,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.56,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.59,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.59,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.55,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.56,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.56,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.56,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.56,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.59,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.59,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.59,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span.wtag",
+    "w": 390,
+    "ratio": 2.39,
+    "need": 4.5,
+    "size": 10,
+    "text": "Reel 01 \u00b7 9:16"
+   },
+   {
+    "el": "span.wtag",
+    "w": 390,
+    "ratio": 2.57,
+    "need": 4.5,
+    "size": 10,
+    "text": "Reel 02 \u00b7 9:16"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   }
+  ]
+ },
+ "/projects/illusorr-spaces.html": {
+  "checked": 59,
+  "fails": [
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.59,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.59,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.48,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.48,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.48,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.48,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.48,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.46,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.59,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.59,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.32,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.59,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.59,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.59,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.59,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.59,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   }
+  ]
+ },
+ "/projects/khaltat.html": {
+  "checked": 81,
+  "fails": [
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.9,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.9,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   }
+  ]
+ },
+ "/projects/koton-lookbook-russia.html": {
+  "checked": 150,
+  "fails": [
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 4.22,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 3.35,
+    "need": 4.5,
+    "size": 12,
+    "text": "Plate 0104"
+   },
+   {
+    "el": "span.ph-dim",
+    "w": 1440,
+    "ratio": 1.71,
+    "need": 4.5,
+    "size": 12,
+    "text": "Koton FW25 \u00b7 Outerwear"
+   },
+   {
+    "el": "span.next-k",
+    "w": 1440,
+    "ratio": 3.62,
+    "need": 4.5,
+    "size": 12,
+    "text": "Next Project \u00b7 010"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.85,
+    "need": 4.5,
+    "size": 12,
+    "text": "2023"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   }
+  ]
+ },
+ "/projects/lap/embeds/lapillus-home-live.html": {
+  "checked": 3,
+  "fails": [
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.19,
+    "need": 3.0,
+    "size": 86,
+    "text": "of living on water"
+   }
+  ]
+ },
+ "/projects/lapillus.html": {
+  "checked": 136,
+  "fails": [
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.25,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.42,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.42,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.45,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.45,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.45,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.43,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.43,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.06,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.25,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.25,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.26,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.3,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.42,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.45,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.45,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "a",
+    "w": 390,
+    "ratio": 2.27,
+    "need": 4.5,
+    "size": 12,
+    "text": "LAPILLUS, Exterior"
+   },
+   {
+    "el": "span.ph-label",
+    "w": 390,
+    "ratio": 3.74,
+    "need": 4.5,
+    "size": 11,
+    "text": "YouTube"
+   },
+   {
+    "el": "span.ph-dim",
+    "w": 390,
+    "ratio": 3.74,
+    "need": 4.5,
+    "size": 11,
+    "text": "Lapillus \u00b7 Interactive S"
+   },
+   {
+    "el": "span.ph-dim",
+    "w": 390,
+    "ratio": 3.74,
+    "need": 4.5,
+    "size": 11,
+    "text": "Lapillus \u00b7 Villa Walkthr"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   }
+  ]
+ },
+ "/projects/majestay.html": {
+  "checked": 176,
+  "fails": [
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.24,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.06,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.06,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.2,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.35,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.9,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.9,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.9,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.29,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.1,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.1,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.02,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.86,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.08,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 3.67,
+    "need": 4.5,
+    "size": 22,
+    "text": "Majestay Tourism"
+   },
+   {
+    "el": "span.ptag",
+    "w": 390,
+    "ratio": 3.8,
+    "need": 4.5,
+    "size": 13,
+    "text": "AI Content"
+   },
+   {
+    "el": "span.ptag",
+    "w": 390,
+    "ratio": 4.25,
+    "need": 4.5,
+    "size": 13,
+    "text": "Web"
+   },
+   {
+    "el": "span.ptag",
+    "w": 390,
+    "ratio": 3.8,
+    "need": 4.5,
+    "size": 13,
+    "text": "Tourism"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   }
+  ]
+ },
+ "/projects/marlia-swimwear.html": {
+  "checked": 172,
+  "fails": [
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.45,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.45,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.45,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.45,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.45,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.45,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.98,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.11,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "h2.hc-title",
+    "w": 1440,
+    "ratio": 1.67,
+    "need": 3.0,
+    "size": 34.56,
+    "text": "Gift Box"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.45,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.45,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.45,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.45,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.45,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.45,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.45,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.94,
+    "need": 4.5,
+    "size": 12,
+    "text": "Wordmark in use"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.59,
+    "need": 4.5,
+    "size": 12,
+    "text": "Logo"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.94,
+    "need": 4.5,
+    "size": 12,
+    "text": "Gift box, turquoise"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.59,
+    "need": 4.5,
+    "size": 12,
+    "text": "Packaging"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.94,
+    "need": 4.5,
+    "size": 12,
+    "text": "Swing tags, turquoise"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.59,
+    "need": 4.5,
+    "size": 12,
+    "text": "Print"
+   },
+   {
+    "el": "figcaption",
+    "w": 390,
+    "ratio": 2.2,
+    "need": 4.5,
+    "size": 12,
+    "text": "03 \u00b7 Story"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   }
+  ]
+ },
+ "/projects/metacon.html": {
+  "checked": 80,
+  "fails": [
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.55,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.55,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.55,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.56,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.59,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.59,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.55,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.56,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.56,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.56,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.56,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.59,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.59,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.59,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span.wtag",
+    "w": 390,
+    "ratio": 2.39,
+    "need": 4.5,
+    "size": 10,
+    "text": "Reel 01 \u00b7 9:16"
+   },
+   {
+    "el": "span.wtag",
+    "w": 390,
+    "ratio": 2.57,
+    "need": 4.5,
+    "size": 10,
+    "text": "Reel 02 \u00b7 9:16"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   }
+  ]
+ },
+ "/projects/metaculture.html": {
+  "checked": 157,
+  "fails": [
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.24,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.57,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.67,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.44,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.57,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.58,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.58,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span.ptag",
+    "w": 1440,
+    "ratio": 4.14,
+    "need": 4.5,
+    "size": 15,
+    "text": "Cultural heritage"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 4.13,
+    "need": 4.5,
+    "size": 13,
+    "text": "Cultural initiative"
+   },
+   {
+    "el": "figcaption",
+    "w": 1440,
+    "ratio": 3.87,
+    "need": 4.5,
+    "size": 12,
+    "text": "Garment loop"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.45,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.93,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.57,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.43,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.44,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.58,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.58,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "figcaption",
+    "w": 390,
+    "ratio": 3.16,
+    "need": 4.5,
+    "size": 12,
+    "text": "Shell test"
+   },
+   {
+    "el": "figcaption",
+    "w": 390,
+    "ratio": 3.87,
+    "need": 4.5,
+    "size": 12,
+    "text": "Garment loop"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   }
+  ]
+ },
+ "/projects/metagenus.html": {
+  "checked": 190,
+  "fails": [
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.08,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.55,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.55,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.43,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.43,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.56,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.56,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.3,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.46,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.55,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.56,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.25,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.46,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.59,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.55,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   }
+  ]
+ },
+ "/projects/michael-cinco.html": {
+  "checked": 193,
+  "fails": [
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.07,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.07,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.09,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.28,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.09,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.28,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.07,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.1,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 4.42,
+    "need": 4.5,
+    "size": 12,
+    "text": "Lime, gardenia, vanilla"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.9,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.9,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.07,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.07,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.07,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.09,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.3,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.27,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 3.54,
+    "need": 4.5,
+    "size": 12,
+    "text": "M3, gardenia"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 4.45,
+    "need": 4.5,
+    "size": 12,
+    "text": "M5, jasmine"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 4.31,
+    "need": 4.5,
+    "size": 12,
+    "text": "M7, white rose"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   }
+  ]
+ },
+ "/projects/monaco-chain.html": {
+  "checked": 80,
+  "fails": [
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.55,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.55,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.55,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.56,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.59,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.59,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.55,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.56,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.56,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.56,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.56,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.59,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.59,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.59,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span.wtag",
+    "w": 390,
+    "ratio": 2.57,
+    "need": 4.5,
+    "size": 10,
+    "text": "Reel 01 \u00b7 9:16"
+   },
+   {
+    "el": "span.wtag",
+    "w": 390,
+    "ratio": 2.57,
+    "need": 4.5,
+    "size": 10,
+    "text": "Reel 02 \u00b7 9:16"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   }
+  ]
+ },
+ "/projects/moodie-kiosk.html": {
+  "checked": 135,
+  "fails": [
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.2,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.25,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 3.11,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.61,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.38,
+    "need": 3.0,
+    "size": 31.68,
+    "text": "Moodie"
+   },
+   {
+    "el": "span.ln-ital",
+    "w": 1440,
+    "ratio": 3.56,
+    "need": 4.5,
+    "size": 20.24,
+    "text": "a moment, a mood, a memo"
+   },
+   {
+    "el": "strong",
+    "w": 1440,
+    "ratio": 3.91,
+    "need": 4.5,
+    "size": 15,
+    "text": "An experiential kiosk fo"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 4.42,
+    "need": 4.5,
+    "size": 12,
+    "text": "Colour system: mint, mag"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.81,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.0,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.87,
+    "need": 4.5,
+    "size": 22,
+    "text": "Moodie"
+   },
+   {
+    "el": "span.ptag",
+    "w": 390,
+    "ratio": 3.18,
+    "need": 4.5,
+    "size": 13,
+    "text": "Consultancy"
+   },
+   {
+    "el": "span.ptag",
+    "w": 390,
+    "ratio": 3.54,
+    "need": 4.5,
+    "size": 13,
+    "text": "Logo Design"
+   },
+   {
+    "el": "span.ptag",
+    "w": 390,
+    "ratio": 3.18,
+    "need": 4.5,
+    "size": 13,
+    "text": "Algorithmic Design"
+   },
+   {
+    "el": "span.ptag",
+    "w": 390,
+    "ratio": 3.91,
+    "need": 4.5,
+    "size": 13,
+    "text": "Web"
+   },
+   {
+    "el": "span.ptag",
+    "w": 390,
+    "ratio": 3.5,
+    "need": 4.5,
+    "size": 13,
+    "text": "F&B"
+   },
+   {
+    "el": "span.ptag",
+    "w": 390,
+    "ratio": 3.54,
+    "need": 4.5,
+    "size": 13,
+    "text": "Retail"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.94,
+    "need": 4.5,
+    "size": 12,
+    "text": "Takeaway system: boxes, "
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.38,
+    "need": 4.5,
+    "size": 12,
+    "text": "Packaging"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   }
+  ]
+ },
+ "/projects/morphellum.html": {
+  "checked": 141,
+  "fails": [
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.56,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.56,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.57,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.57,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.46,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.57,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.57,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.57,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 4.39,
+    "need": 4.5,
+    "size": 11,
+    "text": "Surface study, the layer"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 3.51,
+    "need": 4.5,
+    "size": 11,
+    "text": "Helium, worn"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.78,
+    "need": 4.5,
+    "size": 11,
+    "text": "Key Visual"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.56,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.07,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.42,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.07,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.07,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.56,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.56,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   }
+  ]
+ },
+ "/projects/optiverse.html": {
+  "checked": 0,
+  "fails": [
+   {
+    "error": "TimeoutError"
+   },
+   {
+    "error": "TimeoutError"
+   }
+  ]
+ },
+ "/projects/pera.html": {
+  "checked": 0,
+  "fails": []
+ },
+ "/projects/pixelpaint.html": {
+  "checked": 0,
+  "fails": []
+ },
+ "/projects/pylon.html": {
+  "checked": 135,
+  "fails": [
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.2,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.2,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.16,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.42,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.16,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.56,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.56,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.57,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span.a-role",
+    "w": 1440,
+    "ratio": 2.48,
+    "need": 4.5,
+    "size": 12,
+    "text": "Studio"
+   },
+   {
+    "el": "span.a-role",
+    "w": 1440,
+    "ratio": 3.94,
+    "need": 4.5,
+    "size": 12,
+    "text": "Artist"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.71,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.48,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.67,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.2,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.24,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.39,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span.d-date",
+    "w": 390,
+    "ratio": 4.45,
+    "need": 4.5,
+    "size": 13,
+    "text": "Dec 11"
+   },
+   {
+    "el": "span.su",
+    "w": 390,
+    "ratio": 4.45,
+    "need": 4.5,
+    "size": 12,
+    "text": "/03"
+   },
+   {
+    "el": "span.d-date",
+    "w": 390,
+    "ratio": 4.45,
+    "need": 4.5,
+    "size": 13,
+    "text": "Dec 12"
+   },
+   {
+    "el": "span.a-role",
+    "w": 390,
+    "ratio": 3.58,
+    "need": 4.5,
+    "size": 12,
+    "text": "Artist"
+   },
+   {
+    "el": "span.a-tag",
+    "w": 390,
+    "ratio": 1.64,
+    "need": 4.5,
+    "size": 12,
+    "text": "Sculpture"
+   },
+   {
+    "el": "span.a-tag",
+    "w": 390,
+    "ratio": 1.65,
+    "need": 4.5,
+    "size": 12,
+    "text": "Digital Art"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   }
+  ]
+ },
+ "/projects/riyadhverse.html": {
+  "checked": 110,
+  "fails": [
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.57,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.84,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.45,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   }
+  ]
+ },
+ "/projects/spaces-breakpoints.html": {
+  "checked": 58,
+  "fails": [
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   }
+  ]
+ },
+ "/projects/trt-metaverse.html": {
+  "checked": 122,
+  "fails": [
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.56,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.09,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span.twin-tag",
+    "w": 390,
+    "ratio": 2.75,
+    "need": 4.5,
+    "size": 9.5,
+    "text": "New reality"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 3.63,
+    "need": 4.5,
+    "size": 12,
+    "text": "Shown at the forum in Is"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   }
+  ]
+ },
+ "/projects/u-hub-metaverse.html": {
+  "checked": 149,
+  "fails": [
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.2,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.2,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.2,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.2,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.2,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.63,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 3.42,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 3.42,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.2,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.2,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.2,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.2,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.2,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.2,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.2,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.2,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "figcaption",
+    "w": 390,
+    "ratio": 2.18,
+    "need": 4.5,
+    "size": 9.5,
+    "text": "The long table"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   }
+  ]
+ },
+ "/sectors.html": {
+  "checked": 108,
+  "fails": [
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.59,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.59,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.57,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.7,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.97,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.59,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.56,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.59,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.59,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.56,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.56,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   }
+  ]
+ },
+ "/sectors/beauty.html": {
+  "checked": 116,
+  "fails": [
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.44,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.54,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.57,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.75,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.54,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span.dscan-cap",
+    "w": 1440,
+    "ratio": 1.5,
+    "need": 4.5,
+    "size": 11,
+    "text": "Beauty & Fragrance \u00b7 dep"
+   },
+   {
+    "el": "span.pnl-tag",
+    "w": 1440,
+    "ratio": 3.16,
+    "need": 4.5,
+    "size": 11,
+    "text": "02 / 07 \u00a0\u00b7\u00a0 Beauty & Fra"
+   },
+   {
+    "el": "figcaption",
+    "w": 1440,
+    "ratio": 2.95,
+    "need": 4.5,
+    "size": 11,
+    "text": "Fragrance range \u00b7 sculpt"
+   },
+   {
+    "el": "figcaption",
+    "w": 1440,
+    "ratio": 3.62,
+    "need": 4.5,
+    "size": 11,
+    "text": "Lipstick case \u00b7 polished"
+   },
+   {
+    "el": "span.pnl-tag",
+    "w": 1440,
+    "ratio": 2.8,
+    "need": 4.5,
+    "size": 11,
+    "text": "04 / 07 \u00a0\u00b7\u00a0 Beauty & Fra"
+   },
+   {
+    "el": "span.pnl-tag",
+    "w": 1440,
+    "ratio": 3.16,
+    "need": 4.5,
+    "size": 11,
+    "text": "05 / 07 \u00a0\u00b7\u00a0 Beauty & Fra"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 3.71,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.73,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.81,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.59,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "p.sd-lede",
+    "w": 390,
+    "ratio": 4.49,
+    "need": 4.5,
+    "size": 16,
+    "text": "Scent and skin sell on f"
+   },
+   {
+    "el": "figcaption",
+    "w": 390,
+    "ratio": 2.67,
+    "need": 4.5,
+    "size": 11,
+    "text": "Fragrance range \u00b7 sculpt"
+   },
+   {
+    "el": "figcaption",
+    "w": 390,
+    "ratio": 3.26,
+    "need": 4.5,
+    "size": 11,
+    "text": "Lipstick case \u00b7 polished"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   }
+  ]
+ },
+ "/sectors/business.html": {
+  "checked": 128,
+  "fails": [
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.16,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.18,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.7,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.7,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.6,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span.pnl-tag",
+    "w": 1440,
+    "ratio": 3.16,
+    "need": 4.5,
+    "size": 11,
+    "text": "02 / 07 \u00a0\u00b7\u00a0 Business & I"
+   },
+   {
+    "el": "span.pnl-tag",
+    "w": 1440,
+    "ratio": 2.8,
+    "need": 4.5,
+    "size": 11,
+    "text": "04 / 07 \u00a0\u00b7\u00a0 Business & I"
+   },
+   {
+    "el": "span.pnl-tag",
+    "w": 1440,
+    "ratio": 3.16,
+    "need": 4.5,
+    "size": 11,
+    "text": "05 / 07 \u00a0\u00b7\u00a0 Business & I"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.32,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.7,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.7,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.7,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.47,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.6,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   }
+  ]
+ },
+ "/sectors/culture.html": {
+  "checked": 118,
+  "fails": [
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.14,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.3,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.14,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.6,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.44,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span.pnl-tag",
+    "w": 1440,
+    "ratio": 3.16,
+    "need": 4.5,
+    "size": 11,
+    "text": "02 / 07 \u00a0\u00b7\u00a0 Culture & Im"
+   },
+   {
+    "el": "span.pnl-tag",
+    "w": 1440,
+    "ratio": 2.8,
+    "need": 4.5,
+    "size": 11,
+    "text": "04 / 07 \u00a0\u00b7\u00a0 Culture & Im"
+   },
+   {
+    "el": "span.pnl-tag",
+    "w": 1440,
+    "ratio": 3.03,
+    "need": 4.5,
+    "size": 11,
+    "text": "05 / 07 \u00a0\u00b7\u00a0 Culture & Im"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.6,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.63,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.6,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.6,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.94,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.6,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.44,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "figcaption",
+    "w": 390,
+    "ratio": 3.2,
+    "need": 4.5,
+    "size": 11,
+    "text": "Immersive world \u00b7 frame"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   }
+  ]
+ },
+ "/sectors/fashion.html": {
+  "checked": 122,
+  "fails": [
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.27,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.46,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.41,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.46,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.55,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.56,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span.pnl-tag",
+    "w": 1440,
+    "ratio": 3.16,
+    "need": 4.5,
+    "size": 11,
+    "text": "02 / 07 \u00a0\u00b7\u00a0 Fashion, Ret"
+   },
+   {
+    "el": "span.pnl-tag",
+    "w": 1440,
+    "ratio": 2.8,
+    "need": 4.5,
+    "size": 11,
+    "text": "04 / 07 \u00a0\u00b7\u00a0 Fashion, Ret"
+   },
+   {
+    "el": "span.pnl-tag",
+    "w": 1440,
+    "ratio": 3.37,
+    "need": 4.5,
+    "size": 11,
+    "text": "05 / 07 \u00a0\u00b7\u00a0 Fashion, Ret"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.28,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.54,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.56,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.3,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.44,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.56,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.56,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.56,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   }
+  ]
+ },
+ "/sectors/gaming.html": {
+  "checked": 109,
+  "fails": [
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.41,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.44,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.57,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.09,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.56,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.28,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span.dscan-cap",
+    "w": 1440,
+    "ratio": 1.64,
+    "need": 4.5,
+    "size": 11,
+    "text": "Gaming, Worlds & IP \u00b7 de"
+   },
+   {
+    "el": "span.pnl-tag",
+    "w": 1440,
+    "ratio": 3.16,
+    "need": 4.5,
+    "size": 11,
+    "text": "02 / 07 \u00a0\u00b7\u00a0 Gaming, Worl"
+   },
+   {
+    "el": "span.pnl-tag",
+    "w": 1440,
+    "ratio": 2.8,
+    "need": 4.5,
+    "size": 11,
+    "text": "04 / 07 \u00a0\u00b7\u00a0 Gaming, Worl"
+   },
+   {
+    "el": "span.pnl-tag",
+    "w": 1440,
+    "ratio": 3.16,
+    "need": 4.5,
+    "size": 11,
+    "text": "05 / 07 \u00a0\u00b7\u00a0 Gaming, Worl"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.98,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.44,
+    "need": 4.5,
+    "size": 12,
+    "text": "06"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.88,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.28,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.28,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "p.sd-lede",
+    "w": 390,
+    "ratio": 2.61,
+    "need": 4.5,
+    "size": 16,
+    "text": "Assets that ship to spec"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.88,
+    "need": 4.5,
+    "size": 12,
+    "text": "In partnership with Abu "
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   }
+  ]
+ },
+ "/sectors/real-estate.html": {
+  "checked": 112,
+  "fails": [
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.89,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.32,
+    "need": 4.5,
+    "size": 12,
+    "text": "04"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.93,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.31,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.44,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 2.28,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span.dscan-cap",
+    "w": 1440,
+    "ratio": 1.32,
+    "need": 4.5,
+    "size": 11,
+    "text": "Real Estate & Architectu"
+   },
+   {
+    "el": "span.pnl-tag",
+    "w": 1440,
+    "ratio": 3.16,
+    "need": 4.5,
+    "size": 11,
+    "text": "02 / 07 \u00a0\u00b7\u00a0 Real Estate "
+   },
+   {
+    "el": "span.pnl-tag",
+    "w": 1440,
+    "ratio": 2.8,
+    "need": 4.5,
+    "size": 11,
+    "text": "04 / 07 \u00a0\u00b7\u00a0 Real Estate "
+   },
+   {
+    "el": "span.pnl-tag",
+    "w": 1440,
+    "ratio": 1.91,
+    "need": 4.5,
+    "size": 11,
+    "text": "05 / 07 \u00a0\u00b7\u00a0 Real Estate "
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.91,
+    "need": 4.5,
+    "size": 12,
+    "text": "02"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.86,
+    "need": 4.5,
+    "size": 12,
+    "text": "03"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 1.73,
+    "need": 4.5,
+    "size": 12,
+    "text": "05"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.09,
+    "need": 4.5,
+    "size": 12,
+    "text": "07"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.57,
+    "need": 4.5,
+    "size": 11,
+    "text": "Abu Dhabi \u00b7 Yas Creative"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.57,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span.dscan-cap",
+    "w": 390,
+    "ratio": 1.76,
+    "need": 4.5,
+    "size": 12,
+    "text": "Real Estate & Architectu"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "\u00a9 2026 ILLUSORR"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.69,
+    "need": 4.5,
+    "size": 12,
+    "text": "Yas Creative Hub \u00b7 Abu D"
+   }
+  ]
+ },
+ "/work.html": {
+  "checked": 149,
+  "fails": [
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 1.07,
+    "need": 4.5,
+    "size": 11,
+    "text": "hello@illusorr.com"
+   },
+   {
+    "el": "span.tf-t",
+    "w": 1440,
+    "ratio": 3.16,
+    "need": 4.5,
+    "size": 14,
+    "text": "AI Content"
+   },
+   {
+    "el": "span.tf-t",
+    "w": 1440,
+    "ratio": 3.16,
+    "need": 4.5,
+    "size": 14,
+    "text": "Social Media"
+   },
+   {
+    "el": "span.tf-t",
+    "w": 1440,
+    "ratio": 3.16,
+    "need": 4.5,
+    "size": 14,
+    "text": "Art"
+   },
+   {
+    "el": "span.tf-t",
+    "w": 1440,
+    "ratio": 3.16,
+    "need": 4.5,
+    "size": 14,
+    "text": "Immersive"
+   },
+   {
+    "el": "span.tf-t",
+    "w": 1440,
+    "ratio": 3.16,
+    "need": 4.5,
+    "size": 14,
+    "text": "Campaign"
+   },
+   {
+    "el": "span.tf-t",
+    "w": 1440,
+    "ratio": 3.16,
+    "need": 4.5,
+    "size": 14,
+    "text": "Ecommerce"
+   },
+   {
+    "el": "span.tf-t",
+    "w": 1440,
+    "ratio": 3.16,
+    "need": 4.5,
+    "size": 14,
+    "text": "Real Time"
+   },
+   {
+    "el": "span.tf-t",
+    "w": 1440,
+    "ratio": 3.16,
+    "need": 4.5,
+    "size": 14,
+    "text": "Web"
+   },
+   {
+    "el": "span.tf-t",
+    "w": 1440,
+    "ratio": 3.16,
+    "need": 4.5,
+    "size": 14,
+    "text": "Branding"
+   },
+   {
+    "el": "span.tf-t",
+    "w": 1440,
+    "ratio": 3.16,
+    "need": 4.5,
+    "size": 14,
+    "text": "Metaverse"
+   },
+   {
+    "el": "span.tf-t",
+    "w": 1440,
+    "ratio": 3.16,
+    "need": 4.5,
+    "size": 14,
+    "text": "Original IP"
+   },
+   {
+    "el": "span.t-idx",
+    "w": 1440,
+    "ratio": 3.87,
+    "need": 4.5,
+    "size": 11,
+    "text": "04"
+   },
+   {
+    "el": "span.tf-t",
+    "w": 390,
+    "ratio": 3.16,
+    "need": 4.5,
+    "size": 13,
+    "text": "AI Content"
+   }
+  ]
+ }
+}

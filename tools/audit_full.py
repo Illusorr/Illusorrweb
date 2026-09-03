@@ -69,18 +69,32 @@ PROBE = r"""() => {
     if (out > 4) overflow.push({ el: nm(el), by: out });
   }
 
-  /* overlapping text in normal flow */
-  const txt = [...document.querySelectorAll('p,h1,h2,h3,h4,li,figcaption')].filter(el => {
-    if (!vis(el) || !el.textContent.trim() || clipped(el)) return false;
-    const s = cs(el); return s.position === 'static' || s.position === 'relative';
-  }).slice(0, 150);
+  /* Overlapping text. This USED to require normal flow and only looked at
+     seven tag names, so it could not see a positioned button sitting on a
+     label - which is exactly how the brief.html exit pill overlapped the
+     intake heading at every short viewport, unreported. Positioned elements
+     are now included; the pairs that legitimately stack (an element and its
+     own backdrop, a deliberate overlay) are excluded by requiring both to
+     carry their own text and neither to contain the other. */
+  const txt = [...document.querySelectorAll(
+      'p,h1,h2,h3,h4,h5,h6,li,figcaption,a,button,label,dt,dd,summary,blockquote')]
+    .filter(el => {
+      if (!vis(el) || !el.textContent.trim() || clipped(el)) return false;
+      const s = cs(el);
+      if (s.position === 'fixed') return false;   /* fixed chrome is meant to float */
+      if (parseFloat(s.opacity) < 0.9) return false;
+      return true;
+    }).slice(0, 220);
   const overlaps = [];
   for (let i = 0; i < txt.length; i++) for (let j = i + 1; j < txt.length; j++) {
-    if (txt[i].contains(txt[j]) || txt[j].contains(txt[i])) continue;
-    const A = txt[i].getBoundingClientRect(), B = txt[j].getBoundingClientRect();
-    if (Math.min(A.right, B.right) - Math.max(A.left, B.left) > 12 &&
-        Math.min(A.bottom, B.bottom) - Math.max(A.top, B.top) > 12)
-      overlaps.push({ a: nm(txt[i]), b: nm(txt[j]) });
+    const a = txt[i], b = txt[j];
+    if (a.contains(b) || b.contains(a)) continue;
+    const A = a.getBoundingClientRect(), B = b.getBoundingClientRect();
+    const ox = Math.min(A.right, B.right) - Math.max(A.left, B.left);
+    const oy = Math.min(A.bottom, B.bottom) - Math.max(A.top, B.top);
+    if (ox <= 12 || oy <= 12) continue;
+    /* an ancestor that scrolls can legitimately bring two children together */
+    overlaps.push({ a: nm(a), b: nm(b), by: Math.round(ox) + 'x' + Math.round(oy) });
   }
 
   /* contrast: element's own background first */

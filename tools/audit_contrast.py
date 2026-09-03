@@ -19,6 +19,7 @@ Writes tools/_contrast-audit.json.
 """
 import io
 import json
+import math
 import re
 import sys
 from collections import Counter
@@ -52,14 +53,26 @@ def parse(s):
     return tuple(int(float(x)) for x in m[:3]) if len(m) >= 3 else None
 
 
-def bg_mode(shot):
+def bg_mode(shot, fg):
+    """Background = the most common pixel that is NOT the text or its
+    antialiasing. Taking a plain mode fails when glyphs cover much of the box:
+    it lands on a glyph pixel and reports text-on-itself, which is how an
+    earlier pass called a perfectly legible h1 1.06:1. Returns (colour, share
+    of pixels that were background); a low share means the box is mostly text
+    and the reading should be discarded."""
     im = Image.open(io.BytesIO(shot)).convert("RGB")
     px = im.tobytes()
-    if len(px) < 3:
-        return None
-    c = Counter((px[i] // 8 * 8, px[i + 1] // 8 * 8, px[i + 2] // 8 * 8)
-                for i in range(0, len(px), 3))
-    return c.most_common(1)[0][0]
+    n = len(px) // 3
+    if n < 20:
+        return None, 0.0
+    far = Counter()
+    for i in range(0, len(px), 3):
+        c = (px[i], px[i + 1], px[i + 2])
+        if math.dist(c, fg) > 70:
+            far[(c[0] // 8 * 8, c[1] // 8 * 8, c[2] // 8 * 8)] += 1
+    if not far:
+        return None, 0.0
+    return far.most_common(1)[0][0], sum(far.values()) / n
 
 
 COLLECT = """(sel) => {
@@ -115,12 +128,12 @@ def audit(pages):
                             if not fg:
                                 continue
                             try:
-                                bg = bg_mode(pg.screenshot(clip={k: item[k] for k in
-                                                                 ("x", "y", "width", "height")}))
+                                bg, share = bg_mode(pg.screenshot(clip={k: item[k] for k in
+                                                                        ("x", "y", "width", "height")}), fg)
                             except Exception:
                                 continue
-                            if not bg:
-                                continue
+                            if not bg or share < 0.25:
+                                continue   # too little background to judge
                             checked += 1
                             cr = ratio(fg, bg)
                             big = item["size"] >= 24 or (item["size"] >= 18.66 and

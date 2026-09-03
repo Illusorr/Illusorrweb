@@ -1,0 +1,66 @@
+{
+ "/projects/metaculture.html": {
+  "hits": [],
+  "errors": [],
+  "probed": 17
+ },
+ "/projects/fabrika.html": {
+  "hits": [],
+  "errors": [],
+  "probed": 24
+ },
+ "/projects/denim.html": {
+  "hits": [],
+  "errors": [],
+  "probed": 34
+ },
+ "/projects/anfasic.html": {
+  "hits": [],
+  "errors": [],
+  "probed": 26
+ },
+ "/about.html": {
+  "hits": [
+   {
+    "a": "span.gc-bignum.disp",
+    "b": "span.gc-type.mono",
+    "by": "26x13",
+    "t": "01 | CREATIVE",
+    "view": "768x1024"
+   },
+   {
+    "a": "span.gc-bignum.disp",
+    "b": "span.gc-type.mono",
+    "by": "32x17",
+    "t": "01 | CREATIVE",
+    "view": "390x844"
+   },
+   {
+    "a": "span.gc-bignum.disp",
+    "b": "span.gc-type.mono",
+    "by": "32x17",
+    "t": "01 | CREATIVE",
+    "view": "390x560"
+   },
+   {
+    "a": "span.gc-bignum.disp",
+    "b": "span.gc-type.mono",
+    "by": "45x25",
+    "t": "01 | CREATIVE",
+    "view": "360x640"
+   }
+  ],
+  "errors": [],
+  "probed": 37
+ },
+ "/lab.html": {
+  "hits": [],
+  "errors": [],
+  "probed": 28
+ },
+ "/brief.html": {
+  "hits": [],
+  "errors": [],
+  "probed": 40
+ }
+}

@@ -1,0 +1,665 @@
+{
+ "/404.html": [],
+ "/about.html": [],
+ "/brief.html": [],
+ "/collective.html": [],
+ "/contact.html": [],
+ "/index.html": [],
+ "/lab.html": [],
+ "/lab/marbled-ink-orb.html": [],
+ "/lab/noise-field.html": [],
+ "/projects/aa/embeds/aa-home-live.html": [],
+ "/projects/al-berwaz.html": [
+  {
+   "cls": "SECTION.hero-media",
+   "declared": "dark",
+   "renders": "light",
+   "rgb": [
+    253,
+    253,
+    254
+   ],
+   "lum": 0.9829,
+   "y": 841
+  },
+  {
+   "cls": "SECTION.next",
+   "declared": "dark",
+   "renders": "light",
+   "rgb": [
+    157,
+    160,
+    158
+   ],
+   "lum": 0.3478,
+   "y": 13190
+  }
+ ],
+ "/projects/anfasic.html": [
+  {
+   "cls": "SECTION.hero-media",
+   "declared": "dark",
+   "renders": "light",
+   "rgb": [
+    197,
+    168,
+    129
+   ],
+   "lum": 0.4146,
+   "y": 804
+  },
+  {
+   "cls": "SECTION.",
+   "declared": "light",
+   "renders": "dark",
+   "rgb": [
+    83,
+    112,
+    143
+   ],
+   "lum": 0.1541,
+   "y": 1845
+  }
+ ],
+ "/projects/ant-live/index.html": [],
+ "/projects/ant-systems.html": [
+  {
+   "cls": "SECTION.next",
+   "declared": "dark",
+   "renders": "light",
+   "rgb": [
+    219,
+    219,
+    220
+   ],
+   "lum": 0.7089,
+   "y": 13524
+  }
+ ],
+ "/projects/aquatic-architects.html": [
+  {
+   "cls": "SECTION.",
+   "declared": "light",
+   "renders": "dark",
+   "rgb": [
+    68,
+    77,
+    78
+   ],
+   "lum": 0.0709,
+   "y": 668
+  },
+  {
+   "cls": "SECTION.",
+   "declared": "light",
+   "renders": "dark",
+   "rgb": [
+    74,
+    73,
+    73
+   ],
+   "lum": 0.067,
+   "y": 1302
+  },
+  {
+   "cls": "SECTION.module",
+   "declared": "light",
+   "renders": "dark",
+   "rgb": [
+    92,
+    91,
+    91
+   ],
+   "lum": 0.1051,
+   "y": 1591
+  },
+  {
+   "cls": "SECTION.module",
+   "declared": "light",
+   "renders": "dark",
+   "rgb": [
+    76,
+    76,
+    76
+   ],
+   "lum": 0.0723,
+   "y": 2367
+  },
+  {
+   "cls": "SECTION.module",
+   "declared": "light",
+   "renders": "dark",
+   "rgb": [
+    72,
+    72,
+    72
+   ],
+   "lum": 0.0648,
+   "y": 3491
+  },
+  {
+   "cls": "SECTION.bleed",
+   "declared": "light",
+   "renders": "dark",
+   "rgb": [
+    75,
+    87,
+    89
+   ],
+   "lum": 0.0903,
+   "y": 4166
+  },
+  {
+   "cls": "SECTION.module",
+   "declared": "paper",
+   "renders": "light",
+   "rgb": [
+    219,
+    220,
+    220
+   ],
+   "lum": 0.7141,
+   "y": 4633
+  },
+  {
+   "cls": "SECTION.",
+   "declared": "paper",
+   "renders": "dark",
+   "rgb": [
+    99,
+    96,
+    86
+   ],
+   "lum": 0.1169,
+   "y": 5864
+  },
+  {
+   "cls": "SECTION.module",
+   "declared": "paper",
+   "renders": "light",
+   "rgb": [
+    211,
+    212,
+    213
+   ],
+   "lum": 0.6574,
+   "y": 6224
+  },
+  {
+   "cls": "SECTION.next",
+   "declared": "dark",
+   "renders": "light",
+   "rgb": [
+    194,
+    182,
+    163
+   ],
+   "lum": 0.4757,
+   "y": 9701
+  }
+ ],
+ "/projects/arga.html": [],
+ "/projects/art-post-office.html": [
+  {
+   "cls": "SECTION.",
+   "declared": "light",
+   "renders": "dark",
+   "rgb": [
+    134,
+    120,
+    90
+   ],
+   "lum": 0.1924,
+   "y": 1782
+  },
+  {
+   "cls": "SECTION.vband",
+   "declared": "light",
+   "renders": "dark",
+   "rgb": [
+    134,
+    113,
+    101
+   ],
+   "lum": 0.1782,
+   "y": 2860
+  },
+  {
+   "cls": "SECTION.bleed",
+   "declared": "light",
+   "renders": "dark",
+   "rgb": [
+    134,
+    131,
+    130
+   ],
+   "lum": 0.2291,
+   "y": 9289
+  },
+  {
+   "cls": "SECTION.next",
+   "declared": "dark",
+   "renders": "light",
+   "rgb": [
+    186,
+    185,
+    189
+   ],
+   "lum": 0.4881,
+   "y": 12195
+  }
+ ],
+ "/projects/asir-bank.html": [],
+ "/projects/barbie.html": [
+  {
+   "cls": "SECTION.hero",
+   "declared": "dark",
+   "renders": "light",
+   "rgb": [
+    180,
+    142,
+    172
+   ],
+   "lum": 0.3203,
+   "y": 0
+  },
+  {
+   "cls": "SECTION.",
+   "declared": "dark",
+   "renders": "light",
+   "rgb": [
+    181,
+    161,
+    169
+   ],
+   "lum": 0.3818,
+   "y": 13243
+  },
+  {
+   "cls": "SECTION.bleed",
+   "declared": "dark",
+   "renders": "light",
+   "rgb": [
+    174,
+    156,
+    158
+   ],
+   "lum": 0.3524,
+   "y": 14189
+  }
+ ],
+ "/projects/coffee-merchant.html": [
+  {
+   "cls": "SECTION.vband",
+   "declared": "light",
+   "renders": "dark",
+   "rgb": [
+    120,
+    109,
+    94
+   ],
+   "lum": 0.1574,
+   "y": 3001
+  },
+  {
+   "cls": "SECTION.bleed",
+   "declared": "light",
+   "renders": "dark",
+   "rgb": [
+    129,
+    125,
+    127
+   ],
+   "lum": 0.2087,
+   "y": 9430
+  },
+  {
+   "cls": "SECTION.next",
+   "declared": "dark",
+   "renders": "light",
+   "rgb": [
+    175,
+    156,
+    151
+   ],
+   "lum": 0.3513,
+   "y": 12351
+  }
+ ],
+ "/projects/denim.html": [],
+ "/projects/disney-plus.html": [],
+ "/projects/echoes-of-light.html": [
+  {
+   "cls": "SECTION.",
+   "declared": "light",
+   "renders": "dark",
+   "rgb": [
+    113,
+    100,
+    131
+   ],
+   "lum": 0.1426,
+   "y": 3741
+  },
+  {
+   "cls": "SECTION.bleed",
+   "declared": "light",
+   "renders": "dark",
+   "rgb": [
+    141,
+    124,
+    142
+   ],
+   "lum": 0.2203,
+   "y": 9688
+  }
+ ],
+ "/projects/egro-coffee.html": [],
+ "/projects/fabrika.html": [],
+ "/projects/hind-al-oud.html": [
+  {
+   "cls": "SECTION.next",
+   "declared": "dark",
+   "renders": "light",
+   "rgb": [
+    190,
+    152,
+    117
+   ],
+   "lum": 0.3469,
+   "y": 7970
+  }
+ ],
+ "/projects/hob.html": [],
+ "/projects/illusorr-spaces.html": [],
+ "/projects/khaltat.html": [],
+ "/projects/koton-lookbook-russia.html": [
+  {
+   "cls": "SECTION.",
+   "declared": "light",
+   "renders": "dark",
+   "rgb": [
+    138,
+    120,
+    100
+   ],
+   "lum": 0.1976,
+   "y": 1845
+  }
+ ],
+ "/projects/lap/embeds/lapillus-home-live.html": [],
+ "/projects/lapillus.html": [
+  {
+   "cls": "SECTION.",
+   "declared": "light",
+   "renders": "dark",
+   "rgb": [
+    95,
+    94,
+    94
+   ],
+   "lum": 0.1125,
+   "y": 668
+  },
+  {
+   "cls": "SECTION.bleed",
+   "declared": "light",
+   "renders": "dark",
+   "rgb": [
+    76,
+    70,
+    69
+   ],
+   "lum": 0.0635,
+   "y": 4319
+  },
+  {
+   "cls": "SECTION.module",
+   "declared": "paper",
+   "renders": "light",
+   "rgb": [
+    205,
+    203,
+    199
+   ],
+   "lum": 0.5981,
+   "y": 4845
+  },
+  {
+   "cls": "SECTION.",
+   "declared": "paper",
+   "renders": "light",
+   "rgb": [
+    180,
+    171,
+    154
+   ],
+   "lum": 0.4116,
+   "y": 6076
+  },
+  {
+   "cls": "SECTION.module",
+   "declared": "paper",
+   "renders": "light",
+   "rgb": [
+    201,
+    199,
+    195
+   ],
+   "lum": 0.572,
+   "y": 6574
+  },
+  {
+   "cls": "SECTION.module",
+   "declared": "paper",
+   "renders": "light",
+   "rgb": [
+    206,
+    204,
+    200
+   ],
+   "lum": 0.6048,
+   "y": 7486
+  }
+ ],
+ "/projects/majestay.html": [],
+ "/projects/marlia-swimwear.html": [
+  {
+   "cls": "SECTION.vband",
+   "declared": "light",
+   "renders": "dark",
+   "rgb": [
+    85,
+    94,
+    93
+   ],
+   "lum": 0.1073,
+   "y": 3087
+  },
+  {
+   "cls": "SECTION.bleed",
+   "declared": "light",
+   "renders": "dark",
+   "rgb": [
+    118,
+    93,
+    91
+   ],
+   "lum": 0.1244,
+   "y": 9376
+  }
+ ],
+ "/projects/metacon.html": [],
+ "/projects/metaculture.html": [],
+ "/projects/metagenus.html": [],
+ "/projects/michael-cinco.html": [],
+ "/projects/monaco-chain.html": [],
+ "/projects/moodie-kiosk.html": [
+  {
+   "cls": "SECTION.",
+   "declared": "dark",
+   "renders": "light",
+   "rgb": [
+    144,
+    143,
+    139
+   ],
+   "lum": 0.2744,
+   "y": 7089
+  },
+  {
+   "cls": "SECTION.vband",
+   "declared": "dark",
+   "renders": "light",
+   "rgb": [
+    198,
+    151,
+    137
+   ],
+   "lum": 0.3595,
+   "y": 7984
+  }
+ ],
+ "/projects/morphellum.html": [
+  {
+   "cls": "SECTION.next",
+   "declared": "dark",
+   "renders": "light",
+   "rgb": [
+    162,
+    158,
+    149
+   ],
+   "lum": 0.3431,
+   "y": 12123
+  }
+ ],
+ "/projects/optiverse.html": [
+  {
+   "cls": "SECTION.vband",
+   "declared": "dark",
+   "renders": "light",
+   "rgb": [
+    136,
+    142,
+    161
+   ],
+   "lum": 0.2715,
+   "y": 10929
+  }
+ ],
+ "/projects/pera.html": [],
+ "/projects/pixelpaint.html": [
+  {
+   "cls": "SECTION.",
+   "declared": "dark",
+   "renders": "light",
+   "rgb": [
+    165,
+    167,
+    171
+   ],
+   "lum": 0.3858,
+   "y": 5436
+  }
+ ],
+ "/projects/pylon.html": [
+  {
+   "cls": "SECTION.vband",
+   "declared": "light",
+   "renders": "dark",
+   "rgb": [
+    39,
+    52,
+    86
+   ],
+   "lum": 0.0356,
+   "y": 5261
+  },
+  {
+   "cls": "SECTION.vband",
+   "declared": "light",
+   "renders": "dark",
+   "rgb": [
+    21,
+    30,
+    58
+   ],
+   "lum": 0.0139,
+   "y": 6339
+  },
+  {
+   "cls": "SECTION.vband",
+   "declared": "light",
+   "renders": "dark",
+   "rgb": [
+    80,
+    99,
+    125
+   ],
+   "lum": 0.1211,
+   "y": 7900
+  },
+  {
+   "cls": "SECTION.vband",
+   "declared": "light",
+   "renders": "dark",
+   "rgb": [
+    83,
+    90,
+    140
+   ],
+   "lum": 0.1104,
+   "y": 9406
+  },
+  {
+   "cls": "SECTION.vband",
+   "declared": "light",
+   "renders": "dark",
+   "rgb": [
+    93,
+    112,
+    174
+   ],
+   "lum": 0.1697,
+   "y": 11600
+  }
+ ],
+ "/projects/riyadhverse.html": [],
+ "/projects/spaces-breakpoints.html": [],
+ "/projects/trt-metaverse.html": [],
+ "/projects/u-hub-metaverse.html": [
+  {
+   "cls": "SECTION.hero-media",
+   "declared": "dark",
+   "renders": "light",
+   "rgb": [
+    159,
+    151,
+    166
+   ],
+   "lum": 0.3226,
+   "y": 942
+  },
+  {
+   "cls": "SECTION.bleed on-light",
+   "declared": "light",
+   "renders": "dark",
+   "rgb": [
+    86,
+    83,
+    123
+   ],
+   "lum": 0.096,
+   "y": 7921
+  }
+ ],
+ "/sectors.html": [],
+ "/sectors/beauty.html": [],
+ "/sectors/business.html": [],
+ "/sectors/culture.html": [],
+ "/sectors/fashion.html": [],
+ "/sectors/gaming.html": [],
+ "/sectors/real-estate.html": [],
+ "/work.html": []
+}

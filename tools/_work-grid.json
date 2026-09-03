@@ -1,0 +1,425 @@
+[
+ {
+  "slug": "disney-plus",
+  "position": 1,
+  "title": "Disney+",
+  "client": null,
+  "sector": "Culture & Immersive",
+  "sectors_all": "Culture & Immersive",
+  "tags": [
+   "3D",
+   "Art",
+   "Animation",
+   "Immersive"
+  ],
+  "cover": "assets/img/projects/disney-plus/illusorr-disney-plus-streaming-brand-campaign-cover.webp"
+ },
+ {
+  "slug": "hind-al-oud",
+  "position": 2,
+  "title": "Hind Al Oud",
+  "client": null,
+  "sector": "Beauty & Fragrance",
+  "sectors_all": "Beauty & Fragrance",
+  "tags": [
+   "AI Content",
+   "Campaign",
+   "Film",
+   "Social Media"
+  ],
+  "cover": "assets/img/projects/hind-al-oud/illusorr-hind-al-oud-outdoor-billboard-visual.webp"
+ },
+ {
+  "slug": "u-hub-metaverse",
+  "position": 3,
+  "title": "U-Hub Metaverse",
+  "client": "Unilever",
+  "sector": "Gaming, Worlds & IP",
+  "sectors_all": "Gaming, Worlds & IP",
+  "tags": [
+   "Metaverse",
+   "3D",
+   "Real Time",
+   "Immersive"
+  ],
+  "cover": "assets/img/projects/u-hub-metaverse/illusorr-u-hub-metaverse-virtual-campus-hub-cover.webp"
+ },
+ {
+  "slug": "pixelpaint",
+  "position": 4,
+  "title": "PixelPaint",
+  "client": "ABB Robotics",
+  "sector": "Business & Institutions",
+  "sectors_all": "Business & Institutions",
+  "tags": [
+   "Art",
+   "Installation"
+  ],
+  "cover": "assets/img/projects/pixelpaint/illusorr-pixelpaint-generative-bloom-hero.webp"
+ },
+ {
+  "slug": "art-post-office",
+  "position": 5,
+  "title": "Art Post Office",
+  "client": null,
+  "sector": "Fashion, Retail & Jewellery",
+  "sectors_all": "Fashion, Retail & Jewellery|Culture & Immersive",
+  "tags": [
+   "AI Content",
+   "Product Design",
+   "Social Media"
+  ],
+  "cover": "assets/img/projects/art-post-office/illusorr-art-post-office-monthly-delivery-frame-01.webp"
+ },
+ {
+  "slug": "metagenus",
+  "position": 6,
+  "title": "Metagenus",
+  "client": null,
+  "sector": "Gaming, Worlds & IP",
+  "sectors_all": "Gaming, Worlds & IP",
+  "tags": [
+   "Original IP",
+   "3D",
+   "Art"
+  ],
+  "cover": "assets/img/projects/metagenus/cover.webp"
+ },
+ {
+  "slug": "pera",
+  "position": 7,
+  "title": "Pera",
+  "client": "Koton",
+  "sector": "Fashion, Retail & Jewellery",
+  "sectors_all": "Fashion, Retail & Jewellery",
+  "tags": [
+   "AI Content",
+   "Campaign",
+   "Social Media"
+  ],
+  "cover": "assets/img/projects/pera/illusorr-pera-concrete-editorial-campaign-cover.webp"
+ },
+ {
+  "slug": "optiverse",
+  "position": 8,
+  "title": "Optiverse",
+  "client": "Optima",
+  "sector": "Gaming, Worlds & IP",
+  "sectors_all": "Gaming, Worlds & IP|Culture & Immersive",
+  "tags": [
+   "Metaverse",
+   "3D",
+   "Art",
+   "Immersive",
+   "Real Time"
+  ],
+  "cover": "assets/img/projects/optiverse/illusorr-optiverse-connected-virtual-worlds-hub-cover.webp"
+ },
+ {
+  "slug": "khaltat",
+  "position": 9,
+  "title": "Khaltat",
+  "client": null,
+  "sector": "Beauty & Fragrance",
+  "sectors_all": "Beauty & Fragrance",
+  "tags": [
+   "AI Content",
+   "Campaign",
+   "Social Media",
+   "Ecommerce"
+  ],
+  "cover": "assets/img/projects/khaltat/illusorr-khaltat-fragrance-ecommerce-content-cover.webp"
+ },
+ {
+  "slug": "illusorr-spaces",
+  "position": 10,
+  "title": "ILLUSORR Spaces",
+  "client": null,
+  "sector": "Gaming, Worlds & IP",
+  "sectors_all": "Gaming, Worlds & IP",
+  "tags": [
+   "Original IP",
+   "Metaverse",
+   "3D",
+   "Real Time",
+   "Immersive"
+  ],
+  "cover": "assets/img/projects/illusorr-spaces/illusorr-spaces-multiuser-immersive-environment-cover.webp"
+ },
+ {
+  "slug": "barbie",
+  "position": 11,
+  "title": "Barbie",
+  "client": "Boyner",
+  "sector": "Fashion, Retail & Jewellery",
+  "sectors_all": "Fashion, Retail & Jewellery",
+  "tags": [
+   "AI Content",
+   "Campaign",
+   "Social Media",
+   "3D"
+  ],
+  "cover": "assets/img/projects/barbie/illusorr-barbie-digital-fashion-doll-cover.webp"
+ },
+ {
+  "slug": "trt-metaverse",
+  "position": 12,
+  "title": "TRT Metaverse",
+  "client": null,
+  "sector": "Gaming, Worlds & IP",
+  "sectors_all": "Gaming, Worlds & IP",
+  "tags": [
+   "Metaverse",
+   "3D",
+   "Real Time",
+   "Immersive"
+  ],
+  "cover": "assets/img/projects/trt-metaverse/illusorr-trt-metaverse-broadcast-virtual-studio-cover.webp"
+ },
+ {
+  "slug": "coffee-merchant",
+  "position": 13,
+  "title": "Coffee Merchant",
+  "client": null,
+  "sector": "Business & Institutions",
+  "sectors_all": "Business & Institutions",
+  "tags": [
+   "AI Content",
+   "Social Media"
+  ],
+  "cover": "assets/img/projects/coffee-merchant/illusorr-coffee-merchant-specialty-coffee-content-cover.webp"
+ },
+ {
+  "slug": "lapillus",
+  "position": 14,
+  "title": "Lapillus",
+  "client": null,
+  "sector": "Real Estate & Architecture",
+  "sectors_all": "Real Estate & Architecture",
+  "tags": [
+   "Archi viz",
+   "3D",
+   "AI Content",
+   "Web",
+   "Film",
+   "Social Media"
+  ],
+  "cover": "assets/img/projects/lapillus/illusorr-lapillus-pebble-concept-form.webp"
+ },
+ {
+  "slug": "aquatic-architects",
+  "position": 15,
+  "title": "Aquatic Architects",
+  "client": null,
+  "sector": "Real Estate & Architecture",
+  "sectors_all": "Real Estate & Architecture",
+  "tags": [
+   "Archi viz",
+   "3D",
+   "Web",
+   "AI Content",
+   "Social Media"
+  ],
+  "cover": "assets/img/projects/aquatic-architects/illusorr-aquatic-architects-floating-villa-render-cover.webp"
+ },
+ {
+  "slug": "fabrika",
+  "position": 16,
+  "title": "Fabrika",
+  "client": "Boyner",
+  "sector": "Fashion, Retail & Jewellery",
+  "sectors_all": "Fashion, Retail & Jewellery",
+  "tags": [
+   "AI Content",
+   "Campaign",
+   "Social Media"
+  ],
+  "cover": "assets/img/projects/fabrika/illusorr-fabrika-boyner-campaign-cover.webp"
+ },
+ {
+  "slug": "ant-systems",
+  "position": 17,
+  "title": "ANT Systems",
+  "client": null,
+  "sector": "Business & Institutions",
+  "sectors_all": "Business & Institutions",
+  "tags": [
+   "Web",
+   "3D",
+   "Animation"
+  ],
+  "cover": "assets/img/projects/ant-systems/illusorr-ant-systems-factory-signage-cover.webp"
+ },
+ {
+  "slug": "anfasic",
+  "position": 18,
+  "title": "Anfasic",
+  "client": null,
+  "sector": "Beauty & Fragrance",
+  "sectors_all": "Beauty & Fragrance",
+  "tags": [
+   "AI Content",
+   "Social Media",
+   "3D"
+  ],
+  "cover": "assets/img/projects/anfasic/illusorr-anfasic-dokhoon-product-render-14.webp"
+ },
+ {
+  "slug": "michael-cinco",
+  "position": 19,
+  "title": "Michael Cinco",
+  "client": null,
+  "sector": "Beauty & Fragrance",
+  "sectors_all": "Beauty & Fragrance",
+  "tags": [
+   "AI Content",
+   "Campaign",
+   "Ecommerce"
+  ],
+  "cover": "assets/img/projects/michael-cinco/illusorr-michael-cinco-campaign-frame-01.webp"
+ },
+ {
+  "slug": "koton-lookbook-russia",
+  "position": 20,
+  "title": "Koton Lookbook Russia",
+  "client": null,
+  "sector": "Fashion, Retail & Jewellery",
+  "sectors_all": "Fashion, Retail & Jewellery",
+  "tags": [
+   "AI Content",
+   "Campaign",
+   "Social Media"
+  ],
+  "cover": "assets/img/projects/koton-lookbook-russia/illusorr-koton-lookbook-russia-campaign-cover.webp"
+ },
+ {
+  "slug": "denim",
+  "position": 21,
+  "title": "Denim",
+  "client": "Boyner",
+  "sector": "Fashion, Retail & Jewellery",
+  "sectors_all": "Fashion, Retail & Jewellery",
+  "tags": [
+   "AI Content",
+   "Campaign",
+   "Social Media"
+  ],
+  "cover": "assets/img/projects/denim/illusorr-denim-boyner-diner-daylight-campaign.webp"
+ },
+ {
+  "slug": "morphellum",
+  "position": 22,
+  "title": "Morphellum",
+  "client": "DressX",
+  "sector": "Fashion, Retail & Jewellery",
+  "sectors_all": "Fashion, Retail & Jewellery|Gaming, Worlds & IP",
+  "tags": [
+   "3D",
+   "Art",
+   "Original IP"
+  ],
+  "cover": "assets/img/projects/morphellum/illusorr-morphellum-machimatch-digital-garment-artwork.webp"
+ },
+ {
+  "slug": "riyadhverse",
+  "position": 23,
+  "title": "Riyadhverse",
+  "client": "Bawtaqah",
+  "sector": "Real Estate & Architecture",
+  "sectors_all": "Real Estate & Architecture",
+  "tags": [
+   "3D",
+   "Archi viz",
+   "Real Time",
+   "Immersive"
+  ],
+  "cover": "assets/img/projects/riyadhverse/illusorr-riyadhverse-riyadh-digital-twin-aerial-cover.webp"
+ },
+ {
+  "slug": "pylon",
+  "position": 24,
+  "title": "Pylon",
+  "client": null,
+  "sector": "Gaming, Worlds & IP",
+  "sectors_all": "Gaming, Worlds & IP|Culture & Immersive",
+  "tags": [
+   "Original IP",
+   "3D",
+   "Art",
+   "Real Time",
+   "Metaverse",
+   "Immersive"
+  ],
+  "cover": "assets/img/projects/pylon/illusorr-pylon-owned-launch-world-cover.webp"
+ },
+ {
+  "slug": "echoes-of-light",
+  "position": 25,
+  "title": "Echoes of Light",
+  "client": "Hybrid Xperience",
+  "sector": "Culture & Immersive",
+  "sectors_all": "Culture & Immersive",
+  "tags": [
+   "Installation",
+   "Immersive",
+   "Art",
+   "3D"
+  ],
+  "cover": "assets/img/projects/echoes-of-light/illusorr-echoes-of-light-immersive-light-installation-cover.webp"
+ },
+ {
+  "slug": "metaculture",
+  "position": 26,
+  "title": "Metaculture",
+  "client": null,
+  "sector": "Culture & Immersive",
+  "sectors_all": "Culture & Immersive",
+  "tags": [
+   "Metaverse",
+   "3D",
+   "Art",
+   "Immersive",
+   "Real Time"
+  ],
+  "cover": "assets/img/projects/metaculture/illusorr-metaculture-digital-fashion-exhibition-cover.webp"
+ },
+ {
+  "slug": "al-berwaz",
+  "position": 27,
+  "title": "Al Berwaz",
+  "client": null,
+  "sector": "Business & Institutions",
+  "sectors_all": "Business & Institutions",
+  "tags": [
+   "Web",
+   "Branding"
+  ],
+  "cover": "assets/img/projects/al-berwaz/illusorr-al-berwaz-insurance-web-platform-cover.webp"
+ },
+ {
+  "slug": "arga",
+  "position": 28,
+  "title": "Arga",
+  "client": null,
+  "sector": "Business & Institutions",
+  "sectors_all": "Business & Institutions",
+  "tags": [
+   "Web",
+   "Branding"
+  ],
+  "cover": "assets/img/projects/arga/illusorr-arga-global-team-interface-cover.webp"
+ },
+ {
+  "slug": "moodie-kiosk",
+  "position": 29,
+  "title": "Moodie Kiosk",
+  "client": null,
+  "sector": "Business & Institutions",
+  "sectors_all": "Business & Institutions",
+  "tags": [
+   "Product Design",
+   "3D"
+  ],
+  "cover": "assets/img/projects/moodie-kiosk/illusorr-moodie-kiosk-retail-unit-render-01.webp"
+ }
+]

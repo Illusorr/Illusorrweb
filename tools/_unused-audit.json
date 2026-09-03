@@ -1,0 +1,1380 @@
+{
+ "unused": [
+  {
+   "file": "assets/audio/curl-noise-drift.mp3",
+   "bytes": 2562771
+  },
+  {
+   "file": "assets/audio/interstellar-drift.mp3",
+   "bytes": 489706
+  },
+  {
+   "file": "assets/img/lab/studio-still-672.webp",
+   "bytes": 54130
+  },
+  {
+   "file": "assets/img/projects/al-berwaz/illusorr-al-berwaz-insurance-web-platform-cover-672.webp",
+   "bytes": 19446
+  },
+  {
+   "file": "assets/img/projects/anfasic/illusorr-anfasic-dokhoon-product-render-01-672.webp",
+   "bytes": 67786
+  },
+  {
+   "file": "assets/img/projects/anfasic/illusorr-anfasic-dokhoon-product-render-03-672.webp",
+   "bytes": 62024
+  },
+  {
+   "file": "assets/img/projects/anfasic/illusorr-anfasic-dokhoon-product-render-05-672.webp",
+   "bytes": 39654
+  },
+  {
+   "file": "assets/img/projects/anfasic/illusorr-anfasic-dokhoon-product-render-06-672.webp",
+   "bytes": 16704
+  },
+  {
+   "file": "assets/img/projects/anfasic/illusorr-anfasic-dokhoon-product-render-07-672.webp",
+   "bytes": 23236
+  },
+  {
+   "file": "assets/img/projects/anfasic/illusorr-anfasic-dokhoon-product-render-08-672.webp",
+   "bytes": 22426
+  },
+  {
+   "file": "assets/img/projects/anfasic/illusorr-anfasic-dokhoon-product-render-11-672.webp",
+   "bytes": 93104
+  },
+  {
+   "file": "assets/img/projects/anfasic/illusorr-anfasic-dokhoon-product-render-12-672.webp",
+   "bytes": 76890
+  },
+  {
+   "file": "assets/img/projects/anfasic/illusorr-anfasic-dokhoon-product-render-13-672.webp",
+   "bytes": 54634
+  },
+  {
+   "file": "assets/img/projects/anfasic/illusorr-anfasic-dokhoon-product-render-14-672.webp",
+   "bytes": 26736
+  },
+  {
+   "file": "assets/img/projects/anfasic/illusorr-anfasic-fragrance-lifestyle-frame-01-685.webp",
+   "bytes": 70276
+  },
+  {
+   "file": "assets/img/projects/anfasic/illusorr-anfasic-fragrance-lifestyle-frame-02-685.webp",
+   "bytes": 46316
+  },
+  {
+   "file": "assets/img/projects/anfasic/illusorr-anfasic-fragrance-lifestyle-frame-03-685.webp",
+   "bytes": 87314
+  },
+  {
+   "file": "assets/img/projects/anfasic/illusorr-anfasic-fragrance-lifestyle-frame-04-685.webp",
+   "bytes": 59600
+  },
+  {
+   "file": "assets/img/projects/anfasic/illusorr-anfasic-fragrance-lifestyle-frame-05-685.webp",
+   "bytes": 96070
+  },
+  {
+   "file": "assets/img/projects/anfasic/illusorr-anfasic-fragrance-lifestyle-frame-06-685.webp",
+   "bytes": 106282
+  },
+  {
+   "file": "assets/img/projects/anfasic/illusorr-anfasic-social-post-01-672.webp",
+   "bytes": 50750
+  },
+  {
+   "file": "assets/img/projects/coffee-merchant/illusorr-coffee-merchant-brand-band-cover.m.webp",
+   "bytes": 57356
+  },
+  {
+   "file": "assets/img/projects/coffee-merchant/illusorr-coffee-merchant-brand-brief-band.m.webp",
+   "bytes": 36460
+  },
+  {
+   "file": "assets/img/projects/coffee-merchant/illusorr-coffee-merchant-roastery-lifestyle-frame-672.webp",
+   "bytes": 74152
+  },
+  {
+   "file": "assets/img/projects/coffee-merchant/illusorr-coffee-merchant-selected-output-01-624.webp",
+   "bytes": 75398
+  },
+  {
+   "file": "assets/img/projects/coffee-merchant/illusorr-coffee-merchant-selected-output-02-624.webp",
+   "bytes": 59312
+  },
+  {
+   "file": "assets/img/projects/coffee-merchant/illusorr-coffee-merchant-selected-output-03-538.webp",
+   "bytes": 20576
+  },
+  {
+   "file": "assets/img/projects/coffee-merchant/illusorr-coffee-merchant-selected-output-04-539.webp",
+   "bytes": 59042
+  },
+  {
+   "file": "assets/img/projects/coffee-merchant/illusorr-coffee-merchant-selected-output-05-624.webp",
+   "bytes": 42826
+  },
+  {
+   "file": "assets/img/projects/coffee-merchant/illusorr-coffee-merchant-selected-output-06-672.webp",
+   "bytes": 71610
+  },
+  {
+   "file": "assets/img/projects/coffee-merchant/illusorr-coffee-merchant-social-post-june-01-528.webp",
+   "bytes": 53098
+  },
+  {
+   "file": "assets/img/projects/coffee-merchant/illusorr-coffee-merchant-social-post-june-02-528.webp",
+   "bytes": 26778
+  },
+  {
+   "file": "assets/img/projects/coffee-merchant/illusorr-coffee-merchant-social-post-june-03-528.webp",
+   "bytes": 24138
+  },
+  {
+   "file": "assets/img/projects/coffee-merchant/illusorr-coffee-merchant-social-post-june-04-528.webp",
+   "bytes": 33582
+  },
+  {
+   "file": "assets/img/projects/coffee-merchant/illusorr-coffee-merchant-social-post-june-05-528.webp",
+   "bytes": 80430
+  },
+  {
+   "file": "assets/img/projects/coffee-merchant/illusorr-coffee-merchant-social-post-june-06-528.webp",
+   "bytes": 27750
+  },
+  {
+   "file": "assets/img/projects/coffee-merchant/illusorr-coffee-merchant-social-post-june-07-528.webp",
+   "bytes": 34320
+  },
+  {
+   "file": "assets/img/projects/coffee-merchant/illusorr-coffee-merchant-social-post-june-08-528.webp",
+   "bytes": 52832
+  },
+  {
+   "file": "assets/img/projects/coffee-merchant/illusorr-coffee-merchant-social-post-june-09-528.webp",
+   "bytes": 33526
+  },
+  {
+   "file": "assets/img/projects/hind-al-oud/illusorr-hind-al-oud-additional-content-frame-04.webp",
+   "bytes": 160390
+  },
+  {
+   "file": "assets/img/projects/hind-al-oud/illusorr-hind-al-oud-additional-content-frame-05.webp",
+   "bytes": 39530
+  },
+  {
+   "file": "assets/img/projects/hind-al-oud/illusorr-hind-al-oud-additional-content-frame-06.webp",
+   "bytes": 201316
+  },
+  {
+   "file": "assets/img/projects/hind-al-oud/illusorr-hind-al-oud-additional-content-frame-07.webp",
+   "bytes": 210028
+  },
+  {
+   "file": "assets/img/projects/hind-al-oud/illusorr-hind-al-oud-additional-content-frame-08.webp",
+   "bytes": 232464
+  },
+  {
+   "file": "assets/img/projects/hind-al-oud/illusorr-hind-al-oud-fragrance-bottle-render-01.webp",
+   "bytes": 138404
+  },
+  {
+   "file": "assets/img/projects/hind-al-oud/illusorr-hind-al-oud-fragrance-bottle-render-02.webp",
+   "bytes": 74584
+  },
+  {
+   "file": "assets/img/projects/hind-al-oud/illusorr-hind-al-oud-fragrance-bottle-render-03.webp",
+   "bytes": 84672
+  },
+  {
+   "file": "assets/img/projects/hind-al-oud/illusorr-hind-al-oud-instagram-grid-february-01.webp",
+   "bytes": 60040
+  },
+  {
+   "file": "assets/img/projects/hind-al-oud/illusorr-hind-al-oud-instagram-grid-february-02.webp",
+   "bytes": 80142
+  },
+  {
+   "file": "assets/img/projects/hind-al-oud/illusorr-hind-al-oud-instagram-grid-february-03.webp",
+   "bytes": 89094
+  },
+  {
+   "file": "assets/img/projects/hind-al-oud/illusorr-hind-al-oud-instagram-grid-february-04.webp",
+   "bytes": 49764
+  },
+  {
+   "file": "assets/img/projects/hind-al-oud/illusorr-hind-al-oud-instagram-grid-february-05.webp",
+   "bytes": 31052
+  },
+  {
+   "file": "assets/img/projects/hind-al-oud/illusorr-hind-al-oud-instagram-grid-february-06.webp",
+   "bytes": 76730
+  },
+  {
+   "file": "assets/img/projects/hind-al-oud/illusorr-hind-al-oud-instagram-grid-february-07.webp",
+   "bytes": 62356
+  },
+  {
+   "file": "assets/img/projects/hind-al-oud/illusorr-hind-al-oud-instagram-grid-february-08.webp",
+   "bytes": 233382
+  },
+  {
+   "file": "assets/img/projects/hind-al-oud/illusorr-hind-al-oud-instagram-grid-february-09.webp",
+   "bytes": 51458
+  },
+  {
+   "file": "assets/img/projects/hind-al-oud/illusorr-hind-al-oud-instagram-grid-february-10.webp",
+   "bytes": 59636
+  },
+  {
+   "file": "assets/img/projects/hind-al-oud/illusorr-hind-al-oud-instagram-grid-february-11.webp",
+   "bytes": 87646
+  },
+  {
+   "file": "assets/img/projects/hind-al-oud/illusorr-hind-al-oud-instagram-grid-february-12.webp",
+   "bytes": 345746
+  },
+  {
+   "file": "assets/img/projects/hind-al-oud/illusorr-hind-al-oud-instagram-grid-july-01.webp",
+   "bytes": 135942
+  },
+  {
+   "file": "assets/img/projects/hind-al-oud/illusorr-hind-al-oud-instagram-grid-june-01.webp",
+   "bytes": 148418
+  },
+  {
+   "file": "assets/img/projects/hind-al-oud/illusorr-hind-al-oud-instagram-grid-june-02.webp",
+   "bytes": 102912
+  },
+  {
+   "file": "assets/img/projects/hind-al-oud/illusorr-hind-al-oud-instagram-grid-june-03.webp",
+   "bytes": 415264
+  },
+  {
+   "file": "assets/img/projects/hind-al-oud/illusorr-hind-al-oud-instagram-grid-june-04.webp",
+   "bytes": 67838
+  },
+  {
+   "file": "assets/img/projects/hind-al-oud/illusorr-hind-al-oud-instagram-grid-june-05.webp",
+   "bytes": 348834
+  },
+  {
+   "file": "assets/img/projects/hind-al-oud/illusorr-hind-al-oud-instagram-grid-june-06.webp",
+   "bytes": 262798
+  },
+  {
+   "file": "assets/img/projects/hind-al-oud/illusorr-hind-al-oud-instagram-grid-june-07.webp",
+   "bytes": 115752
+  },
+  {
+   "file": "assets/img/projects/hind-al-oud/illusorr-hind-al-oud-instagram-grid-june-08.webp",
+   "bytes": 279612
+  },
+  {
+   "file": "assets/img/projects/hind-al-oud/illusorr-hind-al-oud-instagram-grid-june-09.webp",
+   "bytes": 301738
+  },
+  {
+   "file": "assets/img/projects/hind-al-oud/illusorr-hind-al-oud-instagram-grid-june-10.webp",
+   "bytes": 327994
+  },
+  {
+   "file": "assets/img/projects/hind-al-oud/illusorr-hind-al-oud-instagram-grid-june-11.webp",
+   "bytes": 348460
+  },
+  {
+   "file": "assets/img/projects/hind-al-oud/illusorr-hind-al-oud-instagram-grid-june-12.webp",
+   "bytes": 329710
+  },
+  {
+   "file": "assets/img/projects/hind-al-oud/illusorr-hind-al-oud-monthly-delivery-frame-01.webp",
+   "bytes": 345928
+  },
+  {
+   "file": "assets/img/projects/hind-al-oud/illusorr-hind-al-oud-monthly-delivery-frame-02.webp",
+   "bytes": 43338
+  },
+  {
+   "file": "assets/img/projects/hind-al-oud/illusorr-hind-al-oud-monthly-delivery-frame-03.webp",
+   "bytes": 109056
+  },
+  {
+   "file": "assets/img/projects/hind-al-oud/illusorr-hind-al-oud-monthly-delivery-frame-04.webp",
+   "bytes": 116160
+  },
+  {
+   "file": "assets/img/projects/hind-al-oud/illusorr-hind-al-oud-monthly-delivery-frame-05.webp",
+   "bytes": 129446
+  },
+  {
+   "file": "assets/img/projects/hind-al-oud/illusorr-hind-al-oud-monthly-delivery-frame-06.webp",
+   "bytes": 310738
+  },
+  {
+   "file": "assets/img/projects/hind-al-oud/illusorr-hind-al-oud-oud-wood-render-01.webp",
+   "bytes": 58246
+  },
+  {
+   "file": "assets/img/projects/hind-al-oud/illusorr-hind-al-oud-oud-wood-render-02.webp",
+   "bytes": 44216
+  },
+  {
+   "file": "assets/img/projects/hind-al-oud/illusorr-hind-al-oud-oud-wood-render-03.webp",
+   "bytes": 56510
+  },
+  {
+   "file": "assets/img/projects/hind-al-oud/illusorr-hind-al-oud-perfume-oil-render-01.webp",
+   "bytes": 82672
+  },
+  {
+   "file": "assets/img/projects/hind-al-oud/illusorr-hind-al-oud-perfume-oil-render-02.webp",
+   "bytes": 62688
+  },
+  {
+   "file": "assets/img/projects/hind-al-oud/illusorr-hind-al-oud-perfume-oil-render-03.webp",
+   "bytes": 80356
+  },
+  {
+   "file": "assets/img/projects/khaltat/illusorr-khaltat-instagram-grid-february-01.webp",
+   "bytes": 144596
+  },
+  {
+   "file": "assets/img/projects/khaltat/illusorr-khaltat-instagram-grid-february-02.webp",
+   "bytes": 43430
+  },
+  {
+   "file": "assets/img/projects/khaltat/illusorr-khaltat-instagram-grid-february-03.webp",
+   "bytes": 82440
+  },
+  {
+   "file": "assets/img/projects/khaltat/illusorr-khaltat-instagram-grid-february-04.webp",
+   "bytes": 47066
+  },
+  {
+   "file": "assets/img/projects/khaltat/illusorr-khaltat-instagram-grid-february-05.webp",
+   "bytes": 27544
+  },
+  {
+   "file": "assets/img/projects/khaltat/illusorr-khaltat-instagram-grid-february-06.webp",
+   "bytes": 82342
+  },
+  {
+   "file": "assets/img/projects/khaltat/illusorr-khaltat-instagram-grid-february-07.webp",
+   "bytes": 219928
+  },
+  {
+   "file": "assets/img/projects/khaltat/illusorr-khaltat-instagram-grid-february-08.webp",
+   "bytes": 82240
+  },
+  {
+   "file": "assets/img/projects/khaltat/illusorr-khaltat-instagram-grid-february-09.webp",
+   "bytes": 92272
+  },
+  {
+   "file": "assets/img/projects/khaltat/illusorr-khaltat-instagram-grid-february-10.webp",
+   "bytes": 36352
+  },
+  {
+   "file": "assets/img/projects/khaltat/illusorr-khaltat-instagram-grid-february-11.webp",
+   "bytes": 50442
+  },
+  {
+   "file": "assets/img/projects/khaltat/illusorr-khaltat-instagram-grid-february-12.webp",
+   "bytes": 90682
+  },
+  {
+   "file": "assets/img/projects/khaltat/illusorr-khaltat-instagram-grid-july-09.webp",
+   "bytes": 67788
+  },
+  {
+   "file": "assets/img/projects/khaltat/illusorr-khaltat-instagram-grid-july-11.webp",
+   "bytes": 65132
+  },
+  {
+   "file": "assets/img/projects/khaltat/illusorr-khaltat-instagram-grid-july-12.webp",
+   "bytes": 30222
+  },
+  {
+   "file": "assets/img/projects/khaltat/illusorr-khaltat-instagram-grid-june-01.webp",
+   "bytes": 24830
+  },
+  {
+   "file": "assets/img/projects/khaltat/illusorr-khaltat-instagram-grid-june-02.webp",
+   "bytes": 50638
+  },
+  {
+   "file": "assets/img/projects/khaltat/illusorr-khaltat-instagram-grid-june-03.webp",
+   "bytes": 51378
+  },
+  {
+   "file": "assets/img/projects/khaltat/illusorr-khaltat-instagram-grid-june-04.webp",
+   "bytes": 41382
+  },
+  {
+   "file": "assets/img/projects/khaltat/illusorr-khaltat-instagram-grid-june-05.webp",
+   "bytes": 47046
+  },
+  {
+   "file": "assets/img/projects/khaltat/illusorr-khaltat-instagram-grid-june-06.webp",
+   "bytes": 34914
+  },
+  {
+   "file": "assets/img/projects/khaltat/illusorr-khaltat-instagram-grid-june-07.webp",
+   "bytes": 45330
+  },
+  {
+   "file": "assets/img/projects/khaltat/illusorr-khaltat-instagram-grid-june-08.webp",
+   "bytes": 46642
+  },
+  {
+   "file": "assets/img/projects/khaltat/illusorr-khaltat-instagram-grid-june-09.webp",
+   "bytes": 47812
+  },
+  {
+   "file": "assets/img/projects/khaltat/illusorr-khaltat-instagram-grid-june-10.webp",
+   "bytes": 65396
+  },
+  {
+   "file": "assets/img/projects/khaltat/illusorr-khaltat-instagram-grid-june-11.webp",
+   "bytes": 40298
+  },
+  {
+   "file": "assets/img/projects/khaltat/illusorr-khaltat-instagram-grid-june-12.webp",
+   "bytes": 39472
+  },
+  {
+   "file": "assets/img/projects/khaltat/illusorr-khaltat-monthly-delivery-frame-01.webp",
+   "bytes": 34324
+  },
+  {
+   "file": "assets/img/projects/khaltat/illusorr-khaltat-monthly-delivery-frame-02.webp",
+   "bytes": 83218
+  },
+  {
+   "file": "assets/img/projects/khaltat/illusorr-khaltat-monthly-delivery-frame-03.webp",
+   "bytes": 59212
+  },
+  {
+   "file": "assets/img/projects/khaltat/illusorr-khaltat-monthly-delivery-frame-04.webp",
+   "bytes": 46044
+  },
+  {
+   "file": "assets/img/projects/khaltat/illusorr-khaltat-monthly-delivery-frame-05.webp",
+   "bytes": 41532
+  },
+  {
+   "file": "assets/img/projects/khaltat/illusorr-khaltat-monthly-delivery-frame-06.webp",
+   "bytes": 41788
+  },
+  {
+   "file": "assets/img/projects/khaltat/illusorr-khaltat-web-banner-01.webp",
+   "bytes": 73540
+  },
+  {
+   "file": "assets/img/projects/khaltat/illusorr-khaltat-web-banner-03.webp",
+   "bytes": 61308
+  },
+  {
+   "file": "assets/img/projects/khaltat/illusorr-khaltat-web-banner-04.webp",
+   "bytes": 44064
+  },
+  {
+   "file": "assets/img/projects/khaltat/illusorr-khaltat-web-banner-05.webp",
+   "bytes": 49748
+  },
+  {
+   "file": "assets/img/projects/michael-cinco/illusorr-michael-cinco-banner-eau-de-parfum.webp",
+   "bytes": 60082
+  },
+  {
+   "file": "assets/img/projects/michael-cinco/illusorr-michael-cinco-banner-elixir.webp",
+   "bytes": 176414
+  },
+  {
+   "file": "assets/img/projects/michael-cinco/illusorr-michael-cinco-campaign-banner-01.webp",
+   "bytes": 198608
+  },
+  {
+   "file": "assets/img/projects/michael-cinco/illusorr-michael-cinco-campaign-banner-09.webp",
+   "bytes": 151146
+  },
+  {
+   "file": "assets/img/projects/michael-cinco/illusorr-michael-cinco-campaign-frame-02.webp",
+   "bytes": 269238
+  },
+  {
+   "file": "assets/img/projects/michael-cinco/illusorr-michael-cinco-campaign-frame-03.webp",
+   "bytes": 275414
+  },
+  {
+   "file": "assets/img/projects/michael-cinco/illusorr-michael-cinco-campaign-frame-04.webp",
+   "bytes": 107670
+  },
+  {
+   "file": "assets/img/projects/michael-cinco/illusorr-michael-cinco-campaign-frame-05.webp",
+   "bytes": 98266
+  },
+  {
+   "file": "assets/img/projects/michael-cinco/illusorr-michael-cinco-product-render-arsielle.webp",
+   "bytes": 44324
+  },
+  {
+   "file": "assets/img/projects/michael-cinco/illusorr-michael-cinco-product-render-metamoura.webp",
+   "bytes": 46172
+  },
+  {
+   "file": "assets/img/projects/michael-cinco/illusorr-michael-cinco-social-post-01.webp",
+   "bytes": 114694
+  },
+  {
+   "file": "assets/img/projects/michael-cinco/illusorr-michael-cinco-social-post-02.webp",
+   "bytes": 76308
+  },
+  {
+   "file": "assets/img/projects/michael-cinco/illusorr-michael-cinco-social-post-03.webp",
+   "bytes": 108674
+  },
+  {
+   "file": "assets/img/projects/michael-cinco/illusorr-michael-cinco-social-post-04.webp",
+   "bytes": 114014
+  },
+  {
+   "file": "assets/img/projects/michael-cinco/illusorr-michael-cinco-social-post-05.webp",
+   "bytes": 134462
+  },
+  {
+   "file": "assets/img/projects/michael-cinco/illusorr-michael-cinco-social-post-06-a.webp",
+   "bytes": 81418
+  },
+  {
+   "file": "assets/img/projects/michael-cinco/illusorr-michael-cinco-social-post-06-b.webp",
+   "bytes": 136952
+  },
+  {
+   "file": "assets/img/projects/michael-cinco/illusorr-michael-cinco-social-post-07-a.webp",
+   "bytes": 56768
+  },
+  {
+   "file": "assets/img/projects/michael-cinco/illusorr-michael-cinco-social-post-08.webp",
+   "bytes": 132736
+  },
+  {
+   "file": "assets/img/projects/michael-cinco/illusorr-michael-cinco-social-post-09.webp",
+   "bytes": 194014
+  },
+  {
+   "file": "assets/img/projects/moodie-kiosk/illusorr-moodie-kiosk-retail-unit-render-01-864.webp",
+   "bytes": 38360
+  },
+  {
+   "file": "assets/img/sectors/gaming-environment.webp",
+   "bytes": 141198
+  },
+  {
+   "file": "assets/img/slots/disney-plus-cover.m.webp",
+   "bytes": 42758
+  },
+  {
+   "file": "assets/img/slots/disney-realm-3.m.webp",
+   "bytes": 24824
+  },
+  {
+   "file": "assets/img/slots/disney-typo-1.webp",
+   "bytes": 17622
+  },
+  {
+   "file": "assets/img/slots/disney-typo-2.webp",
+   "bytes": 16946
+  },
+  {
+   "file": "assets/img/slots/disney-typo-3.webp",
+   "bytes": 10878
+  },
+  {
+   "file": "assets/img/slots/disney-typo-4.webp",
+   "bytes": 9172
+  },
+  {
+   "file": "assets/img/slots/disney-typo-5.webp",
+   "bytes": 19400
+  },
+  {
+   "file": "assets/img/slots/disney-typo-6.webp",
+   "bytes": 11962
+  },
+  {
+   "file": "assets/projects/fabrika/ComfyUI_04237_.webp",
+   "bytes": 37532
+  },
+  {
+   "file": "assets/projects/fabrika/ComfyUI_04245_.webp",
+   "bytes": 34640
+  },
+  {
+   "file": "assets/projects/fabrika/ComfyUI_04272_.webp",
+   "bytes": 20704
+  },
+  {
+   "file": "assets/projects/fabrika/ComfyUI_04279_.webp",
+   "bytes": 87696
+  },
+  {
+   "file": "assets/projects/fabrika/female-02-full.webp",
+   "bytes": 169376
+  },
+  {
+   "file": "assets/projects/fabrika/female-03-full.webp",
+   "bytes": 130394
+  },
+  {
+   "file": "assets/projects/fabrika/female-04-full.webp",
+   "bytes": 171316
+  },
+  {
+   "file": "assets/projects/fabrika/female-05-full.webp",
+   "bytes": 193442
+  },
+  {
+   "file": "assets/projects/metaculture/img/poster-01-t.webp",
+   "bytes": 145422
+  },
+  {
+   "file": "assets/projects/metaculture/img/poster-07-t.webp",
+   "bytes": 101932
+  },
+  {
+   "file": "assets/projects/metaculture/img/poster-07.webp",
+   "bytes": 176658
+  },
+  {
+   "file": "assets/projects/metaculture/img/poster-09-t.webp",
+   "bytes": 76860
+  },
+  {
+   "file": "assets/projects/metaculture/img/poster-09.webp",
+   "bytes": 121510
+  },
+  {
+   "file": "assets/projects/metaculture/img/poster-10-t.webp",
+   "bytes": 83178
+  },
+  {
+   "file": "assets/projects/metaculture/img/poster-10.webp",
+   "bytes": 131694
+  },
+  {
+   "file": "assets/projects/metaculture/img/poster-11-t.webp",
+   "bytes": 90848
+  },
+  {
+   "file": "assets/projects/metaculture/img/poster-11.webp",
+   "bytes": 143968
+  },
+  {
+   "file": "assets/projects/metaculture/img/poster-13-t.webp",
+   "bytes": 135062
+  },
+  {
+   "file": "assets/projects/metaculture/img/poster-13.webp",
+   "bytes": 222652
+  },
+  {
+   "file": "assets/projects/metaculture/video/reel-a-poster.webp",
+   "bytes": 93764
+  },
+  {
+   "file": "assets/projects/metaculture/video/reel-b-poster.webp",
+   "bytes": 80716
+  },
+  {
+   "file": "assets/projects/metagenus/art/artwork-op.webp",
+   "bytes": 286836
+  },
+  {
+   "file": "assets/projects/metagenus/art/fog-01.webp",
+   "bytes": 265530
+  },
+  {
+   "file": "assets/projects/metagenus/art/particle-01.webp",
+   "bytes": 1071184
+  },
+  {
+   "file": "assets/projects/metagenus/art/particle-02.webp",
+   "bytes": 399434
+  },
+  {
+   "file": "assets/projects/metagenus/avatars/BT-C2.webp",
+   "bytes": 16542
+  },
+  {
+   "file": "assets/projects/metagenus/avatars/BT-C3.webp",
+   "bytes": 10208
+  },
+  {
+   "file": "assets/projects/metagenus/avatars/BT-C4.webp",
+   "bytes": 14196
+  },
+  {
+   "file": "assets/projects/metagenus/avatars/BT-E1.webp",
+   "bytes": 14306
+  },
+  {
+   "file": "assets/projects/metagenus/avatars/BT-E2.webp",
+   "bytes": 15650
+  },
+  {
+   "file": "assets/projects/metagenus/avatars/BT-E3.webp",
+   "bytes": 11032
+  },
+  {
+   "file": "assets/projects/metagenus/avatars/BT-L1.webp",
+   "bytes": 21148
+  },
+  {
+   "file": "assets/projects/metagenus/avatars/BT-L2.webp",
+   "bytes": 15324
+  },
+  {
+   "file": "assets/projects/metagenus/cast-group-1248.webp",
+   "bytes": 242492
+  },
+  {
+   "file": "assets/projects/metagenus/hero-group.webp",
+   "bytes": 498320
+  },
+  {
+   "file": "assets/projects/metagenus/logos/deepmotion.webp",
+   "bytes": 3790
+  },
+  {
+   "file": "assets/projects/metagenus/logos/eon-xr.webp",
+   "bytes": 5914
+  },
+  {
+   "file": "assets/projects/metagenus/logos/inworld.webp",
+   "bytes": 2174
+  },
+  {
+   "file": "assets/projects/metagenus/logos/magecosmos.webp",
+   "bytes": 3192
+  },
+  {
+   "file": "assets/projects/metagenus/logos/metafluence.webp",
+   "bytes": 3340
+  },
+  {
+   "file": "assets/projects/metagenus/logos/metaverser.webp",
+   "bytes": 4132
+  },
+  {
+   "file": "assets/projects/metagenus/logos/metazoomee.webp",
+   "bytes": 6448
+  },
+  {
+   "file": "assets/projects/metagenus/logos/mzaalo.webp",
+   "bytes": 2860
+  },
+  {
+   "file": "assets/projects/metagenus/logos/network-in-vr.webp",
+   "bytes": 6066
+  },
+  {
+   "file": "assets/projects/metagenus/logos/pavia.webp",
+   "bytes": 4632
+  },
+  {
+   "file": "assets/projects/metagenus/logos/pull-and-bear.webp",
+   "bytes": 2202
+  },
+  {
+   "file": "assets/projects/metagenus/logos/ready-player-me.webp",
+   "bytes": 1628
+  },
+  {
+   "file": "assets/projects/metagenus/logos/sceneforge.webp",
+   "bytes": 5154
+  },
+  {
+   "file": "assets/projects/metagenus/logos/spivi.webp",
+   "bytes": 4064
+  },
+  {
+   "file": "assets/projects/metagenus/logos/syglass.webp",
+   "bytes": 6250
+  },
+  {
+   "file": "assets/projects/metagenus/logos/tribe.webp",
+   "bytes": 1902
+  },
+  {
+   "file": "assets/projects/metagenus/logos/twinworld.webp",
+   "bytes": 6006
+  },
+  {
+   "file": "assets/projects/metagenus/logos/utopia-vr.webp",
+   "bytes": 4024
+  },
+  {
+   "file": "assets/projects/metagenus/logos/vspatial.webp",
+   "bytes": 3662
+  },
+  {
+   "file": "assets/projects/metagenus/logos/zebedee.webp",
+   "bytes": 1568
+  },
+  {
+   "file": "assets/projects/metagenus/markup/rarity-common.webp",
+   "bytes": 52514
+  },
+  {
+   "file": "assets/projects/metagenus/markup/rarity-epic.webp",
+   "bytes": 42748
+  },
+  {
+   "file": "assets/projects/metagenus/metagenus-hero-figure-1056.webp",
+   "bytes": 27302
+  },
+  {
+   "file": "assets/projects/metagenus/shuffle/nft-shuffle.webm",
+   "bytes": 611889
+  },
+  {
+   "file": "assets/projects/optiverse/worlds/optima-chambers-sm-640.webp",
+   "bytes": 18984
+  },
+  {
+   "file": "assets/projects/optiverse/worlds/optima-chambers-sm.webp",
+   "bytes": 26528
+  },
+  {
+   "file": "assets/projects/optiverse/worlds/optima-exhibition-sm-640.webp",
+   "bytes": 17286
+  },
+  {
+   "file": "assets/projects/optiverse/worlds/optima-exhibition-sm.webp",
+   "bytes": 22016
+  },
+  {
+   "file": "assets/projects/optiverse/worlds/optima-gallery-sm-640.webp",
+   "bytes": 18616
+  },
+  {
+   "file": "assets/projects/optiverse/worlds/optima-gallery-sm.webp",
+   "bytes": 22950
+  },
+  {
+   "file": "assets/projects/optiverse/worlds/optima-hall-sm-640.webp",
+   "bytes": 23230
+  },
+  {
+   "file": "assets/projects/optiverse/worlds/optima-hall-sm.webp",
+   "bytes": 30302
+  },
+  {
+   "file": "assets/projects/optiverse/worlds/optima-tradecenter-sm-640.webp",
+   "bytes": 9712
+  },
+  {
+   "file": "assets/projects/optiverse/worlds/optima-tradecenter-sm.webp",
+   "bytes": 12580
+  },
+  {
+   "file": "assets/projects/optiverse/worlds/salon-auditorium-sm-640.webp",
+   "bytes": 15812
+  },
+  {
+   "file": "assets/projects/optiverse/worlds/salon-auditorium-sm.webp",
+   "bytes": 19114
+  },
+  {
+   "file": "assets/projects/optiverse/worlds/salon-circle-sm-640.webp",
+   "bytes": 31036
+  },
+  {
+   "file": "assets/projects/optiverse/worlds/salon-circle-sm.webp",
+   "bytes": 36128
+  },
+  {
+   "file": "assets/projects/optiverse/worlds/salon-faculty-sm-640.webp",
+   "bytes": 18882
+  },
+  {
+   "file": "assets/projects/optiverse/worlds/salon-faculty-sm.webp",
+   "bytes": 22518
+  },
+  {
+   "file": "assets/projects/optiverse/worlds/salon-library-sm-640.webp",
+   "bytes": 15182
+  },
+  {
+   "file": "assets/projects/optiverse/worlds/salon-library-sm.webp",
+   "bytes": 18420
+  },
+  {
+   "file": "assets/projects/optiverse/worlds/salon-lounge-sm-640.webp",
+   "bytes": 19952
+  },
+  {
+   "file": "assets/projects/optiverse/worlds/salon-lounge-sm.webp",
+   "bytes": 23696
+  },
+  {
+   "file": "assets/projects/optiverse/worlds/salon-virtue-sm-640.webp",
+   "bytes": 20778
+  },
+  {
+   "file": "assets/projects/optiverse/worlds/salon-virtue-sm.webp",
+   "bytes": 23764
+  },
+  {
+   "file": "assets/projects/optiverse/worlds/sensory-atelier-sm-640.webp",
+   "bytes": 25096
+  },
+  {
+   "file": "assets/projects/optiverse/worlds/sensory-atelier-sm.webp",
+   "bytes": 30200
+  },
+  {
+   "file": "assets/projects/optiverse/worlds/sensory-farm-sm-640.webp",
+   "bytes": 21438
+  },
+  {
+   "file": "assets/projects/optiverse/worlds/sensory-farm-sm.webp",
+   "bytes": 24812
+  },
+  {
+   "file": "assets/projects/optiverse/worlds/sensory-lounge-sm-640.webp",
+   "bytes": 12524
+  },
+  {
+   "file": "assets/projects/optiverse/worlds/sensory-lounge-sm.webp",
+   "bytes": 15584
+  },
+  {
+   "file": "assets/projects/optiverse/worlds/sensory-studio-sm-640.webp",
+   "bytes": 16556
+  },
+  {
+   "file": "assets/projects/optiverse/worlds/sensory-studio-sm.webp",
+   "bytes": 23064
+  },
+  {
+   "file": "assets/projects/optiverse/worlds/syndicate-capital-sm-640.webp",
+   "bytes": 22452
+  },
+  {
+   "file": "assets/projects/optiverse/worlds/syndicate-capital-sm.webp",
+   "bytes": 26638
+  },
+  {
+   "file": "assets/projects/optiverse/worlds/syndicate-deal-sm-640.webp",
+   "bytes": 14558
+  },
+  {
+   "file": "assets/projects/optiverse/worlds/syndicate-deal-sm.webp",
+   "bytes": 16942
+  },
+  {
+   "file": "assets/projects/optiverse/worlds/syndicate-venture-sm-640.webp",
+   "bytes": 9926
+  },
+  {
+   "file": "assets/projects/optiverse/worlds/syndicate-venture-sm.webp",
+   "bytes": 12066
+  },
+  {
+   "file": "assets/projects/pylon/arturo-01.webp",
+   "bytes": 116586
+  },
+  {
+   "file": "assets/projects/pylon/bmw-01.webp",
+   "bytes": 120430
+  },
+  {
+   "file": "assets/projects/pylon/cyril-01.webp",
+   "bytes": 111970
+  },
+  {
+   "file": "assets/projects/pylon/cyril-02.webp",
+   "bytes": 79300
+  },
+  {
+   "file": "assets/projects/pylon/cyril-03.webp",
+   "bytes": 110914
+  },
+  {
+   "file": "assets/projects/pylon/cyril-04.webp",
+   "bytes": 140250
+  },
+  {
+   "file": "assets/projects/pylon/fabeeo-01.webp",
+   "bytes": 156404
+  },
+  {
+   "file": "assets/projects/pylon/fabeeo-02.webp",
+   "bytes": 142186
+  },
+  {
+   "file": "assets/projects/pylon/georges-01.webp",
+   "bytes": 71598
+  },
+  {
+   "file": "assets/projects/pylon/ica-01.webp",
+   "bytes": 189900
+  },
+  {
+   "file": "assets/projects/pylon/ica-02.webp",
+   "bytes": 168524
+  },
+  {
+   "file": "assets/projects/pylon/ica-03.webp",
+   "bytes": 188338
+  },
+  {
+   "file": "assets/projects/pylon/illusorr-pylon-world-view-07.webp",
+   "bytes": 122366
+  },
+  {
+   "file": "assets/projects/pylon/illusorr-pylon-world-view-08.webp",
+   "bytes": 161808
+  },
+  {
+   "file": "assets/projects/pylon/illusorr-pylon-world-view-14.webp",
+   "bytes": 210274
+  },
+  {
+   "file": "assets/projects/pylon/illusorr-pylon-world-view-15.webp",
+   "bytes": 179022
+  },
+  {
+   "file": "assets/projects/pylon/johndave-01.webp",
+   "bytes": 16038
+  },
+  {
+   "file": "assets/projects/pylon/julian-01.webp",
+   "bytes": 147010
+  },
+  {
+   "file": "assets/projects/pylon/ken-01.webp",
+   "bytes": 88394
+  },
+  {
+   "file": "assets/projects/pylon/ken-02.webp",
+   "bytes": 60452
+  },
+  {
+   "file": "assets/projects/pylon/ken-03.webp",
+   "bytes": 45558
+  },
+  {
+   "file": "assets/projects/pylon/maotik-01.webp",
+   "bytes": 17568
+  },
+  {
+   "file": "assets/projects/pylon/maotik-02.webp",
+   "bytes": 26768
+  },
+  {
+   "file": "assets/projects/pylon/melike-01.webp",
+   "bytes": 201680
+  },
+  {
+   "file": "assets/projects/pylon/melike-02.webp",
+   "bytes": 172730
+  },
+  {
+   "file": "assets/projects/pylon/pl-01.webp",
+   "bytes": 171934
+  },
+  {
+   "file": "assets/projects/pylon/pl-02.webp",
+   "bytes": 157184
+  },
+  {
+   "file": "assets/projects/pylon/pl-03.webp",
+   "bytes": 78992
+  },
+  {
+   "file": "assets/projects/pylon/pl-04.webp",
+   "bytes": 179022
+  },
+  {
+   "file": "assets/projects/pylon/pl-05.webp",
+   "bytes": 245438
+  },
+  {
+   "file": "assets/projects/pylon/pl-06.webp",
+   "bytes": 148610
+  },
+  {
+   "file": "assets/projects/pylon/pl-09.webp",
+   "bytes": 155608
+  },
+  {
+   "file": "assets/projects/pylon/pl-10.webp",
+   "bytes": 104388
+  },
+  {
+   "file": "assets/projects/pylon/pl-11.webp",
+   "bytes": 73032
+  },
+  {
+   "file": "assets/projects/pylon/pl-16.webp",
+   "bytes": 117296
+  },
+  {
+   "file": "assets/projects/pylon/pl-17.webp",
+   "bytes": 81134
+  },
+  {
+   "file": "assets/projects/pylon/pl-18.webp",
+   "bytes": 89512
+  },
+  {
+   "file": "assets/projects/uhub/f-01.webp",
+   "bytes": 88622
+  },
+  {
+   "file": "assets/projects/uhub/f-10.webp",
+   "bytes": 88928
+  },
+  {
+   "file": "assets/projects/uhub/f-13.webp",
+   "bytes": 95772
+  },
+  {
+   "file": "assets/projects/uhub/g-01.webp",
+   "bytes": 7408
+  },
+  {
+   "file": "assets/projects/uhub/g-02.webp",
+   "bytes": 16766
+  },
+  {
+   "file": "assets/projects/uhub/unilever-logo.webp",
+   "bytes": 1196
+  },
+  {
+   "file": "assets/projects/v5/adventure-360.m.webp",
+   "bytes": 28660
+  },
+  {
+   "file": "assets/projects/v5/animation-360.m.webp",
+   "bytes": 34264
+  },
+  {
+   "file": "assets/projects/v5/disney-scalability-468.webp",
+   "bytes": 60092
+  },
+  {
+   "file": "assets/projects/v5/fantasy-360.m.webp",
+   "bytes": 57650
+  },
+  {
+   "file": "assets/projects/v5/galaxy-360-poster.webp",
+   "bytes": 82598
+  },
+  {
+   "file": "assets/projects/v5/now-showing.m.webp",
+   "bytes": 44034
+  },
+  {
+   "file": "assets/projects/v5/wildlife-360.m.webp",
+   "bytes": 59810
+  },
+  {
+   "file": "assets/video/art-post-office/apo-july-r3-poster.webp",
+   "bytes": 47054
+  },
+  {
+   "file": "assets/video/art-post-office/apo-june-r1-poster.webp",
+   "bytes": 126528
+  },
+  {
+   "file": "assets/video/coffee-merchant/tcm-r2-poster.webp",
+   "bytes": 32856
+  },
+  {
+   "file": "assets/video/coffee-merchant/tcm-r3-poster.webp",
+   "bytes": 50020
+  },
+  {
+   "file": "assets/video/marlia-swimwear/concept-magic-colors-poster.webp",
+   "bytes": 7356
+  },
+  {
+   "file": "assets/video/marlia-swimwear/gift-card-poster.webp",
+   "bytes": 55754
+  },
+  {
+   "file": "assets/video/morphellum/helium-turntable-poster.webp",
+   "bytes": 6578
+  },
+  {
+   "file": "assets/video/morphellum/machimatch-turntable-poster.webp",
+   "bytes": 5734
+  },
+  {
+   "file": "assets/video/morphellum/opulence-turntable-poster.webp",
+   "bytes": 8090
+  },
+  {
+   "file": "projects/aa/social/beginning-414.webp",
+   "bytes": 18714
+  }
+ ],
+ "uncertain": [
+  {
+   "file": "assets/projects/metagenus/clips/C1-poster.webp",
+   "bytes": 42750,
+   "reason": "dir 'clips' used in JS concatenation"
+  },
+  {
+   "file": "assets/projects/metagenus/holo/wings-poster.webp",
+   "bytes": 22904,
+   "reason": "dir 'holo' used in JS concatenation"
+  },
+  {
+   "file": "assets/projects/pylon/thumb/arturo-01.webp",
+   "bytes": 40534,
+   "reason": "dir 'thumb' used in JS concatenation"
+  },
+  {
+   "file": "assets/projects/pylon/thumb/cyril-01.webp",
+   "bytes": 36940,
+   "reason": "dir 'thumb' used in JS concatenation"
+  },
+  {
+   "file": "assets/projects/pylon/thumb/cyril-02.webp",
+   "bytes": 30212,
+   "reason": "dir 'thumb' used in JS concatenation"
+  },
+  {
+   "file": "assets/projects/pylon/thumb/cyril-03.webp",
+   "bytes": 37956,
+   "reason": "dir 'thumb' used in JS concatenation"
+  },
+  {
+   "file": "assets/projects/pylon/thumb/cyril-04.webp",
+   "bytes": 42640,
+   "reason": "dir 'thumb' used in JS concatenation"
+  },
+  {
+   "file": "assets/projects/pylon/thumb/fabeeo-01.webp",
+   "bytes": 51180,
+   "reason": "dir 'thumb' used in JS concatenation"
+  },
+  {
+   "file": "assets/projects/pylon/thumb/fabeeo-02.webp",
+   "bytes": 45904,
+   "reason": "dir 'thumb' used in JS concatenation"
+  },
+  {
+   "file": "assets/projects/pylon/thumb/georges-01.webp",
+   "bytes": 24482,
+   "reason": "dir 'thumb' used in JS concatenation"
+  },
+  {
+   "file": "assets/projects/pylon/thumb/ica-01.webp",
+   "bytes": 60252,
+   "reason": "dir 'thumb' used in JS concatenation"
+  },
+  {
+   "file": "assets/projects/pylon/thumb/ica-02.webp",
+   "bytes": 57434,
+   "reason": "dir 'thumb' used in JS concatenation"
+  },
+  {
+   "file": "assets/projects/pylon/thumb/ica-03.webp",
+   "bytes": 62612,
+   "reason": "dir 'thumb' used in JS concatenation"
+  },
+  {
+   "file": "assets/projects/pylon/thumb/johndave-01.webp",
+   "bytes": 7092,
+   "reason": "dir 'thumb' used in JS concatenation"
+  },
+  {
+   "file": "assets/projects/pylon/thumb/julian-01.webp",
+   "bytes": 52232,
+   "reason": "dir 'thumb' used in JS concatenation"
+  },
+  {
+   "file": "assets/projects/pylon/thumb/ken-01.webp",
+   "bytes": 29698,
+   "reason": "dir 'thumb' used in JS concatenation"
+  },
+  {
+   "file": "assets/projects/pylon/thumb/ken-02.webp",
+   "bytes": 15940,
+   "reason": "dir 'thumb' used in JS concatenation"
+  },
+  {
+   "file": "assets/projects/pylon/thumb/ken-03.webp",
+   "bytes": 10772,
+   "reason": "dir 'thumb' used in JS concatenation"
+  },
+  {
+   "file": "assets/projects/pylon/thumb/maotik-01.webp",
+   "bytes": 7228,
+   "reason": "dir 'thumb' used in JS concatenation"
+  },
+  {
+   "file": "assets/projects/pylon/thumb/maotik-02.webp",
+   "bytes": 11338,
+   "reason": "dir 'thumb' used in JS concatenation"
+  },
+  {
+   "file": "assets/projects/pylon/thumb/melike-01.webp",
+   "bytes": 65686,
+   "reason": "dir 'thumb' used in JS concatenation"
+  },
+  {
+   "file": "assets/projects/pylon/thumb/melike-02.webp",
+   "bytes": 56664,
+   "reason": "dir 'thumb' used in JS concatenation"
+  },
+  {
+   "file": "assets/projects/pylon/thumb/pl-02.webp",
+   "bytes": 49020,
+   "reason": "dir 'thumb' used in JS concatenation"
+  },
+  {
+   "file": "assets/projects/pylon/thumb/pl-06.webp",
+   "bytes": 48108,
+   "reason": "dir 'thumb' used in JS concatenation"
+  },
+  {
+   "file": "assets/projects/pylon/thumb/pl-10.webp",
+   "bytes": 43120,
+   "reason": "dir 'thumb' used in JS concatenation"
+  },
+  {
+   "file": "assets/projects/pylon/thumb/pl-11.webp",
+   "bytes": 24864,
+   "reason": "dir 'thumb' used in JS concatenation"
+  },
+  {
+   "file": "assets/projects/pylon/thumb/pl-16.webp",
+   "bytes": 38088,
+   "reason": "dir 'thumb' used in JS concatenation"
+  },
+  {
+   "file": "assets/projects/pylon/thumb/pl-17.webp",
+   "bytes": 26950,
+   "reason": "dir 'thumb' used in JS concatenation"
+  },
+  {
+   "file": "assets/projects/trt/trt-logo-white.webp",
+   "bytes": 1772,
+   "reason": "dir 'trt' used in JS concatenation"
+  },
+  {
+   "file": "assets/projects/trt/trt-logo.webp",
+   "bytes": 2556,
+   "reason": "dir 'trt' used in JS concatenation"
+  }
+ ]
+}
