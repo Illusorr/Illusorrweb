@@ -86,13 +86,11 @@ html[data-touch] .il-topbar::before {
   mask-image: none;
   /* stops measured from the BOTTOM, so the fade sits on the bar's edge at
      any height — 88px normally, taller where a notch inset applies */
-  /* Glass, not a slab. The blur is what makes a translucent band readable:
-     without it .5 alpha over a busy hero is just a grey haze with type in it.
-     backdrop-filter is safe here ONLY because the mask is off — it was the
-     PAIR of them that WebKit rendered as a flat pale plate, not the filter
-     alone. If the pale plate ever returns on iOS, this is the line to drop. */
-  -webkit-backdrop-filter: blur(18px) saturate(1.25);
-  backdrop-filter: blur(18px) saturate(1.25);
+  /* Glass by translucency alone. backdrop-filter went back in here and broke
+     the header again on the shell pages within the hour, so the mask was not
+     the whole story: WebKit mishandles a backdrop-filtered band on a fixed
+     full-width layer with or without one. It is not coming back. .58 over the
+     page reads as glass without asking the compositor for anything. */
   background: linear-gradient(180deg,
     rgba(5, 6, 10, .58) 0,
     rgba(5, 6, 10, .58) calc(100% - 56px),
