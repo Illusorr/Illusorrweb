@@ -615,3 +615,24 @@ html[data-touch] figcaption {
     padding-right: env(safe-area-inset-right, 0px);
   }
 }
+
+/* ═══ THE STATUS STRIP ═══════════════════════════════════
+   Sticky, not fixed. iOS insets the layout viewport below the status bar for
+   fixed positioning but paints the document full-bleed underneath it, so this
+   is the only layer that can reach up there. Pinned at -220px, its own box
+   covers the strip; the negative margin cancels its height so it occupies no
+   layout, and pointer-events:none keeps it out of every hit test.
+
+   Where the viewport is NOT inset it sits entirely above the fold and paints
+   nothing at all, so a desktop, an Android phone and a home-screen web app are
+   unaffected. Its tone follows the wordmark, set by nav.js. */
+html[data-touch] .il-strip {
+  position: sticky;
+  top: -220px;
+  height: 220px;
+  margin-bottom: -220px;
+  z-index: 2147482999;
+  pointer-events: none;
+  background: #05060a;
+}
+html[data-touch] .il-strip.on-light { background: #ffffff; }

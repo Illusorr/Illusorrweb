@@ -14,6 +14,25 @@
   if(mc&&ov)mc.addEventListener('click',function(){ov.classList.remove('open')});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ov)ov.classList.remove('open')});
 
+  /* ── the status strip ───────────────────────────────
+     In Safari with browser chrome the layout viewport is inset below the
+     status bar, so a position:fixed header cannot paint there — extending the
+     band, extending the bar's box and making it opaque all failed for that one
+     reason. The DOCUMENT is painted full-bleed under the status bar, though,
+     which is why the page's own content shows through up there.
+
+     So the strip gets something that lives in the document rather than in the
+     fixed layer: a sticky element pinned so its box occupies the 220px above
+     the viewport. It carries no layout (its height is cancelled by an equal
+     negative margin) and no pointer events, and where the viewport is not
+     inset — every desktop, Android, and a home-screen web app — it simply
+     sits off-screen and paints nothing. */
+  var strip=document.createElement('div');
+  strip.className='il-strip';
+  strip.setAttribute('aria-hidden','true');
+  if(document.body.firstChild) document.body.insertBefore(strip,document.body.firstChild);
+  else document.body.appendChild(strip);
+
   /* ── tone sampling ─────────────────────────────────────────────────
      THE HEADER FOLLOWS THE SECTION'S GROUND, NOTHING ELSE.
 
@@ -111,6 +130,7 @@
     tb.classList.toggle('brand-on-light',probe(80));
     tb.classList.toggle('ctl-on-light',probe(window.innerWidth-90));
     tb.classList.toggle('on-light',probe(window.innerWidth/2));
+    strip.className='il-strip'+(tb.classList.contains('brand-on-light')?' on-light':'');
   }
   /* Scroll fires many times per frame and this queued a fresh rAF for each,
      so sample() ran repeatedly per frame doing three elementsFromPoint walks
