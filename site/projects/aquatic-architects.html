@@ -348,6 +348,19 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
     line-height: 1.45; color: var(--ink); max-width: 46ch; margin: 0; text-wrap: pretty;
   }
 
+  /* The touch layer pins the hero gutter to flat values rather than --gutter:
+     40px between 641 and 1024 (case-mobile.css:613), 20px below that. These
+     two blocks follow the same steps so they stay on the hero's rail instead
+     of drifting 5 to 9px at those widths. */
+  @media (min-width: 641px) and (max-width: 1024px) {
+    html[data-touch] .aa-root .walkthrough,
+    html[data-touch] .aa-root .live-brief { width: calc(100% - 80px); }
+  }
+  @media (max-width: 640px) {
+    html[data-touch] .aa-root .walkthrough,
+    html[data-touch] .aa-root .live-brief { width: calc(100% - 40px); }
+  }
+
   /* Live-site brief. The desktop carousel used to embed a full working copy of
      the client's homepage, 6.2 MB that the bundle then downloaded a second
      time. A still plus a short brief and a link out says the same thing for
@@ -356,7 +369,16 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
   /* Website walkthrough. The 98s screen recording of the live site, 167 MB as
      an H.264 master, shipped at 5.8 MB of VP9. preload="none" with a poster
      means the page pays 23 KB for it unless someone actually presses play. */
-  .aa-root .walkthrough { margin-top: clamp(28px,3.4vw,44px); padding: 0 clamp(20px,4.6vw,64px); }
+  /* Both blocks sit inside the full-bleed .cover that holds the carousel, so
+     they have to re-establish the page rail themselves. .wrap is the rail:
+     max-width var(--maxw), centred, with var(--gutter) either side. Using a
+     one-off padding put them 168px off the CLIENT/YEAR strip at 1920. */
+  /* width: min(100% - gutters, maxw) is the rail the hero uses. .wrap puts
+     the gutter INSIDE max-width, which lands 64px further in once the rail
+     is already narrower than the viewport: 304 against the hero's 240 at
+     1920. This tracks the hero at every width. */
+  .aa-root .walkthrough { margin: clamp(28px,3.4vw,44px) auto 0;
+    width: min(100% - var(--gutter) * 2, var(--maxw)); }
   .aa-root .walkthrough figure { margin: 0; }
   .aa-root .walkthrough .wt-frame { position: relative; aspect-ratio: 1440 / 752;
     overflow: hidden; background: #06100f; border: 1px solid var(--ink-hair,rgba(255,255,255,.14)); }
@@ -364,9 +386,9 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
   .aa-root .walkthrough figcaption { margin-top: 14px; font-family:'Outfit',system-ui,sans-serif;
     font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-soft); }
   .aa-root .live-brief { display:grid; grid-template-columns:1fr auto; gap:clamp(20px,3vw,48px);
-    align-items:end; margin-top:clamp(28px,3.4vw,44px); padding:clamp(22px,2.6vw,32px) clamp(20px,4.6vw,64px) 0;
-    /* the carousel's .cover is deliberately full bleed, so this block has to
-       carry the page gutter itself or the copy runs into the window edge */
+    align-items:end; margin:clamp(28px,3.4vw,44px) auto 0;
+    width: min(100% - var(--gutter) * 2, var(--maxw));
+    padding:clamp(22px,2.6vw,32px) 0 0;
     border-top:1px solid var(--ink-hair,rgba(255,255,255,.14)); }
   .aa-root .live-brief p { font-family:'Outfit',system-ui,sans-serif; font-weight:400;
     font-size:clamp(15px,1.15vw,18px); line-height:1.65; color:var(--ink-soft);
