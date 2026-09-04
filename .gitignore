@@ -22,3 +22,8 @@ desktop.ini
 # regenerate and they add tens of MB per session to a repo that is already
 # large. screenshots/ itself stays tracked.
 screenshots/verify/
+
+# Raw screen recordings and camera masters. GitHub hard-rejects anything over
+# 100 MB, and these are sources, not deliverables: they belong in uploads/.
+*.mov
+uploads/_masters/**/*.mp4
