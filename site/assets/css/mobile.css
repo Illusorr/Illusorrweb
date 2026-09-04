@@ -69,7 +69,28 @@ html[data-touch] .il-topbar::before {
   opacity: 1;
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
-  background: linear-gradient(180deg, rgba(5, 6, 10, .95), rgba(5, 6, 10, .78) 55%, rgba(5, 6, 10, 0));
+  /* THE BAND REACHES ABOVE ITS OWN BOX.
+     On an iPhone a strip of page paints above the header — Safari renders
+     the scrolling content up behind the status bar, and a fixed element is
+     not part of what it lifts up there. Whatever the exact mechanism, the
+     band can simply be taller than the bar: it starts 220px above the top
+     and runs down to the bar's edge, so there is no strip left for loose
+     type to show through. The bar itself does not move, so nothing about
+     the layout, the tap targets or the logo position changes.
+
+     The mask goes with it. nav.css masks the lower edge, which only ever
+     existed to soften a backdrop-filter this layer no longer has, and a
+     mask would clip the extension back to the bar's own box. */
+  top: -220px;
+  -webkit-mask-image: none;
+  mask-image: none;
+  /* stops measured from the BOTTOM, so the fade sits on the bar's edge at
+     any height — 88px normally, taller where a notch inset applies */
+  background: linear-gradient(180deg,
+    rgba(5, 6, 10, .95) 0,
+    rgba(5, 6, 10, .95) calc(100% - 56px),
+    rgba(5, 6, 10, .55) calc(100% - 22px),
+    rgba(5, 6, 10, 0) 100%);
 }
 /* The plate must never disagree with the wordmark sitting on it. on-light is
    sampled at the centre of the bar and brand-on-light at the logo, so a light
@@ -78,10 +99,18 @@ html[data-touch] .il-topbar::before {
    mark itself has gone dark, so the two can no longer split.
    Ordered after .on-light on purpose — equal specificity, later wins. */
 html[data-touch] .il-topbar.on-light::before {
-  background: linear-gradient(180deg, rgba(5, 6, 10, .95), rgba(5, 6, 10, .78) 55%, rgba(5, 6, 10, 0));
+  background: linear-gradient(180deg,
+    rgba(5, 6, 10, .95) 0,
+    rgba(5, 6, 10, .95) calc(100% - 56px),
+    rgba(5, 6, 10, .55) calc(100% - 22px),
+    rgba(5, 6, 10, 0) 100%);
 }
 html[data-touch] .il-topbar.brand-on-light::before {
-  background: linear-gradient(180deg, rgba(255, 255, 255, .95), rgba(255, 255, 255, .78) 55%, rgba(255, 255, 255, 0));
+  background: linear-gradient(180deg,
+    rgba(255, 255, 255, .95) 0,
+    rgba(255, 255, 255, .95) calc(100% - 56px),
+    rgba(255, 255, 255, .55) calc(100% - 22px),
+    rgba(255, 255, 255, 0) 100%);
 }
 
 /* and nothing may come to rest underneath it: anchored jumps and
