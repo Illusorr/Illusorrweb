@@ -27,3 +27,7 @@ screenshots/verify/
 # 100 MB, and these are sources, not deliverables: they belong in uploads/.
 *.mov
 uploads/_masters/**/*.mp4
+
+# Impeccable's hook config. Machine-local by design, and it runs node on every
+# edit, so it should not travel to anyone else's checkout.
+.claude/settings.local.json
