@@ -50,16 +50,27 @@ lower edge, no compositor work at all.
 The mask is off on touch for the same reason, and because it would clip the
 band's upward reach.
 
-## Rule 3: the band is taller than the bar
+## Rule 3: the band must never paint outside the bar's box
 
-`.il-topbar::before` starts at `top: -220px` and runs to the bar's lower
-edge. On iOS a strip of page paints above the header, and a fixed layer
-cannot always reach it; the band being oversized covers it under every
-explanation of why the strip is there. The bar itself does not move.
+The band was a `z-index: -1` pseudo reaching 220px above its parent. Chrome
+painted that. WebKit does not: a fixed element gets its own compositing layer
+and the layer is clipped to the element's box, so paint that leaves the box is
+dropped. That single difference survived four separate attempts at the strip
+above the header, because every local test was in Chrome.
 
-The gradient's stops are measured from the BOTTOM (`calc(100% - 56px)`), so
-the fade lands on the bar's own edge at any height: 88px normally, 147px
-where a notch inset applies.
+The bar now starts at `top: -220px` and takes those 220px back as padding.
+Contents sit exactly where they did — same logo position, same 44px controls —
+while the box, and therefore the band, covers everything above. `::before`
+goes back to plain `inset: 0`.
+
+`pointer-events` stays `none` on the bar with `auto` on its children, so the
+extra 220px of box intercepts nothing. Verify with a hit test just under the
+controls: it must return the page, not the bar.
+
+The band is opaque, with its softness in the last 44px where it fades out
+rather than ending on a rule. There is no working translucent version: .58
+showed the strip, .72 let a paragraph through on collective, .93 still ghosted
+a headline on work. Glass needs a backdrop blur and Rule 2 forbids it.
 
 ## Rule 4: case pages must scroll the document, not the body
 

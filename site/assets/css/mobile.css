@@ -59,6 +59,26 @@ html[data-touch] .il-topbar.is-glass {
   background: transparent !important;
   border-bottom: 0 !important;
 }
+
+/* THE BAR'S BOX INCLUDES THE STRIP.
+   The band used to be a z-index:-1 pseudo reaching 220px ABOVE its parent.
+   Chrome painted that; WebKit did not, and that is the whole reason the strip
+   above the header survived four attempts. A fixed element gets its own
+   compositing layer and WebKit clips the layer to the element's box, so paint
+   that leaves the box is simply dropped.
+
+   Nothing leaves the box now. The bar starts 220px higher and takes those
+   220px back as padding, so its contents sit exactly where they sat before —
+   same logo position, same tap targets, same 44px controls — while its box,
+   and therefore its band, covers everything above it.
+
+   pointer-events stays none on the bar with auto on its children, so the
+   extra 220px of box intercepts nothing. */
+html[data-touch] .il-topbar {
+  top: -220px;
+  padding-top: calc(242px + env(safe-area-inset-top, 0px));
+}
+html[data-touch] .il-topbar::before { top: 0; }
 /* No backdrop-filter on the phone. WebKit renders an element that carries
    BOTH a backdrop-filter and a mask-image as a flat pale plate, and the band
    carries both: nav.css masks the gradient's lower edge so it fades out. That
@@ -81,31 +101,22 @@ html[data-touch] .il-topbar::before {
      The mask goes with it. nav.css masks the lower edge, which only ever
      existed to soften a backdrop-filter this layer no longer has, and a
      mask would clip the extension back to the bar's own box. */
-  top: -220px;
   -webkit-mask-image: none;
   mask-image: none;
   /* stops measured from the BOTTOM, so the fade sits on the bar's edge at
      any height — 88px normally, taller where a notch inset applies */
-  /* TWO JOBS, TWO ZONES.
-     Above the bar the band is covering a strip of page that shows through
-     anything translucent — that region is opaque, and it is the whole reason
-     the extension exists. Over the bar itself the band is smoked glass: .93, so the
-     hero reads through it as tone rather than as readable content. Lower than
-     that and body text passes through it legibly, which is what put the
-     complaint back on work and collective.
-
-     It cannot be glass everywhere. Real glass needs a backdrop blur, the blur
-     is what turns "see-through" into "frosted", and WebKit breaks on a
-     backdrop-filtered fixed full-width band with or without a mask — twice
-     now. Flat .58 everywhere was the other extreme and put the strip back.
-
-     Stops are measured from the BOTTOM so the zones land on the bar's own
-     edge whatever its height: 88px normally, 147px under a notch inset. */
+  /* OPAQUE, WITH A SOFT LOWER EDGE.
+     Reported directly: content reads through the band. Without a backdrop
+     blur there is no version of low opacity that does not — .58 showed the
+     strip, .72 let a whole paragraph through on collective, .93 still ghosted
+     a headline on work. Glass needs the blur and the blur breaks WebKit on a
+     fixed full-width band, twice proven.
+     So the band is opaque and its softness lives in the last 44px, where it
+     fades out instead of ending on a rule. Measured from the BOTTOM so that
+     edge lands on the bar at either height, 88px or 147px under a notch. */
   background: linear-gradient(180deg,
     rgb(5, 6, 10) 0,
-    rgb(5, 6, 10) calc(100% - 96px),
-    rgba(5, 6, 10, .93) calc(100% - 72px),
-    rgba(5, 6, 10, .93) calc(100% - 30px),
+    rgb(5, 6, 10) calc(100% - 44px),
     rgba(5, 6, 10, 0) 100%);
 }
 /* The plate must never disagree with the wordmark sitting on it. on-light is
@@ -117,17 +128,13 @@ html[data-touch] .il-topbar::before {
 html[data-touch] .il-topbar.on-light::before {
   background: linear-gradient(180deg,
     rgb(5, 6, 10) 0,
-    rgb(5, 6, 10) calc(100% - 96px),
-    rgba(5, 6, 10, .93) calc(100% - 72px),
-    rgba(5, 6, 10, .93) calc(100% - 30px),
+    rgb(5, 6, 10) calc(100% - 44px),
     rgba(5, 6, 10, 0) 100%);
 }
 html[data-touch] .il-topbar.brand-on-light::before {
   background: linear-gradient(180deg,
     rgb(255, 255, 255) 0,
-    rgb(255, 255, 255) calc(100% - 96px),
-    rgba(255, 255, 255, .96) calc(100% - 72px),
-    rgba(255, 255, 255, .96) calc(100% - 30px),
+    rgb(255, 255, 255) calc(100% - 44px),
     rgba(255, 255, 255, 0) 100%);
 }
 
