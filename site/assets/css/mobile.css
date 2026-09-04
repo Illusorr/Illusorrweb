@@ -87,7 +87,7 @@ html[data-touch] .il-topbar.brand-on-light::before {
 /* and nothing may come to rest underneath it: anchored jumps and
    scroll-snap stops clear the bar's height */
 html[data-touch] section,
-html[data-touch] [id] { scroll-margin-top: 104px; }
+html[data-touch] [id] { scroll-margin-top: calc(104px + env(safe-area-inset-top, 0px)); }
 
 /* ═══ 1c. NO TEXT TOUCHES AN EDGE ═════════════════════════════════════
    A defensive floor, not a layout: any text block that ends up inside a
@@ -540,4 +540,22 @@ html[data-touch] .body,
 html[data-touch] .who,
 html[data-touch] figcaption {
   text-wrap: pretty;
+}
+
+/* ═══ THE NOTCH IN LANDSCAPE ══════════════════════════════════════════
+   viewport-fit=cover was added so the header could own the status bar
+   strip in portrait, where the left and right insets are both 0. It also
+   hands the page the notch cutout in landscape, which iOS used to keep
+   for itself by letterboxing the viewport.
+
+   Give that back. In portrait every value here is 0px and nothing moves;
+   in landscape the page indents by the cutout instead of running under
+   it. main.css carries the same pair under a max-width query that a
+   landscape handset is too wide to reach, so this is the rule that
+   actually fires. */
+@media (orientation: landscape) {
+  html[data-touch] body {
+    padding-left: env(safe-area-inset-left, 0px);
+    padding-right: env(safe-area-inset-right, 0px);
+  }
 }

@@ -13,7 +13,7 @@
 
     const css = document.createElement('style');
     css.textContent = `
-.ill-totop{position:fixed;right:clamp(16px,2.2vw,30px);bottom:clamp(16px,2.4vh,32px);z-index:940;
+.ill-totop{position:fixed;right:clamp(16px,2.2vw,30px);bottom:calc(clamp(16px,2.4vh,32px) + env(safe-area-inset-bottom,0px));z-index:940;
   width:46px;height:46px;padding:0;border:0;border-radius:50%;cursor:pointer;
   display:grid;place-items:center;background:rgba(8,11,20,.58);color:#eef1f8;
   -webkit-backdrop-filter:blur(10px) saturate(1.2);backdrop-filter:blur(10px) saturate(1.2);

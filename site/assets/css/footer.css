@@ -13,6 +13,7 @@
   font-family:'Outfit',system-ui,sans-serif;-webkit-font-smoothing:antialiased;
   border-top:1px solid var(--sf-line);text-align:left;
   padding:clamp(44px,5.4vw,84px) clamp(18px,3.2vw,46px) clamp(22px,2.4vw,34px);
+  padding-bottom:calc(clamp(22px,2.4vw,34px) + env(safe-area-inset-bottom,0px));
   overflow:hidden;z-index:2}
 .sfoot *{box-sizing:border-box}
 

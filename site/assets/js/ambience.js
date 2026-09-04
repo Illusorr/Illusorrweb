@@ -32,7 +32,7 @@
   var css = document.createElement('style');
   css.id = 'il-ambience-css';
   css.textContent =
-    '.il-amb{position:fixed;right:18px;bottom:18px;z-index:940;display:flex;align-items:center;gap:9px;' +
+    '.il-amb{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:940;display:flex;align-items:center;gap:9px;' +
     'padding:10px 14px;min-height:44px;cursor:pointer;background:rgba(10,12,20,.62);' +
     'border:1px solid rgba(238,241,251,.22);border-radius:999px;backdrop-filter:blur(8px);' +
     '-webkit-backdrop-filter:blur(8px);font-family:\'Outfit\',system-ui,sans-serif;font-size:10.5px;' +
@@ -47,9 +47,9 @@
     '.il-amb.is-on .eq i:nth-child(3){animation-delay:.3s}' +
     '@keyframes ilEq{0%,100%{height:3px}50%{height:11px}}' +
     /* the back-to-top button shares this corner */
-    '.ill-totop{right:18px !important;bottom:76px !important}' +
-    '@media (max-width:640px){.il-amb{right:12px;bottom:74px;padding:9px 12px}' +
-    '.ill-totop{right:12px !important;bottom:130px !important}}' +
+    '.ill-totop{right:18px !important;bottom:calc(76px + env(safe-area-inset-bottom,0px)) !important}' +
+    '@media (max-width:640px){.il-amb{right:12px;bottom:calc(74px + env(safe-area-inset-bottom,0px));padding:9px 12px}' +
+    '.ill-totop{right:12px !important;bottom:calc(130px + env(safe-area-inset-bottom,0px)) !important}}' +
     '@media (prefers-reduced-motion:reduce){.il-amb.is-on .eq i{animation:none;height:7px}}';
   document.head.appendChild(css);
 

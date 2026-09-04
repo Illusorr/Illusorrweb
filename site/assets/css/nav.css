@@ -12,6 +12,24 @@
 .il-topbar{position:fixed;top:0;left:0;right:0;z-index:2147483000;display:flex;align-items:center;justify-content:space-between;padding:22px 40px;transition:.4s;pointer-events:none}
 .il-topbar>*{pointer-events:auto}
 
+/* THE STATUS BAR IS PART OF THE PAGE NOW.
+   Every page declares viewport-fit=cover, so the layout viewport reaches the
+   physical top of the screen instead of stopping under the notch. Before that,
+   iOS inset the viewport for us: top:0 landed ~59px down while the scrolling
+   content still painted into the strip above, so the bar read as floating
+   below a band of loose type rather than sitting at the top of the screen.
+
+   The bar takes the inset as padding, not as an offset, so its ::before band
+   (inset:0) covers the status strip while the logo and the controls stay clear
+   of it. env() resolves to 0 everywhere else, so this is exactly padding-top:
+   22px on a desktop, on Android, and on any phone without a notch. */
+.il-topbar{padding-top:calc(22px + env(safe-area-inset-top,0px))}
+/* landscape puts the cutout on the side instead: the 40px gutter is not
+   enough to clear a 59px inset, and the mark would sit half under it. The
+   2560px and 430px rules below still win at their own widths. */
+.il-topbar{padding-left:max(40px,env(safe-area-inset-left,0px));
+  padding-right:max(40px,env(safe-area-inset-right,0px))}
+
 /* frosted band, only while page text passes beneath the header */
 .il-topbar::before{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;
   opacity:0;transition:opacity .45s cubic-bezier(.2,.7,.2,1);
@@ -47,6 +65,12 @@
 
 /* menu overlay */
 .il-overlay{position:fixed;inset:0;z-index:2147483001;background:rgba(5,6,10,.97);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);display:flex;flex-direction:column;padding:30px;opacity:0;pointer-events:none;transition:.4s}
+/* same reasoning: the menu's header has to clear the status bar and its footer
+   has to clear the home indicator */
+.il-overlay{padding-top:calc(30px + env(safe-area-inset-top,0px));
+  padding-bottom:calc(30px + env(safe-area-inset-bottom,0px));
+  padding-left:max(30px,env(safe-area-inset-left,0px));
+  padding-right:max(30px,env(safe-area-inset-right,0px))}
 .il-overlay.open{opacity:1;pointer-events:auto}
 .il-overlay .il-ohead{display:flex;justify-content:space-between;align-items:center}
 .il-overlay .il-ohead .il-logo{height:30px}
@@ -63,4 +87,4 @@
 @media(min-width:2560px){.il-topbar{padding-left:3vw;padding-right:3vw}}
 @media(max-width:900px){.il-overlay nav a{padding:4px 0}}
 @media(max-width:860px){.il-logo{height:22px}}
-@media(max-width:430px){.il-topbar{padding-left:16px;padding-right:16px}}
+@media(max-width:430px){.il-topbar{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}}
