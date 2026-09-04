@@ -14,6 +14,55 @@
   if(mc&&ov)mc.addEventListener('click',function(){ov.classList.remove('open')});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ov)ov.classList.remove('open')});
 
+  /* ── ?probe=1 diagnostics ─────────────────────────────────
+     Off unless the URL carries ?probe=1, so a normal visit does nothing at
+     all. The standalone probe page measures correctly and the real pages do
+     not behave the same way on the device, so the reading has to come from
+     the page that is actually wrong, at the scroll position where it is
+     wrong. Reports what sits at viewport y=1 — the row Safari stretches into
+     the status bar — plus the band's state, at up to 12 scroll positions.
+     Delete this block, web.nav_probe and nav-probe.html when the header is
+     settled. */
+  if(/[?&]probe=1/.test(location.search)) (function(){
+    var sent=0, last=-1e9, timer=null;
+    function topAt(y){
+      var st=document.elementsFromPoint(Math.round(window.innerWidth/2),y);
+      for(var i=0;i<st.length;i++){
+        var n=st[i];
+        var cs=getComputedStyle(n);
+        return n.tagName+'.'+String(n.className).slice(0,26)
+             +'|bg='+cs.backgroundColor+'|op='+cs.opacity;
+      }
+      return '(none)';
+    }
+    function report(){
+      if(sent>=12) return;
+      var y=Math.round(window.scrollY);
+      if(Math.abs(y-last)<120) return;
+      last=y; sent++;
+      var bs=getComputedStyle(tb,'::before');
+      fetch('https://mivkvqibkceaayktqtds.supabase.co/rest/v1/nav_probe',{
+        method:'POST',
+        headers:{'apikey':'sb_publishable_wK8G1NuUGp5DZSdWX26ZkA_h6d6P0jd',
+          'Authorization':'Bearer sb_publishable_wK8G1NuUGp5DZSdWX26ZkA_h6d6P0jd',
+          'Content-Type':'application/json','Content-Profile':'web','Prefer':'return=minimal'},
+        body:JSON.stringify({page:location.pathname+' y'+y,user_agent:navigator.userAgent,payload:{
+          scrollY:y, barClasses:tb.className,
+          barTop:Math.round(tb.getBoundingClientRect().top),
+          barHeight:Math.round(tb.getBoundingClientRect().height),
+          bandTop:bs.top, bandOpacity:bs.opacity,
+          bandBg:bs.backgroundImage.slice(0,150),
+          atY1:topAt(1), atY10:topAt(10), atY40:topAt(40), atY80:topAt(80),
+          innerHeight:window.innerHeight, clientHeight:document.documentElement.clientHeight,
+          screenHeight:screen.height, dpr:window.devicePixelRatio
+        }})
+      }).catch(function(){});
+    }
+    addEventListener('scroll',function(){clearTimeout(timer);timer=setTimeout(report,260);},{passive:true});
+    addEventListener('load',function(){setTimeout(report,900);});
+    setTimeout(report,1800);
+  })();
+
   /* ── the status strip ───────────────────────────────
      In Safari with browser chrome the layout viewport is inset below the
      status bar, so a position:fixed header cannot paint there — extending the
