@@ -16,6 +16,8 @@ else if(window.self!==window.top&&window.innerWidth<=1024&&sessionStorage.getIte
 if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch','');}catch(e){}})();</script>
 <link rel="stylesheet" href="../assets/css/nav.css">
 <link rel="stylesheet" href="../assets/css/case/fonts.css">
+<link rel="stylesheet" href="../assets/css/case/proj-tags.css">
+<link rel="stylesheet" href="../assets/css/case/hero-refine.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Aquatic Architects by ILLUSORR: website design and build, AI content production across the whole portfolio, and social media, running now.">
 <link rel="canonical" href="https://illusorr.com/projects/aquatic-architects.html">
@@ -175,7 +177,7 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
        section. Height follows the content now, with a floor for the look. */
     width: 100%; max-width: 100vw; min-height: min(86vh, 820px);
     display: flex; flex-direction: column; justify-content: flex-start;
-    padding: clamp(104px, 13vh, 150px) var(--gutter) clamp(40px, 6vh, 72px); position: relative;
+    padding: clamp(92px, 11vh, 118px) var(--gutter) clamp(40px, 6vh, 72px); position: relative;
     --hg1: #1e2728; --hg2: #191818; --hg3: #0c0f0f;
     background:
       radial-gradient(95% 95% at 12% 100%, rgba(8,11,11,0.7), transparent 60%),
@@ -190,56 +192,85 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
   }
   .aa-root .hero .hero-inner { max-width: var(--maxw); width: 100%; margin: 0 auto; position: relative; z-index: 2; flex: 1 1 auto; display: flex; flex-direction: column; justify-content: space-between; gap: clamp(40px, 7vh, 96px); }
 
-  /* Hero meta band */
-  .aa-root .hero-meta { display: grid; grid-template-columns: 1fr auto auto; gap: clamp(28px, 5vw, 96px); align-items: start; }
-  .aa-root .hm-col { display: flex; flex-direction: column; gap: 16px; }
-  .aa-root .hm-sector { justify-self: end; }
-  .aa-root .hm-label {
-    display: inline-flex; align-items: center; gap: 12px;
-    font-family: 'Outfit', system-ui, sans-serif; font-weight: 500; font-size: 13px; letter-spacing: 0.28em;
-    text-transform: uppercase; color: var(--ink-soft);
+  /* The shared template sizes .cm-logo-img in cm-type.css, which is page-wide
+     and not loaded here. ANT's lockup is 2.97:1 and renders at 131x44; this
+     signature is 1.51:1, so it is matched by area rather than height, and
+     capped so a wide mark can never blow the meta row open. */
+  .aa-root .hero-meta .cm-logo-img { height: 60px; width: auto; max-width: 200px;
+    object-fit: contain; object-position: left center; display: block; }
+  @media (max-width: 880px) {
+    .aa-root .hero-meta .cm-logo-img { height: 48px; max-width: 160px; }
   }
-  .aa-root .hm-label::before { content: ''; width: 26px; height: 1px; background: var(--ink-faint); }
+  /* The touch layer caps client marks at 26px, which is right for a wide
+     lockup (ANT's is 2.97:1 and reads at 77px across) but leaves this 1.51:1
+     signature illegible. Same trick as on desktop: matched by area, so it
+     carries the same weight rather than the same height. */
+  html[data-touch] .aa-root .proj-tags .ptg-client .ptg-c img.cm-logo-img {
+    height: 38px !important; max-width: 130px !important;
+  }
+
+  /* hero-refine gives .proj-tags a 120px top padding, meant to clear the fixed
+     bar on pages whose hero has none of its own. This hero already pads for
+     it, so the two stacked to 270px of dead space above the meta row. Matched
+     to the 27px ANT ends up with once its other layers have had their say. */
+  .aa-root .hero-meta.proj-tags { padding-top: 27px; }
+
+  /* Ported verbatim from case/case-base.css, which carries the display face
+     for the hero. The full stylesheet is page-wide and would fight the rest of
+     this page, so only the hero block comes across. hero-refine.css then sets
+     the sizes on top, exactly as it does on ant-systems. */
+  .aa-root .hero-title {
+    font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 900; line-height: 0.92; letter-spacing: -0.01em;
+    text-transform: uppercase; margin: 0; color: var(--ink);
+    max-width: 100%; overflow-wrap: break-word;
+  }
+  .aa-root .hero-title .ln { display: block; max-width: 100%; }
+  .aa-root .hero-title .ln-ital {
+    display: block; font-family: 'PP Monument Extended', system-ui, sans-serif;
+    font-weight: 400; font-style: italic; letter-spacing: 0;
+    color: var(--ink-soft); margin-top: 0.28em; max-width: 100%;
+    white-space: normal; overflow-wrap: anywhere; text-transform: none;
+  }
+  .aa-root .hero-lede {
+    font-family: 'Outfit', system-ui, sans-serif; font-weight: 400;
+    line-height: 1.55; color: var(--ink); margin: 0;
+  }
+  .aa-root .hero-lede strong { font-weight: 600; }
+
+  /* Hero meta band */
+
+
+
+
+
   /* Was clamp(56px,6vw,88px) and 524px wide, five times the shared template's
      mark, which is what bloated this hero. Matched to it by area rather than
      height: ANT's lockup is 2.97:1 and sits at 131x44, so an equal-weight
      1.57:1 script signature wants about 60px, not 44. */
   .aa-root .hero-client-mark { height: 60px; width: auto; max-width: 200px; display: block;
     object-fit: contain; object-position: left center; }
-  .aa-root .chips { display: flex; flex-wrap: wrap; gap: 10px; }
-  .aa-root .hm-sector .chips { justify-content: flex-end; }
-  .aa-root .chip {
-    font-family: 'Outfit', system-ui, sans-serif; font-weight: 500; font-size: 15px;
-    letter-spacing: 0.005em; line-height: 1; white-space: nowrap;
-    color: var(--ink); border: 1px solid var(--ink-faint); border-radius: 8px;
-    padding: 8px 14px; background: rgba(125,140,170,0.06);
-    transition: border-color .25s, background .25s;
-  }
-  .aa-root .hero-body { display: flex; flex-direction: column; }
-  .aa-root .hero-title {
-    font-family: 'PP Monument Extended', system-ui, sans-serif; font-weight: 900;
-    font-size: clamp(30px, 3.3vw, 44px); line-height: 1.06; letter-spacing: -0.01em;
-    text-transform: uppercase; margin: 0; color: var(--ink); max-width: 100%; overflow-wrap: break-word;
-  }
-  .aa-root .hero-title .ln { display: block; max-width: 100%; }
-  .aa-root .hero-title .ln-ital {
-    display: block; font-family: 'Outfit', system-ui, sans-serif;
-    font-weight: 400; font-style: italic; font-size: 0.46em; letter-spacing: 0;
-    color: var(--ink-soft); margin-top: 0.3em; max-width: 100%; white-space: normal;
-    overflow-wrap: anywhere; text-transform: none;
-  }
-  .aa-root .hero-foot { margin-top: clamp(28px, 4vh, 56px); display: grid; grid-template-columns: 1fr auto 1fr; align-items: end; gap: 24px; }
+
+
+
+
+
+
+
+  /* The lede used to sit in this grid's first column; now that it has moved
+     up onto .hero-inner the third column was left empty and everything read
+     as centred. Two items, pushed apart, as the shared template has it. */
+  .aa-root .hero-foot { margin-top: auto; padding-top: clamp(28px, 4vh, 56px);
+    display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; }
+  .aa-root .hero-foot .hero-credit { text-align: left; }
   /* Between 880 and 1200 the three-column foot squeezed the lede to 389px,
      so it ran to nine lines while the same copy sits on four in the shared
      template. The lede takes its own full-width row there instead. */
   @media (max-width: 1200px) {
     .aa-root .hero-foot { grid-template-columns: auto 1fr; }
-    .aa-root .hero-lede { grid-column: 1 / -1; max-width: 62ch; }
+  
   }
-  .aa-root .hero-lede {
-    font-family: 'Outfit', system-ui, sans-serif; font-weight: 400;
-    font-size: clamp(15px, 1.02vw, 17px); line-height: 1.6; color: var(--ink); max-width: 52ch; margin: 0;
-  }
+
   .aa-root .hero-lede strong { font-weight: 600; }
   .aa-root .scroll-cue {
     justify-self: center; display: inline-flex; flex-direction: column; align-items: center; gap: 10px;
@@ -321,6 +352,17 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
      the client's homepage, 6.2 MB that the bundle then downloaded a second
      time. A still plus a short brief and a link out says the same thing for
      36 KB, and sends anyone who wants the real thing to the real thing. */
+
+  /* Website walkthrough. The 98s screen recording of the live site, 167 MB as
+     an H.264 master, shipped at 5.8 MB of VP9. preload="none" with a poster
+     means the page pays 23 KB for it unless someone actually presses play. */
+  .aa-root .walkthrough { margin-top: clamp(28px,3.4vw,44px); padding: 0 clamp(20px,4.6vw,64px); }
+  .aa-root .walkthrough figure { margin: 0; }
+  .aa-root .walkthrough .wt-frame { position: relative; aspect-ratio: 1440 / 752;
+    overflow: hidden; background: #06100f; border: 1px solid var(--ink-hair,rgba(255,255,255,.14)); }
+  .aa-root .walkthrough video { width: 100%; height: 100%; display: block; object-fit: cover; }
+  .aa-root .walkthrough figcaption { margin-top: 14px; font-family:'Outfit',system-ui,sans-serif;
+    font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-soft); }
   .aa-root .live-brief { display:grid; grid-template-columns:1fr auto; gap:clamp(20px,3vw,48px);
     align-items:end; margin-top:clamp(28px,3.4vw,44px); padding:clamp(22px,2.6vw,32px) clamp(20px,4.6vw,64px) 0;
     /* the carousel's .cover is deliberately full bleed, so this block has to
@@ -622,11 +664,11 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
     .aa-root .stats { grid-template-columns: 1fr 1fr; }
     .aa-root .credits { grid-template-columns: 1fr; }
     .aa-root .credits .credit-list { grid-template-columns: 1fr; }
-    .aa-root .hero-foot { grid-template-columns: 1fr; gap: 32px; }
+    .aa-root .hero-foot { flex-direction: column; align-items: flex-start; gap: 26px; }
     .aa-root .hero-credit { justify-self: start; text-align: left; }
-    .aa-root .hero-meta { grid-template-columns: 1fr auto; gap: 20px 28px; }
-    .aa-root .hm-sector { justify-self: start; }
-    .aa-root .hm-sector .chips { justify-content: flex-start; }
+  
+  
+  
     .aa-root .rail { display: none; }
     .aa-root .topnav nav { display: none; }
   }
@@ -660,47 +702,40 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
   <!-- 1. HERO -->
   <section class="hero" data-tone="dark" data-rail="0" data-screen-label="01 Hero">
     <div class="hero-inner">
-      <div class="hero-meta">
-        <div class="hm-col hm-client">
-          <span class="hm-label">Client</span>
-          <img class="hero-client-mark" src="aa/uploads/logo.webp" alt="Aquatic Architects" srcset="aa/uploads/logo-480.webp 480w, aa/uploads/logo-768.webp 768w, aa/uploads/logo-960.webp 960w, aa/uploads/logo.webp 800w" sizes="(max-width:390px) 234px, (max-width:640px) 384px, (max-width:768px) 691px, (max-width:1024px) 426px, (max-width:1440px) 655px, 738px">
+      <div class="proj-tags hero-meta">
+        <div class="ptg ptg-client">
+          <div class="ptg-k">Client</div>
+          <div class="ptg-c"><img class="cm-logo-img" src="aa/uploads/logo.webp" alt="Aquatic Architects" srcset="aa/uploads/logo-480.webp 480w, aa/uploads/logo-768.webp 768w, aa/uploads/logo-960.webp 960w, aa/uploads/logo.webp 800w" sizes="200px" width="800" height="531" decoding="async"></div>
         </div>
-        <div class="hm-col hm-category">
-          <span class="hm-label">Category</span>
-          <div class="chips">
-            <span class="chip">Website</span>
-            <span class="chip">Content</span>
-            <span class="chip is-live">Social</span>
-          </div>
+        <div class="ptg" style="margin-left:auto">
+          <div class="ptg-k">Category</div>
+          <div class="ptg-c"><span class="ptag">Website</span><span class="ptag">Content</span><span class="ptag is-live">Social</span></div>
         </div>
-        <div class="hm-col hm-sector">
-          <span class="hm-label">Sector</span>
-          <div class="chips">
-            <span class="chip">Marine</span>
-            <span class="chip">Architecture</span>
-          </div>
+        <div class="ptg">
+          <div class="ptg-k">Sector</div>
+          <div class="ptg-c"><span class="ptag sector">Marine &amp; Architecture</span></div>
         </div>
       </div>
-      <div class="hero-body">
-        <h1 class="hero-title">
+      <h1 class="hero-title">
           <span class="ln">Aquatic Architects<span class="ln-ital">website, content, and now the feed.</span></span>
         </h1>
-        <div class="hero-foot">
-          <p class="hero-lede">
+
+      <p class="hero-lede">
             <strong>Three workstreams for Aquatic Architects</strong>, the Middle East's
             authority in marine architecture. We designed and built the website, produced
             the AI content for every project in their portfolio, and now run their social.
             An engagement that started as a site and became the studio behind their output.
           </p>
-          <div class="scroll-cue">
-            <span>Scroll</span>
-            <span class="line"></span>
-          </div>
-          <div class="hero-credit">
+
+      <div class="hero-foot">
+        <div class="hero-credit">
             <div>Aquatic Architects · Website · Content · Social</div>
             <div>2025 — ongoing · ILLUSORR</div>
           </div>
-        </div>
+        <div class="scroll-cue">
+            <span>Scroll</span>
+            <span class="line"></span>
+          </div>
       </div>
     </div>
   </section>
@@ -720,6 +755,18 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
         <button class="hc-nav hc-prev" id="hcPrev" aria-label="Previous screen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 5 8 12 15 19"/></svg></button>
         <button class="hc-nav hc-next" id="hcNext" aria-label="Next screen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 5 16 12 9 19"/></svg></button>
         <div class="hc-bars" id="hcBars" aria-hidden="true"></div>
+      </div>
+      <div class="walkthrough">
+        <figure>
+          <div class="wt-frame">
+            <video controls preload="none" playsinline poster="../assets/video/aquatic-architects/illusorr-aquatic-architects-website-walkthrough-poster.webp"
+                   aria-label="Walkthrough of the Aquatic Architects website, top to bottom">
+              <source src="../assets/video/aquatic-architects/illusorr-aquatic-architects-website-walkthrough.webm" type="video/webm">
+              <source src="../assets/video/aquatic-architects/illusorr-aquatic-architects-website-walkthrough.mp4" type="video/mp4">
+            </video>
+          </div>
+          <figcaption>Walkthrough &middot; the live site, top to bottom</figcaption>
+        </figure>
       </div>
       <div class="live-brief">
         <p>We designed and built the site, then produced everything that runs on it: the 3D vessel renders, the photography treatment, the campaign films, and the social calendar that keeps it fed. One studio across design, content and planning, so the site and the feed never drift apart.</p>
@@ -997,8 +1044,15 @@ class Component extends DCLogic {
     const root = document.getElementById('aaRoot');
     if (!root) return;
 
-    /* ---- Force-loop embedded videos ---- */
+    /* ---- Force-loop embedded videos ----
+       Ambient loops only. The walkthrough is user-driven: force-playing it
+       overrides preload="none", which is how 5.8 MB was downloading on every
+       page load. Excluded by ancestor rather than by [controls], because
+       support.js re-templates the page and strips the controls attribute. */
+    const wt = root.querySelector('.walkthrough video');
+    if (wt) { wt.controls = true; wt.loop = false; wt.removeAttribute('loop'); }
     root.querySelectorAll('video').forEach(v => {
+      if (v.closest('.walkthrough')) return;
       v.loop = true; v.muted = true; v.playsInline = true;
       const replay = () => { v.currentTime = 0; v.play().catch(() => {}); };
       v.addEventListener('ended', replay);
