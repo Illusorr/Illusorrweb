@@ -14,64 +14,48 @@
   if(mc&&ov)mc.addEventListener('click',function(){ov.classList.remove('open')});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ov)ov.classList.remove('open')});
 
-  /* ── tone sampling ─────────────────────────────────────────────── */
+  /* ── tone sampling ─────────────────────────────────────────────────
+     THE HEADER FOLLOWS THE SECTION'S GROUND, NOTHING ELSE.
+
+     It used to follow whatever happened to be under the bar. A client
+     signature, a card, a 97%-transparent pill, a photograph — each got a
+     say, and each was a way for the header to flip on a section whose
+     design had not changed. Two rules now:
+
+       1. A declared theme wins outright. data-tone / data-bg-theme on a
+          section, or one of the light-section classes.
+       2. Otherwise the ground is measured, but only from boxes that
+          actually SPAN the bar. A section, a band, a page wrapper does.
+          A card, a logo, a badge, a button does not, and no longer votes.
+
+     Media never speaks for the ground at all — not measured, not assumed.
+     An image inside a declared section still resolves through that
+     section, which is the right answer and the only one it should give.
+     Legibility over a bright photo is the scrim's job, not the logo's:
+     the band paints its own surface under the mark either way. */
   var LIGHT_SECTIONS='.light,.conv-section,.wwa-scroll,.whofor,.whofor-scroll';
-  function lum(c){
-    var m=/rgba?\(([^)]+)\)/.exec(c); if(!m) return null;
-    var p=m[1].split(',').map(parseFloat);
-    if(p.length>3&&p[3]===0) return null;
-    return (0.2126*p[0]+0.7152*p[1]+0.0722*p[2])/255;
-  }
-  /* [r,g,b,a] with alpha kept. lum() above throws alpha away, which is what
-     made a 97%-transparent white pill read as pure white. */
+  var MEDIA=/^(IMG|SVG|VIDEO|CANVAS|PICTURE|IFRAME)$/;
+
+  /* [r,g,b,a] with alpha kept. Alpha decides nothing on its own — the
+     probe composites front to back and judges the result — but a layer
+     that contributes nothing must not be mistaken for one that does. */
   function rgba(c){
-    var m=/rgba?\(([^)]+)\)/.exec(c); if(!m) return null;
+    var m=/rgba?(([^)]+))/.exec(c); if(!m) return null;
     var p=m[1].split(',').map(parseFloat);
     if(p.length<3||isNaN(p[0])) return null;
     return [p[0],p[1],p[2],p.length>3?(isNaN(p[3])?1:p[3]):1];
   }
-  /* average luminance of an image, computed once per src */
-  var toneCache={};
-  /* Sample the STRIP OF THE IMAGE THAT IS ACTUALLY UNDER THE BAR, not the whole
-     picture. Averaging the entire image called a photo dark because most of it
-     is dark, while the band beneath the header was bright sky - the logo then
-     painted white on white. The result is cached per src and per tenth of the
-     image's height, so scrolling past one picture costs a handful of 8x8 reads
-     rather than one per frame. */
-  /* share of the header band this element actually covers */
-  function coversBand(el){
+
+  /* Is this box the GROUND under the bar, or something sitting on it?
+     Ground runs the width of the header. Anything narrower is furniture. */
+  function spansBar(el){
     try{
       var br=tb.getBoundingClientRect(), r=el.getBoundingClientRect();
       var w=Math.min(br.right,r.right)-Math.max(br.left,r.left);
-      var h=Math.min(br.bottom,r.bottom)-Math.max(br.top,r.top);
-      if(w<=0||h<=0) return false;
-      return (w*h)/(br.width*br.height) >= 0.3;
+      return br.width>0 && w>=br.width*0.9;
     }catch(e){ return false; }
   }
-  function imgTone(img){
-    var key=img.currentSrc||img.src; if(!key) return null;
-    if(!img.complete||!img.naturalWidth) return null;
-    var r=img.getBoundingClientRect();
-    if(!r.height) return null;
-    /* the bar occupies roughly 0..88px of the viewport */
-    var top=Math.max(0,(0-r.top)/r.height), bot=Math.min(1,(88-r.top)/r.height);
-    if(bot<=top){ top=0; bot=1; }
-    var band=Math.round(top*10)/10;
-    var ck=key+'@'+band;
-    if(ck in toneCache) return toneCache[ck];
-    try{
-      var sh=Math.max(1,Math.round((bot-top)*img.naturalHeight));
-      var sy=Math.min(img.naturalHeight-sh,Math.round(top*img.naturalHeight));
-      var c=document.createElement('canvas'); c.width=8; c.height=8;
-      var g=c.getContext('2d',{willReadFrequently:true});
-      g.drawImage(img,0,Math.max(0,sy),img.naturalWidth,sh,0,0,8,8);
-      var d=g.getImageData(0,0,8,8).data, t=0, n=0;
-      for(var i=0;i<d.length;i+=4){ if(d[i+3]<8) continue;
-        t+=0.2126*d[i]+0.7152*d[i+1]+0.0722*d[i+2]; n++; }
-      toneCache[ck] = n ? (t/n)/255 > 0.55 : null;
-    }catch(e){ toneCache[ck]=null; }   /* tainted canvas: give up quietly */
-    return toneCache[ck];
-  }
+
   function sample(){
     if(ov&&ov.classList.contains('open')) return;
     function probe(x){
@@ -80,49 +64,16 @@
       for(var i=0;i<stack.length;i++){
         var n=stack[i];
         if(tb.contains(n)||(ov&&ov.contains(n))||(n.closest&&n.closest('.il-overlay'))) continue;
-        if(n.closest){
-          /* Most specific hint wins. data-media-tone marks a light image or
-             video sitting inside an otherwise dark section, which is exactly
-             the case the section-level hint gets wrong. */
-          var mh=n.closest('[data-media-tone]');
-          if(mh) return mh.getAttribute('data-media-tone')==='light';
-        }
-        /* A MEASURED image outranks a section-level declaration.
-           data-tone describes a section's design theme, but the bar passes
-           over a section at every scroll position, and a media band can be
-           dark at its top edge and bright in its middle. Trusting the section
-           label over a readable image is how the header ended up painting a
-           white scrim with a dark logo over a dark band on optiverse. If the
-           image cannot be read (cross-origin, not yet decoded) this falls
-           through to the declaration, which is still the right default. */
-        /* An image may speak for the band only if it actually fills enough of
-           it. A 90x60 client signature covering 2.7% of the bar was flipping
-           the whole header to its light-mode logo over a dark hero. */
-        if(n.tagName==='IMG'&&coversBand(n)){ var iv0=imgTone(n); if(iv0!==null) return iv0; }
+        /* a declared section theme is the answer, wherever it is declared */
         if(n.closest){
           var toned=n.closest('[data-tone],[data-bg-theme]');
           if(toned) return (toned.getAttribute('data-tone')||toned.getAttribute('data-bg-theme'))==='light';
           if(n.closest(LIGHT_SECTIONS)) return true;
         }
-        /* Media used to be assumed dark, which hid the logo whenever a light
-           image sat under the bar (a white site screenshot, a pale hero).
-           A media element, or any ancestor, can now declare its own tone.
-           The blanket assumption stays as the fallback. */
-        /* Media used to be assumed dark, which hid the logo under any light
-           image. An <img> is now sampled once and cached: same-origin, drawn
-           to an 8x8 canvas, averaged. Video and canvas keep the old
-           assumption since they cannot be read cheaply or safely. */
-        if(n.tagName==='IMG') { var iv=imgTone(n); if(iv!==null) return iv; return false; }
-        if(n.tagName==='VIDEO'||n.tagName==='CANVAS') return false;
-        /* Alpha decides nothing on its own. The first element with ANY
-           background used to win outright, so .bf-opt's
-           background:rgba(255,255,255,.03) - 97% transparent over a near
-           black page - was read as pure white and turned the whole bar into
-           a white scrim with a dark logo. Composite front to back instead:
-           each layer contributes only the transparency the layers above it
-           left behind, and the tone is judged on the result. */
+        if(MEDIA.test(n.tagName)) continue;      /* never evidence */
         var c=rgba(getComputedStyle(n).backgroundColor);
         if(!c||c[3]<=0) continue;
+        if(!spansBar(n)) continue;               /* furniture, not ground */
         var rem=1-acc[3];
         acc[0]+=c[0]*c[3]*rem; acc[1]+=c[1]*c[3]*rem; acc[2]+=c[2]*c[3]*rem;
         acc[3]+=c[3]*rem;
