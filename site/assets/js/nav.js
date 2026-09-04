@@ -53,6 +53,12 @@
           bandTop:bs.top, bandOpacity:bs.opacity,
           bandBg:bs.backgroundImage.slice(0,150),
           atY1:topAt(1), atY10:topAt(10), atY40:topAt(40), atY80:topAt(80),
+          strip:(function(){var e=document.querySelector('.il-strip');
+            if(!e) return "MISSING";
+            var r=e.getBoundingClientRect(), cs=getComputedStyle(e);
+            return "top="+Math.round(r.top)+" bottom="+Math.round(r.bottom)
+                 +" h="+Math.round(r.height)+" pos="+cs.position
+                 +" bg="+cs.backgroundColor+" vis="+cs.visibility;})(),
           innerHeight:window.innerHeight, clientHeight:document.documentElement.clientHeight,
           screenHeight:screen.height, dpr:window.devicePixelRatio
         }})
