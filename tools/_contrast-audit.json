@@ -360,7 +360,7 @@
   ]
  },
  "/index.html": {
-  "checked": 152,
+  "checked": 137,
   "fails": [
    {
     "el": "a.fakebtn",
@@ -371,36 +371,20 @@
     "text": "More about us \u2192"
    },
    {
+    "el": "span.wnum",
+    "w": 1440,
+    "ratio": 1.54,
+    "need": 3.0,
+    "size": 115.2,
+    "text": "02"
+   },
+   {
     "el": "span.sr-num",
     "w": 1440,
     "ratio": 4.36,
     "need": 4.5,
     "size": 11,
     "text": "01"
-   },
-   {
-    "el": "span",
-    "w": 1440,
-    "ratio": 2.96,
-    "need": 4.5,
-    "size": 18,
-    "text": "Koton"
-   },
-   {
-    "el": "span",
-    "w": 1440,
-    "ratio": 1.52,
-    "need": 4.5,
-    "size": 18,
-    "text": "Hind Al Oud"
-   },
-   {
-    "el": "span",
-    "w": 1440,
-    "ratio": 3.16,
-    "need": 4.5,
-    "size": 18,
-    "text": "ABB Robotics"
    },
    {
     "el": "span",
@@ -419,6 +403,14 @@
     "text": "Worlds \u00b7 Metaverse"
    },
    {
+    "el": "span.csector",
+    "w": 1440,
+    "ratio": 1.85,
+    "need": 4.5,
+    "size": 10,
+    "text": "IP"
+   },
+   {
     "el": "span",
     "w": 1440,
     "ratio": 2.2,
@@ -427,33 +419,65 @@
     "text": "Worlds \u00b7 Launch"
    },
    {
+    "el": "span.cvlabel",
+    "w": 1440,
+    "ratio": 1.98,
+    "need": 3.0,
+    "size": 19,
+    "text": "Metagenus"
+   },
+   {
     "el": "span",
     "w": 1440,
-    "ratio": 1.71,
+    "ratio": 3.98,
     "need": 4.5,
     "size": 10,
     "text": "IP \u00b7 Characters"
    },
    {
-    "el": "span.csector",
+    "el": "span.cvlabel",
     "w": 1440,
-    "ratio": 3.6,
-    "need": 4.5,
-    "size": 10,
-    "text": "Beauty"
-   },
-   {
-    "el": "h3.disp",
-    "w": 1440,
-    "ratio": 1.49,
+    "ratio": 1.67,
     "need": 3.0,
-    "size": 51.84,
+    "size": 19,
     "text": "Hind Al Oud"
    },
    {
     "el": "span",
     "w": 1440,
-    "ratio": 2.76,
+    "ratio": 3.64,
+    "need": 4.5,
+    "size": 10,
+    "text": "Social media \u00b7 Ecom"
+   },
+   {
+    "el": "span.cvlabel",
+    "w": 1440,
+    "ratio": 1.65,
+    "need": 3.0,
+    "size": 19,
+    "text": "Khaltat"
+   },
+   {
+    "el": "span.cvlabel",
+    "w": 1440,
+    "ratio": 1.65,
+    "need": 3.0,
+    "size": 19,
+    "text": "Koton"
+   },
+   {
+    "el": "span.cvlabel",
+    "w": 1440,
+    "ratio": 2.38,
+    "need": 3.0,
+    "size": 19,
+    "text": "Aquatic Architects"
+   },
+   {
+    "el": "span",
+    "w": 1440,
+    "ratio": 3.95,
     "need": 4.5,
     "size": 10,
     "text": "Web \u00b7 Social"
@@ -473,14 +497,6 @@
     "need": 4.5,
     "size": 11,
     "text": "01"
-   },
-   {
-    "el": "span",
-    "w": 390,
-    "ratio": 2.89,
-    "need": 4.5,
-    "size": 10,
-    "text": "Procedural art \u00b7 Robotic"
    }
   ]
  },
@@ -1499,72 +1515,8 @@
   ]
  },
  "/projects/aquatic-architects.html": {
-  "checked": 152,
+  "checked": 158,
   "fails": [
-   {
-    "el": "span",
-    "w": 1440,
-    "ratio": 2.28,
-    "need": 4.5,
-    "size": 12,
-    "text": "02"
-   },
-   {
-    "el": "span",
-    "w": 1440,
-    "ratio": 2.44,
-    "need": 4.5,
-    "size": 12,
-    "text": "03"
-   },
-   {
-    "el": "span",
-    "w": 1440,
-    "ratio": 2.44,
-    "need": 4.5,
-    "size": 12,
-    "text": "04"
-   },
-   {
-    "el": "span",
-    "w": 1440,
-    "ratio": 2.47,
-    "need": 4.5,
-    "size": 12,
-    "text": "05"
-   },
-   {
-    "el": "span",
-    "w": 1440,
-    "ratio": 2.47,
-    "need": 4.5,
-    "size": 12,
-    "text": "06"
-   },
-   {
-    "el": "span",
-    "w": 1440,
-    "ratio": 2.57,
-    "need": 4.5,
-    "size": 12,
-    "text": "07"
-   },
-   {
-    "el": "span",
-    "w": 1440,
-    "ratio": 2.6,
-    "need": 4.5,
-    "size": 11,
-    "text": "Abu Dhabi \u00b7 Yas Creative"
-   },
-   {
-    "el": "span",
-    "w": 1440,
-    "ratio": 2.6,
-    "need": 4.5,
-    "size": 11,
-    "text": "hello@illusorr.com"
-   },
    {
     "el": "span",
     "w": 1440,
@@ -1592,90 +1544,10 @@
    {
     "el": "span",
     "w": 1440,
-    "ratio": 1.78,
+    "ratio": 1.68,
     "need": 4.5,
     "size": 13,
-    "text": "Visit aa-ds.com"
-   },
-   {
-    "el": "span",
-    "w": 1440,
-    "ratio": 2.69,
-    "need": 4.5,
-    "size": 12,
-    "text": "\u00a9 2026 ILLUSORR"
-   },
-   {
-    "el": "span",
-    "w": 1440,
-    "ratio": 2.69,
-    "need": 4.5,
-    "size": 12,
-    "text": "Yas Creative Hub \u00b7 Abu D"
-   },
-   {
-    "el": "span",
-    "w": 390,
-    "ratio": 2.09,
-    "need": 4.5,
-    "size": 12,
-    "text": "02"
-   },
-   {
-    "el": "span",
-    "w": 390,
-    "ratio": 2.28,
-    "need": 4.5,
-    "size": 12,
-    "text": "03"
-   },
-   {
-    "el": "span",
-    "w": 390,
-    "ratio": 2.28,
-    "need": 4.5,
-    "size": 12,
-    "text": "04"
-   },
-   {
-    "el": "span",
-    "w": 390,
-    "ratio": 2.28,
-    "need": 4.5,
-    "size": 12,
-    "text": "05"
-   },
-   {
-    "el": "span",
-    "w": 390,
-    "ratio": 2.44,
-    "need": 4.5,
-    "size": 12,
-    "text": "06"
-   },
-   {
-    "el": "span",
-    "w": 390,
-    "ratio": 2.44,
-    "need": 4.5,
-    "size": 12,
-    "text": "07"
-   },
-   {
-    "el": "span",
-    "w": 390,
-    "ratio": 2.57,
-    "need": 4.5,
-    "size": 11,
-    "text": "Abu Dhabi \u00b7 Yas Creative"
-   },
-   {
-    "el": "span",
-    "w": 390,
-    "ratio": 2.57,
-    "need": 4.5,
-    "size": 11,
-    "text": "hello@illusorr.com"
+    "text": "View Case Study"
    },
    {
     "el": "span.step-k",
@@ -1688,18 +1560,26 @@
    {
     "el": "span",
     "w": 390,
-    "ratio": 2.69,
+    "ratio": 4.42,
     "need": 4.5,
     "size": 12,
-    "text": "\u00a9 2026 ILLUSORR"
+    "text": "Ahmed Youssef \u00b7 Founding"
    },
    {
     "el": "span",
     "w": 390,
-    "ratio": 2.69,
+    "ratio": 4.42,
     "need": 4.5,
     "size": 12,
-    "text": "Yas Creative Hub \u00b7 Abu D"
+    "text": "Carousel"
+   },
+   {
+    "el": "span",
+    "w": 390,
+    "ratio": 2.54,
+    "need": 4.5,
+    "size": 12,
+    "text": "The Belief \u00b7 02 / 05"
    }
   ]
  },
@@ -7828,108 +7708,56 @@
     "text": "hello@illusorr.com"
    },
    {
-    "el": "span.tf-t",
-    "w": 1440,
-    "ratio": 3.16,
-    "need": 4.5,
-    "size": 14,
-    "text": "AI Content"
-   },
-   {
-    "el": "span.tf-t",
-    "w": 1440,
-    "ratio": 3.16,
-    "need": 4.5,
-    "size": 14,
-    "text": "Social Media"
-   },
-   {
-    "el": "span.tf-t",
-    "w": 1440,
-    "ratio": 3.16,
-    "need": 4.5,
-    "size": 14,
-    "text": "Art"
-   },
-   {
-    "el": "span.tf-t",
-    "w": 1440,
-    "ratio": 3.16,
-    "need": 4.5,
-    "size": 14,
-    "text": "Immersive"
-   },
-   {
-    "el": "span.tf-t",
-    "w": 1440,
-    "ratio": 3.16,
-    "need": 4.5,
-    "size": 14,
-    "text": "Campaign"
-   },
-   {
-    "el": "span.tf-t",
-    "w": 1440,
-    "ratio": 3.16,
-    "need": 4.5,
-    "size": 14,
-    "text": "Ecommerce"
-   },
-   {
-    "el": "span.tf-t",
-    "w": 1440,
-    "ratio": 3.16,
-    "need": 4.5,
-    "size": 14,
-    "text": "Real Time"
-   },
-   {
-    "el": "span.tf-t",
-    "w": 1440,
-    "ratio": 3.16,
-    "need": 4.5,
-    "size": 14,
-    "text": "Web"
-   },
-   {
-    "el": "span.tf-t",
-    "w": 1440,
-    "ratio": 3.16,
-    "need": 4.5,
-    "size": 14,
-    "text": "Branding"
-   },
-   {
-    "el": "span.tf-t",
-    "w": 1440,
-    "ratio": 3.16,
-    "need": 4.5,
-    "size": 14,
-    "text": "Metaverse"
-   },
-   {
-    "el": "span.tf-t",
-    "w": 1440,
-    "ratio": 3.16,
-    "need": 4.5,
-    "size": 14,
-    "text": "Original IP"
-   },
-   {
     "el": "span.t-idx",
     "w": 1440,
     "ratio": 3.87,
     "need": 4.5,
     "size": 11,
     "text": "04"
+   }
+  ]
+ },
+ "C:/Program Files/Git/index.html": {
+  "checked": 0,
+  "fails": [
+   {
+    "error": "Error"
    },
    {
-    "el": "span.tf-t",
-    "w": 390,
-    "ratio": 3.16,
-    "need": 4.5,
-    "size": 13,
-    "text": "AI Content"
+    "error": "Error"
+   }
+  ]
+ },
+ "C:/Program Files/Git/work.html": {
+  "checked": 0,
+  "fails": [
+   {
+    "error": "Error"
+   },
+   {
+    "error": "Error"
+   }
+  ]
+ },
+ "C:/Program Files/Git/projects/aquatic-architects.html": {
+  "checked": 0,
+  "fails": [
+   {
+    "error": "Error"
+   },
+   {
+    "error": "Error"
+   }
+  ]
+ },
+ "C:/Program Files/Git/contact.html": {
+  "checked": 0,
+  "fails": [
+   {
+    "error": "Error"
+   },
+   {
+    "error": "Error"
    }
   ]
  }

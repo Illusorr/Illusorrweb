@@ -1,0 +1,317 @@
+{
+ "landing": {
+  "desktop": {
+   "h1": 1,
+   "headingSkips": 3,
+   "landmarks": {
+    "main": 0,
+    "nav": 4,
+    "footer": 1
+   },
+   "img": {
+    "total": 23,
+    "noAltAttr": 0,
+    "emptyAlt": 1
+   },
+   "unnamed": [],
+   "interactive": 55,
+   "fieldsNoLabel": 0,
+   "fields": 0,
+   "noVisibleFocus": 0,
+   "tapUnder44": 9,
+   "tapSample": [
+    "a.il-talk 108x34",
+    "button.il-burger 38x20",
+    "button.il-oclose 99x36",
+    "a.seeall 165x14",
+    "a.fakebtn 169x40"
+   ],
+   "tinyType": 53,
+   "overflowX": 0,
+   "willChange": 3,
+   "kb": 2325
+  },
+  "phone": {
+   "h1": 1,
+   "headingSkips": 3,
+   "landmarks": {
+    "main": 0,
+    "nav": 4,
+    "footer": 1
+   },
+   "img": {
+    "total": 23,
+    "noAltAttr": 0,
+    "emptyAlt": 1
+   },
+   "unnamed": [],
+   "interactive": 55,
+   "fieldsNoLabel": 0,
+   "fields": 0,
+   "noVisibleFocus": 0,
+   "tapUnder44": 4,
+   "tapSample": [
+    "a.wf-all 155x19",
+    "a.sf-logo 116x34",
+    "a.sf-mail 160x30",
+    "a.sf-top 111x15"
+   ],
+   "tinyType": 52,
+   "overflowX": 0,
+   "willChange": 3,
+   "kb": 2183
+  }
+ },
+ "work grid": {
+  "desktop": {
+   "h1": 0,
+   "headingSkips": 0,
+   "landmarks": {
+    "main": 0,
+    "nav": 4,
+    "footer": 1
+   },
+   "img": {
+    "total": 0,
+    "noAltAttr": 0,
+    "emptyAlt": 0
+   },
+   "unnamed": [],
+   "interactive": 88,
+   "fieldsNoLabel": 0,
+   "fields": 0,
+   "noVisibleFocus": 0,
+   "tapUnder44": 15,
+   "tapSample": [
+    "a.il-talk 108x34",
+    "button.il-burger 38x20",
+    "button.il-oclose 99x36",
+    "button.tag-nav 26x34",
+    "button.tag-nav 26x34"
+   ],
+   "tinyType": 82,
+   "overflowX": 0,
+   "willChange": 29,
+   "kb": 3731
+  },
+  "phone": {
+   "h1": 0,
+   "headingSkips": 0,
+   "landmarks": {
+    "main": 0,
+    "nav": 4,
+    "footer": 1
+   },
+   "img": {
+    "total": 0,
+    "noAltAttr": 0,
+    "emptyAlt": 0
+   },
+   "unnamed": [],
+   "interactive": 86,
+   "fieldsNoLabel": 0,
+   "fields": 0,
+   "noVisibleFocus": 0,
+   "tapUnder44": 10,
+   "tapSample": [
+    "button.sf 188x43",
+    "button.sf 188x43",
+    "button.sf 188x43",
+    "button.sf 188x43",
+    "button.sf 188x43"
+   ],
+   "tinyType": 82,
+   "overflowX": 0,
+   "willChange": 29,
+   "kb": 3541
+  }
+ },
+ "case study": {
+  "desktop": {
+   "h1": 1,
+   "headingSkips": 1,
+   "landmarks": {
+    "main": 0,
+    "nav": 4,
+    "footer": 1
+   },
+   "img": {
+    "total": 43,
+    "noAltAttr": 0,
+    "emptyAlt": 2
+   },
+   "unnamed": [],
+   "interactive": 38,
+   "fieldsNoLabel": 0,
+   "fields": 0,
+   "noVisibleFocus": 0,
+   "tapUnder44": 7,
+   "tapSample": [
+    "a.il-talk 108x34",
+    "button.il-burger 38x20",
+    "button.il-oclose 99x36",
+    "button.hc-bar 38x2",
+    "button.hc-bar 38x2"
+   ],
+   "tinyType": 3,
+   "overflowX": 0,
+   "willChange": 17,
+   "kb": 6683
+  },
+  "phone": {
+   "h1": 1,
+   "headingSkips": 1,
+   "landmarks": {
+    "main": 0,
+    "nav": 4,
+    "footer": 1
+   },
+   "img": {
+    "total": 43,
+    "noAltAttr": 0,
+    "emptyAlt": 2
+   },
+   "unnamed": [],
+   "interactive": 40,
+   "fieldsNoLabel": 0,
+   "fields": 0,
+   "noVisibleFocus": 0,
+   "tapUnder44": 6,
+   "tapSample": [
+    "a.il-brand 75x22",
+    "button.hc-bar 172x4",
+    "button.hc-bar 172x4",
+    "a.sf-logo 116x34",
+    "a.sf-mail 160x30"
+   ],
+   "tinyType": 37,
+   "overflowX": 0,
+   "willChange": 17,
+   "kb": 1411
+  }
+ },
+ "brief intake": {
+  "desktop": {
+   "h1": 0,
+   "headingSkips": 0,
+   "landmarks": {
+    "main": 0,
+    "nav": 4,
+    "footer": 1
+   },
+   "img": {
+    "total": 0,
+    "noAltAttr": 0,
+    "emptyAlt": 0
+   },
+   "unnamed": [],
+   "interactive": 37,
+   "fieldsNoLabel": 0,
+   "fields": 0,
+   "noVisibleFocus": 5,
+   "tapUnder44": 5,
+   "tapSample": [
+    "a.il-talk 108x34",
+    "button.il-burger 38x20",
+    "button.il-oclose 99x36",
+    "a.sf-logo 116x34",
+    "a.sf-top 111x15"
+   ],
+   "tinyType": 10,
+   "overflowX": 0,
+   "willChange": 0,
+   "kb": 420
+  },
+  "phone": {
+   "h1": 0,
+   "headingSkips": 0,
+   "landmarks": {
+    "main": 0,
+    "nav": 4,
+    "footer": 1
+   },
+   "img": {
+    "total": 0,
+    "noAltAttr": 0,
+    "emptyAlt": 0
+   },
+   "unnamed": [],
+   "interactive": 38,
+   "fieldsNoLabel": 0,
+   "fields": 0,
+   "noVisibleFocus": 5,
+   "tapUnder44": 3,
+   "tapSample": [
+    "a.sf-logo 116x34",
+    "a.sf-mail 160x30",
+    "a.sf-top 111x15"
+   ],
+   "tinyType": 9,
+   "overflowX": 0,
+   "willChange": 0,
+   "kb": 420
+  }
+ },
+ "contact": {
+  "desktop": {
+   "h1": 1,
+   "headingSkips": 1,
+   "landmarks": {
+    "main": 0,
+    "nav": 4,
+    "footer": 1
+   },
+   "img": {
+    "total": 0,
+    "noAltAttr": 0,
+    "emptyAlt": 0
+   },
+   "unnamed": [],
+   "interactive": 43,
+   "fieldsNoLabel": 0,
+   "fields": 4,
+   "noVisibleFocus": 4,
+   "tapUnder44": 11,
+   "tapSample": [
+    "a.il-talk 108x34",
+    "button.il-burger 38x20",
+    "button.il-oclose 99x36",
+    "button.il-cap-new 87x25",
+    "button.fakebtn 95x38"
+   ],
+   "tinyType": 9,
+   "overflowX": 0,
+   "willChange": 0,
+   "kb": 424
+  },
+  "phone": {
+   "h1": 1,
+   "headingSkips": 1,
+   "landmarks": {
+    "main": 0,
+    "nav": 4,
+    "footer": 1
+   },
+   "img": {
+    "total": 0,
+    "noAltAttr": 0,
+    "emptyAlt": 0
+   },
+   "unnamed": [],
+   "interactive": 43,
+   "fieldsNoLabel": 0,
+   "fields": 4,
+   "noVisibleFocus": 4,
+   "tapUnder44": 3,
+   "tapSample": [
+    "a.sf-logo 116x34",
+    "a.sf-mail 160x30",
+    "a.sf-top 111x15"
+   ],
+   "tinyType": 13,
+   "overflowX": 0,
+   "willChange": 0,
+   "kb": 424
+  }
+ }
+}

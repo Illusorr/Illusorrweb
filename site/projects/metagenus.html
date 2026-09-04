@@ -2194,7 +2194,7 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
         <div class="av-right">
           <span class="av-key">// avatar rarity</span>
           <div class="av-traits" id="avTraits">
-            <img id="avRaritySvg" src="../assets/projects/metagenus/rarity/C1.webp" alt="Avatar rarity traits" srcset="../assets/projects/metagenus/rarity/C1-480.webp 480w, ../assets/projects/metagenus/rarity/C1.webp 516w" sizes="(max-width:390px) 294px, (max-width:640px) 300px, (max-width:768px) 230px, (max-width:1440px) 216px, 298px">
+            <img id="avRaritySvg" src="../assets/projects/metagenus/rarity/illusorr-metagenus-rarity-C1.webp" alt="Avatar rarity traits" srcset="../assets/projects/metagenus/rarity/illusorr-metagenus-rarity-C1-480.webp 480w, ../assets/projects/metagenus/rarity/illusorr-metagenus-rarity-C1.webp 516w" sizes="(max-width:390px) 294px, (max-width:640px) 300px, (max-width:768px) 230px, (max-width:1440px) 216px, 298px">
           </div>
           <div class="av-scorewrap">
             <span class="av-key">// avatar score</span>
@@ -2813,7 +2813,7 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
          nine times the pixels needed. Half-size alpha encodes live in
          clips/m/ and are chosen on touch. */
       const M3 = document.documentElement.hasAttribute('data-touch') ? 'm/' : '';
-      AVATARS.forEach((a, k) => { a.code = CODES[k]; a.bt = '../assets/projects/metagenus/avatars/BT-' + CODES[k] + '.webp'; a.vid = '../assets/projects/metagenus/clips/' + M3 + CODES[k] + '.webm'; });
+      AVATARS.forEach((a, k) => { a.code = CODES[k]; a.bt = '../assets/projects/metagenus/avatars/BT-' + CODES[k] + '.webp'; a.vid = '../assets/projects/metagenus/clips/' + M3 + 'illusorr-metagenus-clip-' + CODES[k] + '.webm'; });
       const CLASSNAME = { common:'Common Class', epic:'Epic Class', legendary:'Legendary Class' };
       const ICON_POS = { head:'50% 4%', torso:'50% 44%', limbs:'50% 92%', apparel:'50% 66%' };
       const $ = (id) => document.getElementById(id);
@@ -2875,7 +2875,7 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
           if (media.play) media.play().catch(() => {});
           media.style.opacity = '';
         }
-        var rsvg = $('avRaritySvg'); if (rsvg) rsvg.src = '../assets/projects/metagenus/rarity/' + a.code + '.webp';
+        var rsvg = $('avRaritySvg'); if (rsvg) rsvg.src = '../assets/projects/metagenus/rarity/illusorr-metagenus-rarity-' + a.code + '.webp';
         cells.forEach((c, k) => c.classList.toggle('sel', k === idx));
       }
       function select(idx) {

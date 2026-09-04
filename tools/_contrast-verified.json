@@ -1,0 +1,1244 @@
+[
+ {
+  "page": "/index.html",
+  "el": "span.",
+  "text": "02",
+  "ratio": 1.16,
+  "need": 4.5,
+  "size": 12,
+  "ink": [
+   224,
+   224,
+   224
+  ],
+  "ground": [
+   240,
+   240,
+   240
+  ]
+ },
+ {
+  "page": "/index.html",
+  "el": "span.",
+  "text": "03",
+  "ratio": 1.29,
+  "need": 4.5,
+  "size": 12,
+  "ink": [
+   64,
+   64,
+   64
+  ],
+  "ground": [
+   80,
+   80,
+   80
+  ]
+ },
+ {
+  "page": "/index.html",
+  "el": "span.",
+  "text": "04",
+  "ratio": 1.02,
+  "need": 4.5,
+  "size": 12,
+  "ink": [
+   96,
+   96,
+   112
+  ],
+  "ground": [
+   96,
+   96,
+   96
+  ]
+ },
+ {
+  "page": "/index.html",
+  "el": "div.rr",
+  "text": "Scroll \u2193",
+  "ratio": 2.35,
+  "need": 4.5,
+  "size": 11,
+  "ink": [
+   144,
+   160,
+   176
+  ],
+  "ground": [
+   240,
+   240,
+   240
+  ]
+ },
+ {
+  "page": "/index.html",
+  "el": "a.seeall",
+  "text": "See all projects \u2197",
+  "ratio": 1.58,
+  "need": 4.5,
+  "size": 11,
+  "ink": [
+   192,
+   192,
+   208
+  ],
+  "ground": [
+   240,
+   240,
+   240
+  ]
+ },
+ {
+  "page": "/index.html",
+  "el": "span.",
+  "text": "Ambience",
+  "ratio": 2.94,
+  "need": 4.5,
+  "size": 10.5,
+  "ink": [
+   176,
+   176,
+   192
+  ],
+  "ground": [
+   96,
+   96,
+   96
+  ]
+ },
+ {
+  "page": "/index.html",
+  "el": "h3.disp",
+  "text": "Content & film",
+  "ratio": 2.35,
+  "need": 3.0,
+  "size": 68,
+  "ink": [
+   144,
+   160,
+   176
+  ],
+  "ground": [
+   240,
+   240,
+   240
+  ]
+ },
+ {
+  "page": "/index.html",
+  "el": "p.",
+  "text": "Films, campaigns, and imag",
+  "ratio": 1.58,
+  "need": 4.5,
+  "size": 18,
+  "ink": [
+   192,
+   192,
+   208
+  ],
+  "ground": [
+   240,
+   240,
+   240
+  ]
+ },
+ {
+  "page": "/index.html",
+  "el": "span.wnum",
+  "text": "02",
+  "ratio": 2.12,
+  "need": 3.0,
+  "size": 115.2,
+  "ink": [
+   64,
+   64,
+   96
+  ],
+  "ground": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "page": "/index.html",
+  "el": "span.wnum",
+  "text": "03",
+  "ratio": 2.12,
+  "need": 3.0,
+  "size": 115.2,
+  "ink": [
+   64,
+   64,
+   96
+  ],
+  "ground": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "page": "/index.html",
+  "el": "span.wnum",
+  "text": "04",
+  "ratio": 2.12,
+  "need": 3.0,
+  "size": 115.2,
+  "ink": [
+   64,
+   64,
+   96
+  ],
+  "ground": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "page": "/index.html",
+  "el": "div.wwd-method",
+  "text": "Our production is powered ",
+  "ratio": 2.46,
+  "need": 4.5,
+  "size": 12,
+  "ink": [
+   128,
+   144,
+   160
+  ],
+  "ground": [
+   80,
+   80,
+   80
+  ]
+ },
+ {
+  "page": "/index.html",
+  "el": "span.sr-num",
+  "text": "01",
+  "ratio": 2.35,
+  "need": 4.5,
+  "size": 11,
+  "ink": [
+   144,
+   160,
+   176
+  ],
+  "ground": [
+   240,
+   240,
+   240
+  ]
+ },
+ {
+  "page": "/index.html",
+  "el": "div.sr-name",
+  "text": "Beauty & Fragrance",
+  "ratio": 1.58,
+  "need": 3.0,
+  "size": 24,
+  "ink": [
+   192,
+   192,
+   208
+  ],
+  "ground": [
+   240,
+   240,
+   240
+  ]
+ },
+ {
+  "page": "/index.html",
+  "el": "div.sr-desc",
+  "text": "Campaign grade content and",
+  "ratio": 2.12,
+  "need": 4.5,
+  "size": 13,
+  "ink": [
+   64,
+   64,
+   96
+  ],
+  "ground": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "page": "/index.html",
+  "el": "span.sr-num",
+  "text": "03",
+  "ratio": 1.59,
+  "need": 4.5,
+  "size": 11,
+  "ink": [
+   48,
+   48,
+   48
+  ],
+  "ground": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "page": "/index.html",
+  "el": "div.sr-name",
+  "text": "Real Estate & Architecture",
+  "ratio": 2.07,
+  "need": 3.0,
+  "size": 24,
+  "ink": [
+   64,
+   64,
+   80
+  ],
+  "ground": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "page": "/index.html",
+  "el": "span.sr-num",
+  "text": "04",
+  "ratio": 1.31,
+  "need": 4.5,
+  "size": 11,
+  "ink": [
+   32,
+   32,
+   48
+  ],
+  "ground": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "page": "/index.html",
+  "el": "div.sr-name",
+  "text": "Gaming, Worlds & IP",
+  "ratio": 1.59,
+  "need": 3.0,
+  "size": 24,
+  "ink": [
+   48,
+   48,
+   48
+  ],
+  "ground": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "page": "/index.html",
+  "el": "span.sr-num",
+  "text": "05",
+  "ratio": 1.62,
+  "need": 4.5,
+  "size": 11,
+  "ink": [
+   48,
+   48,
+   64
+  ],
+  "ground": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "page": "/index.html",
+  "el": "div.sr-name",
+  "text": "Culture & Immersive",
+  "ratio": 1.31,
+  "need": 3.0,
+  "size": 24,
+  "ink": [
+   32,
+   32,
+   48
+  ],
+  "ground": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "page": "/index.html",
+  "el": "span.sr-num",
+  "text": "06",
+  "ratio": 2.46,
+  "need": 4.5,
+  "size": 11,
+  "ink": [
+   128,
+   144,
+   160
+  ],
+  "ground": [
+   80,
+   80,
+   80
+  ]
+ },
+ {
+  "page": "/index.html",
+  "el": "div.sr-desc",
+  "text": "Brand, web, and product fo",
+  "ratio": 2.53,
+  "need": 4.5,
+  "size": 13,
+  "ink": [
+   64,
+   80,
+   96
+  ],
+  "ground": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "page": "/index.html",
+  "el": "div.blabel",
+  "text": "Selected work",
+  "ratio": 1.59,
+  "need": 3.0,
+  "size": 43.2,
+  "ink": [
+   48,
+   48,
+   48
+  ],
+  "ground": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "page": "/index.html",
+  "el": "a.cta-ghost",
+  "text": "Join the Collective",
+  "ratio": 2.35,
+  "need": 4.5,
+  "size": 12,
+  "ink": [
+   144,
+   160,
+   176
+  ],
+  "ground": [
+   240,
+   240,
+   240
+  ]
+ },
+ {
+  "page": "/index.html",
+  "el": "p.sf-say",
+  "text": "A multidisciplinary studio",
+  "ratio": 1.59,
+  "need": 4.5,
+  "size": 15,
+  "ink": [
+   48,
+   48,
+   48
+  ],
+  "ground": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "page": "/index.html",
+  "el": "a.sf-mail",
+  "text": "hello@illusorr.com",
+  "ratio": 2.53,
+  "need": 3.0,
+  "size": 31.68,
+  "ink": [
+   64,
+   80,
+   96
+  ],
+  "ground": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "page": "/index.html",
+  "el": "b.",
+  "text": "In partnership with",
+  "ratio": 1.31,
+  "need": 4.5,
+  "size": 12,
+  "ink": [
+   32,
+   32,
+   48
+  ],
+  "ground": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "page": "/index.html",
+  "el": "h4.",
+  "text": "Navigate",
+  "ratio": 1.59,
+  "need": 4.5,
+  "size": 12,
+  "ink": [
+   48,
+   48,
+   48
+  ],
+  "ground": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "page": "/index.html",
+  "el": "a.",
+  "text": "Home",
+  "ratio": 1.63,
+  "need": 4.5,
+  "size": 14,
+  "ink": [
+   32,
+   48,
+   48
+  ],
+  "ground": [
+   64,
+   80,
+   80
+  ]
+ },
+ {
+  "page": "/index.html",
+  "el": "a.",
+  "text": "About",
+  "ratio": 1.29,
+  "need": 4.5,
+  "size": 14,
+  "ink": [
+   80,
+   80,
+   96
+  ],
+  "ground": [
+   64,
+   64,
+   80
+  ]
+ },
+ {
+  "page": "/index.html",
+  "el": "a.",
+  "text": "Lab",
+  "ratio": 1.65,
+  "need": 4.5,
+  "size": 14,
+  "ink": [
+   80,
+   96,
+   96
+  ],
+  "ground": [
+   48,
+   64,
+   64
+  ]
+ },
+ {
+  "page": "/index.html",
+  "el": "a.",
+  "text": "Collective",
+  "ratio": 2.46,
+  "need": 4.5,
+  "size": 14,
+  "ink": [
+   128,
+   144,
+   160
+  ],
+  "ground": [
+   80,
+   80,
+   80
+  ]
+ },
+ {
+  "page": "/work.html",
+  "el": "span.",
+  "text": "03",
+  "ratio": 1.53,
+  "need": 4.5,
+  "size": 12,
+  "ink": [
+   32,
+   48,
+   48
+  ],
+  "ground": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "page": "/work.html",
+  "el": "span.",
+  "text": "06",
+  "ratio": 1.16,
+  "need": 4.5,
+  "size": 12,
+  "ink": [
+   16,
+   32,
+   48
+  ],
+  "ground": [
+   0,
+   16,
+   32
+  ]
+ },
+ {
+  "page": "/work.html",
+  "el": "span.",
+  "text": "07",
+  "ratio": 1.18,
+  "need": 4.5,
+  "size": 12,
+  "ink": [
+   16,
+   32,
+   64
+  ],
+  "ground": [
+   16,
+   16,
+   16
+  ]
+ },
+ {
+  "page": "/work.html",
+  "el": "span.",
+  "text": "Abu Dhabi \u00b7 Yas Creative H",
+  "ratio": 1.6,
+  "need": 4.5,
+  "size": 11,
+  "ink": [
+   32,
+   48,
+   80
+  ],
+  "ground": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "page": "/projects/aquatic-architects.html",
+  "el": "span.",
+  "text": "06",
+  "ratio": 1.02,
+  "need": 4.5,
+  "size": 12,
+  "ink": [
+   0,
+   16,
+   16
+  ],
+  "ground": [
+   16,
+   16,
+   16
+  ]
+ },
+ {
+  "page": "/projects/aquatic-architects.html",
+  "el": "span.",
+  "text": "07",
+  "ratio": 1.08,
+  "need": 4.5,
+  "size": 12,
+  "ink": [
+   0,
+   0,
+   0
+  ],
+  "ground": [
+   0,
+   16,
+   16
+  ]
+ },
+ {
+  "page": "/contact.html",
+  "el": "span.",
+  "text": "02",
+  "ratio": 2.05,
+  "need": 4.5,
+  "size": 12,
+  "ink": [
+   48,
+   64,
+   112
+  ],
+  "ground": [
+   0,
+   0,
+   32
+  ]
+ },
+ {
+  "page": "/contact.html",
+  "el": "span.",
+  "text": "04",
+  "ratio": 1.01,
+  "need": 4.5,
+  "size": 12,
+  "ink": [
+   0,
+   0,
+   16
+  ],
+  "ground": [
+   0,
+   0,
+   32
+  ]
+ },
+ {
+  "page": "/contact.html",
+  "el": "span.",
+  "text": "05",
+  "ratio": 1.02,
+  "need": 4.5,
+  "size": 12,
+  "ink": [
+   16,
+   16,
+   32
+  ],
+  "ground": [
+   0,
+   16,
+   32
+  ]
+ },
+ {
+  "page": "/contact.html",
+  "el": "span.",
+  "text": "06",
+  "ratio": 1.07,
+  "need": 4.5,
+  "size": 12,
+  "ink": [
+   0,
+   16,
+   32
+  ],
+  "ground": [
+   0,
+   0,
+   32
+  ]
+ },
+ {
+  "page": "/contact.html",
+  "el": "button.il-cap-new",
+  "text": "New question",
+  "ratio": 2.64,
+  "need": 4.5,
+  "size": 10,
+  "ink": [
+   80,
+   80,
+   96
+  ],
+  "ground": [
+   0,
+   0,
+   16
+  ]
+ },
+ {
+  "page": "/collective.html",
+  "el": "span.",
+  "text": "Abu Dhabi \u00b7 Yas Creative H",
+  "ratio": 3.4,
+  "need": 4.5,
+  "size": 11,
+  "ink": [
+   96,
+   96,
+   112
+  ],
+  "ground": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "page": "/collective.html",
+  "el": "span.pnl-tag",
+  "text": "01 / 09 \u00a0\u00b7\u00a0 Collective",
+  "ratio": 3.4,
+  "need": 4.5,
+  "size": 11,
+  "ink": [
+   96,
+   96,
+   112
+  ],
+  "ground": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "page": "/collective.html",
+  "el": "p.",
+  "text": "Learn the studio pipelines",
+  "ratio": 1.12,
+  "need": 4.5,
+  "size": 13,
+  "ink": [
+   16,
+   16,
+   32
+  ],
+  "ground": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "page": "/collective.html",
+  "el": "p.",
+  "text": "Members work from wherever",
+  "ratio": 4.35,
+  "need": 4.5,
+  "size": 13,
+  "ink": [
+   112,
+   112,
+   112
+  ],
+  "ground": [
+   240,
+   240,
+   240
+  ]
+ },
+ {
+  "page": "/collective.html",
+  "el": "span.swm-f-lbl",
+  "text": "Filter by discipline",
+  "ratio": 1.12,
+  "need": 4.5,
+  "size": 11,
+  "ink": [
+   16,
+   16,
+   32
+  ],
+  "ground": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "page": "/collective.html",
+  "el": "button.swm-f",
+  "text": "3D artists",
+  "ratio": 1.12,
+  "need": 4.5,
+  "size": 11,
+  "ink": [
+   16,
+   16,
+   32
+  ],
+  "ground": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "page": "/collective.html",
+  "el": "button.swm-f",
+  "text": "Environment artists",
+  "ratio": 1.12,
+  "need": 4.5,
+  "size": 11,
+  "ink": [
+   16,
+   16,
+   32
+  ],
+  "ground": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "page": "/collective.html",
+  "el": "button.swm-f",
+  "text": "Character artists",
+  "ratio": 1.12,
+  "need": 4.5,
+  "size": 11,
+  "ink": [
+   16,
+   16,
+   32
+  ],
+  "ground": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "page": "/collective.html",
+  "el": "button.swm-f",
+  "text": "Game developers",
+  "ratio": 1.12,
+  "need": 4.5,
+  "size": 11,
+  "ink": [
+   16,
+   16,
+   32
+  ],
+  "ground": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "page": "/collective.html",
+  "el": "button.swm-f",
+  "text": "AI content creators",
+  "ratio": 1.12,
+  "need": 4.5,
+  "size": 11,
+  "ink": [
+   16,
+   16,
+   32
+  ],
+  "ground": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "page": "/collective.html",
+  "el": "button.swm-f",
+  "text": "Motion designers",
+  "ratio": 1.12,
+  "need": 4.5,
+  "size": 11,
+  "ink": [
+   16,
+   16,
+   32
+  ],
+  "ground": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "page": "/collective.html",
+  "el": "button.swm-f",
+  "text": "Technical artists",
+  "ratio": 1.12,
+  "need": 4.5,
+  "size": 11,
+  "ink": [
+   16,
+   16,
+   32
+  ],
+  "ground": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "page": "/collective.html",
+  "el": "button.swm-f",
+  "text": "Web developers",
+  "ratio": 1.12,
+  "need": 4.5,
+  "size": 11,
+  "ink": [
+   16,
+   16,
+   32
+  ],
+  "ground": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "page": "/collective.html",
+  "el": "button.swm-f",
+  "text": "Producers",
+  "ratio": 1.12,
+  "need": 4.5,
+  "size": 11,
+  "ink": [
+   16,
+   16,
+   32
+  ],
+  "ground": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "page": "/collective.html",
+  "el": "em.",
+  "text": "Browser configurator, WebG",
+  "ratio": 2.03,
+  "need": 4.5,
+  "size": 12,
+  "ink": [
+   64,
+   64,
+   64
+  ],
+  "ground": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "page": "/collective.html",
+  "el": "span.opb-cell",
+  "text": "Culture",
+  "ratio": 2.03,
+  "need": 4.5,
+  "size": 12,
+  "ink": [
+   64,
+   64,
+   64
+  ],
+  "ground": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "page": "/collective.html",
+  "el": "em.",
+  "text": "Directed generation for li",
+  "ratio": 1.27,
+  "need": 4.5,
+  "size": 12,
+  "ink": [
+   16,
+   32,
+   48
+  ],
+  "ground": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "page": "/collective.html",
+  "el": "em.",
+  "text": "Owns the generative pipeli",
+  "ratio": 1.26,
+  "need": 4.5,
+  "size": 12,
+  "ink": [
+   16,
+   32,
+   48
+  ],
+  "ground": [
+   0,
+   0,
+   16
+  ]
+ },
+ {
+  "page": "/collective.html",
+  "el": "span.opb-cell",
+  "text": "Business",
+  "ratio": 1.27,
+  "need": 4.5,
+  "size": 12,
+  "ink": [
+   16,
+   32,
+   48
+  ],
+  "ground": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "page": "/collective.html",
+  "el": "span.",
+  "text": "Updated September 2026",
+  "ratio": 1.27,
+  "need": 4.5,
+  "size": 12,
+  "ink": [
+   16,
+   32,
+   48
+  ],
+  "ground": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "page": "/collective.html",
+  "el": "a.",
+  "text": "Real estate",
+  "ratio": 4.27,
+  "need": 4.5,
+  "size": 14,
+  "ink": [
+   112,
+   112,
+   128
+  ],
+  "ground": [
+   240,
+   240,
+   240
+  ]
+ },
+ {
+  "page": "/collective.html",
+  "el": "h4.",
+  "text": "Studio",
+  "ratio": 1.58,
+  "need": 4.5,
+  "size": 12,
+  "ink": [
+   176,
+   192,
+   240
+  ],
+  "ground": [
+   240,
+   240,
+   240
+  ]
+ },
+ {
+  "page": "/collective.html",
+  "el": "a.",
+  "text": "Start a brief",
+  "ratio": 1.58,
+  "need": 4.5,
+  "size": 14,
+  "ink": [
+   176,
+   192,
+   240
+  ],
+  "ground": [
+   240,
+   240,
+   240
+  ]
+ },
+ {
+  "page": "/collective.html",
+  "el": "a.",
+  "text": "Instagram",
+  "ratio": 2.76,
+  "need": 4.5,
+  "size": 14,
+  "ink": [
+   144,
+   144,
+   160
+  ],
+  "ground": [
+   240,
+   240,
+   240
+  ]
+ },
+ {
+  "page": "/collective.html",
+  "el": "a.",
+  "text": "LinkedIn",
+  "ratio": 2.76,
+  "need": 4.5,
+  "size": 14,
+  "ink": [
+   144,
+   144,
+   160
+  ],
+  "ground": [
+   240,
+   240,
+   240
+  ]
+ }
+]
