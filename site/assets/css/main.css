@@ -43,9 +43,25 @@
   section.light{background:var(--cream);color:var(--cream-ink)}
   section.dark{background:#070a16}
   section.compact{min-height:auto;padding-top:100px;padding-bottom:100px}
-  /* full-screen snap: each section fills the viewport, square edges, one at a time */
-  html{scroll-snap-type:y proximity}
-  .snap{scroll-snap-align:start}
+  /* SNAP IS OFF. It only ever applied above 900px (the rule below turns it off
+     on phone and tablet) and index.html is the only page with .snap sections,
+     so this was desktop-landing behaviour alone.
+
+     Measured cause of the jitter across the first three beats: the snap points
+     are the hero at 0 and .breath at 12,960px, because the three tall rigs
+     between them — .wwa-scroll 2700px, .reelwwd 5400px, .whofor-scroll 4860px —
+     carry no scroll-snap-align at all. Proximity snapping therefore treats the
+     entire run as "near the hero" and drags you back to it: six consecutive
+     scrollTo calls at 50, 100, 150, 200, 250 and 300 all landed at 0.
+
+     Sticky is NOT the cause and switching it off would not have helped. On
+     phone and tablet the sticky rigs are already flattened to position:static
+     by home-mobile.css and snap is already off, and the same complaint appears
+     there — which is what ruled sticky out.
+
+     .snap is kept as a hook; it simply has nothing to align to now. To bring
+     snapping back, every tall rig needs its own snap target first. */
+  .snap{scroll-snap-align:none}
   .t-curtain,.t-curtain-dark{position:relative;z-index:2}
   .eyebrow{font-size:12px;letter-spacing:.24em;color:var(--cold);margin-bottom:20px;text-transform:uppercase;font-weight:600;display:flex;align-items:center;gap:12px}
   .eyebrow::before{content:"";width:26px;height:1px;background:currentColor;flex:none}
