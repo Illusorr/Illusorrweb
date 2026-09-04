@@ -86,10 +86,17 @@ html[data-touch] .il-topbar::before {
   mask-image: none;
   /* stops measured from the BOTTOM, so the fade sits on the bar's edge at
      any height — 88px normally, taller where a notch inset applies */
+  /* Glass, not a slab. The blur is what makes a translucent band readable:
+     without it .5 alpha over a busy hero is just a grey haze with type in it.
+     backdrop-filter is safe here ONLY because the mask is off — it was the
+     PAIR of them that WebKit rendered as a flat pale plate, not the filter
+     alone. If the pale plate ever returns on iOS, this is the line to drop. */
+  -webkit-backdrop-filter: blur(18px) saturate(1.25);
+  backdrop-filter: blur(18px) saturate(1.25);
   background: linear-gradient(180deg,
-    rgb(5, 6, 10) 0,
-    rgb(5, 6, 10) calc(100% - 56px),
-    rgba(5, 6, 10, .55) calc(100% - 22px),
+    rgba(5, 6, 10, .58) 0,
+    rgba(5, 6, 10, .58) calc(100% - 56px),
+    rgba(5, 6, 10, .34) calc(100% - 22px),
     rgba(5, 6, 10, 0) 100%);
 }
 /* The plate must never disagree with the wordmark sitting on it. on-light is
@@ -100,16 +107,16 @@ html[data-touch] .il-topbar::before {
    Ordered after .on-light on purpose — equal specificity, later wins. */
 html[data-touch] .il-topbar.on-light::before {
   background: linear-gradient(180deg,
-    rgb(5, 6, 10) 0,
-    rgb(5, 6, 10) calc(100% - 56px),
-    rgba(5, 6, 10, .55) calc(100% - 22px),
+    rgba(5, 6, 10, .58) 0,
+    rgba(5, 6, 10, .58) calc(100% - 56px),
+    rgba(5, 6, 10, .34) calc(100% - 22px),
     rgba(5, 6, 10, 0) 100%);
 }
 html[data-touch] .il-topbar.brand-on-light::before {
   background: linear-gradient(180deg,
-    rgb(255, 255, 255) 0,
-    rgb(255, 255, 255) calc(100% - 56px),
-    rgba(255, 255, 255, .55) calc(100% - 22px),
+    rgba(255, 255, 255, .72) 0,
+    rgba(255, 255, 255, .72) calc(100% - 56px),
+    rgba(255, 255, 255, .42) calc(100% - 22px),
     rgba(255, 255, 255, 0) 100%);
 }
 

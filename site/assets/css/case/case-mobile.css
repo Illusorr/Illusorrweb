@@ -502,7 +502,15 @@ html[data-touch] .plan-canvas {
 }
 /* the last line of defence: content may be clipped or swipeable, but the
    page itself never scrolls sideways */
-html[data-touch] body { overflow-x: hidden; }
+/* clip, not hidden. overflow-x:hidden forces the other axis to auto, which
+   makes the BODY the scroll container instead of the document — and that is
+   the one structural difference between a case study and a shell page:
+   about and index compute clip/visible here, every case page computed
+   hidden/auto. iOS treats a body-scroller differently from a document
+   scroller, including what it paints above the viewport, which is where the
+   strip over the header comes from. clip does the same job for the sideways
+   overflow this rule exists for without creating a scroller. */
+html[data-touch] body { overflow-x: clip; }
 
 /* a wide table or spec grid gets a real scroll box rather than a squeeze */
 html[data-touch] table {
