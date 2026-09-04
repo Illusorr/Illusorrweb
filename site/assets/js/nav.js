@@ -38,6 +38,16 @@
      painted white on white. The result is cached per src and per tenth of the
      image's height, so scrolling past one picture costs a handful of 8x8 reads
      rather than one per frame. */
+  /* share of the header band this element actually covers */
+  function coversBand(el){
+    try{
+      var br=tb.getBoundingClientRect(), r=el.getBoundingClientRect();
+      var w=Math.min(br.right,r.right)-Math.max(br.left,r.left);
+      var h=Math.min(br.bottom,r.bottom)-Math.max(br.top,r.top);
+      if(w<=0||h<=0) return false;
+      return (w*h)/(br.width*br.height) >= 0.3;
+    }catch(e){ return false; }
+  }
   function imgTone(img){
     var key=img.currentSrc||img.src; if(!key) return null;
     if(!img.complete||!img.naturalWidth) return null;
@@ -85,7 +95,10 @@
            white scrim with a dark logo over a dark band on optiverse. If the
            image cannot be read (cross-origin, not yet decoded) this falls
            through to the declaration, which is still the right default. */
-        if(n.tagName==='IMG'){ var iv0=imgTone(n); if(iv0!==null) return iv0; }
+        /* An image may speak for the band only if it actually fills enough of
+           it. A 90x60 client signature covering 2.7% of the bar was flipping
+           the whole header to its light-mode logo over a dark hero. */
+        if(n.tagName==='IMG'&&coversBand(n)){ var iv0=imgTone(n); if(iv0!==null) return iv0; }
         if(n.closest){
           var toned=n.closest('[data-tone],[data-bg-theme]');
           if(toned) return (toned.getAttribute('data-tone')||toned.getAttribute('data-bg-theme'))==='light';
@@ -160,13 +173,28 @@
 
   /* ── glass band ────────────────────────────────────────────────── */
   (function(){
-    var SEL='h1,h2,h3,h4,h5,p,li,figcaption,blockquote,.disp,.lead,.eyebrow,.mono,.sr-name,.sr-desc,.t-meta,.next-k,.conv-eyebrow';
+    /* Images belong here as much as text does. A client logo or a bright
+       still sliding under a transparent header collides with the ILLUSORR
+       mark exactly the way a headline does, and the scrim never appeared
+       for it because the hit test required textContent. */
+    var SEL='h1,h2,h3,h4,h5,p,li,figcaption,blockquote,.disp,.lead,.eyebrow,.mono,'
+      +'.sr-name,.sr-desc,.t-meta,.next-k,.conv-eyebrow,'
+      +'img,svg,video,canvas,picture';
     var hits=new Set(), io=null, band=0, scan=null;
     function observeAll(){
       var nodes=document.querySelectorAll(SEL);
       for(var i=0;i<nodes.length;i++){
         var n=nodes[i];
         if(tb.contains(n)||(n.closest&&n.closest('.il-overlay,.ill-totop'))) continue;
+        /* A fixed backdrop (the home WebGL field, a full-bleed page canvas)
+           always intersects the band without ever scrolling under it, so it
+           would pin the scrim on permanently. Only scrolling content counts. */
+        if(/^(IMG|SVG|VIDEO|CANVAS|PICTURE)$/.test(n.tagName)){
+          var ps=getComputedStyle(n).position;
+          if(ps==='fixed') continue;
+          var fx=n.closest&&n.closest('.hero-field,.brief-field,#nf');
+          if(fx) continue;
+        }
         io.observe(n);
       }
     }
@@ -177,7 +205,13 @@
       io=new IntersectionObserver(function(entries){
         for(var i=0;i<entries.length;i++){
           var e=entries[i];
-          if(e.isIntersecting&&e.target.textContent&&e.target.textContent.trim()) hits.add(e.target);
+          var el=e.target, isMedia=/^(IMG|SVG|VIDEO|CANVAS|PICTURE)$/.test(el.tagName);
+          /* media has no textContent, so judge it on being visible and big
+             enough to read as an object rather than a hairline rule */
+          var counts=isMedia
+            ? (el.getBoundingClientRect().width>24&&el.getBoundingClientRect().height>14)
+            : !!(el.textContent&&el.textContent.trim());
+          if(e.isIntersecting&&counts) hits.add(el);
           else hits.delete(e.target);
         }
         tb.classList.toggle('is-glass',hits.size>0);
