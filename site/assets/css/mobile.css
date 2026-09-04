@@ -87,8 +87,8 @@ html[data-touch] .il-topbar::before {
   /* stops measured from the BOTTOM, so the fade sits on the bar's edge at
      any height — 88px normally, taller where a notch inset applies */
   background: linear-gradient(180deg,
-    rgba(5, 6, 10, .95) 0,
-    rgba(5, 6, 10, .95) calc(100% - 56px),
+    rgb(5, 6, 10) 0,
+    rgb(5, 6, 10) calc(100% - 56px),
     rgba(5, 6, 10, .55) calc(100% - 22px),
     rgba(5, 6, 10, 0) 100%);
 }
@@ -100,15 +100,15 @@ html[data-touch] .il-topbar::before {
    Ordered after .on-light on purpose — equal specificity, later wins. */
 html[data-touch] .il-topbar.on-light::before {
   background: linear-gradient(180deg,
-    rgba(5, 6, 10, .95) 0,
-    rgba(5, 6, 10, .95) calc(100% - 56px),
+    rgb(5, 6, 10) 0,
+    rgb(5, 6, 10) calc(100% - 56px),
     rgba(5, 6, 10, .55) calc(100% - 22px),
     rgba(5, 6, 10, 0) 100%);
 }
 html[data-touch] .il-topbar.brand-on-light::before {
   background: linear-gradient(180deg,
-    rgba(255, 255, 255, .95) 0,
-    rgba(255, 255, 255, .95) calc(100% - 56px),
+    rgb(255, 255, 255) 0,
+    rgb(255, 255, 255) calc(100% - 56px),
     rgba(255, 255, 255, .55) calc(100% - 22px),
     rgba(255, 255, 255, 0) 100%);
 }
