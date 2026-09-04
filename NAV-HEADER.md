@@ -67,10 +67,14 @@ goes back to plain `inset: 0`.
 extra 220px of box intercepts nothing. Verify with a hit test just under the
 controls: it must return the page, not the bar.
 
-The band is opaque, with its softness in the last 44px where it fades out
-rather than ending on a rule. There is no working translucent version: .58
-showed the strip, .72 let a paragraph through on collective, .93 still ghosted
-a headline on work. Glass needs a backdrop blur and Rule 2 forbids it.
+The band is glass over the bar and opaque above it. The upper stretch covers a
+strip of page with nothing of ours drawn in it, so it can be solid; over the
+bar itself it is .62 on dark and .72 on paper, and the page reads through. The
+studio asked for glass explicitly and the page showing through it is intended,
+not a defect. Do not "fix" it by raising the opacity.
+
+Stops are measured from the bottom so both zones land on the bar's own edge at
+either height, 88px or 147px under a notch inset.
 
 ## Rule 4: case pages must scroll the document, not the body
 
