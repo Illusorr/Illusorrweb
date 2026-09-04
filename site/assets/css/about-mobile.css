@@ -23,7 +23,7 @@
    FRAME · one gutter, one rhythm
 
    main.css releases the track at this width but leaves 22px gutters and
-   min-height:100vh on each panel — five screens that are mostly empty.
+   min-height:100vh;min-height:100svh on each panel — five screens that are mostly empty.
    Panels size to their content instead.
    ═════════════════════════════════════════════════════════════════════ */
 /* ── THE 1,269px VOID ──────────────────────────────────────────────
@@ -47,7 +47,7 @@ html[data-touch] #aboutRoot .hsticky {
   min-height: 0 !important;
   overflow: visible !important;
 }
-/* .htrack keeps height:100vh in main.css with no 860px override, so once
+/* .htrack keeps height:100vh;height:100svh in main.css with no 860px override, so once
    the panels stack vertically they overflow their own track: the wrap
    measured 758px while holding 2,537px of panels, and the team section
    started underneath them. The track has to size to its panels. */
@@ -611,7 +611,7 @@ html[data-touch] #aboutRoot .hsticky {
   min-height: 0 !important;
   overflow: visible !important;
 }
-/* .htrack keeps height:100vh in main.css with no 860px override, so once
+/* .htrack keeps height:100vh;height:100svh in main.css with no 860px override, so once
    the panels stack vertically they overflow their own track: the wrap
    measured 758px while holding 2,537px of panels, and the team section
    started underneath them. The track has to size to its panels. */

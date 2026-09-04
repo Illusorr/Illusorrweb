@@ -175,7 +175,7 @@
      ───────────────────────────────────────────────────────────────── */
   section.hero {
     width: 100%; max-width: 100vw;
-    min-height: 100vh;
+    min-height: 100vh;min-height: 100svh;
     display: flex; flex-direction: column; justify-content: center;
     padding: clamp(96px, 14vh, 160px) var(--gutter) clamp(48px, 8vh, 96px);
     position: relative;
@@ -1339,7 +1339,7 @@
   .hero-scroll{ position:relative; height:210vh; height:210svh; }
   .hero-scroll > .hero{
     position:sticky; top:0;
-    height:100vh; height:100svh; min-height:0;
+    height:100vh;height:100svh; height:100svh; min-height:0;
     overflow:hidden;
     will-change:transform;
   }
@@ -1371,7 +1371,7 @@
   }
   @media (prefers-reduced-motion: reduce){
     .hero-scroll{ height:auto; }
-    .hero-scroll > .hero{ position:relative; height:auto; min-height:100vh; }
+    .hero-scroll > .hero{ position:relative; height:auto; min-height:100vh;min-height:100svh; }
     .hero-scroll .hero-figure,.hero-scroll .hero-inner{ transform:none; filter:none; opacity:1; }
   }
 </style>
@@ -1403,7 +1403,7 @@
   /* Cover media band, sits under the intro copy */
   .hero-media{ padding:0; }
   .hero-media .hm-inner{ width:100%; margin:0; }
-  .hero-media .hm-frame{ position:relative; width:100%; height:100vh; height:100svh; overflow:hidden; border-radius:0; background:color-mix(in srgb, var(--ink) 6%, transparent); }
+  .hero-media .hm-frame{ position:relative; width:100%; height:100vh;height:100svh; height:100svh; overflow:hidden; border-radius:0; background:color-mix(in srgb, var(--ink) 6%, transparent); }
   .hero-media .hm-cap{
     display:flex; flex-wrap:wrap; justify-content:space-between; gap:10px 30px;
     margin:16px auto 0; max-width:var(--maxw); padding:0 var(--gutter) clamp(90px,11vw,170px);

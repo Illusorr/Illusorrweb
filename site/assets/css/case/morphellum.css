@@ -1065,7 +1065,7 @@ three-d-stage:not(:defined){visibility:hidden}
   /* Cover media band, sits under the intro copy */
   .hero-media{ padding:0; }
   .hero-media .hm-inner{ width:100%; margin:0; }
-  .hero-media .hm-frame{ position:relative; width:100%; height:100vh; height:100svh; overflow:hidden; border-radius:0; background:color-mix(in srgb, var(--ink) 6%, transparent); }
+  .hero-media .hm-frame{ position:relative; width:100%; height:100vh;height:100svh; height:100svh; overflow:hidden; border-radius:0; background:color-mix(in srgb, var(--ink) 6%, transparent); }
   .hero-media .hm-cap{
     display:flex; flex-wrap:wrap; justify-content:space-between; gap:10px 30px;
     margin:16px auto 0; max-width:var(--maxw); padding:0 var(--gutter) clamp(90px,11vw,170px);
@@ -1106,7 +1106,7 @@ three-d-stage:not(:defined){visibility:hidden}
     font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--ink-soft);
   }
   @media (max-width:760px){ .vband .vb-frame{ height:clamp(340px,56vh,620px); } }
-  .vband-full .vb-frame{ height:100vh; }
+  .vband-full .vb-frame{ height:100vh;height:100svh; }
   @media (max-width:760px){ .vband-full .vb-frame{ height:72vh; } }
   /* The hero was pinned by aspect-ratio:21/9, so its height derived from its
      WIDTH and content could never grow it — that is what pushed the footer and

@@ -82,7 +82,7 @@ section.hero[data-tone="dark"]{ --hg1:#0533CC; --hg2:#0533CC; --hg3:#0533CC;
 @media (max-width:880px){ .space-copy{ max-width:none; background:linear-gradient(0deg,rgba(4,32,140,.94),rgba(4,32,140,.4) 70%,transparent) } .space-media::after{ background:linear-gradient(0deg,rgba(4,32,140,.6),transparent 60%) } }
 
 /* ── youtube facade ──────────────────────────────────────────────── */
-.vband-full .vb-frame{ height:100vh }
+.vband-full .vb-frame{ height:100vh;height:100svh }
 @media (max-width:760px){ .vband-full .vb-frame{ height:70vh } }
 .yt{ position:absolute; inset:0; cursor:pointer; overflow:hidden; background:#042BAE; --yt-scale:1.02 }
 .yt-poster{ width:100%; height:100%; object-fit:cover; display:block; transition:transform 1.1s cubic-bezier(.2,.7,.2,1), opacity .5s ease }

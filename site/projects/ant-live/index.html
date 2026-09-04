@@ -242,7 +242,7 @@
   .reach-r h5 { font-size:0.88rem; font-weight:600; color:var(--white); margin-bottom:4px; }
   .reach-r p { font-size:0.75rem; color:rgba(255,255,255,0.5); line-height:1.5; }
   .fac-stage { position:relative; height:220vh; background:var(--gray-100); }
-  .fac-hero { position:sticky; top:0; height:100vh; overflow:hidden; }
+  .fac-hero { position:sticky; top:0; height:100vh;height:100svh; overflow:hidden; }
   .fac-left { position:absolute; left:0; top:0; width:50%; height:100%; background:var(--gray-100); display:flex; flex-direction:column; justify-content:space-between; gap:40px; padding:clamp(56px,6vw,104px) clamp(32px,5vw,80px); z-index:1; }
   .fac-left .eyebrow { margin-bottom:18px; }
   .fac-left .s-title { font-size:clamp(2rem,3.4vw,3.4rem); line-height:1.05; letter-spacing:-0.03em; }
@@ -1040,7 +1040,7 @@
 
   /* ===== HERO PARTICLES ===== */
   .hero-scroll { position:relative; background:var(--black); height:300vh; }
-  .hero-sticky { position:sticky; top:0; height:100vh; overflow:hidden; display:flex; align-items:flex-end; }
+  .hero-sticky { position:sticky; top:0; height:100vh;height:100svh; overflow:hidden; display:flex; align-items:flex-end; }
   #heroCanvas { position:absolute; inset:0; width:100%; height:100%; display:block; z-index:1; }
   @media(prefers-reduced-motion:reduce){ .hero-scroll{ height:auto; } .hero-sticky{ position:relative; height:92vh; } }
 
@@ -4993,7 +4993,7 @@ function goTo(page, anchor) {
 </script>
 <style id="about-takeover">
   .about-scroll{ position:relative; z-index:3; height:200vh; background:var(--white); border-radius:30px 30px 0 0; margin-top:-56px; box-shadow:0 -30px 70px rgba(0,0,0,0.28); }
-  .about-sticky{ position:sticky; top:0; height:100vh; overflow:hidden; display:flex; align-items:center; }
+  .about-sticky{ position:sticky; top:0; height:100vh;height:100svh; overflow:hidden; display:flex; align-items:center; }
   .about-sticky > .container{ position:relative; z-index:2; width:100%; }
   .about-copy{ max-width:680px; will-change:opacity,transform; }
   .about-media{ position:absolute; z-index:4; left:52vw; top:37vh; width:46vw; height:25.9vw; border-radius:20px; overflow:hidden; background:#000; box-shadow:0 30px 70px rgba(0,0,0,0.3); will-change:left,top,width,height,border-radius; }
@@ -5032,7 +5032,7 @@ function goTo(page, anchor) {
 </script>
 <style id="flow-anim">
   .flow-scroll{ position:relative; z-index:4; background:#000; height:520vh; }
-  .flow-sticky{ position:sticky; top:0; height:100vh; overflow:hidden; }
+  .flow-sticky{ position:sticky; top:0; height:100vh;height:100svh; overflow:hidden; }
   #flowCanvas{ position:absolute; inset:0; width:100%; height:100%; display:block; }
   .flow-panels{ position:absolute; inset:0; z-index:2; pointer-events:none; }
   .flow-panel{ position:absolute; inset:0; opacity:0; transition:opacity .55s cubic-bezier(.16,1,.3,1); }
@@ -5247,7 +5247,7 @@ function goTo(page, anchor) {
 </script>
 <style id="globe-style">
   .map-stage{ position:relative; height:auto; background:#0A0A0A; }
-  .map-h{ position:static; top:auto; height:100vh; min-height:620px; padding:0 !important; display:flex; flex-direction:column; overflow:hidden; }
+  .map-h{ position:static; top:auto; height:100vh;height:100svh; min-height:620px; padding:0 !important; display:flex; flex-direction:column; overflow:hidden; }
   .mh-top{ display:flex; justify-content:space-between; align-items:flex-end; gap:48px; padding:clamp(84px,10vh,112px) clamp(24px,5vw,72px) 18px; flex-shrink:0; }
   .mh-head .eyebrow{ margin-bottom:14px; }
   .mh-head .s-title{ font-size:clamp(2rem,3.6vw,3.5rem); line-height:1.0; letter-spacing:-0.035em; }

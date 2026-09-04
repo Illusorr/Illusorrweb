@@ -39,7 +39,7 @@
   /* page system */
   .page{display:none;position:relative;z-index:2}
   .page.show{display:block}
-  section{position:relative;padding:0 56px;z-index:2;min-height:100vh;display:flex;flex-direction:column;justify-content:center}
+  section{position:relative;padding:0 56px;z-index:2;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center}
   section.light{background:var(--cream);color:var(--cream-ink)}
   section.dark{background:#070a16}
   section.compact{min-height:auto;padding-top:100px;padding-bottom:100px}
@@ -62,7 +62,7 @@
   .wtag{position:absolute;top:11px;left:13px;font-size:10px;letter-spacing:.1em;color:var(--faint);text-transform:uppercase}
   .play{width:54px;height:54px;border-radius:50%;border:1px solid rgba(142,162,255,.5);display:flex;align-items:center;justify-content:center;color:var(--cold);z-index:1}
   /* HERO — exact placement match to reference */
-  .hero{height:100vh;min-height:640px;padding:0;position:relative;overflow:hidden;background:#080a1a}
+  .hero{height:100vh;height:100svh;min-height:640px;padding:0;position:relative;overflow:hidden;background:#080a1a}
   .hero .fluidslot{position:absolute;inset:0;z-index:0;display:flex;align-items:center;justify-content:center;color:#232f52;font-size:11px;letter-spacing:.2em;text-transform:uppercase}
   /* headline block: left-aligned, positioned left-of-center as in reference */
   .hero .center{position:absolute;left:26%;top:51%;transform:translateY(-50%);z-index:3;text-align:left}
@@ -88,7 +88,7 @@
   .method{color:var(--dim);font-size:12px;margin-top:26px;font-weight:300;max-width:640px}
   section.light .method{color:var(--cream-dim)}
   /* REEL — large framed studio video */
-  .reel-sec{background:#070a16;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:70px 48px;position:relative}
+  .reel-sec{background:#070a16;min-height:100vh;min-height:100svh;display:flex;align-items:center;justify-content:center;padding:70px 48px;position:relative}
   .reel-frame{position:relative;width:min(1400px,92vw);aspect-ratio:16/9;border:1px solid rgba(142,162,255,.25)}
   .reel-frame .brk{position:absolute;width:26px;height:26px;border:1px solid rgba(142,162,255,.6)}
   .reel-frame .brk.tl{top:-1px;left:-1px;border-right:none;border-bottom:none}
@@ -110,7 +110,7 @@
   .reel-marks-r b{color:var(--cold)}
   /* REEL → WHAT WE DO — recede & emerge combined sticky stage */
   .reelwwd{position:relative;height:600vh;background:#070a16}
-  .rw-stage{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center}
+  .rw-stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:flex;align-items:center;justify-content:center}
   .rw-reel{position:absolute;z-index:4;will-change:transform,opacity}
   .rw-wwd{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:0 56px;opacity:0;will-change:opacity}
   .wwd-head{position:static;width:100%;display:flex;justify-content:space-between;align-items:center;margin-bottom:34px}
@@ -127,7 +127,7 @@
   .wwd-method{position:absolute;bottom:60px;left:56px;right:56px;text-align:left;color:var(--faint);font-size:12px;font-weight:300;letter-spacing:.02em}
   /* WHO WE ARE — sticky line-by-line reveal */
   .wwa-scroll{position:relative;height:300vh;background:var(--cream)}
-  .wwa-stage{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:center;padding:0 56px;overflow:hidden}
+  .wwa-stage{position:sticky;top:0;height:100vh;height:100svh;display:flex;flex-direction:column;justify-content:center;padding:0 56px;overflow:hidden}
   .wwa-stage .eyebrow{position:static;color:var(--indigo);margin:0 0 28px}
   .wwa-lines{max-width:1100px}
   .wwa-line{font-family:var(--disp);font-weight:700;font-size:clamp(30px,4.6vw,66px);line-height:1.08;letter-spacing:-.01em;color:var(--cream-ink);
@@ -137,14 +137,14 @@
   .wwa-foot .body{max-width:420px;margin:0}
   /* WHO WE DO IT FOR — full screen with media placeholder */
   /* BREATH — fluid field buffer before selected work */
-  .breath{position:relative;height:100vh;background:radial-gradient(50% 60% at 50% 45%,#101736,#070a16 72%);overflow:hidden;display:flex;align-items:center;justify-content:center}
+  .breath{position:relative;height:100vh;height:100svh;background:radial-gradient(50% 60% at 50% 45%,#101736,#070a16 72%);overflow:hidden;display:flex;align-items:center;justify-content:center}
   .breath canvas{position:absolute;inset:0}
   .breath .blabel{position:relative;z-index:2;font-family:var(--head);font-size:clamp(22px,3vw,46px);letter-spacing:.08em;color:rgba(210,218,240,.85);text-transform:uppercase;font-weight:400}
   .breath-light{background:radial-gradient(50% 60% at 50% 45%,#eef1f8,#ffffff 72%)}
   .breath-light .blabel{color:var(--indigo)}
   .breath-light .blabel::after{content:"";display:block;width:52px;height:2px;background:var(--indigo);margin:18px auto 0}
   /* CLOSE — full-screen living close with fluid field */
-  .close-sec{position:relative;height:100vh;overflow:hidden;display:flex;flex-direction:column;background:#05060f;padding:0}
+  .close-sec{position:relative;height:100vh;height:100svh;overflow:hidden;display:flex;flex-direction:column;background:#05060f;padding:0}
   .close-glow{position:absolute;inset:0;z-index:1;background:radial-gradient(60% 60% at 50% 42%,transparent,rgba(5,6,15,.55));pointer-events:none}
   .close-center{position:relative;z-index:3;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 40px}
   .close-center .c-eyebrow{font-size:11px;letter-spacing:.28em;color:var(--cold);text-transform:uppercase;margin-bottom:28px;opacity:0;transform:translateY(20px);animation:cUp .9s cubic-bezier(.16,1,.3,1) .1s forwards}
@@ -235,7 +235,7 @@
      The frame is mounted only while the band is on screen: it is a WebGL
      scene, and holding a context for a section nobody is looking at costs
      the whole page its frame rate. */
-  .spaces-band{min-height:100vh;background:#020B11;display:flex;flex-direction:column;justify-content:center;padding:120px 56px;position:relative;overflow:hidden}
+  .spaces-band{min-height:100vh;min-height:100svh;background:#020B11;display:flex;flex-direction:column;justify-content:center;padding:120px 56px;position:relative;overflow:hidden}
   .sb-stage{position:absolute;inset:0;z-index:0}
   .sb-frame{position:absolute;inset:0;overflow:hidden;contain:strict}
   .sb-frame iframe{position:absolute;top:0;left:0;border:0;transform-origin:top left;pointer-events:none}
@@ -258,7 +258,7 @@
   .sb-actions{display:flex;align-items:center;gap:20px;margin-top:52px;flex-wrap:wrap}
   .sb-hint{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.34)}
   /* COLLECTIVE BAND — talent pipeline, after work before close */
-  .collective-band{min-height:100vh;background:#070a16;display:flex;flex-direction:column;justify-content:center;padding:120px 56px;position:relative;overflow:hidden}
+  .collective-band{min-height:100vh;min-height:100svh;background:#070a16;display:flex;flex-direction:column;justify-content:center;padding:120px 56px;position:relative;overflow:hidden}
   .cb-glow{position:absolute;inset:0;z-index:0;background:radial-gradient(46% 56% at 78% 40%,rgba(76,99,255,.18),transparent 60%);pointer-events:none;animation:cbFloat 14s ease-in-out infinite}
   @keyframes cbFloat{0%,100%{transform:translate(0,0)}50%{transform:translate(-6%,4%)}}
   .cb-in{position:relative;z-index:2;max-width:1100px;width:100%}
@@ -281,7 +281,7 @@
   .cb-cta{margin-top:56px;display:inline-flex}
   /* WHO WE DO IT FOR — white, sticky scroll-through all sector media */
   .whofor-scroll{position:relative;height:540vh;background:#fff}
-  .whofor{position:sticky;top:0;height:100vh;min-height:100vh;display:grid;grid-template-columns:46% 54%;overflow:hidden;background:#fff}
+  .whofor{position:sticky;top:0;height:100vh;height:100svh;min-height:100vh;min-height:100svh;display:grid;grid-template-columns:46% 54%;overflow:hidden;background:#fff}
   .wf-visual{position:relative;overflow:hidden;border-right:1px solid #e4e7ec;background:#fff;perspective:1400px;perspective-origin:50% 50%}
   /* isolation:isolate confines .wf-sheen's mix-blend-mode:screen to this
      stage. Without it the blend has no stacking context of its own, so the
@@ -415,7 +415,7 @@
   .conv-dark .conv-dots i{background:rgba(142,162,255,.16)}
   .conv-dark .conv-dots i.done{background:rgba(142,162,255,.4)}
   .conv-dark .conv-foot{color:#8b96ad}
-  .selwork-over{position:relative;z-index:5;background:#070a16;padding:100px 56px;min-height:100vh;display:flex;flex-direction:column;justify-content:center}
+  .selwork-over{position:relative;z-index:5;background:#070a16;padding:100px 56px;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center}
   /* who we do it for teaser row */
   .sector-teaser{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
   .sector-teaser span{border:1px solid var(--cream-line);border-radius:100px;padding:10px 17px;font-size:13px;color:var(--cream-dim)}
@@ -552,7 +552,7 @@
     .collective-band{padding:80px 22px;min-height:auto}
     .cb-steps{flex-direction:column;gap:20px}
     .cb-step{border-left:none;border-top:1px solid var(--line);padding-left:0;padding-top:16px;padding-right:0}
-    .close-sec{height:auto;min-height:100vh}
+    .close-sec{height:auto;min-height:100vh;min-height:100svh}
     .close-foot{grid-template-columns:1fr;gap:24px;text-align:center;padding:0 22px 30px}
     .cf-brand .top,.cf-right{justify-content:center;align-items:center}
     .cf-brand{display:flex;justify-content:center}
@@ -593,7 +593,7 @@
 #aboutRoot .top .orb{width:18px;height:18px;border-radius:50%;background:radial-gradient(circle at 36% 30%,#dbe2ff,#4c63ff 52%,#0a1033)}
 #aboutRoot .badge{position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:110;font-size:10px;letter-spacing:.2em;color:var(--cold);text-transform:uppercase;border:1px solid var(--line);border-radius:100px;padding:6px 14px;background:rgba(7,10,22,.7)}
 #aboutRoot .hwrap{height:460vh;position:relative}
-#aboutRoot .hsticky{position:sticky;top:0;height:100vh;overflow:hidden}
+#aboutRoot .hsticky{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
 #aboutRoot /* the reality environment layer morphs across the whole run */
   .env{position:absolute;inset:0;z-index:0}
 #aboutRoot .env .layer{position:absolute;inset:0;opacity:0;transition:opacity .1s linear}
@@ -602,8 +602,8 @@
 #aboutRoot .env .digital canvas{position:absolute;inset:0}
 #aboutRoot .env .virtual{background:radial-gradient(66% 76% at 62% 48%,#100b1e,#030308 78%)}
 #aboutRoot .env .grid{display:none}
-#aboutRoot .htrack{display:flex;height:100vh;position:relative;z-index:2;will-change:transform}
-#aboutRoot .panel{flex:none;width:100vw;height:100vh;display:flex;align-items:center;padding:0 7vw;position:relative}
+#aboutRoot .htrack{display:flex;height:100vh;height:100svh;position:relative;z-index:2;will-change:transform}
+#aboutRoot .panel{flex:none;width:100vw;height:100vh;height:100svh;display:flex;align-items:center;padding:0 7vw;position:relative}
 #aboutRoot .realtag{position:absolute;top:16vh;left:7vw;font-size:11px;letter-spacing:.24em;color:var(--cold);text-transform:uppercase;display:flex;align-items:center;gap:10px}
 #aboutRoot .realtag::before{content:"";width:20px;height:1px;background:var(--cold)}
 #aboutRoot /* intro */
@@ -760,7 +760,7 @@
 #aboutRoot .ecard .mk{font-size:11px;color:var(--cold);letter-spacing:.14em;margin-top:4px}
 #aboutRoot .ecard ul{list-style:none;margin-top:22px;flex:1}
 #aboutRoot .ecard li{font-size:13px;color:var(--dim);padding:9px 0;border-bottom:1px solid rgba(27,34,49,.6)}
-#aboutRoot .close{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:radial-gradient(60% 60% at 50% 45%,#050822,#030409 74%)}
+#aboutRoot .close{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:radial-gradient(60% 60% at 50% 45%,#050822,#030409 74%)}
 #aboutRoot .close h2{font-size:clamp(36px,6vw,92px);font-weight:800;letter-spacing:-.03em;line-height:.98}
 #aboutRoot .close h2 b{color:var(--cold)}
 #aboutRoot .close .sub{color:var(--dim);font-size:16px;font-weight:300;margin-top:20px}
@@ -769,7 +769,7 @@
   @media(max-width:860px){#aboutRoot .hwrap{height:auto}
 #aboutRoot .hsticky{position:static;height:auto}
 #aboutRoot .htrack{flex-direction:column;transform:none!important}
-#aboutRoot .panel{width:100%;height:auto;min-height:100vh;padding:100px 22px}
+#aboutRoot .panel{width:100%;height:auto;min-height:100vh;min-height:100svh;padding:100px 22px}
 #aboutRoot .team-row{flex-direction:column}
 #aboutRoot .ecards{grid-template-columns:1fr}
 #aboutRoot .hrail{display:none}
@@ -787,7 +787,7 @@
 #aboutRoot .p-tlead .tl-cue{position:absolute;left:50%;transform:translateX(-50%);bottom:5vh;z-index:3;color:#fff;opacity:.6;font-size:10px;letter-spacing:.2em;text-transform:uppercase}
 #aboutRoot /* ===== cinematic team (vertical) ===== */
   .teamSec{height:800vh;position:relative}
-#aboutRoot .teamSticky{position:sticky;top:0;height:100vh;overflow:hidden;background:#05060c}
+#aboutRoot .teamSticky{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:#05060c}
 #aboutRoot .timgs{position:absolute;inset:0;z-index:1}
 #aboutRoot .pimg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transform:scale(1.06);transition:opacity 1s cubic-bezier(.16,1,.3,1),transform 1.8s cubic-bezier(.16,1,.3,1),clip-path 1.1s cubic-bezier(.16,1,.3,1);z-index:1;clip-path:inset(0 0 0 100%)}
 #aboutRoot .pimg.on{opacity:1;transform:scale(1);z-index:2;clip-path:inset(0 0 0 0%)}
@@ -819,7 +819,7 @@
 #aboutRoot .tdots i.on{background:#fff;border-color:#fff}
 #aboutRoot /* ===== collective network (vertical, #aboutRoot full height) ===== */
   .collSec{height:300vh;position:relative}
-#aboutRoot .collSticky{position:sticky;top:0;height:100vh;overflow:hidden;background:radial-gradient(60% 70% at 50% 50%,#050822,#070a16 76%)}
+#aboutRoot .collSticky{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:radial-gradient(60% 70% at 50% 50%,#050822,#070a16 76%)}
 #aboutRoot #collnet{position:absolute;inset:0;z-index:1;display:block}
 #aboutRoot .collhead{position:absolute;top:14vh;left:56px;z-index:20;max-width:440px;pointer-events:none}
 #aboutRoot .collhead h2{font-size:clamp(30px,4vw,62px);font-weight:800;letter-spacing:-.02em;margin-top:16px;line-height:1}
@@ -1404,7 +1404,7 @@
   }
   /* ===== SECTOR PAGES — full-screen stacking panels ===== */
   .sd-stack{position:relative}
-  .sd-stack>section{position:sticky;top:0;height:100vh;min-height:100vh;overflow:hidden;
+  .sd-stack>section{position:sticky;top:0;height:100vh;height:100svh;min-height:100vh;min-height:100svh;overflow:hidden;
     display:flex;flex-direction:column;justify-content:center;padding:0 56px}
   .sd-stack>section.dark{background:var(--bg)}
   .sd-stack>section.light{background:var(--cream)}
@@ -1634,7 +1634,7 @@
   .pcloud canvas{width:100%;height:100%;display:block;cursor:grab;touch-action:none}
   .pcloud canvas:active{cursor:grabbing}
   /* ===== CONTACT ===== */
-  .ct-sec{min-height:100vh;padding:120px 56px 70px;display:flex;align-items:center}
+  .ct-sec{min-height:100vh;min-height:100svh;padding:120px 56px 70px;display:flex;align-items:center}
   .ct-wrap{max-width:1280px;margin:0 auto;width:100%;display:grid;
     grid-template-columns:1.15fr .85fr;gap:clamp(40px,6vw,96px);align-items:start}
   .ct-h1{font-size:clamp(28px,4.2vw,62px);line-height:1.03;margin-top:16px;color:var(--ink)}
@@ -1734,7 +1734,7 @@
     .ct-q .car{animation:none} .ct-brieflist li{animation:none} .ct-prog span{transition:none}
   }
   /* ===== CONTACT — direct ===== */
-  .ct-sec{min-height:100vh;padding:120px 56px 70px;display:flex;align-items:center}
+  .ct-sec{min-height:100vh;min-height:100svh;padding:120px 56px 70px;display:flex;align-items:center}
   .ct-wrap{max-width:1280px;margin:0 auto;width:100%;display:grid;
     grid-template-columns:1.15fr .85fr;gap:clamp(40px,6vw,96px);align-items:start}
   .ct-h1{font-size:clamp(28px,4.2vw,62px);line-height:1.03;margin-top:16px;color:var(--ink)}
@@ -1776,7 +1776,7 @@
     text-transform:uppercase;color:var(--dim);cursor:pointer;transition:.25s}
   .ct-socials a:hover{color:var(--cold)}
   /* ===== GUIDED BRIEF — particle field ===== */
-  .brief-sec{position:relative;min-height:100vh;padding:0;display:flex;align-items:center;
+  .brief-sec{position:relative;min-height:100vh;min-height:100svh;padding:0;display:flex;align-items:center;
     overflow:hidden;background:#04050a}
   .brief-field{position:absolute;inset:0;width:100%;height:100%;display:block}
   .brief-ui{position:relative;z-index:2;max-width:1280px;margin:0 auto;width:100%;
@@ -1839,13 +1839,13 @@
      overlapping at 390x700, 390x560, 360x640, 1024x600 and 1440x540, and
      clear only on tall viewports. Deriving the top padding from the pill's own
      position and height means the two cannot drift apart again. */
-  .brief-sec{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;
+  .brief-sec{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;justify-content:center;
     overflow:hidden;background:#04050a;padding:0;
     --head-clear:104px}
   .brief-ui{position:relative;z-index:2;width:100%;max-width:720px;margin:0 auto;
     padding:var(--head-clear) clamp(22px,4vw,40px) 108px;
     text-align:center;
-    display:flex;flex-direction:column;align-items:center;min-height:100vh;justify-content:center}
+    display:flex;flex-direction:column;align-items:center;min-height:100vh;min-height:100svh;justify-content:center}
   /* The column is question, answers-so-far, then the escape hatch. The DOM
      order puts the pill first because it used to be pinned top-left, so the
      order property reseats it without moving the markup. */

@@ -110,7 +110,7 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
 
   /* ── HERO ────────────────────────────────────────────────────── */
   section.hero {
-    width: 100%; min-height: 100vh; min-height: 100svh;
+    width: 100%; min-height: 100vh;min-height: 100svh; min-height: 100svh;
     display: flex; flex-direction: column;
     padding: clamp(40px, 8vh, 96px) var(--gutter);
     position: relative; overflow: hidden; isolation: isolate;
@@ -183,7 +183,7 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
 
   /* ── Pinned hero. One scroll variable drives every transform. ─── */
   .hero-scroll { position: relative; height: 200vh; height: 200svh; }
-  .hero-scroll > .hero { position: sticky; top: 0; height: 100vh; height: 100svh; min-height: 0; }
+  .hero-scroll > .hero { position: sticky; top: 0; height: 100vh;height: 100svh; height: 100svh; min-height: 0; }
   .hero-plate { position: absolute; inset: 0; z-index: 0; transform: scale(calc(3.1 + var(--hp,0) * 0.3)) translate3d(0, calc(var(--hp,0) * -1.2%), 0); transform-origin: 6% 2%; will-change: transform; }
   .hero-plate img { width: 100%; height: 100%; object-fit: cover; object-position: 6% 4%; }
   .hero-scrim {
@@ -200,7 +200,7 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
   }
   @media (prefers-reduced-motion: reduce) {
     .hero-scroll { height: auto; }
-    .hero-scroll > .hero { position: relative; height: auto; min-height: 100vh; }
+    .hero-scroll > .hero { position: relative; height: auto; min-height: 100vh;min-height: 100svh; }
     .hero-scroll .hero-inner, .hero-plate { transform: none; opacity: 1; }
     .hero-plate { transform: scale(3.1); }
   }
@@ -258,7 +258,7 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
 
   /* ── COVER BAND, rides up over the pinned hero ───────────────── */
   .cover { position: relative; z-index: 5; background: var(--bg); padding: 0 0 clamp(90px, 11vw, 170px); }
-  .cover .frame { position: relative; height: 100vh; height: 100svh; overflow: hidden; }
+  .cover .frame { position: relative; height: 100vh;height: 100svh; height: 100svh; overflow: hidden; }
   .cover .frame img { width: 100%; height: 100%; object-fit: cover; }
   .cover .frame-cap {
     display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 30px;

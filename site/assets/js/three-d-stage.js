@@ -70,7 +70,7 @@
       position: relative;
       display: block;
       width: 100%;
-      height: 100vh;
+      height: 100vh;height: 100svh;
       background: var(--stage-bg, #f0eee6);
       overflow: hidden;
     }

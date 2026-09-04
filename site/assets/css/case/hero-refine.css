@@ -24,7 +24,7 @@
   /* Cover media band, sits under the intro copy */
   .hero-media{ padding:0; }
   .hero-media .hm-inner{ width:100%; margin:0; }
-  .hero-media .hm-frame{ position:relative; width:100%; height:100vh; height:100svh; overflow:hidden; border-radius:0; background:color-mix(in srgb, var(--ink) 6%, transparent); }
+  .hero-media .hm-frame{ position:relative; width:100%; height:100vh;height:100svh; height:100svh; overflow:hidden; border-radius:0; background:color-mix(in srgb, var(--ink) 6%, transparent); }
   .hero-media .hm-cap{
     display:flex; flex-wrap:wrap; justify-content:space-between; gap:10px 30px;
     margin:16px auto 0; max-width:var(--maxw); padding:0 var(--gutter) clamp(90px,11vw,170px);
