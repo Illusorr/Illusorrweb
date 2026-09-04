@@ -86,15 +86,26 @@ html[data-touch] .il-topbar::before {
   mask-image: none;
   /* stops measured from the BOTTOM, so the fade sits on the bar's edge at
      any height — 88px normally, taller where a notch inset applies */
-  /* Glass by translucency alone. backdrop-filter went back in here and broke
-     the header again on the shell pages within the hour, so the mask was not
-     the whole story: WebKit mishandles a backdrop-filtered band on a fixed
-     full-width layer with or without one. It is not coming back. .58 over the
-     page reads as glass without asking the compositor for anything. */
+  /* TWO JOBS, TWO ZONES.
+     Above the bar the band is covering a strip of page that shows through
+     anything translucent — that region is opaque, and it is the whole reason
+     the extension exists. Over the bar itself the band is smoked glass: .93, so the
+     hero reads through it as tone rather than as readable content. Lower than
+     that and body text passes through it legibly, which is what put the
+     complaint back on work and collective.
+
+     It cannot be glass everywhere. Real glass needs a backdrop blur, the blur
+     is what turns "see-through" into "frosted", and WebKit breaks on a
+     backdrop-filtered fixed full-width band with or without a mask — twice
+     now. Flat .58 everywhere was the other extreme and put the strip back.
+
+     Stops are measured from the BOTTOM so the zones land on the bar's own
+     edge whatever its height: 88px normally, 147px under a notch inset. */
   background: linear-gradient(180deg,
-    rgba(5, 6, 10, .58) 0,
-    rgba(5, 6, 10, .58) calc(100% - 56px),
-    rgba(5, 6, 10, .34) calc(100% - 22px),
+    rgb(5, 6, 10) 0,
+    rgb(5, 6, 10) calc(100% - 96px),
+    rgba(5, 6, 10, .93) calc(100% - 72px),
+    rgba(5, 6, 10, .93) calc(100% - 30px),
     rgba(5, 6, 10, 0) 100%);
 }
 /* The plate must never disagree with the wordmark sitting on it. on-light is
@@ -105,16 +116,18 @@ html[data-touch] .il-topbar::before {
    Ordered after .on-light on purpose — equal specificity, later wins. */
 html[data-touch] .il-topbar.on-light::before {
   background: linear-gradient(180deg,
-    rgba(5, 6, 10, .58) 0,
-    rgba(5, 6, 10, .58) calc(100% - 56px),
-    rgba(5, 6, 10, .34) calc(100% - 22px),
+    rgb(5, 6, 10) 0,
+    rgb(5, 6, 10) calc(100% - 96px),
+    rgba(5, 6, 10, .93) calc(100% - 72px),
+    rgba(5, 6, 10, .93) calc(100% - 30px),
     rgba(5, 6, 10, 0) 100%);
 }
 html[data-touch] .il-topbar.brand-on-light::before {
   background: linear-gradient(180deg,
-    rgba(255, 255, 255, .72) 0,
-    rgba(255, 255, 255, .72) calc(100% - 56px),
-    rgba(255, 255, 255, .42) calc(100% - 22px),
+    rgb(255, 255, 255) 0,
+    rgb(255, 255, 255) calc(100% - 96px),
+    rgba(255, 255, 255, .96) calc(100% - 72px),
+    rgba(255, 255, 255, .96) calc(100% - 30px),
     rgba(255, 255, 255, 0) 100%);
 }
 
