@@ -1,5 +1,24 @@
 /* ILLUSORR — home page behaviours */
 (function(){
+
+/* THE SCROLL RIGS ARE FLATTENED ON TOUCH, SO THEIR DRIVERS MUST NOT RUN.
+   home-mobile.css collapses .wwa-scroll, .reelwwd and .whofor-scroll to their
+   content and forces every state these drivers toggle: .wwa-line is opacity:1,
+   .wf-sectors .sr-desc is max-height:none ("All six are open here"), and
+   .wf-count is display:none. The drivers therefore spend every scroll frame
+   computing a progress value and writing classes and innerHTML that the CSS
+   immediately overrides.
+
+   That would only be waste, except each one derives its progress from
+   window.innerHeight — and on iOS innerHeight steps between 714 and 754 as the
+   browser toolbar hides and shows. Every toggle of that toolbar moves the
+   computed progress, which flips which row and image are marked current, so
+   the content oscillates in step with the toolbar. Measured from the reported
+   video: seven direction reversals and a bounce of about 50 CSS px, which is
+   the toolbar's own 40px viewport delta.
+
+   Desktop is untouched: there the rigs are real and innerHeight is stable. */
+var TOUCH = document.documentElement.hasAttribute('data-touch');
 /* ── Scroll scheduling ───────────────────────────────────────────────
    Four handlers on this page each read layout (getBoundingClientRect) and
    then write transforms and opacity, straight out of a scroll event. Scroll
@@ -211,8 +230,7 @@ function onScroll(fn){
       wfTag.innerHTML=wfRows[idx].querySelector('.sr-name').innerHTML;
       wfCn.textContent=String(idx+1).padStart(2,'0');
     }
-    window.addEventListener('scroll',onScroll(updateWhofor),{passive:true});
-    updateWhofor();
+    if(!TOUCH){ window.addEventListener('scroll',onScroll(updateWhofor),{passive:true}); updateWhofor(); }
 
     wfRows.forEach((row,i)=>row.addEventListener('click',()=>{
       const total=whoforScroll.offsetHeight-window.innerHeight;
@@ -252,7 +270,7 @@ function onScroll(fn){
     const shown=Math.max(1,Math.ceil(prog*lines.length));
     lines.forEach((l,i)=>l.classList.toggle('on',i<shown));
   }
-  if(wwa){window.addEventListener('scroll',onScroll(updateWWA),{passive:true});updateWWA();}
+  if(wwa&&!TOUCH){window.addEventListener('scroll',onScroll(updateWWA),{passive:true});updateWWA();}
 
   // REEL → WHAT WE DO — recede & emerge + sequential slide reveal
   const reelwwd=document.getElementById('reelwwd');
@@ -277,7 +295,7 @@ function onScroll(fn){
     slides.forEach((sl,i)=>sl.classList.toggle('on',i===idx));
     dots.forEach((d,i)=>d.classList.toggle('on',i<=idx));
   }
-  if(reelwwd){window.addEventListener('scroll',onScroll(updateReelWwd),{passive:true});updateReelWwd();}
+  if(reelwwd&&!TOUCH){window.addEventListener('scroll',onScroll(updateReelWwd),{passive:true});updateReelWwd();}
 
   setTimeout(()=>{const h=document.getElementById('hint');if(h){h.style.transition='opacity 1s';h.style.opacity='0'}},6500);
 
