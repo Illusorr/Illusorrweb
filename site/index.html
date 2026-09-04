@@ -48,15 +48,22 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
   #boot .bw{display:flex;flex-direction:column;align-items:center;gap:22px;width:min(560px,74vw);}
   #boot .bmark{position:relative;font-family:'Squaresharps',sans-serif;font-size:clamp(26px,4.4vw,46px);
     letter-spacing:.22em;text-indent:.22em;line-height:1;color:rgba(238,241,248,.16);white-space:nowrap;}
-  #boot .bmark i{position:absolute;left:0;top:0;overflow:hidden;white-space:nowrap;font-style:normal;
-    color:#eef1f8;width:0%;
+  /* clip-path, not width: scaleX would squash the letterforms, and width forced
+     layout every frame the same way the rule did. */
+  #boot .bmark i{position:absolute;left:0;top:0;white-space:nowrap;font-style:normal;
+    color:#eef1f8;width:auto;clip-path:inset(0 100% 0 0);will-change:clip-path;
     background:linear-gradient(100deg,#eef1f8 0%,#7fa6ff 30%,#2e6bff 54%,#9ec2ff 76%,#eef1f8 100%);
     background-size:260% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
     animation:bshine 3.4s linear infinite;}
   @keyframes bshine{to{background-position:260% 0}}
   #boot .brule{position:relative;width:100%;height:1px;background:rgba(238,241,248,.12);overflow:hidden;}
-  #boot .brule i{position:absolute;left:0;top:0;bottom:0;width:0%;background:#4c63ff;
-    box-shadow:0 0 14px rgba(76,99,255,.85);transition:width .45s cubic-bezier(.22,1,.36,1);}
+  /* Driven by transform, not width. The rAF loop below writes a value every
+     frame, so animating width forced a layout on each one, during boot when
+     the main thread is busiest. The transition never completed either: it was
+     retargeted every frame, so it only added lag. */
+  #boot .brule i{position:absolute;left:0;top:0;bottom:0;width:100%;background:#4c63ff;
+    transform:scaleX(0);transform-origin:left center;will-change:transform;
+    box-shadow:0 0 14px rgba(76,99,255,.85);}
   #boot .bmeta{display:flex;justify-content:space-between;width:100%;font-family:'Outfit',system-ui,sans-serif;
     font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:rgba(238,241,248,.42);}
   #boot .bmeta b{font-weight:400;color:rgba(238,241,248,.72);font-variant-numeric:tabular-nums;}
@@ -96,7 +103,7 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
     var to=Math.max(target,drift);
     p+=(to-p)*0.08;
     if(p>99.4) p=100;
-    fill.style.width=p+'%'; mark.style.width=p+'%';
+    fill.style.transform='scaleX('+(p/100)+')'; mark.style.clipPath='inset(0 '+(100-p)+'% 0 0)';
     pct.textContent=(p<100?Math.floor(p):100);
     if(p>=100&&el>1100){ finish(); return; }
     requestAnimationFrame(tick);

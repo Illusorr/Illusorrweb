@@ -144,7 +144,12 @@ No external standard has been mandated by the studio. Floors currently held in
 production and worth preserving:
 
 - Interactive targets at 44px minimum on touch.
-- Body text at 16px on phones; small labels no lower than 11px.
+- Body text at 16px on phones.
+- Micro-labels render at 10px in ~780 places (tile eyebrows, filter counts,
+  board figures). CLAUDE.md carried an 11px label floor for phones; it was
+  never a desktop rule, no external standard requires one, and the studio
+  has chosen to keep 10px. Recorded so a later pass does not read it as a
+  defect and "fix" 780 nodes.
 - Every content image carries a description; decorative images are marked empty.
 - Motion-heavy surfaces respect `prefers-reduced-motion`.
 - 3D scenes do not auto-run on phones; they load on tap.
