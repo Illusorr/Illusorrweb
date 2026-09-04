@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Nav probe</title>
+<meta name="theme-color" content="#05060a">
+<script>(function(){try{if(/[?&]mobile=1/.test(location.search)||window.innerWidth<=1024)
+document.documentElement.setAttribute('data-touch','');}catch(e){}})();</script>
+<link rel="stylesheet" href="assets/css/nav.css?v=20260904a">
+<link rel="stylesheet" href="assets/css/mobile.css?v=20260904a">
+<style>
+  html{background:#05060a}
+  body{margin:0;background:#05060a;color:#eef1f8;
+    font:400 15px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace}
+
+  /* MARKER A — a hard magenta rule at exactly top:0 of the layout viewport.
+     If this line is not touching the top edge of the screen in a photo,
+     fixed positioning is inset and env() is the answer. */
+  #mA{position:fixed;top:0;left:0;right:0;height:6px;background:#ff00c8;z-index:2147483600}
+
+  /* MARKER B — a fixed box whose ::before reaches 220px ABOVE it, the exact
+     trick the header band uses. Cyan means the paint reaches above top:0. */
+  #mB{position:fixed;top:6px;left:0;width:70px;height:10px;z-index:2147483599}
+  #mB::before{content:"";position:absolute;top:-220px;left:0;right:0;bottom:0;
+    background:#00e5ff}
+
+  /* MARKER C — same idea via a negative-top fixed element rather than a
+     pseudo, in case the two composite differently. */
+  #mC{position:fixed;top:-220px;left:80px;width:70px;height:236px;
+    background:#7cff00;z-index:2147483598}
+
+  .sa{position:fixed;visibility:hidden;top:0;left:0;
+    height:env(safe-area-inset-top,0px);width:env(safe-area-inset-left,0px)}
+  .sb{position:fixed;visibility:hidden;top:0;left:0;
+    height:env(safe-area-inset-bottom,0px);width:env(safe-area-inset-right,0px)}
+
+  main{padding:220px 16px 60vh}
+  h1{font:600 18px/1.3 system-ui;margin:0 0 6px}
+  p.k{color:#8b96ad;margin:0 0 22px;font-size:13px}
+  table{border-collapse:collapse;width:100%;font-size:13px}
+  td{padding:5px 6px;border-bottom:1px solid #1b2231;vertical-align:top}
+  td:first-child{color:#8ea2ff;white-space:nowrap;width:44%}
+  b.hi{color:#7cff00}
+  b.no{color:#ff5964}
+</style>
+</head>
+<body>
+<span class="sa"></span><span class="sb"></span>
+<div id="mA"></div><div id="mB"></div><div id="mC"></div>
+
+<header class="il-topbar" id="ilTopbar">
+  <div class="il-brand"><span class="il-logo" role="img" aria-label="ILLUSORR"></span></div>
+  <div class="il-right">
+    <a class="il-talk" href="#">Let's talk</a>
+    <button class="il-burger" aria-label="Open menu"><i></i><i></i></button>
+  </div>
+</header>
+
+<main>
+<h1>Nav probe</h1>
+<p class="k">Screenshot this whole screen, then scroll down and screenshot again.</p>
+<table id="out"></table>
+</main>
+
+<script>
+function px(el,prop){try{return Math.round(parseFloat(getComputedStyle(el)[prop]))}catch(e){return '?'}}
+function row(k,v,flag){return '<tr><td>'+k+'</td><td>'+(flag?'<b class="'+flag+'">'+v+'</b>':v)+'</td></tr>'}
+function draw(){
+  var tb=document.getElementById('ilTopbar');
+  var r=tb.getBoundingClientRect();
+  var bs=getComputedStyle(tb,'::before');
+  var sa=document.querySelector('.sa'), sb=document.querySelector('.sb');
+  var vv=window.visualViewport||{};
+  var freshCSS=(bs.top==='-220px');
+  var h='';
+  h+=row('new CSS loaded', freshCSS?'YES  (::before top '+bs.top+')':'NO  (::before top '+bs.top+')', freshCSS?'hi':'no');
+  h+=row('safe-area top', px(sa,'height')+'px', px(sa,'height')>0?'hi':null);
+  h+=row('safe-area bottom', px(sb,'height')+'px');
+  h+=row('safe-area left / right', px(sa,'width')+' / '+px(sb,'width')+'px');
+  h+=row('topbar rect.top', Math.round(r.top)+'px', Math.round(r.top)===0?null:'no');
+  h+=row('topbar height', Math.round(r.height)+'px');
+  h+=row('topbar padding-top', getComputedStyle(tb).paddingTop);
+  h+=row('window.innerHeight', window.innerHeight);
+  h+=row('documentElement.clientHeight', document.documentElement.clientHeight);
+  h+=row('screen.height', screen.height);
+  h+=row('visualViewport h / offsetTop', (vv.height?Math.round(vv.height):'-')+' / '+(vv.offsetTop!=null?Math.round(vv.offsetTop):'-'));
+  h+=row('visualViewport pageTop / scale', (vv.pageTop!=null?Math.round(vv.pageTop):'-')+' / '+(vv.scale||'-'));
+  h+=row('scrollY', Math.round(window.scrollY));
+  h+=row('devicePixelRatio', devicePixelRatio);
+  h+=row('data-touch', document.documentElement.hasAttribute('data-touch')?'yes':'NO','');
+  h+=row('userAgent', navigator.userAgent);
+  document.getElementById('out').innerHTML=h;
+}
+draw();
+addEventListener('scroll',draw,{passive:true});
+addEventListener('resize',draw);
+if(window.visualViewport){visualViewport.addEventListener('resize',draw);visualViewport.addEventListener('scroll',draw);}
+</script>
+</body>
+</html>
