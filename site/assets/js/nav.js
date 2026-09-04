@@ -40,10 +40,28 @@
      probe composites front to back and judges the result — but a layer
      that contributes nothing must not be mistaken for one that does. */
   function rgba(c){
-    var m=/rgba?(([^)]+))/.exec(c); if(!m) return null;
-    var p=m[1].split(',').map(parseFloat);
-    if(p.length<3||isNaN(p[0])) return null;
-    return [p[0],p[1],p[2],p.length>3?(isNaN(p[3])?1:p[3]):1];
+    /* No regex on purpose. This file is edited through tooling that has
+       silently eaten escaped parens, and a mangled character class turned
+       EVERY colour into null: the probe then skipped the opaque ground it
+       was standing on and read the panel behind it, which is how a dark
+       section ended up wearing a white header. Index arithmetic cannot be
+       mangled the same way.
+       Accepts both syntaxes a browser may hand back: rgb(a, b, c),
+       rgba(a, b, c, d) and the space-separated rgb(a b c / d). Anything
+       else, wide-gamut color() included, returns null and the element is
+       simply not counted as ground. */
+    var i=c.indexOf('('), j=c.lastIndexOf(')');
+    if(i<0||j<=i) return null;
+    var t=c.slice(i+1,j).split(',').join(' ').split('/').join(' ').split(' ');
+    var p=[];
+    for(var k=0;k<t.length;k++){
+      if(t[k]==='') continue;
+      var v=parseFloat(t[k]);
+      if(isNaN(v)) return null;
+      p.push(v);
+    }
+    if(p.length<3) return null;
+    return [p[0],p[1],p[2],p.length>3?p[3]:1];
   }
 
   /* Is this box the GROUND under the bar, or something sitting on it?
