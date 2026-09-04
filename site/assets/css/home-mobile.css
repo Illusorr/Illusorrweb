@@ -183,8 +183,12 @@ html[data-touch] .hero .center {
   position: static !important;
   transform: none !important;
   width: 100%;
-  /* 104px clears the fixed topbar; a title card must never sit under it */
-  padding: 104px 20px 44px !important;
+  /* 104px cleared an 88px topbar. Under a notch inset the bar is 147px, so
+     the fixed number stopped doing what this comment says it does and the
+     title card sat under the header again. The inset is added rather than
+     assumed: env() is 0 on a handset without one, so this is still exactly
+     104px everywhere else. */
+  padding: calc(104px + env(safe-area-inset-top, 0px)) 20px 44px !important;
   flex: 0 0 auto !important;
   align-self: flex-end !important;
 }
