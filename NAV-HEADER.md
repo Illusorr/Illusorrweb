@@ -50,22 +50,20 @@ lower edge, no compositor work at all.
 The mask is off on touch for the same reason, and because it would clip the
 band's upward reach.
 
-## Rule 3: the band must never paint outside the bar's box
+## Rule 3: the band reaches above the bar, from the band
 
-The band was a `z-index: -1` pseudo reaching 220px above its parent. Chrome
-painted that. WebKit does not: a fixed element gets its own compositing layer
-and the layer is clipped to the element's box, so paint that leaves the box is
-dropped. That single difference survived four separate attempts at the strip
-above the header, because every local test was in Chrome.
+`.il-topbar::before` carries `top: -220px` and runs down to the bar's lower
+edge. The bar itself stays at `top: 0` and is never resized. This is the
+version that works on the device.
 
-The bar now starts at `top: -220px` and takes those 220px back as padding.
-Contents sit exactly where they did — same logo position, same 44px controls —
-while the box, and therefore the band, covers everything above. `::before`
-goes back to plain `inset: 0`.
+It was once moved onto the bar's own box — `top: -220px` on `.il-topbar` with
+the 220px taken back as padding — on a theory that WebKit clips a pseudo
+painting outside its parent's compositing layer. **The theory was wrong.** The
+move regressed the landing and Collective pages and was reverted. Do not try
+it again; if the strip ever returns, the cause is somewhere else.
 
-`pointer-events` stays `none` on the bar with `auto` on its children, so the
-extra 220px of box intercepts nothing. Verify with a hit test just under the
-controls: it must return the page, not the bar.
+The mask stays off on touch: it would clip this reach back to the bar's box,
+and it only ever existed to soften a backdrop-filter this layer no longer has.
 
 The band is glass over the bar and opaque above it. The upper stretch covers a
 strip of page with nothing of ours drawn in it, so it can be solid; over the
@@ -74,7 +72,7 @@ studio asked for glass explicitly and the page showing through it is intended,
 not a defect. Do not "fix" it by raising the opacity.
 
 Stops are measured from the bottom so both zones land on the bar's own edge at
-either height, 88px or 147px under a notch inset.
+either height, 88px normally or 147px under a notch inset.
 
 ## Rule 4: case pages must scroll the document, not the body
 
