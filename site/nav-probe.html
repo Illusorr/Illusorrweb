@@ -8,8 +8,8 @@
 <meta name="theme-color" content="#05060a">
 <script>(function(){try{if(/[?&]mobile=1/.test(location.search)||window.innerWidth<=1024)
 document.documentElement.setAttribute('data-touch','');}catch(e){}})();</script>
-<link rel="stylesheet" href="assets/css/nav.css?v=20260904n">
-<link rel="stylesheet" href="assets/css/mobile.css?v=20260904n">
+<link rel="stylesheet" href="assets/css/nav.css?v=20260904p">
+<link rel="stylesheet" href="assets/css/mobile.css?v=20260904p">
 <style>
   html{background:#05060a}
   body{margin:0;background:#05060a;color:#eef1f8;
@@ -94,6 +94,68 @@ function draw(){
   document.getElementById('out').innerHTML=h;
 }
 draw();
+
+/* SELF-REPORT.
+   Asking for a screenshot has cost several rounds, so the page posts its own
+   readings instead. Anonymous INSERT into a diagnostics table, same key and
+   same RLS shape as the site's forms: nothing can be read back from here.
+   It sends only what is on screen above — layout numbers and the browser's
+   own user-agent string. No page content, nothing personal, one row. */
+(function(){
+  function px(el,prop){try{return Math.round(parseFloat(getComputedStyle(el)[prop]))}catch(e){return null}}
+  var tb=document.getElementById('ilTopbar');
+  var r=tb.getBoundingClientRect(), bs=getComputedStyle(tb,'::before');
+  var sa=document.querySelector('.sa'), sb=document.querySelector('.sb');
+  var vv=window.visualViewport||{};
+  var strip=document.querySelector('.il-strip');
+  var sr=strip?strip.getBoundingClientRect():null;
+  var body={
+    page:'nav-probe',
+    user_agent:navigator.userAgent,
+    payload:{
+      cssLoaded: bs.top,
+      barTop: Math.round(r.top), barHeight: Math.round(r.height),
+      barPaddingTop: getComputedStyle(tb).paddingTop,
+      bandTop: bs.top, bandBg: bs.backgroundImage.slice(0,120),
+      stripTop: sr?Math.round(sr.top):null, stripBottom: sr?Math.round(sr.bottom):null,
+      stripPresent: !!strip,
+      safeTop: px(sa,'height'), safeBottom: px(sb,'height'),
+      safeLeft: px(sa,'width'), safeRight: px(sb,'width'),
+      innerHeight: window.innerHeight,
+      clientHeight: document.documentElement.clientHeight,
+      screenHeight: screen.height,
+      vvHeight: vv.height?Math.round(vv.height):null,
+      vvOffsetTop: vv.offsetTop!=null?Math.round(vv.offsetTop):null,
+      vvPageTop: vv.pageTop!=null?Math.round(vv.pageTop):null,
+      vvScale: vv.scale||null,
+      dpr: window.devicePixelRatio,
+      dataTouch: document.documentElement.hasAttribute('data-touch'),
+      scrollY: Math.round(window.scrollY)
+    }
+  };
+  var st=document.createElement('p');
+  st.style.cssText='margin:18px 0 0;font:600 14px system-ui;color:#7cff00';
+  st.textContent='sending reading…';
+  document.querySelector('main').appendChild(st);
+  fetch('https://mivkvqibkceaayktqtds.supabase.co/rest/v1/nav_probe',{
+    method:'POST',
+    headers:{
+      'apikey':'sb_publishable_wK8G1NuUGp5DZSdWX26ZkA_h6d6P0jd',
+      'Authorization':'Bearer sb_publishable_wK8G1NuUGp5DZSdWX26ZkA_h6d6P0jd',
+      'Content-Type':'application/json',
+      'Content-Profile':'web',
+      'Prefer':'return=minimal'
+    },
+    body:JSON.stringify(body)
+  }).then(function(res){
+    st.textContent = res.ok ? 'Reading sent. You can close this page.'
+                            : 'Send failed: HTTP '+res.status;
+    if(!res.ok) st.style.color='#ff5964';
+  }).catch(function(e){
+    st.style.color='#ff5964';
+    st.textContent='Send failed: '+e.message;
+  });
+})();
 addEventListener('scroll',draw,{passive:true});
 addEventListener('resize',draw);
 if(window.visualViewport){visualViewport.addEventListener('resize',draw);visualViewport.addEventListener('scroll',draw);}
