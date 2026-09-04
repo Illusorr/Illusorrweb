@@ -97,19 +97,24 @@ html[data-touch] .il-topbar::before {
   /* stops measured from the BOTTOM, so the fade sits on the bar's edge at
      any height — 88px normally, taller where a notch inset applies */
   /* GLASS OVER THE BAR, OPAQUE ABOVE IT.
-     The bar's box now starts 220px higher (see the rule above), and that
-     upper stretch is covering a strip of page with nothing of ours drawn in
-     it — so it is opaque, and the strip cannot show through. Over the bar
-     itself the band is glass at .62, which is the look the studio asked for
-     and the page reads through it.
-
-     Stops are measured from the BOTTOM, so both zones land on the bar's own
-     edge whatever its height: 88px normally, 147px under a notch inset. */
+     THE OPAQUE ZONE ENDS AT THE CONTROLS, NOT AT THE BAR.
+     The bar is 88px tall normally and 147px under a notch inset, and in both
+     cases the control row is the last 66px of it: 44px of button plus the
+     22px bottom padding. Everything ABOVE that row — the status strip, and
+     the gap the inset opens under it — has nothing of ours drawn in it, so it
+     is opaque and nothing reads through.
+     Glass starts at the control row and runs to the fade. That is the band
+     the studio asked for, and the page reads through it there.
+     66px measured from the BOTTOM lands on the top of the controls at either
+     bar height, because the padding below them never changes. Stopping the
+     opaque zone at the top of the BAR instead is what put content back above
+     the logo: at .62 everything between the screen edge and the wordmark
+     showed straight through. */
   background: linear-gradient(180deg,
     rgb(5, 6, 10) 0,
-    rgb(5, 6, 10) calc(100% - 96px),
-    rgba(5, 6, 10, .62) calc(100% - 72px),
-    rgba(5, 6, 10, .62) calc(100% - 30px),
+    rgb(5, 6, 10) calc(100% - 66px),
+    rgba(5, 6, 10, .62) calc(100% - 56px),
+    rgba(5, 6, 10, .62) calc(100% - 22px),
     rgba(5, 6, 10, 0) 100%);
 }
 /* The plate must never disagree with the wordmark sitting on it. on-light is
@@ -121,17 +126,17 @@ html[data-touch] .il-topbar::before {
 html[data-touch] .il-topbar.on-light::before {
   background: linear-gradient(180deg,
     rgb(5, 6, 10) 0,
-    rgb(5, 6, 10) calc(100% - 96px),
-    rgba(5, 6, 10, .62) calc(100% - 72px),
-    rgba(5, 6, 10, .62) calc(100% - 30px),
+    rgb(5, 6, 10) calc(100% - 66px),
+    rgba(5, 6, 10, .62) calc(100% - 56px),
+    rgba(5, 6, 10, .62) calc(100% - 22px),
     rgba(5, 6, 10, 0) 100%);
 }
 html[data-touch] .il-topbar.brand-on-light::before {
   background: linear-gradient(180deg,
     rgb(255, 255, 255) 0,
-    rgb(255, 255, 255) calc(100% - 96px),
-    rgba(255, 255, 255, .72) calc(100% - 72px),
-    rgba(255, 255, 255, .72) calc(100% - 30px),
+    rgb(255, 255, 255) calc(100% - 66px),
+    rgba(255, 255, 255, .72) calc(100% - 56px),
+    rgba(255, 255, 255, .72) calc(100% - 22px),
     rgba(255, 255, 255, 0) 100%);
 }
 
