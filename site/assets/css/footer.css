@@ -62,3 +62,14 @@
   .sf-in{grid-template-columns:1fr;gap:26px}
   .sf-bar{flex-direction:column;align-items:flex-start;gap:8px}
 }
+
+/* NOT PART OF CSS_TEXT. site-footer.js also emits one rule at injection time,
+   from canvasRule():
+
+       html { background: <the page's own meta[name=theme-color]> }
+
+   It cannot live here because the value is read per page. Its job: the footer
+   is dark and it is the last element on every page, but only html and body
+   paint the page canvas, and the case studies set a light body background for
+   their cream sections. That colour reached the canvas, so the strip below the
+   footer and the whole overscroll came back white on every one of them. */

@@ -59,13 +59,29 @@ html[data-touch] .il-topbar.is-glass {
   background: transparent !important;
   border-bottom: 0 !important;
 }
+/* No backdrop-filter on the phone. WebKit renders an element that carries
+   BOTH a backdrop-filter and a mask-image as a flat pale plate, and the band
+   carries both: nav.css masks the gradient's lower edge so it fades out. That
+   is why the bar read as a white slab over dark sections on iOS while Chrome
+   showed it correctly. The band paints its own gradient instead — same read,
+   no blur, and no compositing cost on a full-width fixed layer. */
 html[data-touch] .il-topbar::before {
   opacity: 1;
-  -webkit-backdrop-filter: blur(20px) saturate(1.3);
-  backdrop-filter: blur(20px) saturate(1.3);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  background: linear-gradient(180deg, rgba(5, 6, 10, .95), rgba(5, 6, 10, .78) 55%, rgba(5, 6, 10, 0));
 }
+/* The plate must never disagree with the wordmark sitting on it. on-light is
+   sampled at the centre of the bar and brand-on-light at the logo, so a light
+   band under a dark strip gave a white plate carrying a white wordmark. On
+   touch the plate follows the brand alone: it only turns to paper when the
+   mark itself has gone dark, so the two can no longer split.
+   Ordered after .on-light on purpose — equal specificity, later wins. */
 html[data-touch] .il-topbar.on-light::before {
-  background: linear-gradient(180deg, rgba(255, 255, 255, .82), rgba(255, 255, 255, .5) 62%, rgba(255, 255, 255, 0));
+  background: linear-gradient(180deg, rgba(5, 6, 10, .95), rgba(5, 6, 10, .78) 55%, rgba(5, 6, 10, 0));
+}
+html[data-touch] .il-topbar.brand-on-light::before {
+  background: linear-gradient(180deg, rgba(255, 255, 255, .95), rgba(255, 255, 255, .78) 55%, rgba(255, 255, 255, 0));
 }
 
 /* and nothing may come to rest underneath it: anchored jumps and

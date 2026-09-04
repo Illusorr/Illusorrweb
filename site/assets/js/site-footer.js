@@ -34,6 +34,24 @@ function hasDocumentFlow() {
   return true;
 }
 
+/* THE GROUND UNDER THE LAST ELEMENT.
+   Nothing paints the page canvas but html and body, and only the case studies
+   set a body background of their own — a cream or white ground for their light
+   sections. That colour propagates to the canvas, so on every one of them the
+   strip below this dark footer, and the whole rubber-band overscroll, came back
+   white. Painting html explicitly stops body's colour reaching the canvas while
+   leaving the body box exactly as it was.
+
+   The value is the page's own <meta name="theme-color">, which every page
+   already declares and which is what the browser paints its own chrome with, so
+   the canvas can never contradict it. */
+function canvasRule() {
+  var m = document.querySelector('meta[name="theme-color"]');
+  var c = (m && m.getAttribute('content') || '').trim();
+  if (!/^#[0-9a-f]{3,8}$/i.test(c)) c = '#05060a';
+  return ' html{background:' + c + '} ';
+}
+
 function build() {
   if (document.querySelector('.sfoot')) return;
   if (document.body.hasAttribute('data-no-site-footer')) return;
@@ -46,7 +64,8 @@ function build() {
   if (!document.getElementById('sfoot-css')) {
     var st = document.createElement('style');
     st.id = 'sfoot-css';
-    st.textContent = CSS_TEXT.replace(/\.\.\/(img|fonts)\//g, pre + 'assets/$1/');
+    st.textContent = CSS_TEXT.replace(/\.\.\/(img|fonts)\//g, pre + 'assets/$1/')
+                   + canvasRule();
     document.head.appendChild(st);
   }
 

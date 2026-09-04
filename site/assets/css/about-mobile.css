@@ -678,3 +678,47 @@ html[data-touch] #aboutRoot .panel { padding: 96px 40px !important; }
 
   html[data-touch] #aboutRoot .close .cta { align-self: center; padding-inline: 32px; }
 }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ONE VEIL OVER THE FIELD, NOT FOUR
+
+   about.html's inline <style> gives .p-intro, .p-statement, .p-team and
+   .p-virtual a radial ::before pool each, so the live field reads through
+   a soft dark disc under every headline. On a desktop that is invisible:
+   the panels sit side by side on a translated track and you only ever see
+   one at a time, so the four pools never meet.
+
+   Stacked on a phone they do meet, and you scroll down past four discrete
+   blobs with four sets of edges between them. The pools come off and the
+   whole run carries a single flat veil instead — the field still reads,
+   the type keeps its contrast, and there is nothing to see a seam in.
+
+   .p-clients paints its own opaque ground, so it covers the veil rather
+   than doubling it.
+   ═════════════════════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  html[data-touch] #aboutRoot .p-intro::before,
+  html[data-touch] #aboutRoot .p-statement::before,
+  html[data-touch] #aboutRoot .p-team::before,
+  html[data-touch] #aboutRoot .p-virtual::before { display: none !important; }
+
+  html[data-touch] #aboutRoot .htrack::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: rgba(4, 5, 10, .6);
+  }
+  /* the panels are position:relative already; they just need to sit above
+     the veil rather than under it */
+  html[data-touch] #aboutRoot .panel { z-index: 1; }
+
+  /* main.css's generic .panel carries border:1px solid var(--line), and
+     #aboutRoot .panel never resets it. Side by side on the desktop track
+     those are the vertical divisions between beats. Stacked, they become
+     three horizontal rules that box each panel off from the next, which is
+     what made the run read as separate plates over one field rather than
+     one continuous passage. */
+  html[data-touch] #aboutRoot .panel { border: 0 !important; }
+}
