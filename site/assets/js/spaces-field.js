@@ -15,9 +15,9 @@ const A = 'spaces-ui/assets/';
 const WORLDS = [
   { n:'DOWNTOWN', o:'ILLUSORR', img:A+'downtown.webp'      ,  key:0x2b3f66, fog:0x070d18 },
   { n:'WEST YAS', o:'ILLUSORR', img:A+'westyas.webp'       ,  key:0x2f5a52, fog:0x061012 },
-  { n:'SCIFI',    o:'ILLUSORR', img:A+'47c3c4b206d2f7c1.webp', key:0x2a4a86, fog:0x050b16 },
+  { n:'SCIFI',    o:'ILLUSORR', img:A+'illusorr-spaces-ui-scifi.webp', key:0x2a4a86, fog:0x050b16 },
   { n:'PINKISH',  o:'ILLUSORR', img:A+'westyas.webp'       ,  key:0x6b3358, fog:0x120814 },
-  { n:'SCIFI II', o:'ILLUSORR', img:A+'47c3c4b206d2f7c1.webp', key:0x1f3a6b, fog:0x040910 },
+  { n:'SCIFI II', o:'ILLUSORR', img:A+'illusorr-spaces-ui-scifi.webp', key:0x1f3a6b, fog:0x040910 },
 ];
 
 const GUESTS = [
