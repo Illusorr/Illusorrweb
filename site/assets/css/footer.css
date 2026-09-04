@@ -34,7 +34,7 @@
   text-transform:uppercase;font-size:12px;margin-bottom:6px}
 
 .sf-col{display:flex;flex-direction:column;min-width:0}
-.sf-col h4{margin:0;font-size:12px;letter-spacing:.24em;text-transform:uppercase;
+.sf-col h2{margin:0;font-size:12px;letter-spacing:.24em;text-transform:uppercase;
   color:var(--sf-cold);font-weight:400;padding-bottom:14px;border-bottom:1px solid var(--sf-line)}
 .sf-col a{display:flex;align-items:center;justify-content:space-between;gap:10px;
   font-size:14px;font-weight:300;color:var(--sf-dim);text-decoration:none;cursor:pointer;

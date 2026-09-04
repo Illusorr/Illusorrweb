@@ -304,7 +304,7 @@ html[data-touch] .wwd-slide {
 }
 html[data-touch] .wwd-slide > .wnum { grid-column: 1 !important; grid-row: 1 !important; }
 html[data-touch] .wwd-slide > div { grid-column: 2 !important; }
-html[data-touch] .wwd-slide h3 {
+html[data-touch] .wwd-slide h2 {
   font-size: 19px !important;
   line-height: 1.2 !important;
   letter-spacing: 0 !important;
@@ -633,7 +633,7 @@ html[data-touch] .scroll-cue { display: none !important; }
     line-height: 1.66 !important;
     max-width: 68ch !important;
   }
-  html[data-touch] .wwd-slide h3,
+  html[data-touch] .wwd-slide h2,
   html[data-touch] .sr-name,
   html[data-touch] .cb-step h4 { font-size: 22px !important; }
 
