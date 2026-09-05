@@ -14,80 +14,6 @@
   if(mc&&ov)mc.addEventListener('click',function(){ov.classList.remove('open')});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ov)ov.classList.remove('open')});
 
-  /* ── ?probe=1 diagnostics ─────────────────────────────────
-     Off unless the URL carries ?probe=1, so a normal visit does nothing at
-     all. The standalone probe page measures correctly and the real pages do
-     not behave the same way on the device, so the reading has to come from
-     the page that is actually wrong, at the scroll position where it is
-     wrong. Reports what sits at viewport y=1 — the row Safari stretches into
-     the status bar — plus the band's state, at up to 12 scroll positions.
-     Delete this block, web.nav_probe and nav-probe.html when the header is
-     settled. */
-  if(/[?&]probe=1/.test(location.search)) (function(){
-    var sent=0, last=-1e9, timer=null;
-    function topAt(y){
-      var st=document.elementsFromPoint(Math.round(window.innerWidth/2),y);
-      for(var i=0;i<st.length;i++){
-        var n=st[i];
-        var cs=getComputedStyle(n);
-        return n.tagName+'.'+String(n.className).slice(0,26)
-             +'|bg='+cs.backgroundColor+'|op='+cs.opacity;
-      }
-      return '(none)';
-    }
-    function report(){
-      if(sent>=12) return;
-      var y=Math.round(window.scrollY);
-      if(Math.abs(y-last)<120) return;
-      last=y; sent++;
-      var bs=getComputedStyle(tb,'::before');
-      fetch('https://mivkvqibkceaayktqtds.supabase.co/rest/v1/nav_probe',{
-        method:'POST',
-        headers:{'apikey':'sb_publishable_wK8G1NuUGp5DZSdWX26ZkA_h6d6P0jd',
-          'Authorization':'Bearer sb_publishable_wK8G1NuUGp5DZSdWX26ZkA_h6d6P0jd',
-          'Content-Type':'application/json','Content-Profile':'web','Prefer':'return=minimal'},
-        body:JSON.stringify({page:location.pathname+' y'+y,user_agent:navigator.userAgent,payload:{
-          scrollY:y, barClasses:tb.className,
-          barTop:Math.round(tb.getBoundingClientRect().top),
-          barHeight:Math.round(tb.getBoundingClientRect().height),
-          bandTop:bs.top, bandOpacity:bs.opacity,
-          bandBg:bs.backgroundImage.slice(0,150),
-          atY1:topAt(1), atY10:topAt(10), atY40:topAt(40), atY80:topAt(80),
-          strip:(function(){var e=document.querySelector('.il-strip');
-            if(!e) return "MISSING";
-            var r=e.getBoundingClientRect(), cs=getComputedStyle(e);
-            return "top="+Math.round(r.top)+" bottom="+Math.round(r.bottom)
-                 +" h="+Math.round(r.height)+" pos="+cs.position
-                 +" bg="+cs.backgroundColor+" vis="+cs.visibility;})(),
-          innerHeight:window.innerHeight, clientHeight:document.documentElement.clientHeight,
-          screenHeight:screen.height, dpr:window.devicePixelRatio
-        }})
-      }).catch(function(){});
-    }
-    addEventListener('scroll',function(){clearTimeout(timer);timer=setTimeout(report,260);},{passive:true});
-    addEventListener('load',function(){setTimeout(report,900);});
-    setTimeout(report,1800);
-  })();
-
-  /* ── the status strip ───────────────────────────────
-     In Safari with browser chrome the layout viewport is inset below the
-     status bar, so a position:fixed header cannot paint there — extending the
-     band, extending the bar's box and making it opaque all failed for that one
-     reason. The DOCUMENT is painted full-bleed under the status bar, though,
-     which is why the page's own content shows through up there.
-
-     So the strip gets something that lives in the document rather than in the
-     fixed layer: a sticky element pinned so its box occupies the 220px above
-     the viewport. It carries no layout (its height is cancelled by an equal
-     negative margin) and no pointer events, and where the viewport is not
-     inset — every desktop, Android, and a home-screen web app — it simply
-     sits off-screen and paints nothing. */
-  var strip=document.createElement('div');
-  strip.className='il-strip';
-  strip.setAttribute('aria-hidden','true');
-  if(document.body.firstChild) document.body.insertBefore(strip,document.body.firstChild);
-  else document.body.appendChild(strip);
-
   /* ── tone sampling ─────────────────────────────────────────────────
      THE HEADER FOLLOWS THE SECTION'S GROUND, NOTHING ELSE.
 
@@ -185,7 +111,6 @@
     tb.classList.toggle('brand-on-light',probe(80));
     tb.classList.toggle('ctl-on-light',probe(window.innerWidth-90));
     tb.classList.toggle('on-light',probe(window.innerWidth/2));
-    strip.className='il-strip'+(tb.classList.contains('brand-on-light')?' on-light':'');
   }
   /* Scroll fires many times per frame and this queued a fresh rAF for each,
      so sample() ran repeatedly per frame doing three elementsFromPoint walks
