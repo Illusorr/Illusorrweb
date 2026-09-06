@@ -153,7 +153,21 @@
      and all four slides are stacked and readable. The progress dots go
      with the mechanism they reported on. */
   .wwa-scroll{position:relative;height:auto;background:var(--cream)}
-  .wwa-stage{position:static;height:auto;display:flex;flex-direction:column;justify-content:center;padding:clamp(88px,11vh,150px) 56px;overflow:visible}
+  /* THE BAND MUST OUTLAST THE FIELD'S TRANSITION.
+     The field marks an edge wherever the theme or the override signature
+     changes, and blends across innerHeight * 0.6 either side of one. This
+     beat is a light band between two dark ones, so it owns two edges: its
+     top and its bottom. If they sit closer together than two windows, their
+     blends overlap, the field resolves to whichever edge is nearer, and that
+     choice flips as you cross the middle. The blend then reverses instead of
+     completing, which reads as the background sliding about.
+
+     Two windows is 1.2 viewport heights. Flattening this beat had left it at
+     659px against a 1080px requirement, so the two windows overlapped by
+     421px, about two thirds of the section. 140svh clears it at any viewport
+     height and leaves 0.2vh of settled middle. It is a minimum,
+     not a rig: nothing is sticky and nothing is driven by scroll. */
+  .wwa-stage{position:static;height:auto;min-height:140svh;display:flex;flex-direction:column;justify-content:center;padding:clamp(88px,11vh,150px) 56px;overflow:visible}
   .wwa-stage .eyebrow{position:static;color:var(--indigo);margin:0 0 28px}
   .wwa-lines{max-width:1100px}
   .wwa-line{font-family:var(--disp);font-weight:700;font-size:clamp(30px,4.6vw,66px);line-height:1.08;letter-spacing:-.01em;color:var(--cream-ink);

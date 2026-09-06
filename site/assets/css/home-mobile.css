@@ -247,6 +247,15 @@ html[data-touch] .hero .seeall {
    The desktop reveals them one at a time across 300vh of scroll. Flattened,
    that mechanism has no travel left, so the lines are simply all present.
    ═════════════════════════════════════════════════════════════════════ */
+/* The flatten above sets min-height:0 on every released container, which
+   is right for all of them except this one. The field marks an edge at each
+   end of this light band and blends across innerHeight * 0.6 either side, so
+   the band has to be longer than two windows, that is 1.2 viewport heights,
+   or the two blends overlap and the background slides about as the nearer
+   edge changes. 140svh is the same minimum main.css sets; it is restored
+   here because the flatten's !important would otherwise drop it. */
+html[data-touch] .wwa-stage { min-height: 140svh !important; }
+
 html[data-touch] .wwa-line {
   opacity: 1 !important;
   transform: none !important;
