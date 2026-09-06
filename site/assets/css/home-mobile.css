@@ -256,6 +256,15 @@ html[data-touch] .hero .seeall {
    here because the flatten's !important would otherwise drop it. */
 html[data-touch] .wwa-stage { min-height: 140svh !important; }
 
+/* The flatten sets position:static on every released container. That is right
+   everywhere except here: .rw-band markers are absolutely positioned inside
+   this one, and with no positioned ancestor they escape to the document and
+   report top:0. The field reads their geometry to know where its accent
+   applies, so all four collapsed onto the top of the page and it saw an
+   accent band sitting over the hero. The container keeps its containing
+   block; nothing else about the flatten changes. */
+html[data-touch] .reelwwd { position: relative !important; }
+
 html[data-touch] .wwa-line {
   opacity: 1 !important;
   transform: none !important;
