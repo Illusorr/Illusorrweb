@@ -217,9 +217,11 @@ function onScroll(fn){
     const wfSheen=whoforScroll.querySelector('.wf-sheen');
     const clampw=(v,a,b)=>Math.min(b,Math.max(a,v));
     let wfCur=-1;
+    const wfStageEl=whoforScroll.querySelector('.whofor');
+    const wfTravel=()=>whoforScroll.offsetHeight-(wfStageEl?wfStageEl.offsetHeight:window.innerHeight);
     function updateWhofor(){
       const r=whoforScroll.getBoundingClientRect();
-      const total=whoforScroll.offsetHeight-window.innerHeight;
+      const total=wfTravel();
       if(total<=0) return;
       const p=clampw((-r.top)/total,0,0.9999);
       const idx=Math.min(wfImgs.length-1,Math.floor(p*wfImgs.length));
@@ -233,7 +235,7 @@ function onScroll(fn){
     if(!TOUCH){ window.addEventListener('scroll',onScroll(updateWhofor),{passive:true}); updateWhofor(); }
 
     wfRows.forEach((row,i)=>row.addEventListener('click',()=>{
-      const total=whoforScroll.offsetHeight-window.innerHeight;
+      const total=wfTravel();
       window.scrollTo({top:whoforScroll.offsetTop+total*(i/wfImgs.length)+10,behavior:'smooth'});
     }));
 
@@ -263,9 +265,22 @@ function onScroll(fn){
 
   const wwa=document.getElementById('wwaScroll');
   const lines=wwa?wwa.querySelectorAll('.wwa-line'):[];
+  /* SCROLL TRAVEL COMES FROM THE STAGE, NOT FROM THE VIEWPORT.
+     Each of these rigs is a tall container holding one sticky stage, and the
+     travel is the difference between the two. Reading that second term from
+     window.innerHeight made it a live value: browser chrome hiding and showing
+     steps innerHeight by about 40px, so the travel changed, the progress
+     changed with it, and everything driven off that progress moved while the
+     page had not scrolled at all.
+
+     The stage is height:100svh, which by definition does not follow the
+     chrome, and the rigs are now sized in svh to match. Measuring the stage
+     directly makes both terms stable and the two units agree. */
+  const wwaStage=wwa?wwa.querySelector('.wwa-stage'):null;
   function updateWWA(){
     const r=wwa.getBoundingClientRect();
-    const total=wwa.offsetHeight-window.innerHeight;
+    const total=wwa.offsetHeight-(wwaStage?wwaStage.offsetHeight:window.innerHeight);
+    if(total<=0) return;
     const prog=Math.min(1,Math.max(0,(-r.top)/total));
     const shown=Math.max(1,Math.ceil(prog*lines.length));
     lines.forEach((l,i)=>l.classList.toggle('on',i<shown));
@@ -279,9 +294,11 @@ function onScroll(fn){
   const slides=rwWwd?rwWwd.querySelectorAll('.wwd-slide'):[];
   const dots=rwWwd?rwWwd.querySelectorAll('.wwd-progress i'):[];
   const clampv=(v,a,b)=>Math.min(b,Math.max(a,v));
+  const rwStage=reelwwd?reelwwd.querySelector('.rw-stage'):null;
   function updateReelWwd(){
     const r=reelwwd.getBoundingClientRect();
-    const total=reelwwd.offsetHeight-window.innerHeight;
+    const total=reelwwd.offsetHeight-(rwStage?rwStage.offsetHeight:window.innerHeight);
+    if(total<=0) return;
     const p=clampv((-r.top)/total,0,1);
     // phase 1 (0 – .28): reel recedes and dims
     const rp=clampv(p/0.28,0,1);
