@@ -125,55 +125,31 @@
   .reel-marks-r{position:absolute;bottom:-34px;right:0;font-size:10px;letter-spacing:.24em;color:var(--faint);text-transform:uppercase;display:flex;gap:6px}
   .reel-marks-r b{color:var(--cold)}
   /* REEL → WHAT WE DO — recede & emerge combined sticky stage */
-  .reelwwd{position:relative;height:auto;background:#070a16}
-  .rw-stage{position:static;height:auto;overflow:visible;display:block}
-  .rw-reel{position:relative;z-index:4;padding:clamp(72px,9vh,130px) 56px 0}
-  .rw-wwd{position:relative;inset:auto;z-index:3;display:flex;flex-direction:column;align-items:flex-start;padding:clamp(72px,9vh,130px) 56px clamp(80px,10vh,140px);opacity:1}
+  .reelwwd{position:relative;height:600vh;background:#070a16}
+  .rw-stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:flex;align-items:center;justify-content:center}
+  .rw-reel{position:absolute;z-index:4;will-change:transform,opacity}
+  .rw-wwd{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:0 56px;opacity:0;will-change:opacity}
   .wwd-head{position:static;width:100%;display:flex;justify-content:space-between;align-items:center;margin-bottom:34px}
   .wwd-head .eyebrow{margin-bottom:0}
-  .wwd-progress{display:none}
+  .wwd-progress{display:flex;gap:8px}
   .wwd-progress i{width:34px;height:2px;background:rgba(142,162,255,.2);display:block;transition:.4s}
   .wwd-progress i.on{background:var(--cold)}
-  .wwd-slides{position:relative;height:auto;width:100%;max-width:1000px}
-  .wwd-slide{position:relative;display:flex;align-items:center;gap:28px;opacity:1;transform:none;pointer-events:auto}
-  .wwd-slide + .wwd-slide{margin-top:clamp(44px,6vh,80px)}
+  .wwd-slides{position:relative;height:52vh;width:100%;max-width:1000px}
+  .wwd-slide{position:absolute;top:0;left:0;right:0;bottom:0;display:flex;align-items:center;gap:28px;opacity:0;transform:translateY(40px);transition:opacity .6s cubic-bezier(.2,.7,.2,1),transform .6s cubic-bezier(.2,.7,.2,1);pointer-events:none}
+  .wwd-slide.on{opacity:1;transform:translateY(0);pointer-events:auto}
   .wwd-slide .wnum{font-family:var(--disp);font-weight:800;font-size:clamp(50px,8vw,130px);line-height:.85;flex:none;color:#fff}
   .wwd-slide h2{font-size:clamp(34px,4.8vw,68px);font-weight:800;letter-spacing:-.02em}
   .wwd-slide p{color:#fff;font-size:18px;line-height:1.7;margin-top:16px;font-weight:400;max-width:460px;opacity:1}
-  .wwd-method{position:static;margin-top:clamp(32px,4vh,56px);text-align:left;color:var(--faint);font-size:12px;font-weight:300;letter-spacing:.02em}
+  .wwd-method{position:absolute;bottom:60px;left:56px;right:56px;text-align:left;color:var(--faint);font-size:12px;font-weight:300;letter-spacing:.02em}
   /* WHO WE ARE — sticky line-by-line reveal */
-  /* NO SCROLL RIG, NO STICKY. These two beats used to be tall containers
-     holding a pinned stage: 300svh here and 600svh below, each with a
-     sticky stage inside and a scroll driver writing inline styles. The
-     phone layer had already flattened both, and they are now flat
-     everywhere, so the section is simply its content.
-
-     Everything the rigs drove is therefore in its resting state: the four
-     lines are all present, the reel is at full size, the panel is opaque
-     and all four slides are stacked and readable. The progress dots go
-     with the mechanism they reported on. */
-  .wwa-scroll{position:relative;height:auto;background:var(--cream)}
-  /* THE BAND MUST OUTLAST THE FIELD'S TRANSITION.
-     The field marks an edge wherever the theme or the override signature
-     changes, and blends across innerHeight * 0.6 either side of one. This
-     beat is a light band between two dark ones, so it owns two edges: its
-     top and its bottom. If they sit closer together than two windows, their
-     blends overlap, the field resolves to whichever edge is nearer, and that
-     choice flips as you cross the middle. The blend then reverses instead of
-     completing, which reads as the background sliding about.
-
-     Two windows is 1.2 viewport heights. Flattening this beat had left it at
-     659px against a 1080px requirement, so the two windows overlapped by
-     421px, about two thirds of the section. 140svh clears it at any viewport
-     height and leaves 0.2vh of settled middle. It is a minimum,
-     not a rig: nothing is sticky and nothing is driven by scroll. */
-  .wwa-stage{position:static;height:auto;min-height:140svh;display:flex;flex-direction:column;justify-content:center;padding:clamp(88px,11vh,150px) 56px;overflow:visible}
+  .wwa-scroll{position:relative;height:300vh;background:var(--cream)}
+  .wwa-stage{position:sticky;top:0;height:100vh;height:100svh;display:flex;flex-direction:column;justify-content:center;padding:0 56px;overflow:hidden}
   .wwa-stage .eyebrow{position:static;color:var(--indigo);margin:0 0 28px}
   .wwa-lines{max-width:1100px}
   .wwa-line{font-family:var(--disp);font-weight:700;font-size:clamp(30px,4.6vw,66px);line-height:1.08;letter-spacing:-.01em;color:var(--cream-ink);
-    opacity:1}
+    opacity:.12;transition:opacity .5s ease}
   .wwa-line.on{opacity:1}
-  .wwa-foot{position:static;margin-top:clamp(40px,6vh,72px);display:flex;justify-content:space-between;align-items:flex-end;gap:32px}
+  .wwa-foot{position:absolute;bottom:80px;left:56px;right:56px;display:flex;justify-content:space-between;align-items:flex-end}
   .wwa-foot .body{max-width:420px;margin:0}
   /* WHO WE DO IT FOR — full screen with media placeholder */
   /* BREATH — fluid field buffer before selected work */
@@ -320,7 +296,7 @@
   @keyframes cbSweep{from{transform:translateX(-100%)}to{transform:translateX(350%)}}
   .cb-cta{margin-top:56px;display:inline-flex}
   /* WHO WE DO IT FOR — white, sticky scroll-through all sector media */
-  .whofor-scroll{position:relative;height:540svh;background:#fff}
+  .whofor-scroll{position:relative;height:540vh;background:#fff}
   .whofor{position:sticky;top:0;height:100vh;height:100svh;min-height:100vh;min-height:100svh;display:grid;grid-template-columns:46% 54%;overflow:hidden;background:#fff}
   .wf-visual{position:relative;overflow:hidden;border-right:1px solid #e4e7ec;background:#fff;perspective:1400px;perspective-origin:50% 50%}
   /* isolation:isolate confines .wf-sheen's mix-blend-mode:screen to this

@@ -357,34 +357,6 @@ void main(){
   // punctuation has to be a change of SIZE, not of morph.
   let radius=1,radiusT=1;
   let latchedMirror=0,latchedMorph=null;
-  /* A STABLE VIEWPORT HEIGHT, FOR DURATIONS ONLY.
-     innerHeight follows the browser toolbar: on a phone it steps by about
-     40px as the chrome hides and shows. Anything measuring SCREEN SPACE must
-     keep using it, because the screen really did change size, and buildLut
-     and the mid-screen position below both do.
-
-     A transition WIDTH is not screen space. It is a design duration in
-     scroll distance, and it has no business changing because a toolbar
-     moved: resizing the window mid-transition makes prox jump, which is the
-     background appearing to shift with no scrolling. svh is defined as the
-     viewport with the chrome shown, so it does not move, and it is the same
-     unit the sections are sized in, which keeps the field and the layout
-     measuring against one thing. */
-  let stableVh=innerHeight;
-  (function(){
-    const probe=document.createElement('div');
-    probe.style.cssText='position:absolute;top:0;left:0;width:0;height:100svh;'+
-      'visibility:hidden;pointer-events:none';
-    const attach=()=>{
-      if(!document.body) return;
-      document.body.appendChild(probe);
-      const read=()=>{ stableVh=probe.offsetHeight||innerHeight; };
-      read();
-      addEventListener('resize',read);
-    };
-    if(document.body) attach(); else addEventListener('DOMContentLoaded',attach);
-  })();
-
   let geom=[],heroGeom=null,lutSig='',edges=[];
   let mode=localStorage.getItem('nfMode')||'flood';
 
@@ -425,7 +397,7 @@ void main(){
     const mid=scrollY+innerHeight*0.5;
 
     // Signed progress through the nearest state boundary, -1 .. +1.
-    const WIN=stableVh*(mode==='sticky'?T.stickyWindow:T.window);
+    const WIN=innerHeight*(mode==='sticky'?T.stickyWindow:T.window);
     let near=Infinity,signed=0;
     for(const e of edges){
       const d=mid-e;

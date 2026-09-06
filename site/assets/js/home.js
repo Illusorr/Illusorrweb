@@ -217,11 +217,9 @@ function onScroll(fn){
     const wfSheen=whoforScroll.querySelector('.wf-sheen');
     const clampw=(v,a,b)=>Math.min(b,Math.max(a,v));
     let wfCur=-1;
-    const wfStageEl=whoforScroll.querySelector('.whofor');
-    const wfTravel=()=>whoforScroll.offsetHeight-(wfStageEl?wfStageEl.offsetHeight:window.innerHeight);
     function updateWhofor(){
       const r=whoforScroll.getBoundingClientRect();
-      const total=wfTravel();
+      const total=whoforScroll.offsetHeight-window.innerHeight;
       if(total<=0) return;
       const p=clampw((-r.top)/total,0,0.9999);
       const idx=Math.min(wfImgs.length-1,Math.floor(p*wfImgs.length));
@@ -235,7 +233,7 @@ function onScroll(fn){
     if(!TOUCH){ window.addEventListener('scroll',onScroll(updateWhofor),{passive:true}); updateWhofor(); }
 
     wfRows.forEach((row,i)=>row.addEventListener('click',()=>{
-      const total=wfTravel();
+      const total=whoforScroll.offsetHeight-window.innerHeight;
       window.scrollTo({top:whoforScroll.offsetTop+total*(i/wfImgs.length)+10,behavior:'smooth'});
     }));
 
@@ -263,11 +261,41 @@ function onScroll(fn){
     }
   }
 
-  /* The who-we-are and reel beats are flat: no tall container, no sticky
-     stage, nothing to progress through. Their scroll drivers went with them.
-     They used to write inline transform and opacity onto the reel and the
-     panel and toggle a current class across the lines and slides, all of
-     which now rest in CSS. Neither container is read from script any more. */
+  const wwa=document.getElementById('wwaScroll');
+  const lines=wwa?wwa.querySelectorAll('.wwa-line'):[];
+  function updateWWA(){
+    const r=wwa.getBoundingClientRect();
+    const total=wwa.offsetHeight-window.innerHeight;
+    const prog=Math.min(1,Math.max(0,(-r.top)/total));
+    const shown=Math.max(1,Math.ceil(prog*lines.length));
+    lines.forEach((l,i)=>l.classList.toggle('on',i<shown));
+  }
+  if(wwa&&!TOUCH){window.addEventListener('scroll',onScroll(updateWWA),{passive:true});updateWWA();}
+
+  // REEL → WHAT WE DO — recede & emerge + sequential slide reveal
+  const reelwwd=document.getElementById('reelwwd');
+  const rwReel=document.getElementById('rwReel');
+  const rwWwd=document.getElementById('rwWwd');
+  const slides=rwWwd?rwWwd.querySelectorAll('.wwd-slide'):[];
+  const dots=rwWwd?rwWwd.querySelectorAll('.wwd-progress i'):[];
+  const clampv=(v,a,b)=>Math.min(b,Math.max(a,v));
+  function updateReelWwd(){
+    const r=reelwwd.getBoundingClientRect();
+    const total=reelwwd.offsetHeight-window.innerHeight;
+    const p=clampv((-r.top)/total,0,1);
+    // phase 1 (0 – .28): reel recedes and dims
+    const rp=clampv(p/0.28,0,1);
+    const s=1-rp*0.72;
+    rwReel.style.transform=`scale(${s})`;
+    rwReel.style.opacity=(1-clampv(rp*1.6,0,1)).toFixed(3);
+    // phase 2 (.24 – 1): what we do emerges + cycles 4 slides
+    const wp=clampv((p-0.24)/0.76,0,1);
+    rwWwd.style.opacity=clampv(wp*2.2,0,1).toFixed(3);
+    let idx=Math.min(slides.length-1,Math.floor(wp*slides.length));
+    slides.forEach((sl,i)=>sl.classList.toggle('on',i===idx));
+    dots.forEach((d,i)=>d.classList.toggle('on',i<=idx));
+  }
+  if(reelwwd&&!TOUCH){window.addEventListener('scroll',onScroll(updateReelWwd),{passive:true});updateReelWwd();}
 
   setTimeout(()=>{const h=document.getElementById('hint');if(h){h.style.transition='opacity 1s';h.style.opacity='0'}},6500);
 
