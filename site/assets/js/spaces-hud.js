@@ -572,8 +572,12 @@ async function askAgent(name, messages) {
     })).trim();
   }
 
+  /* 20s, not 12. A cold function plus a slow handset can genuinely take
+     longer than twelve seconds, and aborting early produced a fallback that
+     blamed the connection for a request still in flight. field.hold() gives
+     the agent 30s, so there is room. */
   const ctrl = new AbortController();
-  const timer = setTimeout(() => ctrl.abort(), 12000);
+  const timer = setTimeout(() => ctrl.abort(), 20000);
   try {
     const r = await fetch('/api/spaces-agent', {
       method: 'POST',
@@ -581,11 +585,22 @@ async function askAgent(name, messages) {
       body: JSON.stringify({ agent: name, world: field.worldName(), messages: recent }),
       signal: ctrl.signal,
     });
-    if (!r.ok) throw new Error('agent ' + r.status);
+    if (!r.ok) {
+      /* Carry the server's own reason, not just the number. The function
+         answers 503 unconfigured, 502 upstream, 429 slow down, 400 with the
+         field it rejected — all of which used to arrive as one word,
+         "offline", which is the least useful thing it could have said. */
+      let why = '';
+      try { why = (await r.json()).error || ''; } catch (e) {}
+      throw new Error('http ' + r.status + (why ? ' ' + why : ''));
+    }
     const data = await r.json();
     const reply = (data && data.reply || '').trim();
-    if (!reply) throw new Error('agent empty');
+    if (!reply) throw new Error('empty reply');
     return reply;
+  } catch (e) {
+    if (e && e.name === 'AbortError') throw new Error('timed out after 20s');
+    throw e;
   } finally {
     clearTimeout(timer);
   }
@@ -689,12 +704,16 @@ talkForm.addEventListener('submit', async (e) => {
     const p = field.persona(name);
     const fallback = (p && p.lines[Math.floor(Math.random() * p.lines.length)])
       || 'Say that again — the link dropped.';
-    const why = /429/.test(String(err && err.message))
-      ? 'too many messages just now — one moment'
-      : 'offline for a second';
+    /* Show the actual reason. "Offline for a second" was a guess dressed as
+       an explanation and it sent us both looking in the wrong place: the
+       endpoint was answering fine while the room kept saying the link was
+       down. Whatever threw, its own words go on screen. */
+    const raw = String((err && err.message) || 'unknown');
+    const why = /429/.test(raw) ? 'too many messages just now — one moment' : raw;
     line(fallback, false, 'fell-back');
     const note = line('· ' + why + ' ·', false, 'note');
-    if (note) setTimeout(() => note.remove(), 6000);
+    if (note) setTimeout(() => note.remove(), 12000);
+    if (window.console) console.warn('[spaces] agent fell back:', raw);
     field.speakAs(name, fallback);
     say(name, fallback);
   } finally {
