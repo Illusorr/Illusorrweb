@@ -304,19 +304,36 @@
     var pageGate = typeof window.MG_START_3D === 'function' ? window.MG_START_3D : null;
 
     if (pageGate || threeUrls.length) {
+      /* The bare `canvas` fallback must never pick up the background field:
+         #nf is the first canvas in the document on every page that runs it,
+         so deferring that would take the light sections' white ground away
+         and leave their near-black text on the page's dark body. */
       var host = document.querySelector('canvas[data-3d], .scene-3d canvas, #anamorphCanvas, #scene canvas, canvas#scene') ||
-                 document.querySelector('canvas');
-      if (host) {
-        defer(host, 'Load 3D scene', 'Off by default on mobile', '3d', function () {
-          /* tells the stylesheet the scene is genuinely on its way, so the
-             page's own loader and viewer hints may show again */
-          document.documentElement.setAttribute('data-3d-live', '');
-          if (pageGate) { pageGate(); return; }
-          loadSequential(threeUrls, function () {
-            document.dispatchEvent(new CustomEvent('m:three-ready'));
-            if (typeof window.initThree === 'function') window.initThree();
-          });
+                 document.querySelector('canvas:not(#nf)');
+
+      function startScene() {
+        /* tells the stylesheet the scene is genuinely on its way, so the
+           page's own loader and viewer hints may show again */
+        document.documentElement.setAttribute('data-3d-live', '');
+        if (pageGate) { pageGate(); return; }
+        loadSequential(threeUrls, function () {
+          document.dispatchEvent(new CustomEvent('m:three-ready'));
+          if (typeof window.initThree === 'function') window.initThree();
         });
+      }
+
+      /* OPT OUT, for a page that IS the scene.
+         Tap to load is right when the 3D is one heavy element among many and
+         a visitor may never scroll to it. It is wrong when the scene is the
+         entire page: illusorr-spaces is a full-bleed canvas with a walk
+         control, so deferring it leaves a placeholder sitting on top of the
+         page's own HUD with nothing behind it. Such a page declares
+         data-3d-auto on <html> and the scene starts with the page.
+         Everything else keeps the tap. */
+      if (document.documentElement.hasAttribute('data-3d-auto')) {
+        startScene();
+      } else if (host) {
+        defer(host, 'Load 3D scene', 'Off by default on mobile', '3d', startScene);
       }
     }
     /* ── background field: quiet the DARK passages only ───────────────

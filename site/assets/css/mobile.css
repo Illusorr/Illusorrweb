@@ -297,6 +297,13 @@ html[data-touch] a[class*="-nav"]:not([class*="rail"]),
 html[data-touch] button[class*="-nav"]:not([class*="rail"]),
 html[data-touch] .hc-nav,
 html[data-touch] .fplay,
+/* The Spaces HUD's two round controls. Both are <button>, so the generic
+   floor above gave them min-height:44px, and the page sizes them 40x40 at
+   this width — a 40x44 oval sitting in the top right corner. They are round
+   by border-radius:50%, which no selector here can detect, so they are named
+   like .hc-nav and .fplay above. */
+html[data-touch] .account,
+html[data-touch] .sound,
 html[data-touch] [class*="round"] {
   min-width: 44px;
   min-height: 44px;
