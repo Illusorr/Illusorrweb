@@ -234,7 +234,37 @@ vec3 evalField(vec2 uv,float mir){
   /* Collapse thins the contours toward nothing by raising the exponent,
      so the flow reads as closing rather than fading. */
   float sharp=u_contourSharpness*(1.0+u_collapse*u_collapseAmt);
-  float bands=pow(0.5+0.5*sin(h*densityNow),sharp);
+  float phase=h*densityNow;
+  float bands=pow(0.5+0.5*sin(phase),sharp);
+
+  /* ANTIALIASING, ANALYTIC.
+   *
+   * The context asks for antialias:true but that is MSAA, which only smooths
+   * polygon edges. The field is one fullscreen quad, so MSAA never touches
+   * the thing that actually aliases: this contour function.
+   *
+   * pow(0.5+0.5*sin(phase),sharp) is a stripe generator. Near a peak it
+   * behaves like exp(-sharp*x*x/4), so a line's half-width is about
+   * 2/sqrt(sharp) RADIANS OF PHASE: at the default sharpness of 20 that is
+   * 0.45rad, and during a collapse sharp reaches 160 and it thins to 0.16rad.
+   * Where the warped fbm steepens, one pixel spans more phase than that, the
+   * line falls between sample points, and it breaks into dashes that crawl as
+   * the field animates or the page scrolls.
+   *
+   * fwidth gives the phase covered by one pixel, so the two are directly
+   * comparable. Once a pixel can no longer resolve a line, the honest answer
+   * is the value supersampling would converge to, which is the function's
+   * average over a period: C(2n,n)/4^n, and 1/sqrt(pi*n) to well under a
+   * percent at these exponents. Blending to that as the pixel outgrows the
+   * line is what a supersampler does, at the cost of one derivative.
+   *
+   * Both thresholds are in units of line widths, so this follows sharp
+   * through a collapse instead of being tuned for one exponent. Below 0.8
+   * nothing changes at all, which is most of the frame. */
+  float aaPx=fwidth(phase);
+  float lineW=2.0*inversesqrt(max(sharp,1.0));
+  float mean=inversesqrt(3.14159265*max(sharp,1.0));
+  bands=mix(bands,mean,smoothstep(0.8,2.5,aaPx/lineW));
 
   /* Dissolve is the one transform that acts on the RESULT rather than the
      coordinate: contours erode into a grain matrix and reform. */
