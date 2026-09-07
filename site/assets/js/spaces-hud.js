@@ -489,6 +489,52 @@ function line(text, mine, cls) {
   return el;
 }
 
+/* THREE ROUTES TO A REPLY, IN ORDER.
+ *
+ * 1. window.claude — the Claude artifact runtime. It exists only inside
+ *    claude.ai, so on illusorr.com it is undefined. This used to be the ONLY
+ *    route, which is why every reply on the live site came from the canned
+ *    lines below: the call threw on its first line and the catch handled it.
+ * 2. /api/spaces-agent — a Netlify function holding the API key server-side.
+ *    The browser cannot hold a key, so the proxy is what makes this real.
+ *    It builds the system prompt itself from the agent name; this client
+ *    deliberately does not send one, or the endpoint would be a free
+ *    general-purpose model for anyone who found the URL.
+ * 3. the persona's own lines, if both are unreachable. A room where nobody
+ *    answers is worse than a room where they answer from a short script.
+ *
+ * The 12s abort is under field.hold()'s 30s, so the agent is still standing
+ * there when the answer lands or the fallback fires. */
+async function askAgent(name, messages) {
+  const recent = messages.slice(-10);
+
+  if (window.claude && window.claude.complete) {
+    return (await window.claude.complete({
+      system: systemFor(name),
+      messages: recent,
+      max_tokens: 220,
+    })).trim();
+  }
+
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), 12000);
+  try {
+    const r = await fetch('/api/spaces-agent', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ agent: name, world: field.worldName(), messages: recent }),
+      signal: ctrl.signal,
+    });
+    if (!r.ok) throw new Error('agent ' + r.status);
+    const data = await r.json();
+    const reply = (data && data.reply || '').trim();
+    if (!reply) throw new Error('agent empty');
+    return reply;
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
 function systemFor(name) {
   const p = field.persona(name) || { role: 'Guest' };
   return [
@@ -571,12 +617,7 @@ talkForm.addEventListener('submit', async (e) => {
   field.hold(name, 30000);
 
   try {
-    if (!window.claude || !window.claude.complete) throw new Error('offline');
-    const reply = (await window.claude.complete({
-      system: systemFor(name),
-      messages: history[name].slice(-10),
-      max_tokens: 220,
-    })).trim();
+    const reply = await askAgent(name, history[name]);
     waiting.remove();
     line(reply, false);
     history[name].push({ role: 'assistant', content: reply });

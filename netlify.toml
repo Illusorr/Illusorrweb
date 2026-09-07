@@ -11,6 +11,16 @@
 [build]
   publish = "site"
   command = ""
+  # The one piece of the deploy that is not a static file. netlify/functions
+  # sits OUTSIDE site/ on purpose: it is deployed as a function, never served
+  # as an asset, so site/ stays a folder you could copy to any static host.
+  # Still no build step and no dependencies — the function is one .mjs file
+  # using the runtime's own fetch.
+  #
+  # spaces-agent needs ANTHROPIC_API_KEY in Netlify's environment variables.
+  # Without it the endpoint answers 503 and ILLUSORR Spaces falls back to its
+  # scripted lines, which is the behaviour the site had before it existed.
+  functions = "netlify/functions"
 
 # site/404.html is picked up automatically as the not-found page.
 
