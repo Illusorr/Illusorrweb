@@ -87,18 +87,26 @@
 
   // ===== CINEMATIC TEAM =====
   (function(){
-    const BLUE="assets/img/about/team-blue.webp",RED="assets/img/about/team-red.webp",PURPLE="assets/img/about/team-purple.webp",PINK="assets/img/about/team-pink.webp",BLUEPURPLE="assets/img/about/team-bluepurple.webp",
-  YELLOW="assets/img/about/team-yellow.webp",
-  VIOLET="assets/img/about/team-violet.webp";
+    /* Named for the person, not the lighting. The files were team-blue,
+       team-red and so on, which said nothing about whose portrait it was
+       and made a swap a guess. */
+    const SARA="assets/img/about/sara-el-jamal.webp",
+      BEGUM="assets/img/about/begum-aydinlioglu.webp",
+      ILAYDA="assets/img/about/ilayda-gunes.webp",
+      SALMA="assets/img/about/salma-el-shendy.webp",
+      MOHAMED="assets/img/about/mohamed-karaouane.webp",
+      RAWAN="assets/img/about/rawan-abdelrazik.webp",
+      ZEYNEP="assets/img/about/zeynep-topal.webp",
+      LARA="assets/img/about/lara-el-jamal.webp";
     const members=[
-      {n:"Sara El Jamal",r:"Managing Partner & Creative Director",init:"SE",img:BLUE,desc:"Leads creative direction and studio vision across every discipline.",tags:["Creative Direction","Art Direction","Strategy","3D"]},
-      {n:"Begüm Aydınlıoğlu",r:"Managing Partner · Strategy & Partnerships",init:"BA",img:BLUEPURPLE,desc:"Leads strategy and partnerships, shaping how the studio grows.",tags:["Strategy","Partnerships","Direction"]},
-      {n:"Ilayda Güneş",r:"Creative Designer & AI Automation",init:"IG",img:RED,desc:"Designs across the studio and builds AI automation into the workflow.",tags:["Design","AI Automation","Content"]},
-      {n:"Salma El Shendy",r:"AI Content Creator & Junior Designer",init:"SS",img:PINK,desc:"Creates AI-driven content and supports design across projects.",tags:["AI Content","Design","Social"]},
-      {n:"Mohamed Karaouane",r:"Finance & Admin",init:"MK",img:PURPLE,desc:"Runs finance and operations, keeping the studio building.",tags:["Finance","Operations","Admin"]},
-      {n:"Rawan Abdelrazik",r:"Digital Producer & Product Designer",init:"RA",img:YELLOW,ph:"linear-gradient(140deg,#0e3b52,#081018)",desc:"Produces digital work and designs product experiences.",tags:["Production","Product Design","Digital"]},
-      {n:"Zeynep Topal",r:"Lead Computational Designer",init:"ZT",img:VIOLET,ph:"linear-gradient(140deg,#3a2a52,#0a0e20)",desc:"Part of the ILLUSORR core team.",tags:["Studio","Craft"]},
-      {n:"Lara El Jamal",r:"Production Director",init:"LE",img:null,ph:"linear-gradient(140deg,#0e3b52,#081018)",desc:"Directs production across the studio, concept to delivery.",tags:["Production","Direction","Delivery"]}
+      {n:"Sara El Jamal",r:"Managing Partner & Creative Director",init:"SE",img:SARA,desc:"Leads creative direction and studio vision across every discipline.",tags:["Creative Direction","Art Direction","Strategy","3D"]},
+      {n:"Begüm Aydınlıoğlu",r:"Managing Partner · Strategy & Partnerships",init:"BA",img:BEGUM,desc:"Leads strategy and partnerships, shaping how the studio grows.",tags:["Strategy","Partnerships","Direction"]},
+      {n:"Ilayda Güneş",r:"Creative Designer & AI Automation",init:"IG",img:ILAYDA,desc:"Designs across the studio and builds AI automation into the workflow.",tags:["Design","AI Automation","Content"]},
+      {n:"Salma El Shendy",r:"AI Content Creator & Junior Designer",init:"SS",img:SALMA,desc:"Creates AI-driven content and supports design across projects.",tags:["AI Content","Design","Social"]},
+      {n:"Mohamed Karaouane",r:"Finance & Admin",init:"MK",img:MOHAMED,desc:"Runs finance and operations, keeping the studio building.",tags:["Finance","Operations","Admin"]},
+      {n:"Rawan Abdelrazik",r:"Digital Producer & Product Designer",init:"RA",img:RAWAN,ph:"linear-gradient(140deg,#0e3b52,#081018)",desc:"Produces digital work and designs product experiences.",tags:["Production","Product Design","Digital"]},
+      {n:"Zeynep Topal",r:"Lead Computational Designer",init:"ZT",img:ZEYNEP,ph:"linear-gradient(140deg,#3a2a52,#0a0e20)",desc:"Part of the ILLUSORR core team.",tags:["Studio","Craft"]},
+      {n:"Lara El Jamal",r:"Production Director",init:"LE",img:LARA,desc:"Directs production across the studio, concept to delivery.",tags:["Production","Direction","Delivery"]}
     ];
     const timgs=document.getElementById('timgs'),tcompose=document.getElementById('tcompose');
     const tcName=document.getElementById('tcName'),tcRole=document.getElementById('tcRole'),tcInit=document.getElementById('tcInit'),tcDesc=document.getElementById('tcDesc'),tcTags=document.getElementById('tcTags'),tcCount=document.getElementById('tcCount');
