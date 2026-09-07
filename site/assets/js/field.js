@@ -472,34 +472,62 @@ void main(){
   }
 
   function buildLut(){
-    const sig=scrollY+'|'+innerHeight+'|'+geom.length;
+    /* cv.height belongs in the signature: the ramp width below is expressed
+       in render-buffer pixels, so a render-scale change has to rebuild. */
+    const sig=scrollY+'|'+innerHeight+'|'+geom.length+'|'+cv.height;
     if(sig===lutSig) return;
     lutSig=sig;
     const raw=new Float32Array(N);
     const sy=scrollY,vh=innerHeight;
-    /* Sampled per texel from the scanline it represents, so the theme edge
-       lands within one texel (~0.5px at this N) instead of being rounded to
-       a whole texel and then blurred into a visible ramp. */
-    /* Each texel covers vh/N screen pixels. Testing one scanline per texel
-       made the value flip a whole texel at a time, so the edge advanced in
-       jumps as you scrolled (the jitter) and the linear filter then smeared
-       that step into a visible ramp (the bleed). Instead each texel stores
-       how much of its own span is light, so the filtered edge is accurate to
-       a fraction of a texel and slides continuously with scroll. */
-    const span=vh/(N-1);
-    const lightAt=y=>{
-      for(const g of geom){
-        const top=g.top-sy,bot=top+g.h;
-        if(y>=top&&y<bot) return g.light?1:0;
-      }
+
+    /* THEME EDGE, ANALYTIC.
+     *
+     * Earlier versions sampled each texel and box-filtered its own span. At
+     * N=2048 a texel is under half a screen pixel, so the resulting edge was
+     * effectively a hard step landing on a render-buffer row. The buffer is
+     * smaller than the screen (renderScale), so upscaling snapped that step
+     * between screen pixels as it slid — the jitter.
+     *
+     * The edge is instead resolved as a smooth function of each texel's
+     * signed distance to the nearest theme boundary, with the ramp width
+     * expressed in RENDER-BUFFER pixels. The edge is then always about one
+     * buffer pixel wide however the field is scaled: it antialiases cleanly
+     * and slides continuously with fractional scroll instead of stepping. */
+    const segs=geom.map(g=>({top:g.top-sy,bot:g.top-sy+g.h,light:g.light?1:0}));
+    /* DOM ORDER, FIRST MATCH WINS. Sections overlap: on a phone a single
+       .rw-band is ~1875px tall and starts at the top of the document, so it
+       spans several beats that are nested inside it. Document order is what
+       decides which one owns a scanline. Sorting these by position let that
+       tall band sort ahead of the beats it contains and swallow them — which
+       is exactly how "who we are" lost its white ground on mobile. */
+    const valueAt=y=>{
+      for(const s of segs) if(y>=s.top&&y<s.bot) return s.light;
       return 0;
     };
-    const SUB=8;
+    /* A boundary is a place where valueAt actually changes — not merely a
+       section edge. An edge belonging to a section that never wins a scanline
+       is not a boundary, and adjacent sections share one. */
+    const bnds=[],seen={};
+    const addBnd=y=>{
+      const k=y.toFixed(2); if(seen[k]) return; seen[k]=1;
+      const to=valueAt(y+0.5);
+      if(valueAt(y-0.5)!==to) bnds.push({y,to});
+    };
+    for(const s of segs){ addBnd(s.top); addBnd(s.bot); }
+
+    const bufH=Math.max(1,cv.height);
+    const soft=Math.max(0.6,0.8*vh/bufH);   // half-width, screen px
     for(let i=0;i<N;i++){
-      const c=(1-i/(N-1))*vh;
-      let acc=0;
-      for(let k=0;k<SUB;k++) acc+=lightAt(c+((k+0.5)/SUB-0.5)*span);
-      raw[i]=acc/SUB;
+      const y=(1-i/(N-1))*vh;
+      let v=valueAt(y),best=1e9,bd=null;
+      for(const b of bnds){ const d=Math.abs(y-b.y); if(d<best){ best=d; bd=b; } }
+      if(bd&&best<soft){
+        let u=(y-bd.y)/(2*soft)+0.5;          // 0 above the edge, 1 below it
+        u=u<0?0:u>1?1:u;
+        const s=u*u*(3-2*u);
+        v=(1-bd.to)*(1-s)+bd.to*s;
+      }
+      raw[i]=v;
     }
     for(let i=0;i<N;i++) lutData[i]=Math.round(raw[i]*255);
     gl.bindTexture(gl.TEXTURE_2D,lutTex);
@@ -689,7 +717,6 @@ resize(); setMode(mode);
       requestAnimationFrame(()=>{q=false;draw(0)});},{passive:true});
     draw(0);
   } else {
-    const t0=performance.now(); let prev=0;
     /* The field ran at 30fps for the whole length of the page and kept running
        in a background tab: measured 18 draw calls a second whether or not the
        canvas was anywhere near the viewport. It is the hero, so it only needs
@@ -698,11 +725,23 @@ resize(); setMode(mode);
     if('IntersectionObserver' in window)
       new IntersectionObserver(function(es){ onScreen=es[0].isIntersecting; },
         {rootMargin:'100px'}).observe(cv);
+
+    /* The 30fps cap is right for the RESTING field: the flow is slow and
+       nobody can tell. It is wrong WHILE SCROLLING. The section edges move
+       with the page at the compositor's rate, but the field's theme edge only
+       moves when a frame is drawn, so at 30fps the two disagree by up to one
+       frame of scroll travel and the boundary shudders against the layout.
+       Scrolling lifts the cap; it drops again once the scroll has been quiet
+       for a moment. The on-screen gate above still applies either way, so
+       this costs nothing when the field is not visible. */
+    const t0=performance.now(); let prev=0, lastScroll=-1e9;
+    addEventListener('scroll',()=>{ lastScroll=performance.now(); },{passive:true});
     (function loop(){
       requestAnimationFrame(loop);
       if(!onScreen || document.hidden) return;
       const now=performance.now();
-      if(now-prev<1000/30) return;
+      const cap=(now-lastScroll<300)?0:1000/30;
+      if(now-prev<cap) return;
       prev=now; draw((now-t0)/1000);
     })();
   }

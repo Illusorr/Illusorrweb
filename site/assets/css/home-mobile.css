@@ -596,7 +596,11 @@ html[data-touch] .scroll-cue { display: none !important; }
   html[data-touch] .spaces-band,
   html[data-touch] .collective-band,
   html[data-touch] .breath { padding: 96px 40px !important; }
-  html[data-touch] .hero .center { padding: 120px 40px 64px !important; }
+  /* Same reasoning as the 104px phone rule above: the bar grows by the
+     status-bar inset on an island phone, so this clearance has to grow
+     with it or the kicker tucks in behind the brand. env() is 0 without
+     an inset, so this stays exactly 120px everywhere else. */
+  html[data-touch] .hero .center { padding: calc(120px + env(safe-area-inset-top, 0px)) 40px 64px !important; }
   html[data-touch] .close-center { padding: 120px 40px 88px !important; }
 
   /* A flat 62px across the whole 641-1024 band, with no fluidity: at 768

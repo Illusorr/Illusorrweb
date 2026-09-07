@@ -189,6 +189,16 @@
     }
     makeIO();
     addEventListener('resize',function(){clearTimeout(scan);scan=setTimeout(makeIO,180)});
+    /* iOS changes the viewport height when the URL bar collapses mid-scroll,
+       and the observer's rootMargin band is computed from innerHeight. A plain
+       resize listener is not reliably fired for that, so the band went stale by
+       ~100px and the bar stopped frosting while a headline ran beneath it.
+       visualViewport reports the change. Not redundant with resize on iOS. */
+    if(window.visualViewport){
+      visualViewport.addEventListener('resize',function(){
+        clearTimeout(scan);scan=setTimeout(makeIO,180);
+      });
+    }
     /* late content (conveyor cards, injected grids) joins the watch list */
     new MutationObserver(function(){clearTimeout(scan);scan=setTimeout(observeAll,220)})
       .observe(document.body,{childList:true,subtree:true});
