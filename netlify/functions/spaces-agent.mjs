@@ -60,7 +60,13 @@ function systemFor(name, world) {
  * ceiling is MAX_TOKENS multiplied by whatever Anthropic's own limits allow. */
 const HITS = new Map();
 const WINDOW_MS = 60_000;
-const PER_WINDOW = 12;
+/* 12 was far too tight. Every page load spends one on the ambient batch, so
+   somebody testing the room — reload, walk over, ask two things, reload —
+   crossed it within a minute and then got scripted replies with nothing on
+   screen to say why. A conversation is a handful of turns; 40 leaves room for
+   several of those plus the reloads around them, and MAX_TOKENS still caps
+   what any single one can cost. */
+const PER_WINDOW = 40;
 
 function limited(ip) {
   const now = Date.now();

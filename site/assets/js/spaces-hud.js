@@ -681,10 +681,20 @@ talkForm.addEventListener('submit', async (e) => {
     say(name, reply);
   } catch (err) {
     waiting.remove();
+    /* SAY SO. This used to drop silently into the scripted pool, so a rate
+       limit, a cold function or a dropped connection was indistinguishable
+       from the character simply being dull — which is exactly how it read.
+       The line still comes from the pool, because a guest who says nothing is
+       worse, but it is marked, and a 429 says what it is. */
     const p = field.persona(name);
     const fallback = (p && p.lines[Math.floor(Math.random() * p.lines.length)])
       || 'Say that again — the link dropped.';
-    line(fallback, false);
+    const why = /429/.test(String(err && err.message))
+      ? 'too many messages just now — one moment'
+      : 'offline for a second';
+    line(fallback, false, 'fell-back');
+    const note = line('· ' + why + ' ·', false, 'note');
+    if (note) setTimeout(() => note.remove(), 6000);
     field.speakAs(name, fallback);
     say(name, fallback);
   } finally {
@@ -713,14 +723,32 @@ addEventListener('keydown', (e) => {
  *
  * Fire and forget: the scripted pool is already in place, nothing waits on
  * this, and a failure leaves the room exactly as it was. */
-fetch('/api/spaces-agent', {
-  method: 'POST',
-  headers: { 'content-type': 'application/json' },
-  body: JSON.stringify({ mode: 'ambient', world: field.worldName() }),
-})
-  .then((r) => (r.ok ? r.json() : null))
-  .then((d) => { if (d && d.lines) field.setLines(d.lines); })
-  .catch(() => {});
+(function warmAmbient() {
+  const world = field.worldName();
+  const slot = 'spaces.lines.' + world;
+
+  /* Kept for the tab's lifetime. A reload used to spend another request on
+     the same room, which is how testing the page burned through the rate
+     limit and then read as "it went back to canned". sessionStorage, not
+     local: a new visit still gets new lines. */
+  try {
+    const held = JSON.parse(sessionStorage.getItem(slot) || 'null');
+    if (held) { field.setLines(held); return; }
+  } catch (e) {}
+
+  fetch('/api/spaces-agent', {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({ mode: 'ambient', world }),
+  })
+    .then((r) => (r.ok ? r.json() : null))
+    .then((d) => {
+      if (!d || !d.lines) return;
+      field.setLines(d.lines);
+      try { sessionStorage.setItem(slot, JSON.stringify(d.lines)); } catch (e) {}
+    })
+    .catch(() => {});
+})();
 
 /* ── enter ────────────────────────────────────────────── */
 if (EMBED) {

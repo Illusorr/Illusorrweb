@@ -197,6 +197,13 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
     background:rgba(255,255,255,.05); border:1px solid var(--hair); color:var(--ink); }
   .tm.me { margin-left:auto; background:rgba(0,178,255,.12); border-color:rgba(0,178,255,.3); }
   .tm.wait { color:var(--ink-faint); font-style:italic; }
+  /* A reply the model did not write. It still comes from the scripted pool,
+     because a guest who says nothing is worse than one repeating themselves,
+     but it must not pass for the real thing: silently falling back is how a
+     rate limit read as the character simply being dull. */
+  .tm.fell-back { opacity:.72; border-style:dashed; }
+  .tm.note { max-width:100%; padding:2px 0; border:0; background:none; text-align:center;
+    font-size: 10px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-faint); }
   .talk-form { display:flex; gap:9px; padding:0 14px 14px; }
   .talk-in { flex:1; min-width:0; padding:11px 13px; border-radius:8px;
     background:rgba(255,255,255,.04); border:1px solid var(--stroke); color:var(--ink);
