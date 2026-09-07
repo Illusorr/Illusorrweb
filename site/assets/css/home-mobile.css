@@ -818,3 +818,21 @@ html[data-touch] .wf-all{ margin-top: 18px !important; }
   html[data-touch] .conv::-webkit-scrollbar { display: none; }
   html[data-touch] .ccard { flex: 0 0 62% !important; width: auto !important; min-width: 0 !important; }
 }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   WHO WE ARE · AN OPAQUE GROUND ON TOUCH  (trial)
+   ═══════════════════════════════════════════════════════════════════════
+   The jitter is the field's painted theme boundary sliding against the
+   section edge it is meant to sit on. main.css sets this beat transparent
+   under #p-landing so the field paints its white ground, which is what ties
+   the two together. Give the section its own opaque background and the
+   field's boundary is covered wherever the section is: a background-color
+   is composited with its element and cannot lag.
+
+   Cost: the field's contours stop showing through this one beat. Nothing
+   else changes — the field still scans the scroll, still paints every other
+   section, still applies its accents, and desktop is untouched. */
+@media (max-width: 1024px) {
+  html[data-touch] #p-landing .wwa-scroll,
+  html[data-touch] #p-landing .wwa-stage { background: var(--cream) !important; }
+}
