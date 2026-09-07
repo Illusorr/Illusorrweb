@@ -698,6 +698,30 @@ addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && talk.classList.contains('open')) closeTalk();
 });
 
+/* THE ROOM'S OWN LINES, ASKED FOR AT LOAD.
+ *
+ * One request covers all three characters for the whole visit: per-bubble
+ * generation would be absurd since they fire continuously, and a single batch
+ * makes the room different every time for the cost of one call.
+ *
+ * It starts HERE rather than on the enter click, and that placement is the
+ * point. The batch takes several seconds, an agent greets you within a second
+ * of entering, and greetings are the first thing anyone hears — so starting it
+ * on the click meant the opening of every visit was scripted no matter what
+ * came back. Fired while the visitor is still reading the gate, it has usually
+ * landed before they are inside.
+ *
+ * Fire and forget: the scripted pool is already in place, nothing waits on
+ * this, and a failure leaves the room exactly as it was. */
+fetch('/api/spaces-agent', {
+  method: 'POST',
+  headers: { 'content-type': 'application/json' },
+  body: JSON.stringify({ mode: 'ambient', world: field.worldName() }),
+})
+  .then((r) => (r.ok ? r.json() : null))
+  .then((d) => { if (d && d.lines) field.setLines(d.lines); })
+  .catch(() => {});
+
 /* ── enter ────────────────────────────────────────────── */
 if (EMBED) {
   gate.classList.add('gone');
@@ -715,19 +739,5 @@ $('#enter').addEventListener('click', () => {
   document.body.classList.add('entered');   // releases the touch cue
   if (wanted) setSound(true);
   setTimeout(() => field.say('Begum', 'Welcome in — drag to look around.'), 900);
-
-  /* One request for the whole room's overheard lines, once per visit.
-     Per-bubble generation would be absurd — they fire continuously — but a
-     single batch makes the room different every time for the cost of one
-     call. It is deliberately fire-and-forget: if it never lands, the scripted
-     pool is already in place and nobody waits on it. */
-  fetch('/api/spaces-agent', {
-    method: 'POST',
-    headers: { 'content-type': 'application/json' },
-    body: JSON.stringify({ mode: 'ambient', world: field.worldName() }),
-  })
-    .then((r) => (r.ok ? r.json() : null))
-    .then((d) => { if (d && d.lines) field.setLines(d.lines); })
-    .catch(() => {});
 });
 })();

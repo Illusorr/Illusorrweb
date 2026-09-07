@@ -106,10 +106,14 @@ function ambientSystem(world) {
     'distance, hosts share a world code. No lists, no markdown, no stage directions, no',
     'quotation marks.',
     '',
+    'Each character needs TWO kinds of line. A greet is said TO the visitor as the',
+    'character walks up to them — welcoming, addressed to someone. A talk is overheard,',
+    'said to nobody in particular as the visitor passes. Do not mix the two registers.',
+    '',
     'Reply with JSON only, exactly this shape and nothing else:',
-    '{"Begum":["...","...","...","...","...","..."],',
-    ' "Zeynep":["...","...","...","...","...","..."],',
-    ' "Kerem":["...","...","...","...","...","..."]}',
+    '{"Begum":{"greet":["...","..."],"talk":["...","...","...","...","..."]},',
+    ' "Zeynep":{"greet":["...","..."],"talk":["...","...","...","...","..."]},',
+    ' "Kerem":{"greet":["...","..."],"talk":["...","...","...","...","..."]}}',
   ].join(' ');
 }
 
@@ -140,15 +144,20 @@ async function ambient(key, world) {
     parsed = JSON.parse(raw.slice(a, b + 1));
   } catch { return json(502, { error: 'unparsable' }); }
 
+  const clean = (arr, max) => (Array.isArray(arr) ? arr : [])
+    .filter(s => typeof s === 'string')
+    .map(s => s.replace(/\s+/g, ' ').replace(/^["'\s-]+|["'\s]+$/g, '').trim())
+    .filter(s => s.length > 3 && s.length <= 140)
+    .slice(0, max);
+
   const lines = {};
   for (const name of Object.keys(AGENTS)) {
-    const arr = Array.isArray(parsed?.[name]) ? parsed[name] : [];
-    const clean = arr
-      .filter(s => typeof s === 'string')
-      .map(s => s.replace(/\s+/g, ' ').replace(/^["'\s-]+|["'\s]+$/g, '').trim())
-      .filter(s => s.length > 3 && s.length <= 140)
-      .slice(0, 8);
-    if (clean.length) lines[name] = clean;
+    const v = parsed?.[name];
+    /* An older shape returned a bare array of overheard lines. Accepted still,
+       so a cached client and a fresh one both get something usable. */
+    const greet = clean(v?.greet, 3);
+    const talk = clean(Array.isArray(v) ? v : v?.talk, 8);
+    if (greet.length || talk.length) lines[name] = { greet, talk };
   }
   if (!Object.keys(lines).length) return json(502, { error: 'empty' });
   return json(200, { lines });

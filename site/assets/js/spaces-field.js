@@ -995,7 +995,14 @@ window.spacesField = {
     let n = 0;
     guests.forEach((g) => {
       const fresh = map[g.n];
-      if (Array.isArray(fresh) && fresh.length) { g.talk = fresh.slice(); n += fresh.length; }
+      if (!fresh) return;
+      /* greet is what an agent says walking up to you, and it is the FIRST
+         thing anyone hears. Replacing only talk left every visit opening on a
+         scripted line, which is most of why the room still read as canned. */
+      const greet = Array.isArray(fresh) ? null : fresh.greet;
+      const talk = Array.isArray(fresh) ? fresh : fresh.talk;
+      if (Array.isArray(greet) && greet.length) { g.greet = greet.slice(); n += greet.length; }
+      if (Array.isArray(talk) && talk.length) { g.talk = talk.slice(); n += talk.length; }
     });
     return n;
   },
