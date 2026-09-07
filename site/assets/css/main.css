@@ -2363,12 +2363,26 @@
 /* The field's light region drifts horizontally across the hero. The headline
    is set on a dark theme, so when that bloom travels under it the copy loses
    its ground. A soft elliptical plate rides with the text and holds the
-   contrast steady no matter where the field's light happens to be. */
+   contrast steady no matter where the field's light happens to be.
+
+   The plate reaches the hero's bottom edge rather than fading out above it.
+   It stays CENTRED on the text, so the gradient's darkest point is still the
+   headline and every stop is still measured outward from it. .center sits at
+   top:51%, so the text centre is 49% of the hero above the bottom edge and a
+   half-height of 49svh puts the plate's bottom exactly there: 98svh total.
+   The matching overflow above the text is clipped by .hero{overflow:hidden}.
+   98vh is declared first for engines without svh; max() holds the plate to
+   the hero's 640px min-height floor on a very short viewport.
+
+   Alphas are 22% of their original values (.92 .86 .55 became .20 .19 .12),
+   so much more of the field reads through while the falloff keeps its shape.
+   The last stop is 100% rather than 82% so the veil thins out AT the bottom
+   edge instead of vanishing 20px above it. */
 .hero .center::before{
   content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
-  width:150%;height:340%;pointer-events:none;z-index:-1;
+  width:150%;height:98vh;height:max(98svh,627px);pointer-events:none;z-index:-1;
   background:radial-gradient(ellipse at center,
-    rgba(4,5,12,.92) 0%, rgba(4,5,12,.86) 34%, rgba(4,5,12,.55) 62%, rgba(4,5,12,0) 82%);
+    rgba(4,5,12,.20) 0%, rgba(4,5,12,.19) 34%, rgba(4,5,12,.12) 62%, rgba(4,5,12,0) 100%);
 }
 .hero .center > *{position:relative;z-index:1}
 .wwd-slide p{color:#fff}
