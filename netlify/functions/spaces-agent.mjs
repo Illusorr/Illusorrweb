@@ -82,8 +82,16 @@ const json = (status, obj) =>
 export default async (req, context) => {
   if (req.method !== 'POST') return json(405, { error: 'POST only' });
 
-  const key = process.env.ANTHROPIC_API_KEY;
-  if (!key) return json(503, { error: 'unconfigured' });
+  /* process.env is case-sensitive and Netlify does not normalise the name, so
+     ANTHROPIC_API_KEY has to be spelled exactly. The log line is here because
+     a 503 on its own gives no clue which half is wrong: the variable can exist
+     and still be invisible to this function if its scope excludes Functions. */
+  const key = (process.env.ANTHROPIC_API_KEY || '').trim();
+  if (!key) {
+    console.error('spaces-agent: ANTHROPIC_API_KEY not visible here. ' +
+                  'Check the name is exact and the scope includes Functions.');
+    return json(503, { error: 'unconfigured' });
+  }
 
   const ip = context?.ip || req.headers.get('x-nf-client-connection-ip') || 'unknown';
   if (limited(ip)) return json(429, { error: 'slow down' });
