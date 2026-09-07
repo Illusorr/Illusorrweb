@@ -722,3 +722,28 @@ html[data-touch] #aboutRoot .panel { padding: 96px 40px !important; }
      one continuous passage. */
   html[data-touch] #aboutRoot .panel { border: 0 !important; }
 }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CLIENT MARQUEE · A PLAIN CLIP ON TOUCH
+   ═══════════════════════════════════════════════════════════════════════
+   .cflow-row clips its track with overflow:hidden AND fades both ends with
+   -webkit-mask-image, and the track inside is 1446px wide, will-change:
+   transform, and animated on an infinite translateX. A masked element that
+   is also a compositing container is where WebKit's clipping is least
+   reliable — this file's sibling already records the same engine failing on
+   backdrop-filter plus mask-image — and when the clip leaks, a 1446px track
+   gives the page something to pan sideways into.
+
+   The mask is a decorative edge fade. Dropping it on touch leaves a plain
+   overflow:hidden, which is the one clip every engine agrees on. The track
+   still animates and still reads the same at this width, where the fade was
+   only a few pixels of the row anyway. */
+@media (max-width: 1024px) {
+  html[data-touch] #aboutRoot .cflow-row {
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
+    overflow: hidden !important;
+  }
+  html[data-touch] #aboutRoot .cflow { overflow: hidden !important; max-width: 100% !important; }
+  html[data-touch] #aboutRoot .cflow-track { will-change: auto !important; }
+}

@@ -210,7 +210,7 @@
   .reel-meta{display:flex;align-items:baseline;gap:20px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim)}
   .reel-count b{font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums}
   .reel-hint{color:rgba(255,255,255,.32)}
-  .reel{margin-top:26px;overflow-x:auto;overflow-y:hidden;cursor:grab;
+  .reel{margin-top:26px;overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;cursor:grab;
     scrollbar-width:none;-webkit-overflow-scrolling:touch;
     /* the strip runs to the panel edges, so it reads as a continuing band */
     margin-left:calc(var(--pnl-pad, 56px) * -1);margin-right:calc(var(--pnl-pad, 56px) * -1);
@@ -1299,7 +1299,7 @@
     color:var(--dim);cursor:pointer;font-size:14px;transition:.3s}
   .rail-btn:hover{background:var(--indigo);border-color:var(--indigo);color:#fff}
   .rail-btn:disabled{opacity:.28;cursor:default}
-  .rail{display:flex;gap:22px;margin-top:30px;padding:0 56px 8px;overflow-x:auto;
+  .rail{display:flex;gap:22px;margin-top:30px;padding:0 56px 8px;overflow-x:auto;overscroll-behavior-x:contain;
     scroll-snap-type:x mandatory;scroll-padding-left:56px;scrollbar-width:none;cursor:grab}
   .rail::-webkit-scrollbar{display:none}
   .rail.dragging{cursor:grabbing;scroll-snap-type:none}
@@ -2199,7 +2199,7 @@
   #workGrid .tile[data-upcoming] .t-media{opacity:.55}
   /* ===== tag slider — 34 tags in one line, not a wall ===== */
   #workGrid .tagslider{display:flex;align-items:center;gap:6px;flex:1;min-width:0}
-  #workGrid .tagtrack{flex:1;min-width:0;overflow-x:auto;scrollbar-width:none;
+  #workGrid .tagtrack{flex:1;min-width:0;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none;
     -webkit-overflow-scrolling:touch;scroll-behavior:smooth;cursor:grab;
     -webkit-mask-image:linear-gradient(90deg,transparent,#000 18px,#000 calc(100% - 18px),transparent);
             mask-image:linear-gradient(90deg,transparent,#000 18px,#000 calc(100% - 18px),transparent)}
@@ -2222,7 +2222,7 @@
   /* ===== tag slider — designed ===== */
   #workGrid .filterbar{padding-bottom:0}
   #workGrid .tagslider{display:flex;align-items:stretch;gap:2px;flex:1;min-width:0}
-  #workGrid .tagtrack{flex:1;min-width:0;overflow-x:auto;scrollbar-width:none;
+  #workGrid .tagtrack{flex:1;min-width:0;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none;
     -webkit-overflow-scrolling:touch;scroll-behavior:smooth;cursor:grab;
     -webkit-mask-image:linear-gradient(90deg,transparent,#000 26px,#000 calc(100% - 26px),transparent);
             mask-image:linear-gradient(90deg,transparent,#000 26px,#000 calc(100% - 26px),transparent)}

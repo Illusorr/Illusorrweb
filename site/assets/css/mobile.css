@@ -396,7 +396,16 @@ html[data-touch] .il-overlay nav a { min-height: 44px; }
 /* ═══ 6c. NO SIDEWAYS SCROLL ══════════════════════════════════════════
    One oversized element drags the whole document wider and clips every
    other section. clip, not hidden, so position:sticky keeps working. */
-html[data-touch] body { overflow-x: clip; }
+/* SIDEWAYS PANNING ON iOS.
+   body alone was relying on overflow PROPAGATING to the viewport, which is
+   how the spec says it should work and is not what Safari reliably does once
+   the page carries masked, composited, animating overflow. Setting it on the
+   root as well makes the clip the viewport's own rather than something
+   inherited, and the max-width stops the box itself being wider than the
+   screen in the first place. Both axes named: overflow-x:clip beside an
+   implicit visible on y is the combination engines disagree about most. */
+html[data-touch],
+html[data-touch] body { overflow-x: clip; max-width: 100%; }
 html[data-touch] img,
 html[data-touch] video,
 html[data-touch] canvas,
