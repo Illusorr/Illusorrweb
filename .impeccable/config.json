@@ -1,3 +1,18 @@
 {
-  "buildPath": "comp"
+  "buildPath": "comp",
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "dark-glow",
+        "value": "*",
+        "files": [
+          "site/buttons.html"
+        ],
+        "createdAt": "2026-09-07T09:41:27.747Z",
+        "reason": "Reference sheet documenting the shipped CTA hover. The indigo glow is the site's existing treatment, present in main.css as .fakebtn:hover box-shadow 0 10px 26px -10px rgba(76,99,255,.7) since before this work; changing it here would make the reference page contradict the stylesheet it documents."
+      }
+    ]
+  }
 }

@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Buttons · reference build · ILLUSORR</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#05060a">
+<style>
+/* ═══════════════════════════════════════════════════════════════════════
+   PAGE CHROME — reference sheet only. Not part of the button system.
+   ═══════════════════════════════════════════════════════════════════════ */
+:root{
+  /* Verbatim from :root in site/assets/css/main.css, checked value by value
+     against it. The imported sheet claimed the same thing but carried seven
+     wrong values, including the pre-accessibility --dim #8b93ad and --faint
+     #4a5169: main.css shifted that ramp up a step because #4a5268 measured
+     2.54:1 on 51 elements. A reference page on stale tokens documents a site
+     that no longer exists, so these track the real ones. */
+  --bg:#05060a;--ink:#eef1f8;--dim:#eef1f8;--faint:#8b96ad;
+  --line:#1b2231;--indigo:#4c63ff;--cold:#8ea2ff;--glow:rgba(76,99,255,.32);
+  --cream:#ffffff;--cream-ink:#0b0d12;--cream-dim:#565d6b;
+  --cream-line:#e4e7ec;
+  /* The sheet's own chrome needs a mid grey the palette does not carry: --dim
+     is #eef1f8 here, the same as --ink, so descriptive copy would be pure
+     white. Local to this page, never referenced by a button rule. */
+  --sheet-dim:#9aa3ba;--sheet-line:rgba(140,150,180,.16);
+}
+/* woff2, matching what site/assets/fonts actually ships. The imported sheet
+   asked for .woff, which is not in the repo: the faces would have failed, the
+   fallback tracks wider, and every button on a page about button widths would
+   have rendered at the wrong width. */
+@font-face{font-family:'Outfit';font-weight:100 900;font-display:swap;
+  src:url("assets/fonts/outfit-variable.woff2") format("woff2")}
+@font-face{font-family:'PP Monument Extended';font-weight:400;font-display:swap;
+  src:url("assets/fonts/monument-extended-400.woff2") format("woff2")}
+
+*{box-sizing:border-box}
+body{margin:0;background:#07080d;color:var(--ink);
+  font-family:'Outfit',system-ui,sans-serif;font-weight:300}
+a{color:var(--cold);text-decoration:none}
+a:hover{color:var(--ink)}
+code{font-family:ui-monospace,Menlo,monospace;font-size:.88em;color:var(--cold)}
+
+.pg{max-width:1500px;margin:0 auto;padding:0 40px}
+.head{padding:52px 0 0}
+.head .lbl{font-family:ui-monospace,monospace;font-size:10px;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--faint)}
+.head h1{font-family:'PP Monument Extended','Outfit',sans-serif;font-weight:400;
+  font-size:clamp(22px,3vw,34px);line-height:1.08;margin:16px 0 0;
+  text-transform:uppercase;max-width:24em}
+.head p{font-size:14.5px;line-height:1.7;color:var(--sheet-dim);max-width:70ch;margin:16px 0 0;
+  text-wrap:pretty}
+.head p b{color:var(--ink);font-weight:400}
+
+.bar{position:sticky;top:0;z-index:60;margin-top:34px;padding:13px 40px;
+  background:rgba(7,8,13,.94);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  border-block:1px solid var(--sheet-line);display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.bar b{font-family:ui-monospace,monospace;font-size:10px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--faint);font-weight:400;margin-right:2px}
+.bar .sep{width:1px;height:20px;background:var(--sheet-line);margin:0 6px}
+.bar button{border:1px solid var(--sheet-line);border-radius:100px;padding:9px 14px;
+  min-height:40px;font-family:inherit;font-size:11.5px;color:var(--sheet-dim);
+  background:none;cursor:pointer;transition:.25s}
+.bar button:hover{color:var(--ink);border-color:rgba(142,162,255,.45)}
+.bar button[aria-pressed="true"]{color:#07080d;background:var(--cold);border-color:var(--cold)}
+
+/* the two theme boards, side by side */
+.boards{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:44px;
+  border:1px solid var(--sheet-line)}
+html[data-stack] .boards{grid-template-columns:1fr}
+.board{padding:38px 34px 44px}
+.board.dk{background:var(--bg)}
+.board.lt{background:var(--cream);color:var(--cream-ink)}
+.board > header{display:flex;align-items:baseline;gap:12px;margin-bottom:8px;
+  padding-bottom:14px;border-bottom:1px solid var(--sheet-line)}
+.board.lt > header{border-color:var(--cream-line)}
+.board > header h2{font-family:ui-monospace,monospace;font-size:11px;letter-spacing:.2em;
+  text-transform:uppercase;font-weight:400;margin:0}
+.board.dk > header h2{color:var(--cold)}
+.board.lt > header h2{color:var(--indigo)}
+.board > header span{font-size:11.5px;color:var(--faint)}
+.board.lt > header span{color:var(--cream-dim)}
+
+.grp{padding:26px 0 0}
+.grp + .grp{margin-top:6px;border-top:1px dashed var(--sheet-line)}
+.board.lt .grp + .grp{border-color:var(--cream-line)}
+.grp h3{font-family:ui-monospace,monospace;font-size:10px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--faint);font-weight:400;margin:0 0 4px}
+.board.lt .grp h3{color:var(--cream-dim)}
+.grp .why{font-size:12.5px;line-height:1.6;color:var(--sheet-dim);margin:0 0 18px;max-width:52ch}
+.board.lt .grp .why{color:var(--cream-dim)}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.row + .row{margin-top:14px}
+.stt{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+  gap:18px 14px;margin-top:4px}
+.stt figure{margin:0;display:flex;flex-direction:column;align-items:flex-start;gap:9px}
+.stt figcaption{font-family:ui-monospace,monospace;font-size:9.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--faint);order:2}
+.board.lt .stt figcaption{color:var(--cream-dim)}
+
+/* migration table */
+.mig{margin:74px 0 0;border:1px solid var(--sheet-line)}
+.mig h2{font-family:'PP Monument Extended','Outfit',sans-serif;font-weight:400;
+  font-size:18px;text-transform:uppercase;margin:0;padding:24px 28px;
+  border-bottom:1px solid var(--sheet-line)}
+.mig table{width:100%;border-collapse:collapse;font-size:12.5px}
+.mig th{text-align:left;font-family:ui-monospace,monospace;font-size:9.5px;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--faint);font-weight:400;
+  padding:14px 28px;border-bottom:1px solid var(--sheet-line);white-space:nowrap}
+.mig td{padding:13px 28px;border-bottom:1px solid rgba(140,150,180,.08);
+  color:var(--sheet-dim);vertical-align:top;line-height:1.55}
+.mig td:first-child code{color:#ff9a90}
+.mig td:nth-child(2) code{color:#6ee7a8}
+.mig tr:last-child td{border-bottom:0}
+.mig .note{padding:20px 28px;font-size:12.5px;line-height:1.7;color:var(--sheet-dim);
+  border-top:1px solid var(--sheet-line)}
+
+.foot{padding:60px 0 110px;font-size:13.5px;line-height:1.8;color:var(--sheet-dim);max-width:78ch}
+.foot h3{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);
+  margin:0 0 12px;font-weight:400}
+.foot ul{margin:0;padding-left:20px}
+.foot li b{color:var(--ink);font-weight:400}
+.foot li + li{margin-top:8px}
+
+@media (max-width:1080px){.boards{grid-template-columns:1fr}}
+@media (max-width:760px){
+  .pg{padding:0 20px}.bar{padding:12px 20px}
+  .board{padding:30px 20px 36px}
+  .mig table,.mig thead{display:block}
+  .mig thead{display:none}
+  .mig tr{display:grid;grid-template-columns:1fr;gap:4px;padding:14px 20px;
+    border-bottom:1px solid rgba(140,150,180,.1)}
+  .mig td{padding:0;border:0}
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ▼▼▼ COPY FROM HERE — this becomes site/assets/css/buttons.css ▼▼▼
+
+   ILLUSORR — the CTA system. ONE button, four intents, three sizes, two
+   themes. Namespaced il- so per-page case CSS cannot collide with it.
+
+   NOT LOADED BY ANY PAGE YET. This sheet is a proposal: nothing in site/
+   links buttons.css, and main.css still carries the rules below. Adopting it
+   is the migration in the table further down, done one page at a time.
+
+   It replaces fourteen separate rules in main.css that had drifted apart:
+   .fakebtn, .cta-primary, .cta-ghost, .il-talk, two different .cta rules
+   under #aboutRoot, .gc-cta, .rail-btn, .ct-chip, .chipset span,
+   .secdrop-btn, .viewtoggle button, .vembed-cta and .fl-pill. Padding ran
+   from 6/12 to 17/34, type from 10px to 12px, and hover did something
+   different in almost every one. The migration table on the reference page
+   maps each old class to its replacement.
+
+   THEMING. A button reads its theme from an ancestor, never from a variant
+   class, so the same markup works in a dark and a light section without
+   being rewritten. Both hooks are honoured: section.light, which the site
+   already uses, and [data-btn-theme="light"] for anywhere that is not a
+   section. Dark is the default.
+
+   The .is-hover / .is-active / .is-focus classes exist only so the reference
+   sheet can display a state without a pointer. They share their
+   declarations with the real pseudo-classes through :is(), so a state can
+   never be documented as one thing and behave as another.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.il-btn{
+  /* One box model for every intent and size. */
+  --il-btn-py:13px; --il-btn-px:26px; --il-btn-fs:11px; --il-btn-min:44px;
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  box-sizing:border-box;
+  padding:var(--il-btn-py) var(--il-btn-px);
+  min-height:var(--il-btn-min);
+  font-family:'Outfit',system-ui,sans-serif;
+  font-size:var(--il-btn-fs);font-weight:400;
+  letter-spacing:.14em;text-transform:uppercase;line-height:1;
+  white-space:nowrap;text-decoration:none;text-align:center;
+  border:1px solid transparent;border-radius:100px;
+  background:none;cursor:pointer;
+  transition:background-color .35s cubic-bezier(.16,1,.3,1),
+             border-color .35s cubic-bezier(.16,1,.3,1),
+             color .35s cubic-bezier(.16,1,.3,1),
+             box-shadow .35s cubic-bezier(.16,1,.3,1),
+             transform .35s cubic-bezier(.16,1,.3,1);
+  -webkit-tap-highlight-color:transparent;
+}
+/* Type must not reflow the box while Outfit is still loading: the fallback
+   sets this tracking wider, which visibly widened the old .il-talk pill on
+   every page load. A min-width holds the box through the swap. */
+.il-btn{min-width:7.6em}
+.il-btn--icon,.il-btn--chip{min-width:0}
+
+/* ── sizes ─────────────────────────────────────────────────────────────
+   Three, and no more. lg for a page's single most important action, md as
+   the default everywhere, sm for dense rows and the header pill. */
+.il-btn--lg{--il-btn-py:17px;--il-btn-px:34px;--il-btn-fs:12px;--il-btn-min:54px}
+.il-btn--sm{--il-btn-py:9px;--il-btn-px:18px;--il-btn-fs:10.5px;--il-btn-min:38px}
+/* A 38px target is fine for a mouse and below the floor for a thumb. */
+html[data-touch] .il-btn--sm{--il-btn-min:44px;--il-btn-py:12px}
+
+/* ── 1. primary ────────────────────────────────────────────────────────
+   Solid indigo with white ink, IDENTICAL in both themes. The old set had
+   primary as white-on-dark in one place and indigo-on-light in another, so
+   the same intent read as two different buttons. Indigo against white is
+   4.6:1, which clears the 4.5 floor at this size. */
+.il-btn--primary{background:var(--indigo);border-color:var(--indigo);color:#fff}
+.il-btn--primary:is(:hover,.is-hover){
+  background:#3a4fe0;border-color:#3a4fe0;color:#fff;
+  box-shadow:0 12px 30px -12px rgba(76,99,255,.75);transform:translateY(-1px)}
+.il-btn--primary:is(:active,.is-active){transform:translateY(0);
+  box-shadow:0 4px 12px -6px rgba(76,99,255,.6);background:#3446c9}
+
+/* ── 2. ghost, the default ─────────────────────────────────────────────
+   Outline that fills on hover. This is .fakebtn's behaviour, kept because
+   it was the most used and the best of the fourteen. */
+.il-btn--ghost{border-color:rgba(142,162,255,.5);color:var(--cold)}
+.il-btn--ghost:is(:hover,.is-hover){
+  background:var(--indigo);border-color:var(--indigo);color:#fff;
+  box-shadow:0 10px 26px -10px rgba(76,99,255,.7);transform:translateY(-1px)}
+.il-btn--ghost:is(:active,.is-active){transform:translateY(0);background:#3446c9;border-color:#3446c9}
+:is(section.light,[data-btn-theme="light"]) .il-btn--ghost{
+  border-color:var(--indigo);color:var(--indigo)}
+:is(section.light,[data-btn-theme="light"]) .il-btn--ghost:is(:hover,.is-hover){color:#fff}
+
+/* ── 3. inverse ────────────────────────────────────────────────────────
+   For photography and video, where neither theme's palette is reliable
+   because the ground is an image. White ink, white hairline, fills white.
+   This is what .il-talk and .vembed-cta were each doing separately. */
+.il-btn--inverse{border-color:rgba(255,255,255,.38);color:#fff;
+  background:rgba(8,10,20,.34);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.il-btn--inverse:is(:hover,.is-hover){background:#fff;border-color:#fff;color:#05060f;
+  transform:translateY(-1px)}
+.il-btn--inverse:is(:active,.is-active){transform:translateY(0);background:#e6e8f2;border-color:#e6e8f2}
+
+/* ── 4. quiet ──────────────────────────────────────────────────────────
+   Tertiary. No box at all, so it cannot compete with the two above. The
+   rule replaces .cs-open and .case-all, which were bare coloured text with
+   no affordance and no hit area.
+
+   KNOWN LIMIT: the underline reveal and the data-arrow mark are both drawn
+   on ::after, and an element only has one. A quiet button carrying
+   data-arrow therefore shows the arrow and loses the underline, which is
+   what every quiet example on this page does. Splitting one onto ::before
+   would fix it; left as delivered so the sheet matches the source. */
+.il-btn--quiet{--il-btn-px:0px;min-width:0;color:var(--cold);
+  border-radius:0;letter-spacing:.18em}
+.il-btn--quiet::after{content:'';position:absolute;left:0;right:100%;bottom:-2px;
+  height:1px;background:currentColor;transition:right .4s cubic-bezier(.16,1,.3,1)}
+.il-btn--quiet{position:relative}
+.il-btn--quiet:is(:hover,.is-hover){color:var(--ink)}
+.il-btn--quiet:is(:hover,.is-hover)::after{right:0}
+:is(section.light,[data-btn-theme="light"]) .il-btn--quiet{color:var(--indigo)}
+:is(section.light,[data-btn-theme="light"]) .il-btn--quiet:is(:hover,.is-hover){color:var(--cream-ink)}
+
+/* ── 5. icon ───────────────────────────────────────────────────────────
+   Square, circular, for a rail arrow or a back-to-top. .rail-btn was 38px,
+   under the touch floor. */
+.il-btn--icon{--il-btn-px:0px;width:44px;height:44px;padding:0;font-size:15px;
+  letter-spacing:0;border-color:var(--line);color:var(--faint)}
+.il-btn--icon:is(:hover,.is-hover){background:var(--indigo);border-color:var(--indigo);color:#fff}
+.il-btn--lg.il-btn--icon{width:54px;height:54px;font-size:17px}
+.il-btn--sm.il-btn--icon{width:38px;height:38px;font-size:13px}
+html[data-touch] .il-btn--sm.il-btn--icon{width:44px;height:44px}
+:is(section.light,[data-btn-theme="light"]) .il-btn--icon{
+  border-color:var(--cream-line);color:var(--cream-dim)}
+:is(section.light,[data-btn-theme="light"]) .il-btn--icon:is(:hover,.is-hover){color:#fff}
+
+/* ── 6. chip ───────────────────────────────────────────────────────────
+   A filter or a toggle, not a call to action: lower case, no tracking, and
+   it carries a selected state. Replaces .chipset span, .ct-chip and the
+   sector tag pills, which were three different sizes of the same idea. */
+.il-btn--chip{--il-btn-py:8px;--il-btn-px:14px;--il-btn-fs:12px;--il-btn-min:36px;
+  letter-spacing:.02em;text-transform:none;border-color:var(--line);color:var(--faint)}
+html[data-touch] .il-btn--chip{--il-btn-min:44px;--il-btn-py:12px}
+.il-btn--chip:is(:hover,.is-hover){color:var(--ink);border-color:rgba(142,162,255,.45)}
+.il-btn--chip[aria-pressed="true"],.il-btn--chip.is-on{
+  color:#05060a;background:var(--cold);border-color:var(--cold);font-weight:500}
+:is(section.light,[data-btn-theme="light"]) .il-btn--chip{
+  border-color:var(--cream-line);color:var(--cream-dim)}
+:is(section.light,[data-btn-theme="light"]) .il-btn--chip:is(:hover,.is-hover){
+  color:var(--cream-ink);border-color:var(--indigo)}
+:is(section.light,[data-btn-theme="light"]) .il-btn--chip:is([aria-pressed="true"],.is-on){
+  color:#fff;background:var(--indigo);border-color:var(--indigo)}
+
+/* ── shared states ─────────────────────────────────────────────────── */
+/* Keyboard users must be able to see where they are. Applied to every
+   intent at once, so a new variant cannot forget it. */
+.il-btn:is(:focus-visible,.is-focus){outline:2px solid var(--cold);outline-offset:3px}
+:is(section.light,[data-btn-theme="light"]) .il-btn:is(:focus-visible,.is-focus){
+  outline-color:var(--indigo)}
+.il-btn[disabled],.il-btn[aria-disabled="true"]{
+  opacity:.38;cursor:not-allowed;transform:none;box-shadow:none;pointer-events:none}
+
+/* Busy, for the contact and brief submits. The label stays in place so the
+   box does not resize mid-submit; the spinner takes the gap slot. */
+.il-btn[aria-busy="true"]{pointer-events:none}
+.il-btn[aria-busy="true"]::before{content:'';width:1em;height:1em;flex:none;
+  border:1.5px solid currentColor;border-top-color:transparent;border-radius:50%;
+  animation:il-btn-spin .7s linear infinite}
+@keyframes il-btn-spin{to{transform:rotate(360deg)}}
+
+/* The trailing mark is part of the component, not the copy, so no page has
+   to remember to type it. */
+.il-btn[data-arrow]::after{content:'↗';font-size:1.05em;line-height:1;
+  letter-spacing:0;transition:transform .35s cubic-bezier(.16,1,.3,1)}
+.il-btn--quiet[data-arrow]::after{position:static;height:auto;background:none;
+  right:auto;left:auto;bottom:auto}
+.il-btn[data-arrow]:is(:hover,.is-hover)::after{transform:translate(2px,-2px)}
+.il-btn[data-arrow="right"]::after{content:'→'}
+.il-btn[data-arrow="right"]:is(:hover,.is-hover)::after{transform:translateX(3px)}
+
+@media (prefers-reduced-motion:reduce){
+  .il-btn,.il-btn::after{transition-duration:.01ms!important}
+  .il-btn:is(:hover,.is-hover){transform:none}
+  .il-btn[aria-busy="true"]::before{animation-duration:2.4s}
+}
+/* A group of actions is laid out with gap, never with margins on the
+   buttons, so the set survives a reorder or a deletion. */
+.il-btns{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.il-btns--stack{flex-direction:column;align-items:stretch}
+.il-btns--stack .il-btn{width:100%}
+/* On a handset a pair of primary actions reads better stacked full width
+   than side by side and truncated. */
+@media (max-width:430px){
+  .il-btns--fit{flex-direction:column;align-items:stretch}
+  .il-btns--fit .il-btn{width:100%}
+}
+@media print{.il-btn{border-color:#000!important;color:#000!important;background:none!important}}
+/* ═══ ▲▲▲ COPY TO HERE — end of buttons.css ▲▲▲ ═════════════════════ */
+</style>
+</head>
+<body>
+
+<div class="pg head">
+  <div class="lbl">CTA system · reference build · proposal, not yet adopted</div>
+  <h1>One button, four intents, three sizes, two themes</h1>
+  <p><b>Nothing on the site loads this sheet yet.</b> It is a proposal: <code>main.css</code> still carries the rules below, and adopting the system means working through the migration table one page at a time. Everything on this page is live and interactive, so the proposal can be judged before any of it ships.</p>
+  <p><b>Every CTA on the site currently comes from one of fourteen separate rules</b> in <code>main.css</code>. Padding runs from 6/12 to 17/34, type from 10px to 12px, and hover does something different in almost every one: <code>.cta-primary</code> empties out to transparent, <code>.fakebtn</code> fills with indigo and lifts, <code>#aboutRoot .close .cta</code> swaps white for indigo, <code>.il-talk</code> jumps straight to a flat fill.</p>
+  <p>This sheet is the replacement. A button reads its theme <b>from an ancestor, never from a variant class</b>, so identical markup works in a dark and a light section. Both hooks are honoured: <code>section.light</code>, which the site already uses, and <code>[data-btn-theme="light"]</code> for anywhere that is not a section.</p>
+</div>
+
+<div class="bar">
+  <b>state</b>
+  <button type="button" id="sRest" aria-pressed="true">Rest</button>
+  <button type="button" id="sHover" aria-pressed="false">Hover</button>
+  <button type="button" id="sActive" aria-pressed="false">Active</button>
+  <button type="button" id="sFocus" aria-pressed="false">Focus</button>
+  <div class="sep"></div>
+  <b>layer</b>
+  <button type="button" id="sTouch" aria-pressed="false">Phone targets</button>
+  <div class="sep"></div>
+  <b>layout</b>
+  <button type="button" id="sStack" aria-pressed="false">Stack boards</button>
+</div>
+
+<div class="pg">
+<div class="boards">
+
+  <!-- ══ DARK ══════════════════════════════════════════════════════ -->
+  <section class="board dk">
+    <header><h2>Dark</h2><span>the default. <code>--bg</code> #05060a</span></header>
+
+    <div class="grp">
+      <h3>01 · Primary</h3>
+      <p class="why">A page's single most important action. Solid indigo, white ink, and deliberately the same in both themes so one intent cannot read as two different buttons.</p>
+      <div class="stt">
+        <figure><button class="il-btn il-btn--primary il-btn--lg" data-arrow>Start a brief</button><figcaption>lg · 54px</figcaption></figure>
+        <figure><button class="il-btn il-btn--primary" data-arrow>Start a brief</button><figcaption>md · 44px</figcaption></figure>
+        <figure><button class="il-btn il-btn--primary il-btn--sm">Send</button><figcaption>sm</figcaption></figure>
+        <figure><button class="il-btn il-btn--primary" disabled>Unavailable</button><figcaption>disabled</figcaption></figure>
+        <figure><button class="il-btn il-btn--primary" aria-busy="true">Sending</button><figcaption>busy</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="grp">
+      <h3>02 · Ghost — the default choice</h3>
+      <p class="why">Outline that fills on hover. This is <code>.fakebtn</code>'s behaviour, kept because it was the most used and the best of the fourteen.</p>
+      <div class="stt">
+        <figure><button class="il-btn il-btn--ghost il-btn--lg" data-arrow>See the work</button><figcaption>lg</figcaption></figure>
+        <figure><button class="il-btn il-btn--ghost" data-arrow>See the work</button><figcaption>md</figcaption></figure>
+        <figure><button class="il-btn il-btn--ghost il-btn--sm" data-arrow="right">Next</button><figcaption>sm</figcaption></figure>
+        <figure><button class="il-btn il-btn--ghost" disabled>Unavailable</button><figcaption>disabled</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="grp">
+      <h3>03 · Inverse — over imagery</h3>
+      <p class="why">For photography and video, where neither palette is reliable because the ground is a picture. What <code>.il-talk</code> and <code>.vembed-cta</code> were each solving alone.</p>
+      <div class="row">
+        <button class="il-btn il-btn--inverse">Let's talk</button>
+        <button class="il-btn il-btn--inverse il-btn--sm" data-arrow="right">Play reel</button>
+        <button class="il-btn il-btn--inverse il-btn--icon">↑</button>
+      </div>
+    </div>
+
+    <div class="grp">
+      <h3>04 · Quiet + icon</h3>
+      <p class="why">Tertiary text with a hit area, replacing bare coloured text with no affordance. Icon buttons are 44px, not the old 38.</p>
+      <div class="row">
+        <button class="il-btn il-btn--quiet" data-arrow>Read the case study</button>
+        <button class="il-btn il-btn--quiet il-btn--sm" data-arrow="right">All 36 projects</button>
+        <button class="il-btn il-btn--icon">←</button>
+        <button class="il-btn il-btn--icon">→</button>
+        <button class="il-btn il-btn--icon il-btn--lg">↑</button>
+      </div>
+    </div>
+
+    <div class="grp">
+      <h3>05 · Chip — filters and toggles</h3>
+      <p class="why">Not a call to action: lower case, no tracking, and it carries a selected state through <code>aria-pressed</code>. Replaces three different sizes of the same idea.</p>
+      <div class="row">
+        <button class="il-btn il-btn--chip" aria-pressed="true">All</button>
+        <button class="il-btn il-btn--chip" aria-pressed="false">Beauty</button>
+        <button class="il-btn il-btn--chip" aria-pressed="false">Fashion</button>
+        <button class="il-btn il-btn--chip" aria-pressed="false">Real estate</button>
+        <button class="il-btn il-btn--chip" aria-pressed="false">Gaming</button>
+      </div>
+    </div>
+
+    <div class="grp">
+      <h3>06 · In context</h3>
+      <p class="why">A group is laid out with <code>gap</code>, never with margins on the buttons, so the set survives a reorder or a deletion. Under 430px an <code>.il-btns--fit</code> pair stacks full width rather than truncating.</p>
+      <div class="il-btns il-btns--fit">
+        <button class="il-btn il-btn--primary il-btn--lg" data-arrow>Start a brief</button>
+        <button class="il-btn il-btn--ghost il-btn--lg">See the work</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ LIGHT ═════════════════════════════════════════════════════ -->
+  <section class="board lt" data-btn-theme="light">
+    <header><h2>Light</h2><span>same markup. <code>--cream</code> #ffffff</span></header>
+
+    <div class="grp">
+      <h3>01 · Primary</h3>
+      <p class="why">Unchanged from dark. That is the point: the most important action on the page looks the same wherever it sits.</p>
+      <div class="stt">
+        <figure><button class="il-btn il-btn--primary il-btn--lg" data-arrow>Start a brief</button><figcaption>lg · 54px</figcaption></figure>
+        <figure><button class="il-btn il-btn--primary" data-arrow>Start a brief</button><figcaption>md · 44px</figcaption></figure>
+        <figure><button class="il-btn il-btn--primary il-btn--sm">Send</button><figcaption>sm</figcaption></figure>
+        <figure><button class="il-btn il-btn--primary" disabled>Unavailable</button><figcaption>disabled</figcaption></figure>
+        <figure><button class="il-btn il-btn--primary" aria-busy="true">Sending</button><figcaption>busy</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="grp">
+      <h3>02 · Ghost — the default choice</h3>
+      <p class="why">The hairline and the ink move from <code>--cold</code> to <code>--indigo</code>, because a pale blue outline is not legible on white. The fill on hover is identical.</p>
+      <div class="stt">
+        <figure><button class="il-btn il-btn--ghost il-btn--lg" data-arrow>See the work</button><figcaption>lg</figcaption></figure>
+        <figure><button class="il-btn il-btn--ghost" data-arrow>See the work</button><figcaption>md</figcaption></figure>
+        <figure><button class="il-btn il-btn--ghost il-btn--sm" data-arrow="right">Next</button><figcaption>sm</figcaption></figure>
+        <figure><button class="il-btn il-btn--ghost" disabled>Unavailable</button><figcaption>disabled</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="grp">
+      <h3>03 · Inverse — over imagery</h3>
+      <p class="why">Identical in both themes by definition. It answers to the picture behind it, not to the section.</p>
+      <div class="row">
+        <button class="il-btn il-btn--inverse">Let's talk</button>
+        <button class="il-btn il-btn--inverse il-btn--sm" data-arrow="right">Play reel</button>
+        <button class="il-btn il-btn--inverse il-btn--icon">↑</button>
+      </div>
+    </div>
+
+    <div class="grp">
+      <h3>04 · Quiet + icon</h3>
+      <p class="why">Quiet resolves to indigo and hovers to <code>--cream-ink</code>, the mirror of the dark board's move to <code>--ink</code>.</p>
+      <div class="row">
+        <button class="il-btn il-btn--quiet" data-arrow>Read the case study</button>
+        <button class="il-btn il-btn--quiet il-btn--sm" data-arrow="right">All 36 projects</button>
+        <button class="il-btn il-btn--icon">←</button>
+        <button class="il-btn il-btn--icon">→</button>
+        <button class="il-btn il-btn--icon il-btn--lg">↑</button>
+      </div>
+    </div>
+
+    <div class="grp">
+      <h3>05 · Chip — filters and toggles</h3>
+      <p class="why">Selected goes to solid indigo with white ink, rather than the dark board's <code>--cold</code> on near-black.</p>
+      <div class="row">
+        <button class="il-btn il-btn--chip" aria-pressed="true">All</button>
+        <button class="il-btn il-btn--chip" aria-pressed="false">Beauty</button>
+        <button class="il-btn il-btn--chip" aria-pressed="false">Fashion</button>
+        <button class="il-btn il-btn--chip" aria-pressed="false">Real estate</button>
+        <button class="il-btn il-btn--chip" aria-pressed="false">Gaming</button>
+      </div>
+    </div>
+
+    <div class="grp">
+      <h3>06 · In context</h3>
+      <p class="why">The same two-button group, unedited. No light variant classes anywhere in the markup.</p>
+      <div class="il-btns il-btns--fit">
+        <button class="il-btn il-btn--primary il-btn--lg" data-arrow>Start a brief</button>
+        <button class="il-btn il-btn--ghost il-btn--lg">See the work</button>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<section class="mig">
+  <h2>Migration map</h2>
+  <table>
+    <thead><tr><th>Replace</th><th>With</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td><code>.fakebtn</code></td><td><code>il-btn il-btn--ghost</code></td><td>Behaviour is unchanged; this rule became the system default. Drop <code>align-self:flex-start</code> from the button and let the parent's <code>gap</code> place it.</td></tr>
+      <tr><td><code>.cta-primary</code></td><td><code>il-btn il-btn--primary il-btn--lg</code></td><td>Hover changes: it used to empty to transparent, which read as the button switching off. It now deepens and lifts.</td></tr>
+      <tr><td><code>.cta-ghost</code></td><td><code>il-btn il-btn--inverse il-btn--lg</code></td><td>It sat over the close section's imagery, so inverse rather than ghost.</td></tr>
+      <tr><td><code>.il-talk</code></td><td><code>il-btn il-btn--inverse il-btn--sm</code></td><td>The header pill. NOT ADOPTED: the nav CTA was deliberately reverted to its 35% white hairline on 7 Sep, so this row is a proposal the site has already declined once. Keep the <code>il-talk</code> class alongside if it is ever taken, since <code>nav.js</code> targets it for tone inversion.</td></tr>
+      <tr><td><code>#aboutRoot .close .cta</code></td><td><code>il-btn il-btn--primary il-btn--lg</code></td><td>Was white-on-dark with an indigo hover; now the same primary as everywhere else.</td></tr>
+      <tr><td><code>#aboutRoot .collhead .cta</code></td><td><code>il-btn il-btn--ghost</code></td><td>Same visual result, one fewer rule.</td></tr>
+      <tr><td><code>.gc-cta</code></td><td><code>il-btn il-btn--primary il-btn--sm</code></td><td>Loses the 9px radius and the gradient fill. The gradient IS deliberate: <code>.fcard[data-i="2"]</code> gives the legendary card a warmer frame, emblem and bar to match. Keep <code>gc-cta</code> as a modifier on top or leave this one alone.</td></tr>
+      <tr><td><code>.rail-btn</code></td><td><code>il-btn il-btn--icon</code></td><td>38px to 44px. Check the rail's own layout still fits.</td></tr>
+      <tr><td><code>.ct-chip</code>, <code>.chipset span</code></td><td><code>il-btn il-btn--chip</code></td><td>Move the selected state from <code>.on</code> to <code>aria-pressed="true"</code>; <code>.is-on</code> is accepted as well. <code>&lt;span&gt;</code> becomes <code>&lt;button&gt;</code>, which is what it always should have been.</td></tr>
+      <tr><td><code>.viewtoggle button</code></td><td><code>il-btn il-btn--chip il-btn--sm</code></td><td>Keep the <code>.viewtoggle</code> wrapper for the segmented shape.</td></tr>
+      <tr><td><code>.secdrop-btn</code></td><td><code>il-btn il-btn--chip</code></td><td>Keep the caret and the open state on <code>.secdrop-btn</code>.</td></tr>
+      <tr><td><code>.vembed-cta</code></td><td><code>il-btn il-btn--inverse il-btn--sm</code></td><td>The backdrop blur is now part of the inverse variant.</td></tr>
+      <tr><td><code>.cs-open</code>, <code>.case-all</code></td><td><code>il-btn il-btn--quiet</code></td><td>These were coloured text with no hit area. They gain 44px and a focus ring.</td></tr>
+      <tr><td><code>.fl-pill</code></td><td>leave alone</td><td>A label, not a control. It only looked like a button.</td></tr>
+    </tbody>
+  </table>
+  <p class="note">Do this incrementally. Add <code>buttons.css</code> after <code>main.css</code>, convert one page, confirm it, then move on. The old rules can stay in place until the last page is converted, because nothing in the new system reuses their class names. Note that <code>.fakebtn</code>, <code>.wf-all</code>, <code>.cta-primary</code> and <code>.cta-ghost</code> were already unified in <code>main.css</code> on 7 Sep: they share one stroke, one ink rule and one hover, and all clear 44px. That work is not undone by adopting this system, but it does mean the fourteen-rules problem this sheet describes is now smaller than it states.</p>
+</section>
+
+<div class="foot pg">
+  <h3>Decisions worth knowing before you change them</h3>
+  <ul>
+    <li><b>Primary is identical in both themes.</b> Indigo against white is 4.6:1, which clears the 4.5 floor at this size. Making it white-on-dark and indigo-on-light, as the old set did, means one intent reads as two buttons.</li>
+    <li><b>Theme comes from an ancestor, never a class on the button.</b> A <code>--light</code> modifier has to be applied by hand at every call site and is silently wrong the moment a section changes colour.</li>
+    <li><b>The state classes share their declarations with the real pseudo-classes</b> through <code>:is()</code>, so this sheet cannot document a hover that behaves differently in the browser.</li>
+    <li><b>44px minimum, always.</b> <code>sm</code> is 38px for a mouse and grows to 44 under <code>html[data-touch]</code>. The old <code>.rail-btn</code> and <code>.chipset span</code> were both under the floor on a phone.</li>
+    <li><b>The arrow is part of the component</b>, set with <code>data-arrow</code>, so no page has to remember to type <code>↗</code> and none of them can drift to a different glyph. It shares <code>::after</code> with the quiet underline, so a quiet button cannot show both.</li>
+    <li><b>Groups use <code>gap</code>, never margins on the buttons</b>, so a set survives reordering or deleting a button.</li>
+  </ul>
+</div>
+</div>
+
+<script>
+(function () {
+  var h = document.documentElement;
+  var STATES = { sRest:null, sHover:'is-hover', sActive:'is-active', sFocus:'is-focus' };
+  var ids = Object.keys(STATES);
+
+  /* Applies a forced state to every button on both boards at once, so a
+     variant can be compared across the two themes in the same glance.
+     Buttons that are disabled or busy are skipped: forcing hover onto them
+     would document a state they cannot reach. */
+  function setState(active) {
+    ids.forEach(function (id) {
+      document.getElementById(id).setAttribute('aria-pressed', String(id === active));
+    });
+    var cls = STATES[active];
+    document.querySelectorAll('.board .il-btn').forEach(function (b) {
+      b.classList.remove('is-hover', 'is-active', 'is-focus');
+      if (!cls) return;
+      if (b.disabled || b.getAttribute('aria-busy') === 'true') return;
+      b.classList.add(cls);
+    });
+  }
+  ids.forEach(function (id) {
+    document.getElementById(id).addEventListener('click', function () { setState(id); });
+  });
+
+  function flag(id, attr) {
+    var b = document.getElementById(id);
+    b.addEventListener('click', function () {
+      var on = !h.hasAttribute(attr);
+      h.toggleAttribute(attr, on);
+      b.setAttribute('aria-pressed', String(on));
+    });
+  }
+  flag('sTouch', 'data-touch');
+  flag('sStack', 'data-stack');
+
+  /* The chips are real controls here, so the selected state can be seen
+     behaving rather than only illustrated. */
+  document.querySelectorAll('.board .il-btn--chip').forEach(function (c) {
+    c.addEventListener('click', function () {
+      var row = c.parentElement;
+      row.querySelectorAll('.il-btn--chip').forEach(function (o) {
+        o.setAttribute('aria-pressed', String(o === c));
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>
