@@ -337,6 +337,23 @@ html[data-touch] .il-btn--chip{--il-btn-min:44px;--il-btn-py:12px}
   .il-btns--fit .il-btn{width:100%}
 }
 @media print{.il-btn{border-color:#000!important;color:#000!important;background:none!important}}
+/* ── the two ID-scoped resets ──────────────────────────────────────────
+   main.css carries "#aboutRoot *{box-sizing:border-box;margin:0;padding:0}"
+   and the same for #workGrid. A universal selector under an id is (1,0,0),
+   which outranks .il-btn at (0,1,0), so inside those two roots the pill lost
+   its padding entirely and collapsed onto its label: measured 144x54 with
+   padding 0 against 125px of text, which is the label touching both ends and
+   the arrow sitting on the edge.
+
+   Re-asserted here rather than by exempting .il-btn from the reset, because
+   the rest of both pages is built on that reset. The icon variant sets its
+   own padding:0 on purpose and has to be restated after this, or it would
+   inherit the 13px the custom property carries. */
+#aboutRoot .il-btn,
+#workGrid .il-btn{padding:var(--il-btn-py) var(--il-btn-px)}
+#aboutRoot .il-btn--icon,
+#workGrid .il-btn--icon{padding:0}
+
 /* ═══ ▲▲▲ COPY TO HERE — end of buttons.css ▲▲▲ ═════════════════════ */
 </style>
 </head>
