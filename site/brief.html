@@ -35,6 +35,7 @@ else if(/[?&]mobile=0/.test(location.search))sessionStorage.removeItem('il-forc
 else if(window.self!==window.top&&window.innerWidth<=1024&&sessionStorage.getItem('il-force-mobile')==='1')f=true;
 if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch','');}catch(e){}})();</script>
 <link rel="stylesheet" href="assets/css/main.css?v=20260907c">
+<link rel="stylesheet" href="assets/css/buttons.css?v=20260907c">
 <link rel="stylesheet" href="assets/css/nav.css?v=20260907c">
 <!-- phone + tablet: shared touch layer, then the shared page layout -->
 <link rel="stylesheet" href="assets/css/mobile.css?v=20260907c">
@@ -83,7 +84,7 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
         <div class="brief-speaker"><span class="sp-orb" id="bfOrb"></span><span class="sp-n">ILLUSORR intake</span></div>
         <div class="brief-stage" id="bfStage"></div>
         <div class="brief-nav" id="bfNav">
-          <button type="button" class="fakebtn ct-send" id="bfNext">Continue →</button>
+          <button type="button" class="il-btn il-btn--ghost ct-send" id="bfNext">Continue →</button>
           <span class="ct-hint" id="bfHint">or press Enter</span>
         </div>
         <p class="ct-err" id="bfErr" hidden=""></p>

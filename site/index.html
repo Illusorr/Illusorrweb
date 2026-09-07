@@ -34,6 +34,7 @@ else if(/[?&]mobile=0/.test(location.search))sessionStorage.removeItem('il-forc
 else if(window.self!==window.top&&window.innerWidth<=1024&&sessionStorage.getItem('il-force-mobile')==='1')f=true;
 if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch','');}catch(e){}})();</script>
 <link rel="stylesheet" href="assets/css/main.css?v=20260907c">
+<link rel="stylesheet" href="assets/css/buttons.css?v=20260907c">
 <link rel="stylesheet" href="assets/css/nav.css?v=20260907c">
 <!-- phone + tablet: shared touch layer, then this page's own layout -->
 <link rel="stylesheet" href="assets/css/mobile.css?v=20260907c">
@@ -175,7 +176,7 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
       </div>
       <div class="wwa-foot">
         <p class="body">ILLUSORR was built to work beyond the traditional agency model. Design, technology, and production are not separate departments. They are one language.</p>
-        <a class="fakebtn mono" href="about.html">More about us →</a>
+        <a class="il-btn il-btn--ghost" href="about.html" data-arrow="right">More about us</a>
       </div>
     </div>
   </div>
@@ -253,7 +254,7 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
           <div class="srow" data-i="4"><span class="sr-num mono">05</span><a class="sr-go" href="sectors/culture.html"><div class="sr-name disp">Culture &amp; Immersive</div><div class="sr-desc">Installations and immersive experiences for cultural moments.</div></a></div>
           <div class="srow" data-i="5"><span class="sr-num mono">06</span><a class="sr-go" href="sectors/business.html"><div class="sr-name disp">Business &amp; Institutions</div><div class="sr-desc">Brand, web, and product for organisations whose product is not visual.</div></a></div>
         </div>
-        <a class="wf-all" href="sectors.html">Discover <span aria-hidden="true">→</span></a>
+        <a class="il-btn il-btn--ghost wf-all" href="sectors.html" data-arrow="right">Discover</a>
         <div class="wf-div"><span class="lbl mono">Selected clients</span><span class="ln"></span></div>
         <div class="wf-clients"><div class="wf-ribbon" aria-label="Selected clients"><img src="assets/img/clients/fit/disney.webp" alt="Disney+" width="360" height="120" decoding="async" fetchpriority="low"><img src="assets/img/clients/fit/unilever.webp" alt="Unilever" width="360" height="120" decoding="async" fetchpriority="low"><img src="assets/img/clients/fit/trt.webp" alt="TRT" width="360" height="120" decoding="async" fetchpriority="low"><img src="assets/img/clients/fit/boyner.webp" alt="Boyner" width="360" height="120" decoding="async" fetchpriority="low"><img src="assets/img/clients/fit/koton.webp" alt="Koton" width="360" height="120" decoding="async" fetchpriority="low"><img src="assets/img/clients/fit/hind-al-oud.webp" alt="Hind Al Oud" width="360" height="120" decoding="async" fetchpriority="low"><img src="assets/img/clients/fit/abb.webp" alt="ABB Robotics" width="360" height="120" decoding="async" fetchpriority="low"><img src="assets/img/clients/fit/khaltat.webp" alt="Khaltat" width="360" height="120" decoding="async" fetchpriority="low"><img src="assets/img/clients/fit/bawtaqah.webp" alt="Bawtaqah" width="360" height="120" decoding="async" fetchpriority="low"><img src="assets/img/clients/fit/bmw.webp" alt="BMW" width="360" height="120" decoding="async" fetchpriority="low"><img src="assets/img/clients/fit/roblox.webp" alt="Roblox" width="360" height="120" decoding="async" fetchpriority="low"><img src="assets/img/clients/fit/disney.webp" alt="Disney+" width="360" height="120" decoding="async" fetchpriority="low"><img src="assets/img/clients/fit/unilever.webp" alt="Unilever" width="360" height="120" decoding="async" fetchpriority="low"><img src="assets/img/clients/fit/trt.webp" alt="TRT" width="360" height="120" decoding="async" fetchpriority="low"><img src="assets/img/clients/fit/boyner.webp" alt="Boyner" width="360" height="120" decoding="async" fetchpriority="low"><img src="assets/img/clients/fit/koton.webp" alt="Koton" width="360" height="120" decoding="async" fetchpriority="low"><img src="assets/img/clients/fit/hind-al-oud.webp" alt="Hind Al Oud" width="360" height="120" decoding="async" fetchpriority="low"><img src="assets/img/clients/fit/abb.webp" alt="ABB Robotics" width="360" height="120" decoding="async" fetchpriority="low"><img src="assets/img/clients/fit/khaltat.webp" alt="Khaltat" width="360" height="120" decoding="async" fetchpriority="low"><img src="assets/img/clients/fit/bawtaqah.webp" alt="Bawtaqah" width="360" height="120" decoding="async" fetchpriority="low"><img src="assets/img/clients/fit/bmw.webp" alt="BMW" width="360" height="120" decoding="async" fetchpriority="low"><img src="assets/img/clients/fit/roblox.webp" alt="Roblox" width="360" height="120" decoding="async" fetchpriority="low"></div></div>
       </div>
@@ -278,7 +279,7 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
     <div class="conv-vp"><div class="conv" id="conv"></div></div>
     <div class="conv-foot">
       <div class="conv-dots" id="dots"></div>
-      <a class="fakebtn mono" href="work.html">See all work →</a>
+      <a class="il-btn il-btn--ghost" href="work.html" data-arrow="right">See all work</a>
     </div>
   </section>
 
@@ -303,7 +304,7 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
       </div>
 
       <div class="sb-actions">
-        <a class="fakebtn mono" href="projects/illusorr-spaces.html">Step inside →</a>
+        <a class="il-btn il-btn--ghost" href="projects/illusorr-spaces.html" data-arrow="right">Step inside</a>
         <span class="sb-hint mono" id="sbHint">Live build · 2021</span>
       </div>
     </div>
@@ -322,7 +323,7 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
         <div class="cb-step"><div class="sn mono">03</div><h3>Collaborate</h3><p>Ship real work for real clients, credited alongside the studio.</p></div>
       </div>
       <div class="cb-line"></div>
-      <a class="fakebtn cb-cta mono" href="collective.html">Join the Collective →</a>
+      <a class="il-btn il-btn--ghost cb-cta" href="collective.html" data-arrow="right">Join the Collective</a>
     </div>
   </section>
 
@@ -335,8 +336,8 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
       <h2 class="disp"><span class="l1">From a single campaign</span><span class="l2">to an <b>entire world.</b></span></h2>
       <p class="c-sub">Let's build yours.</p>
       <div class="close-actions">
-        <a class="cta-primary" href="contact.html">Start a project</a>
-        <a class="cta-ghost" href="collective.html">Join the Collective</a>
+        <a class="il-btn il-btn--primary il-btn--lg" href="contact.html" data-arrow>Start a project</a>
+        <a class="il-btn il-btn--inverse il-btn--lg" href="collective.html">Join the Collective</a>
       </div>
     </div>
   </section>

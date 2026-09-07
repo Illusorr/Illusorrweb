@@ -32,6 +32,7 @@ else if(/[?&]mobile=0/.test(location.search))sessionStorage.removeItem('il-forc
 else if(window.self!==window.top&&window.innerWidth<=1024&&sessionStorage.getItem('il-force-mobile')==='1')f=true;
 if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch','');}catch(e){}})();</script>
 <link rel="stylesheet" href="assets/css/main.css?v=20260907c">
+<link rel="stylesheet" href="assets/css/buttons.css?v=20260907c">
 <link rel="stylesheet" href="assets/css/nav.css?v=20260907c">
 <link rel="stylesheet" href="assets/css/mobile.css?v=20260907c">
 <link rel="stylesheet" href="assets/css/pages-mobile.css?v=20260907c">
@@ -112,7 +113,7 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
         <h1 class="nf-code">Off<br>the<br><em>map.</em></h1>
         <p class="nf-lede">This page has moved, been renamed, or never existed. Nothing is lost — the rest of the studio is one step away.</p>
         <div class="nf-acts">
-          <a class="fakebtn" href="index.html">Back to home ↗</a>
+          <a class="il-btn il-btn--ghost" href="index.html">Back to home ↗</a>
           <button class="nf-ghost" type="button" id="nfBack">Previous page</button>
         </div>
       </div>

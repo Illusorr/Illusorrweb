@@ -140,9 +140,13 @@ html[data-stack] .boards{grid-template-columns:1fr}
    ILLUSORR — the CTA system. ONE button, four intents, three sizes, two
    themes. Namespaced il- so per-page case CSS cannot collide with it.
 
-   NOT LOADED BY ANY PAGE YET. This sheet is a proposal: nothing in site/
-   links buttons.css, and main.css still carries the rules below. Adopting it
-   is the migration in the table further down, done one page at a time.
+   ADOPTED. This block is cut verbatim into site/assets/css/buttons.css,
+   which 14 pages load after main.css. Change it HERE first, then re-cut the
+   file, so the sheet and the stylesheet cannot disagree.
+
+   Three controls are deliberately outside the system and keep their own
+   styling: .il-talk (the header pill), .il-amb (ambience) and .ill-totop
+   (back to top). So is .gc-cta, whose gradient is per-rarity.
 
    It replaces fourteen separate rules in main.css that had drifted apart:
    .fakebtn, .cta-primary, .cta-ghost, .il-talk, two different .cta rules
@@ -157,6 +161,13 @@ html[data-stack] .boards{grid-template-columns:1fr}
    being rewritten. Both hooks are honoured: section.light, which the site
    already uses, and [data-btn-theme="light"] for anywhere that is not a
    section. Dark is the default.
+
+   [data-bg-theme] is the hook the SITE actually uses: nav.js reads it to
+   invert the header, and the landing page marks .wwa-scroll, .whofor and
+   .whofor-scroll with it on plain divs rather than sections. Honouring
+   only section.light and data-btn-theme left four of the six light bands
+   on the home page resolving as dark, so a ghost sat there as a pale blue
+   hairline on white.
 
    The .is-hover / .is-active / .is-focus classes exist only so the reference
    sheet can display a state without a pointer. They share their
@@ -218,9 +229,9 @@ html[data-touch] .il-btn--sm{--il-btn-min:44px;--il-btn-py:12px}
   background:var(--indigo);border-color:var(--indigo);color:#fff;
   box-shadow:0 10px 26px -10px rgba(76,99,255,.7);transform:translateY(-1px)}
 .il-btn--ghost:is(:active,.is-active){transform:translateY(0);background:#3446c9;border-color:#3446c9}
-:is(section.light,[data-btn-theme="light"]) .il-btn--ghost{
+:is(section.light,[data-btn-theme="light"],[data-bg-theme="light"]) .il-btn--ghost{
   border-color:var(--indigo);color:var(--indigo)}
-:is(section.light,[data-btn-theme="light"]) .il-btn--ghost:is(:hover,.is-hover){color:#fff}
+:is(section.light,[data-btn-theme="light"],[data-bg-theme="light"]) .il-btn--ghost:is(:hover,.is-hover){color:#fff}
 
 /* ── 3. inverse ────────────────────────────────────────────────────────
    For photography and video, where neither theme's palette is reliable
@@ -249,8 +260,8 @@ html[data-touch] .il-btn--sm{--il-btn-min:44px;--il-btn-py:12px}
 .il-btn--quiet{position:relative}
 .il-btn--quiet:is(:hover,.is-hover){color:var(--ink)}
 .il-btn--quiet:is(:hover,.is-hover)::after{right:0}
-:is(section.light,[data-btn-theme="light"]) .il-btn--quiet{color:var(--indigo)}
-:is(section.light,[data-btn-theme="light"]) .il-btn--quiet:is(:hover,.is-hover){color:var(--cream-ink)}
+:is(section.light,[data-btn-theme="light"],[data-bg-theme="light"]) .il-btn--quiet{color:var(--indigo)}
+:is(section.light,[data-btn-theme="light"],[data-bg-theme="light"]) .il-btn--quiet:is(:hover,.is-hover){color:var(--cream-ink)}
 
 /* ── 5. icon ───────────────────────────────────────────────────────────
    Square, circular, for a rail arrow or a back-to-top. .rail-btn was 38px,
@@ -261,9 +272,9 @@ html[data-touch] .il-btn--sm{--il-btn-min:44px;--il-btn-py:12px}
 .il-btn--lg.il-btn--icon{width:54px;height:54px;font-size:17px}
 .il-btn--sm.il-btn--icon{width:38px;height:38px;font-size:13px}
 html[data-touch] .il-btn--sm.il-btn--icon{width:44px;height:44px}
-:is(section.light,[data-btn-theme="light"]) .il-btn--icon{
+:is(section.light,[data-btn-theme="light"],[data-bg-theme="light"]) .il-btn--icon{
   border-color:var(--cream-line);color:var(--cream-dim)}
-:is(section.light,[data-btn-theme="light"]) .il-btn--icon:is(:hover,.is-hover){color:#fff}
+:is(section.light,[data-btn-theme="light"],[data-bg-theme="light"]) .il-btn--icon:is(:hover,.is-hover){color:#fff}
 
 /* ── 6. chip ───────────────────────────────────────────────────────────
    A filter or a toggle, not a call to action: lower case, no tracking, and
@@ -275,18 +286,18 @@ html[data-touch] .il-btn--chip{--il-btn-min:44px;--il-btn-py:12px}
 .il-btn--chip:is(:hover,.is-hover){color:var(--ink);border-color:rgba(142,162,255,.45)}
 .il-btn--chip[aria-pressed="true"],.il-btn--chip.is-on{
   color:#05060a;background:var(--cold);border-color:var(--cold);font-weight:500}
-:is(section.light,[data-btn-theme="light"]) .il-btn--chip{
+:is(section.light,[data-btn-theme="light"],[data-bg-theme="light"]) .il-btn--chip{
   border-color:var(--cream-line);color:var(--cream-dim)}
-:is(section.light,[data-btn-theme="light"]) .il-btn--chip:is(:hover,.is-hover){
+:is(section.light,[data-btn-theme="light"],[data-bg-theme="light"]) .il-btn--chip:is(:hover,.is-hover){
   color:var(--cream-ink);border-color:var(--indigo)}
-:is(section.light,[data-btn-theme="light"]) .il-btn--chip:is([aria-pressed="true"],.is-on){
+:is(section.light,[data-btn-theme="light"],[data-bg-theme="light"]) .il-btn--chip:is([aria-pressed="true"],.is-on){
   color:#fff;background:var(--indigo);border-color:var(--indigo)}
 
 /* ── shared states ─────────────────────────────────────────────────── */
 /* Keyboard users must be able to see where they are. Applied to every
    intent at once, so a new variant cannot forget it. */
 .il-btn:is(:focus-visible,.is-focus){outline:2px solid var(--cold);outline-offset:3px}
-:is(section.light,[data-btn-theme="light"]) .il-btn:is(:focus-visible,.is-focus){
+:is(section.light,[data-btn-theme="light"],[data-bg-theme="light"]) .il-btn:is(:focus-visible,.is-focus){
   outline-color:var(--indigo)}
 .il-btn[disabled],.il-btn[aria-disabled="true"]{
   opacity:.38;cursor:not-allowed;transform:none;box-shadow:none;pointer-events:none}
@@ -332,9 +343,9 @@ html[data-touch] .il-btn--chip{--il-btn-min:44px;--il-btn-py:12px}
 <body>
 
 <div class="pg head">
-  <div class="lbl">CTA system · reference build · proposal, not yet adopted</div>
+  <div class="lbl">CTA system · reference build · adopted across 14 pages</div>
   <h1>One button, four intents, three sizes, two themes</h1>
-  <p><b>Nothing on the site loads this sheet yet.</b> It is a proposal: <code>main.css</code> still carries the rules below, and adopting the system means working through the migration table one page at a time. Everything on this page is live and interactive, so the proposal can be judged before any of it ships.</p>
+  <p><b>This is live.</b> The block below is cut into <code>assets/css/buttons.css</code>, which 14 pages load after <code>main.css</code>: the home page, about, work, lab, contact, brief, collective, 404 and the six sector pages. Edit the sheet first, then re-cut the file. Three controls sit outside the system on purpose and keep their own styling: the header <code>.il-talk</code> pill, the <code>.il-amb</code> ambience toggle and <code>.ill-totop</code>.</p>
   <p><b>Every CTA on the site currently comes from one of fourteen separate rules</b> in <code>main.css</code>. Padding runs from 6/12 to 17/34, type from 10px to 12px, and hover does something different in almost every one: <code>.cta-primary</code> empties out to transparent, <code>.fakebtn</code> fills with indigo and lifts, <code>#aboutRoot .close .cta</code> swaps white for indigo, <code>.il-talk</code> jumps straight to a flat fill.</p>
   <p>This sheet is the replacement. A button reads its theme <b>from an ancestor, never from a variant class</b>, so identical markup works in a dark and a light section. Both hooks are honoured: <code>section.light</code>, which the site already uses, and <code>[data-btn-theme="light"]</code> for anywhere that is not a section.</p>
 </div>

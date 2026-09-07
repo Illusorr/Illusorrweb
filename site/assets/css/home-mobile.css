@@ -259,7 +259,7 @@ html[data-touch] .wwa-line {
 html[data-touch] .wwa-lines { max-width: none !important; }
 html[data-touch] .wwa-line + .wwa-line { margin-top: 6px !important; }
 html[data-touch] .wwa-foot { margin-top: 40px !important; }
-html[data-touch] .wwa-foot .fakebtn { margin-top: 24px !important; }
+html[data-touch] .wwa-foot .il-btn { margin-top: 24px !important; }
 
 /* ═══════════════════════════════════════════════════════════════════════
    03 · REEL → WHAT WE DO — a frame, then a list
@@ -788,7 +788,10 @@ html[data-touch] .wf-sectors .sr-desc{
 html[data-touch] .wf-sectors .sr-name{ color: var(--cream-ink) !important; }
 html[data-touch] .wf-sectors .sr-num{ color: var(--indigo) !important; }
 html[data-touch] .wf-sectors .srow{ padding: 14px 0 !important; }
-html[data-touch] .wf-all{ margin-top: 18px !important; font-size: 14px !important; }
+/* .wf-all is a pill now, not an underlined link, so it takes the button
+   system's own type. The 14px here outranked it through !important and made
+   "Discover" the only CTA on the phone at a different size. Margin stays. */
+html[data-touch] .wf-all{ margin-top: 18px !important; }
 
 /* ═════════════════════════════════════════════════════════════════════
    SELECTED WORK RAIL — the 861 to 1024 gap

@@ -35,6 +35,7 @@ else if(/[?&]mobile=0/.test(location.search))sessionStorage.removeItem('il-forc
 else if(window.self!==window.top&&window.innerWidth<=1024&&sessionStorage.getItem('il-force-mobile')==='1')f=true;
 if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch','');}catch(e){}})();</script>
 <link rel="stylesheet" href="assets/css/main.css?v=20260907c">
+<link rel="stylesheet" href="assets/css/buttons.css?v=20260907c">
 <link rel="stylesheet" href="assets/css/nav.css?v=20260907c">
 <!-- phone + tablet: shared touch layer, then the shared page layout -->
 <link rel="stylesheet" href="assets/css/mobile.css?v=20260907c">
@@ -168,7 +169,7 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
         </div>
         <label>What do you want to get good at?<textarea name="msg" rows="3" placeholder="The tools you use now, and where you want to be."></textarea></label>
         <div class="cl-actions">
-          <button type="submit" class="fakebtn cl-send">Send application ↗</button>
+          <button type="submit" class="il-btn il-btn--ghost cl-send">Send application ↗</button>
           <span class="cl-hint">We read every application and reply within two working days.</span>
         </div>
         <p class="ct-err" id="clErr" hidden></p>

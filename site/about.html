@@ -35,6 +35,7 @@ else if(/[?&]mobile=0/.test(location.search))sessionStorage.removeItem('il-forc
 else if(window.self!==window.top&&window.innerWidth<=1024&&sessionStorage.getItem('il-force-mobile')==='1')f=true;
 if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch','');}catch(e){}})();</script>
 <link rel="stylesheet" href="assets/css/main.css?v=20260907c">
+<link rel="stylesheet" href="assets/css/buttons.css?v=20260907c">
 <link rel="stylesheet" href="assets/css/nav.css?v=20260907c">
 <!-- phone + tablet: shared touch layer, then this page's own layout -->
 <link rel="stylesheet" href="assets/css/mobile.css?v=20260907c">
@@ -215,7 +216,7 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
     <div class="eyebrow rv">The Collective</div>
     <h2 class="disp">A growing network.</h2>
     <p>Around the core team runs the Collective, an open network of creators who connect into the studio and build with us on real work.</p>
-    <a class="cta mono" href="collective.html">Join the Collective →</a>
+    <a class="il-btn il-btn--ghost" href="collective.html" data-arrow="right">Join the Collective</a>
   </div>
   <div class="collcount mono">Network of <b id="collcnt">0</b><br><span style="font-size:10px">and growing</span></div>
   <div class="colllegend">Each node a creator<br>Each line a collaboration</div>
@@ -373,7 +374,7 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
 <section class="close">
   <div class="eyebrow rv" style="justify-content:center;margin-bottom:22px">Start here</div>
   <h2 class="disp rv d1">From a single campaign<br>to an <b>entire world.</b></h2>
-  <p class="sub rv d2">Let's build yours.</p><a class="cta rv d3" href="brief.html?intent=project">Start a project</a>
+  <p class="sub rv d2">Let's build yours.</p><a class="il-btn il-btn--primary il-btn--lg rv d3" href="brief.html?intent=project" data-arrow>Start a project</a>
 </section>
 </div>
 </div>
