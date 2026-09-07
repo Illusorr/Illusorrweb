@@ -79,6 +79,81 @@ const json = (status, obj) =>
     headers: { 'content-type': 'application/json', 'cache-control': 'no-store' },
   });
 
+/* AMBIENT MODE.
+ *
+ * The bubbles that float over an agent's head while you walk around are a
+ * different layer from the chat panel, and they were the flat part: four fixed
+ * strings each, twelve in the whole room, repeating for as long as you stayed.
+ *
+ * Generating one per bubble would be absurd — they fire continuously. Instead
+ * this returns a batch for all three at once, called once when a visitor
+ * enters, so a visit costs a single request and the room is different every
+ * time. If it fails the scripted lines are still there underneath. */
+function ambientSystem(world) {
+  return [
+    'You write ambient dialogue for three characters standing in a shared virtual room.',
+    `The room is the ${world} destination of ILLUSORR Spaces.`,
+    '',
+    'Begum hosts and set the room up. Zeynep is mid-presentation, casting a deck onto a',
+    'surface. Kerem is visiting from one of the sci-fi destinations and is looking around.',
+    '',
+    'They speak these lines aloud to nobody in particular, as a passing visitor walks by.',
+    'Each line is one sentence, at most about fourteen words, first person, in character,',
+    'and casual — an overheard remark rather than an announcement. They may reference the',
+    'room, what they are doing, each other by name, or the platform: five destinations on',
+    'one selector, one avatar across all of them, inventory places a screen or podium or',
+    'seating, screen share casts a display onto a surface, spatial voice fades with',
+    'distance, hosts share a world code. No lists, no markdown, no stage directions, no',
+    'quotation marks.',
+    '',
+    'Reply with JSON only, exactly this shape and nothing else:',
+    '{"Begum":["...","...","...","...","...","..."],',
+    ' "Zeynep":["...","...","...","...","...","..."],',
+    ' "Kerem":["...","...","...","...","...","..."]}',
+  ].join(' ');
+}
+
+async function ambient(key, world) {
+  const r = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: { 'content-type': 'application/json', 'x-api-key': key, 'anthropic-version': '2023-06-01' },
+    body: JSON.stringify({
+      model: MODEL,
+      max_tokens: 700,
+      system: ambientSystem(world),
+      messages: [{ role: 'user', content: 'Write the lines for this visit.' }],
+    }),
+  });
+  if (!r.ok) { console.error('anthropic ambient ' + r.status); return json(502, { error: 'upstream' }); }
+
+  const data = await r.json();
+  const raw = (data?.content || []).filter(b => b.type === 'text').map(b => b.text).join('').trim();
+
+  /* The model is asked for JSON and usually obliges, but a stray sentence
+     either side would break JSON.parse and take the whole room's chatter with
+     it. Take the outermost braces and validate every line before returning
+     any of them: a malformed batch falls back to the scripted lines, which is
+     the behaviour the page already had. */
+  let parsed;
+  try {
+    const a = raw.indexOf('{'), b = raw.lastIndexOf('}');
+    parsed = JSON.parse(raw.slice(a, b + 1));
+  } catch { return json(502, { error: 'unparsable' }); }
+
+  const lines = {};
+  for (const name of Object.keys(AGENTS)) {
+    const arr = Array.isArray(parsed?.[name]) ? parsed[name] : [];
+    const clean = arr
+      .filter(s => typeof s === 'string')
+      .map(s => s.replace(/\s+/g, ' ').replace(/^["'\s-]+|["'\s]+$/g, '').trim())
+      .filter(s => s.length > 3 && s.length <= 140)
+      .slice(0, 8);
+    if (clean.length) lines[name] = clean;
+  }
+  if (!Object.keys(lines).length) return json(502, { error: 'empty' });
+  return json(200, { lines });
+}
+
 export default async (req, context) => {
   if (req.method !== 'POST') return json(405, { error: 'POST only' });
 
@@ -105,11 +180,14 @@ export default async (req, context) => {
     return json(400, { error: 'bad json' });
   }
 
-  const name = String(body?.agent || '');
-  if (!Object.prototype.hasOwnProperty.call(AGENTS, name)) return json(400, { error: 'unknown agent' });
-
   // the destination is printed into the prompt, so it is constrained rather than trusted
   const world = String(body?.world || 'this').slice(0, 40).replace(/[^\w \-·]/g, '') || 'this';
+
+  // one batch of overheard lines for the whole room; no agent, no transcript
+  if (body?.mode === 'ambient') return ambient(key, world);
+
+  const name = String(body?.agent || '');
+  if (!Object.prototype.hasOwnProperty.call(AGENTS, name)) return json(400, { error: 'unknown agent' });
 
   const msgs = Array.isArray(body?.messages) ? body.messages : [];
   const messages = msgs

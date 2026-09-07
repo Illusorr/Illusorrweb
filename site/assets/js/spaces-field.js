@@ -982,6 +982,23 @@ window.spacesField = {
     if (g) g.holdUntil = t + (ms || 8000);
   },
   worldName: () => WORLDS[state.world].n,
+  /* Replace the scripted ambient pool with freshly written lines.
+     g.talk is what pick() draws from for the bubbles that float over a head
+     while you walk past, and it was four fixed strings per guest — twelve in
+     the room, repeating for as long as you stayed. That is the part that read
+     as flat, and it is a different layer from the chat panel, which has been
+     answering from the model.
+     Merged per guest rather than assigned wholesale, so a batch that only
+     covers two of the three still leaves the third with something to say. */
+  setLines(map) {
+    if (!map) return 0;
+    let n = 0;
+    guests.forEach((g) => {
+      const fresh = map[g.n];
+      if (Array.isArray(fresh) && fresh.length) { g.talk = fresh.slice(); n += fresh.length; }
+    });
+    return n;
+  },
   setChatter(on) {
     chatter = on;
     if (!on) {

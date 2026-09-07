@@ -413,11 +413,47 @@ function genderOf(v) {
   return null;
 }
 
+/* WHERE EACH ONE IS FROM, AND WHY THAT IS NOT SIMPLY A LANGUAGE CODE.
+ *
+ * The brief is Begum Turkish, Zeynep American, Kerem Arabic. The agents speak
+ * ENGLISH, and a system voice is a language engine rather than an accent: a
+ * tr-TR voice given English spelling applies Turkish phonology to it, and most
+ * ar-* engines will not read Latin script at all — they skip it or spell it
+ * out. That is mispronunciation, not accent, and it sounds broken rather than
+ * placed.
+ *
+ * What DOES carry an accent honestly is a multilingual neural voice, which
+ * some systems ship (Microsoft's "Multilingual" set, a few Google ones). Those
+ * read English correctly in the speaker's own colour. They are matched first
+ * where the platform has them.
+ *
+ * `accent` is therefore a preference, not a demand, and the native-language
+ * fallback inside it is only reached with ?accents=1 — see ACCENTS below.
+ * Default behaviour is a good English voice per character, distinct in pitch
+ * and rate so the three read as three people. */
 const VOICE = {
-  Begum:  { sex: 'f', pitch: 1.0,  rate: 0.96, want: [/serena|samantha|sonia|libby|kate/i], lang: /^en-GB/i },
-  Zeynep: { sex: 'f', pitch: 1.04, rate: 1.0,  want: [/ava|joanna|allison|aria|jenny|nicky/i], lang: /^en-US/i },
-  Kerem:  { sex: 'm', pitch: 0.94, rate: 0.97, want: [/arthur|oliver|daniel|matthew|tom|alex|guy/i], lang: /^en/i },
+  Begum: {
+    sex: 'f', pitch: 1.0, rate: 0.94,
+    want: [/serena|samantha|sonia|libby|kate/i], lang: /^en-GB/i,
+    accent: { multi: [/emel|seda|filiz|yelda/i], lang: /^tr/i },
+  },
+  Zeynep: {
+    sex: 'f', pitch: 1.05, rate: 1.0,
+    want: [/ava|joanna|allison|aria|jenny|nicky|emma|michelle/i], lang: /^en-US/i,
+    accent: null,                        // already the brief: American English
+  },
+  Kerem: {
+    sex: 'm', pitch: 0.92, rate: 0.95,
+    want: [/arthur|oliver|daniel|matthew|tom|alex|guy/i], lang: /^en/i,
+    accent: { multi: [/hamdan|shakir|tarik|maged|hamed|ahmed|zariyah/i], lang: /^ar/i },
+  },
 };
+
+/* Accents off by default. ?accents=1 lets the native-language voices in so the
+ * idea can be heard on a real handset, which is the only place the answer
+ * exists: the voice list is the device's, not the page's, and an iPhone, an
+ * Android and a desktop Chrome each offer a different set. */
+const ACCENTS = /[?&]accents=1/i.test(location.search);
 
 let who = null;                       // active guest name
 let history = {};                     // per-guest transcript
@@ -433,14 +469,34 @@ function score(v, cfg) {
   if (cfg.lang.test(v.lang)) n += 30;
   else if (/^en/i.test(v.lang)) n += 12;
   if (!v.localService) n += 15;       // remote voices are the good ones
+
+  if (cfg.accent) {
+    /* A multilingual voice from the right place reads English properly AND
+       carries the accent, so it outranks everything: this is the only way to
+       get what the brief actually asks for without mispronunciation. */
+    const named = cfg.accent.multi.some((re) => re.test(v.name));
+    if (named && /multilingual/i.test(v.name)) n += 140;
+    else if (named && /^en/i.test(v.lang)) n += 90;
+    /* The native-language engine is the compromise: right colour, wrong
+       phonology for English. Only reachable behind the flag. */
+    else if (ACCENTS && cfg.accent.lang.test(v.lang)) n += 80;
+  }
   return n;
 }
 
 function loadVoices() {
   voices = window.speechSynthesis ? speechSynthesis.getVoices() : [];
   picked = {};
-  const en = voices.filter((v) => /^en/i.test(v.lang));
-  const pool = en.length ? en : voices;
+  /* The pool was English-only, so no accent voice could ever be scored. It
+     now also admits the languages a character actually asks for, and any
+     multilingual voice, which is the one kind that reads English in another
+     colour without breaking it. */
+  const wanted = Object.values(VOICE).map((c) => c.accent && c.accent.lang).filter(Boolean);
+  const eligible = voices.filter((v) =>
+    /^en/i.test(v.lang) ||
+    /multilingual/i.test(v.name) ||
+    (ACCENTS && wanted.some((re) => re.test(v.lang))));
+  const pool = eligible.length ? eligible : voices;
   const taken = new Set();
   // men first: male voices are the scarcer set on most systems, so let Kerem
   // claim one before the two female parts take their pick
@@ -659,5 +715,19 @@ $('#enter').addEventListener('click', () => {
   document.body.classList.add('entered');   // releases the touch cue
   if (wanted) setSound(true);
   setTimeout(() => field.say('Begum', 'Welcome in — drag to look around.'), 900);
+
+  /* One request for the whole room's overheard lines, once per visit.
+     Per-bubble generation would be absurd — they fire continuously — but a
+     single batch makes the room different every time for the cost of one
+     call. It is deliberately fire-and-forget: if it never lands, the scripted
+     pool is already in place and nobody waits on it. */
+  fetch('/api/spaces-agent', {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({ mode: 'ambient', world: field.worldName() }),
+  })
+    .then((r) => (r.ok ? r.json() : null))
+    .then((d) => { if (d && d.lines) field.setLines(d.lines); })
+    .catch(() => {});
 });
 })();
