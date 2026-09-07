@@ -171,10 +171,23 @@
   .close-center .c-sub{color:var(--dim);font-size:16px;font-weight:300;margin-top:26px;opacity:0;transform:translateY(20px);animation:cUp 1s cubic-bezier(.16,1,.3,1) .5s forwards}
   .close-actions{display:flex;gap:14px;margin-top:52px;align-items:center;opacity:0;transform:translateY(20px);animation:cUp 1s cubic-bezier(.16,1,.3,1) .64s forwards}
   @keyframes cUp{to{opacity:1;transform:none}}
-  .cta-primary{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#05060f;background:#fff;border-radius:100px;padding:17px 34px;cursor:pointer;font-weight:600;transition:.3s;border:1px solid #fff}
-  .cta-primary:hover{background:transparent;color:#fff}
-  .cta-ghost{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:100px;padding:17px 30px;cursor:pointer;transition:.3s}
-  .cta-ghost:hover{border-color:#fff}
+  /* The closing pair speaks the pill's language: same radius, same type, same
+     indigo, same hover motion. Primary is the filled state at rest so "start a
+     project" still outranks the secondary link, and hovers by lifting rather
+     than by changing colour, since it is already wearing the hover fill.
+     It used to be a white slab that hovered to transparent, which was the
+     inverse of every other button on the site. */
+  .cta-primary{font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+    color:#fff;background:var(--indigo);border:1px solid var(--indigo);
+    border-radius:100px;padding:17px 34px;cursor:pointer;font-weight:600;transition:.3s}
+  .cta-primary:hover{background:var(--indigo);border-color:var(--indigo);color:#fff;
+    box-shadow:0 10px 26px -10px rgba(76,99,255,.7);transform:translateY(-1px)}
+  .cta-ghost{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#fff;
+    border:1px solid var(--indigo);border-radius:100px;padding:17px 30px;
+    cursor:pointer;transition:.3s}
+  .cta-ghost:hover{background:var(--indigo);border-color:var(--indigo);color:#fff;
+    box-shadow:0 10px 26px -10px rgba(76,99,255,.7);transform:translateY(-1px)}
+  .cta-primary:focus-visible,.cta-ghost:focus-visible{outline:2px solid var(--indigo);outline-offset:3px}
   .close-foot{position:relative;z-index:3;padding:0 48px 34px;display:grid;grid-template-columns:1fr auto 1fr;align-items:end;gap:20px}
   .cf-brand .top{display:flex;align-items:center;gap:11px}
   .cf-brand .orb{width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 36% 30%,#dbe2ff,#4c63ff 52%,#0a1033)}
@@ -531,11 +544,35 @@
   .meta-row{display:grid;grid-template-columns:repeat(5,1fr);gap:20px;padding:34px 46px;border-bottom:1px solid var(--line)}
   .meta-row .k{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint)}
   .meta-row .v{font-size:13px;margin-top:8px;color:var(--ink);font-weight:300;line-height:1.4}
-  .fakebtn{align-self:flex-start;border:1px solid rgba(142,162,255,.5);border-radius:100px;padding:12px 24px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--cold);cursor:pointer;display:inline-block}
-  section.light .fakebtn{border-color:var(--indigo);color:var(--indigo)}
-  section.light .fakebtn,.wf-body .fakebtn{transition:.35s cubic-bezier(.16,1,.3,1)}
-  .fakebtn{transition:.35s cubic-bezier(.16,1,.3,1)}
-  .fakebtn:hover{background:var(--indigo);border-color:var(--indigo);color:#fff;box-shadow:0 10px 26px -10px rgba(76,99,255,.7);transform:translateY(-1px)}
+  /* THE PILL. One call to action treatment for the whole site: an indigo
+     stroke at rest, filling indigo with white type on hover. Only the RESTING
+     ink follows the ground it sits on. The stroke, the fill, the hover and the
+     motion are identical everywhere, so a pill reads the same on the navy
+     hero as it does on the white "who we are" band.
+
+     The stroke was rgba(142,162,255,.5) and the resting ink was --cold, a pale
+     blue on a half-transparent pale blue. Both are now the real accent. */
+  .fakebtn{align-self:flex-start;border:1px solid var(--indigo);border-radius:100px;
+    padding:12px 24px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--ink);cursor:pointer;display:inline-block;
+    transition:.35s cubic-bezier(.16,1,.3,1)}
+
+  /* The light grounds are the same list nav.js inverts the header on, so a
+     pill flips exactly where the header flips instead of keeping its own idea
+     of which sections are light. */
+  section.light .fakebtn,.wf-body .fakebtn,.conv-section .fakebtn,
+  .wwa-scroll .fakebtn,.whofor .fakebtn,.whofor-scroll .fakebtn{color:var(--cream-ink)}
+
+  /* The light selectors above are (0,2,1) and outrank a bare .fakebtn:hover at
+     (0,2,0), so the old light pill kept its indigo text when the fill went
+     indigo and hovered into an apparently empty outline. The hover is written
+     at matching specificity for that reason, not for tidiness. */
+  .fakebtn:hover,
+  section.light .fakebtn:hover,.wf-body .fakebtn:hover,.conv-section .fakebtn:hover,
+  .wwa-scroll .fakebtn:hover,.whofor .fakebtn:hover,.whofor-scroll .fakebtn:hover{
+    background:var(--indigo);border-color:var(--indigo);color:#fff;
+    box-shadow:0 10px 26px -10px rgba(76,99,255,.7);transform:translateY(-1px)}
+  .fakebtn:focus-visible{outline:2px solid var(--indigo);outline-offset:3px}
   .footer{padding:50px 46px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;border-top:1px solid var(--line);color:var(--faint);font-size:11px;letter-spacing:.1em;text-transform:uppercase;position:relative;z-index:2}
   .footer a{color:var(--dim);cursor:pointer}
   .hint{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);z-index:150;font-size:10px;letter-spacing:.14em;color:var(--faint);background:rgba(11,14,22,.85);border:1px solid var(--line);border-radius:100px;padding:7px 16px;text-transform:uppercase}

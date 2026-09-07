@@ -54,12 +54,17 @@
 .il-topbar.brand-on-light .il-logo{filter:none;background-image:url(../img/brand/logo-on-light.webp)}
 
 .il-right{display:flex;align-items:center;gap:18px}
-.il-talk{white-space:nowrap;flex:none;font-family:'Outfit',sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#fff;border:1px solid rgba(255,255,255,.35);border-radius:100px;padding:9px 17px;cursor:pointer;transition:.3s;text-decoration:none}
+/* The header CTA is the same pill as the rest of the site: indigo stroke at
+   rest, indigo fill with white type on hover. Only the resting ink changes
+   with the ground, which .ctl-on-light already handles. The stroke was a
+   35% white hairline, so the button read as chrome rather than as the
+   accent every other call to action uses. */
+.il-talk{white-space:nowrap;flex:none;font-family:'Outfit',sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#fff;border:1px solid #4c63ff;border-radius:100px;padding:9px 17px;cursor:pointer;transition:.3s;text-decoration:none}
 .il-talk:hover{background:#4c63ff;border-color:#4c63ff;color:#fff}
 .il-burger{display:flex;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:none}
 .il-burger i{width:26px;height:1.5px;background:#fff;display:block;transition:.3s}
 .il-burger:hover i{background:#8ea2ff}
-.il-topbar.ctl-on-light .il-talk{color:#0a0c11;border-color:rgba(0,0,0,.25)}
+.il-topbar.ctl-on-light .il-talk{color:#0a0c11;border-color:#4c63ff}
 .il-topbar.ctl-on-light .il-talk:hover{background:#4c63ff;border-color:#4c63ff;color:#fff}
 .il-topbar.ctl-on-light .il-burger i{background:#0a0c11}
 
