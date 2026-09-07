@@ -306,7 +306,10 @@ html[data-touch] #aboutRoot .cflow-track img {
    ═════════════════════════════════════════════════════════════════════ */
 html[data-touch] #aboutRoot .teamSticky {
   overflow: visible !important;
-  padding: 64px 20px !important;
+  /* The bottom is deeper than the top on purpose: the last row's name and
+     role are drawn by ::after/::before BELOW the tile, and the 62px reserved
+     on .pimg covers the tile's own margin, not the section's end. */
+  padding: 64px 20px 104px !important;
 }
 /* .timgs was still position:absolute — the desktop crossfade frame. That
    is why the whole team section collapsed to 141px with eight portraits
@@ -321,6 +324,17 @@ html[data-touch] #aboutRoot .timgs {
   width: auto !important;
   height: auto !important;
   transform: none !important;
+  /* A grid item is align-self:stretch by default. .pimg below is height:auto
+     WITH an aspect-ratio, and those two instructions contradict each other:
+     stretch says fill the row, aspect-ratio says derive the height from the
+     width. Engines break the tie differently — Blink honours the ratio, WebKit
+     stretches — so the tiles are 4/5 in a resized desktop window and some
+     other shape on an actual iPhone. A landscape source cropped to a shape
+     nobody chose is what reads as the portraits being cut.
+
+     start makes the row defer to the ratio, so the tile is the same 4/5
+     everywhere and cover crops it the same way everywhere. */
+  align-items: start !important;
 }
 html[data-touch] #aboutRoot .pimg {
   position: relative !important;
@@ -747,3 +761,19 @@ html[data-touch] #aboutRoot .panel { padding: 96px 40px !important; }
   html[data-touch] #aboutRoot .cflow { overflow: hidden !important; max-width: 100% !important; }
   html[data-touch] #aboutRoot .cflow-track { will-change: auto !important; }
 }
+
+/* NOT FIXED HERE, ON PURPOSE — the 861 to 1024 tier.
+   Everything above that flattens the team rig lives inside this file's
+   max-width:860px block, while the touch tier reaches 1024px. So between 861
+   and 1024 with data-touch the desktop crossfade is still running: measured
+   at 924px, teamSec 7200px, .teamSticky sticky at 900px with overflow:hidden,
+   .timgs still position:absolute inside it.
+
+   Unwinding just the rig there is worse than leaving it: the frame goes but
+   its contents are still absolutely positioned, and the section collapses to
+   192px with the portraits out of flow. Tried, measured, reverted.
+
+   The real fix is to widen this whole block's ceiling from 860 to 1024, which
+   moves every about-page touch rule at once and needs checking section by
+   section. Same shape as the hero wordmark bug, and worth doing deliberately
+   rather than as a side effect of a portrait fix. */
