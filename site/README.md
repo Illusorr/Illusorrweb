@@ -62,7 +62,11 @@ site/
                         and the frosted glass band. Generated markup contract:
                         #ilTopbar / #ilOverlay / #ilMenuOpen / #ilMenuClose,
                         classes il-topbar, il-brand, il-logo, il-talk, il-burger,
-                        il-overlay, il-ohead, il-oclose, il-ofoot.
+                        il-overlay, il-ohead, il-oclose, il-ofoot. On touch the
+                        band reaches --il-strip (170px) above the viewport to cover
+                        the strip Safari paints behind the clock, and is-scrolled
+                        arms it the moment the page leaves the top. window.__ilNav
+                        is the hook the nav lab instruments drive; keep it.
       home.js field.js  home only (field.js = WebGL background)
       work.js           work grid filters
       components.js     rails, reveals, sector stacks, canvas studies

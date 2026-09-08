@@ -1,52 +1,62 @@
-/* The nav must not depend on the host page having a border-box reset.
-   lapillus does not, so .il-talk's min-height:44px applied to the CONTENT
-   box and the 9px padding plus 1px border pushed the pill to 64px there
-   while every other page rendered it at 44px. */
-.il-topbar, .il-topbar *, .il-overlay, .il-overlay * { box-sizing: border-box; }
 /* ILLUSORR — the site navigation. One header for every page: site shell,
-   sector pages and case studies. Namespaced (il-) so per-page case CSS cannot
-   collide with it. Proportions are the shell header's; the frosted glass band
-   came from the old nav.js/main.css pair and now runs everywhere.
-   .on-light / .brand-on-light / .ctl-on-light are toggled by nav.js. */
+   sector pages and case studies. Namespaced (il-) so per-page case CSS
+   cannot collide with it. .on-light / .brand-on-light / .ctl-on-light are
+   toggled by nav.js.
+   Desktop truth lives here. The touch band (the strip cover and the opaque
+   plate) is the additive layer in mobile.css, which consumes --il-strip.
+   Applied from apply-nav/reference. Its header comment closed two lines
+   early and swallowed the first rule, and its logo URLs were written for an
+   inline stylesheet; both repaired here, nothing else touched.
+   ═══════════════════════════════════════════════════════════════════════ */
 
-.il-topbar{position:fixed;top:0;left:0;right:0;z-index:2147483000;display:flex;align-items:center;justify-content:space-between;padding:22px 40px;transition:.4s;pointer-events:none}
+/* Case studies never load main.css and its global border-box, so the nav
+   subtree declares its own. Without it every padded box here grows. */
+.il-topbar, .il-topbar *, .il-overlay, .il-overlay * { box-sizing: border-box; }
+
+/* SAFE AREA, and what it does NOT solve. env(safe-area-inset-top) is 0 in
+   iOS Safari portrait, because Safari's viewport already begins below the
+   status bar. It is non-zero only in a home-screen web app and in landscape,
+   so it is kept here for those two cases and nothing more. The status-bar
+   overlap is a separate problem, solved by --il-strip below. */
+.il-topbar{position:fixed;top:0;left:0;right:0;z-index:2147483000;
+  /* THE STATUS-BAR STRIP. Above Safari's viewport there is a band, about
+     62px on a 402x874 phone, into which Safari paints the scrolled document
+     behind the clock and the battery. env() cannot measure it and no CSS
+     length describes it, but a fixed element with a negative top DOES paint
+     into it. The frosted band therefore starts this far above the viewport,
+     so page copy passing the top of the screen is covered instead of
+     colliding with the clock. Off iOS it is simply offscreen. */
+  --il-strip:170px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:22px 40px;padding-top:calc(22px + env(safe-area-inset-top,0px));
+  /* Was `transition:.4s`, which animated padding too: on an orientation
+     change or a URL-bar collapse the whole bar visibly slid. Only the
+     properties that actually change on a tone flip are transitioned. */
+  transition:color .4s,background-color .4s;
+  pointer-events:none}
 .il-topbar>*{pointer-events:auto}
 
-/* THE STATUS BAR IS PART OF THE PAGE NOW.
-   Every page declares viewport-fit=cover, so the layout viewport reaches the
-   physical top of the screen instead of stopping under the notch. Before that,
-   iOS inset the viewport for us: top:0 landed ~59px down while the scrolling
-   content still painted into the strip above, so the bar read as floating
-   below a band of loose type rather than sitting at the top of the screen.
-
-   The bar takes the inset as padding, not as an offset, so its ::before band
-   (inset:0) covers the status strip while the logo and the controls stay clear
-   of it. env() resolves to 0 everywhere else, so this is exactly padding-top:
-   22px on a desktop, on Android, and on any phone without a notch. */
-.il-topbar{padding-top:calc(22px + env(safe-area-inset-top,0px))}
-/* landscape puts the cutout on the side instead: the 40px gutter is not
-   enough to clear a 59px inset, and the mark would sit half under it. The
-   2560px and 430px rules below still win at their own widths. */
-.il-topbar{padding-left:max(40px,env(safe-area-inset-left,0px));
-  padding-right:max(40px,env(safe-area-inset-right,0px))}
-
-/* frosted band, only while page text passes beneath the header */
-.il-topbar::before{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;
+/* Frosted band, only while page text passes beneath the header.
+   Every stop is anchored in PIXELS FROM THE BOTTOM, not in percentages, so
+   extending the element upward over the status-bar strip cannot change how
+   it reads inside the bar. With percentage stops the whole gradient stretched
+   and the fade landed in the wrong place. */
+.il-topbar::before{content:'';position:absolute;left:0;right:0;bottom:0;
+  top:calc(-1 * var(--il-strip,170px));
+  z-index:-1;pointer-events:none;
   opacity:0;transition:opacity .45s cubic-bezier(.2,.7,.2,1);
-  background:linear-gradient(180deg,rgba(5,6,10,.62),rgba(5,6,10,.34) 62%,rgba(5,6,10,0));
+  background:linear-gradient(to top,rgba(5,6,10,0) 0,rgba(5,6,10,.34) 34px,rgba(5,6,10,.62) 88px,rgba(5,6,10,.62) 100%);
   -webkit-backdrop-filter:blur(16px) saturate(1.25);backdrop-filter:blur(16px) saturate(1.25);
-  -webkit-mask-image:linear-gradient(180deg,#000 0,#000 62%,transparent 100%);
-  mask-image:linear-gradient(180deg,#000 0,#000 62%,transparent 100%)}
+  -webkit-mask-image:linear-gradient(to top,transparent 0,#000 34px,#000 100%);
+  mask-image:linear-gradient(to top,transparent 0,#000 34px,#000 100%)}
 .il-topbar.is-glass::before{opacity:1}
-.il-topbar.on-light::before{background:linear-gradient(180deg,rgba(255,255,255,.66),rgba(255,255,255,.36) 62%,rgba(255,255,255,0))}
+.il-topbar.on-light::before{background:linear-gradient(to top,rgba(255,255,255,0) 0,rgba(255,255,255,.36) 34px,rgba(255,255,255,.66) 88px,rgba(255,255,255,.66) 100%)}
 @media (prefers-reduced-transparency:reduce){.il-topbar::before{-webkit-backdrop-filter:none;backdrop-filter:none}}
+@media (prefers-reduced-motion:reduce){
+  .il-topbar,.il-topbar::before,.il-overlay,.il-overlay nav a{transition-duration:.01ms!important}
+}
 
 .il-brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:inherit}
-/* The talk pill is set in Outfit at a tracked 11px. Until Outfit arrives the
-   fallback sets it wider, so the header visibly reflows — worst on the case
-   pages, which load more stylesheets before the font. A min-width holds the
-   pill's box steady through the swap. */
-.il-talk{min-width:108px;justify-content:center}
 .il-logo{display:block;height:45px;aspect-ratio:440/129;
   background-image:url(../img/brand/logo-on-dark.webp);
   background-size:contain;background-repeat:no-repeat;background-position:left center;
@@ -54,37 +64,102 @@
 .il-topbar.brand-on-light .il-logo{filter:none;background-image:url(../img/brand/logo-on-light.webp)}
 
 .il-right{display:flex;align-items:center;gap:18px}
-.il-talk{white-space:nowrap;flex:none;font-family:'Outfit',sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#fff;border:1px solid rgba(255,255,255,.35);border-radius:100px;padding:9px 17px;cursor:pointer;transition:.3s;text-decoration:none}
+/* The talk pill is set in Outfit at a tracked 11px. Until Outfit arrives the
+   fallback sets it wider, so the header visibly reflows. A min-width holds
+   the pill's box steady through the swap. */
+.il-talk{min-width:108px;justify-content:center;white-space:nowrap;flex:none;
+  display:inline-flex;align-items:center;
+  font-family:'Outfit',sans-serif;font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;color:#fff;border:1px solid rgba(255,255,255,.35);
+  border-radius:100px;padding:9px 17px;cursor:pointer;transition:.3s;
+  text-decoration:none;min-height:38px}
 .il-talk:hover{background:#4c63ff;border-color:#4c63ff;color:#fff}
-.il-burger{display:flex;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:none}
+.il-burger{display:flex;flex-direction:column;justify-content:center;
+  align-items:center;gap:5px;cursor:pointer;background:none;border:none;
+  /* 26px of bar in a 6px pad was a 38px target. 44px is the floor. */
+  width:44px;height:44px;padding:0;-webkit-tap-highlight-color:transparent}
 .il-burger i{width:26px;height:1.5px;background:#fff;display:block;transition:.3s}
 .il-burger:hover i{background:#8ea2ff}
 .il-topbar.ctl-on-light .il-talk{color:#0a0c11;border-color:rgba(0,0,0,.25)}
 .il-topbar.ctl-on-light .il-talk:hover{background:#4c63ff;border-color:#4c63ff;color:#fff}
 .il-topbar.ctl-on-light .il-burger i{background:#0a0c11}
 
-/* menu overlay */
-.il-overlay{position:fixed;inset:0;z-index:2147483001;background:rgba(5,6,10,.97);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);display:flex;flex-direction:column;padding:30px;opacity:0;pointer-events:none;transition:.4s}
-/* same reasoning: the menu's header has to clear the status bar and its footer
-   has to clear the home indicator */
-.il-overlay{padding-top:calc(30px + env(safe-area-inset-top,0px));
+/* ── menu overlay ─────────────────────────────────────────────────────── */
+.il-overlay{position:fixed;inset:0;z-index:2147483001;
+  background:rgba(5,6,10,.97);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  display:flex;flex-direction:column;
+  padding:30px;
+  padding-top:calc(30px + env(safe-area-inset-top,0px));
   padding-bottom:calc(30px + env(safe-area-inset-bottom,0px));
-  padding-left:max(30px,env(safe-area-inset-left,0px));
-  padding-right:max(30px,env(safe-area-inset-right,0px))}
+  opacity:0;pointer-events:none;transition:opacity .4s;
+  /* Seven links plus a head and a foot do not fit a phone in landscape, and
+     `margin:auto 0` on the nav gave it nowhere to go. The overlay scrolls
+     rather than clipping its last item. */
+  overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
 .il-overlay.open{opacity:1;pointer-events:auto}
-.il-overlay .il-ohead{display:flex;justify-content:space-between;align-items:center}
+.il-overlay[hidden]{display:none}
+.il-overlay .il-ohead{display:flex;justify-content:space-between;align-items:center;flex:none}
 .il-overlay .il-ohead .il-logo{height:30px}
-.il-oclose{color:#fff;font-family:'Outfit',sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;border:1px solid rgba(255,255,255,.3);border-radius:100px;padding:9px 18px;background:none}
-.il-overlay nav{margin:auto 0;display:flex;flex-direction:column;gap:6px}
-.il-overlay nav a{font-family:'PP Monument Extended','Outfit',sans-serif;font-weight:400;font-size:clamp(22px,4.1vw,54px);color:#8b96ad;text-transform:uppercase;letter-spacing:0;cursor:pointer;transition:.25s;line-height:1.02;display:flex;align-items:baseline;gap:18px;text-decoration:none}
-.il-overlay nav a:hover{color:#fff;padding-left:14px}
-.il-overlay nav a span{font-family:'Outfit',sans-serif;font-weight:400;font-size:12px;letter-spacing:.2em;color:#8b96ad}
-.il-overlay .il-ofoot{display:flex;justify-content:space-between;color:#8b96ad;font-family:'Outfit',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+.il-oclose{color:#fff;font-family:'Outfit',sans-serif;font-size:12px;
+  letter-spacing:.14em;text-transform:uppercase;cursor:pointer;
+  border:1px solid rgba(255,255,255,.3);border-radius:100px;
+  padding:9px 18px;background:none;min-height:44px;
+  -webkit-tap-highlight-color:transparent}
+.il-oclose:hover{border-color:#fff}
+.il-overlay nav{margin:auto 0;display:flex;flex-direction:column;gap:6px;
+  padding:40px 0;flex:none}
+.il-overlay nav a{font-family:'PP Monument Extended','Outfit',sans-serif;
+  font-weight:400;font-size:clamp(22px,4.1vw,54px);color:#8b96ad;
+  text-transform:uppercase;letter-spacing:0;cursor:pointer;transition:.25s;
+  line-height:1.02;display:flex;align-items:baseline;gap:18px;
+  text-decoration:none;min-height:44px}
+.il-overlay nav a:hover,.il-overlay nav a:focus-visible{color:#fff;padding-left:14px}
+.il-overlay nav a span{font-family:'Outfit',sans-serif;font-weight:400;
+  font-size:12px;letter-spacing:.2em;color:#4a5268;flex:none}
+.il-overlay nav a[aria-current="page"]{color:#fff}
+.il-overlay .il-ofoot{display:flex;justify-content:space-between;gap:16px;
+  color:#4a5268;font-family:'Outfit',sans-serif;font-size:11px;
+  letter-spacing:.1em;text-transform:uppercase;flex:none}
+/* Keyboard users must be able to see where they are. */
+.il-topbar :focus-visible,.il-overlay :focus-visible{outline:2px solid #8ea2ff;outline-offset:3px;border-radius:4px}
+
+/* The strip only exists where a browser chrome overlays the page. A desktop
+   window has none. Gated on the absence of the touch flag rather than on a
+   pointer media query, because a pointer query resolves against the HOST in
+   an embedded frame: a landscape phone frame inside a desktop page read as
+   pointer:fine and lost its strip. */
+html:not([data-touch]) .il-topbar{--il-strip:0px}
+
+/* THE BAND MUST BE ON WHENEVER THE PAGE IS SCROLLED, on a phone.
+   The "frost only under type" rule is right on a desktop, where there is no
+   strip and the bar floats over open imagery. On a phone anything that has
+   scrolled past the top of the screen is being painted behind the clock, type
+   or not, so the strip has to be covered the moment the page leaves the top. */
+html[data-touch] .il-topbar.is-scrolled::before{opacity:1}
+/* Scroll lock. Applied to <html> while the menu is open. position:fixed with
+   a negative top preserves the scroll position, which `overflow:hidden`
+   alone does not do on iOS. */
+html.il-locked{position:fixed;left:0;right:0;width:100%;overflow:hidden}
 
 /* Breakpoints match the shell header they replace: 3vw gutters on 2K+ so the
-   bar lines up with the 96px content padding, touch padding on tablets, and
-   handset gutters only at true handset widths. */
+   bar lines up with the 96px content padding, then handset gutters. */
 @media(min-width:2560px){.il-topbar{padding-left:3vw;padding-right:3vw}}
 @media(max-width:900px){.il-overlay nav a{padding:4px 0}}
-@media(max-width:860px){.il-logo{height:22px}}
-@media(max-width:430px){.il-topbar{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}}
+@media(max-width:860px){.il-logo{height:22px}.il-topbar{padding-left:24px;padding-right:24px}}
+@media(max-width:430px){
+  .il-topbar{padding-left:16px;padding-right:16px}
+  /* The pill and a 44px burger with an 18px gap overflow a 375px bar once
+     the logo is 22px tall. Tighten the gap and the pill, keep the target. */
+  .il-right{gap:10px}
+  .il-talk{min-width:0;padding:9px 14px;letter-spacing:.1em}
+}
+/* A phone in landscape has ~375px of height. A 45px logo plus the inset eats
+   it, so the bar goes compact rather than covering a fifth of the screen. */
+@media(max-height:460px) and (orientation:landscape){
+  .il-topbar{padding-top:calc(12px + env(safe-area-inset-top,0px));padding-bottom:12px}
+  .il-logo{height:20px}
+  .il-overlay nav{padding:20px 0;gap:0}
+  .il-overlay nav a{font-size:clamp(18px,3.4vh,26px)}
+}
+@media print{.il-topbar,.il-overlay{display:none!important}}

@@ -74,7 +74,7 @@ html[data-touch] .il-topbar::before {
      On an iPhone a strip of page paints above the header — Safari renders
      the scrolling content up behind the status bar, and a fixed element is
      not part of what it lifts up there. Whatever the exact mechanism, the
-     band can simply be taller than the bar: it starts 220px above the top
+     band can simply be taller than the bar: it starts --il-strip above the top
      and runs down to the bar's edge, so there is no strip left for loose
      type to show through. The bar itself does not move, so nothing about
      the layout, the tap targets or the logo position changes.
@@ -91,7 +91,10 @@ html[data-touch] .il-topbar::before {
      The mask stays off: it would clip this reach back to the bar's box, and
      it only ever existed to soften a backdrop-filter this layer no longer
      has (see Rule 2). */
-  top: -220px;
+  /* The reach is --il-strip, declared once in nav.css: 170px on touch, 0 off
+     it. This used to be a hardcoded 220px here, a second number for the
+     same gap. One value now; the overshoot is still deliberate. */
+  top: calc(-1 * var(--il-strip, 220px));
   -webkit-mask-image: none;
   mask-image: none;
   /* stops measured from the BOTTOM, so the fade sits on the bar's edge at

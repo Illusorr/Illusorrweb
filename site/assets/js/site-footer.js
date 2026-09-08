@@ -47,7 +47,10 @@ function hasDocumentFlow() {
    the canvas can never contradict it. */
 function canvasRule() {
   var m = document.querySelector('meta[name="theme-color"]');
-  var c = (m && m.getAttribute('content') || '').trim();
+  /* nav.js retunes theme-color live to the tone under the bar and stamps the
+     page's authored value on the meta. The canvas wants the authored one: a
+     page whose top beat is light would otherwise paint its overscroll cream. */
+  var c = (m && (m.getAttribute('data-il-authored') || m.getAttribute('content')) || '').trim();
   if (!/^#[0-9a-f]{3,8}$/i.test(c)) c = '#05060a';
   return ' html{background:' + c + '} ';
 }
