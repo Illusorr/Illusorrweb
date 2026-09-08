@@ -612,7 +612,7 @@ void main(){
        here rather than by assigning P.renderScale, because the baked
        settings block near the end of this file assigns over P and would
        silently undo it. */
-    const dpr=Math.min(devicePixelRatio||1,1.5)*(TOUCH?0.5:P.renderScale);
+    const dpr=Math.min(devicePixelRatio||1,1.5)*(TOUCH?0.65:P.renderScale);
     const vw=innerWidth||document.documentElement.clientWidth||0;
     const vh=innerHeight||document.documentElement.clientHeight||0;
     return [Math.max(1,Math.floor(vw*dpr)),Math.max(1,Math.floor(vh*dpr))];
