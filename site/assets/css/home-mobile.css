@@ -691,7 +691,8 @@ html[data-touch] .wwd-slide p { color: #fff !important; }
 
 @media (min-width: 641px) and (max-width: 1024px) {
   html[data-touch] .hero .center { left: 40px !important; right: 40px !important; width: auto !important; }
-  html[data-touch] .hero .rr { top: auto !important; bottom: 96px !important; right: 40px !important; }
+  /* .hero .rr is hidden across the whole touch tier (DESKTOP STAGE FURNITURE,
+     below); the reposition that stood here had nothing left to place. */
 }
 
 /* The STEP 1 flatten lives inside the phone query, so at 641-1024 these
@@ -820,19 +821,135 @@ html[data-touch] .wf-all{ margin-top: 18px !important; }
 }
 
 /* ═══════════════════════════════════════════════════════════════════════
-   WHO WE ARE · AN OPAQUE GROUND ON TOUCH  (trial)
+   SCROLL JITTER ON iOS · stale compositing layers
    ═══════════════════════════════════════════════════════════════════════
-   The jitter is the field's painted theme boundary sliding against the
-   section edge it is meant to sit on. main.css sets this beat transparent
-   under #p-landing so the field paints its white ground, which is what ties
-   the two together. Give the section its own opaque background and the
-   field's boundary is covered wherever the section is: a background-color
-   is composited with its element and cannot lag.
+   Symptom: the reel video does not hold its position while scrolling. It
+   drifts up and down against its own frame, and the same shudder appears
+   across all three sticky-stage sections.
 
-   Cost: the field's contours stop showing through this one beat. Nothing
-   else changes — the field still scans the scroll, still paints every other
-   section, still applies its accents, and desktop is untouched. */
+   Cause. main.css promotes four elements for the desktop choreography:
+
+       .rw-reel   { will-change: transform, opacity }
+       .rw-wwd    { will-change: opacity }
+       .wf-stage  { will-change: transform }
+       .tile      { will-change: transform, opacity }
+
+   STEP 1 above flattens those sections and sets transform:none !important,
+   but it never cleared will-change. So on a phone they are still promoted
+   to their own compositing layers with nothing left to animate. That is
+   free on most engines and not on iOS: a cross-origin iframe living inside
+   a promoted layer, clipped by an overflow:hidden ancestor, is composited
+   asynchronously from the page scroll, so it lags and then catches up on
+   every momentum frame. The video appears to float against its frame.
+
+   will-change is a promise about what is ABOUT to change. Once the
+   choreography is off, the promise is a lie and the layer is pure cost.
+   ═════════════════════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  html[data-touch] .rw-reel,
+  html[data-touch] .rw-wwd,
+  html[data-touch] #rwReel,
+  html[data-touch] #rwWwd,
+  html[data-touch] .wf-stage,
+  html[data-touch] .wf-img,
+  html[data-touch] .wwa-line,
+  html[data-touch] .pnl,
+  html[data-touch] #workGrid .tile {
+    will-change: auto !important;
+  }
+
+  /* The reel's own layer contract. .reel-media clips with overflow:hidden
+     and lays a radial scrim over the iframe through ::after. On a desktop
+     that is a vignette; on a phone it forces the iframe's layer to be
+     re-clipped and re-composited every scroll frame. The frame already
+     holds the 16/9 box, so the clip is redundant here. */
+  html[data-touch] .reel-media {
+    overflow: visible !important;
+    background: none !important;
+  }
+  html[data-touch] .reel-media::after { display: none !important; }
+
+  /* 3D context on the sector stage: preserve-3d plus a perspective ancestor
+     keeps that subtree on the GPU for a transform that no longer runs. */
+  html[data-touch] .wf-stage {
+    transform-style: flat !important;
+    perspective: none !important;
+  }
+  html[data-touch] .wf-visual { perspective: none !important; }
+  html[data-touch] .wf-img {
+    backface-visibility: visible !important;
+    transition: opacity .45s ease !important;
+    /* Measured on the test copy at 924px: this was still the one element
+       reporting a live transform, because main.css only clears it at 860px
+       and below. scale(1.14) translateZ(-150px) keeps six full-bleed layers
+       on the GPU for a parallax that the flatten already switched off, and
+       the reel iframe sits in the same scrolling region. Cleared across the
+       whole touch tier so the tablet width matches the phone. */
+    transform: none !important;
+  }
+  html[data-touch] .wf-img.on { transform: none !important; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   DESKTOP STAGE FURNITURE · HIDDEN ACROSS THE WHOLE TOUCH TIER
+   ═══════════════════════════════════════════════════════════════════════
+   The wordmark, the rotated scroll cue and the two register dots are hidden
+   inside the 860px block above, but the touch tier runs to 1024px: the
+   page's own gate sets data-touch at innerWidth <= 1024 and this file has
+   a tablet tier at 641–1024. Between 861 and 1024 with data-touch set,
+   .hero .wm kept its desktop absolute position while the tablet tier had
+   already moved .center, and the orb and the ILLUSORR wordmark printed
+   straight across "Across every reality." Measured at 924px: .wm at
+   x52 y325 on .hero h1 at x80 y311. iPad landscape included.
+
+   apply-field-fix widens the phone block to 1024px wholesale. Done that
+   way, .hero .seeall would also be restyled in a tier where the hero is
+   still a desktop row, so the gap gets its own tier instead: the furniture
+   is hidden, nothing at or under 860px moves, and the link keeps the
+   placement it has today. */
+@media (min-width: 861px) and (max-width: 1024px) {
+  html[data-touch] .hero .wm,
+  html[data-touch] .hero .rr,
+  html[data-touch] .hero .topdot,
+  html[data-touch] .hero .botdot { display: none !important; }
+}
+
+/* The block that stood here gave this one beat a cream ground on touch as a
+   trial, while the field still scanned the scroll and painted its own white
+   behind it. That is why a white sliver still peeked out above the block as
+   it moved: two whites, two clocks. field.js now freezes the field to one
+   dark state on touch, so the grounds below are the only grounds. */
+/* ═══════════════════════════════════════════════════════════════════════
+   SECTION GROUNDS ON TOUCH · CSS, NOT THE FIELD
+   ═══════════════════════════════════════════════════════════════════════
+   main.css sets these beats to background:transparent under #p-landing so
+   the field can paint their light and dark grounds itself. That is what
+   made the field scroll-dependent, and on a phone that dependency is the
+   jitter (see the TOUCH note in field.js).
+
+   With the field frozen to a single dark state on touch, the light beats
+   need their ground back. A background-color is composited: it moves with
+   its element, exactly in step, and can never lag. The field stays as the
+   texture behind the dark beats, which is where it reads best anyway.
+
+   Desktop keeps the field-painted grounds: every rule here is inside a
+   max-width query and scoped to data-touch.
+   ═════════════════════════════════════════════════════════════════════ */
 @media (max-width: 1024px) {
   html[data-touch] #p-landing .wwa-scroll,
-  html[data-touch] #p-landing .wwa-stage { background: var(--cream) !important; }
+  html[data-touch] #p-landing .wwa-stage,
+  html[data-touch] #p-landing .whofor,
+  html[data-touch] #p-landing .whofor-scroll,
+  html[data-touch] #p-landing .breath,
+  html[data-touch] #p-landing .conv-section { background: var(--cream) !important; }
+
+  html[data-touch] #p-landing .hero,
+  html[data-touch] #p-landing .reelwwd,
+  html[data-touch] #p-landing .rw-stage { background: transparent !important; }
+
+  /* The dark beats that sit over their own artwork or glow keep an opaque
+     ground, so the frozen field is not showing through two layers. */
+  html[data-touch] #p-landing .spaces-band,
+  html[data-touch] #p-landing .collective-band,
+  html[data-touch] #p-landing .close-sec { background: var(--bg) !important; }
 }

@@ -354,6 +354,40 @@ void main(){
   gl.texImage2D(gl.TEXTURE_2D,0,gl.R8,1,N,0,gl.RED,gl.UNSIGNED_BYTE,lutData);
 
   const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ═══════════════════════════════════════════════════════════════════
+     TOUCH: THE FIELD STOPS TRACKING THE SCROLL
+     ═══════════════════════════════════════════════════════════════════
+     On a phone this canvas is the only thing on the page whose painted
+     CONTENT has to stay in step with the scroll. Everything else is moved
+     by the compositor and therefore cannot fall behind. #nf is fixed, so
+     it never moves — but scanScroll() reads where every light and dark
+     section currently sits and buildLut() paints those boundaries into a
+     texture, so the boundary the shader draws is a function of scrollY. Any
+     frame where that repaint lands behind the compositor, the painted edge
+     slides against the real section edges. That is the jitter, it is
+     inherent to the approach rather than a bug in it, and it is invisible
+     on field.html because those sections are empty and there is no content
+     edge to compare the boundary against.
+
+     So on touch the field stops being a scroll-driven element. The LUT is
+     filled once with a single dark state and never rebuilt, and the
+     per-section morph, mirror and palette overrides are skipped. The canvas
+     becomes what it looks like it is: a slow, time-based texture behind the
+     page. Section grounds are then carried by CSS in home-mobile.css,
+     which the compositor moves perfectly.
+
+     DESKTOP IS UNTOUCHED. Every branch below is gated on this flag, and it
+     can only be true when mobile.js (or the page's inline gate) has set
+     data-touch.
+     ═══════════════════════════════════════════════════════════════════ */
+  const TOUCH=document.documentElement.hasAttribute('data-touch');
+  if(TOUCH){
+    /* one state, written once: 0 is the dark ground */
+    lutData.fill(0);
+    gl.bindTexture(gl.TEXTURE_2D,lutTex);
+    gl.texImage2D(gl.TEXTURE_2D,0,gl.R8,1,N,0,gl.RED,gl.UNSIGNED_BYTE,lutData);
+  }
   const mouse={x:0.5,y:0.55},mTarget={x:0.5,y:0.55};
   let morph=0,morphT=0, mirror=0, dim=1,dimT=1;
   /* Transition settings. Every value here is a knob on HOW a section change
@@ -573,7 +607,12 @@ void main(){
      integer compare), and a ResizeObserver covers the reduced-motion case
      where there is no loop. */
   function wantedSize(){
-    const dpr=Math.min(devicePixelRatio||1,1.5)*P.renderScale;
+    /* On touch the buffer is smaller: nothing in it has to align with a
+       section edge any more, so resolution buys less than it costs. Applied
+       here rather than by assigning P.renderScale, because the baked
+       settings block near the end of this file assigns over P and would
+       silently undo it. */
+    const dpr=Math.min(devicePixelRatio||1,1.5)*(TOUCH?0.5:P.renderScale);
     const vw=innerWidth||document.documentElement.clientWidth||0;
     const vh=innerHeight||document.documentElement.clientHeight||0;
     return [Math.max(1,Math.floor(vw*dpr)),Math.max(1,Math.floor(vh*dpr))];
@@ -603,7 +642,9 @@ void main(){
   const readout=document.getElementById('readout');
   function draw(t){
     syncSize();
-    scanScroll(); buildLut();
+    /* The two calls that make this canvas scroll-dependent. Skipped on
+       touch; see the TOUCH note above. */
+    if(!TOUCH){ scanScroll(); buildLut(); }
     const k=reduced?1:0;
     morph+=(morphT-morph)*(k||0.07);
     dim+=(dimT-dim)*(k||0.035);
@@ -770,7 +811,9 @@ resize(); setMode(mode);
       requestAnimationFrame(loop);
       if(!onScreen || document.hidden) return;
       const now=performance.now();
-      const cap=(now-lastScroll<300)?0:1000/30;
+      /* Not on touch: there is no painted edge left to keep up with, so the
+         cap stays on while scrolling. */
+      const cap=(!TOUCH&&now-lastScroll<300)?0:1000/30;
       if(now-prev<cap) return;
       prev=now; draw((now-t0)/1000);
     })();
