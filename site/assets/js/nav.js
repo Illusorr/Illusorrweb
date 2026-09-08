@@ -1,4 +1,6 @@
-/* ILLUSORR — the site navigation behaviour. One script for every page.
+/* ILLUSORR — the site navigation. One script for every page.
+   0. Mounts the header and the menu overlay itself (mountNav below). The
+      markup lives here once; pages carry no copy of it.
    1. Menu open/close (#ilMenuOpen / #ilMenuClose / #ilOverlay, Escape closes).
    2. Light/dark inversion: samples what sits under the bar at three x positions
       and flips the brand, the controls and the glass band independently.
@@ -7,6 +9,60 @@
    3. Frosted glass band: the bar frosts only while page text runs beneath it,
       so it stays invisible over open imagery and legible over headlines. */
 (function(){
+  /* -- one navbar, mounted here ------------------------------------------
+     Every page used to carry its own copy of the header and the menu
+     overlay: 47 copies of the same markup, drifting apart one attribute at
+     a time. There is no build step, so there is no include. This is the
+     include: the markup lives here once and is mounted as the first child
+     of <body> on every page that loads this script, the way site-footer.js
+     mounts the footer. Fixed elements do not care where in the DOM they
+     sit, and first child puts the bar first in tab order, which is where a
+     header belongs.
+
+     The path prefix is read from this page's own assets/ reference, so the
+     one file works at the root and one level down (projects/, lab/,
+     sectors/). Netlify leaves asset URLs relative and rewrites only page
+     links, so the prefix survives the deploy.
+
+     A page that still carries the markup is left alone: mounting a second
+     copy would duplicate the ids that everything below binds to. */
+  function mountNav(){
+    if(document.getElementById('ilTopbar')||!document.body) return;
+    var ref=document.querySelector('script[src*="assets/js/nav.js"], link[href*="assets/css/"], script[src*="assets/js/"]');
+    var url=ref?(ref.getAttribute('src')||ref.getAttribute('href')||''):'';
+    var pre=(url.match(/^((?:\.\.\/)*)assets\//)||['',''])[1];
+    /* Netlify serves about.html as /about, so compare with the suffix off. */
+    var here=(location.pathname.split('/').pop()||'index.html').replace(/\.html$/,'');
+    var items=[['Home','index.html'],['About','about.html'],['Sectors','sectors.html'],
+               ['Work','work.html'],['Lab','lab.html'],['Collective','collective.html'],
+               ['Contact','contact.html']];
+    var links=items.map(function(l,i){
+      var cur=l[1].replace(/\.html$/,'')===here?' aria-current="page"':'';
+      return '    <a href="'+pre+l[1]+'"'+cur+'>'+l[0]+' <span>0'+(i+1)+'</span></a>';
+    }).join('\n');
+    var mark='<span class="il-logo" role="img" aria-label="ILLUSORR"></span>';
+    var html=
+      '<header class="il-topbar" id="ilTopbar">\n'+
+      '  <a class="il-brand" href="'+pre+'index.html" aria-label="ILLUSORR home">'+mark+'</a>\n'+
+      '  <div class="il-right">\n'+
+      '    <a class="il-talk" href="'+pre+'contact.html">Let\'s talk</a>\n'+
+      '    <button class="il-burger" id="ilMenuOpen" aria-label="Open menu"><i></i><i></i></button>\n'+
+      '  </div>\n'+
+      '</header>\n'+
+      '<div class="il-overlay" id="ilOverlay">\n'+
+      '  <div class="il-ohead">\n'+
+      '    <div class="il-brand">'+mark+'</div>\n'+
+      '    <button class="il-oclose" id="ilMenuClose">Close \u2715</button>\n'+
+      '  </div>\n'+
+      '  <nav>\n'+links+'\n  </nav>\n'+
+      '  <div class="il-ofoot"><span>Abu Dhabi \u00b7 Yas Creative Hub</span><span>hello@illusorr.com</span></div>\n'+
+      '</div>';
+    var tpl=document.createElement('template');
+    tpl.innerHTML=html;
+    document.body.insertBefore(tpl.content,document.body.firstChild);
+  }
+  mountNav();
+
   var tb=document.getElementById('ilTopbar'), ov=document.getElementById('ilOverlay');
   if(!tb) return;
   var mo=document.getElementById('ilMenuOpen'), mc=document.getElementById('ilMenuClose');
