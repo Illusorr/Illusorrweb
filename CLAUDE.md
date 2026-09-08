@@ -89,10 +89,13 @@ Rules:
 All page scripts are `defer` and page scoped. `js/mobile.js` is the exception: it loads in
 `<head>` so `html[data-touch]` is set before first paint.
 
-- `nav.js` runs on every page. Markup contract: `#ilTopbar` `#ilOverlay` `#ilMenuOpen`
-  `#ilMenuClose` and the `il-topbar il-brand il-logo il-talk il-burger il-overlay il-ohead
-  il-oclose il-ofoot` classes. Copy the header and overlay block verbatim from an existing
-  page when creating a new one.
+- `nav.js` runs on every page and **mounts the header and menu overlay itself**: the
+  markup exists only inside nav.js and is inserted as the first child of `<body>`. Never
+  paste nav markup into a page. A page gets the nav by linking `nav.css` and loading
+  `nav.js`, and the nav must be identical on every page: one source, one behaviour.
+  Markup contract (what nav.js generates and nav.css styles): `#ilTopbar` `#ilOverlay`
+  `#ilMenuOpen` `#ilMenuClose` and the `il-topbar il-brand il-logo il-talk il-burger
+  il-overlay il-ohead il-oclose il-ofoot` classes.
 - `mobile.js` strips autoplay from video behind a tap, removes pointer followers, and turns
   3D canvases into tap to load placeholders. A page with heavy libraries keeps them in a
   `<template>` and exposes a global starter, see `window.MG_START_3D` in
@@ -130,6 +133,6 @@ All page scripts are `defer` and page scoped. `js/mobile.js` is the exception: i
 
 - Open the page and check the console is clean.
 - Check the phone layer with `?mobile=1` and a narrow window, both paths exist.
-- If you added a page: head block, nav markup, footer, sitemap entry, and a link to it from
+- If you added a page: head block, `nav.css` + `nav.js` links, sitemap entry, and a link to it from
   somewhere real.
 - If you added media: correct folder, correct format, size within the caps above.

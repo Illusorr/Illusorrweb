@@ -52,13 +52,17 @@ site/
                         uhub, optiverse, pylon, metagenus, metaculture, koton-*, v5, shared…)
     js/case/ css/case/   case-study helper scripts/styles (image-slot, trt-orb, uhub-spaces…)
     js/                 Page-scoped modules, all loaded with `defer`:
-      nav.js            the one navigation script, every page: menu open/close,
-                        light/dark header inversion (data-tone or data-bg-theme
-                        hints win over measurement) and the frosted glass band.
-                        Markup contract: #ilTopbar / #ilOverlay / #ilMenuOpen /
-                        #ilMenuClose, classes il-topbar, il-brand, il-logo,
-                        il-talk, il-burger, il-overlay, il-ohead, il-oclose,
-                        il-ofoot. Copy the block from any existing page.
+      nav.js            the one navigation script, every page. It MOUNTS the
+                        header and menu overlay itself: the markup exists only
+                        inside nav.js and is inserted as the first child of
+                        <body>. Never paste nav markup into a page. The nav must
+                        be identical everywhere: one source, one behaviour.
+                        Also: menu open/close, light/dark header inversion
+                        (data-tone or data-bg-theme hints win over measurement)
+                        and the frosted glass band. Generated markup contract:
+                        #ilTopbar / #ilOverlay / #ilMenuOpen / #ilMenuClose,
+                        classes il-topbar, il-brand, il-logo, il-talk, il-burger,
+                        il-overlay, il-ohead, il-oclose, il-ofoot.
       home.js field.js  home only (field.js = WebGL background)
       work.js           work grid filters
       components.js     rails, reveals, sector stacks, canvas studies
