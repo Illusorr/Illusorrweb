@@ -144,12 +144,16 @@ function onScroll(fn){
     }
     /* IO is the fast path, but a plain rect check on scroll is the one that
        always fires — some embedding contexts never deliver IO callbacks. */
+    /* home-mobile.css hides .sb-stage on touch, so mounting the whole Spaces
+       app into a frame nobody sees was 600 KB of script, a model and a WebGL
+       context on every phone that scrolled this far. The copy still reveals. */
+    const HELD=document.documentElement.hasAttribute('data-touch');
     let mounted=false;
     function syncSpaces(){
       const r=sband.getBoundingClientRect();
       const near = r.top < innerHeight+300 && r.bottom > -300;
       sband.classList.toggle('in', r.top < innerHeight*0.8 && r.bottom > 0);
-      if(near && !mounted){
+      if(near && !mounted && !HELD){
         mounted=true;
         frame.src=frame.dataset.src;
         frame.addEventListener('load',fitSpaces);

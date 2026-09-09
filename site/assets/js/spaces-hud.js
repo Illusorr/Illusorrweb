@@ -754,6 +754,11 @@ addEventListener('keydown', (e) => {
     const held = JSON.parse(sessionStorage.getItem(slot) || 'null');
     if (held) { field.setLines(held); return; }
   } catch (e) {}
+  /* Embedded in the landing page's band the room is a scaled preview with
+     the HUD hidden: the canned lines are enough there, and every visitor
+     who scrolled to the band was otherwise a serverless call and a model
+     call. The agent runs for the page itself, not for its thumbnail. */
+  if (EMBED) return;
 
   fetch('/api/spaces-agent', {
     method: 'POST',
