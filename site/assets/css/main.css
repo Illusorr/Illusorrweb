@@ -3,7 +3,7 @@
    font carries opsz so browsers keep applying optical sizing automatically. */
 @font-face{font-family:'Fraunces';font-style:normal;font-weight:100 900;font-display:swap;
   src:url("../fonts/Fraunces-Variable.woff2") format("woff2"), url("../fonts/Fraunces-Variable.woff2") format("woff2")}
-:root{--sec1:url(../img/sectors/beauty.webp);--sec2:url(../img/sectors/fashion.webp);--sec3:url(../img/sectors/real-estate.webp);--sec4:url(../img/sectors/gaming.webp);--sec5:url(../img/sectors/culture.webp);--sec6:url(../img/sectors/business.webp);}
+:root{--sec1:url(../img/sectors/beauty.webp);--sec2:url(../img/sectors/fashion.webp);--sec3:url(../img/sectors/real-estate.webp);--sec4:url(../img/sectors/gaming.webp);--sec5:url(../img/sectors/culture-v2.webp);--sec6:url(../img/sectors/business.webp);}
     :root{
     /* Secondary text was --dim #8b96ad and tertiary --faint #4a5268.
        #4a5268 measured 2.54:1 against the background, well under the 4.5:1
@@ -2296,7 +2296,7 @@
 .sec-bg-2{background-image:url(../img/sectors/fashion.webp);background-position:50% 24%}
 .sec-bg-3{background-image:url(../img/sectors/real-estate.webp);background-position:58% 66%}
 .sec-bg-4{background-image:url(../img/sectors/gaming.webp);background-position:50% 42%}
-.sec-bg-5{background-image:url(../img/sectors/culture.webp);background-position:50% 34%}
+.sec-bg-5{background-image:url(../img/sectors/culture-v2.webp);background-position:50% 34%}
 .sec-bg-6{background-image:url(../img/sectors/business.webp);background-position:50% 30%}
 /* hero framing: .sd-hero is a wide 354px band, so cover scales by WIDTH and
    the card focal points land far too high — the jacket and the lipstick both
