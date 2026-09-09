@@ -33,13 +33,13 @@ if(f)sessionStorage.setItem('il-force-mobile','1');
 else if(/[?&]mobile=0/.test(location.search))sessionStorage.removeItem('il-force-mobile');
 else if(window.self!==window.top&&window.innerWidth<=1024&&sessionStorage.getItem('il-force-mobile')==='1')f=true;
 if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch','');}catch(e){}})();</script>
-<link rel="stylesheet" href="assets/css/main.css?v=20260908i">
-<link rel="stylesheet" href="assets/css/buttons.css?v=20260908i">
-<link rel="stylesheet" href="assets/css/nav.css?v=20260908i">
+<link rel="stylesheet" href="assets/css/main.css?v=20260908j">
+<link rel="stylesheet" href="assets/css/buttons.css?v=20260908j">
+<link rel="stylesheet" href="assets/css/nav.css?v=20260908j">
 <!-- phone + tablet: shared touch layer, then this page's own layout -->
-<link rel="stylesheet" href="assets/css/mobile.css?v=20260908i">
-<link rel="stylesheet" href="assets/css/home-mobile.css?v=20260908i">
-<script src="assets/js/mobile.js?v=20260908i" defer></script>
+<link rel="stylesheet" href="assets/css/mobile.css?v=20260908j">
+<link rel="stylesheet" href="assets/css/home-mobile.css?v=20260908j">
+<script src="assets/js/mobile.js?v=20260908j" defer></script>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"ILLUSORR","url":"https://illusorr.com/","email":"hello@illusorr.com","description":"A multidisciplinary creative technology studio building across physical, digital and virtual worlds.","address":{"@type":"PostalAddress","addressLocality":"Abu Dhabi","addressCountry":"AE"},"sameAs":["https://www.instagram.com/illusorr/","https://www.linkedin.com/company/illusorr/","https://www.youtube.com/illusorr"]}</script>
 <style id="boot-css">
@@ -214,17 +214,17 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
       <!-- LEFT: sector imagery on a 3D stage, advances on scroll -->
       <div class="wf-visual">
         <div class="wf-stage">
-        <div class="wf-img on sec-bg-1" data-s="0"></div>
-        <div class="wf-img sec-bg-2" data-s="1"></div>
-        <div class="wf-img sec-bg-3" data-s="2"></div>
-        <div class="wf-img sec-bg-4" data-s="3"></div>
-        <div class="wf-img sec-bg-5" data-s="4"></div>
+        <div class="wf-img on sec-bg-5" data-s="0"></div>
+        <div class="wf-img sec-bg-4" data-s="1"></div>
+        <div class="wf-img sec-bg-1" data-s="2"></div>
+        <div class="wf-img sec-bg-2" data-s="3"></div>
+        <div class="wf-img sec-bg-3" data-s="4"></div>
         <div class="wf-img sec-bg-6" data-s="5"></div>
           <div class="wf-sheen"></div>
         </div>
         <div class="wf-grain"></div>
         <div class="wf-frame"></div>
-        <div class="wf-imgtag mono" id="imgtag">Beauty &amp; Fragrance</div>
+        <div class="wf-imgtag mono" id="imgtag">Culture &amp; Immersive</div>
         <div class="wf-count mono"><b id="wfcn">01</b> / 06</div>
       </div>
       <!-- RIGHT: statement + sectors + clients -->
@@ -232,11 +232,11 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
         <div class="wf-eyebrow">Who we do it for</div>
         <h2 class="disp">We build for brands, houses, and institutions across every sector.</h2>
         <div class="wf-sectors" id="sectors">
-          <div class="srow on" data-i="0"><span class="sr-num mono">01</span><a class="sr-go" href="sectors/beauty.html"><div class="sr-name disp">Beauty &amp; Fragrance</div><div class="sr-desc">Campaign grade content and product worlds for houses that sell feeling.</div></a></div>
-          <div class="srow" data-i="1"><span class="sr-num mono">02</span><a class="sr-go" href="sectors/fashion.html"><div class="sr-name disp">Fashion, Retail &amp; Jewellery</div><div class="sr-desc">Editorial and campaign production for labels and retailers.</div></a></div>
-          <div class="srow" data-i="2"><span class="sr-num mono">03</span><a class="sr-go" href="sectors/real-estate.html"><div class="sr-name disp">Real Estate &amp; Architecture</div><div class="sr-desc">Visualization and launch material for developments and spatial concepts.</div></a></div>
-          <div class="srow" data-i="3"><span class="sr-num mono">04</span><a class="sr-go" href="sectors/gaming.html"><div class="sr-name disp">Gaming, Worlds &amp; IP</div><div class="sr-desc">Worlds, digital twins, and licensable IP for studios and platforms.</div></a></div>
-          <div class="srow" data-i="4"><span class="sr-num mono">05</span><a class="sr-go" href="sectors/culture.html"><div class="sr-name disp">Culture &amp; Immersive</div><div class="sr-desc">Installations and immersive experiences for cultural moments.</div></a></div>
+          <div class="srow on" data-i="0"><span class="sr-num mono">01</span><a class="sr-go" href="sectors/culture.html"><div class="sr-name disp">Culture &amp; Immersive</div><div class="sr-desc">Installations and immersive experiences for cultural moments.</div></a></div>
+          <div class="srow" data-i="1"><span class="sr-num mono">02</span><a class="sr-go" href="sectors/gaming.html"><div class="sr-name disp">Gaming, Worlds &amp; IP</div><div class="sr-desc">Worlds, digital twins, and licensable IP for studios and platforms.</div></a></div>
+          <div class="srow" data-i="2"><span class="sr-num mono">03</span><a class="sr-go" href="sectors/beauty.html"><div class="sr-name disp">Beauty &amp; Fragrance</div><div class="sr-desc">Campaign grade content and product worlds for houses that sell feeling.</div></a></div>
+          <div class="srow" data-i="3"><span class="sr-num mono">04</span><a class="sr-go" href="sectors/fashion.html"><div class="sr-name disp">Fashion, Retail &amp; Jewellery</div><div class="sr-desc">Editorial and campaign production for labels and retailers.</div></a></div>
+          <div class="srow" data-i="4"><span class="sr-num mono">05</span><a class="sr-go" href="sectors/real-estate.html"><div class="sr-name disp">Real Estate &amp; Architecture</div><div class="sr-desc">Visualization and launch material for developments and spatial concepts.</div></a></div>
           <div class="srow" data-i="5"><span class="sr-num mono">06</span><a class="sr-go" href="sectors/business.html"><div class="sr-name disp">Business &amp; Institutions</div><div class="sr-desc">Brand, web, and product for organisations whose product is not visual.</div></a></div>
         </div>
         <a class="il-btn il-btn--ghost wf-all" href="sectors.html" data-arrow="right">Discover</a>
@@ -329,12 +329,12 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
 </div>
 
 
-<script src="assets/js/nav.js?v=20260908i" defer></script>
-<script src="assets/js/reel-mount.js?v=20260908i" defer></script>
-<script src="assets/js/orphans.js?v=20260908i" defer></script>
-<script src="assets/js/home.js?v=20260908i" defer></script>
-<script src="assets/js/field.js?v=20260908i" defer></script>
-<script src="assets/js/site-footer.js?v=20260908i" defer></script>
+<script src="assets/js/nav.js?v=20260908j" defer></script>
+<script src="assets/js/reel-mount.js?v=20260908j" defer></script>
+<script src="assets/js/orphans.js?v=20260908j" defer></script>
+<script src="assets/js/home.js?v=20260908j" defer></script>
+<script src="assets/js/field.js?v=20260908j" defer></script>
+<script src="assets/js/site-footer.js?v=20260908j" defer></script>
 <script>
 (function(){
   var hero=document.querySelector('#p-landing .hero');
@@ -345,8 +345,8 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
   io.observe(hero);
 })();
 </script>
-<script src="assets/js/to-top.js?v=20260908i" defer></script>
-<script src="assets/js/ambience.js?v=20260908i" defer></script>
+<script src="assets/js/to-top.js?v=20260908j" defer></script>
+<script src="assets/js/ambience.js?v=20260908j" defer></script>
 <style id="reel-embed-css">
   /* autoplaying, muted and chromeless: a silent background reel, so the
      play button would be a control for something already running */
