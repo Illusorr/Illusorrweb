@@ -74,6 +74,21 @@
   const cv=document.getElementById('nf');
   const gl=cv.getContext('webgl2',{antialias:true,alpha:false});
   if(!gl) return;
+  /* SOFTWARE RENDERERS GET A STILL, NOT A LOOP. PageSpeed Insights and
+     Lighthouse run headless Chrome on machines without a GPU, where WebGL
+     is SwiftShader on the CPU. There a full-screen frame of this shader
+     takes most of a second, the command queue backs up and every draw
+     blocks the main thread: 19 seconds of total blocking time and a
+     performance score of 60 for a page that paints in 0.3s. On such a
+     renderer the buffer is a quarter scale, two frames are drawn so the
+     ground and its first drift exist, and the loop ends. A still marble is
+     also the right outcome for the rare visitor without acceleration. A
+     real GPU never enters this branch. */
+  const SOFT=(()=>{ try{
+    const x=gl.getExtension('WEBGL_debug_renderer_info');
+    const r=String((x&&gl.getParameter(x.UNMASKED_RENDERER_WEBGL))||gl.getParameter(gl.RENDERER)||'');
+    return /swiftshader|llvmpipe|softpipe|software|mesa offscreen|basic render/i.test(r);
+  }catch(e){ return false; } })();
 
   const VERT=`#version 300 es
 in vec2 a_pos; out vec2 v_uv;
@@ -664,7 +679,7 @@ void main(){
        scale, bounds the cost on dense screens. Touch keeps 0.7, set in the
        touch preset at the end of this file. */
     const budget=TOUCH?1.6e6:2.6e6;
-    const dpr=Math.min(devicePixelRatio||1,3)*P.renderScale;
+    const dpr=Math.min(devicePixelRatio||1,3)*(SOFT?0.25:P.renderScale);   /* SOFT: see the top of the file */
     const vw=innerWidth||document.documentElement.clientWidth||0;
     const vh=innerHeight||document.documentElement.clientHeight||0;
     let w=vw*dpr,h=vh*dpr;
@@ -867,7 +882,9 @@ resize(); setMode(mode);
        this costs nothing when the field is not visible. */
     const t0=performance.now(); let prev=0, lastScroll=-1e9;
     addEventListener('scroll',()=>{ lastScroll=performance.now(); },{passive:true});
+    let drawn=0;
     (function loop(){
+      if(SOFT&&drawn>=2) return;   /* a software renderer gets two frames, then the loop ends */
       requestAnimationFrame(loop);
       if(!onScreen || document.hidden) return;
       const now=performance.now();
@@ -880,7 +897,7 @@ resize(); setMode(mode);
          cap stays on while scrolling. */
       const cap=(!TOUCH&&now-lastScroll<300)?0:1000/30;
       if(now-prev<cap) return;
-      prev=now; draw((now-t0)/1000);
+      prev=now; drawn++; draw((now-t0)/1000);
     })();
   }
 })();

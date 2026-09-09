@@ -5,17 +5,22 @@
 Contact: hello@illusorr.com. Based at Yas Creative Hub, Abu Dhabi.
 
 ## Sectors
-- Culture & Immersive: installations and immersive experiences for cultural moments. https://illusorr.com/sectors/culture
-- Gaming, Worlds & IP: worlds, digital twins and licensable IP for studios and platforms. https://illusorr.com/sectors/gaming
-- Beauty & Fragrance: campaign grade content and product worlds. https://illusorr.com/sectors/beauty
-- Fashion, Retail & Jewellery: editorial and campaign production. https://illusorr.com/sectors/fashion
-- Real Estate & Architecture: visualisation and launch material. https://illusorr.com/sectors/real-estate
-- Business & Institutions: brand, web and product. https://illusorr.com/sectors/business
+
+- [Culture & Immersive](https://illusorr.com/sectors/culture): installations and immersive experiences for cultural moments.
+- [Gaming, Worlds & IP](https://illusorr.com/sectors/gaming): worlds, digital twins and licensable IP for studios and platforms.
+- [Beauty & Fragrance](https://illusorr.com/sectors/beauty): campaign grade content and product worlds.
+- [Fashion, Retail & Jewellery](https://illusorr.com/sectors/fashion): editorial and campaign production.
+- [Real Estate & Architecture](https://illusorr.com/sectors/real-estate): visualisation and launch material.
+- [Business & Institutions](https://illusorr.com/sectors/business): brand, web and product.
 
 ## Key pages
-- Work, the case studies: https://illusorr.com/work
-- About the studio and team: https://illusorr.com/about
-- The Collective, a network of creators the studio trains and commissions: https://illusorr.com/collective
-- Lab, experiments: https://illusorr.com/lab
-- Contact: https://illusorr.com/contact
-- Sitemap: https://illusorr.com/sitemap.xml
+
+- [Work](https://illusorr.com/work): the case studies.
+- [About](https://illusorr.com/about): the studio and the team.
+- [The Collective](https://illusorr.com/collective): a network of creators the studio trains and commissions.
+- [Lab](https://illusorr.com/lab): experiments and original technology.
+- [Contact](https://illusorr.com/contact): start a project.
+
+## Optional
+
+- [Sitemap](https://illusorr.com/sitemap.xml): every indexable page.
