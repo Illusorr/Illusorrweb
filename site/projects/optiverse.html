@@ -14,8 +14,8 @@ if(f)sessionStorage.setItem('il-force-mobile','1');
 else if(/[?&]mobile=0/.test(location.search))sessionStorage.removeItem('il-force-mobile');
 else if(window.self!==window.top&&window.innerWidth<=1024&&sessionStorage.getItem('il-force-mobile')==='1')f=true;
 if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch','');}catch(e){}})();</script>
-<link rel="stylesheet" href="../assets/css/nav.css?v=20260909f">
-<link rel="stylesheet" href="../assets/css/case/fonts.css?v=20260909f">
+<link rel="stylesheet" href="../assets/css/nav.css?v=20260909g">
+<link rel="stylesheet" href="../assets/css/case/fonts.css?v=20260909g">
 <title>ILLUSORR × Optima · Optiverse</title>
 <link rel="icon" href="/favicon.ico?v=2" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=2">
@@ -1101,7 +1101,7 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
   }
 </style>
 
-<link rel="stylesheet" href="../assets/css/case/proj-tags-c.css?v=20260909f">
+<link rel="stylesheet" href="../assets/css/case/proj-tags-c.css?v=20260909g">
 
 <style id="hero-refine">
   /* Hero refinement: smaller, lighter, more elegant title + real breathing
@@ -1324,9 +1324,9 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"CreativeWork","name":"ILLUSORR × Optima · Optiverse","url":"https://illusorr.com/projects/optiverse.html","creator":{"@type":"Organization","name":"ILLUSORR","url":"https://illusorr.com/"}}</script>
 <!-- phone + tablet: shared touch layer, then the shared case layout -->
-<link rel="stylesheet" href="../assets/css/mobile.css?v=20260909f">
-<link rel="stylesheet" href="../assets/css/case/case-mobile.css?v=20260909f">
-<script src="../assets/js/mobile.js?v=20260909f" defer></script>
+<link rel="stylesheet" href="../assets/css/mobile.css?v=20260909g">
+<link rel="stylesheet" href="../assets/css/case/case-mobile.css?v=20260909g">
+<script src="../assets/js/mobile.js?v=20260909g" defer></script>
 </head>
 <template id="__bundler_thumbnail" data-bg-color="#050609">
   <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
@@ -2170,10 +2170,15 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
       cx = cv.getContext('2d', { willReadFrequently: true });
     }
     const LO = 26, HI = 64; // luma ramp: below LO fully clear, above HI fully opaque
-    let raf = null, onScreen = true;
-    function frame() {
+    let raf = null, onScreen = true, lastKey = 0, keyed = 0;
+    /* a 313k-pixel pass in JS per frame: 30fps is plenty for a keyed video,
+       and on a software renderer (PageSpeed's machine) it settles after a few */
+    const SOFT = (function () { try { const g = document.createElement('canvas').getContext('webgl'); if (!g) return false; const x = g.getExtension('WEBGL_debug_renderer_info'); const r = String((x && g.getParameter(x.UNMASKED_RENDERER_WEBGL)) || g.getParameter(g.RENDERER) || ''); const l = g.getExtension('WEBGL_lose_context'); if (l) l.loseContext(); return /swiftshader|llvmpipe|softpipe|software|mesa offscreen|basic render/i.test(r); } catch (e) { return false; } })();
+    function frame(now) {
       raf = null;
-      if (!onScreen || av.readyState < 2) { raf = requestAnimationFrame(frame); return; }
+      if (SOFT && keyed >= 3) return;
+      if (!onScreen || av.readyState < 2 || now - lastKey < 31) { raf = requestAnimationFrame(frame); return; }
+      lastKey = now || 0; keyed++;
       cx.drawImage(av, 0, 0, cv.width, cv.height);
       const d = cx.getImageData(0, 0, cv.width, cv.height);
       const p = d.data;
@@ -2369,7 +2374,10 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
 
     const LINK = 132;
     let running = !reduce, raf = 0;
+    const SOFT2 = (function () { try { const g = document.createElement('canvas').getContext('webgl'); if (!g) return false; const x = g.getExtension('WEBGL_debug_renderer_info'); const r = String((x && g.getParameter(x.UNMASKED_RENDERER_WEBGL)) || g.getParameter(g.RENDERER) || ''); const l = g.getExtension('WEBGL_lose_context'); if (l) l.loseContext(); return /swiftshader|llvmpipe|softpipe|software|mesa offscreen|basic render/i.test(r); } catch (e) { return false; } })();
+    let frames2 = 0;
     function frame() {
+      if (SOFT2 && ++frames2 > 3) { raf = 0; return; }   /* software renderer: a still */
       ctx.clearRect(0, 0, W, H);
       for (const n of nodes) {
         n.x += n.vx; n.y += n.vy;
@@ -2501,9 +2509,9 @@ if(f||window.innerWidth<=1024)document.documentElement.setAttribute('data-touch'
   select(null);
 })();
 </script>
-<script src="../assets/js/nav.js?v=20260909f" defer></script>
-<script src="../assets/js/orphans.js?v=20260909f" defer></script>
-<script src="../assets/js/site-footer.js?v=20260909f" defer></script>
-<script src="../assets/js/to-top.js?v=20260909f" defer></script>
+<script src="../assets/js/nav.js?v=20260909g" defer></script>
+<script src="../assets/js/orphans.js?v=20260909g" defer></script>
+<script src="../assets/js/site-footer.js?v=20260909g" defer></script>
+<script src="../assets/js/to-top.js?v=20260909g" defer></script>
 </body>
 </html>

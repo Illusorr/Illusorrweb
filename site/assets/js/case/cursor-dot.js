@@ -1,6 +1,7 @@
 (() => {
   const cur = document.getElementById('kCursor');
-  if (!cur) return;
+  /* no pointer to follow on a touch screen: the lerp loop ran for nothing there */
+  if (!cur || document.documentElement.hasAttribute('data-touch') || matchMedia('(hover: none)').matches) return;
   let cx = -100, cy = -100, tx = -100, ty = -100;
   document.addEventListener('pointermove', e => { tx = e.clientX; ty = e.clientY; });
   const linkSel = 'a, button, [role="button"], .hc-nav, label, .topnav .logo-lockup';

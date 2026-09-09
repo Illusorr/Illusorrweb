@@ -7,6 +7,7 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
+import { isSoftwareGL } from './soft-gl.js';
 
 const host = document.getElementById('echoStage3d');
 if (host) init();
@@ -16,6 +17,11 @@ function init() {
   // Fill-rate bound: ~7 stacked translucent panels each running procedural noise.
 // On integrated GPUs resolution is the dominant cost, so cap at 1.
 renderer.setPixelRatio(1);
+  /* software renderer (PageSpeed's machine): one still at half resolution,
+     then the loop ends; see soft-gl.js. 6.6s of blocking time on mobile there. */
+  const SOFT = isSoftwareGL(renderer.getContext());
+  let stills = 0;
+  if (SOFT) renderer.setPixelRatio(0.5);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.18;
@@ -295,6 +301,7 @@ renderer.setPixelRatio(1);
   new IntersectionObserver((es) => { onScreen = es[0].isIntersecting; }, { rootMargin: '120px' }).observe(host);
   let last = 0, tPaint = 0;
   renderer.setAnimationLoop((t) => {
+    if (SOFT && stills > 0) { renderer.setAnimationLoop(null); return; }
     if (!onScreen || document.hidden) return;
     if (t - last < 32) return;
     last = t;
@@ -322,6 +329,7 @@ renderer.setPixelRatio(1);
     camera.position.y += ease * 0.55;
     camera.lookAt(camAim);
     renderer.render(scene, camera);
+    stills++;
   });
 
 }

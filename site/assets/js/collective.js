@@ -98,22 +98,45 @@ function buildMap() {
   const raster = document.createElement('canvas');
   const blurred = document.createElement('canvas');
 
-  function contourPaths(drawFn, fw, fh, blur, fracs) {
-    raster.width = fw; raster.height = fh;
-    blurred.width = fw; blurred.height = fh;
+  /* The rings are pulled out of a blurred raster. On a real GPU the blur is
+     free; on a software renderer (PageSpeed's machine) the blur and the
+     contour pass over an 860px field were one 7 to 10 second task. There the
+     field is 320px wide: coarser rings, a page that answers. */
+  const SOFT_GL = (() => { try {
+    const g = document.createElement('canvas').getContext('webgl'); if (!g) return false;
+    const x = g.getExtension('WEBGL_debug_renderer_info');
+    const r = String((x && g.getParameter(x.UNMASKED_RENDERER_WEBGL)) || g.getParameter(g.RENDERER) || '');
+    const l = g.getExtension('WEBGL_lose_context'); if (l) l.loseContext();
+    return /swiftshader|llvmpipe|softpipe|software|mesa offscreen|basic render/i.test(r);
+  } catch (e) { return false; } })();
+  /* box: an optional part of the field to rasterise, for a shape that only
+     occupies that part. It is rasterised at no more than CELL cells across and
+     the contours come back in field space. Every threshold is a full
+     marching-squares pass, and a territory draws one ring per member: on the
+     full 860px field that was 418 passes, 17 seconds of script on a desktop
+     and 135 on a phone, with the page frozen throughout. */
+  const CELL = 160;
+  function contourPaths(drawFn, fw, fh, blur, fracs, box) {
+    const x0 = box ? Math.max(0, Math.floor(box.x)) : 0, y0 = box ? Math.max(0, Math.floor(box.y)) : 0;
+    const bw = box ? Math.min(fw - x0, Math.ceil(box.w)) : fw, bh = box ? Math.min(fh - y0, Math.ceil(box.h)) : fh;
+    if (bw < 2 || bh < 2) return [];
+    const k = box ? Math.min(1, CELL / Math.max(bw, bh)) : 1;
+    const rw = Math.max(2, Math.round(bw * k)), rh = Math.max(2, Math.round(bh * k));
+    raster.width = rw; raster.height = rh;
+    blurred.width = rw; blurred.height = rh;
     const rc = raster.getContext('2d');
-    rc.clearRect(0, 0, fw, fh);
+    rc.clearRect(0, 0, rw, rh);
     rc.fillStyle = '#000';
-    drawFn(rc);
+    rc.save(); rc.scale(k, k); rc.translate(-x0, -y0); drawFn(rc); rc.restore();
 
     const bc = blurred.getContext('2d');
-    bc.clearRect(0, 0, fw, fh);
-    bc.filter = 'blur(' + blur + 'px)';
+    bc.clearRect(0, 0, rw, rh);
+    bc.filter = 'blur(' + Math.max(0.5, blur * k) + 'px)';
     bc.drawImage(raster, 0, 0);
     bc.filter = 'none';
 
-    const data = bc.getImageData(0, 0, fw, fh).data;
-    const vals = new Float64Array(fw * fh);
+    const data = bc.getImageData(0, 0, rw, rh).data;
+    const vals = new Float64Array(rw * rh);
     let max = 0;
     for (let i = 3, j = 0; i < data.length; i += 4, j++) {
       const v = data[i] / 255;
@@ -121,8 +144,10 @@ function buildMap() {
       if (v > max) max = v;
     }
     if (max <= 0) return [];
-    const cs = d3.contours().size([fw, fh]).smooth(true);
-    return fracs.map(f => cs.contour(vals, f * max)).filter(g => g && g.coordinates.length);
+    const cs = d3.contours().size([rw, rh]).smooth(true);
+    const out = fracs.map(f => cs.contour(vals, f * max)).filter(g => g && g.coordinates.length);
+    if (k !== 1 || x0 || y0) out.forEach(g => g.coordinates.forEach(poly => poly.forEach(ring => ring.forEach(pt => { pt[0] = pt[0] / k + x0; pt[1] = pt[1] / k + y0; }))));
+    return out;
   }
 
   function draw() {
@@ -135,7 +160,7 @@ function buildMap() {
       features: land.features.filter(f => f.id !== '010') };
 
     /* field resolution tracks the frame so one uniform scale maps back */
-    const fw = Math.max(320, Math.min(860, Math.round(w)));
+    const fw = Math.max(320, Math.min(SOFT_GL ? 320 : 860, Math.round(w)));
     const fh = Math.max(120, Math.round(fw * h / w));
     /* the key is measured first, and the projection is then fitted into what
        is LEFT: previously the map took ~90% of the frame and the labels had
@@ -228,7 +253,10 @@ function buildMap() {
         }
         rc.closePath();
         rc.fill();
-      }, fw, fh, Math.max(2, b.rad * 0.42), fracs);
+      }, fw, fh, Math.max(2, b.rad * 0.42), fracs,
+      /* the wobble reaches 1.3 radii; the blur spreads three of its own */
+      { x: b.x - b.rad * 1.3 - Math.max(2, b.rad * 0.42) * 3, y: b.y - b.rad * 1.3 - Math.max(2, b.rad * 0.42) * 3,
+        w: b.rad * 2.6 + Math.max(2, b.rad * 0.42) * 6, h: b.rad * 2.6 + Math.max(2, b.rad * 0.42) * 6 });
       return { t, geos };
     });
 
