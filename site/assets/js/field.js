@@ -81,6 +81,13 @@ void main(){ v_uv=a_pos*0.5+0.5; gl_Position=vec4(a_pos,0.,1.); }`;
 
   const FRAG=`#version 300 es
 precision highp float;
+/* The fbm octave count. 5 is the desktop look; the touch path compiles in
+   fewer (see the compile site), because on a phone the finest octaves are
+   pixel-sized grain rather than detail, and they are the costliest part
+   of the shader. */
+#ifndef FIELD_OCTAVES
+#define FIELD_OCTAVES 5
+#endif
 in vec2 v_uv; out vec4 frag;
 uniform vec2 u_res; uniform float u_time,u_aspect; uniform vec2 u_mouse;
 uniform vec3 u_base,u_accent; uniform float u_density; uniform sampler2D u_lut;
@@ -143,7 +150,7 @@ float snoise(vec2 p){
 }
 float fbm(vec2 p){
   float v=0.0,a=0.5;
-  for(int i=0;i<5;i++){ v+=a*snoise(p); p*=2.07; a*=0.5; }
+  for(int i=0;i<FIELD_OCTAVES;i++){ v+=a*snoise(p); p*=2.07; a*=0.5; }
   return v;
 }
 float curlPot(vec2 p){ return snoise(p+vec2(u_time*u_animSpeed*0.08,0.0)); }
@@ -208,7 +215,18 @@ vec3 evalField(vec2 uv,float mir){
   float densityNow=u_contourDensity+sin(u_time*u_animSpeed*0.6)*u_densityWobble;
   float scaleNow=u_noiseScale+sin(u_time*u_animSpeed*0.37+1.7)*u_noiseWobble;
 
+#ifdef TOUCH_FIELD
+  /* THE PATTERN IS DRAWN IN CANVAS UNITS, SO A NARROW CANVAS COMPRESSES IT.
+     muv spans 0..1 across the canvas whatever its width, so a 390px phone
+     squeezed the same span of pattern that a 1440px desktop spreads out:
+     3.7x the horizontal frequency per pixel, which read as dense vertical
+     striations, noise rather than marbling. On touch the x coordinate is
+     scaled by the aspect ratio against a 1440x900 reference, so a phone
+     shows a window onto the pattern at desktop feature size. */
+  vec2 p=vec2(muv.x*(u_aspect*ASPECT_REF)*scaleNow*u_flowStretch,muv.y*scaleNow);
+#else
   vec2 p=vec2(muv.x*scaleNow*u_flowStretch,muv.y*scaleNow);
+#endif
 
   vec2 sc=(uv-u_focus)*vec2(u_aspect,1.0)/max(u_sphereRadius,0.001);
   float r2=dot(sc,sc), r=sqrt(max(r2,1e-6));
@@ -345,7 +363,7 @@ void main(){
      declared further down, and the desktop path must receive FRAG itself. */
   gl.attachShader(prog,mk(gl.FRAGMENT_SHADER,
     document.documentElement.hasAttribute('data-touch')
-      ? FRAG.replace('precision highp float;','precision highp float;\n#define STABLE_HASH 1')
+      ? FRAG.replace('precision highp float;','precision highp float;\n#define STABLE_HASH 1\n#define TOUCH_FIELD 1\n#define FIELD_OCTAVES 4\n#define ASPECT_REF 0.625')
       : FRAG));
   gl.linkProgram(prog);
   if(!gl.getProgramParameter(prog,gl.LINK_STATUS))console.error(gl.getProgramInfoLog(prog));
@@ -769,6 +787,12 @@ void main(){
   /* ---- baked settings (exported 2026-08-05, 'contract') ---- */
   Object.assign(T, {"window": 0.6, "stickyWindow": 0.85, "rise": 0.025, "clear": 0.02, "ignite": 0.7, "bandSoft": 0.72, "collapseAmt": 7, "contractAmt": 0.2, "txAmt": 0.25, "latch": 0.4});
   Object.assign(P, {"base": [0.02, 0.03, 0.11], "accent": [0.45, 0.65, 1], "lightDensity": 1.12, "lightBg": [1, 1, 1], "lightInk": [0.298, 0.388, 1], "lightContrast": 1.95, "noiseScale": 0.4, "flowStretch": 3.5, "contourDensity": 13, "contourSharpness": 20, "topFade": 1.5, "animSpeed": 0.085, "densityWobble": 12, "noiseWobble": 0.17, "hoverStrength": 0.17, "hoverRadius": 0.77, "hoverGlow": 2, "curlSteps": 8, "curlScale": 1.7, "curlStrength": 1, "sphereRadius": 0.36, "pinchSoft": 0.5, "focusX": 0.5, "renderScale": 0.7});
+  /* TOUCH PRESET. Applied after the baked block above on purpose: that block
+     assigns over P, so anything set earlier is lost (see wantedSize). On touch
+     the field is frozen and section overrides never run, so this one set of
+     values is the whole page. Fewer, softer contours: on a phone the pattern
+     has a third of the width to live in. */
+  if(TOUCH){ Object.assign(P,{contourDensity:10, contourSharpness:16}); }
   secOv = [];
   /* 'contract' animated a radius through every theme boundary, so the light
      and dark edges travelled up and down the page as you scrolled. 'none'
