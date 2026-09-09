@@ -111,8 +111,24 @@ uniform float u_txAmt;    // deformation strength
 #define TX_DISSOLVE 6
 
 vec2 hash22(vec2 p){
+#ifdef STABLE_HASH
+  /* THE SINE HASH BREAKS ON PHONES. fract(sin(x)*43758.5) relies on sin()
+     of a large argument being chaotic. A desktop GPU range-reduces that
+     argument precisely, so the result is noise. A mobile GPU reduces it
+     approximately and evaluates a short polynomial, so neighbouring cells
+     get correlated values and the noise turns into structure: the speckle
+     that followed the streaks on a phone, stretched tall by u_flowStretch.
+     highp does not help; it is the sin() implementation, not the float.
+     This sine-free hash (Hoskins) has the same statistical character. It
+     is compiled in on touch only, so the desktop program is byte for byte
+     the one it always was. */
+  vec3 p3=fract(vec3(p.xyx)*vec3(.1031,.1030,.0973));
+  p3+=dot(p3,p3.yzx+33.33);
+  return -1.0+2.0*fract((p3.xx+p3.yz)*p3.zy);
+#else
   p=vec2(dot(p,vec2(127.1,311.7)),dot(p,vec2(269.5,183.3)));
   return -1.0+2.0*fract(sin(p)*43758.5453123);
+#endif
 }
 float snoise(vec2 p){
   const float K1=0.366025404,K2=0.211324865;
@@ -324,7 +340,13 @@ void main(){
     if(!gl.getShaderParameter(sh,gl.COMPILE_STATUS))console.error(gl.getShaderInfoLog(sh));return sh};
   const prog=gl.createProgram();
   gl.attachShader(prog,mk(gl.VERTEX_SHADER,VERT));
-  gl.attachShader(prog,mk(gl.FRAGMENT_SHADER,FRAG));
+  /* On touch the fragment shader is compiled with STABLE_HASH defined; see
+     hash22. The flag is read here rather than from TOUCH because that is
+     declared further down, and the desktop path must receive FRAG itself. */
+  gl.attachShader(prog,mk(gl.FRAGMENT_SHADER,
+    document.documentElement.hasAttribute('data-touch')
+      ? FRAG.replace('precision highp float;','precision highp float;\n#define STABLE_HASH 1')
+      : FRAG));
   gl.linkProgram(prog);
   if(!gl.getProgramParameter(prog,gl.LINK_STATUS))console.error(gl.getProgramInfoLog(prog));
 
