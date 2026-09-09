@@ -143,7 +143,10 @@ async function init() {
   const MIN_DT = 1000 / 40;          /* 40fps ceiling: the cloud shimmers slowly, 60 is waste */
   function frame(now) {
    try {
-    if (SOFT && stills > 0) { raf = 0; return; }
+    /* software renderer: one still on a desktop-sized screen, nothing at all on a
+       phone-sized one, where the still itself was a 600ms task under PageSpeed's
+       CPU throttle and the starfield behind the canvas carries the hero */
+    if (SOFT && (stills > 0 || innerWidth <= 1024)) { raf = 0; return; }
     if (now - lastRender < MIN_DT && raf) { raf = requestAnimationFrame(frame); return; }
     if (document.documentElement.classList.contains('realm-open')) { raf = visible ? requestAnimationFrame(frame) : 0; return; }
     lastRender = now;

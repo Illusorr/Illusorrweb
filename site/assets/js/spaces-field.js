@@ -53,7 +53,12 @@ const YOU = 'Sara';
 /* ───────────────────────────── renderer ───────────────────────────── */
 const canvas = document.getElementById('scene');
 const renderer = new THREE.WebGLRenderer({ canvas, antialias:true });
-renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+/* Software renderer (PageSpeed, a driverless machine): one still at half
+   resolution and no loop. This page scored 59 with 115 seconds of blocking
+   time there. A real GPU never enters the branch. */
+const SOFT = (() => { try { const g = renderer.getContext(), x = g.getExtension('WEBGL_debug_renderer_info'); return /swiftshader|llvmpipe|softpipe|software|mesa offscreen|basic render/i.test(String((x && g.getParameter(x.UNMASKED_RENDERER_WEBGL)) || g.getParameter(g.RENDERER) || '')); } catch (e) { return false; } })();
+let stills = 0;
+renderer.setPixelRatio(SOFT ? 0.5 : Math.min(devicePixelRatio, 2));
 renderer.setSize(innerWidth, innerHeight);
 renderer.setClearColor(0x020b11, 1);
 renderer.xr.enabled = true;
@@ -779,6 +784,7 @@ if ('IntersectionObserver' in window) {
 function visible() { return onScreen && !document.hidden; }
 
 function frame(now) {
+  if (SOFT && stills > 0) return;
   // under an XR session the headset drives the loop, so don't self-schedule
   if (!renderer.xr.isPresenting) requestAnimationFrame(frame);
   t = now || 0;
@@ -880,7 +886,7 @@ function frame(now) {
     fpsFrames = 0; fpsSince = t; readoutAt = t;
 
     // a sustained low frame rate drops the render scale before it drops frames
-    if (fps > 0 && !renderer.xr.isPresenting) {
+    if (fps > 0 && !renderer.xr.isPresenting && !SOFT) {
       const cap = Math.min(devicePixelRatio, 2);
       const want = fps < 30 ? Math.min(cap, 1) : fps < 45 ? Math.min(cap, 1.25) : cap;
       if (Math.abs(want - renderer.getPixelRatio()) > 0.05) renderer.setPixelRatio(want);
@@ -893,7 +899,7 @@ function frame(now) {
   }
 
   // XR drives its own presentation, so never gate a headset session
-  if (visible() || renderer.xr.isPresenting) renderer.render(scene, camera);
+  if (visible() || renderer.xr.isPresenting) { renderer.render(scene, camera); stills++; }
 }
 requestAnimationFrame(frame);
 

@@ -520,8 +520,19 @@
         this.attachShadow({ mode: 'open', clonable: true });
       // .spill and .ctl sit OUTSIDE .frame so overflow:hidden + border-radius
       // on the frame (circle, pill, rounded) can't clip them.
+      /* One parsed stylesheet shared by every slot on the page (constructable
+         stylesheets), instead of parsing the same 300 lines once per instance:
+         the Disney+ page has thirteen. Browsers without the API get the
+         inline <style> as before. */
+      let shared = null;
+      try {
+        if (!ImageSlot._sheet && 'replaceSync' in CSSStyleSheet.prototype && 'adoptedStyleSheets' in root) {
+          ImageSlot._sheet = new CSSStyleSheet(); ImageSlot._sheet.replaceSync(stylesheet);
+        }
+        if (ImageSlot._sheet) { root.adoptedStyleSheets = [ImageSlot._sheet]; shared = ImageSlot._sheet; }
+      } catch (e) { shared = null; }
       root.innerHTML =
-        '<style>' + stylesheet + '</style>' +
+        (shared ? '' : '<style>' + stylesheet + '</style>') +
         '<div class="frame" part="frame">' +
         '  <img part="image" alt="" draggable="false" style="display:none">' +
         '  <div class="empty" part="empty">' + icon +

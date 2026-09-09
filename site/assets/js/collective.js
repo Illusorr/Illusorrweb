@@ -734,7 +734,26 @@ function buildConstellation() {
     ctx.lineCap = 'round';
     for (let i = 0; i < n; i++) step();
   }
-  function frame() { paint(); requestAnimationFrame(frame); }
+  /* 30fps is plenty: the sim advances on elapsed time, so half the paints
+     draw the same strands. On a software renderer (PageSpeed's machine) the
+     canvas is rasterised on the CPU and every paint blocked the page for
+     longer than a frame (22s of blocking time on mobile), so there the
+     constellation settles into a still after a few paints. */
+  const SOFT = (() => { try {
+    const g = document.createElement('canvas').getContext('webgl'); if (!g) return false;
+    const x = g.getExtension('WEBGL_debug_renderer_info');
+    const r = String((x && g.getParameter(x.UNMASKED_RENDERER_WEBGL)) || g.getParameter(g.RENDERER) || '');
+    const l = g.getExtension('WEBGL_lose_context'); if (l) l.loseContext();
+    return /swiftshader|llvmpipe|softpipe|software|mesa offscreen|basic render/i.test(r);
+  } catch (e) { return false; } })();
+  let lastPaint = 0, paints = 0;
+  function frame(now) {
+    if (SOFT && paints >= 3) return;
+    requestAnimationFrame(frame);
+    if (now - lastPaint < 31) return;
+    lastPaint = now; paints++;
+    paint();
+  }
 
   layout();
   pick(0);

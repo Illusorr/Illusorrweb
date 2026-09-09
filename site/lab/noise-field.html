@@ -71,8 +71,8 @@
     .sp-foot{padding-top:16px}
   }
 </style>
-<link rel="stylesheet" href="../assets/css/nav.css?v=20260909e">
-<link rel="stylesheet" href="../assets/css/mobile.css?v=20260909e">
+<link rel="stylesheet" href="../assets/css/nav.css?v=20260909f">
+<link rel="stylesheet" href="../assets/css/mobile.css?v=20260909f">
 
 <style>
   /* The lab studies are standalone full-screen experiments and shipped with no
@@ -260,10 +260,12 @@ void main(){
 }`;
 
 let gl = null, U = null, seed = [0, 0, 0];
+let SOFT = false, stills = 0;   /* software renderer (PageSpeed): two frames, then a still */
 function initGL(){
   const c = cv.getContext('webgl2', { antialias:false, alpha:false, depth:false,
                                       powerPreference:'high-performance' });
   if (!c) return false;
+  try { const x = c.getExtension('WEBGL_debug_renderer_info'); SOFT = /swiftshader|llvmpipe|softpipe|software|mesa offscreen|basic render/i.test(String((x && c.getParameter(x.UNMASKED_RENDERER_WEBGL)) || c.getParameter(c.RENDERER) || '')); } catch (e) {}
   const mk = (type, src) => {
     const sh = c.createShader(type);
     c.shaderSource(sh, src); c.compileShader(sh);
@@ -465,7 +467,8 @@ function frame(t){
     const dt = lastT ? Math.min(140, t - lastT) : 16;
     lastT = t; spin += dt * 0.000055; dirty = true;
   }
-  if (dirty) render();
+  if (dirty) { render(); stills++; }
+  if (SOFT && stills >= 2) return;
   requestAnimationFrame(frame);
 }
 
@@ -532,7 +535,7 @@ layout();
 render();
 if (!reduced) requestAnimationFrame(frame);
 </script>
-<script src="../assets/js/mobile.js?v=20260909e" defer></script>
-<script src="../assets/js/nav.js?v=20260909e" defer></script>
+<script src="../assets/js/mobile.js?v=20260909f" defer></script>
+<script src="../assets/js/nav.js?v=20260909f" defer></script>
 </body>
 </html>
