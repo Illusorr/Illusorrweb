@@ -62,7 +62,7 @@ function onScroll(fn){
     const cnEl=document.getElementById('cn');
     convEl.innerHTML=convProjects.map((p,i)=>`
       <a class="ccard" data-i="${i}" data-proj="${(p.href||'').split('/').pop().replace(/\.html$/,'')}" href="${p.href.replace(/\.html$/, EXT)}">
-        <div class="cmedia" data-full="${p.cover||(p.img?`assets/img/projects/${p.img}/cover.webp`:'')}" style="background-image:${p.cover?`url(${p.cover.replace(/\.webp$/,'-480.webp')}),`:p.img?`url(assets/img/projects/${p.img}/cover-480.webp),`:``}linear-gradient(${p.g});background-size:cover;background-position:center"></div>
+        <div class="cmedia" data-full="${p.cover||(p.img?`assets/img/projects/${p.img}/cover.webp`:'')}" style="background-image:linear-gradient(${p.g});background-size:cover;background-position:center">${(p.cover||p.img)?`<img class="cimg" src="${p.cover?p.cover.replace(/\.webp$/,'-480.webp'):`assets/img/projects/${p.img}/cover-480.webp`}" alt="${(p.title+' \u2014 '+(p.tag||p.sector||'')+' \u00b7 ILLUSORR').replace(/"/g,'&quot;')}" loading="lazy" decoding="async">`:``}</div>
         <span class="cvnum mono">${String(i+1).padStart(2,'0')}</span>
         <span class="cvlabel">${p.title}</span>
         <span class="csector mono">${p.sector}</span>
@@ -105,10 +105,10 @@ function onScroll(fn){
               const size=need<=480?480:need<=768?768:need<=1200?1200:0;
               if(size===480) return;   /* the rung already shows it */
               const want=size?m.dataset.full.replace(/\.webp$/,'-'+size+'.webp'):m.dataset.full;
-              const img=new Image();
-              img.onload=()=>{ m.style.backgroundImage=`url(${want})`; };
+              const img=new Image(), el=m.querySelector('.cimg');
+              img.onload=()=>{ if(el) el.src=want; };
               /* a cover without that variant falls back to its full file */
-              img.onerror=()=>{ if(want===m.dataset.full) return; const f=new Image(); f.onload=()=>{ m.style.backgroundImage=`url(${m.dataset.full})`; }; f.src=m.dataset.full; };
+              img.onerror=()=>{ if(want===m.dataset.full) return; const f=new Image(); f.onload=()=>{ if(el) el.src=m.dataset.full; }; f.src=m.dataset.full; };
               img.src=want;
             };
             c.addEventListener('transitionend',function te(e){ if(e.propertyName==='width'){ c.removeEventListener('transitionend',te); pick(); } });

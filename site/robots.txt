@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://illusorr.com/sitemap.xml
+Sitemap: https://illusorr.com/sitemap-images.xml

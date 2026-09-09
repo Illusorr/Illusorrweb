@@ -119,7 +119,8 @@
       /* the phone shows all eight portraits at once instead of crossfading
          through them, so each one has to carry its own caption */
       d.dataset.name=m.n; d.dataset.role=m.r; d.dataset.idx=String(i+1).padStart(2,'0');
-      if(m.img)d.style.backgroundImage=`url('${m.img}')`;else{d.style.background=m.ph;d.textContent=m.n.split(' ')[0];}timgs.appendChild(d);});
+      /* a real <img>, so the portraits reach Google Images and a screen reader */
+      if(m.img){const im=document.createElement('img');im.className='pimg-img';im.src=m.img;im.alt=m.n+', '+m.r+' \u2014 ILLUSORR';im.decoding='async';   /* eager: the desktop crossfade needs every portrait ready */im.draggable=false;d.appendChild(im);}else{d.style.background=m.ph;d.textContent=m.n.split(' ')[0];}timgs.appendChild(d);});
     const imgEls=timgs.querySelectorAll('.pimg');
     const tdots=document.getElementById('tdots');tdots.innerHTML=members.map(()=>'<i></i>').join('');
     const dots=tdots.querySelectorAll('i');
