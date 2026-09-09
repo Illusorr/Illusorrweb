@@ -26,7 +26,7 @@
     topFade:1.5, animSpeed:0.10, densityWobble:20.5, noiseWobble:0.25,
     hoverStrength:0.17, hoverRadius:0.77, hoverGlow:2.0,
     curlSteps:8, curlScale:1.7, curlStrength:1.0,
-    sphereRadius:0.36, pinchSoft:0.5, focusX:0.5, renderScale:0.7,
+    sphereRadius:0.36, pinchSoft:0.5, focusX:0.5, renderScale:1,
   };
   /* Field defaults are snapshotted BEFORE any stored override is applied, so
      Reset always returns to the designed values rather than to whatever was
@@ -657,7 +657,12 @@ void main(){
        bounds the fill cost on very dense screens instead of the cap.
        renderScale stays the one knob. It is read from P here rather than
        assigned into it, because the baked settings block near the end of
-       this file assigns over P and would silently undo it. */
+       this file assigns over P and would silently undo it.
+       On desktop it is now 1: at 0.7 a 1920x1080 monitor was still drawn
+       at 1344x756 and stretched 1.43x, and the hairline contours came out
+       as a jagged comb, reported as pixelation again. The budget, not the
+       scale, bounds the cost on dense screens. Touch keeps 0.7, set in the
+       touch preset at the end of this file. */
     const budget=TOUCH?1.6e6:2.6e6;
     const dpr=Math.min(devicePixelRatio||1,3)*P.renderScale;
     const vw=innerWidth||document.documentElement.clientWidth||0;
@@ -786,13 +791,13 @@ void main(){
   
   /* ---- baked settings (exported 2026-08-05, 'contract') ---- */
   Object.assign(T, {"window": 0.6, "stickyWindow": 0.85, "rise": 0.025, "clear": 0.02, "ignite": 0.7, "bandSoft": 0.72, "collapseAmt": 7, "contractAmt": 0.2, "txAmt": 0.25, "latch": 0.4});
-  Object.assign(P, {"base": [0.02, 0.03, 0.11], "accent": [0.45, 0.65, 1], "lightDensity": 1.12, "lightBg": [1, 1, 1], "lightInk": [0.298, 0.388, 1], "lightContrast": 1.95, "noiseScale": 0.4, "flowStretch": 3.5, "contourDensity": 13, "contourSharpness": 20, "topFade": 1.5, "animSpeed": 0.085, "densityWobble": 12, "noiseWobble": 0.17, "hoverStrength": 0.17, "hoverRadius": 0.77, "hoverGlow": 2, "curlSteps": 8, "curlScale": 1.7, "curlStrength": 1, "sphereRadius": 0.36, "pinchSoft": 0.5, "focusX": 0.5, "renderScale": 0.7});
+  Object.assign(P, {"base": [0.02, 0.03, 0.11], "accent": [0.45, 0.65, 1], "lightDensity": 1.12, "lightBg": [1, 1, 1], "lightInk": [0.298, 0.388, 1], "lightContrast": 1.95, "noiseScale": 0.4, "flowStretch": 3.5, "contourDensity": 13, "contourSharpness": 20, "topFade": 1.5, "animSpeed": 0.085, "densityWobble": 12, "noiseWobble": 0.17, "hoverStrength": 0.17, "hoverRadius": 0.77, "hoverGlow": 2, "curlSteps": 8, "curlScale": 1.7, "curlStrength": 1, "sphereRadius": 0.36, "pinchSoft": 0.5, "focusX": 0.5, "renderScale": 1});
   /* TOUCH PRESET. Applied after the baked block above on purpose: that block
      assigns over P, so anything set earlier is lost (see wantedSize). On touch
      the field is frozen and section overrides never run, so this one set of
      values is the whole page. Fewer, softer contours: on a phone the pattern
      has a third of the width to live in. */
-  if(TOUCH){ Object.assign(P,{contourDensity:10, contourSharpness:16}); }
+  if(TOUCH){ Object.assign(P,{contourDensity:10, contourSharpness:16, renderScale:0.7}); }
   secOv = [];
   /* 'contract' animated a radius through every theme boundary, so the light
      and dark edges travelled up and down the page as you scrolled. 'none'

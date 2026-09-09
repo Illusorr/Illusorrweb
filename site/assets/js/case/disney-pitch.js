@@ -73,8 +73,13 @@ const GENS = [
 const SEED = [[0, 0], [0, -1], [-1, 0], [-1, 1]];          /* the four-cell diamond */
 /* live parameters: spacing and how tightly growth is allowed to pack */
 const MAP_P = { gap: 1.26, maxDeg: 2, gen: 3 };
-/* Organic growth: each new cell attaches to the cluster but is refused when it
-   would pack a hole shut, so the field branches instead of filling in. */
+/* Growth is keyed by how tightly a new cell may touch the cluster (data-deg):
+     1  Branching  a cell may touch one neighbour only, so the field grows
+                   as arms and never closes a loop.
+     2  Organic    a cell may touch two, so the field branches and closes the
+                   odd loop, refused when it would pack a hole shut.
+     4  Packed     nothing is refused and the most enclosed candidate wins,
+                   so holes fill first and the field grows as a tight disc. */
 function buildOrder(maxDeg) {
   const key = (q, r) => q + ':' + r;
   const NB = [[1, 0], [1, -1], [0, -1], [-1, 0], [-1, 1], [0, 1]];
@@ -82,15 +87,18 @@ function buildOrder(maxDeg) {
   const out = SEED.slice();
   const hash = (q, r) => { const v = Math.sin(q * 12.9898 + r * 78.233) * 43758.5453; return v - Math.floor(v); };
   const LIMIT = GENS[GENS.length - 1].n;
+  const packed = maxDeg >= 4;
   while (out.length < LIMIT) {
     const cand = [];
     out.forEach(c => NB.forEach(n => {
       const q = c[0] + n[0], r = c[1] + n[1];
       if (set.has(key(q, r))) return;
       const deg = NB.reduce((a, m) => a + (set.has(key(q + m[0], r + m[1])) ? 1 : 0), 0);
-      if (deg > maxDeg) return;
-      const p = axial(q, r, 1);
-      cand.push([q, r, Math.hypot(p[0], p[1]) * 0.55 + hash(q, r) * 1.6 + deg * 0.35]);
+      if (!packed && deg > maxDeg) return;
+      const p = axial(q, r, 1), dist = Math.hypot(p[0], p[1]);
+      const score = packed ? dist * 0.9 + hash(q, r) * 0.5 - deg * 0.6
+                  :          dist * 0.55 + hash(q, r) * 1.6 + deg * 0.35;
+      cand.push([q, r, score]);
     }));
     if (!cand.length) break;
     cand.sort((a, b) => a[2] - b[2] || a[0] - b[0] || a[1] - b[1]);
@@ -101,6 +109,12 @@ function buildOrder(maxDeg) {
 }
 let ORDER = buildOrder(MAP_P.maxDeg);
 const mapHost = document.getElementById('mapCanvas');
+/* The board is built once and then reconciled. A cell keeps its group and
+   glides to its new place (a transitioned CSS transform), new cells arrive in
+   order, surplus cells fade out. So every control visibly moves the map,
+   where a rebuild used to blink and fade the same picture back in. */
+let mapSvg = null, mapNote = null;
+const mapCells = [];
 function drawMap(genIdx) {
   if (!mapHost) return;
   MAP_P.gen = genIdx;
@@ -122,35 +136,58 @@ function drawMap(genIdx) {
   const pts = cells.map(c2 => axial(c2[0], c2[1], R * GAP));
   const cxx = pts.reduce((a, p) => a + p[0], 0) / pts.length;
   const cyy = pts.reduce((a, p) => a + p[1], 0) / pts.length;
-  const s = svgIn(mapHost, '0 0 ' + VW + ' ' + VH);
-  const g0 = el('g', {});
-  for (let x = 0; x <= VW; x += 50) g0.appendChild(el('line', { x1: x, y1: 0, x2: x, y2: VH, stroke: 'rgba(238,241,251,.05)', 'stroke-width': 1 }));
-  for (let y = 0; y <= VH; y += 50) g0.appendChild(el('line', { x1: 0, y1: y, x2: VW, y2: y, stroke: 'rgba(238,241,251,.05)', 'stroke-width': 1 }));
-  s.appendChild(g0);
+  if (!mapSvg) {
+    mapSvg = svgIn(mapHost, '0 0 ' + VW + ' ' + VH);
+    const g0 = el('g', {});
+    for (let x = 0; x <= VW; x += 50) g0.appendChild(el('line', { x1: x, y1: 0, x2: x, y2: VH, stroke: 'rgba(238,241,251,.05)', 'stroke-width': 1 }));
+    for (let y = 0; y <= VH; y += 50) g0.appendChild(el('line', { x1: 0, y1: y, x2: VW, y2: y, stroke: 'rgba(238,241,251,.05)', 'stroke-width': 1 }));
+    mapSvg.appendChild(g0);
+    mapNote = el('g', {});
+    mapSvg.appendChild(mapNote);
+  }
+  const was = mapCells.length;
+  mapCells.splice(cells.length).forEach(g => { g.style.opacity = 0; setTimeout(() => g.remove(), 600); });
+  const unit = hexPts(0, 0, 1);
   pts.forEach((p, i) => {
     const cx = VW / 2 + p[0] - cxx, cy = VH / 2 + p[1] - cyy;
-    const g = el('g', {});
-    g.style.opacity = 0; g.style.transition = 'opacity .55s ease';
-    setTimeout(() => { g.style.opacity = 1; }, Math.min(1400, (cells.length > 24 ? 14 : 40) * i));
-    g.appendChild(el('polygon', { points: hexStr(cx, cy, R), fill: '#14335E', stroke: 'rgba(74,132,196,.55)', 'stroke-width': 1 }));
-    g.appendChild(el('circle', { cx: cx, cy: cy, r: R * 0.31, fill: 'rgba(233,236,242,.88)' }));
-    /* tick ends on every edge, the plan drawing's signature */
-    const v = hexPts(cx, cy, R), f = 0.22;
-    for (let k = 0; showTicks && k < 6; k++) {
-      const a = v[k], b = v[(k + 1) % 6];
-      g.appendChild(el('line', { x1: a[0] + (b[0] - a[0]) * f, y1: a[1] + (b[1] - a[1]) * f, x2: a[0], y2: a[1], stroke: '#EEF1FB', 'stroke-width': 2.4 }));
-      g.appendChild(el('line', { x1: b[0] - (b[0] - a[0]) * f, y1: b[1] - (b[1] - a[1]) * f, x2: b[0], y2: b[1], stroke: '#EEF1FB', 'stroke-width': 2.4 }));
+    const place = 'translate(' + cx.toFixed(1) + 'px,' + cy.toFixed(1) + 'px) scale(' + R.toFixed(2) + ')';
+    let g = mapCells[i];
+    if (!g) {
+      /* drawn once at unit radius and scaled into place; strokes stay hairline */
+      g = el('g', {});
+      g.style.opacity = 0;
+      g.style.transition = 'opacity .55s ease, transform .7s cubic-bezier(.2,.7,.2,1)';
+      g.style.transform = place;
+      g.appendChild(el('polygon', { points: unit.map(v => v.map(n => n.toFixed(4)).join(',')).join(' '), fill: '#14335E', stroke: 'rgba(74,132,196,.55)', 'stroke-width': 1, 'vector-effect': 'non-scaling-stroke' }));
+      g.appendChild(el('circle', { cx: 0, cy: 0, r: 0.31, fill: 'rgba(233,236,242,.88)' }));
+      /* tick ends on every edge, the plan drawing's signature */
+      const ticks = el('g', { class: 'ticks' }), f = 0.22;
+      for (let k = 0; k < 6; k++) {
+        const a = unit[k], b = unit[(k + 1) % 6];
+        ticks.appendChild(el('line', { x1: a[0] + (b[0] - a[0]) * f, y1: a[1] + (b[1] - a[1]) * f, x2: a[0], y2: a[1], stroke: '#EEF1FB', 'stroke-width': 2.4, 'vector-effect': 'non-scaling-stroke' }));
+        ticks.appendChild(el('line', { x1: b[0] - (b[0] - a[0]) * f, y1: b[1] - (b[1] - a[1]) * f, x2: b[0], y2: b[1], stroke: '#EEF1FB', 'stroke-width': 2.4, 'vector-effect': 'non-scaling-stroke' }));
+      }
+      g.appendChild(ticks);
+      if (i === 0) g.appendChild(el('circle', { class: 'seed', cx: -0.16, cy: -0.05, r: 0.11, fill: '#2BE3E8' }));
+      mapSvg.insertBefore(g, mapNote);
+      mapCells[i] = g;
+      setTimeout(() => { g.style.opacity = 1; }, Math.min(1400, (cells.length > 24 ? 14 : 40) * (i - was)));
+    } else {
+      g.style.transform = place;
+      g.style.opacity = 1;
     }
-    if (i === 0) g.appendChild(el('circle', { cx: cx - R * 0.16, cy: cy - R * 0.05, r: Math.max(3, R * 0.11), fill: '#2BE3E8' }));
-    s.appendChild(g);
+    g.querySelector('.ticks').style.display = showTicks ? '' : 'none';
+    const seed = g.querySelector('.seed');
+    if (seed) seed.setAttribute('r', Math.max(3 / R, 0.11).toFixed(3));
   });
   /* board annotation */
+  mapNote.innerHTML = '';
   const b1 = 44, b2 = 40, x2 = VW - 44, y2 = VH - 40;
-  s.appendChild(el('rect', { x: b1, y: b2, width: x2 - b1, height: y2 - b2, fill: 'none', stroke: HAIR2, 'stroke-width': 1, 'stroke-dasharray': '2 6' }));
-  label(s, b1, b2 - 14, 'T Y P E   4 3 G', 'start', 15, 'rgba(238,241,251,.62)');
-  label(s, x2, b2 - 14, 'S E C T O R   1 4 / 3 4 B', 'end', 15, 'rgba(238,241,251,.62)');
-  label(s, b1, y2 + 24, '4 2 4 7 5 9 / 4 N', 'start', 15, 'rgba(238,241,251,.5)');
-  label(s, x2, y2 + 24, GENS[genIdx].t.toUpperCase() + '   ·   ' + String(GENS[genIdx].n).padStart(2, '0') + ' CELLS', 'end', 15, 'rgba(238,241,251,.62)');
+  mapNote.appendChild(el('rect', { x: b1, y: b2, width: x2 - b1, height: y2 - b2, fill: 'none', stroke: HAIR2, 'stroke-width': 1, 'stroke-dasharray': '2 6' }));
+  label(mapNote, b1, b2 - 14, 'T Y P E   4 3 G', 'start', 15, 'rgba(238,241,251,.62)');
+  label(mapNote, x2, b2 - 14, 'S E C T O R   1 4 / 3 4 B', 'end', 15, 'rgba(238,241,251,.62)');
+  label(mapNote, b1, y2 + 24, '4 2 4 7 5 9 / 4 N', 'start', 15, 'rgba(238,241,251,.5)');
+  label(mapNote, x2, y2 + 24, GENS[genIdx].t.toUpperCase() + '   ·   ' + String(GENS[genIdx].n).padStart(2, '0') + ' CELLS', 'end', 15, 'rgba(238,241,251,.62)');
 }
 if (mapHost) {
   drawMap(3);

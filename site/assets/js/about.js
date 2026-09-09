@@ -101,12 +101,12 @@
     const members=[
       {n:"Sara El Jamal",r:"Managing Partner & Creative Director",init:"SE",img:SARA,desc:"Leads creative direction and studio vision across every discipline.",tags:["Creative Direction","Art Direction","Strategy","3D"]},
       {n:"Begüm Aydınlıoğlu",r:"Managing Partner · Strategy & Partnerships",init:"BA",img:BEGUM,desc:"Leads strategy and partnerships, shaping how the studio grows.",tags:["Strategy","Partnerships","Direction"]},
+      {n:"Lara El Jamal",r:"Production Director",init:"LE",img:LARA,desc:"Directs production across the studio, concept to delivery.",tags:["Production","Direction","Delivery"]},
       {n:"Ilayda Güneş",r:"Creative Designer & AI Automation",init:"IG",img:ILAYDA,desc:"Designs across the studio and builds AI automation into the workflow.",tags:["Design","AI Automation","Content"]},
       {n:"Salma El Shendy",r:"AI Content Creator & Junior Designer",init:"SS",img:SALMA,desc:"Creates AI-driven content and supports design across projects.",tags:["AI Content","Design","Social"]},
       {n:"Mohamed Karaouane",r:"Finance & Admin",init:"MK",img:MOHAMED,desc:"Runs finance and operations, keeping the studio building.",tags:["Finance","Operations","Admin"]},
       {n:"Rawan Abdelrazik",r:"Digital Producer & Product Designer",init:"RA",img:RAWAN,ph:"linear-gradient(140deg,#0e3b52,#081018)",desc:"Produces digital work and designs product experiences.",tags:["Production","Product Design","Digital"]},
-      {n:"Zeynep Topal",r:"Lead Computational Designer",init:"ZT",img:ZEYNEP,ph:"linear-gradient(140deg,#3a2a52,#0a0e20)",desc:"Part of the ILLUSORR core team.",tags:["Studio","Craft"]},
-      {n:"Lara El Jamal",r:"Production Director",init:"LE",img:LARA,desc:"Directs production across the studio, concept to delivery.",tags:["Production","Direction","Delivery"]}
+      {n:"Zeynep Topal",r:"Computational Designer & Artist",init:"ZT",img:ZEYNEP,ph:"linear-gradient(140deg,#3a2a52,#0a0e20)",desc:"Computational design and artwork across the studio's projects.",tags:["Computational Design","Art","3D"]}
     ];
     const timgs=document.getElementById('timgs'),tcompose=document.getElementById('tcompose');
     const tcName=document.getElementById('tcName'),tcRole=document.getElementById('tcRole'),tcInit=document.getElementById('tcInit'),tcDesc=document.getElementById('tcDesc'),tcTags=document.getElementById('tcTags'),tcCount=document.getElementById('tcCount');
@@ -130,7 +130,33 @@
     }
     const sec=document.getElementById('teamSec');
     function onS(){const r=sec.getBoundingClientRect();const total=sec.offsetHeight-window.innerHeight;const p=Math.min(1,Math.max(0,(-r.top)/total));let i=Math.min(members.length-1,Math.floor(p*members.length));if(r.top<window.innerHeight&&r.bottom>0)show(i);}
-    window.addEventListener('scroll',onS,{passive:true});show(0);setTimeout(()=>tcompose.classList.add('on'),300);
+    if(document.documentElement.hasAttribute('data-touch')){
+      /* PHONE: the portraits sit in a grid, so the desktop's one-at-a-time
+         crossfade (which also wipes the earlier portraits shut again as the
+         index moves on) left rows half open. Each grid row is revealed
+         whole instead: once a row reaches the viewport and its portraits
+         have finished loading, every tile in it opens together, and stays. */
+      const tiles=[...imgEls];
+      const loaded=tiles.map(()=>false);
+      tiles.forEach((d,i)=>{ const m=members[i]; if(!m.img){loaded[i]=true;return;} const im=new Image(); im.onload=im.onerror=()=>{loaded[i]=true;}; im.src=m.img; });
+      const cols=()=>Math.max(1,getComputedStyle(timgs).gridTemplateColumns.split(' ').length);
+      const asked=new Set();
+      function open(row){ const c=cols(); tiles.forEach((d,i)=>{ if(Math.floor(i/c)===row) d.classList.add('row-in'); }); }
+      function want(row){
+        if(asked.has(row)) return; asked.add(row);
+        const c=cols(), t0=performance.now();
+        (function tick(){
+          const ready=tiles.every((d,i)=>Math.floor(i/c)!==row||loaded[i]);
+          if(ready||performance.now()-t0>2500) open(row); else setTimeout(tick,80);
+        })();
+      }
+      if('IntersectionObserver' in window){
+        const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ want(Math.floor(tiles.indexOf(e.target)/cols())); io.unobserve(e.target); } }),{threshold:.2,rootMargin:'0px 0px -6% 0px'});
+        tiles.forEach(d=>io.observe(d));
+      } else tiles.forEach(d=>d.classList.add('row-in'));
+    } else {
+      window.addEventListener('scroll',onS,{passive:true});show(0);setTimeout(()=>tcompose.classList.add('on'),300);
+    }
   })();
 
   // ===== STACK -> COVERFLOW =====

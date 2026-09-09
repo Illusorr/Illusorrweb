@@ -63,6 +63,8 @@ function build() {
   var ref = document.querySelector('link[href*="assets/css/"], script[src*="assets/js/"]');
   var url = ref ? (ref.getAttribute('href') || ref.getAttribute('src')) : '';
   var pre = (url.match(/^((?:\.\.\/)*)assets\//) || ['', ''])[1];
+  /* clean addresses live, file names on a local server: see nav.js */
+  var EXT = (/^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname) || location.protocol === 'file:') ? '.html' : '';
 
   if (!document.getElementById('sfoot-css')) {
     var st = document.createElement('style');
@@ -100,12 +102,12 @@ function build() {
     ['YouTube',   'https://www.youtube.com/illusorr']
   ];
 
-  var here = location.pathname.split('/').pop() || 'index.html';
+  var here = (location.pathname.split('/').pop() || 'index.html').replace(/\.html$/, '');
   function links(list) {
     return list.map(function (l) {
-      var file = l[1].split('/').pop();
+      var file = l[1].split('/').pop().replace(/\.html$/, '');
       var cur = file === here ? ' aria-current="page"' : '';
-      var href = l[1] === 'index.html' ? (pre || './') : pre + l[1];   /* home is the directory */
+      var href = l[1] === 'index.html' ? (pre || './') : pre + l[1].replace(/\.html$/, EXT);   /* home is the directory */
       return '<a href="' + href + '"' + cur + '>' + l[0] + '</a>';
     }).join('');
   }

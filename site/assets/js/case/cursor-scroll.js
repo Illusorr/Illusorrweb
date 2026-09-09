@@ -53,6 +53,10 @@
     // Detect interactive elements under the cursor and inflate the disc
     const linkSel = 'a, button, [role="button"], .next, label, .topnav .logo-lockup';
     document.querySelectorAll(linkSel).forEach(el => {
+      /* Inside a [data-cursor="plain"] block the cursor stays a cursor: no verb
+         pill. The Disney+ map's generation and parameter buttons carry their
+         own hover state, and a CLICK pill over each one was noise. */
+      if (el.closest('[data-cursor="plain"]')) return;
       el.addEventListener('pointerenter', () => {
         cursor.classList.add('is-link');
         // Pick the verb that best fits the element

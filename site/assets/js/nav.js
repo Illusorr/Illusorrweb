@@ -29,6 +29,12 @@
     var ref = document.querySelector('script[src*="assets/js/nav.js"], link[href*="assets/css/"], script[src*="assets/js/"]');
     var url = ref ? (ref.getAttribute('src') || ref.getAttribute('href') || '') : '';
     var pre = (url.match(/^((?:\.\.\/)*)assets\//) || ['', ''])[1];
+    /* Netlify serves every page at its clean address (about.html as /about)
+       and rewrites the links it finds in the HTML, but never the links a
+       script writes: the mounted nav was sending people to /about.html. So
+       the nav writes the clean address itself. A local file server only
+       knows the file names, so there the suffix stays. */
+    var EXT = (/^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname) || location.protocol === 'file:') ? '.html' : '';
     var here = (location.pathname.split('/').pop() || 'index.html').replace(/\.html$/, '');
     var items = [['Home', 'index.html'], ['About', 'about.html'], ['Sectors', 'sectors.html'],
                  ['Work', 'work.html'], ['Lab', 'lab.html'], ['Collective', 'collective.html'],
@@ -37,7 +43,7 @@
       var cur = l[1].replace(/\.html$/, '') === here ? ' aria-current="page"' : '';
       /* Home is the directory, not index.html: the address bar then reads
          illusorr.com/ rather than illusorr.com/index.html. */
-      var href = l[1] === 'index.html' ? (pre || './') : pre + l[1];
+      var href = l[1] === 'index.html' ? (pre || './') : pre + l[1].replace(/\.html$/, EXT);
       return '    <a href="' + href + '"' + cur + '>' + l[0] + ' <span>0' + (i + 1) + '</span></a>';
     }).join('\n');
     var brand = '<a class="il-brand" href="' + (pre || './') + '" aria-label="ILLUSORR home">' +
@@ -46,7 +52,7 @@
       '<header class="il-topbar" id="ilTopbar">\n' +
       '  ' + brand + '\n' +
       '  <div class="il-right">\n' +
-      '    <a class="il-talk" href="' + pre + 'contact.html">Let\'s talk</a>\n' +
+      '    <a class="il-talk" href="' + pre + 'contact' + EXT + '">Let\'s talk</a>\n' +
       '    <button class="il-burger" id="ilMenuOpen" aria-label="Open menu" aria-expanded="false" aria-controls="ilOverlay"><i></i><i></i></button>\n' +
       '  </div>\n' +
       '</header>\n' +
@@ -151,9 +157,9 @@
   });
   /* Mark the current page in the menu. */
   if (ov) {
-    var here = location.pathname.split('/').pop() || 'index.html';
+    var here = (location.pathname.split('/').pop() || 'index.html').replace(/\.html$/, '');
     [].forEach.call(ov.querySelectorAll('nav a[href]'), function (a) {
-      if (a.getAttribute('href') === here) a.setAttribute('aria-current', 'page');
+      if (a.getAttribute('href').split('/').pop().replace(/\.html$/, '') === here) a.setAttribute('aria-current', 'page');
     });
   }
 

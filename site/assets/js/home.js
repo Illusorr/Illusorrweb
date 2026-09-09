@@ -57,9 +57,11 @@ function onScroll(fn){
   const convEl=document.getElementById('conv');
   if(convEl){
     const dotsWrap=document.getElementById('dots');
+    /* clean addresses live, file names on a local server: see nav.js */
+    const EXT=(/^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname)||location.protocol==='file:')?'.html':'';
     const cnEl=document.getElementById('cn');
     convEl.innerHTML=convProjects.map((p,i)=>`
-      <a class="ccard" data-i="${i}" data-proj="${(p.href||'').split('/').pop().replace(/\.html$/,'')}" href="${p.href}">
+      <a class="ccard" data-i="${i}" data-proj="${(p.href||'').split('/').pop().replace(/\.html$/,'')}" href="${p.href.replace(/\.html$/, EXT)}">
         <div class="cmedia" data-full="${p.cover||(p.img?`assets/img/projects/${p.img}/cover.webp`:'')}" style="background-image:${p.cover?`url(${p.cover.replace(/\.webp$/,'-480.webp')}),`:p.img?`url(assets/img/projects/${p.img}/cover-480.webp),`:``}linear-gradient(${p.g});background-size:cover;background-position:center"></div>
         <span class="cvnum mono">${String(i+1).padStart(2,'0')}</span>
         <span class="cvlabel">${p.title}</span>

@@ -278,6 +278,11 @@
       img.onload=function(){
         var gl=cv.getContext('webgl2',{antialias:false,alpha:false,powerPreference:'low-power'});
         if(!gl) return fail();
+        var dead=false;
+        /* iOS takes contexts away freely once a page holds a few. Without
+           this the canvas would sit there opaque black; the photograph is
+           the honest fallback. */
+        cv.addEventListener('webglcontextlost',function(e){ e.preventDefault(); dead=true; fail(); });
         function sh(t,s){var x=gl.createShader(t);gl.shaderSource(x,s);gl.compileShader(x);
           if(!gl.getShaderParameter(x,gl.COMPILE_STATUS)){console.warn(gl.getShaderInfoLog(x));return null;}return x;}
         var vs=sh(gl.VERTEX_SHADER,VS), fs=sh(gl.FRAGMENT_SHADER,FS);
@@ -291,7 +296,35 @@
         gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
         var tex=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,tex);
         gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL,true);
-        gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,img);
+        /* The photograph reaches the GPU through a 2D canvas, not straight
+           from the <img>. Safari has uploaded WebP images as black textures,
+           which on a phone showed as a black panel where the scan should be;
+           a canvas is decoded pixels whatever the file format. Bounded to
+           1024px on the long side, plenty for a study that blurs it. */
+        var src=img;
+        try{
+          var k=Math.min(1,1024/Math.max(img.width,img.height));
+          var c2=document.createElement('canvas');
+          c2.width=Math.max(1,Math.round(img.width*k)); c2.height=Math.max(1,Math.round(img.height*k));
+          c2.getContext('2d').drawImage(img,0,0,c2.width,c2.height); src=c2;
+        }catch(e){}
+        gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,src);
+        /* Read the texture back through a framebuffer: nine texels of a
+           photograph are never all black. If they are, the upload failed on
+           this device and the still photograph takes over. */
+        function textureBlack(){
+          try{
+            var fb=gl.createFramebuffer(); gl.bindFramebuffer(gl.FRAMEBUFFER,fb);
+            gl.framebufferTexture2D(gl.FRAMEBUFFER,gl.COLOR_ATTACHMENT0,gl.TEXTURE_2D,tex,0);
+            var ok=gl.checkFramebufferStatus(gl.FRAMEBUFFER)===gl.FRAMEBUFFER_COMPLETE, px=new Uint8Array(4), lit=0;
+            if(ok){ for(var i=0;i<9;i++){
+              gl.readPixels(Math.floor(src.width*(0.2+0.3*(i%3))),Math.floor(src.height*(0.2+0.3*Math.floor(i/3))),1,1,gl.RGBA,gl.UNSIGNED_BYTE,px);
+              if(px[0]+px[1]+px[2]>24) lit++; } }
+            gl.bindFramebuffer(gl.FRAMEBUFFER,null); gl.deleteFramebuffer(fb);
+            return ok&&lit<3;
+          }catch(e){ return false; }
+        }
+        if(textureBlack()){ dead=true; return fail(); }
         gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);
         gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);
         gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
@@ -312,17 +345,33 @@
           gl.uniform1f(uProg, reduced?0.5:(Math.sin(t*0.55)*0.5+0.5));
           gl.drawArrays(gl.TRIANGLES,0,3);
         }
-        function loop(){
-          if(el.offsetParent===null){running=false;setTimeout(start,400);return;}
-          t+=0.016; draw(); requestAnimationFrame(loop);
+        /* Second net, after the third drawn frame: a frame of a photograph is
+           never black at all nine probe points. */
+        var frames=0;
+        function frameBlack(){
+          try{
+            var px=new Uint8Array(4);
+            for(var i=0;i<9;i++){
+              gl.readPixels(Math.floor(cv.width*(0.2+0.3*(i%3))),Math.floor(cv.height*(0.2+0.3*Math.floor(i/3))),1,1,gl.RGBA,gl.UNSIGNED_BYTE,px);
+              if(px[0]+px[1]+px[2]>24) return false;
+            }
+            return true;
+          }catch(e){ return false; }
         }
-        function start(){ if(running)return; running=true; size(); loop(); }
+        function loop(){
+          if(dead) return;
+          if(el.offsetParent===null){running=false;setTimeout(start,400);return;}
+          t+=0.016; draw();
+          if(++frames===3&&frameBlack()){ dead=true; return fail(); }
+          requestAnimationFrame(loop);
+        }
+        function start(){ if(running||dead)return; running=true; size(); loop(); }
         el.addEventListener('pointermove',function(e){
           var r=el.getBoundingClientRect();
           tx=((e.clientX-r.left)/r.width-0.5)*2; ty=((e.clientY-r.top)/r.height-0.5)*2; });
         el.addEventListener('pointerleave',function(){tx=0;ty=0;});
         addEventListener('resize',function(){size();});
-        if(reduced){ size(); draw(); } else { start(); }
+        if(reduced){ size(); draw(); if(frameBlack()) fail(); } else { start(); }
       };
       img.src=m[1];
     });

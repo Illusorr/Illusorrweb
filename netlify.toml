@@ -286,3 +286,218 @@
   to = "/404.html"
   status = 410
   force = true
+
+# CLEAN ADDRESSES. Netlify already serves /about for about.html; these
+# make the .html spelling of every real page answer 301 to the clean address the
+# canonicals, the sitemap and the scripts all use. force = true because the file exists.
+
+[[redirects]]
+  from = "/work.html"
+  to = "/work"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/about.html"
+  to = "/about"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/sectors.html"
+  to = "/sectors"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/lab.html"
+  to = "/lab"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/collective.html"
+  to = "/collective"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/contact.html"
+  to = "/contact"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/brief.html"
+  to = "/brief"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/sectors/beauty.html"
+  to = "/sectors/beauty"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/sectors/fashion.html"
+  to = "/sectors/fashion"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/sectors/real-estate.html"
+  to = "/sectors/real-estate"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/sectors/gaming.html"
+  to = "/sectors/gaming"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/sectors/culture.html"
+  to = "/sectors/culture"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/sectors/business.html"
+  to = "/sectors/business"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/projects/anfasic.html"
+  to = "/projects/anfasic"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/projects/hind-al-oud.html"
+  to = "/projects/hind-al-oud"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/projects/khaltat.html"
+  to = "/projects/khaltat"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/projects/michael-cinco.html"
+  to = "/projects/michael-cinco"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/projects/art-post-office.html"
+  to = "/projects/art-post-office"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/projects/barbie.html"
+  to = "/projects/barbie"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/projects/denim.html"
+  to = "/projects/denim"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/projects/fabrika.html"
+  to = "/projects/fabrika"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/projects/koton-lookbook-russia.html"
+  to = "/projects/koton-lookbook-russia"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/projects/morphellum.html"
+  to = "/projects/morphellum"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/projects/pera.html"
+  to = "/projects/pera"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/projects/aquatic-architects.html"
+  to = "/projects/aquatic-architects"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/projects/lapillus.html"
+  to = "/projects/lapillus"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/projects/riyadhverse.html"
+  to = "/projects/riyadhverse"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/projects/illusorr-spaces.html"
+  to = "/projects/illusorr-spaces"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/projects/metagenus.html"
+  to = "/projects/metagenus"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/projects/pylon.html"
+  to = "/projects/pylon"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/projects/disney-plus.html"
+  to = "/projects/disney-plus"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/projects/echoes-of-light.html"
+  to = "/projects/echoes-of-light"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/projects/metaculture.html"
+  to = "/projects/metaculture"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/projects/optiverse.html"
+  to = "/projects/optiverse"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/projects/trt-metaverse.html"
+  to = "/projects/trt-metaverse"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/projects/u-hub-metaverse.html"
+  to = "/projects/u-hub-metaverse"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/projects/ant-systems.html"
+  to = "/projects/ant-systems"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/projects/al-berwaz.html"
+  to = "/projects/al-berwaz"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/projects/arga.html"
+  to = "/projects/arga"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/projects/coffee-merchant.html"
+  to = "/projects/coffee-merchant"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/projects/moodie-kiosk.html"
+  to = "/projects/moodie-kiosk"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/projects/pixelpaint.html"
+  to = "/projects/pixelpaint"
+  status = 301
+  force = true

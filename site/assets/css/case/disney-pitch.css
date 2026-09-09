@@ -69,6 +69,8 @@
 .map-param button{flex:1;background:transparent;border:0;border-right:1px solid rgba(238,241,251,.12);color:rgba(238,241,251,.5);font-family:'Outfit',system-ui,sans-serif;font-size:10px;letter-spacing:.2em;text-transform:uppercase;padding:11px 6px;cursor:none;transition:background .4s ease,color .4s ease}
 .map-param button:last-child{border-right:0}
 .map-param button.is-on{background:rgba(31,160,229,.16);color:var(--pink)}
+/* hover feedback on the board's controls; the cursor itself stays a cursor there (data-cursor="plain") */
+@media(hover:hover){.gen-btn:not(.is-on):hover,.map-param button:not(.is-on):hover{background:rgba(31,160,229,.08);color:rgba(238,241,251,.85)}}
 @media(max-width:760px){.map-params{grid-template-columns:1fr}}
 .map-note{font-family:'Outfit',system-ui,sans-serif;font-size:12px;line-height:1.62;color:rgba(238,241,251,.5);margin:0}
 @media(max-width:760px){.map-foot{grid-template-columns:1fr}}
