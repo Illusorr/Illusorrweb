@@ -26,6 +26,10 @@
   /* data-min: the floor in ms (1100 by default, the field pages' brand moment;
      700 on pages that paint at once). data-words: the phrases under the rule. */
   var MIN = Math.max(0, parseInt(me.getAttribute('data-min'), 10) || 1100);
+  /* fonts are waited for only when data-wait names them: the field pages do,
+     the case studies (four faces, all font-display swap) do not, or a slow
+     connection held their curtain for the whole font set */
+  var NEEDFONTS = /fonts/.test(me.getAttribute('data-wait') || '');
   var WAIT = (me.getAttribute('data-wait') || '').split(',').map(function (s) { return s.trim(); }).filter(function (s) { return s && s !== 'fonts' && s !== 'dom'; });
   var CSS = '#boot{position:fixed;inset:0;z-index:9999;background:#05060a;display:grid;place-items:center;' +
     'transition:opacity .7s cubic-bezier(.4,0,.2,1),visibility .7s;}' +
@@ -78,7 +82,7 @@
   };
   addEventListener('DOMContentLoaded', function () { dom = true; });
   if (document.readyState !== 'loading') dom = true;
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { fonts = true; }); else fonts = true;
+  if (NEEDFONTS && document.fonts && document.fonts.ready) document.fonts.ready.then(function () { fonts = true; }); else fonts = true;
   var ceiling = setTimeout(function () { dom = fonts = true; Object.keys(pending).forEach(function (k) { pending[k] = false; }); }, 6000);
 
   var wt = setInterval(function () {
