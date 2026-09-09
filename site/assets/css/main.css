@@ -70,6 +70,11 @@
   .lead b{font-weight:700}
   .body{color:var(--dim);font-weight:300;font-size:15px;line-height:1.75;max-width:580px;margin-top:20px}
   section.light .body{color:var(--cream-dim)}
+/* Light beats that are not <section class="light">: the who-we-are div carries
+   data-bg-theme="light" only, so on every desktop its copy sat in the dark
+   theme's grey, near white on cream. The touch layer already keys on the
+   attribute; this is the same rule for the shell. */
+[data-bg-theme="light"] .body{color:var(--cream-dim)}
   .sectlabel{position:absolute;top:30px;right:46px;font-size:10px;letter-spacing:.2em;color:var(--faint)}
   section.light .sectlabel{color:var(--cream-dim)}
   .wire{background:linear-gradient(160deg,rgba(20,26,44,.5),rgba(7,10,20,.5));border:1px solid var(--line);border-radius:0;display:flex;align-items:center;justify-content:center;color:var(--faint);position:relative;overflow:hidden}

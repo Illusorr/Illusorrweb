@@ -607,15 +607,24 @@ void main(){
      integer compare), and a ResizeObserver covers the reduced-motion case
      where there is no loop. */
   function wantedSize(){
-    /* On touch the buffer is smaller: nothing in it has to align with a
-       section edge any more, so resolution buys less than it costs. Applied
-       here rather than by assigning P.renderScale, because the baked
-       settings block near the end of this file assigns over P and would
-       silently undo it. */
-    const dpr=Math.min(devicePixelRatio||1,1.5)*(TOUCH?0.65:P.renderScale);
+    /* THE BUFFER IS SIZED AGAINST PHYSICAL PIXELS, NOT CSS PIXELS.
+       The old rule capped devicePixelRatio at 1.5 and multiplied by the
+       render scale, so the denser the screen, the more the buffer was
+       stretched across it: a 1920x1080 monitor at 1x stretched 1.43x and
+       read fine, a 2x laptop 1.9x, a 3x phone 3.1x. That was the pixelation
+       reported on every screen smaller than 1920x1080. The cap is gone; the
+       stretch is now the same 1/renderScale everywhere, and a pixel budget
+       bounds the fill cost on very dense screens instead of the cap.
+       renderScale stays the one knob. It is read from P here rather than
+       assigned into it, because the baked settings block near the end of
+       this file assigns over P and would silently undo it. */
+    const budget=TOUCH?1.6e6:2.6e6;
+    const dpr=Math.min(devicePixelRatio||1,3)*P.renderScale;
     const vw=innerWidth||document.documentElement.clientWidth||0;
     const vh=innerHeight||document.documentElement.clientHeight||0;
-    return [Math.max(1,Math.floor(vw*dpr)),Math.max(1,Math.floor(vh*dpr))];
+    let w=vw*dpr,h=vh*dpr;
+    if(w*h>budget){const k=Math.sqrt(budget/(w*h));w*=k;h*=k;}
+    return [Math.max(1,Math.floor(w)),Math.max(1,Math.floor(h))];
   }
   function syncSize(){
     const [w,h]=wantedSize();
