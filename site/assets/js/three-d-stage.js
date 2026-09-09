@@ -218,7 +218,14 @@
         alpha: true,
         preserveDrawingBuffer: true,
       });
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      /* Software renderer (PageSpeed, a driverless machine): one still at half
+         resolution and no loop. Real GPUs are unaffected. */
+      const SOFT = (() => { try {
+        const gl = renderer.getContext(), x = gl.getExtension('WEBGL_debug_renderer_info');
+        return /swiftshader|llvmpipe|softpipe|software|mesa offscreen|basic render/i.test(String((x && gl.getParameter(x.UNMASKED_RENDERER_WEBGL)) || gl.getParameter(gl.RENDERER) || ''));
+      } catch (e) { return false; } })();
+      this._soft = SOFT;
+      renderer.setPixelRatio(SOFT ? 0.5 : Math.min(window.devicePixelRatio || 1, 2));
       renderer.shadowMap.enabled = true;
       renderer.shadowMap.type = THREE.PCFSoftShadowMap;
       this._renderer = renderer;
@@ -282,10 +289,21 @@
       };
       fit();
       this._ro = new ResizeObserver(fit);
+      let stills = 0;
       this._loop = () => {
         controls.update();
         renderer.render(scene, camera);
+        if (SOFT && ++stills >= 2) renderer.setAnimationLoop(null);
       };
+      /* Nothing renders while the stage is scrolled away: the loop used to run
+         for the life of the page, on screen or not. */
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver((es) => {
+          const on = es[0].isIntersecting;
+          if (SOFT && stills >= 2) return;
+          renderer.setAnimationLoop(on && this.isConnected ? this._loop : null);
+        }, { threshold: 0 }).observe(this);
+      }
       // Detached while three.js was fetching? Stay idle — the
       // connectedCallback resume starts the loop and observer on
       // reattach.

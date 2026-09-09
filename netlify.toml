@@ -51,6 +51,36 @@
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
 
+# CSS and JS are referenced with a ?v= stamp on every page (checked: no unstamped
+# reference exists), so the URL changes whenever the file does. That makes a year
+# safe, and repeat visits skip 100 KB of revalidation. THE RULE THAT KEEPS THIS
+# SAFE: every CSS or JS change bumps the stamp on every page (see CLAUDE.md).
+[[headers]]
+  for = "/assets/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/assets/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# The icons carry ?v= too, so a new icon is a new URL.
+[[headers]]
+  for = "/favicon*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/icon-*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/apple-touch-icon.png"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
 # Fonts are genuinely stable: a different face means a different file name.
 [[headers]]
   for = "/assets/fonts/*"

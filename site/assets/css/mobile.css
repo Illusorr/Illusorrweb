@@ -643,3 +643,15 @@ html[data-touch] figcaption {
    page. Same fix as the case stages in case-mobile.css. */
 html[data-touch] .c3d canvas,
 html[data-touch] .pcloud canvas { touch-action: pan-y !important; }
+
+/* SECTOR PHOTOGRAPHS AT PHONE SIZE. The six sector backgrounds ship as
+   1000px files (up to 205 KB) and 768 / 480 variants that nothing referenced.
+   A touch screen is at most 1024px wide and the photo is a ground behind
+   text, so the 768 variant (a third to a half the weight) is the one it
+   gets; the sector pages' depth scan reads the same class and follows. */
+html[data-touch] .sec-bg-1 { background-image: url(../img/sectors/beauty-768.webp); }
+html[data-touch] .sec-bg-2 { background-image: url(../img/sectors/fashion-768.webp); }
+html[data-touch] .sec-bg-3 { background-image: url(../img/sectors/real-estate-768.webp); }
+html[data-touch] .sec-bg-4 { background-image: url(../img/sectors/gaming-768.webp); }
+html[data-touch] .sec-bg-5 { background-image: url(../img/sectors/culture-v2-768.webp); }
+html[data-touch] .sec-bg-6 { background-image: url(../img/sectors/business-768.webp); }

@@ -116,6 +116,11 @@ All page scripts are `defer` and page scoped. `js/mobile.js` is the exception: i
   are always `cover.webp`, max 1200px.
 - **Video**: `assets/video/<slug>/<name>.webm` (VP9) plus `.mp4` fallback and
   `<name>-poster.webp`. Always `preload="none"` with a poster.
+- **Cache stamp**: every CSS and JS file is referenced as `file.css?v=YYYYMMDDx`, and Netlify
+  caches `/assets/css/*` and `/assets/js/*` for a year by URL. Any change to a CSS or JS file
+  must bump the stamp on every page that references it (all pages share one stamp; replace
+  the old value with the new one across `site/**/*.html`), or returning visitors keep the
+  old file for a year.
 - **Section theming**: sections carry `light` or `dark` plus `data-bg-theme`, which `nav.js`
   reads to invert the header. Set it, do not rely on measurement.
 - **Sitemap**: `sitemap.xml` lists only pages with real content. Placeholder shells

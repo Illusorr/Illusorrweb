@@ -82,13 +82,37 @@ function onScroll(fn){
       ccards.forEach((c,x)=>{
         c.classList.toggle('active',x===i);
         /* The rail shows a 480px rung; only the expanded card is wide enough
-           to need the full cover, so it is fetched on expand and then kept. */
+           to need more, so a larger cover is fetched on expand and then kept.
+           It used to fetch the full file (up to 1500px, half a megabyte) for
+           a card that is 350px wide on a phone; every cover now has 480, 768
+           and 1200 variants at q80, and the card asks for the first one that
+           covers its own width in device pixels. */
         if(x===i){
           const m=c.querySelector('.cmedia');
           if(m && m.dataset.full && !m.dataset.loaded){
-            const img=new Image();
-            img.onload=()=>{ m.style.backgroundImage=`url(${m.dataset.full})`; m.dataset.loaded='1'; };
-            img.src=m.dataset.full;
+            m.dataset.loaded='1';
+            /* measured once the card has finished expanding (its width runs a
+               .8s transition): at toggle time it is still the rung's width,
+               which would always pick the 480 */
+            let done=false, tries=0;
+            const pick=()=>{
+              if(done) return;
+              if(!c.classList.contains('active')){ done=true; delete m.dataset.loaded; return; }
+              /* not laid out yet (the first card, behind the boot curtain): look again */
+              if(c.clientWidth<200){ if(++tries<6) setTimeout(pick,1500); else { done=true; delete m.dataset.loaded; } return; }
+              done=true;
+              const need=Math.ceil((m.clientWidth||c.clientWidth)*Math.min(2,devicePixelRatio||1));
+              const size=need<=480?480:need<=768?768:need<=1200?1200:0;
+              if(size===480) return;   /* the rung already shows it */
+              const want=size?m.dataset.full.replace(/\.webp$/,'-'+size+'.webp'):m.dataset.full;
+              const img=new Image();
+              img.onload=()=>{ m.style.backgroundImage=`url(${want})`; };
+              /* a cover without that variant falls back to its full file */
+              img.onerror=()=>{ if(want===m.dataset.full) return; const f=new Image(); f.onload=()=>{ m.style.backgroundImage=`url(${m.dataset.full})`; }; f.src=m.dataset.full; };
+              img.src=want;
+            };
+            c.addEventListener('transitionend',function te(e){ if(e.propertyName==='width'){ c.removeEventListener('transitionend',te); pick(); } });
+            setTimeout(pick,1500);
           }
         }
       });

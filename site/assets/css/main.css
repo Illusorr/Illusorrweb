@@ -290,7 +290,7 @@
   .sb-stat b{display:block;font-size:30px;font-weight:800;letter-spacing:-.01em;color:#00B2FF;line-height:1}
   .sb-stat span{display:block;margin-top:9px;font-size:12px;line-height:1.5;color:var(--dim);font-weight:300}
   .sb-actions{display:flex;align-items:center;gap:20px;margin-top:52px;flex-wrap:wrap}
-  .sb-hint{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.34)}
+  .sb-hint{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.5)}   /* .34 was 2.97:1 on the ground; .5 clears 4.5:1 */
   /* COLLECTIVE BAND — talent pipeline, after work before close */
   .collective-band{min-height:100vh;min-height:100svh;background:#070a16;display:flex;flex-direction:column;justify-content:center;padding:120px 56px;position:relative;overflow:hidden}
   .cb-glow{position:absolute;inset:0;z-index:0;background:radial-gradient(46% 56% at 78% 40%,rgba(76,99,255,.18),transparent 60%);pointer-events:none;animation:cbFloat 14s ease-in-out infinite}

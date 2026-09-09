@@ -4,6 +4,7 @@
    when idle. Boots lazily the first time its realm panel goes live, so the
    page cost is zero until someone enters the realm. */
 import * as THREE from 'three';
+import { isSoftwareGL } from './soft-gl.js';
 
 const mounts = new Map();
 
@@ -28,7 +29,8 @@ function build(host, url, video) {
   host.appendChild(hint);
 
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
-  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  const SOFT = isSoftwareGL(renderer.getContext());   /* one still, no loop: see soft-gl.js */
+  renderer.setPixelRatio(SOFT ? 0.5 : Math.min(devicePixelRatio, 2));
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(74, 1, 0.1, 1100);
 
@@ -112,10 +114,12 @@ function build(host, url, video) {
     gate();
   }
 
-  let last = 0;
+  let last = 0, stills = 0;
   (function loop(t) {
+    if (SOFT && stills > 0) return;
     requestAnimationFrame(loop);
     if (t - last < 24 || !host.isConnected || !host.offsetParent) return;
+    stills++;
     last = t;
     idle += 1;
     if (!dragging && idle > 90) { tLon += 0.035; hint.classList.add('is-faded'); } else if (idle < 90) hint.classList.remove('is-faded');

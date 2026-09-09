@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { isSoftwareGL } from './soft-gl.js';
 
 /* Cinderella-castle point cloud. Positions are pre-baked from the GLB into a
    quantised Int16 buffer (assets/v5/disney-castle-points.bin, ~104k points,
@@ -11,7 +12,10 @@ if (canvas && stage) init();
 async function init() {
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: false, alpha: true, powerPreference: 'high-performance' });
   renderer.setClearColor(0x000000, 0);
-  const DPR = Math.min(window.devicePixelRatio || 1, innerWidth < 760 ? 1.5 : 1.35);
+  /* On a software renderer (see soft-gl.js) the cloud is drawn once, assembled,
+     at half resolution, and the loop never starts. */
+  const SOFT = isSoftwareGL(renderer.getContext());
+  const DPR = SOFT ? 0.5 : Math.min(window.devicePixelRatio || 1, innerWidth < 760 ? 1.5 : 1.35);
   renderer.setPixelRatio(DPR);
 
   const scene = new THREE.Scene();
@@ -133,11 +137,13 @@ async function init() {
     if (visible && !raf) { t0 = performance.now() - clock * 1000; raf = requestAnimationFrame(frame); }
   }, { threshold: 0 }).observe(stage);
 
-  let clock = 0, assembled = 0;
+  let clock = 0, assembled = 0, stills = 0;
   let lastRender = -1e9;
+  if (SOFT) t0 = performance.now() - 2600;   /* already assembled */
   const MIN_DT = 1000 / 40;          /* 40fps ceiling: the cloud shimmers slowly, 60 is waste */
   function frame(now) {
    try {
+    if (SOFT && stills > 0) { raf = 0; return; }
     if (now - lastRender < MIN_DT && raf) { raf = requestAnimationFrame(frame); return; }
     if (document.documentElement.classList.contains('realm-open')) { raf = visible ? requestAnimationFrame(frame) : 0; return; }
     lastRender = now;
@@ -161,7 +167,8 @@ async function init() {
     camera.lookAt(0, 0.02, 0);
 
     renderer.render(scene, camera);
-    if (visible) raf = requestAnimationFrame(frame); else raf = 0;
+    stills++;
+    if (visible && !SOFT) raf = requestAnimationFrame(frame); else raf = 0;
    } catch (err) { window.__castleErr = String(err && err.stack || err); raf = 0; }
   }
   frame(performance.now());
