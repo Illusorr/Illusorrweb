@@ -205,9 +205,12 @@
   var lastTone = [false, false, false];
   function probe(x, y) {
     var stack = document.elementsFromPoint(x, y);
+    /* the boot curtain (boot.js) sits over everything while it is up; it is
+       not the ground, so a sample taken under it must read the page */
+    var curtain = document.getElementById('boot');
     for (var i = 0; i < stack.length; i++) {
       var n = stack[i];
-      if (tb.contains(n) || (ov && ov.contains(n))) continue;
+      if (tb.contains(n) || (ov && ov.contains(n)) || (curtain && curtain.contains(n))) continue;
       if (n.closest) {
         /* elementsFromPoint returns paint order, topmost first, so the
            nearest declared tone above this point wins. That is the correct
@@ -284,6 +287,9 @@
      sample(), so one resample is all this needs. */
   if (window.visualViewport) visualViewport.addEventListener('resize', onScroll);
   addEventListener('load', sample);
+  /* and once more the moment the curtain lifts, so the first thing a visitor
+     sees is the bar in the page's tone, not the curtain's */
+  document.addEventListener('il:boot-lifted', function () { setTimeout(sample, 30); });
   sample();
 
   /* ── 3. frosted band ──────────────────────────────────────────────── */
