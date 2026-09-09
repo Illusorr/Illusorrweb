@@ -1962,7 +1962,7 @@
   @keyframes spPulse{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:1;transform:scale(1.25)}}
   @keyframes spThink{0%,100%{opacity:.25;transform:scale(.8)}50%{opacity:1;transform:scale(1.5)}}
   .sp-n{font-family:'Outfit',sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;
-    color:rgba(238,242,255,.42)}
+    color:rgba(238,242,255,.42);font-weight:400}
   .bf-q{font-family:var(--head);font-weight:400;font-size:clamp(22px,3.2vw,42px);line-height:1.12;
     color:#eef1f8;letter-spacing:0;min-height:1.15em;max-width:620px;margin:0 auto}
   .bf-q .car{display:inline-block;width:.42ch;background:var(--cold);margin-left:.1em;

@@ -866,6 +866,11 @@ resize(); setMode(mode);
       requestAnimationFrame(loop);
       if(!onScreen || document.hidden) return;
       const now=performance.now();
+      /* On touch a swipe in progress owns the GPU. The field is frozen against
+         the scroll anyway, so skipping its draws until the scroll has been
+         quiet for 200ms only pauses its slow drift, and the compositor gets
+         the frames back: the buffer is now 4.6x the area the handoff shipped. */
+      if(TOUCH&&now-lastScroll<200) return;
       /* Not on touch: there is no painted edge left to keep up with, so the
          cap stays on while scrolling. */
       const cap=(!TOUCH&&now-lastScroll<300)?0:1000/30;

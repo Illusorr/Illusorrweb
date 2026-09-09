@@ -35,9 +35,12 @@
                  ['Contact', 'contact.html']];
     var links = items.map(function (l, i) {
       var cur = l[1].replace(/\.html$/, '') === here ? ' aria-current="page"' : '';
-      return '    <a href="' + pre + l[1] + '"' + cur + '>' + l[0] + ' <span>0' + (i + 1) + '</span></a>';
+      /* Home is the directory, not index.html: the address bar then reads
+         illusorr.com/ rather than illusorr.com/index.html. */
+      var href = l[1] === 'index.html' ? (pre || './') : pre + l[1];
+      return '    <a href="' + href + '"' + cur + '>' + l[0] + ' <span>0' + (i + 1) + '</span></a>';
     }).join('\n');
-    var brand = '<a class="il-brand" href="' + pre + 'index.html" aria-label="ILLUSORR home">' +
+    var brand = '<a class="il-brand" href="' + (pre || './') + '" aria-label="ILLUSORR home">' +
                 '<span class="il-logo" role="img" aria-label="ILLUSORR"></span></a>';
     var html =
       '<header class="il-topbar" id="ilTopbar">\n' +
@@ -156,6 +159,12 @@
 
   /* ── 2. tone inversion ────────────────────────────────────────────── */
   var LIGHT_SECTIONS = '.light,.conv-section,.wwa-scroll,.whofor,.whofor-scroll';
+  /* The shell marks sections light or dark by class as well as by attribute.
+     .light was honoured as a declaration and .dark was not, so over a dark
+     section the probe fell through to measuring, and on the collective form
+     the first thing it measured was a faintly white input: the bar flipped to
+     paper over a dark page. A declared dark is a declared dark. */
+  var DARK_SECTIONS = '.dark';
   var frostRef = null;
 
   /* theme-color, kept in step with the tone. The page's authored value is
@@ -182,7 +191,9 @@
   function lum(c) {
     var m = /rgba?\(([^)]+)\)/.exec(c); if (!m) return null;
     var p = m[1].split(',').map(parseFloat);
-    if (p.length > 3 && p[3] === 0) return null;
+    /* Below half alpha this is a tint on something, not the ground under the
+       bar: an input at rgba(255,255,255,.04) must not read as a white page. */
+    if (p.length > 3 && p[3] < 0.5) return null;
     return (0.2126 * p[0] + 0.7152 * p[1] + 0.0722 * p[2]) / 255;
   }
   var lastTone = [false, false, false];
@@ -198,6 +209,7 @@
         var toned = n.closest('[data-tone],[data-bg-theme]');
         if (toned) return (toned.getAttribute('data-tone') || toned.getAttribute('data-bg-theme')) === 'light';
         if (n.closest(LIGHT_SECTIONS)) return true;
+        if (n.closest(DARK_SECTIONS)) return false;
       }
       if (n.tagName === 'IMG' || n.tagName === 'VIDEO' || n.tagName === 'CANVAS') return false;
       var v = lum(getComputedStyle(n).backgroundColor);
@@ -234,11 +246,29 @@
        so it can never drift out of step with the bar's real height. */
     if (frostRef) frostRef.refresh();
   }
-  var rafQueued = false;
+  /* SAMPLING IS THROTTLED BY DISTANCE AND TIME, NOT DRIVEN BY EVERY EVENT.
+     A full sample is three hit tests plus a rect pass over every visible text
+     element. Measured on a phone frame it ran once per scroll event, 0.4 to
+     1.7ms median and up to 4.7ms at the 90th percentile per frame on a desktop
+     CPU, several times that on a phone: frame drops on every page while
+     swiping. The tone only changes at a section boundary, so a sample is
+     taken once the page has moved 12px or 200ms have passed, whichever first,
+     and a settle timer takes one final reading when the scroll stops so the
+     last few pixels are never missed. is-scrolled is cheap and stays
+     immediate. */
+  var rafQueued = false, lastY = -1e9, lastT = 0, settle = 0;
   function onScroll() {
+    clearTimeout(settle);
+    settle = setTimeout(function () { lastY = -1e9; sample(); }, 120);
     if (rafQueued) return;
     rafQueued = true;
-    requestAnimationFrame(function () { rafQueued = false; sample(); });
+    requestAnimationFrame(function () {
+      rafQueued = false;
+      var y = window.scrollY || window.pageYOffset || 0, t = performance.now();
+      tb.classList.toggle('is-scrolled', y > 4);
+      if (Math.abs(y - lastY) < 12 && t - lastT < 200) return;
+      lastY = y; lastT = t; sample();
+    });
   }
   addEventListener('scroll', onScroll, { passive: true });
   addEventListener('resize', onScroll);

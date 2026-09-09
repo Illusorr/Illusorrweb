@@ -79,3 +79,210 @@
   for = "/*.html"
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
+
+# OLD SITE (Wix) ADDRESSES. The domain ran a Wix site until 2026-09-08 and Google still
+# holds its URLs. The real pages redirect to their new homes. The rest, a forum
+# that had filled with gambling spam, member areas, challenge pages and Wix
+# internals, answer 410 Gone so they leave the index faster than a 404 would.
+# force = true so these win even though the paths do not exist as files.
+
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/about-us"
+  to = "/about"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/contactus"
+  to = "/contact"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/apply"
+  to = "/collective"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/community"
+  to = "/collective"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/affiliation"
+  to = "/collective"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/education"
+  to = "/collective"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/educationinfo"
+  to = "/collective"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/educationvote"
+  to = "/collective"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/events"
+  to = "/collective"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/event"
+  to = "/collective"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/eventsinfo"
+  to = "/collective"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/corporate"
+  to = "/sectors/business"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/deck"
+  to = "/work"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/experiences"
+  to = "/work"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/engine"
+  to = "/lab"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/elliotrades"
+  to = "/"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/disclaimer"
+  to = "/"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/blog"
+  to = "/"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/blog/*"
+  to = "/"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/forum"
+  to = "/404.html"
+  status = 410
+  force = true
+[[redirects]]
+  from = "/forum/*"
+  to = "/404.html"
+  status = 410
+  force = true
+[[redirects]]
+  from = "/group/*"
+  to = "/404.html"
+  status = 410
+  force = true
+[[redirects]]
+  from = "/challenge-page/*"
+  to = "/404.html"
+  status = 410
+  force = true
+[[redirects]]
+  from = "/challenge-payment"
+  to = "/404.html"
+  status = 410
+  force = true
+[[redirects]]
+  from = "/challenge-thanks"
+  to = "/404.html"
+  status = 410
+  force = true
+[[redirects]]
+  from = "/_files/*"
+  to = "/404.html"
+  status = 410
+  force = true
+[[redirects]]
+  from = "/_partials/*"
+  to = "/404.html"
+  status = 410
+  force = true
+[[redirects]]
+  from = "/_api/*"
+  to = "/404.html"
+  status = 410
+  force = true
+[[redirects]]
+  from = "/account/*"
+  to = "/404.html"
+  status = 410
+  force = true
+[[redirects]]
+  from = "/event-details/*"
+  to = "/404.html"
+  status = 410
+  force = true
+[[redirects]]
+  from = "/post/*"
+  to = "/404.html"
+  status = 410
+  force = true
+[[redirects]]
+  from = "/blank"
+  to = "/404.html"
+  status = 410
+  force = true
+[[redirects]]
+  from = "/blank-1"
+  to = "/404.html"
+  status = 410
+  force = true
+[[redirects]]
+  from = "/copy-of-illusorr"
+  to = "/404.html"
+  status = 410
+  force = true
+[[redirects]]
+  from = "/deactivateaccount"
+  to = "/404.html"
+  status = 410
+  force = true
+[[redirects]]
+  from = "/blog-feed.xml"
+  to = "/404.html"
+  status = 410
+  force = true
+[[redirects]]
+  from = "/blog-posts-sitemap.xml"
+  to = "/404.html"
+  status = 410
+  force = true
+[[redirects]]
+  from = "/blog-categories-sitemap.xml"
+  to = "/404.html"
+  status = 410
+  force = true
+[[redirects]]
+  from = "/dynamic-*"
+  to = "/404.html"
+  status = 410
+  force = true

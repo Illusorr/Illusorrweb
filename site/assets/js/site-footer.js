@@ -105,7 +105,8 @@ function build() {
     return list.map(function (l) {
       var file = l[1].split('/').pop();
       var cur = file === here ? ' aria-current="page"' : '';
-      return '<a href="' + pre + l[1] + '"' + cur + '>' + l[0] + '</a>';
+      var href = l[1] === 'index.html' ? (pre || './') : pre + l[1];   /* home is the directory */
+      return '<a href="' + href + '"' + cur + '>' + l[0] + '</a>';
     }).join('');
   }
 
@@ -113,7 +114,7 @@ function build() {
     '<footer class="sfoot">' +
       '<div class="sf-in">' +
         '<div class="sf-brand">' +
-          '<a class="sf-logo" href="' + pre + 'index.html" aria-label="ILLUSORR home"></a>' +
+          '<a class="sf-logo" href="' + (pre || './') + '" aria-label="ILLUSORR home"></a>' +
           '<p class="sf-say">A multidisciplinary studio building original worlds, engines and IP, ' +
             'from Abu Dhabi to wherever the work lands.</p>' +
           '<a class="sf-mail" href="mailto:hello@illusorr.com">hello@illusorr.com</a>' +
