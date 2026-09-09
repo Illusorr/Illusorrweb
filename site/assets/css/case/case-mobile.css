@@ -1975,3 +1975,19 @@ html[data-touch] figure > figcaption[style*="space-between"] {
   row-gap: 2px;
 }
 html[data-touch] figure > figcaption[style*="space-between"] > span { min-width: 0; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   3D STAGES MUST NOT SWALLOW THE PAGE SCROLL
+   ═══════════════════════════════════════════════════════════════════════
+   An interactive stage sets touch-action:none so a drag orbits the model
+   instead of scrolling. Right on a desktop, where the drag is a mouse; on a
+   phone it means a finger on the stage cannot move the page, and the TRT
+   orb sits at the very top of its page over 77% of the first screen, so
+   the page reads as locked. pan-y keeps the horizontal drag for the model
+   and gives the vertical swipe back to the page. Morphellum's canvas gets
+   touch-action:none INLINE from OrbitControls, hence the !important.
+   Measured with scratchpad/touchaudit.js: TRT .orb-stage 0.77 of a screen,
+   Metaculture .stage 0.70, Morphellum three-d-stage canvas 0.55. */
+html[data-touch] .orb-stage,
+html[data-touch] .stage-shell .stage,
+html[data-touch] three-d-stage canvas { touch-action: pan-y !important; }

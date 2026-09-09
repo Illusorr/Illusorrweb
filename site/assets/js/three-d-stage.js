@@ -232,6 +232,13 @@
       this._camera = camera;
 
       const controls = new controlsMod.OrbitControls(camera, renderer.domElement);
+      /* OrbitControls sets touch-action:none on the canvas so a drag orbits the
+         model. The canvas lives in this shadow root, where no page stylesheet
+         can override it, and on a phone none means a finger on the stage
+         cannot scroll the page: the stage covers half a screen. pan-y keeps
+         the horizontal drag for the model and gives the vertical swipe back
+         to the page. A mouse ignores touch-action, so desktop is unchanged. */
+      if (document.documentElement.hasAttribute('data-touch')) renderer.domElement.style.touchAction = 'pan-y';
       controls.enableDamping = true;
       controls.dampingFactor = 0.08;
       this._controls = controls;

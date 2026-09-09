@@ -633,3 +633,13 @@ html[data-touch] figcaption {
   }
 }
 
+/* ═══════════════════════════════════════════════════════════════════════
+   CANVAS STUDIES MUST NOT SWALLOW THE PAGE SCROLL
+   ═══════════════════════════════════════════════════════════════════════
+   main.css gives .c3d and .pcloud canvases touch-action:none for their
+   drag. mobile.js swaps them for tap-to-load placeholders, but once tapped
+   the live canvas is back with the same rule, and a finger on it could not
+   scroll past it. pan-y: horizontal drag for the study, vertical for the
+   page. Same fix as the case stages in case-mobile.css. */
+html[data-touch] .c3d canvas,
+html[data-touch] .pcloud canvas { touch-action: pan-y !important; }
