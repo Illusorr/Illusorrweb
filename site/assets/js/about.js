@@ -65,7 +65,11 @@
   }
   window.addEventListener('scroll',onScroll,{passive:true});onScroll();
   const cv=document.getElementById('fieldCanvas');const ctx=cv.getContext('2d');
-  function sz(){cv.width=cv.offsetWidth;cv.height=cv.offsetHeight}sz();addEventListener('resize',sz);
+  /* Half resolution and 30fps on touch: soft radial blobs do not need device
+     pixels, and this canvas is cleared and refilled every frame for as long as
+     the hero is on screen; on a phone that was a third of the main thread. */
+  const K=document.documentElement.hasAttribute('data-touch')?0.5:1;
+  function sz(){cv.width=Math.max(1,Math.round(cv.offsetWidth*K));cv.height=Math.max(1,Math.round(cv.offsetHeight*K))}sz();addEventListener('resize',sz);
   const bl=[];for(let i=0;i<8;i++)bl.push({sp:.1+Math.random()*.25,rad:.2+Math.random()*.34,size:160+Math.random()*160,ph:Math.random()*10});
   /* This ran forever, every frame, on screen or not. It now idles when the
      canvas is scrolled away, when the tab is hidden, and when the visitor
@@ -77,8 +81,9 @@
     new IntersectionObserver(function(es){ fieldVisible=es[0].isIntersecting; fieldKick(); },{threshold:0}).observe(cv);
     document.addEventListener('visibilitychange',fieldKick,{passive:true});
   })();
-  function d(){fieldRaf=0;t+=.006;ctx.clearRect(0,0,cv.width,cv.height);ctx.globalCompositeOperation='lighter';
-    bl.forEach((b,i)=>{const cx=cv.width*(.5+Math.cos(t*b.sp+b.ph)*b.rad),cy=cv.height*(.46+Math.sin(t*b.sp*1.2+b.ph)*b.rad*.9),r=Math.max(1,b.size*(.8+.3*Math.sin(t*2+i)));
+  let lastD=0;
+  function d(now){if(K<1&&now-lastD<32){fieldRaf=requestAnimationFrame(d);return;}lastD=now||0;fieldRaf=0;t+=.006;ctx.clearRect(0,0,cv.width,cv.height);ctx.globalCompositeOperation='lighter';
+    bl.forEach((b,i)=>{const cx=cv.width*(.5+Math.cos(t*b.sp+b.ph)*b.rad),cy=cv.height*(.46+Math.sin(t*b.sp*1.2+b.ph)*b.rad*.9),r=Math.max(1,b.size*K*(.8+.3*Math.sin(t*2+i)));
       const g=ctx.createRadialGradient(cx,cy,0,cx,cy,r);const h=i%3===0?'120,140,255':(i%3===1?'76,99,255':'150,120,255');g.addColorStop(0,`rgba(${h},.07)`);g.addColorStop(1,`rgba(${h},0)`);ctx.fillStyle=g;ctx.beginPath();ctx.arc(cx,cy,r,0,7);ctx.fill();});
     ctx.globalCompositeOperation='source-over';if(fieldVisible&&!document.hidden&&!fieldReduced)fieldRaf=requestAnimationFrame(d);}
   const io=new IntersectionObserver((es)=>{es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}})},{threshold:.18});

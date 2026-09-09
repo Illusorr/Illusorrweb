@@ -73,7 +73,7 @@
 
   const cv=document.getElementById('nf');
   const gl=cv.getContext('webgl2',{antialias:true,alpha:false});
-  if(!gl) return;
+  if(!gl){ if(window.ILBoot) window.ILBoot.ready('field'); return; }   /* the curtain must not wait for a field that cannot run */
   /* SOFTWARE RENDERERS GET A STILL, NOT A LOOP. PageSpeed Insights and
      Lighthouse run headless Chrome on machines without a GPU, where WebGL
      is SwiftShader on the CPU. There a full-screen frame of this shader
@@ -697,7 +697,7 @@ void main(){
     if(cv.width!==w||cv.height!==h){ cv.width=w; cv.height=h; measure(); return true; }
     return false;
   }
-  function resize(){ syncSize(); measure(); if(reduced) draw(0); }
+  function resize(){ syncSize(); measure(); if(reduced){ draw(0); if(window.ILBoot) window.ILBoot.ready('field'); } }
   addEventListener('resize',resize);
   if(window.ResizeObserver) new ResizeObserver(()=>{
     if(syncSize() && reduced) draw(0);
@@ -898,6 +898,7 @@ resize(); setMode(mode);
       const cap=(!TOUCH&&now-lastScroll<300)?0:1000/30;
       if(now-prev<cap) return;
       prev=now; drawn++; draw((now-t0)/1000);
+      if(drawn===1&&window.ILBoot) window.ILBoot.ready('field');   /* the boot curtain waits for this frame, see boot.js */
     })();
   }
 })();
