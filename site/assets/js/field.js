@@ -89,6 +89,10 @@
     const r=String((x&&gl.getParameter(x.UNMASKED_RENDERER_WEBGL))||gl.getParameter(gl.RENDERER)||'');
     return /swiftshader|llvmpipe|softpipe|software|mesa offscreen|basic render/i.test(r);
   }catch(e){ return false; } })();
+  /* The boot curtain waits for this field's first frame; on a software
+     renderer that frame is a shader compile away (seconds under a CPU
+     throttle), and the curtain must not wait for it. */
+  if(SOFT&&window.ILBoot) window.ILBoot.ready('field');
 
   const VERT=`#version 300 es
 in vec2 a_pos; out vec2 v_uv;

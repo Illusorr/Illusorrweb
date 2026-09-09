@@ -14,10 +14,18 @@
    copy hidden behind it the whole time ("the text takes a while to
    appear"). A minimum of 1.1s keeps the mark readable, a 6s ceiling lifts
    the curtain whatever happens, and the progress rule eases on the clock,
-   never per frame, so a slow first second cannot stretch it. */
+   never per frame, so a slow first second cannot stretch it.
+
+   Every other page carries it too (the user's call: the preloader is part
+   of the brand), with data-min="700" and its own words, and waits only for
+   the DOM and the fonts, so it costs a page that paints at once well under
+   a second. Not on the Spaces page, which has its own gate. */
 (function () {
   var me = document.currentScript; if (!me) return;
   /* 'fonts' and 'dom' are built in; the other keys are the page's own reports */
+  /* data-min: the floor in ms (1100 by default, the field pages' brand moment;
+     700 on pages that paint at once). data-words: the phrases under the rule. */
+  var MIN = Math.max(0, parseInt(me.getAttribute('data-min'), 10) || 1100);
   var WAIT = (me.getAttribute('data-wait') || '').split(',').map(function (s) { return s.trim(); }).filter(function (s) { return s && s !== 'fonts' && s !== 'dom'; });
   var CSS = '#boot{position:fixed;inset:0;z-index:9999;background:#05060a;display:grid;place-items:center;' +
     'transition:opacity .7s cubic-bezier(.4,0,.2,1),visibility .7s;}' +
@@ -51,7 +59,7 @@
 
   var boot = document.getElementById('boot'), fill = document.getElementById('bfill'), mark = document.getElementById('bmarkFill'),
       pct = document.getElementById('bpct'), word = document.getElementById('bword');
-  var WORDS = ['waking the field', 'loading worlds', 'rendering light', 'almost there'];
+  var WORDS = (me.getAttribute('data-words') || 'waking the field,loading worlds,rendering light,almost there').split(',').map(function (w) { return w.trim(); }).filter(Boolean);
   var t0 = performance.now(), last = t0, p = 0, done = false, wi = 0;
   var pending = {}; WAIT.forEach(function (k) { pending[k] = true; });
   var dom = false, fonts = false;
@@ -76,7 +84,7 @@
   var wt = setInterval(function () {
     if (done) return; wi = Math.min(WORDS.length - 1, wi + 1);
     word.style.opacity = 0; setTimeout(function () { word.textContent = WORDS[wi]; word.style.opacity = 1; }, 300);
-  }, 1100);
+  }, Math.max(500, Math.min(1100, MIN)));
   (function tick() {
     var now = performance.now(), dt = Math.min(250, now - last); last = now;
     var el = now - t0;
@@ -87,7 +95,7 @@
     if (p > 99.4) p = 100;
     fill.style.transform = 'scaleX(' + (p / 100) + ')'; mark.style.clipPath = 'inset(0 ' + (100 - p) + '% 0 0)';
     pct.textContent = (p < 100 ? Math.floor(p) : 100);
-    if (p >= 100 && el > 1100) { finish(); return; }
+    if (p >= 100 && el > MIN) { finish(); return; }
     requestAnimationFrame(tick);
   })();
   function finish() {

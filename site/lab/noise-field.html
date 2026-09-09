@@ -71,8 +71,8 @@
     .sp-foot{padding-top:16px}
   }
 </style>
-<link rel="stylesheet" href="../assets/css/nav.css?v=20260909g">
-<link rel="stylesheet" href="../assets/css/mobile.css?v=20260909g">
+<link rel="stylesheet" href="../assets/css/nav.css?v=20260909h">
+<link rel="stylesheet" href="../assets/css/mobile.css?v=20260909h">
 
 <style>
   /* The lab studies are standalone full-screen experiments and shipped with no
@@ -452,6 +452,7 @@ function shade(){
    real time, fall back the moment it does */
 let dirty = true, fast = 0, lastT = 0;
 function render(){
+  if (SOFT) { dirty = false; return; }
   if (gl) { drawGL(); dirty = false; return; }
   const t0 = performance.now();
   field(); shade();
@@ -467,8 +468,8 @@ function frame(t){
     const dt = lastT ? Math.min(140, t - lastT) : 16;
     lastT = t; spin += dt * 0.000055; dirty = true;
   }
+  if (SOFT) return;   /* a software renderer draws nothing here: the study is a still of its ground */
   if (dirty) { render(); stills++; }
-  if (SOFT && stills >= 2) return;
   requestAnimationFrame(frame);
 }
 
@@ -535,7 +536,7 @@ layout();
 render();
 if (!reduced) requestAnimationFrame(frame);
 </script>
-<script src="../assets/js/mobile.js?v=20260909g" defer></script>
-<script src="../assets/js/nav.js?v=20260909g" defer></script>
+<script src="../assets/js/mobile.js?v=20260909h" defer></script>
+<script src="../assets/js/nav.js?v=20260909h" defer></script>
 </body>
 </html>

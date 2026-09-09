@@ -124,12 +124,15 @@ function buildMap() {
     const rw = Math.max(2, Math.round(bw * k)), rh = Math.max(2, Math.round(bh * k));
     raster.width = rw; raster.height = rh;
     blurred.width = rw; blurred.height = rh;
-    const rc = raster.getContext('2d');
+    /* willReadFrequently: these two canvases exist to be read back. Without it
+       they live on the GPU and every getImageData is a full sync; profiled on a
+       software renderer at 300ms per readback, 18 readbacks per draw. */
+    const rc = raster.getContext('2d', { willReadFrequently: true });
     rc.clearRect(0, 0, rw, rh);
     rc.fillStyle = '#000';
     rc.save(); rc.scale(k, k); rc.translate(-x0, -y0); drawFn(rc); rc.restore();
 
-    const bc = blurred.getContext('2d');
+    const bc = blurred.getContext('2d', { willReadFrequently: true });
     bc.clearRect(0, 0, rw, rh);
     bc.filter = 'blur(' + Math.max(0.5, blur * k) + 'px)';
     bc.drawImage(raster, 0, 0);
