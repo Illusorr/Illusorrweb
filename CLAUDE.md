@@ -97,10 +97,11 @@ All page scripts are `defer` and page scoped. `js/mobile.js` is the exception: i
   `#ilMenuOpen` `#ilMenuClose` and the `il-topbar il-brand il-logo il-talk il-burger
   il-overlay il-ohead il-oclose il-ofoot` classes.
 - `boot.js` is the loading curtain, one source like the nav. It is the first tag in `<body>` on
-  the pages that open on a computed hero (home, about), synchronous, with `data-wait` naming
-  what the first screen needs (`field` is reported by field.js on its first frame). It lifts on
-  DOMContentLoaded + fonts + those keys, never on the load event, with a 1.1s floor and a 6s
-  ceiling. Do not add it to pages that paint progressively; do not inline a copy.
+  every page except the Spaces page (own gate), synchronous, with `data-wait` naming what the
+  first screen needs: `fonts,field` on home and about (`field` is reported by field.js on its
+  first frame), `dom` with `data-min="700"` everywhere else. It lifts on DOMContentLoaded plus
+  those keys, never on the load event, with a floor (1.1s / 0.7s) and a 6s ceiling. Never
+  inline a copy; a page that computes its first screen reports a key through `ILBoot.ready(key)`.
 - `mobile.js` strips autoplay from video behind a tap, removes pointer followers, and turns
   3D canvases into tap to load placeholders. A page with heavy libraries keeps them in a
   `<template>` and exposes a global starter, see `window.MG_START_3D` in

@@ -98,11 +98,15 @@ function onScroll(fn){
             const pick=()=>{
               if(done) return;
               if(!c.classList.contains('active')){ done=true; delete m.dataset.loaded; return; }
+              /* not near the screen yet: asked again when it is (see convNear) */
+              if(!convNear){ done=true; delete m.dataset.loaded; return; }
               /* not laid out yet (the first card, behind the boot curtain): look again */
               if(c.clientWidth<200){ if(++tries<6) setTimeout(pick,1500); else { done=true; delete m.dataset.loaded; } return; }
               done=true;
               const need=Math.ceil((m.clientWidth||c.clientWidth)*Math.min(2,devicePixelRatio||1));
-              const size=need<=480?480:need<=768?768:need<=1200?1200:0;
+              /* the 1200 serves up to 1440 device pixels: a fifth of stretch on a
+                 card in motion is invisible, and the full file is up to twice the bytes */
+              const size=need<=480?480:need<=768?768:need<=1440?1200:0;
               if(size===480) return;   /* the rung already shows it */
               const want=size?m.dataset.full.replace(/\.webp$/,'-'+size+'.webp'):m.dataset.full;
               const img=new Image(), el=m.querySelector('.cimg');
@@ -122,8 +126,27 @@ function onScroll(fn){
       });
       cnEl.textContent=String(i+1).padStart(2,'0');
     }
-    function cauto(){ctimer=setInterval(()=>cset((cci+1)%convProjects.length),3000)}
-    cset(0);cauto();
+    /* THE CONVEYOR RUNS ONLY NEAR THE SCREEN. It used to cycle from the
+       moment the page loaded: every 3s a card expanded and fetched its
+       larger cover, so all nine covers, 1.5 MB, downloaded behind the hero
+       while the visitor was still reading it, on top of the reel and the
+       sector photographs, and the width transitions ran for nobody. Within
+       a screen of the section the cycle starts, the active card fetches
+       its cover, and the rungs stop being lazy: Safari only starts a lazy
+       image about a screen ahead, so they would pop in on arrival. */
+    let convNear=false;
+    function cauto(){ clearInterval(ctimer); if(convNear) ctimer=setInterval(()=>cset((cci+1)%convProjects.length),3000); }
+    cset(0);
+    const convSec=convEl.closest('section')||convEl;
+    if(window.IntersectionObserver){
+      new IntersectionObserver(es=>{
+        const near=es[0].isIntersecting;
+        if(near===convNear) return;
+        convNear=near;
+        if(near){ convEl.querySelectorAll('img.cimg').forEach(i=>{ i.loading='eager'; }); cset(cci); }
+        cauto();
+      },{rootMargin:'100% 0px'}).observe(convSec);
+    } else { convNear=true; cauto(); }
     convEl.addEventListener('mouseover',e=>{const c=e.target.closest('.ccard');if(!c)return;clearInterval(ctimer);cset(+c.dataset.i)});
     convEl.addEventListener('mouseleave',()=>{clearInterval(ctimer);cauto()});
     dotsWrap.addEventListener('click',e=>{const d=e.target.closest('i');if(d){clearInterval(ctimer);cset(+d.dataset.i);cauto()}});

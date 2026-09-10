@@ -373,6 +373,8 @@ void main(){
   frag=vec4(col,1.0);
 }`;
 
+  /* asked for before the shaders compile so the driver may build them on its own thread; see programReady */
+  const PARALLEL=gl.getExtension('KHR_parallel_shader_compile');
   const mk=(t,s)=>{const sh=gl.createShader(t);gl.shaderSource(sh,s);gl.compileShader(sh);
     if(!gl.getShaderParameter(sh,gl.COMPILE_STATUS))console.error(gl.getShaderInfoLog(sh));return sh};
   const prog=gl.createProgram();
@@ -385,23 +387,39 @@ void main(){
       ? FRAG.replace('precision highp float;','precision highp float;\n#define STABLE_HASH 1\n#define TOUCH_FIELD 1\n#define FIELD_OCTAVES 4\n#define ASPECT_REF 0.625')
       : FRAG));
   gl.linkProgram(prog);
-  if(!gl.getProgramParameter(prog,gl.LINK_STATUS))console.error(gl.getProgramInfoLog(prog));
 
   gl.bindVertexArray(gl.createVertexArray());
   gl.bindBuffer(gl.ARRAY_BUFFER,gl.createBuffer());
   gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);
-  const loc=gl.getAttribLocation(prog,'a_pos');
-  gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
 
-  const U={};
-  ['u_res','u_time','u_aspect','u_mouse','u_base','u_accent','u_density','u_lut',
-   'u_morph','u_sphereRadius','u_pinchSoft','u_focus','u_noiseScale','u_flowStretch','u_contourDensity',
-   'u_contourSharpness','u_topFade','u_animSpeed','u_densityWobble','u_noiseWobble',
-   'u_hoverStrength','u_hoverRadius','u_hoverGlow','u_curlSteps','u_curlScale',
-   'u_curlStrength','u_mirror','u_dim','u_lightBg','u_lightInk','u_lightContrast',
-   'u_flash','u_curtain','u_wipeOn','u_collapse',
-   'u_ignite','u_bandSoft','u_collapseAmt','u_tx','u_txMode','u_txAmt']
-    .forEach(n=>U[n]=gl.getUniformLocation(prog,n));
+  /* THE LINK IS NOT WAITED FOR HERE. Asking for LINK_STATUS, or any
+     location, straight after linkProgram blocks the main thread until the
+     driver has compiled the whole shader: 116ms in Chrome on a laptop,
+     132ms in WebKit, and Safari's Metal compiler is the slow one, long
+     enough to freeze the boot curtain mid-count while the parser also
+     waits on this script. With KHR_parallel_shader_compile the driver
+     compiles on its own thread and COMPLETION_STATUS_KHR says when it is
+     done, so the locations are read, and the first frame drawn, from the
+     loop once the program is usable. Without the extension the first
+     query still blocks, but in a frame of its own after DOMContentLoaded
+     rather than inside it. */
+  const U={}; let linked=false;
+  function programReady(){
+    if(linked) return true;
+    if(PARALLEL && !gl.getProgramParameter(prog,PARALLEL.COMPLETION_STATUS_KHR)) return false;
+    if(!gl.getProgramParameter(prog,gl.LINK_STATUS))console.error(gl.getProgramInfoLog(prog));
+    const loc=gl.getAttribLocation(prog,'a_pos');
+    gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
+    ['u_res','u_time','u_aspect','u_mouse','u_base','u_accent','u_density','u_lut',
+     'u_morph','u_sphereRadius','u_pinchSoft','u_focus','u_noiseScale','u_flowStretch','u_contourDensity',
+     'u_contourSharpness','u_topFade','u_animSpeed','u_densityWobble','u_noiseWobble',
+     'u_hoverStrength','u_hoverRadius','u_hoverGlow','u_curlSteps','u_curlScale',
+     'u_curlStrength','u_mirror','u_dim','u_lightBg','u_lightInk','u_lightContrast',
+     'u_flash','u_curtain','u_wipeOn','u_collapse',
+     'u_ignite','u_bandSoft','u_collapseAmt','u_tx','u_txMode','u_txAmt']
+      .forEach(n=>U[n]=gl.getUniformLocation(prog,n));
+    linked=true; return true;
+  }
 
   const N=2048,lutData=new Uint8Array(N),lutTex=gl.createTexture();
   gl.bindTexture(gl.TEXTURE_2D,lutTex);
@@ -701,7 +719,7 @@ void main(){
     if(cv.width!==w||cv.height!==h){ cv.width=w; cv.height=h; measure(); return true; }
     return false;
   }
-  function resize(){ syncSize(); measure(); if(reduced){ draw(0); if(window.ILBoot) window.ILBoot.ready('field'); } }
+  function resize(){ syncSize(); measure(); if(reduced&&draw(0)&&window.ILBoot) window.ILBoot.ready('field'); }
   addEventListener('resize',resize);
   if(window.ResizeObserver) new ResizeObserver(()=>{
     if(syncSize() && reduced) draw(0);
@@ -714,6 +732,7 @@ void main(){
   let phase=0,lastT=null;
   const readout=document.getElementById('readout');
   function draw(t){
+    if(!programReady()) return false;   /* still compiling on the driver's thread */
     syncSize();
     /* The two calls that make this canvas scroll-dependent. Skipped on
        touch; see the TOUCH note above. */
@@ -805,6 +824,7 @@ void main(){
       else if(mode!=='none') parts.push('flash '+flash.toFixed(2));
       readout.textContent=mode+'  ·  '+parts.join('  ');
     }
+    return true;
   }
 
   
@@ -832,7 +852,8 @@ void main(){
     if(!pgs.length) return;
     var on=function(){ return pgs.some(function(p){return p.classList.contains('show')}); };
     var _draw=draw;
-    draw=function(t){ if(on()) _draw(t); };
+    /* the result passes through: false while the program is still compiling, true once a frame is drawn; switched off, the frame counts as done so the boot curtain is not held */
+    draw=function(t){ return on() ? _draw(t) : true; };
     var cv=document.getElementById('nf');
     var sync=function(){ cv.style.display = on() ? 'block' : 'none'; if(on()) requestAnimationFrame(measure); };
     if(window.MutationObserver){
@@ -865,7 +886,8 @@ resize(); setMode(mode);
     let q=false;
     addEventListener('scroll',()=>{ if(q)return; q=true;
       requestAnimationFrame(()=>{q=false;draw(0)});},{passive:true});
-    draw(0);
+    /* the first still waits for the program the way the loop does */
+    (function first(){ if(!draw(0)){ requestAnimationFrame(first); return; } if(window.ILBoot) window.ILBoot.ready('field'); })();
   } else {
     /* The field ran at 30fps for the whole length of the page and kept running
        in a background tab: measured 18 draw calls a second whether or not the
@@ -901,7 +923,8 @@ resize(); setMode(mode);
          cap stays on while scrolling. */
       const cap=(!TOUCH&&now-lastScroll<300)?0:1000/30;
       if(now-prev<cap) return;
-      prev=now; drawn++; draw((now-t0)/1000);
+      if(!draw((now-t0)/1000)) return;   /* the program is still compiling: try again next frame */
+      prev=now; drawn++;
       if(drawn===1&&window.ILBoot) window.ILBoot.ready('field');   /* the boot curtain waits for this frame, see boot.js */
     })();
   }

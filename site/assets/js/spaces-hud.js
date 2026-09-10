@@ -359,7 +359,9 @@ soundBtn.addEventListener('click', (e) => { e.stopPropagation(); setSound(!wante
 /* Decoding needs no gesture, only playback does — so fetch and decode now
    and the ambience is already in hand when the gate is dismissed. */
 (function warm() {
-  if (!wanted) return;
+  /* embedded in the landing band the HUD is hidden and nothing plays
+     without a gesture inside the frame: 886 KB fetched and decoded for nobody */
+  if (!wanted || EMBED) return;
   const Ctx = window.AudioContext || window.webkitAudioContext;
   if (!Ctx) return;
   actx = new Ctx();
