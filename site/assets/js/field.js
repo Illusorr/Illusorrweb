@@ -403,10 +403,22 @@ void main(){
      loop once the program is usable. Without the extension the first
      query still blocks, but in a frame of its own after DOMContentLoaded
      rather than inside it. */
-  const U={}; let linked=false;
+  const U={}; let linked=false, polledSince=0;
   function programReady(){
     if(linked) return true;
-    if(PARALLEL && !gl.getProgramParameter(prog,PARALLEL.COMPLETION_STATUS_KHR)) return false;
+    if(PARALLEL){
+      /* A DEADLINE ON THE POLL. A driver that exposes the extension but
+         never flips the completion flag would leave this field blank for
+         good and the boot curtain hanging to its 6s ceiling, which is what
+         the about page did in Safari on a MacBook the day this shipped
+         (its Metal backend). After 700ms of polling the link is resolved
+         the old way: one synchronous wait, in a frame of its own. */
+      if(!polledSince) polledSince=performance.now();
+      if(performance.now()-polledSince<700){
+        let done=true; try{ done=!!gl.getProgramParameter(prog,PARALLEL.COMPLETION_STATUS_KHR); }catch(e){ done=true; }
+        if(!done) return false;
+      }
+    }
     if(!gl.getProgramParameter(prog,gl.LINK_STATUS))console.error(gl.getProgramInfoLog(prog));
     const loc=gl.getAttribLocation(prog,'a_pos');
     gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
