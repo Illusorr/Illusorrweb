@@ -31,7 +31,7 @@
      connection held their curtain for the whole font set */
   var NEEDFONTS = /fonts/.test(me.getAttribute('data-wait') || '');
   var WAIT = (me.getAttribute('data-wait') || '').split(',').map(function (s) { return s.trim(); }).filter(function (s) { return s && s !== 'fonts' && s !== 'dom'; });
-  var CSS = '#boot{position:fixed;inset:0;z-index:9999;background:#05060a;display:grid;place-items:center;' +
+  var CSS = '#boot{position:fixed;inset:0;z-index:9999;background:#05060a;display:grid;place-items:center;touch-action:none;overscroll-behavior:none;' +
     'transition:opacity .7s cubic-bezier(.4,0,.2,1),visibility .7s;}' +
     '#boot[data-done]{opacity:0;visibility:hidden;pointer-events:none;}' +
     '#boot .bw{display:flex;flex-direction:column;align-items:center;gap:22px;width:min(560px,74vw);}' +
@@ -67,7 +67,18 @@
   var t0 = performance.now(), last = t0, p = 0, done = false, wi = 0;
   var pending = {}; WAIT.forEach(function (k) { pending[k] = true; });
   var dom = false, fonts = false;
-  document.documentElement.style.overflow = 'hidden';
+  /* THE SCROLL LOCK GOES ON BODY, NEVER ON THE HTML ELEMENT. Hidden overflow
+     on <html> before the first layout stops body's overflow-x from
+     propagating to the viewport, so body becomes the scroll container for
+     that moment; WebKit computes every position:sticky block against it
+     then and never recomputes, and in Safari the about page's pinned
+     journey, the team and the home sector stage all scrolled away with
+     the page (measured 2026-09-14: 21 of 22 samples unpinned on html, 0
+     on body). body's overflow propagates to the viewport itself, so the
+     scroll container never changes. The curtain refuses touch as well, so
+     a phone cannot scroll through it while it is up. */
+  var lock = document.body || document.documentElement;
+  lock.style.overflow = 'hidden';
 
   /* progress is a report of readiness, not a clock: DOM 30, fonts 25, the
      rest shared by the keys the page waits for */
@@ -107,7 +118,7 @@
     word.textContent = 'enter';
     setTimeout(function () {
       boot.setAttribute('data-done', '');
-      document.documentElement.style.overflow = '';
+      lock.style.overflow = '';
       window.ILBoot.lifted = true;
       document.dispatchEvent(new CustomEvent('il:boot-lifted'));
       setTimeout(function () { boot.remove(); }, 800);

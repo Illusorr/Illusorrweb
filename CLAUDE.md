@@ -102,6 +102,11 @@ All page scripts are `defer` and page scoped. `js/mobile.js` is the exception: i
   first frame), `dom` with `data-min="700"` everywhere else. It lifts on DOMContentLoaded plus
   those keys, never on the load event, with a floor (1.1s / 0.7s) and a 6s ceiling. Never
   inline a copy; a page that computes its first screen reports a key through `ILBoot.ready(key)`.
+  Its scroll lock goes on `body`, never on `html`: hidden overflow on `html` before the first
+  layout makes `body` the scroll container for that moment and WebKit then computes every
+  `position: sticky` block against `body` for good (Safari: the about journey, the team and
+  the home sector stage all scrolled away). The same rule applies to any lock applied before
+  first layout.
 - `mobile.js` strips autoplay from video behind a tap, removes pointer followers, and turns
   3D canvases into tap to load placeholders. A page with heavy libraries keeps them in a
   `<template>` and exposes a global starter, see `window.MG_START_3D` in
