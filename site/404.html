@@ -2,6 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<!-- Netlify serves this page at whatever address was asked for, at any depth
+     (/projects/old-name), and every asset and link here is relative: resolved
+     under /projects/ they all 404 and the page renders unstyled. The base pins
+     them to the root. This page only; the rest of the site is served at its
+     own depth. -->
+<base href="/">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Page Not Found · ILLUSORR</title>
 <link rel="icon" href="/favicon.ico?v=2" sizes="any">

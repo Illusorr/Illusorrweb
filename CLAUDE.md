@@ -137,6 +137,9 @@ All page scripts are `defer` and page scoped. `js/mobile.js` is the exception: i
 - **Sitemap**: `sitemap.xml` lists only pages with real content. Placeholder shells
   (`hob`, `metacon`, `monaco-chain`), the test page `spaces-breakpoints.html` and `404.html`
   stay out. Add a `<loc>` at the same time as the content, not before.
+- **404 page**: Netlify serves `404.html` at whatever address was requested, at any depth, so
+  it carries `<base href="/">` and its relative asset and page links resolve from the root.
+  No other page has a base tag; do not add one.
 
 ## Accessibility and performance floors
 
