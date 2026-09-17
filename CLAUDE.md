@@ -78,6 +78,10 @@ Rules:
   colour. `#aboutRoot` and `#workGrid` redeclare some tokens on purpose, leave that alone.
 - The mobile layers are additive. Every rule is behind `html[data-touch]` or a max width
   query, so removing the `<link>` restores desktop exactly. Keep it that way.
+- The sector, lab and collective pages are `.sd-stack` slides: each `section` is a pinned 100vh
+  slide with hidden overflow, so a slide whose content can be taller than a screen (the
+  collective's commissions board and application) takes `sd-flow` and scrolls as an ordinary
+  section. Never let a pinned slide hold more than a screen of content.
 - Case refinement layers with `-b` `-c` `-d` suffixes are genuinely different variants, not
   copies. Check which one a page links before editing it.
 - Type: `PP Monument Extended` for the big header tier via `.mnt` and `var(--head)`,

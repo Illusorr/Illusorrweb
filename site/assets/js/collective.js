@@ -46,21 +46,20 @@ const DISCIPLINES = [
 
 /* commissions board — status: 'open' | 'filling' | 'closed' */
 const COMMISSIONS = [
-  { role: 'Environment artist',   disc: 'Environment artists', sector: 'Real estate',   basis: 'Per project', status: 'open',    note: 'Two interior sets, procedural re-dress across four unit types.' },
-  { role: 'Character artist',     disc: 'Character artists',   sector: 'Gaming',        basis: 'Per project', status: 'open',    note: 'Hero character, groom and garment sim, engine-ready.' },
-  { role: 'Motion designer',      disc: 'Motion designers',    sector: 'Beauty',        basis: 'Monthly run', status: 'open',    note: 'Ongoing social cadence, cutdowns from a monthly campaign shoot.' },
-  { role: 'Technical artist',     disc: 'Technical artists',   sector: 'Studio tooling',basis: 'Retainer',    status: 'filling', note: 'Houdini asset pipeline, batch export and validation tooling.' },
-  { role: 'AI content creator',   disc: 'AI content creators', sector: 'Fashion',       basis: 'Per project', status: 'filling', note: 'Directed generation against a fixed lookbook reference set.' },
-  { role: '3D generalist',        disc: '3D artists',          sector: 'F&B',           basis: 'Monthly run', status: 'open',    note: 'Product renders on a monthly release calendar.' },
-  { role: 'Real-time web build',  disc: 'Web developers',      sector: 'Culture',       basis: 'Per project', status: 'closed',  note: 'Browser configurator, WebGL. Filled from the database in March.' },
-  { role: 'Sound designer',       disc: 'AI content creators', sector: 'Gaming',        basis: 'Per project', status: 'open',    note: 'Ambience beds and interaction sound. Generative tools welcome, the mix is still yours.' },
-  { role: 'Production artist',    disc: 'Producers',           sector: 'Beauty',        basis: 'Monthly run', status: 'open',    note: 'Master files resized, versioned and delivered clean across every placement.' },
-  { role: 'AI content creator',   disc: 'AI content creators', sector: 'Real estate',   basis: 'Monthly run', status: 'open',    note: 'Directed generation for listing and campaign imagery, held to one house look.' },
-  { role: 'AI producer',          disc: 'Producers',           sector: 'Studio tooling',basis: 'Retainer',    status: 'open',    note: 'Owns the generative pipeline end to end: model choice, cost, review and sign-off.' },
-  { role: 'Editor',               disc: 'Motion designers',    sector: 'Culture',       basis: 'Per project', status: 'open',    note: 'Long-form cut plus the cutdown ladder each platform actually rewards.' },
-  { role: 'Creative technologist',disc: 'Technical artists',   sector: 'Business',      basis: 'Per project', status: 'filling', note: 'Prototypes that prove an idea before the full build is scoped.' },
-  { role: 'AI web designer',      disc: 'Web developers',      sector: 'Fashion',       basis: 'Per project', status: 'open',    note: 'Site design produced with generative tooling, shipped as real front-end.' },
-  { role: '3D artist',            disc: '3D artists',          sector: 'Gaming',        basis: 'Monthly run', status: 'open',    note: 'Props and hard-surface assets, engine-ready on a rolling delivery.' }
+  /* Open roles first, then the filled ones, which stay on the board so the
+     movement is visible. The studio's list of 17 September 2026. `disc` must be
+     a DISCIPLINES name: it presets the application form's discipline. */
+  { role: 'AI producer',              disc: 'Producers',           sector: 'All sectors',    basis: 'Retainer',    status: 'open',   note: 'Runs AI-driven productions end to end, from the brief to delivery.' },
+  { role: 'AI editor',                disc: 'Motion designers',    sector: 'All sectors',    basis: 'Monthly run', status: 'open',   note: 'Edits AI-generated footage into finished films and the cutdowns each platform needs.' },
+  { role: 'After Effects editor',     disc: 'Motion designers',    sector: 'All sectors',    basis: 'Per project', status: 'open',   note: 'Motion graphics and compositing in After Effects, with AI tools in the pipeline.' },
+  { role: 'Beauty content creator',   disc: 'AI content creators', sector: 'Beauty',         basis: 'Monthly run', status: 'open',   note: 'Campaign and social content for beauty and fragrance houses.' },
+  { role: 'AI video producer',        disc: 'AI content creators', sector: 'Fashion',        basis: 'Per project', status: 'open',   note: 'Full video production on Higgsfield for fashion campaigns and lookbooks.' },
+  { role: '3D artist, AI pipelines',  disc: '3D artists',          sector: 'All sectors',    basis: 'Per project', status: 'open',   note: '3D asset work inside AI-assisted pipelines, render and engine ready.' },
+  { role: 'Creative technologist',    disc: 'Technical artists',   sector: 'All sectors',    basis: 'Retainer',    status: 'open',   note: 'Prototypes and builds interactive and AI-driven experiences alongside the design team.' },
+  { role: 'AI content creator',       disc: 'AI content creators', sector: 'Fashion',        basis: 'Per project', status: 'closed', note: 'Directed generation against a fixed lookbook reference set.' },
+  { role: 'Architectural visualisation artist', disc: 'Environment artists', sector: 'Real estate', basis: 'Per project', status: 'closed', note: 'Interior and exterior stills for listing and campaign use.' },
+  { role: 'Product designer',         disc: 'Web developers',      sector: 'Studio tooling', basis: 'Per project', status: 'closed', note: 'Interface and product design across the studio\'s own tools.' },
+  { role: '3D artist',                disc: '3D artists',          sector: 'Gaming',         basis: 'Monthly run', status: 'closed', note: 'Props and hard-surface assets, engine-ready on a rolling delivery.' }
 ];
 
 const BOARD_UPDATED = 'September 2026';
@@ -824,7 +823,7 @@ function buildBoard() {
     </div>
     ${COMMISSIONS.map((c, i) => `
       <div class="opb-row is-${c.status}" data-disc="${c.disc}" style="transition-delay:${i * 45}ms">
-        <span class="opb-role">${c.role}<em>${c.note}</em></span>
+        <span class="opb-role">${c.role}<em>${c.note}</em>${c.status === 'closed' ? '' : `<a class="opb-apply" data-apply href="#clApply" data-role="${c.role}" data-disc="${c.disc}">Apply for this role ↗</a>`}</span>
         <span class="opb-cell">${c.sector}</span>
         <span class="opb-cell">${c.basis}</span>
         <span class="opb-r"><i class="opb-pill p-${c.status}">${LBL[c.status]}</i></span>
@@ -834,13 +833,31 @@ function buildBoard() {
       <span>Updated ${BOARD_UPDATED}</span>
     </div>`;
 
-  new IntersectionObserver((es, o) => {
-    es.forEach(en => {
-      if (!en.isIntersecting) return;
-      host.classList.add('in');
-      o.disconnect();
-    });
-  }, { threshold: 0.2 }).observe(host);
+  /* Reveal. The observer is the fast path, but in this sticky-panel layout it
+     does not always fire (the map learnt the same lesson above), and rows that
+     never fade in are a board that "is not working". A plain rect check on
+     scroll, on load and on a timer backs it up. */
+  const reveal = () => {
+    if (host.classList.contains('in')) return true;
+    const r = host.getBoundingClientRect();
+    if (r.top < innerHeight * 0.92 && r.bottom > 0) { host.classList.add('in'); return true; }
+    return false;
+  };
+  if (!reveal()) {
+    if ('IntersectionObserver' in window)
+      new IntersectionObserver((es, o) => { es.forEach(en => { if (en.isIntersecting) { host.classList.add('in'); o.disconnect(); } }); }, { threshold: 0.05 }).observe(host);
+    addEventListener('scroll', function onS() { if (reveal()) removeEventListener('scroll', onS); }, { passive: true });
+    setTimeout(reveal, 1500);
+  }
+
+  /* Apply from a row, or from the training programme below the board: the
+     link carries the role and discipline into the application form (panel
+     09) and lets the anchor scroll there. ILApply is defined by the form. */
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('[data-apply]');
+    if (!a || !window.ILApply) return;
+    window.ILApply(a.dataset.role || '', a.dataset.disc || '');
+  });
 }
 
 /* ═══ boot ════════════════════════════════════════════════════════════ */
@@ -857,7 +874,28 @@ else boot();
   var err = document.getElementById('clErr'),
       done = document.getElementById('clDone'),
       msg = document.getElementById('clMsg'),
-      btn = f.querySelector('button[type=submit]');
+      btn = f.querySelector('button[type=submit]'),
+      roleIn = document.getElementById('clRole'),
+      forLine = document.getElementById('clFor'),
+      forRole = document.getElementById('clForRole'),
+      forClear = document.getElementById('clForClear'),
+      discSel = f.querySelector('select[name=discipline]');
+
+  /* Preset from a board row or the programme: the role rides along as a
+     hidden field (and a visible line the applicant can clear), the discipline
+     select jumps to the row's discipline when it is one of the options. */
+  window.ILApply = function (role, disc) {
+    if (roleIn) roleIn.value = role || '';
+    if (forLine) { forLine.hidden = !role; if (forRole) forRole.textContent = role || ''; }
+    if (disc && discSel) {
+      var has = Array.prototype.some.call(discSel.options, function (o) { return o.value === disc || o.text === disc; });
+      discSel.value = has ? disc : 'Something else';
+    }
+    f.hidden = false; done.hidden = true;
+    var nameIn = f.querySelector('input[name=name]');
+    setTimeout(function () { if (nameIn && role) nameIn.focus({ preventScroll: true }); }, 700);
+  };
+  if (forClear) forClear.addEventListener('click', function () { window.ILApply('', ''); });
 
   var cap = window.ILForm ? new window.ILForm.Challenge() : null;
   if (cap) f.insertBefore(cap.el(), f.querySelector('.cl-actions'));
@@ -870,7 +908,8 @@ else boot();
     var name = (d.get('name') || '').trim(),
         mail = (d.get('email') || '').trim(),
         disc = (d.get('discipline') || '').trim(),
-        links = (d.get('links') || '').trim();
+        links = (d.get('links') || '').trim(),
+        role = (d.get('role') || '').trim();
 
     if (!name) return fail('Please add your name.');
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail))
@@ -884,13 +923,13 @@ else boot();
     btn.disabled = true; btn.textContent = 'Sending…';
     function received() {
       f.hidden = true; done.hidden = false;
-      msg.textContent = name.split(' ')[0] + ', that is with the studio. We read every ' +
-        'application and reply within two working days. If there is an open commission ' +
-        'in ' + disc.toLowerCase() + ', we will say so.';
+      msg.textContent = name.split(' ')[0] + ', that is with the studio' + (role ? ' for ' + role : '') +
+        '. We read every application and reply within two working days.' +
+        (role ? '' : ' If there is an open commission in ' + disc.toLowerCase() + ', we will say so.');
     }
     if (!window.ILForm) { received(); return; }
     window.ILForm.send('collective', {
-      name: name, email: mail, discipline: disc,
+      name: name, email: mail, discipline: disc, role: role,
       location: (d.get('location') || '').trim(), links: links,
       level: (d.get('level') || '').trim(), msg: (d.get('msg') || '').trim()
     }).then(received).catch(function () {

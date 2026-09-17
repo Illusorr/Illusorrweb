@@ -1496,6 +1496,14 @@
     display:flex;flex-direction:column;justify-content:center;padding:0 56px}
   .sd-stack>section.dark{background:var(--bg)}
   .sd-stack>section.light{background:var(--cream)}
+  /* A slide whose content is taller than a screen cannot be a pinned 100vh
+     slide with hidden overflow: the Collective's commissions board (1388px of
+     rows) lost its header and its first and last rows to the clip at every
+     desktop size, and the application panel clipped at 1366x768. .sd-flow
+     lets the section grow and scroll like an ordinary section between the
+     pinned ones: it still covers the slide before it (same z-order, opaque
+     ground) and the next slide still pins over it. */
+  .sd-stack>section.sd-flow{position:relative;height:auto;overflow:visible;padding-top:96px;padding-bottom:96px}
   .pnl{max-width:1280px;margin:0 auto;width:100%;position:relative;z-index:2;
     transform-origin:50% 40%;will-change:transform,opacity}
   .pnl-tag{position:absolute;left:56px;bottom:26px;z-index:3;font-family:'Outfit',sans-serif;
@@ -2418,6 +2426,19 @@
   .opb-foot{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;
     padding-top:14px;font-size:12px;color:var(--dim)}
   .opb-foot b{font-family:'Outfit',sans-serif;font-size:15px;color:var(--own)}
+  /* apply from a row: a quiet text link under the note; filled rows carry none */
+  .opb-apply{display:inline-block;margin-top:9px;font-family:'Outfit',sans-serif;font-size:11px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--own);text-decoration:none;border-bottom:1px solid rgba(138,255,196,.35);
+    padding-bottom:2px;transition:color .25s,border-color .25s}
+  .opb-apply:hover{color:var(--ink);border-color:var(--ink)}
+  .opb-row.is-filling .opb-apply{color:var(--cold);border-color:rgba(142,162,255,.4)}
+  /* the training programme, under the board */
+  .opb-prog{margin-top:44px;padding-top:26px;border-top:1px solid var(--line);display:grid;
+    grid-template-columns:.9fr 1.1fr;gap:18px 48px;align-items:start}
+  .opb-prog h3{margin-top:14px;font-family:'Outfit',sans-serif;font-weight:500;font-size:clamp(20px,2vw,28px);
+    letter-spacing:-.01em;line-height:1.15;color:var(--ink)}
+  .opb-prog p{font-size:14px;line-height:1.7;font-weight:300;color:var(--dim);max-width:520px}
+  .opb-prog .il-btn{margin-top:18px}
   @media(max-width:980px){
     .cst{height:clamp(300px,46vh,400px)}
     .swm{height:clamp(220px,42vh,360px)}
@@ -2426,6 +2447,8 @@
     .opb-row .opb-cell:nth-of-type(1){grid-column:1}
     .opb-role{grid-column:1/-1}
     .opb-r{grid-column:2;grid-row:2}
+    .opb-prog{grid-template-columns:1fr;gap:8px}
+    .opb-prog h3{margin-top:10px}
   }
   @media(max-width:600px){
     .opb-h-n,.swm-f-lbl,.cst-r-c,.opb-pill,.cst-row-c{font-size:12px}
@@ -2646,6 +2669,14 @@ p, li, dd, dt, .meta-v { text-wrap: pretty; }
 .cl-hint{font-size:12px;font-weight:300;color:var(--faint);max-width:300px;line-height:1.5}
 .cl-done{margin:34px auto 0;max-width:560px;text-align:left}
 .cl-done p{margin-top:12px;font-size:15px;font-weight:300;line-height:1.7;color:var(--dim)}
+/* the role a board link carried into the form, with a way to drop it */
+.cl-for[hidden]{display:none}   /* the flex display below would otherwise beat the hidden attribute */
+.cl-for{display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-family:'Outfit',sans-serif;font-size:12px;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--faint)}
+.cl-for b{color:var(--own);font-weight:500;font-size:14px;letter-spacing:0;text-transform:none}
+.cl-for button{border:0;background:none;color:var(--faint);font-family:inherit;font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;cursor:pointer;text-decoration:underline;text-underline-offset:3px;padding:6px 0}
+.cl-for button:hover{color:var(--ink)}
 /* the intake link and the back link stay a row of quiet text under the form */
 .sd-end .end-cta{margin-top:34px}
 @media(max-width:760px){.cl-row2{grid-template-columns:1fr}}
