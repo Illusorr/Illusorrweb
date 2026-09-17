@@ -928,13 +928,15 @@ else boot();
         (role ? '' : ' If there is an open commission in ' + disc.toLowerCase() + ', we will say so.');
     }
     if (!window.ILForm) { received(); return; }
-    window.ILForm.send('collective', {
+    var fields = {
       name: name, email: mail, discipline: disc, role: role,
       location: (d.get('location') || '').trim(), links: links,
       level: (d.get('level') || '').trim(), msg: (d.get('msg') || '').trim()
-    }).then(received).catch(function () {
+    };
+    window.ILForm.send('collective', fields).then(received).catch(function () {
       btn.disabled = false; btn.textContent = 'Send application ↗';
-      fail('That did not go through. Please email hello@illusorr.com directly.');
+      /* nothing is lost: the answers travel in a prefilled email */
+      window.ILForm.fallback(err, 'collective', fields);
     });
   });
 })();

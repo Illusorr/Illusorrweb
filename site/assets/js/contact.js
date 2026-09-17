@@ -34,7 +34,7 @@
       window.ILForm.send('contact',payload).then(function(){ received(''); })
         .catch(function(){
           btn.disabled=false; btn.textContent='Send ↗';
-          fail('That did not go through. Please email hello@illusorr.com directly.');
+          window.ILForm.fallback(err,'contact',payload);   /* the message travels in a prefilled email */
         });
     });
   })();

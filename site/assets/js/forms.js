@@ -143,11 +143,42 @@
     });
   }
 
+  /* Supabase first when configured, Netlify Forms when that fails. On
+     2026-09-17 the Supabase host had stopped resolving and every form on the
+     site bounced with "did not go through"; Netlify captures the same fields
+     once form detection is enabled on the site, and until it is, the caller
+     shows the email fallback below so nothing an applicant typed is lost. */
   function send(formName, fields) {
-    return (SUPABASE.url && SUPABASE.key)
+    var first = (SUPABASE.url && SUPABASE.key)
       ? sendSupabase(formName, fields)
-      : sendNetlify(formName, fields);
+      : Promise.reject(new Error('no primary'));
+    return first.catch(function () { return sendNetlify(formName, fields); });
   }
 
-  window.ILForm = { Challenge: Challenge, send: send, MIN_DWELL: MIN_DWELL };
+  /* ---------- last resort: the submission as a prefilled email ---------- */
+  var SUBJECT = { collective: 'Application', contact: 'Message', brief: 'Project brief' };
+  function mailtoUrl(formName, fields) {
+    var lines = Object.keys(fields).filter(function (k) { return fields[k]; })
+      .map(function (k) { return k + ': ' + fields[k]; });
+    var subject = (SUBJECT[formName] || formName) + (fields.role ? ': ' + fields.role : '') +
+      ' from ' + (fields.name || 'the website');
+    return 'mailto:hello@illusorr.com?subject=' + encodeURIComponent(subject) +
+      '&body=' + encodeURIComponent(lines.join('\n'));
+  }
+  /* Fills the form's error element: a sentence and a link that opens the
+     visitor's mail app with every answer already in the message. DOM calls,
+     not markup, because the answers are the visitor's own text. */
+  function fallback(el, formName, fields) {
+    if (!el) return;
+    el.textContent = '';
+    el.appendChild(document.createTextNode('That did not go through. '));
+    var a = document.createElement('a');
+    a.href = mailtoUrl(formName, fields); a.className = 'il-mailfb';
+    a.textContent = 'Send it by email instead \u2197';
+    el.appendChild(a);
+    el.appendChild(document.createTextNode(' Your answers are already in the message.'));
+    el.hidden = false;
+  }
+
+  window.ILForm = { Challenge: Challenge, send: send, mailtoUrl: mailtoUrl, fallback: fallback, MIN_DWELL: MIN_DWELL };
 })();

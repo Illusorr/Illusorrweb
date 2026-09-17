@@ -251,14 +251,14 @@
           next.disabled=false; cap=null; reset(); lastAnswer=''; render(); });
       }
       if(!window.ILForm){ receipt(); return; }
-      window.ILForm.send('brief',{
+      var fields={
         intent:LBL[data.intent]||data.intent, detail:data.detail, where:data.where,
         scale:data.scale, timeline:data.timeline, budget:data.budget, level:data.level,
         links:data.links, name:data.name, email:data.email, org:data.org, msg:data.msg
-      }).then(receipt).catch(function(){
+      };
+      window.ILForm.send('brief',fields).then(receipt).catch(function(){
         next.disabled=false; next.textContent='Send brief ↗';
-        err.textContent='That did not go through. Please email hello@illusorr.com directly.';
-        err.hidden=false;
+        window.ILForm.fallback(err,'brief',fields);   /* the brief travels in a prefilled email */
       });
     }
     next.addEventListener('click',advance);
