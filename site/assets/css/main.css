@@ -2440,6 +2440,9 @@
   .opb-prog h3{margin-top:14px;font-family:'Outfit',sans-serif;font-weight:500;font-size:clamp(20px,2vw,28px);
     letter-spacing:-.01em;line-height:1.15;color:var(--ink)}
   .opb-prog p{font-size:14px;line-height:1.7;font-weight:300;color:var(--dim);max-width:520px}
+  .opb-prog .prog-note{margin-top:10px;font-size:13px;color:var(--faint)}
+  .opb-prog .prog-note a{color:var(--cold);text-decoration:underline;text-underline-offset:3px}
+  .opb-prog .prog-note a:hover{color:var(--ink)}
   .opb-prog .il-btn{margin-top:18px}
   @media(max-width:980px){
     .cst{height:clamp(300px,46vh,400px)}
